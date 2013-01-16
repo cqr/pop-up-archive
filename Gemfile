@@ -36,10 +36,13 @@ gem 'oauth-plugin', '~> 0.4.0'
 # login to prx.org using omniauth
 gem 'omniauth'
 gem "omniauth-oauth2", "~> 1.0.0"
-gem "omniauth-prx", :git=>'git://github.com/PRX/omniauth-prx.git'
+gem "omniauth-prx", git: 'git://github.com/PRX/omniauth-prx.git'
 
 # search with elasticsearch
 gem 'tire'
 
 # server-side templates
 gem 'slim-rails'
+
+# angular-js for client-side application
+gem 'angular-rails', git: 'https://github.com/gistia/angular-rails'
