@@ -6,7 +6,7 @@ gem 'pg'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+  #gem 'coffee-rails', '~> 3.2.1'
 
   gem 'uglifier', '>= 1.0.3'
   gem 'bootstrap-sass'
@@ -15,8 +15,6 @@ end
 group :development, :test do  
   gem 'rspec-rails', '~> 2.0'
   gem 'debugger'
-  # gem 'jasminerice'
-  # gem 'launchy'
 end  
 
 group :test do  
@@ -26,6 +24,7 @@ group :test do
   gem 'guard-rspec'
   gem 'spork-rails'
   gem 'guard-spork'
+  gem 'rb-fsevent', '~> 0.9.1'
 end  
 
 gem 'jquery-rails'
@@ -38,3 +37,6 @@ gem 'oauth-plugin', '~> 0.4.0'
 gem 'omniauth'
 gem "omniauth-oauth2", "~> 1.0.0"
 gem "omniauth-prx", :git=>'git://github.com/PRX/omniauth-prx.git'
+
+# search with elasticsearch
+gem 'tire'
