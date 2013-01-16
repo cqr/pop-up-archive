@@ -40,3 +40,6 @@ gem "omniauth-prx", :git=>'git://github.com/PRX/omniauth-prx.git'
 
 # search with elasticsearch
 gem 'tire'
+
+# server-side templates
+gem 'slim-rails'
