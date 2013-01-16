@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '1.9.3'
+
 gem 'rails', '3.2.10'
 
 gem 'pg'
@@ -37,6 +39,7 @@ gem 'oauth-plugin', '~> 0.4.0'
 gem 'omniauth'
 gem "omniauth-oauth2", "~> 1.0.0"
 gem "omniauth-prx", git: 'git://github.com/PRX/omniauth-prx.git'
+gem 'devise'
 
 # search with elasticsearch
 gem 'tire'
