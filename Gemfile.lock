@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/PRX/omniauth-prx.git
-  revision: cee28aa3cf5014a71328c6b555d1f9fe57b36d27
+  revision: 9d6a322e712b324e339fe454a3e2e8eb02259aff
   specs:
-    omniauth-prx (0.0.2)
+    omniauth-prx (0.0.3)
       omniauth-oauth2 (~> 1.0.0)
 
 GIT
