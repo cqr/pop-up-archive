@@ -239,5 +239,5 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = "/my_engine/users/auth"
 
   # PRX Login
-  config.omniauth :PRX, ENV['PRX_APP_KEY'], ENV['PRX_APP_SECRET']
+  config.omniauth :prx, ENV['PRX_APP_KEY'], ENV['PRX_APP_SECRET']
 end

@@ -9,12 +9,12 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :provider, :uid, :name
 
   def self.find_for_prx_oauth(auth, signed_in_resource=nil)
-    user = User.where(:provider => auth.provider, :uid => "#{auth.provider}::#{auth.uid.to_s}").first
+    user = User.where(:provider => auth.provider, :uid => auth.uid).first
     unless user
       user = User.create(
         name: "#{auth.info.first_name} #{auth.info.last_name}",
         provider: auth.provider,
-        uid: "#{auth.provider}::#{auth.uid.to_s}",
+        uid: auth.uid,
         email: auth.info.email,
         password: Devise.friendly_token[0,20]
       )
@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if data = session["devise.prx_data"] && session["devise.prx_data"]["extra"]["raw_info"]
+      if data = session["devise.prx_data"]
         user.email = data["email"] if user.email.blank?
         user.name  = "#{data["first_name"]} #{data["last_name"]}"
       end
