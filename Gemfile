@@ -14,12 +14,13 @@ group :assets do
   gem 'bootstrap-sass'
 end
 
-group :development, :test do  
+group :development, :test do
   gem 'rspec-rails', '~> 2.0'
   gem 'debugger'
-end  
+  gem 'better_errors'
+end
 
-group :test do  
+group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'shoulda-matchers'
@@ -27,7 +28,9 @@ group :test do
   gem 'spork-rails'
   gem 'guard-spork'
   gem 'rb-fsevent', '~> 0.9.1'
-end  
+end
+
+gem 'decent_exposure'
 
 gem 'jquery-rails'
 
@@ -46,6 +49,7 @@ gem 'tire'
 
 # server-side templates
 gem 'slim-rails'
+gem 'rabl'
 
 # angular-js for client-side application
 gem 'angular-rails', git: 'https://github.com/gistia/angular-rails'
