@@ -4,7 +4,7 @@ Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
-  config.mailer_sender = "please-change-me-at-config-initializers-devise@example.com"
+  config.mailer_sender = "noreply-sorry@pop-up-archive.herokuapp.com"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
@@ -58,7 +58,7 @@ Devise.setup do |config|
   # config.http_authenticatable_on_xhr = true
 
   # The realm used in Http Basic Authentication. "Application" by default.
-  # config.http_authentication_realm = "Application"
+  config.http_authentication_realm = "Pop Up Archive"
 
   # It will change confirmation, password recovery and other workflows
   # to behave the same regardless if the e-mail provided was right or wrong.
@@ -122,7 +122,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length. Default is 8..128.
-  config.password_length = 8..128
+  config.password_length = 6..128
 
   # Email regex used to validate email formats. It simply asserts that
   # an one (and only one) @ exists in the given string. This is mainly
@@ -237,4 +237,7 @@ Devise.setup do |config|
   # When using omniauth, Devise cannot automatically set Omniauth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = "/my_engine/users/auth"
+  
+  # PRX Login
+  config.omniauth :PRX, ENV['PRX_APP_KEY'], ENV['PRX_APP_SECRET']
 end
