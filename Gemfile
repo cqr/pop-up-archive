@@ -5,6 +5,7 @@ ruby '1.9.3'
 gem 'rails', '3.2.10'
 
 gem 'pg'
+gem 'activerecord-postgres-hstore'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
