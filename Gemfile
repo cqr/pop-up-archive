@@ -5,7 +5,7 @@ ruby '1.9.3'
 gem 'rails', '3.2.10'
 
 gem 'pg'
-gem 'activerecord-postgres-hstore'
+gem 'activerecord-postgres-hstore', github: 'engageis/activerecord-postgres-hstore'
 gem 'postgres_ext'
 
 group :assets do
@@ -59,7 +59,5 @@ gem 'angular-rails', git: 'https://github.com/gistia/angular-rails'
 
 # geocoding
 gem 'geocoder'
-
-gem 'fastercsv'
 
 gem 'sidekiq'

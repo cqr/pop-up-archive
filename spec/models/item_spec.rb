@@ -13,4 +13,12 @@ describe Item do
       record.geographic_location.should eq "Madison, WI"
     end
   end
+
+  it "should allow writing to the extra attributes" do
+    item = Item.new(FactoryGirl.attributes_for :item)
+    item.extra['testkey'] = 'test value'
+    item.save
+  end
+
+  it 'should persist the extra attributes'
 end
