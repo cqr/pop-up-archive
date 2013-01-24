@@ -11,7 +11,45 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130122162627) do
+ActiveRecord::Schema.define(:version => 20130124194233) do
+
+  add_extension "hstore"
+
+  create_table "geolocations", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.decimal  "latitude"
+    t.decimal  "longitude"
+  end
+
+  create_table "items", :force => true do |t|
+    t.string   "title"
+    t.string   "episode_title"
+    t.string   "series_title"
+    t.text     "description"
+    t.string   "identifier"
+    t.date     "date_broadcast"
+    t.date     "date_created"
+    t.string   "rights"
+    t.string   "physical_format"
+    t.string   "digital_format"
+    t.string   "physical_location"
+    t.string   "digital_location"
+    t.integer  "duration"
+    t.string   "music_sound_used"
+    t.string   "date_peg"
+    t.text     "notes"
+    t.text     "transcription"
+    t.string   "tags"
+    t.integer  "geolocation_id"
+    t.hstore   "extra"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "items", ["geolocation_id"], :name => "index_items_on_geolocation_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

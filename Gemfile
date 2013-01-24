@@ -5,7 +5,9 @@ ruby '1.9.3'
 gem 'rails', '3.2.10'
 
 gem 'pg'
-gem 'activerecord-postgres-hstore'
+
+gem 'activerecord-postgres-hstore', github: 'engageis/activerecord-postgres-hstore'
+gem 'postgres_ext'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -20,6 +22,7 @@ group :development, :test do
   gem 'debugger'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'ruby_gntp'
 end
 
 group :test do
@@ -56,5 +59,12 @@ gem 'rabl'
 # angular-js for client-side application
 gem 'angular-rails', git: 'https://github.com/gistia/angular-rails'
 
+
 # misc
 gem 'copyrighter'
+
+# geocoding
+gem 'geocoder'
+
+gem 'sidekiq'
+
