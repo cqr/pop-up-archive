@@ -96,6 +96,7 @@ GEM
       railties (>= 3.0.0)
     faraday (0.8.4)
       multipart-post (~> 1.1)
+    fastercsv (1.5.5)
     ffi (1.2.0)
     guard (1.6.1)
       listen (>= 0.6.0)
@@ -209,6 +210,7 @@ GEM
       rspec-core (~> 2.12.0)
       rspec-expectations (~> 2.12.0)
       rspec-mocks (~> 2.12.0)
+    ruby_gntp (0.3.4)
     rubyzip (0.9.9)
     sass (3.2.5)
     sass-rails (3.2.6)
@@ -276,6 +278,7 @@ DEPENDENCIES
   decent_exposure
   devise
   factory_girl_rails
+  fastercsv
   guard-rspec
   guard-spork
   jquery-rails
@@ -290,6 +293,7 @@ DEPENDENCIES
   rails (= 3.2.10)
   rb-fsevent (~> 0.9.1)
   rspec-rails (~> 2.0)
+  ruby_gntp
   sass-rails (~> 3.2.3)
   shoulda-matchers
   slim-rails

@@ -1,4 +1,7 @@
 PopUpArchive::Application.routes.draw do
+  resources :items
+
+
   get "home/index"
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }

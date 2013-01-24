@@ -5,3 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+require 'fastercsv'
+puts Dir[File.expand_path('../seed/*csv', __FILE__)].inspect

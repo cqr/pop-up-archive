@@ -1,0 +1,66 @@
+p#notice = notice
+
+p
+  strong Title:
+  = @item.title
+p
+  strong Episode title:
+  = @item.episode_title
+p
+  strong Series title:
+  = @item.series_title
+p
+  strong Description:
+  = @item.description
+p
+  strong Identifier:
+  = @item.identifier
+p
+  strong Date broadcast:
+  = @item.date_broadcast
+p
+  strong Date created:
+  = @item.date_created
+p
+  strong Rights:
+  = @item.rights
+p
+  strong Physical format:
+  = @item.physical_format
+p
+  strong Digital format:
+  = @item.digital_format
+p
+  strong Physical location:
+  = @item.physical_location
+p
+  strong Digital location:
+  = @item.digital_location
+p
+  strong Duration:
+  = @item.duration
+p
+  strong Music sound used:
+  = @item.music_sound_used
+p
+  strong Date peg:
+  = @item.date_peg
+p
+  strong Notes:
+  = @item.notes
+p
+  strong Transcription:
+  = @item.transcription
+p
+  strong Tags:
+  = @item.tags
+p
+  strong Geolocation:
+  = @item.geolocation
+p
+  strong Extra:
+  = @item.extra
+
+= link_to 'Edit', edit_item_path(@item)
+'|
+= link_to 'Back', items_path

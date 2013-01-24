@@ -1,0 +1,69 @@
+= form_for @item do |f|
+  - if @item.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@item.errors.count, "error")} prohibited this item from being saved:"
+      ul
+        - @item.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :episode_title
+    = f.text_field :episode_title
+  .field
+    = f.label :series_title
+    = f.text_field :series_title
+  .field
+    = f.label :description
+    = f.text_area :description
+  .field
+    = f.label :identifier
+    = f.text_field :identifier
+  .field
+    = f.label :date_broadcast
+    = f.date_select :date_broadcast
+  .field
+    = f.label :date_created
+    = f.date_select :date_created
+  .field
+    = f.label :rights
+    = f.text_field :rights
+  .field
+    = f.label :physical_format
+    = f.text_field :physical_format
+  .field
+    = f.label :digital_format
+    = f.text_field :digital_format
+  .field
+    = f.label :physical_location
+    = f.text_field :physical_location
+  .field
+    = f.label :digital_location
+    = f.text_field :digital_location
+  .field
+    = f.label :duration
+    = f.number_field :duration
+  .field
+    = f.label :music_sound_used
+    = f.text_field :music_sound_used
+  .field
+    = f.label :date_peg
+    = f.text_field :date_peg
+  .field
+    = f.label :notes
+    = f.text_area :notes
+  .field
+    = f.label :transcription
+    = f.text_area :transcription
+  .field
+    = f.label :tags
+    = f.text_field :tags
+  .field
+    = f.label :geolocation
+    = f.text_field :geolocation
+  .field
+    = f.label :extra
+    = f.text_field :extra
+  .actions = f.submit 'Save'
