@@ -67,5 +67,11 @@ module PopUpArchive
 
     # Needed for Heroku
     config.assets.initialize_on_precompile = false
+
+    # Devise settings
+    config.to_prepare do
+      Devise::RegistrationsController.layout('directory')
+      Devise::SessionsController.layout('directory')
+    end
   end
 end
