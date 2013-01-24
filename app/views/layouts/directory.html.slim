@@ -1,0 +1,16 @@
+doctype html
+html lang='en' ng-app=''
+  head
+    meta charset='utf-8'
+
+    title PopUpArchive
+
+    = stylesheet_link_tag 'directory/base', media: 'all'
+    = javascript_include_tag 'directory/application'
+    = csrf_meta_tags
+  body
+    header= render('header')
+    .container-fluid== yield
+    footer= render('footer')
+
+    = render('dropper')

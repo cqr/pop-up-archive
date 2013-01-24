@@ -19,6 +19,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.0'
   gem 'debugger'
   gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test do
@@ -54,3 +55,6 @@ gem 'rabl'
 
 # angular-js for client-side application
 gem 'angular-rails', git: 'https://github.com/gistia/angular-rails'
+
+# misc
+gem 'copyrighter'
