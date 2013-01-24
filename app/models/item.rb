@@ -6,5 +6,14 @@ class Item < ActiveRecord::Base
     :physical_format, :physical_location, :rights, :series_title,
     :tags, :title, :transcription
 
+
+    def geographic_location=(name)
+      self.geolocation = Geolocation.for_name(name)
+    end
+
+    def geographic_location
+      geolocation.name
+    end
+
   end
 
