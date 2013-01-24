@@ -7,4 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 require 'fastercsv'
-puts Dir[File.expand_path('../seed/*csv', __FILE__)].inspect
+Dir[File.expand_path('../seed/*csv', __FILE__)].each do |file|
+  FasterCSV.foreach file do |row|
+
+  end
+end

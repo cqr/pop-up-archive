@@ -32,4 +32,18 @@ describe Geolocation do
       end
     end
   end
+
+  context "geocoding" do
+    it "should trigger geocoding before save when the name has changed" do
+      location = FactoryGirl.build(:geolocation)
+      location.should_receive(:geocode)
+      location.save
+    end
+
+    it "should not trigger geocoding before save when the name hasn't changed" do
+      location = FactoryGirl.create(:geolocation)
+      location.should_not_receive(:geocode)
+      location.touch
+    end
+  end
 end

@@ -1,9 +1,12 @@
 class Geolocation < ActiveRecord::Base
-  
-  attr_accessible :latlon, :name
+  attr_accessible :name
 
   before_save :generate_slug, on: :create
   has_many :items
+
+  geocoded_by :name
+
+  after_validation :geocode, if: :name_changed?
 
   def self.for_name(string)
     find_by_slug slugify string or create name: string
