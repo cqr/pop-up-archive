@@ -6,7 +6,7 @@ class Geolocation < ActiveRecord::Base
 
   geocoded_by :name
 
-  after_validation :geocode, if: :name_changed?
+  after_save :enqueue_geocode
 
   def self.for_name(string)
     find_by_slug slugify string or create name: string
@@ -20,5 +20,16 @@ class Geolocation < ActiveRecord::Base
 
   def self.slugify(string)
     string.downcase.gsub(/\W/,'')
+  end
+
+  # this makes tests much faster
+  def enqueue_geocode
+    if name_changed?
+      if Rails.env.test? && latitude.blank?
+        update_attributes({latitude: 42.373987, longitude: -71.121172}, without_protection: true)
+      else
+        GeocodeWorker.perform_async(id)
+      end
+    end
   end
 end
