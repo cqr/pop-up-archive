@@ -6,6 +6,7 @@ gem 'rails', '3.2.10'
 
 gem 'pg'
 gem 'activerecord-postgres-hstore'
+gem 'postgres_ext'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -56,4 +57,9 @@ gem 'rabl'
 # angular-js for client-side application
 gem 'angular-rails', git: 'https://github.com/gistia/angular-rails'
 
+# geocoding
+gem 'geocoder'
+
 gem 'fastercsv'
+
+gem 'sidekiq'
