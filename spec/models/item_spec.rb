@@ -15,7 +15,7 @@ describe Item do
   end
 
   it "should allow writing to the extra attributes" do
-    item = Item.new(FactoryGirl.attributes_for :item)
+    item = FactoryGirl.build :item
     item.extra['testkey'] = 'test value'
     item.save
   end

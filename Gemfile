@@ -67,4 +67,4 @@ gem 'copyrighter'
 gem 'geocoder'
 
 gem 'sidekiq'
-
+gem 'sinatra'

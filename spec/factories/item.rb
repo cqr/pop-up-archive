@@ -1,5 +1,3 @@
 FactoryGirl.define do
-  factory :item do
-    extra({})
-  end
+  factory :item do; end
 end

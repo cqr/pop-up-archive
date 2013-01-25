@@ -25,8 +25,11 @@ class Geolocation < ActiveRecord::Base
   # this makes tests much faster
   def enqueue_geocode
     if name_changed?
-      if Rails.env.test? && latitude.blank?
-        update_attributes({latitude: 42.373987, longitude: -71.121172}, without_protection: true)
+      if Rails.env.test?
+        update_attributes({
+          latitude:   42.373987,
+          longitude: -71.121172
+          }, without_protection: true) if latitude.blank?
       else
         GeocodeWorker.perform_async(id)
       end

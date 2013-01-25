@@ -10,17 +10,19 @@ if File.exists?(File.expand_path('../seed/one.csv', __FILE__))
   require 'csv'
 
   COLUMNS = [nil, :identifier, nil, nil, nil, nil, :tags, nil, nil, nil, nil, nil, :title, :description, nil, :date_created, :rights, :digital_location, :episode_title, :series_title, :music_sound_used, :notes, :physical_format, :physical_location, :duration, nil, nil, :date_broadcast, nil]
-  HEADERS = "recordType|itemId|itemType|collection|public|featured|tags|file|fileId|fileSource|fileOrder|PBCore:Identifier|PBCore:Title|PBCore:Description|PBCore:Creator|PBCore:Date Created|PBCore:Rights|PBCore:Digital Location|PBCore:Episode Title|PBCore:Series Title|PBCore:Music/Sound Used|PBCore:Notes|PBCore:Physical Format|PBCore:Physical Location|PBCore:Duration|PBCore:Interviewer|PBCore:Interviewee|PBCore:Date Broadcast|PBCore:Host".split("|").map{|x|x.gsub(/:+/,'_')}.map(&:underscore).map(&:titleize) 
+  HEADERS = "recordType|itemId|itemType|collection|public|featured|tags|file|fileId|fileSource|fileOrder|PBCore:Identifier|PBCore:Title|PBCore:Description|PBCore:Creator|PBCore:Date Created|PBCore:Rights|PBCore:Digital Location|PBCore:Episode Title|PBCore:Series Title|PBCore:Music/Sound Used|PBCore:Notes|PBCore:Physical Format|PBCore:Physical Location|PBCore:Duration|PBCore:Interviewer|PBCore:Interviewee|PBCore:Date Broadcast|PBCore:Host".split("|").map{|x|x.gsub(/[:\s]+/,'_')}
   CSV.foreach(File.expand_path('../seed/one.csv', __FILE__), col_sep: '|', headers: true) do |row|
-    item = Item.new(extra:{})
+    item = Item.new()
     COLUMNS.each_with_index do |key, index|
-      if key.nil?
-        item.extra[HEADERS[index].underscore] = row[index]
-      else
-        item.send(:"#{key}=", row[index])
+      if row[index].present?
+        if key.nil?
+          item.extra[HEADERS[index].underscore] = row[index]
+        else
+          item.send(:"#{key}=", row[index])
+        end
       end
     end
-    puts item.inspect
+    item.geographic_location = "Cambridge, MA"
     item.save
   end
 end

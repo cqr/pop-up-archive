@@ -1,4 +1,7 @@
 class Item < ActiveRecord::Base
+
+  include Tire::Model::Callbacks
+  include Tire::Model::Search
   
   attr_accessible :date_broadcast, :date_created, :date_peg,
     :description, :digital_format, :digital_location, :duration,
@@ -7,6 +10,8 @@ class Item < ActiveRecord::Base
     :tags, :title, :transcription
   belongs_to :geolocation
   serialize :extra, ActiveRecord::Coders::Hstore
+
+  after_initialize :populate_extra
 
 
   def geographic_location=(name)
@@ -17,8 +22,10 @@ class Item < ActiveRecord::Base
     geolocation.name
   end
 
-  def extra
-    (read_attribute :extra) or (write_attribute :extra, {})
+
+  private
+
+  def populate_extra
+    self.extra ||= {}
   end
 end
-
