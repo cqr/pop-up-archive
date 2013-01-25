@@ -1,5 +1,5 @@
 doctype html
-html lang='en' ng-app=''
+html lang='en' ng-app='Directory'
   head
     meta charset='utf-8'
 
@@ -7,6 +7,8 @@ html lang='en' ng-app=''
 
     = stylesheet_link_tag 'directory/base', media: 'all'
     = javascript_include_tag 'directory/application'
+    = javascript_include_tag 'http://code.angularjs.org/1.1.2/angular-resource.min.js'
+    = javascript_include_tag 'http://code.angularjs.org/1.1.2/angular-bootstrap.min.js'
     = csrf_meta_tags
   body
     header= render('header')
