@@ -5,14 +5,11 @@ ruby '1.9.3'
 gem 'rails', '3.2.10'
 
 gem 'pg'
-
 gem 'activerecord-postgres-hstore', github: 'engageis/activerecord-postgres-hstore'
 gem 'postgres_ext'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
-  #gem 'coffee-rails', '~> 3.2.1'
-
   gem 'uglifier', '>= 1.0.3'
   gem 'bootstrap-sass'
 end
@@ -39,10 +36,6 @@ gem 'decent_exposure'
 
 gem 'jquery-rails'
 
-gem 'oauth'
-gem 'oauth2'
-gem 'oauth-plugin', '~> 0.4.0'
-
 # login to prx.org using omniauth
 gem 'omniauth'
 gem "omniauth-oauth2", "~> 1.0.0"
@@ -59,12 +52,11 @@ gem 'rabl'
 # angular-js for client-side application
 gem 'angular-rails', git: 'https://github.com/gistia/angular-rails'
 
+# background processing
+gem 'sidekiq'
+gem 'sinatra'
 
 # misc
 gem 'copyrighter'
-
-# geocoding
 gem 'geocoder'
-
-gem 'sidekiq'
-gem 'sinatra'
+gem 'will_paginate'
