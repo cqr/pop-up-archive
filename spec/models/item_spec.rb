@@ -20,5 +20,11 @@ describe Item do
     item.save
   end
 
-  it 'should persist the extra attributes'
+  it 'should persist the extra attributes' do
+    item = FactoryGirl.create :item
+    item.extra['testKey'] = 'testValue2'
+    item.save
+
+    Item.find(item.id).extra['testKey'].should eq 'testValue2'
+  end
 end
