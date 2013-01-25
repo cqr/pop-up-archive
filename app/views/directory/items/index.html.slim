@@ -1,0 +1,7 @@
+div ng-controller='ItemsController'
+  h2 All items
+  table.table.table-striped
+    tr ng-repeat='item in itemResult.items'
+      td {{item.id}}
+      td
+        a ng-click='foo()' {{item.title}}
