@@ -4,6 +4,13 @@ ruby '1.9.3'
 
 gem 'rails', '3.2.10'
 
+# Rails 4
+gem 'strong_parameters'
+gem 'routing_concerns'
+gem 'etagger', git: 'git://github.com/rails/etagger.git'
+gem 'cache_digests'
+gem 'dalli'
+
 gem 'pg'
 gem 'activerecord-postgres-hstore', github: 'engageis/activerecord-postgres-hstore'
 gem 'postgres_ext'
