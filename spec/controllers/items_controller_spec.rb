@@ -18,7 +18,7 @@ require 'spec_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-describe ItemsController do
+describe Directory::ItemsController do
 
   # This should return the minimal set of attributes required to create a valid
   # Item. As you add validations to Item, be sure to
@@ -34,37 +34,6 @@ describe ItemsController do
     {}
   end
 
-  describe "GET index" do
-    it "assigns all items as @items" do
-      item = Item.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:items).should eq([item])
-    end
-  end
-
-  describe "GET show" do
-    it "assigns the requested item as @item" do
-      item = Item.create! valid_attributes
-      get :show, {:id => item.to_param}, valid_session
-      assigns(:item).should eq(item)
-    end
-  end
-
-  describe "GET new" do
-    it "assigns a new item as @item" do
-      get :new, {}, valid_session
-      assigns(:item).should be_a_new(Item)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested item as @item" do
-      item = Item.create! valid_attributes
-      get :edit, {:id => item.to_param}, valid_session
-      assigns(:item).should eq(item)
-    end
-  end
-
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Item" do
@@ -75,8 +44,8 @@ describe ItemsController do
 
       it "assigns a newly created item as @item" do
         post :create, {:item => valid_attributes}, valid_session
-        assigns(:item).should be_a(Item)
-        assigns(:item).should be_persisted
+        controller.item.should be_a(Item)
+        controller.item.should be_persisted
       end
 
       it "redirects to the created item" do
@@ -90,7 +59,7 @@ describe ItemsController do
         # Trigger the behavior that occurs when invalid params are submitted
         Item.any_instance.stub(:save).and_return(false)
         post :create, {:item => { "title" => "invalid value" }}, valid_session
-        assigns(:item).should be_a_new(Item)
+        controller.item.should be_a_new(Item)
       end
 
       it "re-renders the 'new' template" do
@@ -117,7 +86,7 @@ describe ItemsController do
       it "assigns the requested item as @item" do
         item = Item.create! valid_attributes
         put :update, {:id => item.to_param, :item => valid_attributes}, valid_session
-        assigns(:item).should eq(item)
+        controller.item.should eq(item)
       end
 
       it "redirects to the item" do
@@ -133,7 +102,7 @@ describe ItemsController do
         # Trigger the behavior that occurs when invalid params are submitted
         Item.any_instance.stub(:save).and_return(false)
         put :update, {:id => item.to_param, :item => { "title" => "invalid value" }}, valid_session
-        assigns(:item).should eq(item)
+        controller.item.should eq(item)
       end
 
       it "re-renders the 'edit' template" do
@@ -145,20 +114,4 @@ describe ItemsController do
       end
     end
   end
-
-  describe "DELETE destroy" do
-    it "destroys the requested item" do
-      item = Item.create! valid_attributes
-      expect {
-        delete :destroy, {:id => item.to_param}, valid_session
-      }.to change(Item, :count).by(-1)
-    end
-
-    it "redirects to the items list" do
-      item = Item.create! valid_attributes
-      delete :destroy, {:id => item.to_param}, valid_session
-      response.should redirect_to(items_url)
-    end
-  end
-
 end

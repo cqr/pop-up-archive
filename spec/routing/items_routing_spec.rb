@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe ItemsController do
+describe Directory::ItemsController do
   describe "routing" do
 
     it "routes to #index" do
