@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(:version => 20130124194233) do
     t.string   "date_peg"
     t.text     "notes"
     t.text     "transcription"
-    t.string   "tags",                              :array => true
+    t.string   "tags"
     t.integer  "geolocation_id"
     t.hstore   "extra"
     t.datetime "created_at",        :null => false
