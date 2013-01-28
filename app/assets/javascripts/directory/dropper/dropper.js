@@ -1,12 +1,23 @@
 function Dropper(target, modal) {
   this.node = target;
   this.modal = modal;
+  this.acceptableFiles = [];
+
   this.initialize = function() {
     this.node.addEventListener('dragenter', this.dragenter, false);
     this.node.addEventListener('dragover', this.dragover, false);
     this.node.addEventListener('dragleave', this.dragleave, false);
     this.node.addEventListener('drop', this.drop, false);
+
+    $('button.upload', this.modal).click(this.upload);
   }
+
+  this.upload = function() {
+    if (this.acceptableFiles.length > 0) {
+      $('.progress', this.modal).show();
+    };
+  }
+
   this.dragenter = function(e) {
     e.stopPropagation();
     e.preventDefault();
@@ -24,7 +35,7 @@ function Dropper(target, modal) {
     e.stopPropagation();
     e.preventDefault();
     this.dragleaveCount = this.dragleaveCount + 1;
-    console.log(this.dragleaveCount);
+
     if (this.modalIsVisible && this.dragleaveCount > 1) {
       this.modalIsVisible = false;
       modal.modal('hide')
@@ -33,26 +44,27 @@ function Dropper(target, modal) {
   this.drop = function(e) {
     e.stopPropagation();
     e.preventDefault();
-    console.log('drop');
-    // jQuery.each(e.dataTransfer.files, function(i, file) {
-    //   var reader = new FileReader();
 
-    //   // reader.addEventListener('loadend', function(e) {
-    //   //  var track = new google.maps.Polyline({strokeColor: '#77f'});
-    //   //  track.xml = (new DOMParser()).parseFromString(e.target.result,"text/xml");
-    //   //  deck.tracks.push(track);
-    //   // }, false)
+    var files = e.dataTransfer.files;
+    var acceptableFiles = [];
 
-    //   reader.onload = (function(_tracks) {
-    //     return function(e) {
-    //       var track = new google.maps.Polyline({strokeColor: '#77f'});
-    //       track.xml = (new DOMParser()).parseFromString(e.target.result,"text/xml")
-    //       _tracks.push(track);
-    //     };
-    //   })(deck.tracks);
+    $.each(files, function (i, file) {
+      if (file.type == 'text/csv') {
+        acceptableFiles.push(file);
+      };
+    });
 
-    //   reader.readAsText(file);
-    //   window.setTimeout(function() {deck.didLoadOrReceiveNewData()}, 20);
-    // });
+    this.acceptableFiles = acceptableFiles;
+
+    if (acceptableFiles.length > 0) {
+      $('.no-files', this.modal).hide();
+    } else {
+      $('.no-files', this.modal).show();
+    }
+
+    $('ol.files', this.modal).empty();
+    $.each(acceptableFiles, function(i, file) {
+      $('ol.files', this.modal).append("<li>" + file.name + "</li>");
+    });
   }
 }

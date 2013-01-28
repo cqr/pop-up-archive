@@ -3,3 +3,14 @@
 body {
   margin-top: 60px;
 }
+
+
+.dropperModal {
+  .progress {
+    display: none;
+
+    .bar {
+      width: 100%;
+    }
+  }
+}

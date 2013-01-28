@@ -11,6 +11,7 @@ PopUpArchive::Application.routes.draw do
       root to: 'status#info'
 
       resources :items
+      resources :collections
     end
   end
 
