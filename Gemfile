@@ -45,7 +45,7 @@ gem 'jquery-rails'
 
 # login to prx.org using omniauth
 gem 'omniauth'
-gem "omniauth-oauth2", "~> 1.0.0"
+gem 'omniauth-oauth2', '~> 1.0.0'
 gem "omniauth-prx", git: 'git://github.com/PRX/omniauth-prx.git'
 gem 'devise'
 
