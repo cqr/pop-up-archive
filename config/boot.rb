@@ -8,6 +8,12 @@ if File.exists?(ENV['ENV_OVERRIDE_FILE'])
     while line = file.gets
       line.chomp!
       var, val = line.split('=', 2)
+
+      if ENV['RAILS_ENV'] == 'test'
+        next if var == 'DATABASE_URL'
+        ENV['DATABASE_URL'] = val if var == 'TEST_DATABASE_URL'
+      end
+
       ENV[var] = val
     end
   end
