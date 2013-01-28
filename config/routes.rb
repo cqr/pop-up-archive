@@ -2,8 +2,6 @@ PopUpArchive::Application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
-  # resources :items
-
   namespace :directory, as: '', path: '' do
     resources :items
   end
