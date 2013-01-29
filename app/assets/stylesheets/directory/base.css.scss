@@ -13,4 +13,17 @@ body {
       width: 100%;
     }
   }
+
+  a.delete {
+    font-weight: bold;
+    display: block;
+    float: right;
+    text-align: center;
+    width: 22px;
+
+    &:hover {
+      text-decoration: none;
+      background: #ddd;
+    }
+  }
 }

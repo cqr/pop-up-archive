@@ -10,6 +10,8 @@ PopUpArchive::Application.routes.draw do
     scope module: :v1, constraints: ApiVersionConstraint.new(version: 1, default: true) do
       root to: 'status#info'
 
+      resource :upload
+
       resources :items
       resources :collections
     end
