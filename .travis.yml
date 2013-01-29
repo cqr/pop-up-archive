@@ -1,6 +1,6 @@
 language: ruby
 rvm:
   - "1.9.3" 
-env: TEST_DATABASE_URL=postgres://postgres@localhost/travis-popup
+env: TEST_DATABASE_URL=postgres://postgres@localhost/travispopup
 before_script:
-  - psql -c 'create database travis-popup;' -U postgres
+  - psql -c 'create database travispopup;' -U postgres
