@@ -5,4 +5,3 @@ env: TEST_DATABASE_URL=postgres://postgres@locahost/travispopup DATABASE_URL=pos
 script: bundle exec rake
 before_script:
   - rake db:create db:schema:load
-  - psql -c 'create database travispopup;' -U postgres
