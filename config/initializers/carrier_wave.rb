@@ -8,7 +8,7 @@ CarrierWave.configure do |config|
         :aws_secret_access_key  => ENV['UPLOAD_S3_ACCESS_KEY']
       }
 
-  config.fog_directory  = ENV['UPLOAD_S3_ACCESS_KEY']
+  config.fog_directory  = ENV['UPLOAD_S3_BUCKET']
   config.fog_public     = false
   config.storage = :fog
 
