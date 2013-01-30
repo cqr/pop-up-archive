@@ -24,7 +24,7 @@ describe Directory::ItemsController do
   # Item. As you add validations to Item, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    { "title" => "MyString" }
+    FactoryGirl.attributes_for :item
   end
 
   # This should return the minimal set of values that should be in the session
