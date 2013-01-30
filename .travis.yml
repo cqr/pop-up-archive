@@ -1,10 +1,10 @@
 language: ruby
 rvm:
   - "1.9.3" 
-env: TEST_DATABASE_URL=postgres://postgres@locahost/travispopup DATABASE_URL=postgres://postgres@localhost/travispopup RAILS_ENV=test
-script: bundle exec rake
+env: TEST_DATABASE_URL=postgres://postgres@locahost/travispopup RAILS_ENV=test
+script: rake db:migrate spec
 before_script:
-  - rake db:create db:schema:load
+  - rake db:create
 bundler_args: --without development
 services:
   - elasticsearch

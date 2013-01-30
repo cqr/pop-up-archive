@@ -14,7 +14,7 @@ if File.exists?(ENV['ENV_OVERRIDE_FILE'])
       # rails will use it but not perform automatic transactions for us during
       # our test suite.
       if var == 'DATABASE_URL' && ENV['RAILS_ENV'] == 'test'
-        ENV['DATABASE_URL'] = nil
+        ENV['DATABASE_URL'] &&= nil
       else
         ENV[var] = val 
       end 
