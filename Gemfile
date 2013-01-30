@@ -27,7 +27,6 @@ group :development do
   gem 'binding_of_caller'
   gem 'ruby_gntp'
   gem 'guard-rspec'
-  gem 'spork-rails'
   gem 'guard-spork'
   gem 'rb-fsevent', '~> 0.9.1'
 end
@@ -39,6 +38,7 @@ end
 group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'spork-rails'
   gem 'shoulda-matchers'
 end
 
