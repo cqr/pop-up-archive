@@ -5,8 +5,6 @@ class CsvFileUploader < CarrierWave::Uploader::Base
   include Sprockets::Helpers::RailsHelper
   include Sprockets::Helpers::IsolatedHelper
 
-  storage :fog
-
   def extension_white_list
     ['csv']
   end

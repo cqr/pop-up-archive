@@ -10,4 +10,10 @@ CarrierWave.configure do |config|
 
   config.fog_directory  = ENV['UPLOAD_S3_ACCESS_KEY']
   config.fog_public     = false
+  config.storage = :fog
+
+  if Rails.env.test? or Rails.env.cucumber?
+    config.storage = :file
+    config.enable_processing = false
+  end
 end
