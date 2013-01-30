@@ -72,3 +72,5 @@ end
 gem 'copyrighter'
 gem 'geocoder'
 gem 'will_paginate'
+
+gem 'carrierwave'
