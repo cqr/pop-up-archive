@@ -19,8 +19,11 @@ class CsvImport < ActiveRecord::Base
     self.state = "analyzing"
     file.cache!
     CSV.foreach(file.path) do |row|
-      self.headers = row and next unless self.headers
-      rows.create values: row
+      if self.headers.present?
+        rows.create values: row
+      else
+        self.headers = row
+      end
     end
     self.state = "analyzed"
   end

@@ -47,11 +47,13 @@ describe CsvImport do
   it "should create rows records as part of analysis" do
     import.analyze!
     import.rows.should_not be_empty
+    import.rows.size.should eq %x{wc -l '#{import.file.path}'}.to_i - 1
   end
 
   it "should start with no headers" do
     import.headers.should_not be_present
   end
+
   it "should extract headers during analysis" do
     import.analyze!
     headers = nil
