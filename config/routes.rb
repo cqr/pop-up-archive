@@ -17,7 +17,9 @@ PopUpArchive::Application.routes.draw do
   root to: 'directory/dashboard#guest', constraints: GuestConstraint.new(true)
   root to: 'directory/dashboard#user', constraints: GuestConstraint.new(false)
 
-  require 'sidekiq/web'
-  mount Sidekiq::Web => '/sidekiq'
+  unless Rails.env.test?
+    require 'sidekiq/web'
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
 end

@@ -13,7 +13,7 @@ if File.exists?(ENV['ENV_OVERRIDE_FILE'])
       # and we are in the test environment, we need to unset it or else
       # rails will use it but not perform automatic transactions for us during
       # our test suite.
-      if var == 'DATABASE_URL' && ENV['RAILS_ENV'] == 'test' && ENV['DATABASE_URL'] == val
+      if var == 'DATABASE_URL' && ENV['RAILS_ENV'] == 'test'
         ENV['DATABASE_URL'] = nil
       else
         ENV[var] = val 

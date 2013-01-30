@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '1.9.3'
 
-gem 'rails', '3.2.10'
+gem 'rails', '~> 3.2.0'
 
 # Rails 4 pre-prep
 gem 'strong_parameters'
@@ -21,26 +21,28 @@ group :assets do
   gem 'bootstrap-sass'
 end
 
-group :development, :test do
-  gem 'rspec-rails', '~> 2.0'
+group :development do
   gem 'debugger'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'ruby_gntp'
-end
-
-group :test do
-  gem 'factory_girl_rails'
-  gem 'capybara'
-  gem 'shoulda-matchers'
   gem 'guard-rspec'
   gem 'spork-rails'
   gem 'guard-spork'
   gem 'rb-fsevent', '~> 0.9.1'
 end
 
-gem 'decent_exposure'
+group :development, :test do
+  gem 'rspec-rails', '~> 2.0'
+end
 
+group :test do
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'shoulda-matchers'
+end
+
+gem 'decent_exposure'
 gem 'jquery-rails'
 
 # login to prx.org using omniauth
@@ -61,7 +63,10 @@ gem 'angular-rails', git: 'https://github.com/gistia/angular-rails'
 
 # background processing
 gem 'sidekiq'
-gem 'sinatra'
+
+group :development, :production do
+  gem 'sinatra' # for sidekiq
+end
 
 # misc
 gem 'copyrighter'
