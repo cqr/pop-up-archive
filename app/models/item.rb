@@ -9,9 +9,9 @@ class Item < ActiveRecord::Base
     :physical_format, :physical_location, :rights, :series_title,
     :tags, :title, :transcription
   belongs_to :geolocation
-  serialize :extra, ActiveRecord::Coders::Hstore
+  serialize :extra, HstoreCoder
 
-  after_initialize :populate_extra
+  #after_initialize :populate_extra
 
 
   def geographic_location=(name)
@@ -20,12 +20,5 @@ class Item < ActiveRecord::Base
 
   def geographic_location
     geolocation.name
-  end
-
-
-  private
-
-  def populate_extra
-    self.extra ||= {}
   end
 end
