@@ -19,6 +19,8 @@
 
 // require angle-up THIS IS BROKEN
 
+window.directory = angular.module('Directory', ['ngResource', 'prxUpload']);
+
 $(function() {
-  $('html').each(function() { (new Dropper(this, $('#dropperModal'))).initialize(); });
+  // $('html').each(function() { (new Dropper(this, $('.dropperModal'))).initialize(); });
 });

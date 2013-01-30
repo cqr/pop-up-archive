@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Item do
   context "#geographic_location" do
-    it "= should set the geolocation using Geoloation.for_name" do
+    it "should set the geolocation using Geoloation.for_name" do
       Geolocation.should_receive(:for_name).with("Cambridge, MA")
       FactoryGirl.build :item, geographic_location: "Cambridge, MA"
     end

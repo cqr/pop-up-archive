@@ -1,58 +1,72 @@
-function Dropper(target, modal) {
-  this.node = target;
-  this.modal = modal;
-  this.initialize = function() {
-    this.node.addEventListener('dragenter', this.dragenter, false);
-    this.node.addEventListener('dragover', this.dragover, false);
-    this.node.addEventListener('dragleave', this.dragleave, false);
-    this.node.addEventListener('drop', this.drop, false);
-  }
-  this.dragenter = function(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    if (!this.modalIsVisible) {
-      modal.modal('show')
-      this.dragleaveCount = 0;
-      this.modalIsVisible = true;
-    };
-  }
-  this.dragover = function(e) {
-    e.stopPropagation();
-    e.preventDefault();
-  }
-  this.dragleave = function(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    this.dragleaveCount = this.dragleaveCount + 1;
-    console.log(this.dragleaveCount);
-    if (this.modalIsVisible && this.dragleaveCount > 1) {
-      this.modalIsVisible = false;
-      modal.modal('hide')
-    };
-  }
-  this.drop = function(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    console.log('drop');
-    // jQuery.each(e.dataTransfer.files, function(i, file) {
-    //   var reader = new FileReader();
+// function Dropper(target, modal) {
+//   this.node = target;
+//   this.modal = modal;
+//   this.acceptableFiles = [];
 
-    //   // reader.addEventListener('loadend', function(e) {
-    //   //  var track = new google.maps.Polyline({strokeColor: '#77f'});
-    //   //  track.xml = (new DOMParser()).parseFromString(e.target.result,"text/xml");
-    //   //  deck.tracks.push(track);
-    //   // }, false)
+//   this.initialize = function() {
+//     this.node.addEventListener('dragenter', this.dragenter, false);
+//     this.node.addEventListener('dragover', this.dragover, false);
+//     this.node.addEventListener('dragleave', this.dragleave, false);
+//     this.node.addEventListener('drop', this.drop, false);
 
-    //   reader.onload = (function(_tracks) {
-    //     return function(e) {
-    //       var track = new google.maps.Polyline({strokeColor: '#77f'});
-    //       track.xml = (new DOMParser()).parseFromString(e.target.result,"text/xml")
-    //       _tracks.push(track);
-    //     };
-    //   })(deck.tracks);
+//     $('button.upload', this.modal).click(this.upload);
+//   }
 
-    //   reader.readAsText(file);
-    //   window.setTimeout(function() {deck.didLoadOrReceiveNewData()}, 20);
-    // });
-  }
-}
+//   this.upload = function() {
+//     if (this.acceptableFiles.length > 0) {
+//       $('.progress', this.modal).show();
+
+//       $.each(this.acceptableFiles, function(i, file) {
+//         console.log(file);
+//       });
+//     };
+//   }
+
+//   this.dragenter = function(e) {
+//     e.stopPropagation();
+//     e.preventDefault();
+//     if (!this.modalIsVisible) {
+//       modal.modal('show')
+//       this.dragleaveCount = 0;
+//       this.modalIsVisible = true;
+//     };
+//   }
+//   this.dragover = function(e) {
+//     e.stopPropagation();
+//     e.preventDefault();
+//   }
+//   this.dragleave = function(e) {
+//     e.stopPropagation();
+//     e.preventDefault();
+//     this.dragleaveCount = this.dragleaveCount + 1;
+
+//     if (this.modalIsVisible && this.dragleaveCount > 1) {
+//       this.modalIsVisible = false;
+//       modal.modal('hide')
+//     };
+//   }
+//   this.drop = function(e) {
+//     e.stopPropagation();
+//     e.preventDefault();
+
+//     var files = e.dataTransfer.files;
+//     var acceptableFiles = [];
+
+//     $.each(files, function (i, file) {
+//       if (file.type == 'text/csv') {
+//         acceptableFiles.push(file);
+//       };
+//     });
+
+//     if (acceptableFiles.length > 0) {
+//       $('.no-files', this.modal).hide();
+//     } else {
+//       $('.no-files', this.modal).show();
+//     }
+
+//     $('ol.files', this.modal).empty();
+//     $.each(acceptableFiles, function(i, file) {
+//       $('ol.files', this.modal).append("<li>" + file.name + "</li>");
+//     });
+//   }
+// }
