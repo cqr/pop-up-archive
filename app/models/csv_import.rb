@@ -15,10 +15,9 @@ class CsvImport < ActiveRecord::Base
   end
 
   def analyze!
-    raise "Invalid state for analysis: #{state}" unless state == 'queued'
+    raise "Invalid state for analysis: #{state}" if state == 'new'
     self.state = "analyzed"
   end
-
 
   private
 
