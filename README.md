@@ -1,3 +1,7 @@
+# Pop-Up Archive
+
+[![Build Status](https://travis-ci.org/PRX/pop-up-archive.png?branch=master)](https://travis-ci.org/PRX/pop-up-archive)
+
 <table>
   <tr>
     <th>
@@ -12,7 +16,7 @@
       Rails Version
     </th>
     <td>
-      3.2.8
+      3.2.11
     </td>
   </tr>
   <tr>
@@ -54,3 +58,9 @@ You will need to set the SECRET_TOKEN value for the app to start (the default va
 	powder open
 
 The site should now be running. If you need to use sidekiq, or elasticsearch, you may need to start other services manually.
+
+### Testing
+
+All that should be required is running `guard` in the project root. You can also just run `rake`.
+
+We have the project on Travis-CI. If you submit a pull request, I assume it should check on that. I don't know.
