@@ -1,4 +1,7 @@
 class CsvImport < ActiveRecord::Base
+
+  STATES = ["new", "queued", "analyzed"]
+
   attr_accessible :file_name, :file
   after_save :enqueue_processing, on: :create
 
@@ -7,9 +10,24 @@ class CsvImport < ActiveRecord::Base
   mount_uploader :file, CsvFileUploader
 
 
+  def state
+    STATES[state_index]
+  end
+
+  def analyze!
+    raise "Invalid state for analysis: #{state}" unless state == 'queued'
+    self.state = "analyzed"
+  end
+
+
   private
+
+  def state=(state)
+    raise "Invalid state: #{state}" unless self.state_index = STATES.index(state.downcase)
+  end
 
   def enqueue_processing
     CsvImportWorker.perform_async(id) unless Rails.env.test?
+    self.state = "queued"
   end
 end
