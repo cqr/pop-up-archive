@@ -1,6 +1,8 @@
 PRX_APP_KEY=changeme
 PRX_APP_SECRET=changeme
-SECRET_TOKEN=changeme
+SECRET_TOKEN=cchangemechangemechangemechangemechangemechangemehangemechangemechangeme
 DATABASE_URL=postgres://___USERNAME___@localhost/pop-up-archive_development
 TEST_DATABASE_URL=postgres://___USERNAME___@localhost/pop-up-archive_test
-
+UPLOAD_S3_ACCESS_KEY_ID=changeme
+UPLOAD_S3_ACCESS_KEY=changeme
+UPLOAD_S3_BUCKET=changeme
