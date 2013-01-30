@@ -40,26 +40,30 @@ describe CsvImport do
     end
   end
 
-  it "should start with no rows" do
-    import.rows.should be_empty
-  end
+  context "analysis" do
 
-  it "should create rows records as part of analysis" do
-    import.analyze!
-    import.rows.should_not be_empty
-    import.rows.size.should eq %x{wc -l '#{import.file.path}'}.to_i - 1
-  end
-
-  it "should start with no headers" do
-    import.headers.should_not be_present
-  end
-
-  it "should extract headers during analysis" do
-    import.analyze!
-    headers = nil
-    File.open(import.file.path) do |file|
-      headers = file.gets.chomp.split(',')
+    it "should start with no rows" do
+      import.rows.should be_empty
     end
-    import.headers.should eq headers
+
+    it "should create rows records as part of analysis" do
+      import.analyze!
+      import.rows.should_not be_empty
+      import.rows.size.should eq %x{wc -l '#{import.file.path}'}.to_i - 1
+    end
+
+    it "should start with no headers" do
+      import.headers.should_not be_present
+    end
+
+    it "should extract headers during analysis" do
+      import.analyze!
+      headers = nil
+      File.open(import.file.path) do |file|
+        headers = file.gets.chomp.split(',')
+      end
+      import.headers.should eq headers
+    end
   end
+
 end
