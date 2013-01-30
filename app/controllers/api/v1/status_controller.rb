@@ -1,2 +1,2 @@
-class Api::V1::StatusController < Api::BaseController
+class Api::V1::StatusController < Api::V1::BaseController
 end
