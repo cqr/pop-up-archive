@@ -48,4 +48,16 @@ describe CsvImport do
     import.analyze!
     import.rows.should_not be_empty
   end
+
+  it "should start with no headers" do
+    import.headers.should_not be_present
+  end
+  it "should extract headers during analysis" do
+    import.analyze!
+    headers = nil
+    File.open(import.file.path) do |file|
+      headers = file.gets.chomp.split(',')
+    end
+    import.headers.should eq headers
+  end
 end

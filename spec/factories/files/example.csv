@@ -1,1 +1,3 @@
-1,2,3,4,5,6,7,8,9,10
+recordType,itemId,itemType,collection,public,featured,tags,file,fileId,fileSource,fileOrder,PBCore:Identifier,PBCore:Title,PBCore:Description,PBCore:Creator,PBCore:Date Created,PBCore:Rights,PBCore:Digital Location,PBCore:Episode Title,PBCore:Series Title,PBCore:Music/Sound Used,PBCore:Notes,PBCore:Physical Format,PBCore:Physical Location,PBCore:Duration,PBCore:Interviewer,PBCore:Interviewee,PBCore:Date Broadcast,PBCore:Host
+Item,662,Oral History,,1,0,tag,,,,,http://kitchensisters.org/archive/items/show/662,F-015 Mark Furstenberg at the Breadline, Washington D.C.,,Kitchen Sisters,01/14/2004,,,,Hidden Kitchens,,^^,Cassette,SF Office,58:28,Davia Nelson,Mark Furstenberg,,
+Item,658,,,0,0,,,,,,http://kitchensisters.org/archive/items/show/658,Jock Brandis on Stephen King,,,,,,,,,^^,,,,,,,
