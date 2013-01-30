@@ -10,7 +10,6 @@ describe Api::V1::CsvImportsController do
       post 'create'
       puts response.inspect
       response.should be_success
-
     end
   end
 
