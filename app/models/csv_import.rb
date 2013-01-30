@@ -6,7 +6,7 @@ class CsvImport < ActiveRecord::Base
   attr_accessible :file
   after_save :enqueue_processing, on: :create
   validates_presence_of :file
-  mount_uploader :file, CsvFileUploader
+  mount_uploader :file, ::CsvFileUploader
   has_many :rows, class_name: 'CsvRow'
 
 
@@ -15,7 +15,7 @@ class CsvImport < ActiveRecord::Base
   end
 
   def analyze!
-    raise "Invalid state for analysis: #{state}" if state == 'new'
+    raise "Invalid state for analysis: #{state}" if %w(new analyzing).include? state
     self.state = "analyzing"
     file.cache!
     CSV.foreach(file.path) do |row|

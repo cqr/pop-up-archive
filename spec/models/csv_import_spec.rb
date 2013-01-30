@@ -28,6 +28,11 @@ describe CsvImport do
       expect(-> { new_import.analyze! }).to raise_exception
     end
 
+    it "should not permit analyzing if it is currently analyzing" do
+      import.send :state=, "analyzing"
+      expect(-> { import.analyze! }).to raise_exception
+    end
+
     it "should enter the analyzing state during analysis" do
       import.should_receive(:state=).with("analyzing").once.and_call_original
       import.should_receive(:state=).with("analyzed").once.and_call_original
