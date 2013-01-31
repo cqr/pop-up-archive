@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130130214708) do
+ActiveRecord::Schema.define(:version => 20130131045841) do
 
   add_extension "hstore"
 
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20130130214708) do
     t.string   "file"
     t.integer  "state_index", :default => 0
     t.string   "headers",                                    :array => true
+    t.string   "file_name"
   end
 
   create_table "csv_rows", :force => true do |t|

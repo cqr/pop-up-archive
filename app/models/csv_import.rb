@@ -4,6 +4,7 @@ class CsvImport < ActiveRecord::Base
   STATES = ["new", "queued", "analyzing", "analyzed"]
 
   attr_accessible :file
+  before_save :set_file_name, on: :create
   after_save :enqueue_processing, on: :create
   validates_presence_of :file
   mount_uploader :file, ::CsvFileUploader
@@ -37,5 +38,9 @@ class CsvImport < ActiveRecord::Base
   def enqueue_processing
     CsvImportWorker.perform_async(id) unless Rails.env.test?
     self.state = "queued"
+  end
+
+  def set_file_name
+    self.file_name = File.basename(file.path)
   end
 end

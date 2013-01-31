@@ -66,4 +66,8 @@ describe CsvImport do
     end
   end
 
+  it "should extract the base file name" do
+    import.file_name.should eq 'example.csv'
+  end
+
 end
