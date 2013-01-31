@@ -4,9 +4,10 @@ class CsvImport < ActiveRecord::Base
   STATES = ["new", "queued", "analyzing", "analyzed"]
 
   attr_accessible :file
+  before_save :set_file_name, on: :create
   after_save :enqueue_processing, on: :create
   validates_presence_of :file
-  mount_uploader :file, CsvFileUploader
+  mount_uploader :file, ::CsvFileUploader
   has_many :rows, class_name: 'CsvRow'
 
 
@@ -15,11 +16,15 @@ class CsvImport < ActiveRecord::Base
   end
 
   def analyze!
-    raise "Invalid state for analysis: #{state}" if state == 'new'
+    raise "Invalid state for analysis: #{state}" if %w(new analyzing).include? state
     self.state = "analyzing"
     file.cache!
     CSV.foreach(file.path) do |row|
-      rows.create values: row
+      if self.headers.present?
+        rows.create values: row
+      else
+        self.headers = row
+      end
     end
     self.state = "analyzed"
   end
@@ -33,5 +38,9 @@ class CsvImport < ActiveRecord::Base
   def enqueue_processing
     CsvImportWorker.perform_async(id) unless Rails.env.test?
     self.state = "queued"
+  end
+
+  def set_file_name
+    self.file_name = File.basename(file.path)
   end
 end
