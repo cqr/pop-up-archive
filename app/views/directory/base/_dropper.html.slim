@@ -1,4 +1,4 @@
-#dropperModal.dropperModal.modal.hide.fade role='dialog' aria-hidden='true' ng-controller='UploadsCtrl'
+#dropperModal.dropperModal.modal.hide.fade role='dialog' aria-hidden='true' ng-controller='UploadsCtrl' prx-upload-dropzone-delegate=''
   .modal-header
     button.close type='button' data-dismiss='modal' ×
     h3 Import files and folders
@@ -18,4 +18,4 @@
         a.delete ng-click='removeUpload()' ×
   .modal-footer
     button.btn data-dismiss='modal' Close
-    button.btn.btn-primary.upload ng-click='closeModal()' Upload
+    button.btn.btn-primary.upload ng-click='upload()' Upload

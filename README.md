@@ -8,7 +8,7 @@
       Ruby Version
     </th>
     <td>
-      1.9.3p327
+      1.9.3p374
     </td>
   </tr>
   <tr>
@@ -44,18 +44,18 @@ This guide expects that you have git and homebrew installed, and have a ruby env
 
 #### Environment variables
 
-In order to mimic the way Heroku works, many application configuration settings are defined with environment variables. If you are using foreman/etc you may have a different way of accomplishing this.  You can also use the included support for the config/env_vars file. 
+In order to mimic the way Heroku works, many application configuration settings are defined with environment variables. If you are using foreman/etc you may have a different way of accomplishing this. You can also use the included support for the config/env_vars file.
 
 ##### You should not check config/env_vars into source control
 
 You will need to set the SECRET_TOKEN value for the app to start (the default value is too short). The other default value may not be required. If need to point the app to a database or database user different than what is in the included database.yml, you should do that with an environment variable. Once complete:
 
-	rake db:setup
-	rake db:migrate
-	
+    rake db:setup
+    rake db:migrate
+
 ### Development
 
-	powder open
+    powder open
 
 The site should now be running. If you need to use sidekiq, or elasticsearch, you may need to start other services manually.
 
