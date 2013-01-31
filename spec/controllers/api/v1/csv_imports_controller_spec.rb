@@ -20,7 +20,7 @@ describe Api::V1::CsvImportsController do
 
       it "returns http failure with a #{type_of_failed_import.to_s.gsub('_',' ')}" do
         post 'create', csv_import: FactoryGirl.attributes_for(type_of_failed_import)
-        response.should_not be_success
+        response.code.should eq "422"
       end
 
     end
