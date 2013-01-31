@@ -1,7 +1,7 @@
 # Pop-Up Archive
 
 [![Build Status](https://travis-ci.org/PRX/pop-up-archive.png?branch=master)](https://travis-ci.org/PRX/pop-up-archive)
-
+[![Dependency Status](https://gemnasium.com/PRX/pop-up-archive.png)](https://gemnasium.com/PRX/pop-up-archive)
 <table>
   <tr>
     <th>
