@@ -56,7 +56,7 @@ gem 'tire'
 
 # server-side templates
 gem 'slim-rails'
-gem 'rabl-rails'
+gem 'rabl'
 
 # angular-js for client-side application
 gem 'angular-rails', git: 'https://github.com/gistia/angular-rails'
