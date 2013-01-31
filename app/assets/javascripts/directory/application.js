@@ -20,6 +20,9 @@
 // require angle-up THIS IS BROKEN
 
 window.directory = angular.module('Directory', ['ngResource', 'prxUpload']);
+window.directory.config(["$httpProvider", function(provider) {
+  provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+}]);
 
 $(function() {
   // $('html').each(function() { (new Dropper(this, $('.dropperModal'))).initialize(); });
