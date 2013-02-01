@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130131045841) do
+ActiveRecord::Schema.define(:version => 20130201212204) do
 
   add_extension "hstore"
 
@@ -32,10 +32,10 @@ ActiveRecord::Schema.define(:version => 20130131045841) do
   end
 
   create_table "csv_rows", :force => true do |t|
-    t.string   "values",                        :array => true
+    t.string   "values",        :limit => 10000000, :array => true
     t.integer  "csv_import_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
   end
 
   add_index "csv_rows", ["csv_import_id"], :name => "index_csv_rows_on_csv_import_id"
