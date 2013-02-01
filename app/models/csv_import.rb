@@ -5,7 +5,7 @@ class CsvImport < ActiveRecord::Base
 
   attr_accessible :file
   before_save :set_file_name, on: :create
-  after_save :enqueue_processing, unless: :enqueued?
+  after_save :enqueue_processing, if: :new?
   validates_presence_of :file
   mount_uploader :file, ::CsvFileUploader
   has_many :rows, class_name: 'CsvRow'
@@ -29,14 +29,19 @@ class CsvImport < ActiveRecord::Base
     self.state = "analyzed"
   end
 
+  def new?
+    state == 'new'
+  end
+
   private
 
   def state=(state)
-    raise "Invalid state: #{state}" unless self.state_index = STATES.index(state.downcase)
+    raise "Invalid state: #{state}" unless new_state_index = STATES.index(state.downcase)
+    update_attribute :state_index, new_state_index
   end
 
   def enqueue_processing
-    update_attribute :state, "queued"
+    self.state = "queued"
     CsvImportWorker.perform_async(id) unless Rails.env.test?
   end
 
@@ -44,7 +49,5 @@ class CsvImport < ActiveRecord::Base
     self.file_name = File.basename(file.path)
   end
 
-  def enqueued?
-    self.state_index == 1
-  end
+
 end
