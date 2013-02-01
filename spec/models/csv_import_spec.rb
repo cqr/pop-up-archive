@@ -19,6 +19,11 @@ describe CsvImport do
       new_import.state.should eq "queued"
     end
 
+    it "should save the state after enqueing processing" do
+      new_import.save
+      new_import.should_not be_state_index_changed
+    end
+
     it "should transition to the analyzed state after it is analyzed" do
       import.analyze!
       import.state.should eq "analyzed"
