@@ -16,6 +16,11 @@ describe Api::V1::CsvImportsController do
       response.should be_success
     end
 
+    it "renders the correct show representation" do
+      post 'create', csv_import: @valid_attributes
+      response.should render_template "create"
+    end
+
     [:csv_import_with_bad_file, :csv_import_with_no_file].each do |type_of_failed_import|
 
       it "returns http failure with a #{type_of_failed_import.to_s.gsub('_',' ')}" do
