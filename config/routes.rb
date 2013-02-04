@@ -18,7 +18,7 @@ PopUpArchive::Application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
-  match '*path', to: 'redirect#perform', constraints: HtmlRequestConstraint.new(default: false)
+  match '*path', to: 'redirect#perform', constraints: HtmlRequestConstraint.new()
 
   root to: 'directory/dashboard#guest', constraints: GuestConstraint.new(true)
   root to: 'directory/dashboard#user', constraints: GuestConstraint.new(false)
