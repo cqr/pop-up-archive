@@ -16,3 +16,7 @@ html lang='en' ng-app='Directory' prx-upload-dropzone='#dropperModal'
     footer= render('footer')
 
     = render('dropper')
+
+    script#items type='text/ng-template'
+      ul
+        li ng-repeat='item in data.items' {{item.title}}

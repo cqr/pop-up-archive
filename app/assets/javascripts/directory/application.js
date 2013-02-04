@@ -19,11 +19,27 @@
 
 // require angle-up THIS IS BROKEN
 
-window.directory = angular.module('Directory', ['ngResource', 'prxUpload']);
-window.directory.config(["$httpProvider", function(provider) {
-  provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
-}]);
+;(function() {
 
-$(function() {
-  // $('html').each(function() { (new Dropper(this, $('.dropperModal'))).initialize(); });
-});
+  function applicationConfig($httpProvider, $locationProvider, $routeProvider) {
+    
+    // Add our CSRF stuff to all our requests by default
+    $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+
+    // Set up routing
+    $locationProvider.html5Mode(true);
+
+    $routeProvider.when('/', {
+      templateUrl: "items",
+      controller: "ItemsCtrl"
+    })
+    .otherwise({
+      template: "<h1>404 - not found</h1>"
+    })
+
+  }
+
+  window.directory = angular.module('Directory', ['ngResource', 'prxUpload']);
+  window.directory.config(["$httpProvider", "$locationProvider", "$routeProvider", applicationConfig]);
+
+}());
