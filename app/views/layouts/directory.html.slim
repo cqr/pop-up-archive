@@ -18,6 +18,7 @@ html lang='en' ng-app='Directory'
     .container-fluid== yield
     footer= render('footer')
 
+    = render('angular_templates')
     script#items type='text/ng-template'
       ul
         li ng-repeat='item in data.items' {{item.title}}
@@ -25,7 +26,7 @@ html lang='en' ng-app='Directory'
       div ng-show="data.import"
         h2 File Import: {{data.import.file}}
         table.table.table-striped
-          thead 
+          thead
             tr
               th Source Column
               th Data Type

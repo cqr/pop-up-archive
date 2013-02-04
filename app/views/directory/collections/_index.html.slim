@@ -1,0 +1,16 @@
+script#collections type='text/ng-template'
+  table.table.table-striped
+    thead
+      tr
+    tfoot
+      tr
+    tbody
+      tr
+        th ID
+        th Title
+        th Date created
+      tr ng-repeat='collection in data.collections'
+        td {{collection.id}}
+        td
+          a ng-href='/collections/{{collection.id}}' {{collection.title}}
+        td {{collection.created_at}}

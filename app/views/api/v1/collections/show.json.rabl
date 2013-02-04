@@ -1,4 +1,4 @@
-object collections
+object kollection
 attributes :id, :title, :description
 
 node(:urls) do |i|

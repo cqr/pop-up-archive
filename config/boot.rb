@@ -16,8 +16,8 @@ if File.exists?(ENV['ENV_OVERRIDE_FILE'])
       if var == 'DATABASE_URL' && ENV['RAILS_ENV'] == 'test'
         ENV['DATABASE_URL'] &&= nil
       else
-        ENV[var] = val 
-      end 
+        ENV[var] = val
+      end
     end
   end
 end
