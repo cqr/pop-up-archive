@@ -1,129 +1,100 @@
-// angular.module('prxUpload', [])
-//   .directive('prxUploadDropzone', function() {
-//     var delegate;
+angular.module('fileDropzone', []).directive('fileDropzone', function ($compile, $parse) {
+    var overlayTemplateLinker;
+    function linker(scope, element, attrs) {
+            var parentScope = scope,
+                scope = scope.$root.$new(true),
+                overlay;
+            scope.overlayText = attrs.dropzoneContent;
+            scope.files = parentScope.$eval(attrs.fileDropzone);
+            scope.overlayVisible = false;
+            scope.overlayStyle = {
+                width: '100%',
+                height: '100%',
+                background: 'rgba(0,0,0,0.7)',
+                position: 'absolute',
+                top: '0px',
+                left: '0px',
+                textAlign: 'center',
+                color: '#FFF'
+            };
+            scope.overlayContainerStyle = {
+                width: '100%',
+                height: '100%',
+                overflow: 'hidden',
+                position: 'absolute',
+                top: '0px',
+                left: '0px'
+            }
+        
+            overlayTemplateLinker(scope, function(overlayElement) {
+                overlay = angular.element(overlayElement.children()[0]);
+                element.append(overlayElement);
+            });
+            
+            attrs.$observe('dropzoneContent', function (text) {
+                if (typeof text !== 'undefined') {
+                   scope.overlayText = text;
+                } else {
+                    scope.overlayText = "Drop file here to upload.";
+                }
+            });
+            
+            parentScope.$watch(attrs.fileDropzone, function (val) {
+                if (typeof val === 'undefined') {
+                    parentScope[attrs.fileDropzone] = [];
+                    scope.files = [];
+                } else {
+                    scope.files = val;
+                }
+            });
+            
+            scope.$watch('files', function (val) {
+                
+            });
+            
+            if (element.css('position') == 'static') element.css({'position':'relative'});
+            
+            function _showOverlay(e) {
+                stopEvent(e);
+                scope.$apply(function (scope) {
+                    scope.overlayVisible = true;
+                });
+            }
 
-//     return {
-//       restrict: 'A',
-//       scope: {},
-//       compile: function(tElement, tAttrs, transclude) {
-//         if (tAttrs.prxUploadDropzone && tAttrs.prxUploadDropzone != '') {
-//           delegate = angular.element(tAttrs.prxUploadDropzone);
-//         };
+            function _hideOverlay(e) {
+                stopEvent(e);
+                scope.$apply(function (scope) {
+                    scope.overlayVisible = false;
+                });
+            }
 
-//         return function(scope, element, attrs) {
-//           console.log(element);
-//           element.bind('dragenter', function() { delegate.triggerHandler('dragenter'); });
-//           element.bind('dragover', function() { delegate.triggerHandler('dragover'); });
-//           element.bind('dragleave', function() { delegate.triggerHandler('dragleave'); });
-//           element.bind('drop', function() { delegate.triggerHandler('drop'); });
-//         }
-//       }
-//     }
-//   })
-//   .directive('prxUploadDropzoneDelegate', function() {
-//     return {
-//       restrict: 'A',
-//       scope: {},
-//       compile: function(tElement, tAttrs, transclude) {
-//         return function(scope, element, attrs) {
-//           function _dragenter (e) {
-//             console.log('drop');
-//             e.stopPropagation();
-//             e.preventDefault();
-//           }
+            function _drop(e) {
+                _hideOverlay(e);
+                var files = [];
+                angular.forEach(e.originalEvent.dataTransfer.files, function (file) {
+                    files.push(file);
+                });
+                scope.$apply(function (scope) {                    
+                    $parse(attrs.fileDropzone).assign(parentScope, files);
+                });
+            }
 
-//           function _dragover (e) {
-//             console.log('drop');
-//             e.stopPropagation();
-//             e.preventDefault();
-//           }
+            function stopEvent(e) {
+                if (e) {
+                    if (e.stopPropagation) e.stopPropagation();
+                    if (e.preventDefault) e.preventDefault();
+                }
+            }
 
-//           function _dragleave (e) {
-//             console.log(e);
-//             e.stopPropagation();
-//             e.preventDefault();
-//           }
-
-//           function _drop (e) {
-//             e.stopPropagation();
-//             e.preventDefault();
-
-//             // console.log('drop');
-
-//             // if (!scope.uploads) {
-//             //   scope.uploads = [];
-//             // }
-
-//             // angular.forEach(e.originalEvent.dataTransfer.files, function(file) {
-//             //   scope.uploads.push(file);
-//             // })
-//             // console.log(scope.uploads);
-
-//             // scope.$digest();
-//           }
-
-//           element.bind('dragenter', _dragenter);
-//           element.bind('dragover', _dragover);
-//           element.bind('dragleave', _dragleave);
-//           element.bind('drop', _drop);
-//         }
-//       }
-//     }
-//   });
-
-
-
-angular.module('prxUpload', []).directive('prxUploadDropzone', function() {
-  return function(scope, element, attrs) {
-    var modalIsVisible = false;
-    var dragleaveCount = 0;
-
-    function _dragenter (e) {
-      e.stopPropagation();
-      e.preventDefault();
-
-      if (!modalIsVisible) {
-        angular.element('.dropperModal').first().modal('show');
-        dragleaveCount = 0;
-        modalIsVisible = true;
-      }
-    }
-
-    function _dragover (e) {
-      e.stopPropagation();
-      e.preventDefault();
-    }
-
-    function _dragleave (e) {
-      e.stopPropagation();
-      e.preventDefault();
-
-      dragleaveCount = dragleaveCount + 1;
-
-      if (modalIsVisible  && dragleaveCount > 1) {
-        angular.element('.dropperModal').first().modal('hide');
-        modalIsVisible = false;
-      }
-    }
-
-    function _drop (e) {
-      e.stopPropagation();
-      e.preventDefault();
-
-      if (!scope.uploads) {
-        scope.uploads = [];
-      }
-
-      angular.forEach(e.originalEvent.dataTransfer.files, function(file) {
-        scope.uploads.push(file);
-      })
-
-      scope.$digest();
-    }
-
-    element.bind('dragenter', _dragenter);
-    element.bind('dragover', _dragover);
-    element.bind('dragleave', _dragleave);
-    element.bind('drop', _drop);
-  }
-})
+            element.bind('dragenter', _showOverlay);
+            element.bind('dragover', _showOverlay);
+            overlay.bind('dragleave', _hideOverlay);
+            element.bind('drop', _drop);
+        }
+    return {
+        compile: function () {
+            overlayTemplateLinker = $compile("<div ng-style='overlayContainerStyle' ng-show='overlayVisible'><div class='file-drop-zone-overlay' ng-style='overlayStyle'>{{overlayText}}</div></div>");
+            return linker;
+        }
+    };
+});

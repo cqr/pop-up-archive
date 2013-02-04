@@ -1,5 +1,5 @@
 doctype html
-html lang='en' ng-app='Directory' prx-upload-dropzone='#dropperModal'
+html lang='en' ng-app='Directory'
   head
     meta charset='utf-8'
 
@@ -10,13 +10,63 @@ html lang='en' ng-app='Directory' prx-upload-dropzone='#dropperModal'
     = javascript_include_tag 'http://code.angularjs.org/1.1.2/angular-resource.min.js'
     = javascript_include_tag 'http://code.angularjs.org/1.1.2/angular-bootstrap.min.js'
     = csrf_meta_tags
-  body
+  body file-dropzone="files" ng-controller="FilesCtrl"
     header= render('header')
+    ul#pending-actions
+      li.pending-action ng-repeat="action in pendingActions"
+        ng-include src="'pending-action'"
     .container-fluid== yield
     footer= render('footer')
-
-    = render('dropper')
 
     script#items type='text/ng-template'
       ul
         li ng-repeat='item in data.items' {{item.title}}
+    script#import type='text/ng-template'
+      div ng-show="data.import"
+        h2 File Import: {{data.import.file}}
+        table.table.table-striped
+          thead 
+            tr
+              th Source Column
+              th Data Type
+              th Destination Column
+          tbody
+            tr ng-repeat="header in data.import.headers"
+              td {{header}}
+              td
+                select
+                  option Text
+                  option Interviewee
+                  option Interviewer
+                  option Producer
+                  option Location
+                  option URL
+              td
+                select
+                  option extra:{{header}}
+                  option disabled='' ---
+                  option Title
+                  option Description
+                  option Files
+                  option Something Else
+
+        h3 Preview
+        div style='overflow:scroll'
+          table.table.table-striped.table-bordered.table-hover.table-condensed
+            thead
+              tr
+                th ng-repeat='header in data.import.headers' {{header}}
+            tbody
+              tr ng-repeat='row in data.import.preview_rows'
+                td ng-repeat='col in row' {{col}}
+        div style='float:right'
+          button.btn ng-click="cancel()" style='margin-right: 5px' Cancel
+          button.btn.btn-primary ng-click="finishImport()" Done!
+
+
+
+
+    script#pending-action type='text/ng-template'
+      a ng-href='{{action.path}}' ng-click="removeAction($index)" {{action.message}}
+      .progress.progress-striped.active
+        .bar ng-style="{width:action.progress+'%'}"
