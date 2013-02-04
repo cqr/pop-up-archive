@@ -33,13 +33,17 @@
       templateUrl: "items",
       controller: "ItemsCtrl"
     })
+    .when('/imports/:importId', {
+      templateUrl: "import",
+      controller: "ImportCtrl"
+    })
     .otherwise({
       template: "<h1>404 - not found</h1>"
     })
 
   }
 
-  window.directory = angular.module('Directory', ['ngResource', 'prxUpload']);
+  window.directory = angular.module('Directory', ['ngResource', 'fileDropzone', 'Controllers', 'Directory.models']);
   window.directory.config(["$httpProvider", "$locationProvider", "$routeProvider", applicationConfig]);
 
 }());
