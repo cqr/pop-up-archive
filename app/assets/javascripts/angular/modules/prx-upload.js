@@ -1,4 +1,5 @@
-angular.module('fileDropzone', []).directive('fileDropzone', function ($compile, $parse) {
+angular.module('fileDropzone', [])
+.directive('fileDropzone', function ($compile, $parse) {
     var overlayTemplateLinker;
     function linker(scope, element, attrs) {
             var parentScope = scope,

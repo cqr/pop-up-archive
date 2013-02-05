@@ -22,7 +22,7 @@
 
   (function fetchImport () {
 
-    CsvImport.get({importId:$routeParams.importId}, function(data) {
+    CsvImport.get($routeParams.importId).then(function(data) {
 
       $scope.import = data;
       
@@ -31,7 +31,7 @@
           $scope.timeout.cancel();
         }
       } else {
-        $scope.timeout = $timeout($scope.fetchImport, 1000);
+        $scope.timeout = $timeout($scope.fetchImport, 100);
       }
     });
   })();
@@ -39,6 +39,12 @@
 }])
 .controller("ImportMappingCtrl", ['$scope', 'Schema', function ($scope, Schema) {
   $scope.schema = Schema.get();
+  $scope.mapping = [];
+
+  $scope.submitMapping = function () {
+    $scope.import.mapping = $scope.mapping;
+    $scope.import.update();
+  }
 
   $scope.$watch('import.headers', function (headers) {
     $scope.mapping = [];

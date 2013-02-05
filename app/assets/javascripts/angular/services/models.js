@@ -1,9 +1,27 @@
-angular.module('Directory.models', ['ngResource'])
-.factory('CsvImport', ['$resource', function ($resource) {
-  return $resource('/api/csv_imports/:importId', {importId:'@id'});
+angular.module('Directory.models', ['rails'])
+.factory('CsvImport', ['railsResourceFactory', function (railsResourceFactory) {
+  var factory = railsResourceFactory({url:'/api/csv_imports', name: 'csv_import', requestTransformers:['protectedAttributeRemovalTransformer','railsRootWrappingTransformer','railsFieldRenamingTransformer']});
+  factory.attrAccessible = ['mapping'];
+  return factory;
 }])
 
-.factory('Schema', [function () {
+.factory('protectedAttributeRemovalTransformer', [function () {
+  return function (data, resource) {
+    var obj = data;
+    if (resource.attrAccessible && resource.attrAccessible.length && resource.attrAccessible.length > 0) {
+      obj = {};
+      for (index in resource.attrAccessible) {
+        var key = resource.attrAccessible[index];
+        var val = data[key];
+        if (typeof val !== 'undefined') {
+          obj[key] = val;
+        }
+      }
+    }
+    console.log(obj);
+    return obj;
+  }
+}]).factory('Schema', [function () {
   var schema = {columns: [], types: [{humanName: '---'}], get: function () { return schema }};
 
   angular.forEach({

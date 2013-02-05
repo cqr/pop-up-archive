@@ -15,9 +15,8 @@
 //= require_tree .
 //= require bootstrap
 //= require angular
+//= require angularjs/rails/resource
 //= require_tree ../angular
-
-// require angle-up THIS IS BROKEN
 
 ;(function() {
 
@@ -49,7 +48,7 @@
 
   }
 
-  window.directory = angular.module('Directory', ['ngResource', 'fileDropzone', 'Directory.controllers', 'Directory.models', 'Directory.filters']);
+  window.directory = angular.module('Directory', ['ngResource', 'fileDropzone', 'Directory.controllers', 'Directory.models', 'Directory.filters', 'rails']);
   window.directory.config(["$httpProvider", "$locationProvider", "$routeProvider", applicationConfig]);
 
 }());
