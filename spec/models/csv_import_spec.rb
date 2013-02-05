@@ -47,6 +47,14 @@ describe CsvImport do
 
   context "analysis" do
 
+    let(:headers) do
+      headers = nil
+      File.open(import.file.path) do |file|
+        headers = file.gets.chomp.split(',')
+      end
+      headers
+    end
+
     it "should start with no rows" do
       import.rows.should be_empty
     end
@@ -63,16 +71,31 @@ describe CsvImport do
 
     it "should extract headers during analysis" do
       import.analyze!
-      headers = nil
-      File.open(import.file.path) do |file|
-        headers = file.gets.chomp.split(',')
-      end
       import.headers.should eq headers
+    end
+
+    it "should create mappings during analysis" do
+      import.analyze!
+      import.mappings.size.should eq headers.length
     end
   end
 
   it "should extract the base file name" do
     import.file_name.should eq 'example.csv'
+  end
+
+  context "#mappings" do
+    it "should be empty when we start" do
+      new_import.mappings.should be_blank
+    end
+
+    it "should permit setting a bunch of them" do
+      mappings = Array.new(9).map { FactoryGirl.attributes_for :import_mapping }
+      new_import.mappings_attributes = mappings
+      new_import.save
+
+      CsvImport.find(new_import.id).mappings.count.should eq 9
+    end
   end
 
 end

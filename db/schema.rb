@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130131045841) do
+ActiveRecord::Schema.define(:version => 20130205215255) do
 
   add_extension "hstore"
 
@@ -48,6 +48,17 @@ ActiveRecord::Schema.define(:version => 20130131045841) do
     t.decimal  "latitude"
     t.decimal  "longitude"
   end
+
+  create_table "import_mappings", :force => true do |t|
+    t.string   "data_type"
+    t.string   "column"
+    t.integer  "csv_import_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "position"
+  end
+
+  add_index "import_mappings", ["csv_import_id"], :name => "index_import_mappings_on_csv_import_id"
 
   create_table "items", :force => true do |t|
     t.string   "title"

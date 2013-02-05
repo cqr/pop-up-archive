@@ -14,6 +14,7 @@ gem 'dalli'
 gem 'pg'
 gem 'activerecord-postgres-hstore', github: 'engageis/activerecord-postgres-hstore'
 gem 'postgres_ext'
+gem 'acts_as_list'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

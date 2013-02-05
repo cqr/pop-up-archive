@@ -27,7 +27,7 @@ angular.module('Directory.models', ['rails'])
     return obj;
   }
 }]).factory('Schema', [function () {
-  var schema = {columns: [], types: [{humanName: '---'}], get: function () { return schema }};
+  var schema = {columns: [], types: [{humanName: '---', name: null}], get: function () { return schema }};
 
   angular.forEach({
     string:      "Title / Label",
@@ -43,7 +43,7 @@ angular.module('Directory.models', ['rails'])
   });
 
   angular.forEach({
-    "title":             {type:"string",      display:"Title"},
+    "title":             {type:"string",      display: "Title"},
     "episode_title":     {type:"string",      display: "Episode Title"},
     "series_title":      {type:"string",      display: "Series Title"},
     "description":       {type:"text",        display: "Description"},
@@ -81,7 +81,7 @@ angular.module('Directory.models', ['rails'])
         columns = [];
 
     for (index in columnNames) {
-      columns.push({humanName: columnNames[index]});
+      columns.push({humanName: columnNames[index], name: null});
     }
 
     return schema.appendColumns(columns);
