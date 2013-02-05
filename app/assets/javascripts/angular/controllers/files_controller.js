@@ -1,4 +1,4 @@
-(window.controllers = window.controllers || angular.module('Controllers', []))
+(window.controllers = window.controllers || angular.module('Directory.controllers', []))
 .controller('FilesCtrl', ['$scope', '$http', 'CsvImport', '$timeout', function ($scope, $http, CsvImport, $timeout) {
   $scope.files = [];
   $scope.pendingActions = [];

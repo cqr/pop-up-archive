@@ -4,7 +4,7 @@ angular.module('Directory.models', ['ngResource'])
 }])
 
 .factory('Schema', [function () {
-  var schema = {columns: [], types: [], get: function () { return schema }};
+  var schema = {columns: [], types: [{humanName: '---'}], get: function () { return schema }};
 
   angular.forEach({
     string:      "Title / Label",
@@ -14,7 +14,7 @@ angular.module('Directory.models', ['ngResource'])
     number:      "Number",
     array:       "List",
     person:      "Person's Name",
-    geolocation: "Geographic Location"
+    geolocation: "Geographic Location",
   }, function (humanName, name) {
     schema.types.push({humanName: humanName, name: name});
   });

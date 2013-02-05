@@ -23,16 +23,16 @@ html lang='en' ng-app='Directory'
       ul
         li ng-repeat='item in data.items' {{item.title}}
     script#import type='text/ng-template'
-      div ng-show="data.import"
-        h2 File Import: {{data.import.file}}
-        table.table.table-striped
-          thead
+      div ng-show="import"
+        h2 File Import: {{import.file}}
+        table.table.table-striped ng-controller="ImportMappingCtrl"
+          thead 
             tr
               th Source Column
               th Kind of Data
               th Destination
           tbody
-            tr ng-repeat="header in data.import.headers"
+            tr ng-repeat="header in import.headers"
               td {{header}}
               td
                 select ng-model="mapping[$index].type" ng-options="type.name as type.humanName for type in schema.types"
@@ -50,7 +50,7 @@ html lang='en' ng-app='Directory'
                 td ng-repeat='col in row' {{col}}
         div style='float:right'
           button.btn ng-click="cancel()" style='margin-right: 5px' Cancel
-          button.btn.btn-primary ng-click="finishImport()" Done!
+          button.btn.btn-primary ng-click="submitMapping()" Done!
 
 
 
