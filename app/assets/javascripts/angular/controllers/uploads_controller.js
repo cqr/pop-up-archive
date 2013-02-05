@@ -17,13 +17,33 @@
     });
   }
 }])
-.controller("ImportCtrl", ['$scope', 'CsvImport', '$routeParams', '$timeout', function($scope, CsvImport, $routeParams, $timeout) {
+.controller("ImportCtrl", ['$scope', 'CsvImport', '$routeParams', '$timeout', 'Schema', function($scope, CsvImport, $routeParams, $timeout, Schema) {
   $scope.analyzed = false;
   $scope.data = {};
+  $scope.schema = Schema.get();
+  $scope.mapping = [];
 
-  $scope.fetchImport = function () {
+
+  (function fetchImport () {
 
     CsvImport.get({importId:$routeParams.importId}, function(data) {
+
+      angular.forEach(data.headers, function(header, index) {
+        $scope.mapping[index] = ($scope.mapping[index] || {});
+        $scope.$watch('mapping['+index+'].column', function(columnName) {
+          if (columnName) {
+            var column = $scope.schema.columnByName(columnName),
+                type   = $scope.schema.types.get(column.typeId);
+            $scope.mapping[index].type = type.name;
+          }
+        });
+        $scope.$watch('mapping['+index+'].type', function(typeName) {
+          var column = $scope.schema.columnByName($scope.mapping[index].column);
+          if (column && $scope.schema.types.get(column.typeId).name != typeName) {
+            $scope.mapping[index].column = undefined;
+          }
+        });
+      });
 
       $scope.data.import = data;
       
@@ -35,9 +55,7 @@
         $scope.timeout = $timeout($scope.fetchImport, 1000);
       }
     });
-  }
-
-  $scope.fetchImport();
+  })();
 
   
 }]);

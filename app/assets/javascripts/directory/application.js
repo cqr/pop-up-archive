@@ -49,7 +49,7 @@
 
   }
 
-  window.directory = angular.module('Directory', ['ngResource', 'fileDropzone', 'Controllers', 'Directory.models']);
+  window.directory = angular.module('Directory', ['ngResource', 'fileDropzone', 'Controllers', 'Directory.models', 'Directory.filters']);
   window.directory.config(["$httpProvider", "$locationProvider", "$routeProvider", applicationConfig]);
 
 }());

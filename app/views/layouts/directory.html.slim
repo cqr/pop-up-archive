@@ -29,27 +29,15 @@ html lang='en' ng-app='Directory'
           thead
             tr
               th Source Column
-              th Data Type
-              th Destination Column
+              th Kind of Data
+              th Destination
           tbody
             tr ng-repeat="header in data.import.headers"
               td {{header}}
               td
-                select
-                  option Text
-                  option Interviewee
-                  option Interviewer
-                  option Producer
-                  option Location
-                  option URL
+                select ng-model="mapping[$index].type" ng-options="type.name as type.humanName for type in schema.types"
               td
-                select
-                  option extra:{{header}}
-                  option disabled='' ---
-                  option Title
-                  option Description
-                  option Files
-                  option Something Else
+                select ng-model="mapping[$index].column" ng-options="column.name as column.humanName group by schema.types[column.typeId].humanName for column in schema.columnsWith('Extra: ' + header) | type:mapping[$index].type"
 
         h3 Preview
         div style='overflow:scroll'
