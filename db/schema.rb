@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(:version => 20130131045841) do
   end
 
   create_table "csv_rows", :force => true do |t|
-    t.string   "values",                        :array => true
+    t.text     "values",                        :array => true
     t.integer  "csv_import_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(:version => 20130131045841) do
     t.string   "date_peg"
     t.text     "notes"
     t.text     "transcription"
-    t.string   "tags"
+    t.string   "tags",                              :array => true
     t.integer  "geolocation_id"
     t.hstore   "extra"
     t.datetime "created_at",        :null => false
