@@ -1,7 +1,7 @@
 angular.module('Directory.filters', ['Directory.models'])
 .filter('type', ['Schema', function(Schema) {
   return function(inputs, cond) {
-    if (typeof cond == 'undefined' || cond == '') {
+    if (typeof cond == 'undefined' || cond == null || cond == '') {
       return inputs;
     }
     var things = [];

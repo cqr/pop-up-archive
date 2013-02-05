@@ -39,28 +39,24 @@
 }])
 .controller("ImportMappingCtrl", ['$scope', 'Schema', function ($scope, Schema) {
   $scope.schema = Schema.get();
-  $scope.mapping = [];
 
   $scope.submitMapping = function () {
-    $scope.import.mapping = $scope.mapping;
     $scope.import.update();
   }
 
   $scope.$watch('import.headers', function (headers) {
-    $scope.mapping = [];
     angular.forEach(headers, function (header, index) {
-      $scope.mapping[index] = {};
-      $scope.$watch('mapping['+index+'].column', function(columnName) {
+      $scope.$watch('import.mappings['+index+'].column', function(columnName) {
           if (columnName) {
             var column = $scope.schema.columnByName(columnName),
                 type   = $scope.schema.types.get(column.typeId);
-            $scope.mapping[index].type = type.name;
+            $scope.import.mappings[index].type = type.name;
           }
         });
-        $scope.$watch('mapping['+index+'].type', function(typeName) {
+        $scope.$watch('import.mapping['+index+'].type', function(typeName) {
           var column = $scope.schema.columnByName($scope.mapping[index].column);
           if (column && $scope.schema.types.get(column.typeId).name != typeName) {
-            $scope.mapping[index].column = undefined;
+            $scope.import.mappings[index].column = undefined;
           }
         });
     });

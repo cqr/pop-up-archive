@@ -32,7 +32,7 @@
 
   function watchImport(importId, action) {
     (function fetchImport() {
-      CsvImport.get({importId: importId}, function(data) {
+      CsvImport.get(importId).then(function(data) {
         switch (data.state) {
           case 'analyzing':
             action.timeout = $timeout(fetchImport, 50);
