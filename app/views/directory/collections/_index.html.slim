@@ -1,4 +1,23 @@
 script#collections type='text/ng-template'
+  button.btn data-toggle='modal' href='#newCollectionModal' Create new collection
+
+  #newCollectionModal.modal.hide.fade role='dialog' ng-controller='CollectionFormCtrl'
+    .modal-header
+      button.close data-dismiss='modal' ×
+      h3 Create new collection
+    .modal-body
+      form
+        fieldset
+          label
+            | Title
+            input ng-model='collection.title'
+          label
+            | Desc
+            input ng-model='collection.description'
+    .modal-footer
+      button.btn Close
+      button.btn.btn-primary ng-click='submit()' data-dismiss='modal' Save
+
   table.table.table-striped
     thead
       tr
@@ -8,9 +27,9 @@ script#collections type='text/ng-template'
       tr
         th ID
         th Title
-        th Date created
-      tr ng-repeat='collection in data.collections'
+        th Description
+      tr ng-repeat='collection in collections'
         td {{collection.id}}
         td
           a ng-href='/collections/{{collection.id}}' {{collection.title}}
-        td {{collection.created_at}}
+        td {{collection.description}}

@@ -4,6 +4,11 @@ angular.module('Directory.models', ['rails'])
   factory.attrAccessible = ['mapping'];
   return factory;
 }])
+.factory('Collection', ['railsResourceFactory', function (railsResourceFactory) {
+  var factory = railsResourceFactory({url:'/api/collections', name: 'collection', requestTransformers:['protectedAttributeRemovalTransformer','railsRootWrappingTransformer','railsFieldRenamingTransformer']});
+  factory.attrAccessible = ['title', 'description'];
+  return factory;
+}])
 
 .factory('protectedAttributeRemovalTransformer', [function () {
   return function (data, resource) {
@@ -65,7 +70,7 @@ angular.module('Directory.models', ['rails'])
 
   schema.appendColumns = function (thingsToAdd) {
     var clone = schema.columns.slice(0, this.columns.length);
-    
+
     thingsToAdd.splice(0,0,0,0);
     clone.splice.apply(clone, thingsToAdd);
     return clone;
@@ -74,7 +79,7 @@ angular.module('Directory.models', ['rails'])
   schema.columnsWith = function () {
     var columnNames = Array.prototype.slice.call(arguments, 0, arguments.length),
         columns = [];
-    
+
     for (index in columnNames) {
       columns.push({humanName: columnNames[index]});
     }
