@@ -22,7 +22,7 @@
 ;(function() {
 
   function applicationConfig($httpProvider, $locationProvider, $routeProvider) {
-    
+
     // Add our CSRF stuff to all our requests by default
     $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
 
@@ -32,6 +32,12 @@
     $routeProvider.when('/', {
       templateUrl: "items",
       controller: "ItemsCtrl"
+    }).when('/collections', {
+      templateUrl: "collections",
+      controller: "CollectionsCtrl"
+    }).when('/collections/:collectionId', {
+      templateUrl: "collection",
+      controller: "CollectionCtrl"
     })
     .when('/imports/:importId', {
       templateUrl: "import",

@@ -1,7 +1,7 @@
 .nav-collapse.pull-right
   ul.nav
     - if user_signed_in?
-      li= link_to(current_user.name)
-      li= link_to('Log out', destroy_user_session_path, method: :delete)
+      li= link_to(current_user.name, { target: '_self' })
+      li= link_to('Log out', destroy_user_session_path, method: :delete, target: '_self' )
     - else
-      li= link_to('Sign in', new_user_session_path)
+      li= link_to('Sign in', new_user_session_path, { target: '_self' })
