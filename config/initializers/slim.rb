@@ -1,0 +1,1 @@
+Slim::Engine.set_default_options :pretty => true unless Rails.env.production?

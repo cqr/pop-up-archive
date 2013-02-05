@@ -3,13 +3,13 @@ class CsvImport < ActiveRecord::Base
 
   STATES = ["new", "queued", "analyzing", "analyzed"]
 
-  attr_accessible :file
+  attr_accessible :file, :mapping
   before_save :set_file_name, on: :create
   after_save :enqueue_processing, if: :new?
   validates_presence_of :file
   mount_uploader :file, ::CsvFileUploader
   has_many :rows, class_name: 'CsvRow'
-
+  attr_accessor :mapping
 
   def state
     STATES[state_index]

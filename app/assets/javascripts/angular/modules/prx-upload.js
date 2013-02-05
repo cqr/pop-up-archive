@@ -1,4 +1,5 @@
-angular.module('fileDropzone', []).directive('fileDropzone', function ($compile, $parse) {
+angular.module('fileDropzone', [])
+.directive('fileDropzone', function ($compile, $parse) {
     var overlayTemplateLinker;
     function linker(scope, element, attrs) {
             var parentScope = scope,
@@ -10,7 +11,7 @@ angular.module('fileDropzone', []).directive('fileDropzone', function ($compile,
             scope.overlayStyle = {
                 width: '100%',
                 height: '100%',
-                background: 'rgba(0,0,0,0.7)',
+                background: 'rgba(0,0,0,0.8)',
                 position: 'absolute',
                 top: '0px',
                 left: '0px',
@@ -19,7 +20,7 @@ angular.module('fileDropzone', []).directive('fileDropzone', function ($compile,
             };
             scope.overlayContainerStyle = {
                 width: '100%',
-                height: '100%',
+                height: '0px',
                 overflow: 'hidden',
                 position: 'absolute',
                 top: '0px',
@@ -57,6 +58,7 @@ angular.module('fileDropzone', []).directive('fileDropzone', function ($compile,
             function _showOverlay(e) {
                 stopEvent(e);
                 scope.$apply(function (scope) {
+                    scope.overlayContainerStyle.height = "100%";
                     scope.overlayVisible = true;
                 });
             }
@@ -64,6 +66,7 @@ angular.module('fileDropzone', []).directive('fileDropzone', function ($compile,
             function _hideOverlay(e) {
                 stopEvent(e);
                 scope.$apply(function (scope) {
+                    scope.overlayContainerStyle.height = "0px";
                     scope.overlayVisible = false;
                 });
             }
@@ -93,7 +96,7 @@ angular.module('fileDropzone', []).directive('fileDropzone', function ($compile,
         }
     return {
         compile: function () {
-            overlayTemplateLinker = $compile("<div ng-style='overlayContainerStyle' ng-show='overlayVisible'><div class='file-drop-zone-overlay' ng-style='overlayStyle'>{{overlayText}}</div></div>");
+            overlayTemplateLinker = $compile("<div ng-style='overlayContainerStyle'><div ng-class='{in:overlayVisible}' class='fade file-drop-zone-overlay' ng-style='overlayStyle'>{{overlayText}}</div></div>");
             return linker;
         }
     };
