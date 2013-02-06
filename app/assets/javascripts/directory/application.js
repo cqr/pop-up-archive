@@ -10,11 +10,9 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jquery
-//= require jquery_ujs
 //= require_tree .
-//= require bootstrap
 //= require angular
+//= require ui-bootstrap-tpls
 //= require angularjs/rails/resource
 //= require_tree ../angular
 
@@ -22,8 +20,18 @@
 
   function applicationConfig($httpProvider, $locationProvider, $routeProvider) {
 
+
+
     // Add our CSRF stuff to all our requests by default
-    $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+    var metaTags = document.getElementsByTagName('meta'), token = "";
+    angular.forEach(metaTags, function(element) {
+      element = angular.element(element);
+      if (element.attr('name') == 'csrf-token') {
+        token = element.attr('content');
+      }
+    });
+
+    $httpProvider.defaults.headers.common['X-CSRF-Token'] = token;
 
     // Set up routing
     $locationProvider.html5Mode(true);
@@ -48,7 +56,7 @@
 
   }
 
-  window.directory = angular.module('Directory', ['ngResource', 'fileDropzone', 'Directory.controllers', 'Directory.models', 'Directory.filters', 'rails']);
+  window.directory = angular.module('Directory', ['ngResource', 'fileDropzone', 'Directory.controllers', 'Directory.models', 'Directory.filters', 'rails', 'ui.bootstrap', 'Directory.alerts']);
   window.directory.config(["$httpProvider", "$locationProvider", "$routeProvider", applicationConfig]);
 
 }());

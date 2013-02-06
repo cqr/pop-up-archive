@@ -1,14 +1,14 @@
 require 'csv'
 class CsvImport < ActiveRecord::Base
 
-  STATES = ["new", "queued", "analyzing", "analyzed"]
+  STATES = ["new", "queued_analyze", "analyzing", "analyzed", "queued_import", "imported", "error"]
 
-  attr_accessible :file, :mappings_attributes
+  attr_accessible :file, :mappings_attributes, :commit
   before_save :set_file_name, on: :create
   if Rails.env.test?
-    after_save :enqueue_processing, if: :new?
+    after_save :enqueue_processing, if: :processing_required?
   else
-    after_commit :enqueue_processing, if: :new?
+    after_commit :enqueue_processing, if: :processing_required?
   end
   validates_presence_of :file
   mount_uploader :file, ::CsvFileUploader
@@ -21,6 +21,8 @@ class CsvImport < ActiveRecord::Base
     end
   end
   accepts_nested_attributes_for :mappings
+
+  attr_accessor :commit
 
   def state
     STATES[state_index]
@@ -40,9 +42,39 @@ class CsvImport < ActiveRecord::Base
     self.state = "analyzed"
   end
 
-  def new?
-    state == 'new'
+  def import!
+    raise "Invalid state for import: #{state}" unless %(queued_import).include? state
+    current_mappings = mappings
+    Rails.logger.debug("Starting import with mappings: #{current_mappings.inspect}")
+    rows.find_each do |csv_row|
+      data = csv_row.values
+      Rails.logger.debug("CREATING RECORD::::")
+      Rails.logger.debug(data.inspect)
+      Rails.logger.debug("---------------")
+      current_mappings.each do |mapping|
+        index = mapping.position - 1
+        Rails.logger.debug("Setting #{mapping.column} to #{data[index]}")
+      end
+      Rails.logger.debug(":::ENDING CREATE")
+    end
+    self.state = "imported"
   end
+
+  def error!
+    self.state = "error"
+  end
+
+  def processing_required?
+    state == 'new' || commit.present?
+  end
+
+  def process!
+    case state
+    when "queued_analyze" then analyze!
+    when "queued_import"  then import!
+    end
+  end
+
 
   alias_method :mappings_attributes_set, :mappings_attributes=
   def mappings_attributes=(values)
@@ -58,7 +90,9 @@ class CsvImport < ActiveRecord::Base
   end
 
   def enqueue_processing
-    self.state = "queued"
+    type_of_processing = (commit || 'analyze')
+    self.commit = nil
+    self.state = "queued_#{type_of_processing}"
     CsvImportWorker.perform_async(id) unless Rails.env.test?
   end
 

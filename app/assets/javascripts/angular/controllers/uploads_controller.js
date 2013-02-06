@@ -1,4 +1,4 @@
-(window.controllers = window.controllers || angular.module("Directory.controllers", []))
+(window.controllers = window.controllers || angular.module("Directory.controllers", ['Directory.alerts']))
 .controller('UploadsCtrl', ['$scope', '$http', function($scope, $http) {
   $scope.upload = function() {
 
@@ -37,12 +37,24 @@
     });
   })();
 
+  $scope.save = function () {
+    $scope.import.saving = true;
+    return $scope.import.update().then(function() {
+      delete($scope.import.saving);
+      return $scope.import;
+    });
+  }
+
 }])
-.controller("ImportMappingCtrl", ['$scope', 'Schema', function ($scope, Schema) {
+.controller("ImportMappingCtrl", ['$scope', 'Schema', 'Alert', function ($scope, Schema, Alert) {
   $scope.schema = Schema.get();
 
   $scope.submitMapping = function submitMapping () {
-    $scope.import.update();
+    $scope.import.commit = 'import';
+    return $scope.import.update().then(function(i) {
+      alert = new Alert({status:"Importing", progress: 50});
+      alert.add();
+    });
   }
 
   $scope.$watch('import.headers', function watchImportHeaders (headers) {
@@ -67,4 +79,24 @@
     });
   });
   
+}])
+.controller('AlertCtrl', ['$scope', 'Alert', function ($scope, Alert) {
+  $scope.alertData = {};
+  $scope.alertData.alerts = Alert.getAlerts();
+
+  $scope.dismissIfDone = function(alert) {
+    $scope.forceAlertsShow = false;
+    if (alert.path || alert.done) {
+      alert.dismiss();
+    }
+  }
+
+  // Wrap that method up - middleware style
+  var oldAddAlert = Alert.prototype.add;
+  Alert.prototype.add = function () {
+    if ($scope.alertData.alerts.length < 1) {
+      $scope.forceAlertsShow = true;
+    }
+    return oldAddAlert.call(this);
+  }
 }]);

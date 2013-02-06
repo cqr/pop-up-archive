@@ -12,9 +12,6 @@ html lang='en' ng-app='Directory'
     = csrf_meta_tags
   body ng-controller="FilesCtrl" file-dropzone="files"
     header= render('header')
-    ul#pending-actions
-      li.pending-action ng-repeat="action in pendingActions"
-        ng-include src="'pending-action'"
     .container-fluid== yield
     footer= render('footer')
 
@@ -26,7 +23,3 @@ html lang='en' ng-app='Directory'
       div hello='hello from directive'
       h1 Hello, {{name}}
       button.btn ng-click="addItem()" add item
-    script#pending-action type='text/ng-template'
-      a ng-href='{{action.path}}' ng-click="removeAction($index)" {{action.message}}
-      .progress.progress-striped.active
-        .bar ng-style="{width:action.progress+'%'}"

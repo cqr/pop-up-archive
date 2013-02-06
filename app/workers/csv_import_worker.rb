@@ -3,6 +3,8 @@ class CsvImportWorker
 
   def perform(import_id)
     import = CsvImport.find(import_id)
-    import.analyze!
+    import.process!
+  rescue
+    import.error!
   end
 end

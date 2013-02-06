@@ -16,7 +16,7 @@ describe CsvImport do
 
     it "should transition to the queued state on '#enqueue_processing'" do
       new_import.send :enqueue_processing
-      new_import.state.should eq "queued"
+      new_import.state.should eq "queued_analyze"
     end
 
     it "should save the state after enqueing processing" do
