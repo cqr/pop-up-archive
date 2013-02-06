@@ -1,7 +1,7 @@
 angular.module('Directory.filters', ['Directory.models'])
 .filter('type', ['Schema', function(Schema) {
   return function(inputs, cond) {
-    if (typeof cond == 'undefined' || cond == null || cond == '') {
+    if (typeof cond == 'undefined' || cond == null || cond == '' || cond == '*') {
       return inputs;
     }
     var things = [];
@@ -17,4 +17,15 @@ angular.module('Directory.filters', ['Directory.models'])
     });
     return things;
   };
-}]);
+}])
+.filter('schemaMapped', function(Schema) {
+  return function(columns, mapping) {
+    var things = [];
+    angular.forEach(columns, function(column) {
+      if (Schema.isMapped(column, mapping)) {
+        things.push(column);
+      }
+    });
+    return things;
+  }
+});

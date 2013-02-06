@@ -26,35 +26,6 @@ html lang='en' ng-app='Directory'
       div hello='hello from directive'
       h1 Hello, {{name}}
       button.btn ng-click="addItem()" add item
-    script#import type='text/ng-template'
-      div ng-show="import" ng-controller="ImportMappingCtrl"
-        h2 File Import: {{import.file}}
-        table.table.table-striped 
-          thead 
-            tr
-              th Source Column
-              th Kind of Data
-              th Destination
-          tbody
-            tr ng-repeat="header in import.headers"
-              td {{header}}
-              td
-                select ng-model="import.mappings[$index].type" ng-options="type.name as type.humanName for type in schema.types"
-              td
-                select ng-model="import.mappings[$index].column" ng-options="column.name as column.humanName group by schema.types[column.typeId].humanName for column in schema.columnsWith('Extra: ' + header) | type:import.mappings[$index].type"
-        h3 Preview
-        div style='overflow:scroll'
-          table.table.table-striped.table-bordered.table-hover.table-condensed
-            thead
-              tr
-                th ng-repeat='header in import.headers' {{header}}
-            tbody
-              tr ng-repeat='row in import.previewRows'
-                td ng-repeat='col in row' {{col}}
-        div style='float:right'
-          button.btn ng-click="cancel()" style='margin-right: 5px' Cancel
-          button.btn.btn-primary ng-click="submitMapping()" Done!
-
     script#pending-action type='text/ng-template'
       a ng-href='{{action.path}}' ng-click="removeAction($index)" {{action.message}}
       .progress.progress-striped.active

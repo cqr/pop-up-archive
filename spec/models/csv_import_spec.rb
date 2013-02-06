@@ -54,15 +54,25 @@ describe CsvImport do
       end
       headers
     end
+    
+    attr_reader :analyzed_import
+
+    before :all do
+      @analyzed_import = FactoryGirl.create :csv_import
+      @analyzed_import.analyze!
+    end
+
+    after :all do
+      @analyzed_import.destroy
+    end
 
     it "should start with no rows" do
       import.rows.should be_empty
     end
 
     it "should create rows records as part of analysis" do
-      import.analyze!
-      import.rows.should_not be_empty
-      import.rows.size.should eq %x{wc -l '#{import.file.path}'}.to_i - 1
+      analyzed_import.rows.should_not be_empty
+      analyzed_import.rows.size.should eq %x{wc -l '#{import.file.path}'}.to_i - 1
     end
 
     it "should start with no headers" do
@@ -70,13 +80,15 @@ describe CsvImport do
     end
 
     it "should extract headers during analysis" do
-      import.analyze!
-      import.headers.should eq headers
+      analyzed_import.headers.should eq headers
     end
 
     it "should create mappings during analysis" do
-      import.analyze!
-      import.mappings.size.should eq headers.length
+      analyzed_import.mappings.size.should eq headers.length
+    end
+
+    it "should map uncategorizable fields using a standard method" do
+      analyzed_import.mappings.first.column.should eq "extra.record_type"
     end
   end
 

@@ -1,7 +1,7 @@
 angular.module('Directory.models', ['rails'])
 .factory('CsvImport', ['railsResourceFactory', function (railsResourceFactory) {
   var factory = railsResourceFactory({url:'/api/csv_imports', name: 'csv_import', requestTransformers:['protectedAttributeRemovalTransformer','railsRootWrappingTransformer','railsFieldRenamingTransformer']});
-  factory.attrAccessible = ['mapping'];
+  factory.attrAccessible = ['mappingAttributes'];
   return factory;
 }])
 .factory('Collection', ['railsResourceFactory', function (railsResourceFactory) {
@@ -17,7 +17,7 @@ angular.module('Directory.models', ['rails'])
       obj = {};
       for (index in resource.attrAccessible) {
         var key = resource.attrAccessible[index];
-        var val = data[key];
+        var val = data[key.replace(/Attributes$/, '')];
         if (typeof val !== 'undefined') {
           obj[key] = val;
         }
@@ -27,7 +27,7 @@ angular.module('Directory.models', ['rails'])
     return obj;
   }
 }]).factory('Schema', [function () {
-  var schema = {columns: [], types: [{humanName: '---', name: null}], get: function () { return schema }};
+  var schema = {columns: [], types: [{humanName: '---', name: '*'}], get: function () { return schema }};
 
   angular.forEach({
     string:      "Title / Label",
@@ -41,6 +41,10 @@ angular.module('Directory.models', ['rails'])
   }, function (humanName, name) {
     schema.types.push({humanName: humanName, name: name});
   });
+
+  function stringToColumnName(name) {
+    return 'extra.' + name.toLowerCase().replace(/\W+/g,'_');
+  }
 
   angular.forEach({
     "title":             {type:"string",      display: "Title"},
@@ -81,7 +85,7 @@ angular.module('Directory.models', ['rails'])
         columns = [];
 
     for (index in columnNames) {
-      columns.push({humanName: columnNames[index], name: null});
+      columns.push({humanName: "Extra: " + columnNames[index], name: stringToColumnName(columnNames[index])});
     }
 
     return schema.appendColumns(columns);
@@ -98,6 +102,23 @@ angular.module('Directory.models', ['rails'])
 
   schema.types.get = function (index) {
     return schema.types[index];
+  }
+
+  schema.getValue = function (column, mappings, row) {
+    var i = schema.isMapped(column, mappings);
+    if (i !== false) {
+      return row[i];
+    } else  {
+      return undefined;
+    }
+  }
+
+  schema.isMapped = function (column, mappings) {
+    if (!mappings) return false;
+    for (var i=0; i < mappings.length; i++) {
+      if (mappings[i].column == column.name) { return i }
+    }
+    return false;
   }
 
   return schema;

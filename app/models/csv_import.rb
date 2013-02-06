@@ -70,14 +70,17 @@ class CsvImport < ActiveRecord::Base
       when /interviewee/ then ["interviewee[]", "person"]
       when /piece|title/ then ["title", "string"]
       when /date/ then ["date_created", "date"]
-      else [nil, nil]
+      else [make_column_name(header), "*"]
       end
 
       mappings.create(data_type:data_type, column:column) do |mapping|
         mapping.position = index
       end
     end
-  end 
+  end
 
+  def make_column_name(name) 
+    "extra.#{name.downcase.gsub(/\W+/,'_')}"
+  end
 
 end
