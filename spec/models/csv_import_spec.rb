@@ -97,16 +97,27 @@ describe CsvImport do
   end
 
   context "#mappings" do
+    let(:nine_mappings) { Array.new(9).map { FactoryGirl.attributes_for :import_mapping }}
+
     it "should be empty when we start" do
       new_import.mappings.should be_blank
     end
 
     it "should permit setting a bunch of them" do
-      mappings = Array.new(9).map { FactoryGirl.attributes_for :import_mapping }
-      new_import.mappings_attributes = mappings
+      new_import.mappings_attributes = nine_mappings
       new_import.save
 
       CsvImport.find(new_import.id).mappings.count.should eq 9
+    end
+
+    it "should clear out current mappings if they are set again" do
+      import.mappings_attributes = nine_mappings
+      import.save
+
+      import.mappings_attributes = nine_mappings
+      import.save
+
+      import.mappings.count.should eq 9
     end
   end
 

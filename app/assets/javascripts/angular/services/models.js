@@ -1,7 +1,7 @@
 angular.module('Directory.models', ['rails'])
 .factory('CsvImport', ['railsResourceFactory', function (railsResourceFactory) {
   var factory = railsResourceFactory({url:'/api/csv_imports', name: 'csv_import', requestTransformers:['protectedAttributeRemovalTransformer','railsRootWrappingTransformer','railsFieldRenamingTransformer']});
-  factory.attrAccessible = ['mappingAttributes'];
+  factory.attrAccessible = ['mappingsAttributes'];
   return factory;
 }])
 .factory('Collection', ['railsResourceFactory', function (railsResourceFactory) {

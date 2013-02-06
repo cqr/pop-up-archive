@@ -44,6 +44,12 @@ class CsvImport < ActiveRecord::Base
     state == 'new'
   end
 
+  alias_method :mappings_attributes_set, :mappings_attributes=
+  def mappings_attributes=(values)
+    mappings.delete_all
+    self.mappings_attributes_set values
+  end
+
   private
 
   def state=(state)
@@ -65,7 +71,7 @@ class CsvImport < ActiveRecord::Base
     mappings.delete_all
 
     headers.each_with_index do |header, index|
-      column, data_type = case header.downcase
+      column, type = case header.downcase
       when /identifier/ then ["identifier", "string"]
       when /interviewee/ then ["interviewee[]", "person"]
       when /piece|title/ then ["title", "string"]
@@ -73,7 +79,7 @@ class CsvImport < ActiveRecord::Base
       else [make_column_name(header), "*"]
       end
 
-      mappings.create(data_type:data_type, column:column) do |mapping|
+      mappings.create(type:type, column:column) do |mapping|
         mapping.position = index
       end
     end
