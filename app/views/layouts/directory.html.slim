@@ -12,7 +12,7 @@ html lang='en' ng-app='Directory'
     = csrf_meta_tags
   body ng-controller="FilesCtrl" file-dropzone="files"
     header= render('header')
-    .container-fluid== yield
+    .container== yield
     footer= render('footer')
 
     = render('/directory/base/angular_templates')

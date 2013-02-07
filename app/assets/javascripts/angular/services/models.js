@@ -42,7 +42,7 @@ angular.module('Directory.models', ['rails'])
     schema.types.push({humanName: humanName, name: name});
   });
 
-  function stringToColumnName(name) {
+  schema.columnize = function stringToColumnName(name) {
     return 'extra.' + name.toLowerCase().replace(/\W+/g,'_');
   }
 
@@ -85,7 +85,7 @@ angular.module('Directory.models', ['rails'])
         columns = [];
 
     for (index in columnNames) {
-      columns.push({humanName: "Extra: " + columnNames[index], name: stringToColumnName(columnNames[index])});
+      columns.push({humanName: "Extra: " + columnNames[index], name: schema.columnize(columnNames[index])});
     }
 
     return schema.appendColumns(columns);
@@ -116,7 +116,24 @@ angular.module('Directory.models', ['rails'])
   schema.isMapped = function (column, mappings) {
     if (!mappings) return false;
     for (var i=0; i < mappings.length; i++) {
-      if (mappings[i].column == column.name) { return i }
+      var colName = (column.name || column);
+      if (mappings[i].column == colName) { return i }
+    }
+    return false;
+  }
+
+  schema.includesExtraFields = function(mapping) {
+    if (!mapping) return false;
+    for (var i=0; i < mapping.length; i++) {
+      var match = false;
+      angular.forEach(schema.columns, function (column) {
+        if (column.name == mapping[i].column) {
+          match = true;
+        }
+      });
+      if (!match) {
+        return true;
+      }
     }
     return false;
   }

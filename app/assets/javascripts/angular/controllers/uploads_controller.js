@@ -37,7 +37,13 @@
     });
   })();
 
-  $scope.save = function () {
+  $scope.getNewPreviewRows = function getNewPreviewRows () {
+     CsvImport.get($scope.import.id).then(function(data) {
+      $scope.import.previewRows = data.previewRows;
+     })
+  }
+
+  $scope.save = function save () {
     $scope.import.saving = true;
     return $scope.import.update().then(function() {
       delete($scope.import.saving);

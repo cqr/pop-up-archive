@@ -1,6 +1,5 @@
-@import "font-awesome";
-$baseFontFamily: 'FontAwesome';
 @import "bootstrap";
+@import "font-awesome";
 
 html {
   height: 100%;
@@ -51,5 +50,13 @@ a.with-information {
     .status {
       font-weight: 600;
     }
+  }
+}
+
+table.horizontal-scrolling {
+  max-width: none;
+
+  tr td, tr th {
+    white-space: nowrap;
   }
 }
