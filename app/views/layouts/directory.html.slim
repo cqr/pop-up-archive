@@ -16,10 +16,3 @@ html lang='en' ng-app='Directory'
     footer= render('footer')
 
     = render('/directory/base/angular_templates')
-    script#items type='text/ng-template'
-      ul
-        li ng-repeat='item in data.items' {{item.title}}
-      input ng-model="name"
-      div hello='hello from directive'
-      h1 Hello, {{name}}
-      button.btn ng-click="addItem()" add item

@@ -46,6 +46,10 @@
       templateUrl: "collection",
       controller: "CollectionCtrl"
     })
+    .when('/imports', {
+      templateUrl: "imports",
+      controller: "ImportsCtrl"
+    })
     .when('/imports/:importId', {
       templateUrl: "import",
       controller: "ImportCtrl"

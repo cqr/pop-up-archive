@@ -60,3 +60,17 @@ table.horizontal-scrolling {
     white-space: nowrap;
   }
 }
+
+table.fit-in-window {
+
+  td {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.media.muted {
+  opacity: 0.7;
+}

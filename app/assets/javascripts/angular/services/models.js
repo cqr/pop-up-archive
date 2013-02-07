@@ -2,7 +2,21 @@ angular.module('Directory.models', ['rails'])
 .factory('CsvImport', ['railsResourceFactory', function (railsResourceFactory) {
   var factory = railsResourceFactory({url:'/api/csv_imports', name: 'csv_import', requestTransformers:['protectedAttributeRemovalTransformer','railsRootWrappingTransformer','railsFieldRenamingTransformer']});
   factory.attrAccessible = ['mappingsAttributes', 'commit'];
+
+  factory.prototype.editButtonMessage = function () {
+    return this.state == 'imported' ? 'Edit' : 'Continue';
+  }
+
+  factory.prototype.cancel = function () {
+    this.commit = 'cancel';
+    return this.$update();
+  }
   return factory;
+}])
+.factory('Item', ['railsResourceFactory', function (railsResourceFactory) {
+  var Item = railsResourceFactory({url:'/api/items', name: 'item', requestTransformers:['protectedAttributeRemovalTransformer','railsRootWrappingTransformer','railsFieldRenamingTransformer']});
+
+  return Item;
 }])
 .factory('Collection', ['railsResourceFactory', function (railsResourceFactory) {
   var factory = railsResourceFactory({url:'/api/collections', name: 'collection', requestTransformers:['protectedAttributeRemovalTransformer','railsRootWrappingTransformer','railsFieldRenamingTransformer']});
@@ -23,7 +37,6 @@ angular.module('Directory.models', ['rails'])
         }
       }
     }
-    console.log(obj);
     return obj;
   }
 }]).factory('Schema', [function () {
@@ -64,9 +77,9 @@ angular.module('Directory.models', ['rails'])
     "date_peg":          {type:"short_text",  display: "Date Peg"},
     "tags":              {type:"array",       display: "Tags"},
     "geolocation":       {type:"geolocation", display: "Geolocation"},
-    "interviewer[]":     {type:"person",      display: "Interviewer"},
-    "interviewee[]":     {type:"person",      display: "Interviewee"},
-    "producer[]":        {type:"person",      display: "Producer"}
+    "interviewers[]":    {type:"person",      display: "Interviewer"},
+    "interviewees[]":    {type:"person",      display: "Interviewee"},
+    "producers[]":       {type:"person",      display: "Producer"}
   }, function (metaData, columnName) {
     for (var typeIndex=0; schema.types[typeIndex].name != metaData.type; typeIndex++);
     schema.columns.push({name:columnName, humanName:metaData.display, typeId: typeIndex});
