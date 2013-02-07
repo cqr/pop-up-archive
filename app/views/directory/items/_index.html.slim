@@ -1,0 +1,21 @@
+script#items type='text/ng-template'
+  table.table.fit-in-window.table-bordered.table-striped
+    thead
+      tr
+        th Identifier
+        th Title
+        th Created
+        th Producers
+        th Interviewees
+        th Actions
+    tbody
+      tr ng-repeat="item in items"
+        td {{item.identifier}}
+        td {{item.title}}
+        td {{item.date_created}}
+        td
+          a ng-repeat="producer in item.producers" ng-href="/people/{{producer.id}}" {{producer.name}}
+        td
+          a ng-repeat="interviewee in item.interviewees" ng-href="/people/{{interviewee.id}}" {{interviewee.name}}
+        td
+          a.btn ng-href="/items/{{item.id}}" View

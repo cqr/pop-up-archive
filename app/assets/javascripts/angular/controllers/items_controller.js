@@ -1,6 +1,9 @@
 (window.controllers = window.controllers || angular.module('Directory.controllers', []))
-.controller('ItemsCtrl', [ '$resource','$scope', function ItemsCtrl($resource, $scope) {
-  var itemsFetcher = $resource('/api/items');
-  $scope.data = itemsFetcher.get();
+.controller('ItemsCtrl', [ '$scope', 'Item', function ItemsCtrl($scope, Item) {
+  $scope.items = ($scope.items || []);
+
+  Item.query().then(function (items) {
+    $scope.items = items;
+  });
 }]);
 

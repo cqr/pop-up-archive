@@ -2,7 +2,21 @@ angular.module('Directory.models', ['rails'])
 .factory('CsvImport', ['railsResourceFactory', function (railsResourceFactory) {
   var factory = railsResourceFactory({url:'/api/csv_imports', name: 'csv_import', requestTransformers:['protectedAttributeRemovalTransformer','railsRootWrappingTransformer','railsFieldRenamingTransformer']});
   factory.attrAccessible = ['mappingsAttributes', 'commit'];
+
+  factory.prototype.editButtonMessage = function () {
+    return this.state == 'imported' ? 'Edit' : 'Continue';
+  }
+
+  factory.prototype.cancel = function () {
+    this.commit = 'cancel';
+    return this.$update();
+  }
   return factory;
+}])
+.factory('Item', ['railsResourceFactory', function (railsResourceFactory) {
+  var Item = railsResourceFactory({url:'/api/items', name: 'item', requestTransformers:['protectedAttributeRemovalTransformer','railsRootWrappingTransformer','railsFieldRenamingTransformer']});
+
+  return Item;
 }])
 .factory('Collection', ['railsResourceFactory', function (railsResourceFactory) {
   var factory = railsResourceFactory({url:'/api/collections', name: 'collection', requestTransformers:['protectedAttributeRemovalTransformer','railsRootWrappingTransformer','railsFieldRenamingTransformer']});

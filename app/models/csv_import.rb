@@ -23,6 +23,8 @@ class CsvImport < ActiveRecord::Base
   end
   accepts_nested_attributes_for :mappings
 
+  default_scope order('state_index ASC, created_at ASC')
+
   attr_accessor :commit
 
   def state

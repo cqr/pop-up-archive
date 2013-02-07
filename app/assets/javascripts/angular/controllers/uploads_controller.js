@@ -105,4 +105,12 @@
     }
     return oldAddAlert.call(this);
   }
+}])
+.controller('ImportsCtrl', ['$scope', 'CsvImport', function ($scope, CsvImport) {
+  $scope.imports = ($scope.imports || []);
+
+  CsvImport.query().then(function (imports) {
+    $scope.imports = imports;
+  });
+
 }]);

@@ -1,7 +1,11 @@
 object csv_import
 
-attribute :state, :headers, :id
+attribute :state, :headers, :id, :created_at
 attribute file_name: :file
+
+node :row_count do |i|
+  i.rows.size
+end
 
 node(:mappings) do |import|
   import.mappings.map do |mapping|
