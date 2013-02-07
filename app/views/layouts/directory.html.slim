@@ -16,3 +16,8 @@ html lang='en' ng-app='Directory'
     footer= render('footer')
 
     = render('/directory/base/angular_templates')
+
+    script#pending-action type='text/ng-template'
+      a ng-href='{{action.path}}' ng-click="removeAction($index)" {{action.message}}
+      .progress.progress-striped.active
+        .bar ng-style="{width:action.progress+'%'}"

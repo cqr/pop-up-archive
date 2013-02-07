@@ -26,12 +26,12 @@ angular.module('fileDropzone', [])
                 top: '0px',
                 left: '0px'
             }
-        
+
             overlayTemplateLinker(scope, function(overlayElement) {
                 overlay = angular.element(overlayElement.children()[0]);
                 element.append(overlayElement);
             });
-            
+
             attrs.$observe('dropzoneContent', function (text) {
                 if (typeof text !== 'undefined') {
                    scope.overlayText = text;
@@ -39,7 +39,7 @@ angular.module('fileDropzone', [])
                     scope.overlayText = "Drop file here to upload.";
                 }
             });
-            
+
             parentScope.$watch(attrs.fileDropzone, function (val) {
                 if (typeof val === 'undefined') {
                     parentScope[attrs.fileDropzone] = [];
@@ -48,13 +48,13 @@ angular.module('fileDropzone', [])
                     scope.files = val;
                 }
             });
-            
+
             scope.$watch('files', function (val) {
-                
+
             });
-            
+
             if (element.css('position') == 'static') element.css({'position':'relative'});
-            
+
             function _showOverlay(e) {
                 stopEvent(e);
                 scope.$apply(function (scope) {
@@ -77,7 +77,7 @@ angular.module('fileDropzone', [])
                 angular.forEach(e.dataTransfer.files, function (file) {
                     files.push(file);
                 });
-                scope.$apply(function (scope) {                    
+                scope.$apply(function (scope) {
                     $parse(attrs.fileDropzone).assign(parentScope, files);
                 });
             }

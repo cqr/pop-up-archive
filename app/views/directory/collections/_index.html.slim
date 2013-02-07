@@ -6,17 +6,23 @@ script#collections type='text/ng-template'
       button.close data-dismiss='modal' ×
       h3 Create new collection
     .modal-body
-      form
+      form name='newCollection'
+        .alert.alert-error ng-show="newCollection.title.$error.required"
+          strong Error
+          | &nbsp;Title is required
         fieldset
           label
             | Title
-            input ng-model='collection.title'
+            input name='title' ng-model='collection.title' required=''
           label
             | Desc
             input ng-model='collection.description'
+          label
+            input type='checkbox' ng-model='collection.items_visible_by_default'
+            | Make items visible by default
     .modal-footer
-      button.btn Close
-      button.btn.btn-primary ng-click='submit()' data-dismiss='modal' Save
+      button.btn data-dismiss='modal' Close
+      button.btn.btn-primary ng-click='submit()' data-dismiss='modal' ng-hide="newCollection.title.$error.required" Save
 
   table.table.table-striped
     thead
@@ -28,8 +34,13 @@ script#collections type='text/ng-template'
         th ID
         th Title
         th Description
-      tr ng-repeat='collection in collections'
+        th Visible?
+        th
+      tr ng-repeat='collection in collections' ng-class='{error:collection.deleting}'
         td {{collection.id}}
         td
           a ng-href='/collections/{{collection.id}}' {{collection.title}}
         td {{collection.description}}
+        td {{collection.items_visible_by_default}}
+        td
+          button.btn ng-click="delete($index)"  Delete

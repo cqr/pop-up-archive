@@ -7,4 +7,9 @@ class Api::V1::CollectionsController < Api::V1::BaseController
     collection.save
     respond_with :api, collection
   end
+
+  def destroy
+    collection.delete
+    respond_with :api, collection
+  end
 end

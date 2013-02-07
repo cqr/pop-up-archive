@@ -1,7 +1,6 @@
 angular.module('Directory.models', ['rails'])
 .factory('CsvImport', ['railsResourceFactory', function (railsResourceFactory) {
   var factory = railsResourceFactory({url:'/api/csv_imports', name: 'csv_import', requestTransformers:['protectedAttributeRemovalTransformer','railsRootWrappingTransformer','railsFieldRenamingTransformer']});
-  factory.attrAccessible = ['mappingsAttributes', 'commit'];
 
   factory.prototype.editButtonMessage = function () {
     return this.state == 'imported' ? 'Edit' : 'Continue';
@@ -11,6 +10,7 @@ angular.module('Directory.models', ['rails'])
     this.commit = 'cancel';
     return this.$update();
   }
+  factory.attrAccessible = ['mappingsAttributes', 'collectionId', 'commit'];
   return factory;
 }])
 .factory('Item', ['railsResourceFactory', function (railsResourceFactory) {

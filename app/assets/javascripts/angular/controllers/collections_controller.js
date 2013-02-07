@@ -3,6 +3,14 @@
   Collection.query().then(function(data) {
     $scope.collections = data;
   });
+
+  $scope.delete = function(index) {
+    var collection = $scope.collections[index];
+    collection.deleting = true;
+    collection.delete().then(function() {
+      $scope.collections.splice(index, 1);
+    });
+  }
 }])
 .controller('CollectionCtrl', ['$scope', '$routeParams', 'Collection', function CollectionCtrl($scope, $routeParams, Collection) {
   $scope.collection = Collection.get($routeParams.collectionId);

@@ -25,6 +25,7 @@ class CsvImport < ActiveRecord::Base
 
   default_scope order('state_index ASC, created_at ASC')
 
+  belongs_to :collection
   attr_accessor :commit
 
   def state
@@ -125,7 +126,7 @@ class CsvImport < ActiveRecord::Base
     end
   end
 
-  def make_column_name(name) 
+  def make_column_name(name)
     "extra.#{name.downcase.gsub(/\W+/,'_')}"
   end
 
