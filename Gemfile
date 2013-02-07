@@ -22,6 +22,7 @@ group :assets do
   gem 'bootstrap-sass'
   gem 'angularjs-rails-resource'
   gem "font-awesome-sass-rails"
+  gem 'angular-rails', git: 'https://github.com/gistia/angular-rails'
 end
 
 group :development do
@@ -46,7 +47,6 @@ group :test do
 end
 
 gem 'decent_exposure'
-gem 'jquery-rails'
 
 # login to prx.org using omniauth
 gem 'omniauth'
@@ -60,9 +60,6 @@ gem 'tire'
 # server-side templates
 gem 'slim-rails'
 gem 'rabl'
-
-# angular-js for client-side application
-gem 'angular-rails', git: 'https://github.com/gistia/angular-rails'
 
 # background processing
 gem 'sidekiq'
