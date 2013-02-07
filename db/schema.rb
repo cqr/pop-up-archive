@@ -41,9 +41,9 @@ ActiveRecord::Schema.define(:version => 20130207164905) do
     t.integer  "state_index",   :default => 0
     t.string   "headers",                                      :array => true
     t.string   "file_name"
-    t.integer  "collection_id"
     t.string   "error_message"
     t.text     "backtrace"
+    t.integer  "collection_id"
   end
 
   create_table "csv_rows", :force => true do |t|
