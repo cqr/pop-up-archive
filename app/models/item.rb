@@ -9,9 +9,18 @@ class Item < ActiveRecord::Base
     :physical_format, :physical_location, :rights, :series_title,
     :tags, :title, :transcription
   belongs_to :geolocation
+  belongs_to :csv_import
+  has_many  :contributions
+  has_many  :producer_contributions,    class_name: "Contribution", conditions: {role: "producer"}
+  has_many  :interviewer_contributions, class_name: "Contribution", conditions: {role: "interviewer"}
+  has_many  :interviewee_contributions, class_name: "Contribution", conditions: {role: "interviewee"}
+  has_one   :creator_contribution,      class_name: "Contribution", conditions: {role: "creator"}
+  has_many  :contributors, through: :contributions, source: :person
+  has_many  :interviewees, through: :interviewee_contributions, source: :person
+  has_many  :interviewers, through: :interviewer_contributions, source: :person
+  has_many  :producers,    through: :producer_contributions,    source: :person
+  has_one   :creator,      through: :creator_contribution,      source: :person
   serialize :extra, HstoreCoder
-
-  #after_initialize :populate_extra
 
 
   def geographic_location=(name)
@@ -20,5 +29,9 @@ class Item < ActiveRecord::Base
 
   def geographic_location
     geolocation.name
+  end
+
+  def creator=(creator)
+    self.creators = [creator]
   end
 end

@@ -1,7 +1,7 @@
 require 'csv'
 class CsvImport < ActiveRecord::Base
 
-  STATES = ["new", "queued_analyze", "analyzing", "analyzed", "queued_import", "imported", "error"]
+  STATES = ["new", "queued_analyze", "analyzing", "analyzed", "queued_import", "importing", "imported", "error"]
 
   attr_accessible :file, :mappings_attributes, :commit
   before_save :set_file_name, on: :create
@@ -14,6 +14,7 @@ class CsvImport < ActiveRecord::Base
   mount_uploader :file, ::CsvFileUploader
 
   has_many :rows, class_name: 'CsvRow'
+  has_many :items
 
   has_many :mappings, order: "position", class_name:'ImportMapping' do
     def [](index)
@@ -45,23 +46,26 @@ class CsvImport < ActiveRecord::Base
   def import!
     raise "Invalid state for import: #{state}" unless %(queued_import).include? state
     current_mappings = mappings
-    Rails.logger.debug("Starting import with mappings: #{current_mappings.inspect}")
-    rows.find_each do |csv_row|
-      data = csv_row.values
-      Rails.logger.debug("CREATING RECORD::::")
-      Rails.logger.debug(data.inspect)
-      Rails.logger.debug("---------------")
-      current_mappings.each do |mapping|
-        index = mapping.position - 1
-        Rails.logger.debug("Setting #{mapping.column} to #{data[index]}")
+    self.state = "importing"
+    transaction do
+      rows.find_each do |csv_row|
+        data = csv_row.values
+        item = items.build do |item|
+          current_mappings.each do |mapping|
+            index = mapping.position - 1
+            mapping.apply(data[index], item)
+          end
+        end
+        item.save
       end
-      Rails.logger.debug(":::ENDING CREATE")
+      self.state = "imported"
     end
-    self.state = "imported"
   end
 
-  def error!
-    self.state = "error"
+  def error!(exception=nil)
+    self.error_message = exception.message
+    self.backtrace     = exception.backtrace
+    self.state         = "error"
   end
 
   def processing_required?
@@ -107,7 +111,7 @@ class CsvImport < ActiveRecord::Base
     headers.each_with_index do |header, index|
       column, type = case header.downcase
       when /identifier/ then ["identifier", "string"]
-      when /interviewee/ then ["interviewee[]", "person"]
+      when /interviewee/ then ["interviewees[]", "person"]
       when /piece|title/ then ["title", "string"]
       when /date/ then ["date_created", "date"]
       else [make_column_name(header), "*"]

@@ -43,6 +43,28 @@ describe CsvImport do
       import.should_receive(:state=).with("analyzed").once.and_call_original
       import.analyze!
     end
+
+    it "should transition to the queued_import process on '#enqueue_processing'" do
+      import.commit = 'import'
+      import.send :enqueue_processing
+      import.state.should eq "queued_import"
+    end
+
+    it "should transition to the imported state after it is imported" do
+      import.commit = 'import'
+      import.save
+
+      import.import!
+      import.state.should eq "imported"
+    end
+
+    it "should enter the importing state during import" do
+      import.commit = 'import'
+      import.save
+      import.should_receive(:state=).with("importing").once.and_call_original
+      import.should_receive(:state=).with("imported").once.and_call_original
+      import.import!
+    end
   end
 
   context "analysis" do
@@ -90,6 +112,9 @@ describe CsvImport do
     it "should map uncategorizable fields using a standard method" do
       analyzed_import.mappings.first.column.should eq "extra.record_type"
     end
+  end
+
+  context "import" do
   end
 
   it "should extract the base file name" do

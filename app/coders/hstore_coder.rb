@@ -5,6 +5,6 @@ class HstoreCoder < ActiveRecord::Coders::Hstore
   end
 
   def load(hstore)
-    hstore.nil? ? @_default : hstore.from_hstore
+    hstore.nil? ? @_default.dup : hstore.from_hstore
   end
 end

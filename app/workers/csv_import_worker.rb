@@ -4,7 +4,7 @@ class CsvImportWorker
   def perform(import_id)
     import = CsvImport.find(import_id)
     import.process!
-  rescue
-    import.error!
+  rescue Exception => e
+    import.error!(e)
   end
 end

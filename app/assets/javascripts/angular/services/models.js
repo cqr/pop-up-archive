@@ -23,7 +23,6 @@ angular.module('Directory.models', ['rails'])
         }
       }
     }
-    console.log(obj);
     return obj;
   }
 }]).factory('Schema', [function () {
@@ -64,9 +63,9 @@ angular.module('Directory.models', ['rails'])
     "date_peg":          {type:"short_text",  display: "Date Peg"},
     "tags":              {type:"array",       display: "Tags"},
     "geolocation":       {type:"geolocation", display: "Geolocation"},
-    "interviewer[]":     {type:"person",      display: "Interviewer"},
-    "interviewee[]":     {type:"person",      display: "Interviewee"},
-    "producer[]":        {type:"person",      display: "Producer"}
+    "interviewers[]":    {type:"person",      display: "Interviewer"},
+    "interviewees[]":    {type:"person",      display: "Interviewee"},
+    "producers[]":       {type:"person",      display: "Producer"}
   }, function (metaData, columnName) {
     for (var typeIndex=0; schema.types[typeIndex].name != metaData.type; typeIndex++);
     schema.columns.push({name:columnName, humanName:metaData.display, typeId: typeIndex});
