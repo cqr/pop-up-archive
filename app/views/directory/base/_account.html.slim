@@ -18,8 +18,10 @@
               | {{alert.message}}
             .progress.progress-striped ng-class="{active:alert.progress && alert.progress < 100}"
               .bar ng-style="{width:alert.progress+'%'}"
-
-
 - else
   ul.nav.pull-right
     li= link_to('Sign in', new_user_session_path, { target: '_self' })
+ul.nav.pull-right
+  li
+    a
+      i.icon-spinner.icon-spin style="color: #fff" ng-show="((pretendIsLoading || actuallyIsLoading))"
