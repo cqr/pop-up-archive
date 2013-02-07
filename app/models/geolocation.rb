@@ -1,6 +1,5 @@
 class Geolocation < ActiveRecord::Base
   attr_accessible :name
-
   before_save :generate_slug, on: :create
   has_many :items
 

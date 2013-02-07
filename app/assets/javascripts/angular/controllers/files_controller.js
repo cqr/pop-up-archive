@@ -1,16 +1,17 @@
-(window.controllers = window.controllers || angular.module('Directory.controllers', []))
-.controller('FilesCtrl', ['$scope', '$http', 'CsvImport', '$timeout', function ($scope, $http, CsvImport, $timeout) {
+(window.controllers = window.controllers || angular.module('Directory.controllers', ['Directory.alerts']))
+.controller('FilesCtrl', ['$scope', '$http', 'CsvImport', '$timeout', 'Alert', function ($scope, $http, CsvImport, $timeout, Alert) {
   $scope.files = [];
-  $scope.pendingActions = [];
   $scope.$watch('files', function(files) {
     var newFile;
     while (newFile = files.pop()) {
       (function(file){
-        var action = {};
+        var alert = new Alert();
 
-        action.message = "Uploading \"" + file.name + "\"...";
-        action.progress = 0;
-        $scope.pendingActions.push(action);
+        alert.status = "Uploading";
+        alert.progress = 0;
+        alert.message = file.name;
+
+        alert.add();
 
         var fData = new FormData();
         fData.append('csv_import[file]', file);
@@ -22,38 +23,34 @@
           headers: { "Content-Type": undefined },
           transformRequest: angular.identity
         }).success(function(data, status, headers, config) {
-          action.progress = 25;
-          action.message = "\"" + file.name + "\" awaiting analysis...";
-          watchImport(data.id, action);
+          alert.progress = 25;
+          alert.status = "Waiting";
+          watchImport(data.id, alert);
         });
       }(newFile)); 
     }
   });
 
-  function watchImport(importId, action) {
+  function watchImport(importId, alert) {
     (function fetchImport() {
-      CsvImport.get({importId: importId}, function(data) {
+      CsvImport.get(importId).then(function(data) {
         switch (data.state) {
           case 'analyzing':
-            action.timeout = $timeout(fetchImport, 50);
-            action.progress = 50;
-            action.message = "Analyzing \"" + data.file + "\"...";
+            alert.timeout  = $timeout(fetchImport, 50);
+            alert.progress = 50;
+            alert.status   = "Analyzing";
             break;
           case 'analyzed':
-            action.progress  = 100;
-            action.message = '"' + data.file + "\" is analyzed!";
-            action.path = "/imports/"+data.id;
+            alert.progress = 100;
+            alert.status   = "Analyzed";
+            alert.done     = true;
+            alert.path     = "/imports/"+data.id;
             break;
           default:
-            action.timeout = $timeout(fetchImport, 250);
+            alert.timeout = $timeout(fetchImport, 250);
         }
       });
     })();
   }
-
-  $scope.removeAction = function(index) {
-    $scope.pendingActions.splice(index, 1);
-  }
-
 }]);
 

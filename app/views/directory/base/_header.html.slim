@@ -1,7 +1,12 @@
 .navbar.navbar-fixed-top.navbar-inverse
   .navbar-inner
-    .container-fluid
+    .container
       a.brand ng-href='/' Pop-up Archive
-      = render('nav')
-      = render('search')
-      = render('account')
+      a.btn.btn-navbar data-toggle="collapse" data-target=".nav-collapse"
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      .nav-collapse.collapse  
+        = render('search')
+        = render('account')
+        = render('nav')

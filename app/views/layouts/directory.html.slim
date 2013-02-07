@@ -12,50 +12,7 @@ html lang='en' ng-app='Directory'
     = csrf_meta_tags
   body ng-controller="FilesCtrl" file-dropzone="files"
     header= render('header')
-    ul#pending-actions
-      li.pending-action ng-repeat="action in pendingActions"
-        ng-include src="'pending-action'"
-    .container-fluid== yield
+    .container== yield
     footer= render('footer')
 
-    = render('angular_templates')
-    script#items type='text/ng-template'
-      ul
-        li ng-repeat='item in data.items' {{item.title}}
-      input ng-model="name"
-      div hello='hello from directive'
-      h1 Hello, {{name}}
-      button.btn ng-click="addItem()" add item
-    script#import type='text/ng-template'
-      div ng-show="import" ng-controller="ImportMappingCtrl"
-        h2 File Import: {{import.file}}
-        table.table.table-striped 
-          thead 
-            tr
-              th Source Column
-              th Kind of Data
-              th Destination
-          tbody
-            tr ng-repeat="header in import.headers"
-              td {{header}}
-              td
-                select ng-model="mapping[$index].type" ng-options="type.name as type.humanName for type in schema.types"
-              td
-                select ng-model="mapping[$index].column" ng-options="column.name as column.humanName group by schema.types[column.typeId].humanName for column in schema.columnsWith('Extra: ' + header) | type:mapping[$index].type"
-        h3 Preview
-        div style='overflow:scroll'
-          table.table.table-striped.table-bordered.table-hover.table-condensed
-            thead
-              tr
-                th ng-repeat='header in data.import.headers' {{header}}
-            tbody
-              tr ng-repeat='row in data.import.preview_rows'
-                td ng-repeat='col in row' {{col}}
-        div style='float:right'
-          button.btn ng-click="cancel()" style='margin-right: 5px' Cancel
-          button.btn.btn-primary ng-click="submitMapping()" Done!
-
-    script#pending-action type='text/ng-template'
-      a ng-href='{{action.path}}' ng-click="removeAction($index)" {{action.message}}
-      .progress.progress-striped.active
-        .bar ng-style="{width:action.progress+'%'}"
+    = render('/directory/base/angular_templates')

@@ -1,5 +1,5 @@
 angular.module('fileDropzone', [])
-.directive('fileDropzone', function ($compile, $parse) {
+.directive('fileDropzone', ['$compile','$parse', function ($compile, $parse) {
     var overlayTemplateLinker;
     function linker(scope, element, attrs) {
             var parentScope = scope,
@@ -74,7 +74,7 @@ angular.module('fileDropzone', [])
             function _drop(e) {
                 _hideOverlay(e);
                 var files = [];
-                angular.forEach(e.originalEvent.dataTransfer.files, function (file) {
+                angular.forEach(e.dataTransfer.files, function (file) {
                     files.push(file);
                 });
                 scope.$apply(function (scope) {                    
@@ -100,4 +100,4 @@ angular.module('fileDropzone', [])
             return linker;
         }
     };
-});
+}]);

@@ -1,8 +1,22 @@
 angular.module('Directory.models', ['rails'])
 .factory('CsvImport', ['railsResourceFactory', function (railsResourceFactory) {
   var factory = railsResourceFactory({url:'/api/csv_imports', name: 'csv_import', requestTransformers:['protectedAttributeRemovalTransformer','railsRootWrappingTransformer','railsFieldRenamingTransformer']});
-  factory.attrAccessible = ['mapping'];
+  factory.attrAccessible = ['mappingsAttributes', 'commit'];
+
+  factory.prototype.editButtonMessage = function () {
+    return this.state == 'imported' ? 'Edit' : 'Continue';
+  }
+
+  factory.prototype.cancel = function () {
+    this.commit = 'cancel';
+    return this.$update();
+  }
   return factory;
+}])
+.factory('Item', ['railsResourceFactory', function (railsResourceFactory) {
+  var Item = railsResourceFactory({url:'/api/items', name: 'item', requestTransformers:['protectedAttributeRemovalTransformer','railsRootWrappingTransformer','railsFieldRenamingTransformer']});
+
+  return Item;
 }])
 .factory('Collection', ['railsResourceFactory', function (railsResourceFactory) {
   var factory = railsResourceFactory({url:'/api/collections', name: 'collection', requestTransformers:['protectedAttributeRemovalTransformer','railsRootWrappingTransformer','railsFieldRenamingTransformer']});
@@ -17,17 +31,16 @@ angular.module('Directory.models', ['rails'])
       obj = {};
       for (index in resource.attrAccessible) {
         var key = resource.attrAccessible[index];
-        var val = data[key];
+        var val = data[key.replace(/Attributes$/, '')];
         if (typeof val !== 'undefined') {
           obj[key] = val;
         }
       }
     }
-    console.log(obj);
     return obj;
   }
 }]).factory('Schema', [function () {
-  var schema = {columns: [], types: [{humanName: '---'}], get: function () { return schema }};
+  var schema = {columns: [], types: [{humanName: '---', name: '*'}], get: function () { return schema }};
 
   angular.forEach({
     string:      "Title / Label",
@@ -42,8 +55,12 @@ angular.module('Directory.models', ['rails'])
     schema.types.push({humanName: humanName, name: name});
   });
 
+  schema.columnize = function stringToColumnName(name) {
+    return 'extra.' + name.toLowerCase().replace(/\W+/g,'_');
+  }
+
   angular.forEach({
-    "title":             {type:"string",      display:"Title"},
+    "title":             {type:"string",      display: "Title"},
     "episode_title":     {type:"string",      display: "Episode Title"},
     "series_title":      {type:"string",      display: "Series Title"},
     "description":       {type:"text",        display: "Description"},
@@ -60,9 +77,9 @@ angular.module('Directory.models', ['rails'])
     "date_peg":          {type:"short_text",  display: "Date Peg"},
     "tags":              {type:"array",       display: "Tags"},
     "geolocation":       {type:"geolocation", display: "Geolocation"},
-    "interviewer[]":     {type:"person",      display: "Interviewer"},
-    "interviewee[]":     {type:"person",      display: "Interviewee"},
-    "producer[]":        {type:"person",      display: "Producer"}
+    "interviewers[]":    {type:"person",      display: "Interviewer"},
+    "interviewees[]":    {type:"person",      display: "Interviewee"},
+    "producers[]":       {type:"person",      display: "Producer"}
   }, function (metaData, columnName) {
     for (var typeIndex=0; schema.types[typeIndex].name != metaData.type; typeIndex++);
     schema.columns.push({name:columnName, humanName:metaData.display, typeId: typeIndex});
@@ -81,7 +98,7 @@ angular.module('Directory.models', ['rails'])
         columns = [];
 
     for (index in columnNames) {
-      columns.push({humanName: columnNames[index]});
+      columns.push({humanName: "Extra: " + columnNames[index], name: schema.columnize(columnNames[index])});
     }
 
     return schema.appendColumns(columns);
@@ -98,6 +115,40 @@ angular.module('Directory.models', ['rails'])
 
   schema.types.get = function (index) {
     return schema.types[index];
+  }
+
+  schema.getValue = function (column, mappings, row) {
+    var i = schema.isMapped(column, mappings);
+    if (i !== false) {
+      return row[i];
+    } else  {
+      return undefined;
+    }
+  }
+
+  schema.isMapped = function (column, mappings) {
+    if (!mappings) return false;
+    for (var i=0; i < mappings.length; i++) {
+      var colName = (column.name || column);
+      if (mappings[i].column == colName) { return i }
+    }
+    return false;
+  }
+
+  schema.includesExtraFields = function(mapping) {
+    if (!mapping) return false;
+    for (var i=0; i < mapping.length; i++) {
+      var match = false;
+      angular.forEach(schema.columns, function (column) {
+        if (column.name == mapping[i].column) {
+          match = true;
+        }
+      });
+      if (!match) {
+        return true;
+      }
+    }
+    return false;
   }
 
   return schema;

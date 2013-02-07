@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130131045841) do
+ActiveRecord::Schema.define(:version => 20130207164905) do
 
   add_extension "hstore"
 
@@ -22,13 +22,26 @@ ActiveRecord::Schema.define(:version => 20130131045841) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "contributions", :force => true do |t|
+    t.integer  "person_id"
+    t.integer  "item_id"
+    t.string   "role"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "contributions", ["item_id"], :name => "index_contributions_on_item_id"
+  add_index "contributions", ["person_id"], :name => "index_contributions_on_person_id"
+
   create_table "csv_imports", :force => true do |t|
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.string   "file"
-    t.integer  "state_index", :default => 0
-    t.string   "headers",                                    :array => true
+    t.integer  "state_index",   :default => 0
+    t.string   "headers",                                      :array => true
     t.string   "file_name"
+    t.string   "error_message"
+    t.text     "backtrace"
   end
 
   create_table "csv_rows", :force => true do |t|
@@ -48,6 +61,17 @@ ActiveRecord::Schema.define(:version => 20130131045841) do
     t.decimal  "latitude"
     t.decimal  "longitude"
   end
+
+  create_table "import_mappings", :force => true do |t|
+    t.string   "data_type"
+    t.string   "column"
+    t.integer  "csv_import_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "position"
+  end
+
+  add_index "import_mappings", ["csv_import_id"], :name => "index_import_mappings_on_csv_import_id"
 
   create_table "items", :force => true do |t|
     t.string   "title"
@@ -72,9 +96,18 @@ ActiveRecord::Schema.define(:version => 20130131045841) do
     t.hstore   "extra"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+    t.integer  "csv_import_id"
   end
 
+  add_index "items", ["csv_import_id"], :name => "index_items_on_csv_import_id"
   add_index "items", ["geolocation_id"], :name => "index_items_on_geolocation_id"
+
+  create_table "people", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

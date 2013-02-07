@@ -4,6 +4,6 @@ rvm:
 env: TEST_DATABASE_URL=postgres://postgres@locahost/travispopup RAILS_ENV=test
 before_script:
   - rake db:create db:migrate
-bundler_args: --without development
+bundler_args: --without development assets
 services:
   - elasticsearch
