@@ -1,7 +1,25 @@
-.nav-collapse.pull-right
-  ul.nav
-    - if user_signed_in?
-      li= link_to(current_user.name, { target: '_self' })
-      li= link_to('Log out', destroy_user_session_path, method: :delete, target: '_self' )
-    - else
-      li= link_to('Sign in', new_user_session_path, { target: '_self' })
+- if user_signed_in?
+  ul.nav.pull-right
+    li
+      a.dropdown-toggle = current_user.name
+      ul.dropdown-menu
+        li= link_to('Log out', destroy_user_session_path, method: :delete, target: '_self' )
+  ul.nav.pull-right ng-controller="AlertCtrl" 
+    li ng-class="{open:forceAlertsShow}"
+      a.dropdown-toggle ng-class="{'with-information':alertData.alerts.length}"
+        i.icon-tasks
+      ul.dropdown-menu
+        li.pending ng-show="alertData.alerts.length == 0"
+          a No pending tasks.
+        li.alert-shower ng-repeat="alert in alertData.alerts" ng-class="{pending:!(alert.done || alert.path)}"
+          a ng-href='{{alert.path}}' ng-click="dismissIfDone(alert)"
+            .message
+              span.status {{alert.status}}: 
+              | {{alert.message}}
+            .progress.progress-striped ng-class="{active:alert.progress && alert.progress < 100}"
+              .bar ng-style="{width:alert.progress+'%'}"
+
+
+- else
+  ul.nav.pull-right
+    li= link_to('Sign in', new_user_session_path, { target: '_self' })

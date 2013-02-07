@@ -16,7 +16,7 @@ describe CsvImport do
 
     it "should transition to the queued state on '#enqueue_processing'" do
       new_import.send :enqueue_processing
-      new_import.state.should eq "queued"
+      new_import.state.should eq "queued_analyze"
     end
 
     it "should save the state after enqueing processing" do
@@ -54,15 +54,25 @@ describe CsvImport do
       end
       headers
     end
+    
+    attr_reader :analyzed_import
+
+    before :all do
+      @analyzed_import = FactoryGirl.create :csv_import
+      @analyzed_import.analyze!
+    end
+
+    after :all do
+      @analyzed_import.destroy
+    end
 
     it "should start with no rows" do
       import.rows.should be_empty
     end
 
     it "should create rows records as part of analysis" do
-      import.analyze!
-      import.rows.should_not be_empty
-      import.rows.size.should eq %x{wc -l '#{import.file.path}'}.to_i - 1
+      analyzed_import.rows.should_not be_empty
+      analyzed_import.rows.size.should eq %x{wc -l '#{import.file.path}'}.to_i - 1
     end
 
     it "should start with no headers" do
@@ -70,13 +80,15 @@ describe CsvImport do
     end
 
     it "should extract headers during analysis" do
-      import.analyze!
-      import.headers.should eq headers
+      analyzed_import.headers.should eq headers
     end
 
     it "should create mappings during analysis" do
-      import.analyze!
-      import.mappings.size.should eq headers.length
+      analyzed_import.mappings.size.should eq headers.length
+    end
+
+    it "should map uncategorizable fields using a standard method" do
+      analyzed_import.mappings.first.column.should eq "extra.record_type"
     end
   end
 
@@ -85,16 +97,27 @@ describe CsvImport do
   end
 
   context "#mappings" do
+    let(:nine_mappings) { Array.new(9).map { FactoryGirl.attributes_for :import_mapping }}
+
     it "should be empty when we start" do
       new_import.mappings.should be_blank
     end
 
     it "should permit setting a bunch of them" do
-      mappings = Array.new(9).map { FactoryGirl.attributes_for :import_mapping }
-      new_import.mappings_attributes = mappings
+      new_import.mappings_attributes = nine_mappings
       new_import.save
 
       CsvImport.find(new_import.id).mappings.count.should eq 9
+    end
+
+    it "should clear out current mappings if they are set again" do
+      import.mappings_attributes = nine_mappings
+      import.save
+
+      import.mappings_attributes = nine_mappings
+      import.save
+
+      import.mappings.count.should eq 9
     end
   end
 

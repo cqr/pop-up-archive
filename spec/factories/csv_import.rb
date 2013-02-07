@@ -9,5 +9,6 @@ FactoryGirl.define do
     factory :csv_import_with_no_file do
       file nil
     end
+    
   end
 end
