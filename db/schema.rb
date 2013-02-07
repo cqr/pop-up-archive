@@ -18,8 +18,9 @@ ActiveRecord::Schema.define(:version => 20130207164905) do
   create_table "collections", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.boolean  "items_visible_by_default", :default => false
   end
 
   create_table "contributions", :force => true do |t|
@@ -40,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20130207164905) do
     t.integer  "state_index",   :default => 0
     t.string   "headers",                                      :array => true
     t.string   "file_name"
+    t.integer  "collection_id"
     t.string   "error_message"
     t.text     "backtrace"
   end

@@ -26,7 +26,6 @@
 
       $scope.import = data;
 
-      
       if($scope.import.state == 'analyzed'){
         if ($scope.timeout && $scope.timeout.cancel) {
           $scope.timeout.cancel();
@@ -61,6 +60,8 @@
       alert = new Alert({status:"Importing", progress: 50});
       alert.add();
     });
+
+    $scope.importDestination = 'new';
   }
 
   $scope.$watch('import.headers', function watchImportHeaders (headers) {
@@ -84,7 +85,6 @@
         });
     });
   });
-  
 }])
 .controller('AlertCtrl', ['$scope', 'Alert', function ($scope, Alert) {
   $scope.alertData = {};

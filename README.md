@@ -8,7 +8,7 @@
       Ruby Version
     </th>
     <td>
-      1.9.3p374
+      1.9.3p385
     </td>
   </tr>
   <tr>

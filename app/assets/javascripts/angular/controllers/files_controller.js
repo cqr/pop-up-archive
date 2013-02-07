@@ -27,7 +27,7 @@
           alert.status = "Waiting";
           watchImport(data.id, alert);
         });
-      }(newFile)); 
+      }(newFile));
     }
   });
 
