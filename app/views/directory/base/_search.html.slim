@@ -1,3 +1,2 @@
-form.navbar-search.pull-right
-  .input-append
-    input.search-query placeholder='Search' type='search'
+form.form-search.navbar-search.pull-right ng-controller="SearchCtrl" ng-submit="fetchResults(); search.query = ''"
+  input.search-query ng-model="search.query" placeholder='Search' type='search'

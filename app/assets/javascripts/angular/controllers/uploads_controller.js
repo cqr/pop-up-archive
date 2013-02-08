@@ -138,4 +138,16 @@
     $scope.imports = imports;
   });
 
+}])
+.controller('SearchCtrl', ['$scope', '$location', '$routeParams', function ($scope, $location, $routeParams) {
+  $scope.search = {};
+  $scope.search.query = $routeParams.query;
+
+  $scope.fetchResults = function () {
+    $location.path('/search/' + $scope.search.query);
+    angular.forEach(document.getElementsByTagName('input'), function (el) {
+      el.blur();
+    });
+  }
+
 }]);

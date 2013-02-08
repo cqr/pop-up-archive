@@ -50,6 +50,10 @@
       templateUrl: "imports",
       controller: "ImportsCtrl"
     })
+    .when('/search/:query', {
+      templateUrl: "search",
+      controller: "SearchCtrl"
+    })
     .when('/imports/:importId', {
       templateUrl: "import",
       controller: "ImportCtrl"
