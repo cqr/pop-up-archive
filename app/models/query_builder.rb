@@ -11,7 +11,7 @@ class QueryBuilder
   end
 
   def sort_column
-    params[:sort_by] || :created_at
+    params[:sort_by] || :date_created
   end
 
   def sort_order

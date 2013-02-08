@@ -2,6 +2,25 @@ class Item < ActiveRecord::Base
 
   include Tire::Model::Callbacks
   include Tire::Model::Search
+
+  mapping do
+    indexes :date_created,      type: 'date',   include_in_all: false
+    indexes :date_broadcast,    type: 'date',   include_in_all: false
+    indexes :description,       type: 'string'
+    indexes :identifier,        type: 'string',  boost: 2.0
+    indexes :title,             type: 'string',  boost: 2.0
+    indexes :interviewers,      type: 'string',  include_in_all: false
+    indexes :interviewees,      type: 'string',  include_in_all: false
+    indexes :producers,         type: 'string',  include_in_all: false
+    indexes :tags,              type: 'string'
+    indexes :contributors,      type: 'string'
+    indexes :physical_location, type: 'string'
+    indexes :transcription,     type: 'string'
+    indexes :location do
+      indexes :name
+      indexes :position, type: 'geo_point'
+    end
+  end
   
   attr_accessible :date_broadcast, :date_created, :date_peg,
     :description, :digital_format, :digital_location, :duration,
@@ -33,5 +52,16 @@ class Item < ActiveRecord::Base
 
   def creator=(creator)
     self.creators = [creator]
+  end
+
+  def to_indexed_json
+    as_json.tap do |json|
+      json[:contributors] = contributors.map {|contributor| contributor.name }
+      json[:producers]    = producers.map {|producer| producer.name }
+      json[:interviewers] = interviewers.map {|interviewer| interviewer.name }
+      json[:interviewees] = interviewees.map {|interviewee| interviewee.name }
+      json[:creator]      = creator.name if creator.present?
+      json[:location]     = geolocation.to_indexed_json if geolocation.present?
+    end.to_json
   end
 end
