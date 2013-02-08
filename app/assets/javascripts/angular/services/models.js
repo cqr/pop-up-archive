@@ -152,4 +152,9 @@ angular.module('Directory.models', ['rails'])
   }
 
   return schema;
+}])
+.factory('Search', ['$resource', function ($resource) {
+  return $resource('/api/search', {}, {
+    query: {method:"get", isArray: true}
+  });
 }]);
