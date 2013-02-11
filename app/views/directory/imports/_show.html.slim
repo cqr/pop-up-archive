@@ -1,20 +1,12 @@
 script#import type='text/ng-template'
-  div ng-show="import" ng-controller="ImportMappingCtrl"
+  form.form-inline ng-show="import" ng-controller="ImportMappingCtrl"
     h2 File Import: {{import.file}}
 
-    div
-      label
-        input type='radio' ng-model='importDestination' checked='checked' value='new'
-        | Make a new collection for this import
-      label
-        input type='radio' ng-model='importDestination' value='existing'
-        | Add import to existing collection
-    div ng-show="importDestination == 'existing'"
-      label
-        | Select collection
-        select ng-model='import.collectionId'
-          option Collection One
-          option Another Collection
+    .well
+      label for='collection-id'
+        strong Please select which collection these items will be added to once they are imported:
+      select#collection-id.pull-right ng-model='import.collectionId' ng-options="collection.id as collection.title for collection in collections"
+      
 
     table.table.table-striped.table-bordered
       thead

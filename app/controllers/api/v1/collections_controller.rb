@@ -1,5 +1,5 @@
 class Api::V1::CollectionsController < Api::V1::BaseController
-  expose(:collections)
+  expose(:collections) { current_user.collections }
   expose(:collection)
   expose(:kollection) { collection }
 

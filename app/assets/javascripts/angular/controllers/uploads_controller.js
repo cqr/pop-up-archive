@@ -17,24 +17,16 @@
     });
   }
 }])
-.controller("ImportCtrl", ['$scope', 'CsvImport', '$routeParams', '$timeout', function($scope, CsvImport, $routeParams, $timeout) {
+.controller("ImportCtrl", ['$scope', 'CsvImport', '$routeParams', 'Collection', function($scope, CsvImport, $routeParams, Collection) {
   $scope.analyzed = false;
 
-  (function fetchImport () {
-    CsvImport.get($routeParams.importId).then(function(data) {
-
+  Collection.query().then(function(data) {
+    $scope.collections = data;
+  })
+  
+  CsvImport.get($routeParams.importId).then(function(data) {
       $scope.import = data;
-      console.log($scope.import);
-
-      if($scope.import.state == 'analyzed' || $scope.import.state == 'imported' || $scope.import.state == 'error'){
-        if ($scope.timeout && $scope.timeout.cancel) {
-          $scope.timeout.cancel();
-        }
-      } else {
-        $scope.timeout = $timeout(fetchImport, 100);
-      }
-    });
-  })();
+  });
 
   $scope.getNewPreviewRows = function getNewPreviewRows () {
      CsvImport.get($scope.import.id).then(function(data) {
