@@ -21,17 +21,17 @@
   $scope.analyzed = false;
 
   (function fetchImport () {
-
     CsvImport.get($routeParams.importId).then(function(data) {
 
       $scope.import = data;
+      console.log($scope.import);
 
-      if($scope.import.state == 'analyzed'){
+      if($scope.import.state == 'analyzed' || $scope.import.state == 'imported' || $scope.import.state == 'error'){
         if ($scope.timeout && $scope.timeout.cancel) {
           $scope.timeout.cancel();
         }
       } else {
-        $scope.timeout = $timeout($scope.fetchImport, 100);
+        $scope.timeout = $timeout(fetchImport, 100);
       }
     });
   })();
@@ -56,9 +56,34 @@
 
   $scope.submitMapping = function submitMapping () {
     $scope.import.commit = 'import';
-    return $scope.import.update().then(function(i) {
-      alert = new Alert({status:"Importing", progress: 50});
-      alert.add();
+    var alert = new Alert({status:"Submitting", message:$scope.import.file, progress:1});
+    alert.import = $scope.import;
+    alert.add();
+    alert.import.update().then(function () {
+      alert.sync = function (alert) {
+        return alert.import.constructor.get(alert.import.id).then(function(im) {
+          alert.import = im;
+          if (im.state == 'error') {
+            alert.status = "Error";
+            delete alert.progress;
+            alert.done = true;
+            alert.path = "/imports/" + im.id;
+          } else if (im.state == 'queued_import') {
+            alert.status = "Waiting";
+            alert.progress = 10;
+          } else if (im.state == 'importing') {
+            alert.status = "Importing";
+            alert.progress = 30;
+          } else if (im.state == 'imported') {
+            alert.status = "Imported";
+            alert.done = true;
+            alert.progress = 100;
+            alert.path = "/collections/" + im.collectionId; 
+          }
+          return im;
+        });
+      }
+      alert.startSync();
     });
 
     $scope.importDestination = 'new';
