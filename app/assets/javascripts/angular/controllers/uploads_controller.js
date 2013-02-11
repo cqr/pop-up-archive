@@ -152,5 +152,5 @@
 
 }])
 .controller('SearchResultsCtrl', ['$scope', 'Search', function ($scope, Search) {
-  $scope.search.results = $scope.items = Search.query({query:$scope.search.query});
+  $scope.search = Search.query({query:$scope.search.query});
 }]);

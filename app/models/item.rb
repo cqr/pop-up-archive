@@ -9,11 +9,11 @@ class Item < ActiveRecord::Base
     indexes :description,       type: 'string'
     indexes :identifier,        type: 'string',  boost: 2.0
     indexes :title,             type: 'string',  boost: 2.0
-    indexes :interviewers,      type: 'string',  include_in_all: false
-    indexes :interviewees,      type: 'string',  include_in_all: false
+    indexes :interviewers,      type: 'string',  include_in_all: false, index_name: "interviewer"
+    indexes :interviewees,      type: 'string',  include_in_all: false, index_name: "interviewee"
     indexes :producers,         type: 'string',  include_in_all: false
-    indexes :tags,              type: 'string'
-    indexes :contributors,      type: 'string'
+    indexes :tags,              type: 'string',  index_name: "tag", analyzer: "keyword"
+    indexes :contributors,      type: 'string',  index_name: "contributor"
     indexes :physical_location, type: 'string'
     indexes :transcription,     type: 'string'
     indexes :location do

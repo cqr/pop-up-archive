@@ -1,4 +1,10 @@
 script#search type='text/ng-template'
-  h1 Search: {{search.query}}
   div ng-controller="SearchResultsCtrl"
+    form.form-search.form-big
+      .input-append
+        input.search-query.span10 ng-model='search.query' stype='search' placeholder="Search Query"
+        button.btn.span2.pull-right type='submit'
+          i.icon-search 
+
     ng-include src="'items'"
+    .pull-right {{search.results.length}} results

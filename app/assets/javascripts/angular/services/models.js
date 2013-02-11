@@ -155,6 +155,6 @@ angular.module('Directory.models', ['rails'])
 }])
 .factory('Search', ['$resource', function ($resource) {
   return $resource('/api/search', {}, {
-    query: {method:"get", isArray: true}
+    query: {method:"get", isArray: false}
   });
 }]);

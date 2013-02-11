@@ -74,3 +74,24 @@ table.fit-in-window {
 .media.muted {
   opacity: 0.7;
 }
+
+form.form-big {
+  input, button.btn {
+    font-size: 28px;
+    height: 28px;
+    border-radius: 28px;
+    padding-left: 20px;
+  }
+
+  button.btn {
+    height: 38px;
+  }
+
+  .input-append .btn {
+    border-radius: 0 28px 28px 0;
+  }
+
+  .input-append .search-query {
+    border-radius: 28px 0 0 28px;
+  }
+}

@@ -2,13 +2,20 @@ class Api::V1::SearchesController < Api::V1::BaseController
   def show
     query_builder = QueryBuilder.new(params)
 
-    @results = Item.search load: true do
+    @search = Item.search do
       query { string query_builder.query_string }
-      sort  { by query_builder.sort_column, query_builder.sort_order }
+
+      # filter :or do
+      #   filter :term, public: true
+      #   filter :in, collection_id: current_user.collection_ids, execution: 'bool'
+      # end
+      
+      # sort  { by query_builder.sort_column, query_builder.sort_order }
+      query_builder.facets.each do |f|
+        facet f.name, &f.block
+      end
     end
 
-    @items = @results.to_a
-
-    respond_with @results
+    respond_with @search
   end
 end

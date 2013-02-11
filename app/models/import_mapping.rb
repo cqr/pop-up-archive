@@ -39,7 +39,7 @@ class ImportMapping < ActiveRecord::Base
       when "string" then value.to_s
       when "geolocation" then value.to_s
       when "person" then Person.for_name(value)
-      when "array" then value.split(',')
+      when "array" then value.split(',').map{|x| x.gsub(/(?:^\s+)|(?:\s$)/, '') }
       when "short_text" then value.to_s
       when "number" then value.to_i
       when "text" then value.to_s
