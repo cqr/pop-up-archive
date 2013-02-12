@@ -9,13 +9,13 @@ script#items type='text/ng-template'
         th Interviewees
         th Actions
     tbody
-      tr ng-repeat="item in items"
+      tr ng-repeat="item in (items || search.results)"
         td {{item.identifier}}
         td {{item.title}}
         td {{item.date_created}}
         td
-          a ng-repeat="producer in item.producers" ng-href="/people/{{producer.id}}" {{producer.name}}
+          a ng-repeat="producer in item.producers" ng-href='/search/contributors:%22{{producer}}%22' {{producer}}
         td
-          a ng-repeat="interviewee in item.interviewees" ng-href="/people/{{interviewee.id}}" {{interviewee.name}}
+          a ng-repeat="interviewee in item.interviewees" ng-href='/search/contributors:%22{{interviewee}}%22' {{interviewee}}
         td
           a.btn ng-href="/items/{{item.id}}" View

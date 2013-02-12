@@ -17,10 +17,12 @@ Spork.prefork do
   RSpec.configure do |config|
     config.mock_with :rspec
     config.use_transactional_fixtures = true
+
+    config.include Devise::TestHelpers, type: :controller
   end
 end
 
 Spork.each_run do
-  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f }
   FactoryGirl.reload
 end

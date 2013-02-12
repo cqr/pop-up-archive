@@ -60,26 +60,26 @@ angular.module('Directory.models', ['rails'])
   }
 
   angular.forEach({
-    "title":             {type:"string",      display: "Title"},
-    "episode_title":     {type:"string",      display: "Episode Title"},
-    "series_title":      {type:"string",      display: "Series Title"},
-    "description":       {type:"text",        display: "Description"},
-    "identifier":        {type:"string",      display: "Identifier"},
-    "date_broadcast":    {type:"date",        display: "Date Broadcast"},
-    "date_created":      {type:"date",        display: "Date Created"},
-    "rights":            {type:"text",        display: "Rights"},
-    "physical_format":   {type:"short_text",  display: "Physical Format"},
-    "digital_format":    {type:"short_text",  display: "Digital Format"},
-    "physical_location": {type:"short_text",  display: "Physical Location"},
-    "digital_location":  {type:"short_text",  display: "Digital Location"},
-    "duration":          {type:"number",      display: "Duration"},
-    "music_sound_used":  {type:"short_text",  display: "Music/Sound Used"},
-    "date_peg":          {type:"short_text",  display: "Date Peg"},
-    "tags":              {type:"array",       display: "Tags"},
-    "geolocation":       {type:"geolocation", display: "Geolocation"},
-    "interviewers[]":    {type:"person",      display: "Interviewer"},
-    "interviewees[]":    {type:"person",      display: "Interviewee"},
-    "producers[]":       {type:"person",      display: "Producer"}
+    "title":               {type:"string",      display: "Title"},
+    "episode_title":       {type:"string",      display: "Episode Title"},
+    "series_title":        {type:"string",      display: "Series Title"},
+    "description":         {type:"text",        display: "Description"},
+    "identifier":          {type:"string",      display: "Identifier"},
+    "date_broadcast":      {type:"date",        display: "Date Broadcast"},
+    "date_created":        {type:"date",        display: "Date Created"},
+    "rights":              {type:"text",        display: "Rights"},
+    "physical_format":     {type:"short_text",  display: "Physical Format"},
+    "digital_format":      {type:"short_text",  display: "Digital Format"},
+    "physical_location":   {type:"short_text",  display: "Physical Location"},
+    "digital_location":    {type:"short_text",  display: "Digital Location"},
+    "duration":            {type:"number",      display: "Duration"},
+    "music_sound_used":    {type:"short_text",  display: "Music/Sound Used"},
+    "date_peg":            {type:"short_text",  display: "Date Peg"},
+    "tags":                {type:"array",       display: "Tags"},
+    "geographic_location": {type:"geolocation", display: "Geolocation"},
+    "interviewers[]":      {type:"person",      display: "Interviewer"},
+    "interviewees[]":      {type:"person",      display: "Interviewee"},
+    "producers[]":         {type:"person",      display: "Producer"}
   }, function (metaData, columnName) {
     for (var typeIndex=0; schema.types[typeIndex].name != metaData.type; typeIndex++);
     schema.columns.push({name:columnName, humanName:metaData.display, typeId: typeIndex});
@@ -152,4 +152,9 @@ angular.module('Directory.models', ['rails'])
   }
 
   return schema;
+}])
+.factory('Search', ['$resource', function ($resource) {
+  return $resource('/api/search', {}, {
+    query: {method:"get", isArray: false}
+  });
 }]);

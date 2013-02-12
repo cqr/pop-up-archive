@@ -3,6 +3,7 @@ class Api::V1::CsvImportsController < Api::V1::BaseController
   expose(:csv_imports)
   
   def create
+    csv_import.user_id = current_user.id
     csv_import.save
     respond_with(:api, csv_import)
   end

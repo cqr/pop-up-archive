@@ -1,6 +1,6 @@
 object csv_import
 
-attribute :state, :headers, :id, :created_at
+attribute :state, :headers, :id, :created_at, :collection_id
 attribute file_name: :file
 
 node :row_count do |i|

@@ -5,10 +5,24 @@ class Geolocation < ActiveRecord::Base
 
   geocoded_by :name
 
-  after_save :enqueue_geocode
+  if Rails.env.test?
+    after_save :enqueue_geocode
+  else
+    after_commit :enqueue_geocode
+  end
 
   def self.for_name(string)
     find_by_slug slugify string or create name: string
+  end
+
+  def to_indexed_json
+    {
+      name: name,
+      position: {
+        lat: latitude,
+        lon: longitude
+      }
+    }
   end
 
   private

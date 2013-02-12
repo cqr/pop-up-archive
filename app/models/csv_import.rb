@@ -3,7 +3,7 @@ class CsvImport < ActiveRecord::Base
 
   STATES = ["new", "queued_analyze", "analyzing", "analyzed", "queued_import", "importing", "imported", "error"]
 
-  attr_accessible :file, :mappings_attributes, :commit
+  attr_accessible :file, :mappings_attributes, :collection_id, :commit
   before_save :set_file_name, on: :create
   if Rails.env.test?
     after_save :enqueue_processing, if: :processing_required?
@@ -18,7 +18,7 @@ class CsvImport < ActiveRecord::Base
 
   has_many :mappings, order: "position", class_name:'ImportMapping' do
     def [](index)
-      conditions(['import_mappings.index = ?', index]).limit(1).first
+      conditions(['import_mappings.position = ?', index - 1]).limit(1).first
     end
   end
   accepts_nested_attributes_for :mappings
@@ -26,10 +26,16 @@ class CsvImport < ActiveRecord::Base
   default_scope order('state_index ASC, created_at ASC')
 
   belongs_to :collection
+  belongs_to :user
   attr_accessor :commit
 
   def state
     STATES[state_index]
+  end
+
+  def collection_with_build
+    return Collection.new(title: file_name) if collection_id == 0
+    collection
   end
 
   def analyze!
@@ -51,9 +57,12 @@ class CsvImport < ActiveRecord::Base
     current_mappings = mappings
     self.state = "importing"
     transaction do
+      collection = collection_with_build
+      collection.save
       rows.find_each do |csv_row|
         data = csv_row.values
         item = items.build do |item|
+          item.collection_id = collection.id
           current_mappings.each do |mapping|
             index = mapping.position - 1
             mapping.apply(data[index], item)
@@ -61,6 +70,9 @@ class CsvImport < ActiveRecord::Base
         end
         item.save
       end
+      user.collections << collection
+      user.save
+      self.collection_id = collection.id
       self.state = "imported"
     end
   end
@@ -129,5 +141,4 @@ class CsvImport < ActiveRecord::Base
   def make_column_name(name)
     "extra.#{name.downcase.gsub(/\W+/,'_')}"
   end
-
 end

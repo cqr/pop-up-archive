@@ -1,3 +1,6 @@
-ng-view
+div ng-hide="pageLoading()"
+  ng-view
+div ng-show="pageLoading()"
+  h1 Loading
 
 = render('angular_templates')

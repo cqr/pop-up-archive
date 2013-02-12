@@ -17,24 +17,19 @@
     });
   }
 }])
-.controller("ImportCtrl", ['$scope', 'CsvImport', '$routeParams', '$timeout', function($scope, CsvImport, $routeParams, $timeout) {
+.controller("ImportCtrl", ['$scope', 'CsvImport', '$routeParams', 'Collection', '$q', function($scope, CsvImport, $routeParams, Collection, $q) {
   $scope.analyzed = false;
 
-  (function fetchImport () {
-    CsvImport.get($routeParams.importId).then(function(data) {
+  function prependNewCollection(i, collections) {
+    return [{id:0, title:"New Collection: " + i.file}].concat(collections);
+  }
 
-      $scope.import = data;
-      console.log($scope.import);
-
-      if($scope.import.state == 'analyzed' || $scope.import.state == 'imported' || $scope.import.state == 'error'){
-        if ($scope.timeout && $scope.timeout.cancel) {
-          $scope.timeout.cancel();
-        }
-      } else {
-        $scope.timeout = $timeout(fetchImport, 100);
-      }
-    });
-  })();
+  $scope.pageLoading(true);
+  $q.all([CsvImport.get($routeParams.importId), Collection.query()]).then(function (data) {
+    $scope.import = data[0];
+    $scope.collections = prependNewCollection($scope.import, data[1]);
+    $scope.pageLoading(false);
+  });
 
   $scope.getNewPreviewRows = function getNewPreviewRows () {
      CsvImport.get($scope.import.id).then(function(data) {
@@ -138,4 +133,19 @@
     $scope.imports = imports;
   });
 
+}])
+.controller('SearchCtrl', ['$scope', '$location', '$routeParams', function ($scope, $location, $routeParams) {
+  $scope.search = {};
+  $scope.search.query = $routeParams.query;
+
+  $scope.fetchResults = function () {
+    $location.path('/search/' + $scope.search.query);
+    angular.forEach(document.getElementsByTagName('input'), function (el) {
+      el.blur();
+    });
+  }
+
+}])
+.controller('SearchResultsCtrl', ['$scope', 'Search', function ($scope, Search) {
+  $scope.search = Search.query({query:$scope.search.query});
 }]);

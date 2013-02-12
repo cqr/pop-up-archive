@@ -1,9 +1,12 @@
 require 'spec_helper'
 describe Api::V1::CsvImportsController do
+  extend ControllerMacros
+
   before :each do
     request.accept = "application/json"
   end
 
+  login_user
 
   describe "POST 'create'" do
 

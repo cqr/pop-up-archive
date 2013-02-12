@@ -50,6 +50,10 @@
       templateUrl: "imports",
       controller: "ImportsCtrl"
     })
+    .when('/search/:query', {
+      templateUrl: "search",
+      controller: "SearchCtrl"
+    })
     .when('/imports/:importId', {
       templateUrl: "import",
       controller: "ImportCtrl"
@@ -60,7 +64,17 @@
 
   }
 
-  window.directory = angular.module('Directory', ['ngResource', 'fileDropzone', 'Directory.controllers', 'Directory.models', 'Directory.filters', 'rails', 'ui.bootstrap', 'Directory.alerts', 'Directory.loading']);
+  var depends =  ['ngResource',
+                  'fileDropzone',
+                  'Directory.controllers',
+                  'Directory.models',
+                  'Directory.filters',
+                  'rails',
+                  'ui.bootstrap',
+                  'Directory.alerts',
+                  'Directory.loading'];
+
+  window.directory = angular.module('Directory', depends);
   window.directory.config(["$httpProvider", "$locationProvider", "$routeProvider", applicationConfig]);
 
 }());
