@@ -39,7 +39,6 @@ class User < ActiveRecord::Base
     end
   end
 
-
   private
 
   def needs_default_collections?

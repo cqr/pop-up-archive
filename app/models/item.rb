@@ -29,6 +29,7 @@ class Item < ActiveRecord::Base
     :tags, :title, :transcription
   belongs_to :geolocation
   belongs_to :csv_import
+  belongs_to :collection
   has_many  :contributions
   has_many  :producer_contributions,    class_name: "Contribution", conditions: {role: "producer"}
   has_many  :interviewer_contributions, class_name: "Contribution", conditions: {role: "interviewer"}

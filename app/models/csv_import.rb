@@ -70,6 +70,8 @@ class CsvImport < ActiveRecord::Base
         end
         item.save
       end
+      user.collections << collection
+      user.save
       self.collection_id = collection.id
       self.state = "imported"
     end

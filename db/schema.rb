@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130212175303) do
+ActiveRecord::Schema.define(:version => 20130212182823) do
 
   add_extension "hstore"
 
@@ -112,8 +112,10 @@ ActiveRecord::Schema.define(:version => 20130212175303) do
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.integer  "csv_import_id"
+    t.integer  "collection_id"
   end
 
+  add_index "items", ["collection_id"], :name => "index_items_on_collection_id"
   add_index "items", ["csv_import_id"], :name => "index_items_on_csv_import_id"
   add_index "items", ["geolocation_id"], :name => "index_items_on_geolocation_id"
 
