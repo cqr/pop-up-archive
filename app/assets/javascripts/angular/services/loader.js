@@ -13,10 +13,10 @@ angular.module('Directory.loader', [])
   }
 
   function load () {
-    var arguments = Array.prototype.slice.call(arguments);
-    var $scope    = arguments.pop();
+    var argumentsArray = Array.prototype.slice.call(arguments);
+    var $scope         = argumentsArray.pop();
 
-    return $q.all(arguments).then(function (data) {
+    return $q.all(argumentsArray).then(function (data) {
       angular.forEach(data, function (response) {
         if (angular.isArray(response)) {
           $scope[camelize(response[0].constructor.rootPluralName)] = response;
