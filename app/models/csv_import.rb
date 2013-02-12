@@ -5,7 +5,6 @@ class CsvImport < ActiveRecord::Base
 
   attr_accessible :file, :mappings_attributes, :collection_id, :commit
   before_save :set_file_name, on: :create
-  before_save :set_collection_id, on: :create
   if Rails.env.test?
     after_save :enqueue_processing, if: :processing_required?
   else
@@ -34,6 +33,11 @@ class CsvImport < ActiveRecord::Base
     STATES[state_index]
   end
 
+  def collection_with_build
+    return Collection.new(title: file_name) if collection_id == 0
+    collection
+  end
+
   def analyze!
     raise "Invalid state for analysis: #{state}" if %w(new analyzing).include? state
     self.state = "analyzing"
@@ -53,9 +57,12 @@ class CsvImport < ActiveRecord::Base
     current_mappings = mappings
     self.state = "importing"
     transaction do
+      collection = collection_with_build
+      collection.save
       rows.find_each do |csv_row|
         data = csv_row.values
         item = items.build do |item|
+          item.collection_id = collection.id
           current_mappings.each do |mapping|
             index = mapping.position - 1
             mapping.apply(data[index], item)
@@ -63,6 +70,7 @@ class CsvImport < ActiveRecord::Base
         end
         item.save
       end
+      self.collection_id = collection.id
       self.state = "imported"
     end
   end
@@ -131,9 +139,4 @@ class CsvImport < ActiveRecord::Base
   def make_column_name(name)
     "extra.#{name.downcase.gsub(/\W+/,'_')}"
   end
-
-  def set_collection_id
-    self.collection_id = user.default_public_collection_id
-  end
-
 end

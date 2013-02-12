@@ -17,15 +17,18 @@
     });
   }
 }])
-.controller("ImportCtrl", ['$scope', 'CsvImport', '$routeParams', 'Collection', function($scope, CsvImport, $routeParams, Collection) {
+.controller("ImportCtrl", ['$scope', 'CsvImport', '$routeParams', 'Collection', '$q', function($scope, CsvImport, $routeParams, Collection, $q) {
   $scope.analyzed = false;
 
-  Collection.query().then(function(data) {
-    $scope.collections = data;
-  })
-  
-  CsvImport.get($routeParams.importId).then(function(data) {
-      $scope.import = data;
+  function prependNewCollection(i, collections) {
+    return [{id:0, title:"New Collection: " + i.file}].concat(collections);
+  }
+
+  $scope.pageLoading(true);
+  $q.all([CsvImport.get($routeParams.importId), Collection.query()]).then(function (data) {
+    $scope.import = data[0];
+    $scope.collections = prependNewCollection($scope.import, data[1]);
+    $scope.pageLoading(false);
   });
 
   $scope.getNewPreviewRows = function getNewPreviewRows () {

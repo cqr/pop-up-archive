@@ -8,7 +8,7 @@ angular.module('Directory.alerts', [])
         if (!(alert.done || alert.path || alert.progress == 100)){
           schedulePeriodicUpdate(alert);
         } else {
-          $rootScope.pretendIsLoading -= 1;
+          $rootScope.loading(false);
         }
         return arg;
       });
@@ -37,8 +37,7 @@ angular.module('Directory.alerts', [])
       if (typeof this.sync == 'function') {
         promise = this.sync(this);
         if (promise && typeof promise.then == 'function') {
-          $rootScope.pretendIsLoading = ($rootScope.pretendIsLoading || 0);
-          $rootScope.pretendIsLoading += 1;
+          $rootScope.loading(true);
           schedulePeriodicUpdate(this);
         }
       }

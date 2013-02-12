@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130211222250) do
+ActiveRecord::Schema.define(:version => 20130212175303) do
 
   add_extension "hstore"
 
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(:version => 20130211222250) do
     t.string   "file_name"
     t.string   "error_message"
     t.text     "backtrace"
-    t.integer  "collection_id"
+    t.integer  "collection_id", :default => 0
     t.integer  "user_id"
   end
 
