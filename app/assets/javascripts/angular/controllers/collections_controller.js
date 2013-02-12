@@ -1,8 +1,6 @@
 (window.controllers = window.controllers || angular.module('Directory.controllers', []))
-.controller('CollectionsCtrl', ['$scope', 'Collection', function CollectionsCtrl($scope, Collection) {
-  Collection.query().then(function(data) {
-    $scope.collections = data;
-  });
+.controller('CollectionsCtrl', ['$scope', 'Collection', 'Loader', function CollectionsCtrl($scope, Collection, Loader) {
+  Loader.loadPage(Collection.query(), $scope);
 
   $scope.delete = function(index) {
     var collection = $scope.collections[index];
@@ -12,8 +10,8 @@
     });
   }
 }])
-.controller('CollectionCtrl', ['$scope', '$routeParams', 'Collection', function CollectionCtrl($scope, $routeParams, Collection) {
-  $scope.collection = Collection.get($routeParams.collectionId);
+.controller('CollectionCtrl', ['$scope', '$routeParams', 'Collection', 'Loader', function CollectionCtrl($scope, $routeParams, Collection, Loader) {
+  Loader.loadPage(Collection.get($routeParams.collectionId), $scope);
 }])
 .controller('CollectionFormCtrl', ['$scope', 'Collection', function CollectionFormCtrl($scope, Collection) {
   $scope.collection = ($scope.collection || new Collection);

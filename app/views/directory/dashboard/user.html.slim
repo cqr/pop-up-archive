@@ -1,6 +1,7 @@
-div ng-hide="pageLoading()"
-  ng-view
-div ng-show="pageLoading()"
-  h1 Loading
+ng-view
+div.loading-overlay ng-show="pageLoading()"
+  div.loading-indicator
+    i.icon-cog.icon-spin
+    |  Loading
 
 = render('angular_templates')
