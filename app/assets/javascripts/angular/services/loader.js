@@ -18,7 +18,7 @@ angular.module('Directory.loader', [])
 
     return $q.all(argumentsArray).then(function (data) {
       angular.forEach(data, function (response) {
-        if (angular.isArray(response)) {
+        if (angular.isArray(response) && response.length > 0) {
           $scope[camelize(response[0].constructor.rootPluralName)] = response;
         } else {
           $scope[camelize(response.constructor.rootName)] = response;
