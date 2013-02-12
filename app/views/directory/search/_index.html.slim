@@ -1,8 +1,8 @@
 script#search type='text/ng-template'
   div ng-controller="SearchResultsCtrl"
-    form.form-search.form-big
+    form.form-search.form-big ng-controller="SearchCtrl" ng-submit="fetchResults(this)"
       .input-append
-        input.search-query.span10 ng-model='search.query' stype='search' placeholder="Search Query"
+        input.search-query.span10 ng-model='search.query' type='search' placeholder="Search Query"
         button.btn.span2.pull-right type='submit'
           i.icon-search 
 

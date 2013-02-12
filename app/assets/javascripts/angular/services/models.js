@@ -1,45 +1,37 @@
-angular.module('Directory.models', ['rails'])
-.factory('CsvImport', ['railsResourceFactory', function (railsResourceFactory) {
-  var factory = railsResourceFactory({url:'/api/csv_imports', name: 'csv_import', requestTransformers:['protectedAttributeRemovalTransformer','railsRootWrappingTransformer','railsFieldRenamingTransformer']});
+angular.module('Directory.models', ['RailsModel'])
+.factory('CsvImport', ['Model', function (Model) {
+  var CsvImport = Model({url:'/api/csv_imports', name: 'csv_import'});
 
-  factory.prototype.editButtonMessage = function () {
+  CsvImport.prototype.editButtonMessage = function () {
     return this.state == 'imported' ? 'Edit' : 'Continue';
   }
 
-  factory.prototype.cancel = function () {
+  CsvImport.prototype.cancel = function () {
     this.commit = 'cancel';
-    return this.$update();
+    return this.update();
   }
-  factory.attrAccessible = ['mappingsAttributes', 'collectionId', 'commit'];
-  return factory;
+
+  CsvImport.attrAccessible = ['mappingsAttributes', 'collectionId', 'commit'];
+
+  return CsvImport;
 }])
-.factory('Item', ['railsResourceFactory', function (railsResourceFactory) {
-  var Item = railsResourceFactory({url:'/api/items', name: 'item', requestTransformers:['protectedAttributeRemovalTransformer','railsRootWrappingTransformer','railsFieldRenamingTransformer']});
+.factory('Item', ['Model', function (Model) {
+  var Item = Model({url:'/api/items', name: 'item'});
 
   return Item;
 }])
-.factory('Collection', ['railsResourceFactory', function (railsResourceFactory) {
-  var factory = railsResourceFactory({url:'/api/collections', name: 'collection', requestTransformers:['protectedAttributeRemovalTransformer','railsRootWrappingTransformer','railsFieldRenamingTransformer']});
-  factory.attrAccessible = ['title', 'description'];
-  return factory;
+.factory('Collection', ['Model', function (Model) {
+  var Collection = Model({url:'/api/collections', name: 'collection'});
+  Collection.attrAccessible = ['title', 'description'];
+  
+  return Collection;
 }])
+.factory('Search', ['Model', function (Model) {
+  var Search = Model({url:'/api/search', name: 'search'});
 
-.factory('protectedAttributeRemovalTransformer', [function () {
-  return function (data, resource) {
-    var obj = data;
-    if (resource.attrAccessible && resource.attrAccessible.length && resource.attrAccessible.length > 0) {
-      obj = {};
-      for (index in resource.attrAccessible) {
-        var key = resource.attrAccessible[index];
-        var val = data[key.replace(/Attributes$/, '')];
-        if (typeof val !== 'undefined') {
-          obj[key] = val;
-        }
-      }
-    }
-    return obj;
-  }
-}]).factory('Schema', [function () {
+  return Search;
+}])
+.factory('Schema', [function () {
   var schema = {columns: [], types: [{humanName: '---', name: '*'}], get: function () { return schema }};
 
   angular.forEach({
@@ -152,9 +144,4 @@ angular.module('Directory.models', ['rails'])
   }
 
   return schema;
-}])
-.factory('Search', ['$resource', function ($resource) {
-  return $resource('/api/search', {}, {
-    query: {method:"get", isArray: false}
-  });
 }]);

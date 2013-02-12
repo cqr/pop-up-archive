@@ -1,11 +1,11 @@
 script#import type='text/ng-template'
-  form.form-inline ng-show="import" ng-controller="ImportMappingCtrl"
-    h2 File Import: {{import.file}}
+  form.form-inline ng-controller="ImportMappingCtrl"
+    h2 File Import: {{csvImport.file}}
 
     .well
       label for='collection-id'
         strong Please select which collection these items will be added to once they are imported:
-      select#collection-id.pull-right ng-model='import.collectionId' ng-options="collection.id as collection.title for collection in collections"
+      select#collection-id.pull-right ng-model='csvImport.collectionId' ng-options="collection.id as collection.title for collection in collections"
       
 
     table.table.table-striped.table-bordered
@@ -15,12 +15,12 @@ script#import type='text/ng-template'
           th Kind of Data
           th Destination
       tbody
-        tr ng-repeat="header in import.headers"
+        tr ng-repeat="header in csvImport.headers"
           td {{header}}
           td
-            select ng-model="import.mappings[$index].type" ng-options="type.name as type.humanName for type in schema.types"
+            select ng-model="csvImport.mappings[$index].type" ng-options="type.name as type.humanName for type in schema.types"
           td
-            select ng-model="import.mappings[$index].column" ng-options="column.name as column.humanName group by schema.types[column.typeId].humanName for column in schema.columnsWith(header) | type:import.mappings[$index].type"
+            select ng-model="csvImport.mappings[$index].column" ng-options="column.name as column.humanName group by schema.types[column.typeId].humanName for column in schema.columnsWith(header) | type:csvImport.mappings[$index].type"
     button.btn.pull-right ng-click="getNewPreviewRows()"
       i.icon-refresh  Fetch New Previews
     h3 Preview
@@ -30,22 +30,22 @@ script#import type='text/ng-template'
         thead
           tr
             th Pop Up Field
-            th ng-repeat="row in import.previewRows" Preview Item \#{{$index + 1}}
+            th ng-repeat="row in csvImport.previewRows" Preview Item \#{{$index + 1}}
         tbody
-          tr ng-repeat='column in schema.columns | schemaMapped:import.mappings'
+          tr ng-repeat='column in schema.columns | schemaMapped:csvImport.mappings'
             th {{column.humanName}}
-            td ng-repeat='row in import.previewRows' {{schema.getValue(column, import.mappings, row)}}
-          tr.warning ng-repeat="header in import.headers | isExtraField:import.mappings"
+            td ng-repeat='row in csvImport.previewRows' {{schema.getValue(column, import.mappings, row)}}
+          tr.warning ng-repeat="header in csvImport.headers | isExtraField:csvImport.mappings"
             td
               i.icon-warning-sign  {{header}}
-            td ng-repeat='row in import.previewRows' {{schema.getValue(schema.columnize(header), import.mappings, row)}}
-    .alert ng-show='schema.includesExtraFields(import.mappings)'
+            td ng-repeat='row in csvImport.previewRows' {{schema.getValue(schema.columnize(header), csvImport.mappings, row)}}
+    .alert ng-show='schema.includesExtraFields(csvImport.mappings)'
       | Warning: the fields in yellow above are <strong>extra</strong> fields, meaning that they will not be given the same
       | care that first-class fields are given. If any field can reasonably be mapped to a Pop-Up field, you should do so
       | before import to ensure the best possible filtering and search results.
     .well
-      button.btn.btn-link ng-click="cancel()" Cancel
+      button.btn.btn-link ng-disabled="csvImport.isSaving" ng-click="cancel()" Cancel
       .pull-right
-        button.btn ng-click="save()" Save
-        |
-        button.btn.btn-primary ng-click="submitMapping()" Import!
+        button.btn ng-click="save()" ng-disabled="csvImport.isSaving" Save
+        | &nbsp;
+        button.btn.btn-primary ng-disabled="csvImport.isSaving" ng-click="submitMapping()" Import!

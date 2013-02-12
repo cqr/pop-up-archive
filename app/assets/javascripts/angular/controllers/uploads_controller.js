@@ -17,32 +17,20 @@
     });
   }
 }])
-.controller("ImportCtrl", ['$scope', 'CsvImport', '$routeParams', 'Collection', '$q', function($scope, CsvImport, $routeParams, Collection, $q) {
-  $scope.analyzed = false;
+.controller("ImportCtrl", ['$scope', 'CsvImport', '$routeParams', 'Collection', 'Loader', function($scope, CsvImport, $routeParams, Collection, Loader) {
 
-  function prependNewCollection(i, collections) {
-    return [{id:0, title:"New Collection: " + i.file}].concat(collections);
-  }
-
-  $scope.pageLoading(true);
-  $q.all([CsvImport.get($routeParams.importId), Collection.query()]).then(function (data) {
-    $scope.import = data[0];
-    $scope.collections = prependNewCollection($scope.import, data[1]);
-    $scope.pageLoading(false);
+  Loader.loadPage(CsvImport.get($routeParams.importId), Collection.query(), $scope).then(function () {
+    $scope.collections = [{id:0, title:"New Collection: " + $scope.csvImport.file}].concat($scope.collections);
   });
 
   $scope.getNewPreviewRows = function getNewPreviewRows () {
-     CsvImport.get($scope.import.id).then(function(data) {
-      $scope.import.previewRows = data.previewRows;
-     })
+     CsvImport.get($scope.csvImport.id).then(function(data) {
+      $scope.csvImport.previewRows = data.previewRows;
+     });
   }
 
   $scope.save = function save () {
-    $scope.import.saving = true;
-    return $scope.import.update().then(function() {
-      delete($scope.import.saving);
-      return $scope.import;
-    });
+    $scope.csvImport.update();
   }
 
 }])
@@ -126,26 +114,25 @@
     return oldAddAlert.call(this);
   }
 }])
-.controller('ImportsCtrl', ['$scope', 'CsvImport', function ($scope, CsvImport) {
-  $scope.imports = ($scope.imports || []);
-
-  CsvImport.query().then(function (imports) {
-    $scope.imports = imports;
-  });
-
+.controller('ImportsCtrl', ['$scope', 'CsvImport', 'Loader', function ($scope, CsvImport, Loader) {
+  Loader.loadPage(CsvImport.query(), $scope);
 }])
-.controller('SearchCtrl', ['$scope', '$location', '$routeParams', function ($scope, $location, $routeParams) {
-  $scope.search = {};
-  $scope.search.query = $routeParams.query;
-
-  $scope.fetchResults = function () {
-    $location.path('/search/' + $scope.search.query);
-    angular.forEach(document.getElementsByTagName('input'), function (el) {
-      el.blur();
-    });
+.controller('SearchCtrl', ['$scope', '$location', function ($scope, $location) {
+  $scope.fetchResults = function (e) {
+    $location.path('/search').search('query', $scope.search.query);
   }
-
 }])
-.controller('SearchResultsCtrl', ['$scope', 'Search', function ($scope, Search) {
-  $scope.search = Search.query({query:$scope.search.query});
+.controller('SearchResultsCtrl', ['$scope', 'Search', 'Loader', '$location', function ($scope, Search, Loader, $location) {
+  
+  $scope.search = {query: $location.search().query};
+  Loader.loadPage(Search.query({query:$scope.search.query}), $scope);
+
+  $scope.$watch(function () {
+    return $location.search().query;
+  }, function (is, was, scope) {
+    if (was != is) {
+      scope.search.query = $location.search().query;
+      Loader.load(Search.query({query:is}), scope);
+    }
+  });
 }]);

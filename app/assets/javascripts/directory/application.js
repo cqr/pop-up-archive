@@ -50,9 +50,10 @@
       templateUrl: "imports",
       controller: "ImportsCtrl"
     })
-    .when('/search/:query', {
+    .when('/search', {
       templateUrl: "search",
-      controller: "SearchCtrl"
+      controller: "SearchCtrl",
+      reloadOnSearch: false
     })
     .when('/imports/:importId', {
       templateUrl: "import",
@@ -72,6 +73,7 @@
                   'rails',
                   'ui.bootstrap',
                   'Directory.alerts',
+                  'Directory.loader',
                   'Directory.loading'];
 
   window.directory = angular.module('Directory', depends);

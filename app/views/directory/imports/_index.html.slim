@@ -1,7 +1,7 @@
 script#imports type='text/ng-template'
-  div ng-show="imports"
+  div ng-show="csvImports"
     ul.media-list
-      li.media ng-repeat="import in imports" ng-class="{muted:(import.state == 'imported')}"
+      li.media ng-repeat="import in csvImports" ng-class="{muted:(import.state == 'imported')}"
         a.pull-left ng-href="/imports/{{import.id}}"
           img.media-object src='http://placekitten.com/85/85'
         .media-body
