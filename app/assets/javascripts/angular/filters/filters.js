@@ -18,7 +18,7 @@ angular.module('Directory.filters', ['Directory.models'])
     return things;
   };
 }])
-.filter('schemaMapped', function(Schema) {
+.filter('schemaMapped', ['Schema', function(Schema) {
   return function (columns, mapping) {
     var things = [];
     angular.forEach(columns, function(column) {
@@ -28,8 +28,8 @@ angular.module('Directory.filters', ['Directory.models'])
     });
     return things;
   }
-})
-.filter('isExtraField', function(Schema) {
+}])
+.filter('isExtraField', ['Schema', function(Schema) {
   return function isExtraField (headers, mapping) {
     if (mapping) {
       var things = [];
@@ -45,4 +45,4 @@ angular.module('Directory.filters', ['Directory.models'])
       return headers;
     }
   }
-});
+}]);
