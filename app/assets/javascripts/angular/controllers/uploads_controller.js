@@ -98,7 +98,7 @@
   }
 }])
 .controller('ImportsCtrl', ['$scope', 'CsvImport', 'Loader', function ($scope, CsvImport, Loader) {
-  Loader.page(CsvImport.query(), $scope);
+  Loader.page(CsvImport.query(), 'Imports', $scope);
 }])
 .controller('SearchCtrl', ['$scope', '$location', function ($scope, $location) {
   $scope.fetchResults = function (e) {
