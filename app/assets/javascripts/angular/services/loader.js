@@ -2,7 +2,6 @@ angular.module('Directory.loader', ['ngLoadingIndicators'])
 .factory('Loader', ['$q', 'loading', '$timeout', function ($q, loading, $timeout) {
 
   var cacheTable = {};
-  var cacheHits  = 0;
 
  function camelize (key) {
     if (!angular.isString(key)) {

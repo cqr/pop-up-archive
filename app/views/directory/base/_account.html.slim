@@ -5,8 +5,8 @@
       ul.dropdown-menu
         li= link_to('Log out', destroy_user_session_path, method: :delete, target: '_self' )
   ul.nav.pull-right ng-controller="AlertCtrl" 
-    li ng-class="{open:forceAlertsShow}"
-      a.dropdown-toggle ng-class="{'with-information':alertData.alerts.length}"
+    li
+      a.dropdown-toggle dropdown-open="forceAlertsShow" ng-class="{'with-information':alertData.alerts.length}"
         i.icon-tasks
       ul.dropdown-menu
         li.pending ng-show="alertData.alerts.length == 0"

@@ -672,13 +672,23 @@ angular.module('ui.bootstrap.dropdownToggle', []).directive('dropdownToggle',
         if (close) { close(); }
       });
 
+      scope.$watch(attrs.dropdownOpen, function (is, was) {
+        if (is && !was) {
+          open();
+        } else if (was && !is) {
+          if (close) { close(); }
+        }
+      });
+
       element.parent().bind('click', function(event) {
         if (close) { close(); }
       });
 
-      element.bind('click', function(event) {
-        event.preventDefault();
-        event.stopPropagation();
+      function open (event) {
+        if (event) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
 
         var iWasOpen = false;
 
@@ -704,7 +714,9 @@ angular.module('ui.bootstrap.dropdownToggle', []).directive('dropdownToggle',
 
           $document.bind('click', close);
         }
-      });
+      }
+
+      element.bind('click', open);
     }
   };
 }]);

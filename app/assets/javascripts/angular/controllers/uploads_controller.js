@@ -1,7 +1,7 @@
 (window.controllers = window.controllers || angular.module("Directory.controllers", ['Directory.alerts']))
 .controller("ImportCtrl", ['$scope', 'CsvImport', '$routeParams', 'Collection', 'Loader', function($scope, CsvImport, $routeParams, Collection, Loader) {
 
-  Loader.page(CsvImport.get($routeParams.importId), Collection.query(), 'import-'+$routeParams.importId, $scope).then(function (data) {
+  Loader.page(CsvImport.get($routeParams.importId), Collection.query(), 'importEdit-'+$routeParams.importId, $scope).then(function (data) {
     $scope.collections = [{id:0, title:"New Collection: " + $scope.csvImport.file}].concat($scope.collections);
   });
 
@@ -76,7 +76,7 @@
     });
   });
 }])
-.controller('AlertCtrl', ['$scope', 'Alert', function ($scope, Alert) {
+.controller('AlertCtrl', ['$scope', 'Alert', '$timeout', function ($scope, Alert, $timeout) {
   $scope.alertData = {};
   $scope.alertData.alerts = Alert.getAlerts();
 
@@ -92,6 +92,7 @@
   Alert.prototype.add = function () {
     if ($scope.alertData.alerts.length < 1) {
       $scope.forceAlertsShow = true;
+      $timeout(function () { $scope.forceAlertsShow = false }, 2000);
     }
     return oldAddAlert.call(this);
   }
