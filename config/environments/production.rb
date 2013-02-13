@@ -66,4 +66,16 @@ PopUpArchive::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   config.action_mailer.default_url_options = { :host => 'pop-up-archive.herokuapp.com' }
+
+  Sidekiq.configure_client do |config|
+    config.client_middleware do |chain|
+      chain.add Autoscaler::Sidekiq::Client, 'default' => Autoscaler::HerokuScaler.new
+    end
+  end
+
+  Sidekiq.configure_server do |config|
+    config.server_middleware do |chain|
+      chain.add(Autoscaler::Sidekiq::Server, Autoscaler::HerokuScaler.new, 300)
+    end
+  end
 end

@@ -65,6 +65,7 @@ gem 'sidekiq'
 
 group :development, :production do
   gem 'sinatra' # for sidekiq
+  gem "autoscaler", "~> 0.2.0"
 end
 
 # misc
