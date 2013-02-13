@@ -70,8 +70,8 @@ module PopUpArchive
     
     # Devise settings
     config.to_prepare do
-      Devise::RegistrationsController.layout('directory')
-      Devise::SessionsController.layout('directory')
+      Devise::RegistrationsController.layout('login')
+      Devise::SessionsController.layout('login')
     end
   end
 end
