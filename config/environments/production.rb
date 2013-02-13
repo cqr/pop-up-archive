@@ -67,6 +67,8 @@ PopUpArchive::Application.configure do
 
   config.action_mailer.default_url_options = { :host => 'pop-up-archive.herokuapp.com' }
 
+  require 'autoscaler/sidekiq'
+  require 'autoscaler/heroku_scaler'
   Sidekiq.configure_client do |config|
     config.client_middleware do |chain|
       chain.add Autoscaler::Sidekiq::Client, 'default' => Autoscaler::HerokuScaler.new
