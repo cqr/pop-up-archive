@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :provider, :uid, :name
 
-  after_save :create_default_collections!, if: :needs_default_collections?
+  before_validation :create_default_collections!
 
   belongs_to :default_private_collection, class_name: "Collection"
   belongs_to :default_public_collection, class_name: "Collection"
@@ -41,13 +41,11 @@ class User < ActiveRecord::Base
 
   private
 
-  def needs_default_collections?
-    self.default_public_collection.blank? || self.default_private_collection.blank?
-  end
-
   def create_default_collections!
-    (self.default_public_collection  = collections.create(title:"#{name}'s Public Collection"))
-    (self.default_private_collection = collections.create(title:"#{name}'s Private Collection"))
-    save
+    self.default_public_collection = Collection.new(title:"#{name}'s Public Collection")
+    self.collection_grants = [CollectionGrant.new do |grant|
+      grant.user = self
+      grant.collection = default_public_collection
+    end]
   end
 end

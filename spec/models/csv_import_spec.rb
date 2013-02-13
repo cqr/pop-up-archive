@@ -85,6 +85,8 @@ describe CsvImport do
     end
 
     after :all do
+      @analyzed_import.user.collections.destroy
+      @analyzed_import.user.destroy
       @analyzed_import.destroy
     end
 
