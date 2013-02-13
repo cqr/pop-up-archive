@@ -240,4 +240,7 @@ Devise.setup do |config|
 
   # PRX Login
   config.omniauth :prx, ENV['PRX_APP_KEY'], ENV['PRX_APP_SECRET']
+
+  config.omniauth :twitter, ENV['TWITTER_CONSUMER_KEY'], ENV['TWITTER_CONSUMER_SECRET']
+  config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET']
 end

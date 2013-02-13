@@ -1,0 +1,13 @@
+= form_for resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-signin'} do |f|
+  h2.form-signin-heading Sign in to PopUp Archive
+  - flash.each do |type, message|
+    .alert= message
+  = f.email_field :email, autofocus: true, placeholder: "Email Address"
+  br 
+  = f.password_field :password, placeholder: "Password"
+  label.checkbox
+    = f.check_box :remember_me
+    | Remember me
+  button.btn.btn-primary.btn-large Sign In
+
+= render "devise/shared/links"

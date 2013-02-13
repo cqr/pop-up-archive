@@ -1,0 +1,12 @@
+doctype html
+html lang='en'
+  head
+    meta charset='utf-8'
+    title PopUpArchive
+    = stylesheet_link_tag 'login/base', media: 'all'
+    = csrf_meta_tags
+  body
+    .container
+      .container-login
+        == yield
+        = render('footer')

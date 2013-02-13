@@ -51,7 +51,10 @@ gem 'decent_exposure'
 gem 'omniauth'
 gem 'omniauth-oauth2', '~> 1.1.0'
 gem "omniauth-prx", git: 'git://github.com/PRX/omniauth-prx.git'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
 gem 'devise'
+gem 'bootstrap_form'
 
 # search with elasticsearch
 gem 'tire'
