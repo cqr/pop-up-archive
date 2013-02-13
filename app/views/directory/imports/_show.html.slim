@@ -34,7 +34,7 @@ script#import type='text/ng-template'
         tbody
           tr ng-repeat='column in schema.columns | schemaMapped:csvImport.mappings'
             th {{column.humanName}}
-            td ng-repeat='row in csvImport.previewRows' {{schema.getValue(column, import.mappings, row)}}
+            td ng-repeat='row in csvImport.previewRows' {{schema.getValue(column, csvImport.mappings, row)}}
           tr.warning ng-repeat="header in csvImport.headers | isExtraField:csvImport.mappings"
             td
               i.icon-warning-sign  {{header}}

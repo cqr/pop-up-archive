@@ -1,5 +1,5 @@
-angular.module('Directory.alerts', [])
-.factory('Alert', ['$timeout', '$rootScope', function ($timeout, $rootScope) {
+angular.module('Directory.alerts', ['ngLoadingIndicators'])
+.factory('Alert', ['$timeout', 'loading', function ($timeout, loading) {
   var alerts = [];
 
   function schedulePeriodicUpdate (alert) {
@@ -8,7 +8,7 @@ angular.module('Directory.alerts', [])
         if (!(alert.done || alert.path || alert.progress == 100)){
           schedulePeriodicUpdate(alert);
         } else {
-          $rootScope.loading(false);
+          loading(false);
         }
         return arg;
       });
@@ -37,7 +37,7 @@ angular.module('Directory.alerts', [])
       if (typeof this.sync == 'function') {
         promise = this.sync(this);
         if (promise && typeof promise.then == 'function') {
-          $rootScope.loading(true);
+          loading(true);
           schedulePeriodicUpdate(this);
         }
       }

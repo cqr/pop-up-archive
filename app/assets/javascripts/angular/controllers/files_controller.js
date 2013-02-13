@@ -28,7 +28,7 @@
         var alert = new Alert();
 
         alert.status = "Uploading";
-        alert.progress = 0;
+        alert.progress = 1;
         alert.message = file.name;
 
         alert.add();

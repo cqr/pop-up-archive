@@ -73,8 +73,7 @@
                   'rails',
                   'ui.bootstrap',
                   'Directory.alerts',
-                  'Directory.loader',
-                  'Directory.loading'];
+                  'Directory.loader'];
 
   window.directory = angular.module('Directory', depends);
   window.directory.config(["$httpProvider", "$locationProvider", "$routeProvider", applicationConfig]);

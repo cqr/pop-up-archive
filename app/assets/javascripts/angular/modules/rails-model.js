@@ -10,17 +10,17 @@ angular.module('RailsModel', ['rails'])
 
     factory.prototype.update = function () {
       this.isSaving = true;
-      originalUpdate.apply(this, arguments).then(function(data) { data.isSaving = false });
+      return originalUpdate.apply(this, arguments).then(function(data) { data.isSaving = false });
     }
 
     factory.prototype.create = function () {
       this.isSaving = true;
-      originalCreate.apply(this, arguments).then(function(data) { data.isSaving = false });
+      return originalCreate.apply(this, arguments).then(function(data) { data.isSaving = false });
     }
 
     factory.prototype.remove = function () {
       this.isSaving = true;
-      originalRemove.apply(this, arguments).then(function(data) { data.isSaving = false });
+      return originalRemove.apply(this, arguments).then(function(data) { data.isSaving = false });
     }
 
     return factory;

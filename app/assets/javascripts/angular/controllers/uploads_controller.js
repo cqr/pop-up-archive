@@ -1,25 +1,7 @@
 (window.controllers = window.controllers || angular.module("Directory.controllers", ['Directory.alerts']))
-.controller('UploadsCtrl', ['$scope', '$http', function($scope, $http) {
-  $scope.upload = function() {
-
-    var file = $scope.uploads[0];
-
-    var fData = new FormData();
-    fData.append('csv_import[file]', file);
-    $http({
-      method: 'POST',
-      url: '/api/csv_imports',
-      data: fData,
-      headers: { "Content-Type": undefined },
-      transformRequest: angular.identity
-    }).success(function(data, status, headers, config) {
-      $scope.import = data
-    });
-  }
-}])
 .controller("ImportCtrl", ['$scope', 'CsvImport', '$routeParams', 'Collection', 'Loader', function($scope, CsvImport, $routeParams, Collection, Loader) {
 
-  Loader.loadPage(CsvImport.get($routeParams.importId), Collection.query(), $scope).then(function () {
+  Loader.page(CsvImport.get($routeParams.importId), Collection.query(), $scope).then(function () {
     $scope.collections = [{id:0, title:"New Collection: " + $scope.csvImport.file}].concat($scope.collections);
   });
 
@@ -38,14 +20,16 @@
   $scope.schema = Schema.get();
 
   $scope.submitMapping = function submitMapping () {
-    $scope.import.commit = 'import';
-    var alert = new Alert({status:"Submitting", message:$scope.import.file, progress:1});
-    alert.import = $scope.import;
+    var i = $scope.csvImport;
+    i.commit = 'import';
+    var alert = new Alert({status:"Submitting", message:i.file, progress:1});
+    alert.i = i;
     alert.add();
-    alert.import.update().then(function () {
+    console.log(i);
+    i.update().then(function () {
       alert.sync = function (alert) {
-        return alert.import.constructor.get(alert.import.id).then(function(im) {
-          alert.import = im;
+        return alert.i.constructor.get(alert.i.id).then(function(im) {
+          alert.i = im;
           if (im.state == 'error') {
             alert.status = "Error";
             delete alert.progress;
@@ -68,8 +52,6 @@
       }
       alert.startSync();
     });
-
-    $scope.importDestination = 'new';
   }
 
   $scope.$watch('import.headers', function watchImportHeaders (headers) {
@@ -115,7 +97,7 @@
   }
 }])
 .controller('ImportsCtrl', ['$scope', 'CsvImport', 'Loader', function ($scope, CsvImport, Loader) {
-  Loader.loadPage(CsvImport.query(), $scope);
+  Loader.page(CsvImport.query(), $scope);
 }])
 .controller('SearchCtrl', ['$scope', '$location', function ($scope, $location) {
   $scope.fetchResults = function (e) {
@@ -125,14 +107,14 @@
 .controller('SearchResultsCtrl', ['$scope', 'Search', 'Loader', '$location', function ($scope, Search, Loader, $location) {
   
   $scope.search = {query: $location.search().query};
-  Loader.loadPage(Search.query({query:$scope.search.query}), $scope);
+  Loader.page(Search.query({query:$scope.search.query}), $scope);
 
   $scope.$watch(function () {
     return $location.search().query;
   }, function (is, was, scope) {
     if (was != is) {
       scope.search.query = $location.search().query;
-      Loader.load(Search.query({query:is}), scope);
+      Loader(Search.query({query:is}), scope);
     }
   });
 }]);
