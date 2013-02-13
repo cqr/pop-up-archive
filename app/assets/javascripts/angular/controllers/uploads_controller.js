@@ -1,7 +1,7 @@
 (window.controllers = window.controllers || angular.module("Directory.controllers", ['Directory.alerts']))
 .controller("ImportCtrl", ['$scope', 'CsvImport', '$routeParams', 'Collection', 'Loader', function($scope, CsvImport, $routeParams, Collection, Loader) {
 
-  Loader.page(CsvImport.get($routeParams.importId), Collection.query(), $scope).then(function () {
+  Loader.page(CsvImport.get($routeParams.importId), Collection.query(), 'import-'+$routeParams.importId, $scope).then(function (data) {
     $scope.collections = [{id:0, title:"New Collection: " + $scope.csvImport.file}].concat($scope.collections);
   });
 
