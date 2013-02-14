@@ -5,6 +5,10 @@
   = f.email_field :email, autofocus: true, placeholder: "Email Address"
   br 
   = f.password_field :password, placeholder: "Password"
+  .pull-right.social-signin
+    - resource_class.omniauth_providers.each do |provider|
+      = link_to "Login with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider), { target: '_self', class: "btn-auth btn-#{provider} pull-right" }
+      br/
   label.checkbox
     = f.check_box :remember_me
     | Remember me
