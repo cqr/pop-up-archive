@@ -16,6 +16,8 @@
 //= require angularjs/rails/resource
 //= require_tree ../angular
 
+if(window.location.hash=="#_=_"){window.location.hash = ""}
+
 ;(function() {
 
   function applicationConfig($httpProvider, $locationProvider, $routeProvider) {
