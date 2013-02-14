@@ -16,67 +16,26 @@ class User < ActiveRecord::Base
   has_many :collection_grants
   has_many :collections, through: :collection_grants
 
-  def self.find_for_prx_oauth(auth, signed_in_resource=nil)
-    user = User.where(:provider => auth.provider, :uid => auth.uid).first
-    unless user
-      user = User.create(
-        name: auth.info.name,
-        provider: auth.provider,
-        uid: auth.uid,
-        email: auth.info.email,
-        password: Devise.friendly_token[0,20]
-      )
-    end
-    user
-  end
 
-  def self.find_for_twitter_oauth(auth, signed_in_resource=nil)
-    user = User.where(provider: auth.provider, uid: auth.uid).first
-    unless user
-      user = User.create(
-        name: auth.info.name,
-        provider: auth.provider,
-        uid: auth.uid,
-        email: auth.info.email,
-        password: Devise.friendly_token[0,20]
-      )
-    end
-    user
-  end
-
-  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
-    user = User.where(provider: auth.provider, uid: auth.uid).first
-    unless user
-      user = User.create(
-        name: auth.info.name,
-        provider: auth.provider,
-        uid: auth.uid,
-        email: auth.info.email,
-        password: Devise.friendly_token[0,20]
-      )
-    end
-    user
+  def self.find_for_oauth(auth, signed_in_resource=nil)
+    where(provider: auth.provider, uid: auth.uid).first || (create do |user|
+      user.provider = auth.provider
+      user.uid      = auth.uid 
+      user.name     = auth.info.name
+      user.email    = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+    end)
   end
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if data = session["devise.prx_data"]
-        user.provider = 'prx'
-        user.uid = data['uid']
-        user.email = data["email"] if user.email.blank?
-        user.name  = data["name"]
-      elsif data = session["devise.twitter_data"]
-        user.provider = 'twitter'
-        user.uid = data['uid']
-        user.email = data["email"] if user.email.blank?
-        user.name = data["name"]
-      elsif data = session['devise.facebook_data']
-        user.provider = 'facebook'
-        user.uid = data['uid']
-        user.email = data['email'] if user.email.blank?
-        user.name = data['name']
+      if data = session["devise.oauth_data"]
+        user.provider = data['provider']
+        user.uid      = data['uid']
+        user.email    = data["email"] if user.email.blank?
+        user.name     = data["name"] if user.name.blank?
+        user.valid? if data[:should_validate]
       end
-      user.valid?
     end
   end
 
