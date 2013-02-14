@@ -69,9 +69,13 @@ module PopUpArchive
     config.assets.initialize_on_precompile = false
     
     # Devise settings
-    config.to_prepare do
+    config.to_prepare do |config|
       Devise::RegistrationsController.layout('login')
       Devise::SessionsController.layout('login')
     end
+
+    # SASS paths
+    config.sass.load_paths << File.expand_path('./lib/assets/stylesheets/')
+    config.sass.load_paths << File.expand_path('./vendor/assets/stylesheets/')
   end
 end
