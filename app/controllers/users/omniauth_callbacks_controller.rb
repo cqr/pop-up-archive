@@ -23,7 +23,19 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       session['devise.twitter_data'] = extract_keys(DATA_KEYS, request.env['omniauth.auth']['info'])
       session['devise.twitter_data']['uid'] = @user.uid
-      redirect_to new_user_registration_url, notice: "I'll need your email address to finish signing you in with Twitter."
+      redirect_to new_user_registration_url, notice: "We need your email address to finish signing you in with Twitter."
+    end
+  end
+
+  def facebook
+    @user = User.find_for_facebook_oauth(request.env['omniauth.auth'], current_user)
+
+    if @user.persisted?
+      sign_in_and_redirect @user, event: :authentication
+    else
+      session['devise.facebook_data'] = extract_keys(DATA_KEYS, request.env['omniauth.auth']['info'])
+      session['devise.facebook_data']['uid'] = @user.uid
+      redirect_to new_user_registration_url, notice: "We need some more information to finish signing you in with Facebook."
     end
   end
 
