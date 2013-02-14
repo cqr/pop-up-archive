@@ -75,7 +75,9 @@ module PopUpArchive
     end
 
     # SASS paths
-    config.sass.load_paths << File.expand_path('./lib/assets/stylesheets/')
-    config.sass.load_paths << File.expand_path('./vendor/assets/stylesheets/')
+    if ENV['RAILS_GROUPS'] == 'assets' || ! Rails.env.production?
+      config.sass.load_paths << File.expand_path('./lib/assets/stylesheets/')
+      config.sass.load_paths << File.expand_path('./vendor/assets/stylesheets/')
+    end
   end
 end
