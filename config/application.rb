@@ -72,6 +72,7 @@ module PopUpArchive
     config.to_prepare do |config|
       Devise::RegistrationsController.layout('login')
       Devise::SessionsController.layout('login')
+      Devise::PasswordsController.layout('login')
     end
 
     # SASS paths
