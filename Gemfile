@@ -17,6 +17,7 @@ gem 'postgres_ext'
 gem 'acts_as_list'
 
 group :assets do
+  gem 'sprockets'
   gem 'sass-rails',   '~> 3.2.3'
   gem 'uglifier', '>= 1.0.3'
   gem 'bootstrap-sass'
