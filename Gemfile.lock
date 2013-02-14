@@ -119,7 +119,7 @@ GEM
     facter (1.6.17)
     factory_girl (4.2.0)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.2.0)
+    factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
     faraday (0.8.4)
