@@ -5,10 +5,11 @@ angular.module('RailsUjs', [])
       el.bind('click', function (e) {
         e.stopPropagation();
         e.preventDefault();
-
-        angular.element("<form target='" + attrs.href +
+        var form = angular.element("<div style='display:none'><form target='" + attrs.href +
           "' method='POST'><input type='hidden' name='_method' value='" + attrs.method +
-          "' ></form>")[0].submit();
+          "' ></form></div>")
+        el.parent().append(form);
+        form.children()[0].submit();
       });
     }
   }
