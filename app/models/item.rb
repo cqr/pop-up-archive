@@ -3,6 +3,10 @@ class Item < ActiveRecord::Base
   include Tire::Model::Callbacks
   include Tire::Model::Search
 
+  DEFAULT_INDEX_PARAMS = {
+    include: [:contributors, :interviewers, :interviewees, :producers, :creator]
+  }
+
   mapping do
     indexes :date_created,      type: 'date',   include_in_all: false
     indexes :date_broadcast,    type: 'date',   include_in_all: false
@@ -55,13 +59,8 @@ class Item < ActiveRecord::Base
     self.creators = [creator]
   end
 
-  def to_indexed_json
-    as_json.tap do |json|
-      json[:contributors] = contributors.map {|contributor| contributor.name }
-      json[:producers]    = producers.map {|producer| producer.name }
-      json[:interviewers] = interviewers.map {|interviewer| interviewer.name }
-      json[:interviewees] = interviewees.map {|interviewee| interviewee.name }
-      json[:creator]      = creator.name if creator.present?
+  def to_indexed_json(params={})
+    as_json(params.reverse_merge(DEFAULT_INDEX_PARAMS)).tap do |json|
       json[:location]     = geolocation.to_indexed_json if geolocation.present?
     end.to_json
   end
