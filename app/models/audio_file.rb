@@ -29,7 +29,7 @@ class AudioFile < ActiveRecord::Base
     MediaMonsterClient.create_job do |job|
       job.original = original_file_url
       job.job_type = "audio"
-      job.add_task task_type: 'copy', result: destination, call_back: audio_file_copied_callback
+      job.add_task task_type: 'copy', result: destination, call_back: audio_file_copied_callback_url
     end
     should_trigger_fixer_copy = false
   end
@@ -38,7 +38,7 @@ class AudioFile < ActiveRecord::Base
     file.store_path(File.basename(original_file_url))
   end
 
-  def audio_file_copied_callback
+  def audio_file_copied_callback_url
     Rails.application.routes.url_helpers.api_item_audio_file_url item_id, id
   end
 
