@@ -7,6 +7,10 @@ class Person < ActiveRecord::Base
     find_by_slug slugify string or create name: string
   end
 
+  def as_json(params={})
+    name.as_json
+  end
+
   private
 
   def generate_slug

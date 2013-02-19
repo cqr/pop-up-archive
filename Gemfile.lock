@@ -14,20 +14,20 @@ GIT
       rake
 
 GIT
+  remote: git://github.com/gistia/angular-rails.git
+  revision: 99c40ca28406ae71c1de11286b1a3cc3eb76667a
+  specs:
+    angular-rails (0.0.12)
+      coffee-script (~> 2.2.0)
+      railties
+
+GIT
   remote: git://github.com/rails/etagger.git
   revision: d7b62c2fb1de5cc9f7e398cc9e6c05dee6da2d84
   specs:
     etagger (1.0.0)
       actionpack (>= 3.2)
       activesupport (>= 3.2)
-
-GIT
-  remote: https://github.com/gistia/angular-rails
-  revision: 156ae783084ac6f9b5a74ec38e6f65c3473c18f3
-  specs:
-    angular-rails (0.0.12)
-      coffee-script (~> 2.2.0)
-      railties
 
 GEM
   remote: https://rubygems.org/
@@ -172,6 +172,11 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    media_monster_client (2.0.5)
+      activesupport
+      i18n
+      json
+      oauth
     metaclass (0.0.1)
     method_source (0.8.1)
     mime-types (1.21)
@@ -375,6 +380,7 @@ DEPENDENCIES
   geocoder
   guard-rspec
   guard-spork
+  media_monster_client
   multi_json (~> 1.5.0)
   omniauth
   omniauth-facebook

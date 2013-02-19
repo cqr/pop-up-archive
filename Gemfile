@@ -7,10 +7,11 @@ gem 'rails', '~> 3.2.0'
 # Rails 4 pre-prep
 gem 'strong_parameters'
 gem 'routing_concerns'
-gem 'etagger', git: 'git://github.com/rails/etagger.git'
+gem 'etagger', github: 'rails/etagger'
 gem 'cache_digests'
 gem 'dalli'
 
+gem 'media_monster_client'
 gem 'pg'
 gem 'activerecord-postgres-hstore', github: 'engageis/activerecord-postgres-hstore'
 gem 'postgres_ext'
@@ -24,7 +25,7 @@ group :assets do
   gem 'bootstrap-sass'
   gem 'angularjs-rails-resource'
   gem "font-awesome-sass-rails"
-  gem 'angular-rails', git: 'https://github.com/gistia/angular-rails'
+  gem 'angular-rails', github: 'gistia/angular-rails'
 end
 
 group :development do
@@ -52,7 +53,7 @@ gem 'decent_exposure'
 # login to prx.org using omniauth
 gem 'omniauth'
 gem 'omniauth-oauth2', '~> 1.1.0'
-gem "omniauth-prx", git: 'git://github.com/PRX/omniauth-prx.git'
+gem "omniauth-prx", github: 'PRX/omniauth-prx'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'devise'

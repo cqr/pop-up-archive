@@ -6,7 +6,11 @@ PopUpArchive::Application.routes.draw do
       root to: 'status#info'
 
       resource :search
-      resources :items
+      resources :items do
+        resources :audio_files do
+          post '', action: 'update'
+        end
+      end
       resources :collections
       resources :csv_imports
     end

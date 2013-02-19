@@ -3,6 +3,10 @@ class Item < ActiveRecord::Base
   include Tire::Model::Callbacks
   include Tire::Model::Search
 
+  DEFAULT_INDEX_PARAMS = {
+    include: [:contributors, :interviewers, :interviewees, :producers, :creator]
+  }
+
   mapping do
     indexes :date_created,      type: 'date',   include_in_all: false
     indexes :date_broadcast,    type: 'date',   include_in_all: false
@@ -30,17 +34,20 @@ class Item < ActiveRecord::Base
   belongs_to :geolocation
   belongs_to :csv_import
   belongs_to :collection
-  has_many  :contributions
-  has_many  :producer_contributions,    class_name: "Contribution", conditions: {role: "producer"}
-  has_many  :interviewer_contributions, class_name: "Contribution", conditions: {role: "interviewer"}
-  has_many  :interviewee_contributions, class_name: "Contribution", conditions: {role: "interviewee"}
-  has_one   :creator_contribution,      class_name: "Contribution", conditions: {role: "creator"}
-  has_many  :contributors, through: :contributions, source: :person
-  has_many  :interviewees, through: :interviewee_contributions, source: :person
-  has_many  :interviewers, through: :interviewer_contributions, source: :person
-  has_many  :producers,    through: :producer_contributions,    source: :person
-  has_one   :creator,      through: :creator_contribution,      source: :person
+  has_many   :contributions
+  has_many   :audio_files
+  has_many   :producer_contributions,    class_name: "Contribution", conditions: {role: "producer"}
+  has_many   :interviewer_contributions, class_name: "Contribution", conditions: {role: "interviewer"}
+  has_many   :interviewee_contributions, class_name: "Contribution", conditions: {role: "interviewee"}
+  has_one    :creator_contribution,      class_name: "Contribution", conditions: {role: "creator"}
+  has_many   :contributors, through: :contributions, source: :person
+  has_many   :interviewees, through: :interviewee_contributions, source: :person
+  has_many   :interviewers, through: :interviewer_contributions, source: :person
+  has_many   :producers,    through: :producer_contributions,    source: :person
+  has_one    :creator,      through: :creator_contribution,      source: :person
   serialize :extra, HstoreCoder
+
+  delegate :title, to: :collection, prefix: true
 
 
   def geographic_location=(name)
@@ -55,13 +62,8 @@ class Item < ActiveRecord::Base
     self.creators = [creator]
   end
 
-  def to_indexed_json
-    as_json.tap do |json|
-      json[:contributors] = contributors.map {|contributor| contributor.name }
-      json[:producers]    = producers.map {|producer| producer.name }
-      json[:interviewers] = interviewers.map {|interviewer| interviewer.name }
-      json[:interviewees] = interviewees.map {|interviewee| interviewee.name }
-      json[:creator]      = creator.name if creator.present?
+  def to_indexed_json(params={})
+    as_json(params.reverse_merge(DEFAULT_INDEX_PARAMS)).tap do |json|
       json[:location]     = geolocation.to_indexed_json if geolocation.present?
     end.to_json
   end
