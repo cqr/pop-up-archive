@@ -3,6 +3,8 @@ class ImportMapping < ActiveRecord::Base
   attr_accessible :column, :type
   acts_as_list scope: :csv_import_id
 
+  self.logger = Logger.new($stdout)
+
   def type=(val)
     self.data_type = val
   end
@@ -18,15 +20,22 @@ class ImportMapping < ActiveRecord::Base
         model = model.send(sender)
       end
 
-      if apply_column =~ /\[\]$/
-        apply_column = apply_column.sub(/\[\]$/, '')
-        model.send(apply_column).push(transform(value))
-      elsif
-        if model.respond_to?(:"#{apply_column}=")
-          model.send(:"#{apply_column}=", transform(value))
-        elsif model.respond_to?(:[]=)
-          model[apply_column.intern] = transform(value)
+      if apply_column =~ /\[\]/
+        apply_column, attrs = apply_column.split('[]', 2)
+        model = model.send(apply_column)
+        apply_column = attrs.gsub(/(?:^\[)|(?:\]$)/,'')
+      end
+
+      if apply_column.blank?
+        model.push(transformed_value)
+      elsif transformed_value.kind_of?(Enumerable) && model.respond_to?(:build)
+        transformed_value.each do |v|
+          model.build do |m|
+            put_value(m, apply_column, v)
+          end
         end
+      else
+        put_value(model, apply_column, transformed_value)
       end
     end
   end
@@ -34,6 +43,7 @@ class ImportMapping < ActiveRecord::Base
   private
 
   def transform(value)
+    ImportMapping.logger.debug("transforming #{value.inspect} as #{data_type}")
     if value.present?
       case data_type
       when "string" then value.to_s
@@ -48,6 +58,15 @@ class ImportMapping < ActiveRecord::Base
       end
     else
       value
+    end
+  end
+
+  def put_value(model, key, value)
+    ImportMapping.logger.debug("setting #{model.inspect}##{key}=#{value.inspect}")
+    if model.respond_to?(:"#{key}=")
+      model.send(:"#{key}=", value)
+    elsif model.respond_to?(:[]=)
+      model[key.intern] = value
     end
   end
 end

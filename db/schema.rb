@@ -11,15 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130219164915) do
+ActiveRecord::Schema.define(:version => 20130219180359) do
 
   add_extension "hstore"
 
   create_table "audio_files", :force => true do |t|
     t.integer  "item_id"
     t.string   "file"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "original_file_url"
   end
 
   add_index "audio_files", ["item_id"], :name => "index_audio_files_on_item_id"
