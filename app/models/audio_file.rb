@@ -31,6 +31,7 @@ class AudioFile < ActiveRecord::Base
       job.job_type = "audio"
       job.add_task task_type: 'copy', result: destination, call_back: audio_file_copied_callback
     end
+    should_trigger_fixer_copy = false
   end
 
   def file_path
@@ -42,6 +43,10 @@ class AudioFile < ActiveRecord::Base
   end
 
   def destination
-    (URI::Generic.build scheme: "s3", host: ENV['UPLOAD_S3_BUCKET'], path: "/#{file_path}").to_s
+    scheme = file.fog_credentials.provider.downcase
+    scheme = scheme == 'aws' ? 's3' : scheme
+    host   = file.fog_directory
+
+    (URI::Generic.build scheme: scheme, host: host, path: "/#{file_path}").to_s
   end
 end
