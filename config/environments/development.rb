@@ -37,4 +37,7 @@ PopUpArchive::Application.configure do
 
   # Required configuration for Devise
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  # And fixer (for testing)
+  Rails.application.routes.default_url_options = { host: 'pop-up-archive.dev' } 
 end
