@@ -43,8 +43,11 @@ class AudioFile < ActiveRecord::Base
   end
 
   def destination
-    scheme = file.fog_credentials.provider.downcase
-    scheme = scheme == 'aws' ? 's3' : scheme
+    scheme = case file.fog_credentials.provider.downcase
+    when 'aws' then 's3'
+    when 'internetarchive' then 'ia'
+    end
+    
     host   = file.fog_directory
 
     (URI::Generic.build scheme: scheme, host: host, path: "/#{file_path}").to_s
