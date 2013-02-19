@@ -5,6 +5,10 @@ class AudioFileUploader < CarrierWave::Uploader::Base
   include Sprockets::Helpers::RailsHelper
   include Sprockets::Helpers::IsolatedHelper
 
+  def store_dir
+    "#{model.collection_title}/audio_files"
+  end
+
   def extension_white_list
     ['mp3', 'wav', 'mp2', 'aac']
   end

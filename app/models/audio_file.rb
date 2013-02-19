@@ -5,6 +5,8 @@ class AudioFile < ActiveRecord::Base
   after_commit :fixer_copy, if: :should_trigger_fixer_copy
   attr_accessor :should_trigger_fixer_copy
 
+  delegate :collection_title, to: :item
+
   def remote_file_url=(url)
     self.should_trigger_fixer_copy = !!url
     self.original_file_url = url
@@ -43,12 +45,12 @@ class AudioFile < ActiveRecord::Base
   end
 
   def destination
-    scheme = case file.fog_credentials.provider.downcase
+    scheme = case file.fog_credentials[:provider].downcase
     when 'aws' then 's3'
     when 'internetarchive' then 'ia'
     end
-    
-    host   = file.fog_directory
+
+    host = file.fog_directory
 
     (URI::Generic.build scheme: scheme, host: host, path: "/#{file_path}").to_s
   end

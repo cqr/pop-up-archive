@@ -47,6 +47,8 @@ class Item < ActiveRecord::Base
   has_one    :creator,      through: :creator_contribution,      source: :person
   serialize :extra, HstoreCoder
 
+  delegate :title, to: :collection, prefix: true
+
 
   def geographic_location=(name)
     self.geolocation = Geolocation.for_name(name)
