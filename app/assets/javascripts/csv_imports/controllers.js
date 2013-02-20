@@ -16,8 +16,12 @@ angular.module('Directory.csvImport.controllers', ['Directory.alerts', 'Director
   }
 
 }])
-.controller("ImportMappingCtrl", ['$scope', 'Schema', 'Alert', function ($scope, Schema, Alert) {
+.controller("ImportMappingCtrl", ['$scope', 'Schema', 'Alert', 'MappingSet', function ($scope, Schema, Alert, MappingSet) {
   $scope.schema = Schema.get();
+
+  $scope.parseNestedQuery = window.parseNestedQuery;
+
+  $scope.mappingSet = new MappingSet();
 
   $scope.submitMapping = function submitMapping () {
     var i = $scope.csvImport;
@@ -55,9 +59,17 @@ angular.module('Directory.csvImport.controllers', ['Directory.alerts', 'Director
 
   $scope.$watch('csvImport.headers', function watchImportHeaders (headers) {
     angular.forEach(headers, function forEachHeader (header, index) {
+      $scope.$watch('mappingSet.mappingAsArry['+index+']', function (columnName, was) {
+        if (columnName) {
+          $scope.csvImport.mappings[index].column = columnName;
+        } else if (was) {
+          $scope.csvImport.resetMappingToExtra(index);
+        }
+      });
       $scope.$watch('csvImport.mappings['+index+'].column', function watchMappingColumn (columnName) {
           if (columnName) {
             var type, column = $scope.schema.columnByName(columnName);
+            $scope.mappingSet.set(index, columnName);
             if (column) {
               type = $scope.schema.types.get(column.typeId);
               $scope.csvImport.mappings[index].type = type.name;

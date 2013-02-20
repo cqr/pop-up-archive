@@ -20,6 +20,7 @@ form.form-inline ng-controller="ImportMappingCtrl"
           select ng-model="csvImport.mappings[$index].type" ng-options="type.name as type.humanName for type in schema.types"
         td
           select ng-model="csvImport.mappings[$index].column" ng-options="column.name as column.humanName group by schema.types[column.typeId].humanName for column in schema.columnsWith(header) | type:csvImport.mappings[$index].type"
+
   button.btn.pull-right ng-click="getNewPreviewRows()"
     i.icon-refresh  Fetch New Previews
   h3 Preview

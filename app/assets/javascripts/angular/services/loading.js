@@ -47,9 +47,11 @@
     return function (promise) {
       return promise.then(function (response) {
         actuallyIsLoading -= 1;
+        if (actuallyIsLoading < 0) actuallyIsLoading = 0;
         return response;
       }, function (response) {
         actuallyIsLoading -= 1;
+        if (actuallyIsLoading < 0) actuallyIsLoading = 0;
         return $q.reject(response);
       });
     };
