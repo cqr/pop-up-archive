@@ -112,7 +112,7 @@ describe CsvImport do
     end
 
     it "should map uncategorizable fields using a standard method" do
-      analyzed_import.mappings.first.column.should eq "extra.record_type"
+      analyzed_import.mappings.first.column.should eq "extra[record_type]"
     end
   end
 
