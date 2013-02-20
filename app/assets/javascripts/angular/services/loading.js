@@ -4,7 +4,7 @@
    * Chris Rhoden 2013 for PRX and Pop Up Archive.
    */
 
-  var $realRootScope, actuallyIsLoading, pretendLoading = 0, pageLoadings = 0;
+  var $realRootScope, actuallyIsLoading = 0, pretendLoading = 0, pageLoadings = 0;
 
   function loading (val) {
     if (val === true) {
@@ -32,7 +32,7 @@
   .config(['$httpProvider', function ($httpProvider) {
     $httpProvider.responseInterceptors.push('myHttpInterceptor');
     function setIsLoading (data, headersGetter) {
-      actuallyIsLoading = true;
+      actuallyIsLoading += 1;
       return data;
     };
     $httpProvider.defaults.transformRequest.push(setIsLoading);
@@ -46,10 +46,10 @@
 
     return function (promise) {
       return promise.then(function (response) {
-        actuallyIsLoading = false;
+        actuallyIsLoading -= 1;
         return response;
       }, function (response) {
-        actuallyIsLoading = false;
+        actuallyIsLoading -= 1;
         return $q.reject(response);
       });
     };

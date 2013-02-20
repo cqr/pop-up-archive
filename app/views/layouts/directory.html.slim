@@ -7,15 +7,11 @@ html lang='en' ng-app='Directory'
 
     = stylesheet_link_tag 'directory/base', media: 'all'
     = javascript_include_tag 'directory/application'
-    = javascript_include_tag 'http://code.angularjs.org/1.1.2/angular-resource.min.js'
-    = javascript_include_tag 'http://code.angularjs.org/1.1.2/angular-bootstrap.min.js'
     = csrf_meta_tags
   body ng-controller="FilesCtrl" file-dropzone="files"
     header= render('header')
     .container== yield
     footer= render('footer')
-
-    = render('/directory/base/angular_templates')
 
     script#pending-action type='text/ng-template'
       a ng-href='{{action.path}}' ng-click="removeAction($index)" {{action.message}}

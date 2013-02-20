@@ -1,4 +1,4 @@
-(window.controllers = window.controllers || angular.module('Directory.controllers', ['Directory.alerts']))
+angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.csvImports.models', 'Directory.alerts'])
 .controller('FilesCtrl', ['$scope', '$http', 'CsvImport', '$timeout', 'Alert', function ($scope, $http, CsvImport, $timeout, Alert) {
   $scope.files = [];
 

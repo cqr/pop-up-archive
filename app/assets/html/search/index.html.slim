@@ -1,0 +1,9 @@
+div ng-controller="SearchResultsCtrl"
+  form.form-search.form-big ng-controller="SearchCtrl" ng-submit="fetchResults(this)"
+    .input-append
+      input.search-query.span10 ng-model='search.query' type='search' placeholder="Search Query"
+      button.btn.span2.pull-right type='submit'
+        i.icon-search 
+
+  ng-include src="'/assets/items/index.html'"
+  .pull-right {{search.results.length}} results

@@ -1,4 +1,4 @@
-angular.module('Directory.models', ['RailsModel'])
+angular.module('Directory.csvImports.models', ['RailsModel'])
 .factory('CsvImport', ['Model', function (Model) {
   var CsvImport = Model({url:'/api/csv_imports', name: 'csv_import'});
 
@@ -14,22 +14,6 @@ angular.module('Directory.models', ['RailsModel'])
   CsvImport.attrAccessible = ['mappingsAttributes', 'collectionId', 'commit'];
 
   return CsvImport;
-}])
-.factory('Item', ['Model', function (Model) {
-  var Item = Model({url:'/api/items', name: 'item'});
-
-  return Item;
-}])
-.factory('Collection', ['Model', function (Model) {
-  var Collection = Model({url:'/api/collections', name: 'collection'});
-  Collection.attrAccessible = ['title', 'description'];
-  
-  return Collection;
-}])
-.factory('Search', ['Model', function (Model) {
-  var Search = Model({url:'/api/search', name: 'search'});
-
-  return Search;
 }])
 .factory('Schema', [function () {
   var schema = {columns: [], types: [{humanName: '---', name: '*'}], get: function () { return schema }};
