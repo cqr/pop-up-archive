@@ -1,4 +1,4 @@
-(window.controllers = window.controllers || angular.module('Directory.controllers', []))
+angular.module('Directory.collections.controllers', ['Directory.loader', 'Directory.collections.models'])
 .controller('CollectionsCtrl', ['$scope', 'Collection', 'Loader', function CollectionsCtrl($scope, Collection, Loader) {
   Loader.page(Collection.query(), 'Collections', $scope);
 
@@ -23,4 +23,3 @@
     });
   }
 }]);
-

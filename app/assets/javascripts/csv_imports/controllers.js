@@ -1,4 +1,4 @@
-(window.controllers = window.controllers || angular.module("Directory.controllers", ['Directory.alerts']))
+angular.module('Directory.csvImport.controllers', ['Directory.alerts', 'Directory.csvImports.models', 'Directory.collections.models', 'Directory.loader', 'Directory.csvImports.filters'])
 .controller("ImportCtrl", ['$scope', 'CsvImport', '$routeParams', 'Collection', 'Loader', function($scope, CsvImport, $routeParams, Collection, Loader) {
 
   Loader.page(CsvImport.get($routeParams.importId), Collection.query(), 'importEdit-'+$routeParams.importId, $scope).then(function (data) {
@@ -100,22 +100,3 @@
 .controller('ImportsCtrl', ['$scope', 'CsvImport', 'Loader', function ($scope, CsvImport, Loader) {
   Loader.page(CsvImport.query(), 'Imports', $scope);
 }])
-.controller('SearchCtrl', ['$scope', '$location', function ($scope, $location) {
-  $scope.fetchResults = function (e) {
-    $location.path('/search').search('query', $scope.search.query);
-  }
-}])
-.controller('SearchResultsCtrl', ['$scope', 'Search', 'Loader', '$location', function ($scope, Search, Loader, $location) {
-  
-  $scope.search = {query: $location.search().query};
-  Loader.page(Search.query({query:$scope.search.query}), $scope);
-
-  $scope.$watch(function () {
-    return $location.search().query;
-  }, function (is, was, scope) {
-    if (was != is) {
-      scope.search.query = $location.search().query;
-      Loader(Search.query({query:is}), scope);
-    }
-  });
-}]);

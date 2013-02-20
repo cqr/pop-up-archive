@@ -1,4 +1,4 @@
-angular.module('Directory.filters', ['Directory.models'])
+angular.module('Directory.csvImports.filters', ['Directory.csvImports.models'])
 .filter('type', ['Schema', function(Schema) {
   return function (inputs, cond) {
     if (typeof cond == 'undefined' || cond == null || cond == '' || cond == '*') {

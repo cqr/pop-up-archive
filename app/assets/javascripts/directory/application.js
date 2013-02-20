@@ -14,7 +14,7 @@
 //= require angular
 //= require ui-bootstrap-tpls
 //= require angularjs/rails/resource
-//= require_tree ../angular
+//= require_tree ../
 
 if(window.location.hash=="#_=_"){window.location.hash = ""}
 
@@ -70,15 +70,13 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
 
   applicationConfig.$inject = ["$httpProvider", "$locationProvider", "$routeProvider"];
 
-  var depends =  ['fileDropzone',
-                  'Directory.controllers',
-                  'Directory.models',
-                  'Directory.filters',
-                  'rails',
-                  'ui.bootstrap',
-                  'Directory.alerts',
-                  'Directory.loader',
-                  'RailsUjs'];
+  var depends =  ['ui.bootstrap',
+                  'RailsUjs',
+                  'Directory.files.controllers',
+                  'Directory.csvImport.controllers',
+                  'Directory.searches.controllers',
+                  'Directory.items.controllers',
+                  'Directory.collections.controllers'];
 
   window.directory = angular.module('Directory', depends);
   window.directory.config(applicationConfig);
