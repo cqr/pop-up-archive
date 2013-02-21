@@ -145,3 +145,19 @@ form.form-big {
   opacity: 1;
   max-height: 100000px;
 }
+
+.player {
+  width: 400px;
+.scrubber {
+  border: 1px solid #666;
+  border-radius: 10px;
+  height: 30px;
+  overflow: hidden;
+
+  .bar {
+    width: 0;
+    height: 100%;
+    background: #000;
+  }
+}
+}
