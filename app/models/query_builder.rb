@@ -82,6 +82,7 @@ class QueryBuilder
 
   def filter_params
     return params[:filters] if params[:filters].present?
+    {}
   end
 
 
