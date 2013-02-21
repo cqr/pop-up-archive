@@ -3,7 +3,16 @@ div ng-controller="SearchResultsCtrl"
     .input-append
       input.search-query.span10 ng-model='search.query' type='search' placeholder="Search Query"
       button.btn.span2.pull-right type='submit'
-        i.icon-search 
-
+        i.icon-search
+  ul.pager
+    li.previous ng-show="search.page > 1"
+      a ng-click="backPage()" &larr; Back
+    li.next
+      a ng-click="nextPage()" More &rarr;
   ng-include src="'/assets/items/index.html'"
-  .pull-right {{search.totalHits}} results
+  ul.pager
+    li.previous ng-show="search.page > 1"
+      a ng-click="backPage()" &larr; Back
+    li.next
+      a ng-click="nextPage()" More &rarr;
+  center {{(search.page-1) * 25 + 1}} to {{(search.page) * 25}} of {{search.totalHits}} results.

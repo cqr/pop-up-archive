@@ -5,17 +5,7 @@ angular.module('Directory.searches.controllers', ['Directory.loader', 'Directory
   }
 }])
 .controller('SearchResultsCtrl', ['$scope', 'Search', 'Loader', '$location', '$routeParams', function ($scope, Search, Loader, $location, $routeParams) {
-  searchParams = {};
-  if ($routeParams.contributorName) {
-    searchParams['filters[contributor]'] = $routeParams.contributorName;
-  }
-
-  $scope.search = {query: $location.search().query};
-  if ($scope.search) {
-    searchParams.query = $scope.search.query;
-  }
-
-  $scope.search = Loader.page(Search.query(searchParams));
+  
 
   $scope.$watch(function () {
     return $location.search().query;
@@ -25,4 +15,34 @@ angular.module('Directory.searches.controllers', ['Directory.loader', 'Directory
       Loader(Search.query({query:is}), scope);
     }
   });
+
+  $scope.nextPage = function () {
+    $location.search('page', (parseInt($location.search().page) || 1) + 1);
+    fetchPage();
+  }
+
+  $scope.backPage = function () {
+    $location.search('page', (parseInt($location.search().page) || 2) - 1);
+    fetchPage();
+  }
+
+
+  function fetchPage () {
+    searchParams = {};
+    if ($routeParams.contributorName) {
+      searchParams['filters[contributor]'] = $routeParams.contributorName;
+    }
+
+    $scope.search = {query: $location.search().query, page: $location.search().page};
+    if ($scope.search) {
+      searchParams.query = $scope.search.query;
+    }
+    if ($scope.search.page) {
+      searchParams.page = $scope.search.page;
+    }
+
+    Loader(Search.query(searchParams), $scope);
+  }
+
+  fetchPage();
 }]);
