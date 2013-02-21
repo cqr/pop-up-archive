@@ -11,3 +11,17 @@ section ng-show="item.tags"
   ul
     li ng-repeat="tag in item.tags"
       button.btn ng-click="searchTags(tag)" {{tag}}
+section ng-controller="AudioFileCtrl"
+  h4 Audio File
+
+  .player
+    .scrubber
+        .bar ng-style="{width:player.time*100/player.duration+'%'}" 
+    span.timecodes.pull-right ng-show="player.duration" {{player.time | timeCode }} / {{player.duration | timeCode }}
+  button.btn.btn-link ng-disabled="player.time == 0" ng-click="player.rewind()"
+    i.icon-fast-backward
+  | &nbsp; 
+  button.btn.btn-link ng-hide="isPlaying()" ng-click="play()"
+    i.icon-play
+  button.btn-link ng-show="isPlaying()" ng-click="player.pause()"
+    i.icon-pause
