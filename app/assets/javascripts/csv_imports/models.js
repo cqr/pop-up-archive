@@ -1,24 +1,66 @@
 angular.module('Directory.csvImports.models', ['RailsModel'])
-.factory('CsvImport', ['Model', function (Model) {
+.factory('CsvImport', ['Model', 'Schema', function (Model, Schema) {
   var CsvImport = Model({url:'/api/csv_imports', name: 'csv_import'});
 
   CsvImport.prototype.editButtonMessage = function () {
     return this.state == 'imported' ? 'Edit' : 'Continue';
-  }
+  };
 
   CsvImport.prototype.cancel = function () {
     this.commit = 'cancel';
     return this.update();
-  }
+  };
+
+  CsvImport.prototype.resetMappingToExtra = function (index) {
+    this.mappings[index].column = Schema.columnize(this.headers[index]);
+    this.mappings[index].type =   '*';
+  };
 
   CsvImport.attrAccessible = ['mappingsAttributes', 'collectionId', 'commit'];
 
   return CsvImport;
 }])
+.factory('MappingSet', [function() {
+  function MappingSet() {
+    this.mappingAsHash = {};
+    this.mappingAsArry = [];
+  }
+
+  MappingSet.prototype = {
+    setByIndex: function(index, name) {
+      if (typeof index !== 'undefined' && name) {
+        // Check to see if we have any problems:
+        var problems = [];
+        normalizeParams(this.mappingAsHash, name, index, problems);
+        while (problems.length > 0) {
+          this.mappingAsArry[problems.pop()] = undefined;
+        }
+        
+        // Then reapply the whole thing.
+        this.mappingAsHash = {};
+        // Set the new value.
+        this.mappingAsArry[index] = name;
+
+        for (var i=0; i<this.mappingAsArry.length; i++) {
+          normalizeParams(this.mappingAsHash, this.mappingAsArry[i], i, problems);
+        }
+      }
+    },
+    setByName:  function(name, index) {
+      return this.setByIndex(index, name);
+    },
+    set: function(index, name) {
+      return this.setByIndex(index, name);
+    }
+  }
+
+  return MappingSet;
+}])
 .factory('Schema', [function () {
+
   var schema = {columns: [], types: [{humanName: '---', name: '*'}], get: function () { return schema }};
 
-  angular.forEach({
+  schema.typesByName = {
     string:      "Title / Label",
     short_text:  "Short Text",
     text:        "Longform Text",
@@ -27,12 +69,14 @@ angular.module('Directory.csvImports.models', ['RailsModel'])
     array:       "Comma Separated List",
     person:      "Person's Name",
     geolocation: "Geographic Location",
-  }, function (humanName, name) {
+  };
+
+  angular.forEach(schema.typesByName, function (humanName, name) {
     schema.types.push({humanName: humanName, name: name});
   });
 
   schema.columnize = function stringToColumnName(name) {
-    return 'extra.' + name.toLowerCase().replace(/\W+/g,'_');
+    return 'extra[' + escape(name.toLowerCase().replace(/\W+/g,'_')) + ']';
   }
 
   angular.forEach({
@@ -74,11 +118,15 @@ angular.module('Directory.csvImports.models', ['RailsModel'])
         columns = [];
 
     for (index in columnNames) {
-      columns.push({humanName: "Extra: " + columnNames[index], name: schema.columnize(columnNames[index])});
+      columns.push(schema.nameToColumn(columnNames[index]));
     }
 
     return schema.appendColumns(columns);
   };
+
+  schema.nameToColumn = function (name) {
+    return {humanName: "Extra: " + name, name: schema.columnize(name)};
+  }
 
   schema.columnByName = function (columnName) {
     for (var i=0; i < schema.columns.length; i++) {

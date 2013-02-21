@@ -3,7 +3,10 @@ class ImportMapping < ActiveRecord::Base
   attr_accessible :column, :type
   acts_as_list scope: :csv_import_id
 
-  self.logger = Logger.new($stdout)
+  @_stdout_logger = Logger.new($stdout)
+  def self.logger
+    @_stdout_logger
+  end
 
   def type=(val)
     self.data_type = val

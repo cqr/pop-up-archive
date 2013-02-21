@@ -16,8 +16,12 @@ angular.module('Directory.csvImport.controllers', ['Directory.alerts', 'Director
   }
 
 }])
-.controller("ImportMappingCtrl", ['$scope', 'Schema', 'Alert', function ($scope, Schema, Alert) {
+.controller("ImportMappingCtrl", ['$scope', 'Schema', 'Alert', 'MappingSet', function ($scope, Schema, Alert, MappingSet) {
   $scope.schema = Schema.get();
+
+  $scope.parseNestedQuery = window.parseNestedQuery;
+
+  $scope.mappingSet = new MappingSet();
 
   $scope.submitMapping = function submitMapping () {
     var i = $scope.csvImport;
@@ -25,7 +29,6 @@ angular.module('Directory.csvImport.controllers', ['Directory.alerts', 'Director
     var alert = new Alert({status:"Submitting", message:i.file, progress:1});
     alert.i = i;
     alert.add();
-    console.log(i);
     i.update().then(function () {
       alert.sync = function (alert) {
         return alert.i.constructor.get(alert.i.id).then(function(im) {
@@ -54,22 +57,30 @@ angular.module('Directory.csvImport.controllers', ['Directory.alerts', 'Director
     });
   }
 
-  $scope.$watch('import.headers', function watchImportHeaders (headers) {
+  $scope.$watch('csvImport.headers', function watchImportHeaders (headers) {
     angular.forEach(headers, function forEachHeader (header, index) {
-      $scope.$watch('import.mappings['+index+'].column', function watchMappingColumn (columnName) {
+      $scope.$watch('mappingSet.mappingAsArry['+index+']', function (columnName, was) {
+        if (columnName) {
+          $scope.csvImport.mappings[index].column = columnName;
+        } else if (was) {
+          $scope.csvImport.resetMappingToExtra(index);
+        }
+      });
+      $scope.$watch('csvImport.mappings['+index+'].column', function watchMappingColumn (columnName) {
           if (columnName) {
             var type, column = $scope.schema.columnByName(columnName);
+            $scope.mappingSet.set(index, columnName);
             if (column) {
               type = $scope.schema.types.get(column.typeId);
-              $scope.import.mappings[index].type = type.name;
+              $scope.csvImport.mappings[index].type = type.name;
             }
           }
         });
-        $scope.$watch('import.mapping['+index+'].type', function watchMappingType (typeName) {
+        $scope.$watch('csvImport.mappings['+index+'].type', function watchMappingType (typeName) {
           if (typeName) {
-            var column = $scope.schema.columnByName($scope.mapping[index].column);
+            var column = $scope.schema.columnByName($scope.csvImport.mappings[index].column);
             if (column && $scope.schema.types.get(column.typeId).name != typeName) {
-              $scope.import.mappings[index].column = undefined;
+              $scope.csvImport.mappings[index].column = undefined;
             }
           }
         });

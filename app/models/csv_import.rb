@@ -128,7 +128,25 @@ class CsvImport < ActiveRecord::Base
       when /identifier/ then ["identifier", "string"]
       when /interviewee/ then ["interviewees[]", "person"]
       when /piece|title/ then ["title", "string"]
+      when /duration/ then ["duration", "number"]
+      when /url|digital loc/ then ["audio_files[][remote_file_url]", "array"]
+      when /broadcast/ then ['date_broadcast', 'date']
       when /date/ then ["date_created", "date"]
+      when /interviewer/ then ["interviewers[]", 'person']
+      when /creator/ then ['creator', 'person']
+      when /producer/ then ['producers[]', 'person']
+      when /episode/ then ['episode_title', 'string']
+      when /series/ then ['series_title', 'string']
+      when /description/ then ['description', 'text']
+      when /rights/ then ['rights', 'text']
+      when /ph(.*)format/ then ['physical_format', 'short_text']
+      when /digital_format/ then ['digital_format', 'short_text']
+      when /hardcopy/ then ['physical_location', 'short_text']
+      when /digital|f(.*)m(.*)t(.*)/ then ['digital_format', 'short_text']
+      when /(music|sound)(.*)used/ then ['music_sound_used', 'short_text']
+      when /date(.*)peg/ then ['date_peg', 'short_text']
+      when /tags/ then ['tags', 'arrya']
+      when /geo|location/ then ['geographic_location', 'geolocation']
       else [make_column_name(header), "*"]
       end
 
@@ -139,6 +157,6 @@ class CsvImport < ActiveRecord::Base
   end
 
   def make_column_name(name)
-    "extra.#{name.downcase.gsub(/\W+/,'_')}"
-  end
+    "extra[#{name.downcase.gsub(/\W+/,'_')}]"
+  end                                  
 end

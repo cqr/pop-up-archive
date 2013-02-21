@@ -13,6 +13,7 @@
 //= require_tree .
 //= require angular
 //= require ui-bootstrap-tpls
+//= require angular-ui
 //= require angularjs/rails/resource
 //= require_tree ../
 
@@ -70,13 +71,15 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
 
   applicationConfig.$inject = ["$httpProvider", "$locationProvider", "$routeProvider"];
 
-  var depends =  ['ui.bootstrap',
+  var depends =  ['ui',
+                  'ui.bootstrap',
                   'RailsUjs',
                   'Directory.files.controllers',
                   'Directory.csvImport.controllers',
                   'Directory.searches.controllers',
                   'Directory.items.controllers',
-                  'Directory.collections.controllers'];
+                  'Directory.collections.controllers'
+                  ];
 
   window.directory = angular.module('Directory', depends);
   window.directory.config(applicationConfig);
