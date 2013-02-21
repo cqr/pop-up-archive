@@ -6,5 +6,4 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.it
   if ($routeParams.id) {
     $scope.item = Loader(Item.get($routeParams.id), 'Item/'+$routeParams.id);
   }
-
 }]);

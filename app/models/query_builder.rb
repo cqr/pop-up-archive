@@ -6,6 +6,12 @@ class QueryBuilder
     self.params = params
   end
 
+  def query
+    if query_string
+      yield(QueryString.new(query_string))
+    end
+  end
+
   def query_string
     params[:query]
   end
@@ -31,6 +37,12 @@ class QueryBuilder
     end
   end
 
+  def filters
+    (filter_params).map do |name, value|
+      Filter.new(name, value)
+    end
+  end
+
   class Facet
 
     attr_accessor :name, :type, :field_name, :options
@@ -40,7 +52,7 @@ class QueryBuilder
       self.name = "facet_#{name}"
     end
 
-    def block
+    def to_proc
       lambda {|x| x.send(:"#{type}", *arguments) }
     end
 
@@ -66,5 +78,55 @@ class QueryBuilder
       return {:"#{params[:facet].delete(:name)}" => params[:facet]}
     end
     {}
+  end
+
+  def filter_params
+    return params[:filters] if params[:filters].present?
+  end
+
+
+  class QueryString
+    def initialize(query_string)
+      @query_string = query_string
+    end
+
+    def to_proc
+      lambda {|x| x.string @query_string }
+    end
+  end
+
+  class MatchAll
+    def to_proc
+      lambda {|x| x.match_all }
+    end
+  end
+
+  class Filter
+    def initialize(name, value)
+      @name         = name
+      @type, @pairs = decode_value(value)
+    end
+
+    def to_proc
+      lambda {|x| x.send(@value[:type], @name.intern => @value[:value])}
+    end
+
+    def type
+      @type
+    end
+
+    def value
+      @pairs
+    end
+
+    private
+
+    def decode_value(value)
+      if value.kind_of? String
+        [:term, {@name => value}]
+      else
+        [value[:type], {@name => value[:value]}]
+      end
+    end
   end
 end

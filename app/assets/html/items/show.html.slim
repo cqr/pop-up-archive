@@ -5,4 +5,9 @@ section ng-repeat="contributorGroup in ['Producers','Interviewers','Interviewees
   h4 {{contributorGroup}}
   ul 
     li ng-repeat="contributor in item[contributorGroup.toLowerCase()]"
-      button.btn.btn-link ng-click="searchContributorByName(producer)" {{contributor}}
+      a.btn ng-href="/contributors/{{contributor}}" {{contributor}}
+section ng-show="item.tags"
+  h4 Tags
+  ul
+    li ng-repeat="tag in item.tags"
+      button.btn ng-click="searchTags(tag)" {{tag}}
