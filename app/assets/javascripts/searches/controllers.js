@@ -29,19 +29,19 @@ angular.module('Directory.searches.controllers', ['Directory.loader', 'Directory
 
   function fetchPage () {
     searchParams = {};
+
     if ($routeParams.contributorName) {
       searchParams['filters[contributor]'] = $routeParams.contributorName;
     }
 
-    $scope.search = {query: $location.search().query, page: $location.search().page};
-    if ($scope.search) {
-      searchParams.query = $scope.search.query;
-    }
-    if ($scope.search.page) {
-      searchParams.page = $scope.search.page;
-    }
+    searchParams.query = $location.search().query;
+    searchParams.page = $location.search().page;
 
-    Loader(Search.query(searchParams), $scope);
+    if (!$scope.search) {
+      $scope.search = Loader.page(Search.query(searchParams));
+    } else {
+      Loader(Search.query(searchParams), $scope);
+    }
   }
 
   fetchPage();
