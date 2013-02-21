@@ -26,35 +26,9 @@ angular.module('Directory.csvImport.controllers', ['Directory.alerts', 'Director
   $scope.submitMapping = function submitMapping () {
     var i = $scope.csvImport;
     i.commit = 'import';
-    var alert = new Alert({status:"Submitting", message:i.file, progress:1});
+    var alert = new Alert({status:"Submitting", message:i.file, progress:1, sync: i.alertSync()});
     alert.i = i;
     alert.add();
-    i.update().then(function () {
-      alert.sync = function (alert) {
-        return alert.i.constructor.get(alert.i.id).then(function(im) {
-          alert.i = im;
-          if (im.state == 'error') {
-            alert.status = "Error";
-            delete alert.progress;
-            alert.done = true;
-            alert.path = "/imports/" + im.id;
-          } else if (im.state == 'queued_import') {
-            alert.status = "Waiting";
-            alert.progress = 10;
-          } else if (im.state == 'importing') {
-            alert.status = "Importing";
-            alert.progress = 30;
-          } else if (im.state == 'imported') {
-            alert.status = "Imported";
-            alert.done = true;
-            alert.progress = 100;
-            alert.path = "/collections/" + im.collectionId; 
-          }
-          return im;
-        });
-      }
-      alert.startSync();
-    });
   }
 
   $scope.$watch('csvImport.headers', function watchImportHeaders (headers) {

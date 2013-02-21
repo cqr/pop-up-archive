@@ -15,6 +15,33 @@ angular.module('Directory.alerts', ['ngLoadingIndicators'])
     }, 500);
   }
 
+  function makeSyncWrapper (syncSpec) {
+    var pArgument = syncSpec.promise;
+    var pReceiver = pArgument.splice(0, 1)[0];
+    var pFunction = pArgument.splice(0, 1)[0];
+    return function (alert) {
+      return Function.prototype.apply.call(pFunction, pReceiver, pArgument).then(function (object) {
+        angular.forEach(syncSpec, function (hash, attribute) {
+          if (attribute != 'promise'){
+            angular.forEach(hash, function (options, value) {
+              if (object[attribute] == value) {
+                angular.forEach(options, function (alertValue, alertKey) {
+                  if (typeof alertValue === 'string') {
+                    alertValue = alertValue.replace(/\:(\w+)/g, function(m) {
+                      return object[m.replace(':','')];
+                    });
+                  }
+                  alert[alertKey] = alertValue;
+                });
+              }
+            });
+          }
+        });
+        return object;
+      });
+    }
+  }
+
   function Alert(data) {
     data = (data || {});
     this.status   = data.status;
@@ -40,6 +67,8 @@ angular.module('Directory.alerts', ['ngLoadingIndicators'])
           loading(true);
           schedulePeriodicUpdate(this);
         }
+      } else if (typeof this.sync == 'object') {
+        this.startSync(makeSyncWrapper(this.sync));
       }
     },
     

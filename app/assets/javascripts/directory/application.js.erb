@@ -50,9 +50,17 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
       templateUrl: "<%= asset_path 'collections/show.html' %>",
       controller: "CollectionCtrl"
     })
+    .when('/items/:id', {
+      templateUrl: "<%= asset_path 'items/show.html' %>",
+      controller:  "ItemCtrl"
+    })
     .when('/imports', {
       templateUrl: "<%= asset_path 'imports/index.html' %>",
       controller: "ImportsCtrl"
+    })
+    .when('/contributors/:contributorName', {
+      templateUrl: "<%= asset_path 'search/index.html' %>",
+      controller: "SearchCtrl"
     })
     .when('/search', {
       templateUrl: "<%= asset_path 'search/index.html' %>",

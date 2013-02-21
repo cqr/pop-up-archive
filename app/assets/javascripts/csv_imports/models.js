@@ -18,6 +18,20 @@ angular.module('Directory.csvImports.models', ['RailsModel'])
 
   CsvImport.attrAccessible = ['mappingsAttributes', 'collectionId', 'commit'];
 
+  CsvImport.prototype.alertSync = function () {
+    return {
+      'promise': [CsvImport, CsvImport.get, this.id],
+      'state':{
+        'analyzing':     {status: 'Analyzing', progress: 50},
+        'analyzed':      {status: 'Analyzed', done: true, progress: 100, path: '/imports/:id' },
+        'error':         {status: 'Error', progress:undefined, done: true, path: '/imports/:id' },
+        'queued_import': {status: 'Waiting', progress: 10},
+        'importing':     {status: 'Importing', progress: 30},
+        'imported':      {status: 'Imported', done: true, progress: 100, path: '/collections/:id' }
+      }
+    }
+  };
+
   return CsvImport;
 }])
 .factory('MappingSet', [function() {

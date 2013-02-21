@@ -1,0 +1,13 @@
+h1 {{item.title}}
+h3 ng-show="item.identifier" {{item.identifier}}
+
+section ng-repeat="contributorGroup in ['Producers','Interviewers','Interviewees']" ng-show="item[contributorGroup.toLowerCase()]"
+  h4 {{contributorGroup}}
+  ul 
+    li ng-repeat="contributor in item[contributorGroup.toLowerCase()]"
+      a.btn ng-href="/contributors/{{contributor}}" {{contributor}}
+section ng-show="item.tags"
+  h4 Tags
+  ul
+    li ng-repeat="tag in item.tags"
+      button.btn ng-click="searchTags(tag)" {{tag}}
