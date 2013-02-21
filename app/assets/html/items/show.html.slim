@@ -1,0 +1,8 @@
+h1 {{item.title}}
+h3 ng-show="item.identifier" {{item.identifier}}
+
+section ng-repeat="contributorGroup in ['Producers','Interviewers','Interviewees']" ng-show="item[contributorGroup.toLowerCase()]"
+  h4 {{contributorGroup}}
+  ul 
+    li ng-repeat="contributor in item[contributorGroup.toLowerCase()]"
+      button.btn.btn-link ng-click="searchContributorByName(producer)" {{contributor}}
