@@ -39,28 +39,28 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
 
     $routeProvider
     .when('/', {
-      templateUrl: "/assets/items/index.html",
+      templateUrl: "<%= asset_path '/items/index.html' %>",
       controller: "ItemsCtrl"
     })
     .when('/collections', {
-      templateUrl: "/assets/collections/index.html",
+      templateUrl: "<%= asset_path 'collections/index.html' %>",
       controller: "CollectionsCtrl"
     })
     .when('/collections/:collectionId', {
-      templateUrl: "/assets/collections/show.html",
+      templateUrl: "<%= asset_path 'collections/show.html' %>",
       controller: "CollectionCtrl"
     })
     .when('/imports', {
-      templateUrl: "/assets/imports/index.html",
+      templateUrl: "<%= asset_path 'imports/index.html' %>",
       controller: "ImportsCtrl"
     })
     .when('/search', {
-      templateUrl: "/assets/search/index.html",
+      templateUrl: "<%= asset_path 'search/index.html' %>",
       controller: "SearchCtrl",
       reloadOnSearch: false
     })
     .when('/imports/:importId', {
-      templateUrl: "/assets/imports/show.html",
+      templateUrl: "<%= asset_path 'imports/show.html' %>",
       controller: "ImportCtrl"
     })
     .otherwise({
