@@ -9,7 +9,12 @@ div ng-controller="SearchResultsCtrl"
       a ng-click="backPage()" &larr; Back
     li.next
       a ng-click="nextPage()" More &rarr;
-  ng-include src="'/assets/items/index.html'"
+  div ng-repeat="item in search.results"
+    h3 ng-show="item.getTitle()" {{item.getTitle()}}
+    p ng-show="item.getDescription()" {{item.getDescription()}}
+    span.label Created | {{item.created}}
+    span.label Broadcast | {{item.broadcast}}
+    span.label Added | {{item.added}}
   ul.pager
     li.previous ng-show="search.page > 1"
       a ng-click="backPage()" &larr; Back
