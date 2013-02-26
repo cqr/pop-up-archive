@@ -29,12 +29,6 @@ GIT
       actionpack (>= 3.2)
       activesupport (>= 3.2)
 
-PATH
-  remote: ~/dev/projects/pb_core
-  specs:
-    pb_core (0.0.1)
-      sax-machine
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -216,6 +210,8 @@ GEM
       multi_json (~> 1.3)
       omniauth-oauth (~> 1.0)
     orm_adapter (0.4.0)
+    pb_core (0.1.1)
+      sax-machine
     pg (0.14.1)
     pg_array_parser (0.0.8)
     polyglot (0.3.3)
@@ -395,7 +391,7 @@ DEPENDENCIES
   omniauth-oauth2 (~> 1.1.0)
   omniauth-prx!
   omniauth-twitter
-  pb_core!
+  pb_core (~> 0.1.1)
   pg
   postgres_ext
   rabl
