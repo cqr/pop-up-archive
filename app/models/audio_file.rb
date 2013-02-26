@@ -1,5 +1,6 @@
 class AudioFile < ActiveRecord::Base
   belongs_to :item
+  belongs_to :instance
   attr_accessible :file
   mount_uploader :file, ::AudioFileUploader
   after_commit :fixer_copy, if: :should_trigger_fixer_copy
