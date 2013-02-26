@@ -63,6 +63,10 @@ class Item < ActiveRecord::Base
     self.creators = [creator]
   end
 
+  def creator
+    self.creators.try(:first)
+  end
+
   def to_indexed_json(params={})
     as_json(params.reverse_merge(DEFAULT_INDEX_PARAMS)).tap do |json|
       json[:location]     = geolocation.to_indexed_json if geolocation.present?
