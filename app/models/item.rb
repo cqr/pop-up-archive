@@ -4,7 +4,7 @@ class Item < ActiveRecord::Base
   include Tire::Model::Search
 
   DEFAULT_INDEX_PARAMS = {
-    include: [:contributors, :interviewers, :interviewees, :producers, :creator]
+    include: [:contributors, :interviewers, :interviewees, :producers, :creators]
   }
 
   mapping do
@@ -35,16 +35,17 @@ class Item < ActiveRecord::Base
   belongs_to :csv_import
   belongs_to :collection
   has_many   :contributions
+  has_many   :instances
   has_many   :audio_files
   has_many   :producer_contributions,    class_name: "Contribution", conditions: {role: "producer"}
   has_many   :interviewer_contributions, class_name: "Contribution", conditions: {role: "interviewer"}
   has_many   :interviewee_contributions, class_name: "Contribution", conditions: {role: "interviewee"}
-  has_one    :creator_contribution,      class_name: "Contribution", conditions: {role: "creator"}
+  has_many   :creator_contributions,     class_name: "Contribution", conditions: {role: "creator"}
   has_many   :contributors, through: :contributions, source: :person
   has_many   :interviewees, through: :interviewee_contributions, source: :person
   has_many   :interviewers, through: :interviewer_contributions, source: :person
   has_many   :producers,    through: :producer_contributions,    source: :person
-  has_one    :creator,      through: :creator_contribution,      source: :person
+  has_many   :creators,     through: :creator_contributions,     source: :person
   serialize :extra, HstoreCoder
 
   delegate :title, to: :collection, prefix: true

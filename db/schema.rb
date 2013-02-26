@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130219180359) do
+ActiveRecord::Schema.define(:version => 20130225153835) do
 
   add_extension "hstore"
 
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(:version => 20130219180359) do
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.string   "original_file_url"
+    t.string   "identifier"
+    t.integer  "instance_id"
   end
 
   add_index "audio_files", ["item_id"], :name => "index_audio_files_on_item_id"
@@ -61,9 +63,9 @@ ActiveRecord::Schema.define(:version => 20130219180359) do
     t.integer  "state_index",   :default => 0
     t.string   "headers",                                      :array => true
     t.string   "file_name"
+    t.integer  "collection_id", :default => 0
     t.string   "error_message"
     t.text     "backtrace"
-    t.integer  "collection_id", :default => 0
     t.integer  "user_id"
   end
 
@@ -97,6 +99,16 @@ ActiveRecord::Schema.define(:version => 20130219180359) do
   end
 
   add_index "import_mappings", ["csv_import_id"], :name => "index_import_mappings_on_csv_import_id"
+
+  create_table "instances", :force => true do |t|
+    t.string   "identifier"
+    t.boolean  "digital"
+    t.string   "location"
+    t.string   "format"
+    t.integer  "item_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "items", :force => true do |t|
     t.string   "title"
