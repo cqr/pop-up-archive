@@ -1,5 +1,5 @@
-attributes :id, :title, :description, :date_created, :identifier, :producers, :interviewees, :creator
-attribute :_score => :score
+attributes :id, :title, :description, :date_created, :identifier, :producers, :interviewers, :interviewees, :creator
+attribute :_score => :score, created_at: :date_added
 attribute :tags
 
 node(:urls) do |i|

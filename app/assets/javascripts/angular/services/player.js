@@ -120,7 +120,7 @@ angular.module('ngPlayer', [])
             var percentage = (relativePosition / element.offsetHeight);
             if (timeoutComplete) {
               timeoutComplete = false
-              $timeout(function () { Player.seekTo(((percentage) * Player.duration)) }, 10).then(markTimeoutComplete, markTimeoutComplete);
+              $timeout(function () { Player.seekTo(((1-percentage) * Player.duration)) }, 10).then(markTimeoutComplete, markTimeoutComplete);
             }
           }
         }

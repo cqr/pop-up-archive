@@ -26,6 +26,29 @@ angular.module('Directory.searches.controllers', ['Directory.loader', 'Directory
     fetchPage();
   }
 
+  function getQueryParts() {
+    var queryParts = $location.search().query;
+    if (typeof queryParts !== 'undefined') {
+      return JSON.parse(queryParts);
+    } else {
+      return [];
+    }
+  }
+
+  function setQueryParts(parts) {
+    if (parts && parts.length) {
+      $location.search('query', JSON.stringify(parts));
+      fetchPage();
+    }
+  }
+
+
+  $scope.addSearchFilter = function (filter) {
+    var parts = getQueryParts();
+    parts.push(filter.field+":\""+filter.name+"\"");
+    setQueryParts(parts);
+  }
+
 
   function fetchPage () {
     searchParams = {};
@@ -34,8 +57,19 @@ angular.module('Directory.searches.controllers', ['Directory.loader', 'Directory
       searchParams['filters[contributor]'] = $routeParams.contributorName;
     }
 
-    searchParams.query = $location.search().query;
+    var queryParts = getQueryParts();
+    if (queryParts.length) {
+      searchParams.query = queryParts.join(" AND ");
+    }
     searchParams.page = $location.search().page;
+
+    var filters = $location.search().filters;
+
+    if (typeof filters !== 'undefined') {
+      angular.forEach(JSON.parse(filters), function (value, key) {
+        searchParams['filters['+key+']'] = value;
+      });
+    }
 
     if (!$scope.search) {
       $scope.search = Loader.page(Search.query(searchParams));

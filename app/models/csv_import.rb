@@ -1,7 +1,7 @@
 require 'csv'
 class CsvImport < ActiveRecord::Base
 
-  STATES = ["new", "queued_analyze", "analyzing", "analyzed", "queued_import", "importing", "imported", "error"]
+  STATES = ["new", "queued_analyze", "analyzing", "analyzed", "queued_import", "importing", "imported", "cancelled", "error"]
 
   attr_accessible :file, :mappings_attributes, :collection_id, :commit
   before_save :set_file_name, on: :create
@@ -110,9 +110,14 @@ class CsvImport < ActiveRecord::Base
 
   def enqueue_processing
     type_of_processing = (commit || 'analyze')
-    self.commit = nil
-    self.state = "queued_#{type_of_processing}"
-    CsvImportWorker.perform_async(id) unless Rails.env.test?
+    if type_of_processing == 'cancel'
+      self.commit = nil
+      self.state = 'cancelled'
+    else
+      self.commit = nil
+      self.state = "queued_#{type_of_processing}"
+      CsvImportWorker.perform_async(id) unless Rails.env.test?
+    end
   end
 
   def set_file_name
