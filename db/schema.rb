@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130225153835) do
+ActiveRecord::Schema.define(:version => 20130227192651) do
 
   add_extension "hstore"
 
@@ -23,6 +23,10 @@ ActiveRecord::Schema.define(:version => 20130225153835) do
     t.string   "original_file_url"
     t.string   "identifier"
     t.integer  "instance_id"
+    t.string   "url"
+    t.text     "transcript"
+    t.string   "format"
+    t.integer  "size"
   end
 
   add_index "audio_files", ["item_id"], :name => "index_audio_files_on_item_id"

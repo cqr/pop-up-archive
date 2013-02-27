@@ -31,6 +31,8 @@ namespace :import do
     i.creators          = doc.creators.collect{|c| Person.for_name(c.name.value)}
     i.contributions     = doc.contributors.collect{|c| Contribution.new(person:Person.for_name(c.name.value), role:c.role.value)}
     i.rights            = doc.rights.collect{|r| [r.summary.try(:value), r.link.try(:value), r.embedded.try(:value)].compact.join("\n") }.compact.join("\n")
+    i.notes             = doc.detect_element(:annotations, :type, ['notes']).try(:value)
+    i.transcription     = doc.detect_element(:annotations, :type, ['transcript']).try(:value)
 
     # process each instance
     doc.instantiations.each do |pbcInstance|
@@ -44,18 +46,23 @@ namespace :import do
         instance.format = pbcInstance.physical.value
       end
 
-      instance.location = pbcInstance.location
       instance.identifier = pbcInstance.detect_element(:identifiers, :source).try(:value)
+      instance.location = pbcInstance.location
 
       if pbcInstance.parts.blank?
         audio = instance.audio_files.build
-        audio.original_file_url = instance.location
-        audio.identifier = instance.detect_element(:identifiers, :source).try(:value)
+        audio.identifier        = pbcInstance.detect_element(:identifiers, :source).try(:value)
+        audio.original_file_url = pbcInstance.location
+        audio.size              = pbcInstance.file_size.try(:value)
       else
         pbcInstance.parts.each do |pbcPart|
           audio = instance.audio_files.build
-          audio.original_file_url = pbcPart.detect_element(:identifiers, :source).try(:value)
-          audio.identifier = pbcPart.detect_element(:identifiers, :source).try(:value)
+          audio.identifier        = pbcPart.detect_element(:identifiers, :source, [/item_id$/]).try(:value)
+          audio.original_file_url = pbcPart.detect_element(:identifiers, :source, [/original_filename$/]).try(:value)
+          audio.url               = pbcPart.location
+          audio.format            = pbcPart.digital.value
+          audio.size              = pbcPart.file_size.try(:value).to_i
+          puts "pbcPart.file_size: #{pbcPart.file_size.inspect}, audio.size: #{audio.size}"
         end   
       end
 
@@ -64,6 +71,7 @@ namespace :import do
     end
 
     i.save!    
+    puts i.inspect
   end
 
 end

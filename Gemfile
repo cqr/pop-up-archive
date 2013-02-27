@@ -84,5 +84,4 @@ gem 'will_paginate'
 gem 'carrierwave'
 gem 'fog'
 
-gem 'pb_core', "~> 0.1.1"
-
+gem 'pb_core', "~> 0.1.3"
