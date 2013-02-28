@@ -1,9 +1,13 @@
 div ng-controller="SearchResultsCtrl"
-  form.form-search.form-big ng-controller="SearchCtrl" ng-submit="fetchResults(this)"
+  form.form-search.form-big ng-controller="SearchCtrl" ng-submit="query.commit()"
     .input-append
-      input.search-query.span10 ng-model='search.query' type='search' placeholder="Search Query"
+      input.search-query.span10 ng-model='query.string' type='search' placeholder="Search Query"
       button.btn.span2.pull-right type='submit'
         i.icon-search
+      br
+      br
+      ul.inline
+        li.label ng-repeat="part in query.queryParts" {{part}}
   ul.pager
     li.previous ng-show="search.page > 1"
       a ng-click="backPage()" &larr; Back
@@ -11,16 +15,16 @@ div ng-controller="SearchResultsCtrl"
       a ng-click="nextPage()" More &rarr;
   .row
     .span3
-      .well
-        section ng-repeat="facet in search.facetsAsObjects()" ng-show="facet.visible()"
-          h5 {{facet.name}}
+      .well ng-repeat="facet in search.facetsAsObjects()" ng-show="facet.visible()"
+          strong {{facet.name}}
           ul.unstyled.terms
             li ng-repeat="entry in facet.entries()"
               small.pull-right ({{entry.count}}) 
               .label.label-info ng-click="addSearchFilter(entry)" {{entry.name}}
+      section
+        .pull-right {{search.totalHits}} results.
     .span9
       .media.search-result ng-repeat="item in search.resultsAsItems()"
-
         .media-body
           a.pull-left ng-href="/items/{{item.id}}"
             img.media-object src="http://placedog.com/85/85?i={{item.dateAdded}}"

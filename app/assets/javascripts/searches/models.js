@@ -21,7 +21,7 @@ angular.module('Directory.searches.models', ['RailsModel', 'Directory.items.mode
   }
 
   Search.prototype.firstItemNumber = function () {
-    return Math.max((this.page-1)*25 + 1, 1);
+    return Math.min((this.page-1)*25 + 1, this.totalHits);
   }
 
   Search.prototype.hasMoreResults = function () {
@@ -41,9 +41,18 @@ angular.module('Directory.searches.models', ['RailsModel', 'Directory.items.mode
     return this._facetObjects;
   }
 
+  Search.prototype.aFacetIsVisible = function () {
+    var aFacetIsVisible = false;
+    angular.forEach(this.facetsAsObjects(), function (facet) {
+      if (facet.visible()) 
+        aFacetIsVisible = true;
+    });
+    return aFacetIsVisible;
+  }
+
   return Search;
 }])
-.factory('Facet', function() {
+.factory('Facet', function () {
   function FacetEntry(name, count, field) {
     this.name = name;
     this.count = count;
@@ -78,4 +87,73 @@ angular.module('Directory.searches.models', ['RailsModel', 'Directory.items.mode
   }
 
   return Facet;
-});
+})
+.factory('Query', ['$location', function ($location) {
+  function getSearchFromQueryString (queryString) {
+    if (typeof queryString !== 'undefined' && queryString !== null) {
+      if (angular.isArray(queryString)) {
+        return queryString;
+      }
+      var match = queryString.match(/('(?:[^']|\\')+'|"(?:[^"]|\\")+"|[^,]+)/g);
+      if (match) {
+        return match;
+      } else {
+        return [];
+      }
+    } else {
+      return [];
+    }
+  }
+
+  function Query (queryString) {
+    if (angular.isArray(queryString)) {
+      this.queryParts = queryString;
+      this.updateQueryString();
+    } else if (angular.isString(queryString)) {
+      this.queryString = queryString;
+      this.updateQueryParts();
+    } else if (typeof queryString !== 'undefined') {
+      var query = Query(queryString.query);
+      if (queryString.onQueryBuilt) {
+        queryString.onQueryBuilt(query);
+      }
+      return query;
+    } else {
+      this.queryString = "";
+      this.updateQueryParts();
+    }
+    this.string = "";
+  }
+
+  Query.prototype.updateQueryParts = function () {
+    this.queryParts = getSearchFromQueryString(this.queryString);
+  }
+
+  Query.prototype.updateQueryString = function () {
+    this.queryString = this.queryParts.join(",");
+  }
+
+  Query.prototype.commit = function () {
+    if (this.string && this.string != '') {
+      this.queryParts.push(this.string);
+      this.string = "";
+      this.perform();
+    }
+  }
+
+  Query.prototype.add = function (thing) {
+    this.queryParts.push(thing);
+    this.perform();
+  } 
+
+  Query.prototype.perform = function () {
+      this.updateQueryString();
+      $location.search('query', this.queryString);
+  }
+
+  Query.prototype.toSearchQuery = function () {
+    return this.queryParts.join(" AND ");
+  }
+
+  return Query;
+}]);
