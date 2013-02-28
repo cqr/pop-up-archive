@@ -26,6 +26,7 @@ angular.module('Directory.csvImport.controllers', ['Directory.alerts', 'Director
   $scope.submitMapping = function submitMapping () {
     var i = $scope.csvImport;
     i.commit = 'import';
+    i.update();
     var alert = new Alert({status:"Submitting", message:i.file, progress:1, sync: i.alertSync()});
     alert.i = i;
     alert.add();

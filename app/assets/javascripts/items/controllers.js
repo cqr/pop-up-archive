@@ -4,6 +4,6 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.it
 }])
 .controller('ItemCtrl', ['$scope', 'Item', 'Loader', '$routeParams', function ItemCtrl($scope, Item, Loader, $routeParams) {
   if ($routeParams.id) {
-    $scope.item = Loader(Item.get($routeParams.id), 'Item/'+$routeParams.id);
+    Loader.page(Item.get($routeParams.id), 'Item/'+$routeParams.id, $scope);
   }
 }]);
