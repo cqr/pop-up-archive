@@ -85,15 +85,20 @@ table.fit-in-window {
 }
 
 form.form-big {
+  position: relative;
+
   input, button.btn {
     font-size: 28px;
     height: 28px;
+    line-height: 38px;
     border-radius: 28px;
     padding-left: 20px;
   }
 
   button.btn {
     height: 38px;
+    padding-left: 10px;
+    line-height: 28px;
   }
 
   .input-append .btn {
@@ -269,7 +274,7 @@ ul.terms {
     .label {
       position: absolute;
       cursor: pointer;
-      max-width: 100px;
+      max-width: 150px;
       overflow: hidden;
       text-overflow: ellipsis;
         transition: max-width 0.3s ease-in-out;
@@ -290,4 +295,33 @@ ul.terms {
 
 ul.pager {
   height: 32px;
+}
+
+ul.search-pills {
+  position: absolute;
+  top: 5px;
+  right: 65px;
+  li {
+    margin-left: 3px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 22px;
+    span {
+      display: inline-block;
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow:ellipsis;
+      transition: max-width 0.3s ease-in-out;
+      -o-transition: max-width 0.3s ease-in-out;
+      -moz-transition: max-width 0.3s ease-in-out;
+      -webkit-transition: max-width 0.3s ease-in-out;
+
+      &:hover {
+        max-width: 450px;
+      };
+    }
+    i {
+      cursor: pointer;
+    }
+  }
 }

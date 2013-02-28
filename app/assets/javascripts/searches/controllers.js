@@ -1,4 +1,4 @@
-angular.module('Directory.searches.controllers', ['Directory.loader', 'Directory.searches.models'])
+angular.module('Directory.searches.controllers', ['Directory.loader', 'Directory.searches.models', 'Directory.searches.filters'])
 .controller('SearchCtrl', ['$scope', '$location', 'Query', function ($scope, $location, Query) {
   $scope.location = $location;
   $scope.$watch('location.search().query', function (search) {

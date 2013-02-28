@@ -131,6 +131,9 @@ angular.module('Directory.searches.models', ['RailsModel', 'Directory.items.mode
 
   Query.prototype.updateQueryString = function () {
     this.queryString = this.queryParts.join(",");
+    if (this.queryString == '') {
+      this.queryString = null;
+    }
   }
 
   Query.prototype.commit = function () {
@@ -146,13 +149,23 @@ angular.module('Directory.searches.models', ['RailsModel', 'Directory.items.mode
     this.perform();
   } 
 
+  Query.prototype.remove = function (thing) {
+    this.queryParts.splice(this.queryParts.indexOf(thing), 1);
+    this.perform();
+  }
+
   Query.prototype.perform = function () {
       this.updateQueryString();
+      $location.search('page', 1);
       $location.search('query', this.queryString);
   }
 
   Query.prototype.toSearchQuery = function () {
-    return this.queryParts.join(" AND ");
+    var string = this.queryParts.join(" AND ");
+    if (string == '') {
+      return null;
+    }
+    return string;
   }
 
   return Query;
