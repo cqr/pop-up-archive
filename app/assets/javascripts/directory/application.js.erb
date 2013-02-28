@@ -39,7 +39,12 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
 
     $routeProvider
     .when('/', {
-      redirectTo: "/search"
+      templateUrl: "<%= asset_path 'dashboard/guest.html' %>",
+      controller: "ItemsCtrl"
+    })
+    .when('/imports/new', {
+      templateUrl: "<%= asset_path 'imports/new.html' %>",
+      controller: "ItemsCtrl"
     })
     .when('/collections', {
       templateUrl: "<%= asset_path 'collections/index.html' %>",
