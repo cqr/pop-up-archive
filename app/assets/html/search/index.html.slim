@@ -1,5 +1,5 @@
 div ng-controller="SearchResultsCtrl"
-  h2 ng-show="title" {{title}}
+  h3 ng-show="title" {{title}}
   form.form-search.form-big ng-controller="SearchCtrl" ng-submit="query.commit()"
     .input-append
       input.search-query.span11 ng-model='query.string' type='search' placeholder="Search Query"
@@ -22,7 +22,7 @@ div ng-controller="SearchResultsCtrl"
           ul.unstyled.terms
             li ng-repeat="entry in facet.entries()"
               small.pull-right ({{entry.count}}) 
-              .label.label-info ng-click="addSearchFilter(entry)" {{entry.name}}
+              .label.label-info ng-click="addSearchFilter(entry)" {{entry.nameForPresenting()}}
       section
         .pull-right {{search.totalHits}} results.
     .span9

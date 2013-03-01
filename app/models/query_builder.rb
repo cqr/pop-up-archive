@@ -1,12 +1,9 @@
 class QueryBuilder
-
-  DEFAULT_FACETS = {date_created: {type:'date'}, date_broadcast: {type:'date'}, date_added: {type:'date'}, duration: {type:'histogram'}, interviewer:{}, interviewee:{}, producer:{}, creator:{}, tag:{}}
-
   attr_accessor :params, :current_user
 
   def initialize(params, current_user)
-    self.params = params
-    self.current_user = current_user
+    @params = params
+    @current_user = current_user
   end
 
   def query
@@ -24,7 +21,7 @@ class QueryBuilder
   end
 
   def filters
-    @_filters ||= filter_params.map {|name, details| Filter.new(name, details) }
+    @_filters ||= filter_params.map {|name, details| Filter.new(name, details) } + [current_user_filter]
     (@_totalFilter ||= [AndFilter.new(@_filters)]).tap do |filter|
       yield filter[0] if block_given? && filter[0].present?
     end
@@ -56,12 +53,19 @@ class QueryBuilder
         {params[:facet].delete(:name) => params[:facet]}
       end
     else
-      DEFAULT_FACETS
+      default_facets
     end
   end
 
   def filter_params
-    return params[:filters] if params[:filters].present?
-    {}
+    (params[:filters] || {})
+  end
+
+  def current_user_filter
+    OrFilter.new([Filter.new(:collection_id, type: 'terms', value: current_user.collection_ids)])
+  end
+
+  def default_facets
+    {date_created: {type:'date'}, date_broadcast: {type:'date'}, date_added: {type:'date'}, duration: {type:'histogram'}, interviewer:{}, interviewee:{}, producer:{}, creator:{}, tag:{}}
   end
 end

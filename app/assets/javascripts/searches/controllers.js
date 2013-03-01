@@ -9,8 +9,8 @@ angular.module('Directory.searches.controllers', ['Directory.loader', 'Directory
   $scope.location = $location;
 
   if (typeof $routeParams.collectionId !== 'undefined') {
-    Collection.get($routeParams.collectionId).then(collection).then(function () {
-      $scope.title = "Browsing Collection: " + collection.title;
+    Collection.get($routeParams.collectionId).then(function (collection) {
+      $scope.title = "Collection: " + collection.title;
     });
   }
   

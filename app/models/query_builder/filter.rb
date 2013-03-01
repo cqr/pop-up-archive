@@ -11,7 +11,7 @@ class QueryBuilder::Filter
   end
 
   def to_h
-    {@type => value}
+    {type => value}
   end
 
   private
@@ -20,7 +20,7 @@ class QueryBuilder::Filter
     if options.kind_of? String
       [:term, {@name => options}]
     else
-      [options[:type], {@name => options[:value]}]
+      [(options.delete(:type) || :term), {@name => options[:value]}]
     end
   end
 end

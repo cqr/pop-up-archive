@@ -1,10 +1,11 @@
   class QueryBuilder::Facet
 
-    attr_accessor :name, :options, :filters
+    attr_accessor :name, :options, :filters, :type
 
     def initialize(name, options={}, filters=[])
       @name = name
       @type = options.delete(:type)
+      Rails.logger.debug(@type)
       @options = options
       @filters = filters
     end

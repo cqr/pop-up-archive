@@ -1,4 +1,4 @@
-class QueryString
+class QueryBuilder::QueryString
   def initialize(query_string)
     @query_string = query_string
   end
