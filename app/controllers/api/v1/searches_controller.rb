@@ -1,6 +1,6 @@
 class Api::V1::SearchesController < Api::V1::BaseController
   def show
-    query_builder = QueryBuilder.new(params)
+    query_builder = QueryBuilder.new(params, current_user)
     page = params[:page].to_i
 
     @search = Item.search do
@@ -15,12 +15,12 @@ class Api::V1::SearchesController < Api::V1::BaseController
         query &q
       end
 
-      query_builder.facets.each do |f|
-        facet f.name, &f.add_filters(query_builder.filters)
+      query_builder.facets do |my_facet|
+        facet my_facet.name, &my_facet
       end
 
-      query_builder.filters.each do |f|
-        filter f.type, f.value
+      query_builder.filters do |my_filter|
+        filter my_filter.type, my_filter.value
       end
 
     end

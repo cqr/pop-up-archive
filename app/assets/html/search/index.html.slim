@@ -1,4 +1,5 @@
 div ng-controller="SearchResultsCtrl"
+  h2 ng-show="title" {{title}}
   form.form-search.form-big ng-controller="SearchCtrl" ng-submit="query.commit()"
     .input-append
       input.search-query.span11 ng-model='query.string' type='search' placeholder="Search Query"

@@ -1,16 +1,21 @@
-angular.module('Directory.searches.controllers', ['Directory.loader', 'Directory.searches.models', 'Directory.searches.filters'])
+angular.module('Directory.searches.controllers', ['Directory.loader', 'Directory.searches.models', 'Directory.searches.filters', 'Directory.collections.models'])
 .controller('SearchCtrl', ['$scope', '$location', 'Query', function ($scope, $location, Query) {
   $scope.location = $location;
   $scope.$watch('location.search().query', function (search) {
     $scope.query = new Query(search);
   });
 }])
-.controller('SearchResultsCtrl', ['$scope', 'Search', 'Loader', '$location', '$routeParams', 'Query', function ($scope, Search, Loader, $location, $routeParams, Query) {
+.controller('SearchResultsCtrl', ['$scope', 'Search', 'Loader', '$location', '$routeParams', 'Query', 'Collection', function ($scope, Search, Loader, $location, $routeParams, Query, Collection) {
   $scope.location = $location;
+
+  if (typeof $routeParams.collectionId !== 'undefined') {
+    Collection.get($routeParams.collectionId).then(collection).then(function () {
+      $scope.title = "Browsing Collection: " + collection.title;
+    });
+  }
   
   $scope.$watch('location.search().query', function (searchquery) {
     $scope.query = new Query(searchquery);
-    console.log($scope.query);
     fetchPage();
   });
 
@@ -53,7 +58,6 @@ angular.module('Directory.searches.controllers', ['Directory.loader', 'Directory
     //   });
     // }
 
-    console.log($scope.search);
     if (!$scope.search) {
       $scope.search = Loader.page(Search.query(searchParams));
     } else {
