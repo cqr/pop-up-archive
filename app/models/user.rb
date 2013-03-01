@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :provider, :uid, :name
-
   has_many :collection_grants
   has_many :collections, through: :collection_grants
 
