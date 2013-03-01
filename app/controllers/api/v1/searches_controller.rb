@@ -16,7 +16,7 @@ class Api::V1::SearchesController < Api::V1::BaseController
       end
 
       query_builder.facets.each do |f|
-        facet f.name, &f
+        facet f.name, &f.add_filters(query_builder.filters)
       end
 
       query_builder.filters.each do |f|

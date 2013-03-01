@@ -47,7 +47,7 @@ class QueryBuilder
 
   class Facet
 
-    attr_accessor :name, :type, :field_name, :options
+    attr_accessor :name, :type, :field_name, :options, :global_filters
 
     def initialize(name)
       self.field_name = name
@@ -55,7 +55,15 @@ class QueryBuilder
     end
 
     def to_proc
-      lambda {|x| x.send(:"#{type}", *arguments) }
+      lambda do |search|
+        search.send(:"#{type}", *arguments)
+        search.facet_filter :and, global_filters.map(&:to_hash)
+      end
+    end
+
+    def add_filters(filters)
+      self.global_filters = filters
+      self
     end
 
     private
@@ -112,7 +120,11 @@ class QueryBuilder
     end
 
     def to_proc
-      lambda {|x| x.send(value[0].intern, value[1])}
+      lambda { |x|
+        value.each do |key,val|
+          x.send(key.intern, val)
+        end
+      }
     end
 
     def type
@@ -121,6 +133,10 @@ class QueryBuilder
 
     def value
       @pairs
+    end
+
+    def to_hash
+      {@type => value}
     end
 
     private

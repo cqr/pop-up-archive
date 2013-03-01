@@ -89,14 +89,26 @@ angular.module('Directory.searches.models', ['RailsModel', 'Directory.items.mode
   return Facet;
 })
 .factory('Query', ['$location', function ($location) {
+  Array.prototype.getUnique = function(){
+   var u = {}, a = [];
+   for(var i = 0, l = this.length; i < l; ++i){
+      if(u.hasOwnProperty(this[i])) {
+         continue;
+      }
+      a.push(this[i]);
+      u[this[i]] = 1;
+   }
+   return a;
+}
+
   function getSearchFromQueryString (queryString) {
     if (typeof queryString !== 'undefined' && queryString !== null) {
       if (angular.isArray(queryString)) {
         return queryString;
       }
-      var match = queryString.match(/('(?:[^']|\\')+'|"(?:[^"]|\\")+"|[^,]+)/g);
+      var match = queryString.match(/([^,]*\"[^\"]+\"|[^,]+)/g);
       if (match) {
-        return match;
+        return match.getUnique();
       } else {
         return [];
       }
@@ -123,10 +135,12 @@ angular.module('Directory.searches.models', ['RailsModel', 'Directory.items.mode
       this.updateQueryParts();
     }
     this.string = "";
+    console.log(this.queryParts);
   }
 
   Query.prototype.updateQueryParts = function () {
     this.queryParts = getSearchFromQueryString(this.queryString);
+    console.log(this.queryParts);
   }
 
   Query.prototype.updateQueryString = function () {

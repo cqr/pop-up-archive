@@ -39,8 +39,7 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
 
     $routeProvider
     .when('/', {
-      templateUrl: "<%= asset_path 'items/index.html' %>",
-      controller: "ItemsCtrl"
+      redirectTo: "/search"
     })
     .when('/collections', {
       templateUrl: "<%= asset_path 'collections/index.html' %>",
@@ -49,6 +48,11 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
     .when('/collections/:collectionId', {
       templateUrl: "<%= asset_path 'collections/show.html' %>",
       controller: "CollectionCtrl"
+    })
+    .when('/collections/:collectionId/browse', {
+      templateUrl: "<%= asset_path 'search/index.html' %>",
+      controller: "SearchCtrl",
+      reloadOnSearch: false
     })
     .when('/items/:id', {
       templateUrl: "<%= asset_path 'items/show.html' %>",

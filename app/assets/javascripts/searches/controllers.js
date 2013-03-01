@@ -9,8 +9,8 @@ angular.module('Directory.searches.controllers', ['Directory.loader', 'Directory
   $scope.location = $location;
   
   $scope.$watch('location.search().query', function (searchquery) {
-    console.log("OK");
     $scope.query = new Query(searchquery);
+    console.log($scope.query);
     fetchPage();
   });
 
@@ -36,6 +36,10 @@ angular.module('Directory.searches.controllers', ['Directory.loader', 'Directory
       searchParams['filters[contributor]'] = $routeParams.contributorName;
     }
 
+    if (typeof $routeParams.collectionId !== 'undefined') {
+      searchParams['filters[collection_id]'] = $routeParams.collectionId;
+    }
+
     if ($scope.query) {
       searchParams.query = $scope.query.toSearchQuery();
     }
@@ -49,6 +53,7 @@ angular.module('Directory.searches.controllers', ['Directory.loader', 'Directory
     //   });
     // }
 
+    console.log($scope.search);
     if (!$scope.search) {
       $scope.search = Loader.page(Search.query(searchParams));
     } else {
