@@ -17,5 +17,5 @@
 
       form
         fieldset ng-controller='FSImportCtrl'
-          input type='file' ng-model='importFilePath' onchange='angular.element(this).scope().setFile(this)'
+          input type='file' onchange='angular.element(this).scope().setFile(this)'
           button ng-click='submit()' Import

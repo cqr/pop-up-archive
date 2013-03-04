@@ -141,12 +141,16 @@ a.with-information {
   text-shadow: 0 0 5px #eee !important;
 }
 
-.dropdown-menu li.alert-shower {
+.dropdown-menu, .dropdown-menu li.alert-shower {
   width: 300px;
 
-  &.pending a:hover {
+  &.pending a:hover, .pending a:hover {
     color: #333;
     background: none !important;
+  }
+
+  a:hover, li a:hover {
+    color: white !important;
   }
 
   .message {
