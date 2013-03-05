@@ -21,7 +21,7 @@ div ng-controller="SearchResultsCtrl"
           strong {{facet.name}}
           ul.unstyled.terms
             li ng-repeat="entry in facet.entries()"
-              small.pull-right ({{entry.count}}) 
+              small.pull-right ({{entry.count}})
               .label.label-info ng-click="addSearchFilter(entry)" {{entry.nameForPresenting()}}
       section
         .pull-right {{search.totalHits}} results.

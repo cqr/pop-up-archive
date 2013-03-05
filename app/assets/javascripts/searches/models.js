@@ -88,7 +88,6 @@ angular.module('Directory.searches.models', ['RailsModel', 'Directory.items.mode
     return this._dateString;
   }
 
-
   function Facet(name, options) {
     this.name    = name;
     this.type    = options._type;
@@ -124,17 +123,18 @@ angular.module('Directory.searches.models', ['RailsModel', 'Directory.items.mode
   return Facet;
 })
 .factory('Query', ['$location', function ($location) {
+
   Array.prototype.getUnique = function(){
-   var u = {}, a = [];
-   for(var i = 0, l = this.length; i < l; ++i){
+    var u = {}, a = [];
+    for(var i = 0, l = this.length; i < l; ++i){
       if(u.hasOwnProperty(this[i])) {
-         continue;
+        continue;
       }
       a.push(this[i]);
       u[this[i]] = 1;
-   }
-   return a;
-}
+    }
+    return a;
+  }
 
   function getSearchFromQueryString (queryString) {
     if (typeof queryString !== 'undefined' && queryString !== null) {
@@ -170,12 +170,10 @@ angular.module('Directory.searches.models', ['RailsModel', 'Directory.items.mode
       this.updateQueryParts();
     }
     this.string = "";
-    console.log(this.queryParts);
   }
 
   Query.prototype.updateQueryParts = function () {
     this.queryParts = getSearchFromQueryString(this.queryString);
-    console.log(this.queryParts);
   }
 
   Query.prototype.updateQueryString = function () {

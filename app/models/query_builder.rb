@@ -41,8 +41,6 @@ class QueryBuilder
     params[:sort_order] || 'desc'
   end
 
-  private
-
   def facet_params
     if params[:facets].present?
       params[:facets]
