@@ -40,7 +40,11 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
     $routeProvider
     .when('/', {
       templateUrl: "<%= asset_path 'dashboard/guest.html' %>",
-      controller: "ItemsCtrl"
+      controller: "DashboardCtrl"
+    })
+    .when('/about', {
+      templateUrl: "<%= asset_path 'dashboard/about.html' %>",
+      controller: "DashboardCtrl"
     })
     .when('/imports/new', {
       templateUrl: "<%= asset_path 'imports/new.html' %>",
@@ -86,6 +90,7 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
   var depends =  ['ui',
                   'ui.bootstrap',
                   'RailsUjs',
+                  'Directory.dashboard.controllers',
                   'Directory.files.controllers',
                   'Directory.csvImport.controllers',
                   'Directory.searches.controllers',
