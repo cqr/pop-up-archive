@@ -8,19 +8,13 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :provider, :uid, :name
 
-  before_validation :create_default_collections!, on: :create
-
-  belongs_to :default_private_collection, class_name: "Collection"
-  belongs_to :default_public_collection, class_name: "Collection"
-
   has_many :collection_grants
   has_many :collections, through: :collection_grants
-
 
   def self.find_for_oauth(auth, signed_in_resource=nil)
     where(provider: auth.provider, uid: auth.uid).first || (create do |user|
       user.provider = auth.provider
-      user.uid      = auth.uid 
+      user.uid      = auth.uid
       user.name     = auth.info.name
       user.email    = auth.info.email
       user.password = Devise.friendly_token[0,20]
@@ -45,15 +39,5 @@ class User < ActiveRecord::Base
 
   def name_required?
     !provider.present? || !name.present?
-  end
-
-  private
-
-  def create_default_collections!
-    self.default_public_collection = Collection.new(title:"#{name}'s Public Collection")
-    self.collection_grants += [CollectionGrant.new do |grant|
-      grant.user = self
-      grant.collection = default_public_collection
-    end]
   end
 end
