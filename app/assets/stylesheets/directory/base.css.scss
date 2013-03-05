@@ -2,7 +2,6 @@
 @import "bootstrap";
 @import "font-awesome";
 
-<<<<<<< HEAD
 .scrubbing {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -10,11 +9,11 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-=======
+}
+
 ::selection {
   background: #85D0F1;
   color: rgb(242, 239, 239);
->>>>>>> Styles
 }
 
 html {
@@ -67,6 +66,7 @@ body {
   background: none;
   font-family: "freight-text-pro", serif;
   font-size: 1.5em;
+  padding: 0;
 
   h1 {
     color: #FFB959;
@@ -279,18 +279,18 @@ form.form-big {
 
 .player {
   width: 400px;
-.scrubber {
-  border: 1px solid #666;
-  border-radius: 10px;
-  height: 30px;
-  overflow: hidden;
+  .scrubber {
+    border: 1px solid #666;
+    border-radius: 10px;
+    height: 30px;
+    overflow: hidden;
 
-  .bar {
-    width: 0;
-    height: 100%;
-    background: #000;
+    .bar {
+      width: 0;
+      height: 100%;
+      background: #000;
+    }
   }
-}
 }
 
 $persistent-player-width: 100px;
@@ -441,4 +441,9 @@ ul.search-pills {
       cursor: pointer;
     }
   }
+
+
+footer, footer p {
+  color: #7C7B81;
+  font-size: 12px;
 }
