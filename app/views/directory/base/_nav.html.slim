@@ -1,3 +1,4 @@
-ul.nav
-  li= link_to('Collections', '/collections')
-  li= link_to('Imports', '/imports')
+- if user_signed_in?
+  ul.nav
+    li= link_to('Collections', '/collections')
+    li= link_to('Imports', '/imports')

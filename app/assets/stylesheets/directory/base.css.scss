@@ -1,5 +1,12 @@
+@import "pop-up_bootstrap";
 @import "bootstrap";
 @import "font-awesome";
+
+
+::selection {
+  background: #85D0F1;
+  color: rgb(242, 239, 239);
+}
 
 .scrubbing {
   -webkit-touch-callout: none;
@@ -15,13 +22,115 @@ html {
 }
 
 body {
-  padding-top: 60px;
+  padding-top: 120px;
   box-sizing: border-box;
   min-height: 100%;
   height:auto !important;
   height:500px;
   position: relative;
   padding-bottom: 35px;
+  background: rgb(242, 239, 239);
+}
+
+.navbar {
+  .navbar-inner {
+    background: rgb(242, 239, 239) !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding-top: 40px;
+  }
+
+  .logo {
+    text-indent: -9999px;
+    width: 150px;
+    height: 48px;
+    background: image-url('wordmark_150_prx.png') no-repeat top left;
+  }
+
+  .nav {
+    a {
+      font-family: "soleil", sans-serif !important;
+      font-weight: bold !important;
+      font-size: 16px !important;
+      color: rgb(125, 125, 130) !important;
+      text-shadow: none !important;
+
+      &:hover {
+        color: #BA4641 !important;
+      }
+    }
+  }
+}
+
+.brochure {
+  color: #997067;
+  background: none;
+  font-family: "freight-text-pro", serif;
+  font-size: 1.5em;
+  padding: 0;
+
+  h1 {
+    color: #FFB959;
+    font-family: "soleil", sans-serif !important;
+    font-weight: 800;
+    font-size: 38px !important;
+    line-height: 38px;
+    margin-bottom: 12px;
+  }
+
+  h3 {
+    font-family: "soleil", sans-serif !important;
+    margin-top: 35px;
+    border-top: 1px solid rgb(219, 215, 212);
+    padding-top: 15px;
+  }
+
+  h4 {
+    font-family: "soleil", sans-serif;
+    margin-top: 20px;
+    text-transform: uppercase;
+    font-weight: 800;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: block;
+      float: left;
+      max-width: 200px;
+
+      a {
+        display: block;
+        border-top: 3px solid white;
+        margin-right: 25px;
+        color: #7d7c82;
+        font-size: 24px;
+        cursor: pointer;
+
+        &:hover {
+          border-top: 3px solid #5970B1;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+h1 {
+  color: #7c7b81;
+  font-family: "soleil", sans-serif !important;
+  font-weight: 800;
+  font-size: 32px;
+  }
+
+h2 {
+  color: #7c7b81;
+  font-family: "soleil", sans-serif !important;
+  font-weight: 800;
+  font-size: 24px;
 }
 
 .file-drop-zone-overlay {
@@ -40,15 +149,23 @@ a[href=""]:hover {
 
 a.with-information {
   color: #eee !important;
-  text-shadow: 0 0 5px #eee !important;  
+  text-shadow: 0 0 5px #eee !important;
 }
 
-.dropdown-menu li.alert-shower {
+.dropdown-menu, .dropdown-menu li.alert-shower {
   width: 300px;
 
-  &.pending a:hover {
-    color: #333;
+  a:hover, li a:hover {
     background: none !important;
+  }
+
+  &.pending a:hover, .pending a:hover {
+    color: #333 !important;
+    background: none !important;
+  }
+
+  a span {
+    text-transform: uppercase;
   }
 
   .message {
@@ -117,6 +234,7 @@ form.form-big {
 }
 
 .loading-overlay {
+  z-index: 100;
   position: absolute;
   top: 0;
   left: 0;
@@ -174,6 +292,11 @@ form.form-big {
     background: #000;
   }
 }
+}
+
+footer, footer p {
+  color: #7C7B81;
+  font-size: 12px;
 }
 
 $persistent-player-width: 100px;
@@ -265,7 +388,7 @@ $persistent-player-scrollpading: 15px;
   h3 {
     margin-left: 180px;
   }
-} 
+}
 
 ul.terms {
   li {
