@@ -2,9 +2,19 @@
 @import "bootstrap";
 @import "font-awesome";
 
+
 ::selection {
   background: #85D0F1;
   color: rgb(242, 239, 239);
+}
+
+.scrubbing {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 html {
@@ -192,15 +202,20 @@ table.fit-in-window {
 }
 
 form.form-big {
+  position: relative;
+
   input, button.btn {
     font-size: 28px;
     height: 28px;
+    line-height: 38px;
     border-radius: 28px;
     padding-left: 20px;
   }
 
   button.btn {
     height: 38px;
+    padding-left: 10px;
+    line-height: 28px;
   }
 
   .input-append .btn {
@@ -282,4 +297,154 @@ form.form-big {
 footer, footer p {
   color: #7C7B81;
   font-size: 12px;
+}
+
+$persistent-player-width: 100px;
+$persistent-player-scrollpading: 15px;
+
+#persistent-player {
+  position: fixed;
+  z-index:10;
+  top: 0;
+  width: $persistent-player-width;
+  overflow:hidden;
+  right: $persistent-player-scrollpading;
+  bottom: 3px;
+  padding-top: 40px;
+  margin-right:0;
+
+  transition: transform 0.5s ease-in-out;
+  -o-transition: -o-transform 0.5s ease-in-out;
+  -moz-transition: -moz-transform 0.5s ease-in-out;
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+
+  &.hidden {
+    transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+    -o-transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
+  }
+
+  background: #333;
+
+  .player-controls {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+    a {
+      display: inline-block;
+      color: #ddd;
+      text-shadow: 0 -1px 0 #000;
+      width: $persistent-player-width / 3;
+      line-height: 30px;
+      font-size: 20px;
+      cursor: pointer;
+      &:hover {
+        color: #fff;
+      }
+      &[disabled] {
+        color: #666;
+      }
+    }
+  }
+
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+
+}
+
+.vertical-scrubber {
+  background: #fff url("/waveform.png") center repeat-y;
+  position:absolute;
+  top:37px;
+  bottom:30px;
+  left: 2px;
+  right: 2px;
+  z-index: 10;
+  overflow:hidden;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  box-shadow: 0 2px 2px #000 inset, 0 1px 0 rgba(255, 255, 255, 0.5);
+
+  .bar {
+    width: 100%;
+    z-index: 10;
+    background: #fff;
+    bottom:0;
+    position: absolute;
+    background: rgba(186, 70, 65, 0.8);
+  }
+}
+
+.search-result{
+  img {
+    width: 85px;
+    height: 85px;
+    background: url("http://placedog.com/85/85");
+    border: 1px solid #aaa !important;
+  }
+
+  h3 {
+    margin-left: 180px;
+  }
+}
+
+ul.terms {
+  li {
+    position: relative;
+    height: 25px;
+    .label {
+      position: absolute;
+      cursor: pointer;
+      max-width: 150px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+        transition: max-width 0.3s ease-in-out;
+        -o-transition: max-width 0.3s ease-in-out;
+        -moz-transition: max-width 0.3s ease-in-out;
+        -webkit-transition: max-width 0.3s ease-in-out;
+
+      &:hover {
+        max-width: 350px;
+      };
+    }
+  }
+  small {
+    color: #999;
+    font-size: 0.7em;
+  }
+}
+
+ul.pager {
+  height: 32px;
+}
+
+ul.search-pills {
+  position: absolute;
+  top: 5px;
+  right: 65px;
+  li {
+    margin-left: 3px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 22px;
+    span {
+      display: inline-block;
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow:ellipsis;
+      transition: max-width 0.3s ease-in-out;
+      -o-transition: max-width 0.3s ease-in-out;
+      -moz-transition: max-width 0.3s ease-in-out;
+      -webkit-transition: max-width 0.3s ease-in-out;
+
+      &:hover {
+        max-width: 450px;
+      };
+    }
+    i {
+      cursor: pointer;
+    }
+  }
 }
