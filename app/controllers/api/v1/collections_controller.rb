@@ -1,10 +1,13 @@
 class Api::V1::CollectionsController < Api::V1::BaseController
-  expose(:collections) { current_user.collections }
+  expose(:collections, ancestor: :current_user)
   expose(:collection)
   expose(:kollection) { collection }
 
   def create
-    collection.save
+    if collection.save
+      current_user.collections << collection
+      current_user.save
+    end
     respond_with :api, collection
   end
 
