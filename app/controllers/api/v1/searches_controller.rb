@@ -25,7 +25,7 @@ class Api::V1::SearchesController < Api::V1::BaseController
 
     end
 
-    Rails.logger.debug(@search.inspect)
+    #Rails.logger.debug(@search.inspect)
 
     respond_with @search
   end

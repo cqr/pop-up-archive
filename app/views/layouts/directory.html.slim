@@ -18,6 +18,18 @@ html lang='en' ng-app='Directory'
             i.icon-cog.icon-spin
             |  Loading
     footer= render('footer')
+    #persistent-player ng-controller="PersistentPlayerCtrl" ng-class="{hidden:!player.nowPlaying()}" ng-cloak=""
+      .vertical-scrubber
+      .player-controls
+        a ng-disabled="player.time == 0" ng-click="player.rewind()"
+          i.icon-fast-backward
+        a ng-show="player.paused()" ng-click="player.play()"
+          i.icon-play
+        a ng-hide="player.paused()" ng-click="player.pause()"
+          i.icon-pause
+        a ng-click="player.stop()"
+          i.icon-stop
+
 
     script#pending-action type='text/ng-template'
       a ng-href='{{action.path}}' ng-click="removeAction($index)" {{action.message}}

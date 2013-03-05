@@ -54,7 +54,7 @@ class ImportMapping < ActiveRecord::Base
       when "person" then Person.for_name(value)
       when "array" then value.split(',').map{|x| x.gsub(/(?:^\s+)|(?:\s$)/, '') }
       when "short_text" then value.to_s
-      when "number" then value.to_i
+      when "number" then parse_to_i(value)
       when "text" then value.to_s
       when "date" then DateTime.parse(value) rescue nil
       when "*" then value.to_s
@@ -70,6 +70,14 @@ class ImportMapping < ActiveRecord::Base
       model.send(:"#{key}=", value)
     elsif model.respond_to?(:[]=)
       model[key.intern] = value
+    end
+  end
+
+  def parse_to_i(value)
+    if value.include? ':'
+      Time.parse('00:29:18').seconds_since_midnight
+    else
+      value.to_i
     end
   end
 end
