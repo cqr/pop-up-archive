@@ -57,6 +57,7 @@ body {
   background: none;
   font-family: "freight-text-pro", serif;
   font-size: 1.5em;
+  padding: 0;
 
   h1 {
     color: #FFB959;
@@ -276,4 +277,9 @@ form.form-big {
     background: #000;
   }
 }
+}
+
+footer, footer p {
+  color: #7C7B81;
+  font-size: 12px;
 }
