@@ -5,6 +5,9 @@ PopUpArchive::Application.routes.draw do
     scope module: :v1, constraints: ApiVersionConstraint.new(version: 1, default: true) do
       root to: 'status#info'
 
+      get '/me' => 'users#me'
+      get '/users/me' => 'users#me'
+
       resource :search
       resources :items do
         resources :audio_files do
