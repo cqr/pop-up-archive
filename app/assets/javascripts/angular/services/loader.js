@@ -3,7 +3,7 @@ angular.module('Directory.loader', ['ngLoadingIndicators'])
 
   var cacheTable = {};
 
- function camelize (key) {
+  function camelize (key) {
     if (!angular.isString(key)) {
       return key;
     }
@@ -32,6 +32,8 @@ angular.module('Directory.loader', ['ngLoadingIndicators'])
 
           if (angular.isArray(response) && response.length > 0) {
             setName = camelize(response[0].constructor.rootPluralName);
+          } else if (angular.isArray(response)) {
+            setName="collections";
           } else if (typeof response !== 'undefined') {
             setName = camelize(response.constructor.rootName);
           }
