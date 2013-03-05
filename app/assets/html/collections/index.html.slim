@@ -1,26 +1,33 @@
-button.btn data-toggle='modal' href='#newCollectionModal' Create new collection
-#newCollectionModal.modal.hide.fade role='dialog' ng-controller='CollectionFormCtrl'
-  .modal-header
-    button.close data-dismiss='modal' ×
-    h3 Create new collection
-  .modal-body
-    form name='newCollection'
-      .alert.alert-error ng-show="newCollection.title.$error.required"
-        strong Error
-        | &nbsp;Title is required
-      fieldset
-        label
-          | Title
-          input name='title' ng-model='collection.title' required=''
-        label
-          | Desc
-          input ng-model='collection.description'
-        label
-          input type='checkbox' ng-model='collection.items_visible_by_default'
-          | Make items visible by default
-  .modal-footer
-    button.btn data-dismiss='modal' Close
-    button.btn.btn-primary ng-click='submit()' data-dismiss='modal' ng-hide="newCollection.title.$error.required" Save
+div ng-controller='CollectionFormCtrl'
+  button.btn ng-click='open()' Create new collection
+
+  div modal='shouldBeOpen' close='close()' options='opts'
+    .modal-header
+      button.close ng-click='close()' ×
+      h3 Create new collection
+    .modal-body
+      form.form-horizontal name='newCollection'
+        .alert.alert-error ng-show="newCollection.title.$error.required"
+          strong Error
+          | &nbsp;Title is required
+        .control-group
+          label.control-label
+            | Title
+          .controls
+            input name='title' ng-model='collection.title' required=''
+        .control-group
+          label.control-label
+            | Desc
+          .controls
+            input ng-model='collection.description'
+        .control-group
+          .controls
+            label
+              input type='checkbox' ng-model='collection.items_visible_by_default'
+              |&nbsp;Items visible by default?
+    .modal-footer
+      button.btn ng-click='close()' Close
+      button.btn.btn-primary ng-click='submit()' ng-hide="newCollection.title.$error.required" Save
 
 table.table.table-striped
   thead
