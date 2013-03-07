@@ -78,7 +78,7 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
     })
     .otherwise({
       template: "<h1>404 - not found</h1>"
-    })
+    });
 
   }
 
@@ -98,5 +98,12 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
 
   window.directory = angular.module('Directory', depends);
   window.directory.config(applicationConfig);
+
+  window.directory.controller("DirectoryCtrl", ['$scope', function($scope) {
+    $scope.modalOpts = {
+      backdropFade: true,
+      dialogFade:true
+    };
+  }]);
 
 }());

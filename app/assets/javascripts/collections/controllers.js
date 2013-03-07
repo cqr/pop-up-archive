@@ -1,6 +1,6 @@
-angular.module('Directory.collections.controllers', ['Directory.loader', 'Directory.user', 'Directory.collections.models'])
+angular.module('Directory.collections.controllers', ['Directory.loader', 'Directory.user', 'Directory.collections.models', 'Directory.items.models'])
 .controller('CollectionsCtrl', ['$scope', 'Collection', 'Loader', 'Me', function CollectionsCtrl($scope, Collection, Loader, Me) {
-  Me.authenticated(function (data) {
+  Me.authenticated(function () {
     Loader.page(Collection.query(), 'Collections', $scope);
 
     $scope.delete = function(index) {
@@ -12,8 +12,19 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
     }
   });
 }])
-.controller('CollectionCtrl', ['$scope', '$routeParams', 'Collection', 'Loader', function CollectionCtrl($scope, $routeParams, Collection, Loader) {
+.controller('CollectionCtrl', ['$scope', '$routeParams', 'Collection', 'Loader', 'Item', function CollectionCtrl($scope, $routeParams, Collection, Loader, Item) {
   Loader.page(Collection.get($routeParams.collectionId), 'Collection/' + $routeParams.collectionId,  $scope);
+
+  $scope.addingItem = false;
+
+  $scope.openAddItem = function () {
+    $scope.newItem = new Item();
+    $scope.addingItem = true;
+  }
+
+  $scope.closeAddItem = function () {
+    $scope.addingItem = false;
+  }
 }])
 .controller('CollectionFormCtrl', ['$scope', 'Collection', function CollectionFormCtrl($scope, Collection) {
   $scope.open = function () {
@@ -23,11 +34,6 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
 
   $scope.close = function () {
     $scope.shouldBeOpen = false;
-  };
-
-  $scope.opts = {
-    backdropFade: true,
-    dialogFade:true
   };
 
   $scope.collection = ($scope.collection || new Collection);
