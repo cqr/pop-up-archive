@@ -1,0 +1,9 @@
+form.form-search.form-big ng-controller="SearchCtrl" ng-submit="query.commit()"
+  .input-append
+    input.search-query.span11 ng-model='query.string' type='search' placeholder="Search Query"
+    button.btn.span1.pull-right type='submit'
+      i.icon-search
+  ul.inline.search-pills
+    li.label ng-repeat="part in query.queryParts"
+      span {{part | withoutFieldname }}
+      i.icon-remove-sign ng-click="query.remove(part)"

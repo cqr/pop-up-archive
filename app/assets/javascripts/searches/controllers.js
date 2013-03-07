@@ -7,12 +7,6 @@ angular.module('Directory.searches.controllers', ['Directory.loader', 'Directory
 }])
 .controller('SearchResultsCtrl', ['$scope', 'Search', 'Loader', '$location', '$routeParams', 'Query', 'Collection', function ($scope, Search, Loader, $location, $routeParams, Query, Collection) {
   $scope.location = $location;
-
-  if (typeof $routeParams.collectionId !== 'undefined') {
-    Collection.get($routeParams.collectionId).then(function (collection) {
-      $scope.title = "Collection: " + collection.title;
-    });
-  }
   
   $scope.$watch('location.search().query', function (searchquery) {
     $scope.query = new Query(searchquery);
@@ -51,15 +45,6 @@ angular.module('Directory.searches.controllers', ['Directory.loader', 'Directory
     }
     searchParams.page = $location.search().page;
 
-    var filters = $location.search().filters;
-
-    // if (typeof filters !== 'undefined') {
-    //   angular.forEach(JSON.parse(filters), function (value, key) {
-    //     searchParams['filters['+key+']'] = value;
-    //   });
-    // }
-
-    console.log($scope.search);
     if (!$scope.search) {
       $scope.search = Loader.page(Search.query(searchParams));
     } else {

@@ -39,6 +39,10 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
 
     $routeProvider
     .when('/', {
+      templateUrl: "<%= asset_path 'search/index.html' %>",
+      controller: "SearchCtrl",
+      reloadOnSearch: false
+    })
     .when('/about', {
       templateUrl: "<%= asset_path 'dashboard/about.html' %>",
       controller: "DashboardCtrl"
@@ -53,11 +57,7 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
     })
     .when('/collections/:collectionId', {
       templateUrl: "<%= asset_path 'collections/show.html' %>",
-      controller: "CollectionCtrl"
-    })
-    .when('/collections/:collectionId/browse', {
-      templateUrl: "<%= asset_path 'search/index.html' %>",
-      controller: "SearchCtrl",
+      controller: "CollectionCtrl",
       reloadOnSearch: false
     })
     .when('/items/:id', {
@@ -71,11 +71,6 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
     .when('/contributors/:contributorName', {
       templateUrl: "<%= asset_path 'search/index.html' %>",
       controller: "SearchCtrl"
-    })
-    .when('/search', {
-      templateUrl: "<%= asset_path 'search/index.html' %>",
-      controller: "SearchCtrl",
-      reloadOnSearch: false
     })
     .when('/imports/:importId', {
       templateUrl: "<%= asset_path 'imports/show.html' %>",
