@@ -59,6 +59,35 @@ angular.module('Directory.searches.models', ['RailsModel', 'Directory.items.mode
     this.field = field;
   }
 
+  FacetEntry.prototype.nameForPresenting = function () {
+    return this.name;
+  }
+
+  function DateTimeFacetEntry(name, count, field) {
+    this.name = name;
+    this.count = count;
+    this.field = field;
+  }
+
+  DateTimeFacetEntry.prototype = new FacetEntry();
+
+  DateTimeFacetEntry.prototype.nameForPresenting = function () {
+    if (!this._date) {    
+      this._date = new Date(0);
+      this._date.setUTCSeconds(this.name/1000);
+    }
+    if (!this._dateString) {
+      if (this._date.getUTCDate() == 1 && this._date.getUTCMonth() == 0) {
+        this._dateString = this._date.getUTCFullYear();
+      } else if (this._date.getUTCDate() == 1) {
+        this._dateString = this._date.getUTCMonth()+1 + "/" + this._date.getUTCFullYear();
+      } else {
+        this._dateString = this._date.getUTCMonth()+1 + "/" + this._date.getUTCDate() + this.getUTCFullYear();
+      }
+    }
+    return this._dateString;
+  }
+
   function Facet(name, options) {
     this.name    = name;
     this.type    = options._type;
@@ -81,6 +110,11 @@ angular.module('Directory.searches.models', ['RailsModel', 'Directory.items.mode
       angular.forEach(this.data.terms, function (term) {
         this.push(new FacetEntry(term.term, term.count, name));
       }, this._entries);
+      break;
+    case "date_histogram":
+      // angular.forEach(this.data.entries, function(entry) {
+      //   this.push(new DateTimeFacetEntry(entry.time, entry.count, name));
+      // }, this._entries);
     }
 
     return this._entries;
@@ -89,14 +123,27 @@ angular.module('Directory.searches.models', ['RailsModel', 'Directory.items.mode
   return Facet;
 })
 .factory('Query', ['$location', function ($location) {
+
+  var getUnique = function(things){
+    var u = {}, a = [];
+    for(var i = 0, l = things.length; i < l; ++i){
+      if(u.hasOwnProperty(things[i])) {
+        continue;
+      }
+      a.push(things[i]);
+      u[things[i]] = 1;
+    }
+    return a;
+  }
+
   function getSearchFromQueryString (queryString) {
     if (typeof queryString !== 'undefined' && queryString !== null) {
       if (angular.isArray(queryString)) {
         return queryString;
       }
-      var match = queryString.match(/('(?:[^']|\\')+'|"(?:[^"]|\\")+"|[^,]+)/g);
+      var match = queryString.match(/([^,]*\"[^\"]+\"|[^,]+)/g);
       if (match) {
-        return match;
+        return getUnique(match);
       } else {
         return [];
       }

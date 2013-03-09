@@ -63,8 +63,9 @@ angular.module('Directory.csvImports.filters', ['Directory.csvImports.models'])
   }
 
   return function sortByImportState (imports) {
-    return imports.sort(function (a, b) {
-      return getIntVal(a.state) - getIntVal(b.state);
-    })
+    if (imports)
+      return imports.sort(function (a, b) {
+        return getIntVal(a.state) - getIntVal(b.state);
+      })
   }
 });

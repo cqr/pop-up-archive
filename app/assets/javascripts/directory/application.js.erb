@@ -42,6 +42,11 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
       templateUrl: "<%= asset_path 'dashboard/guest.html' %>",
       controller: "DashboardCtrl"
     })
+    .when('/search', {
+      templateUrl: "<%= asset_path 'search/results.html' %>",
+      controller: "SearchResultsCtrl",
+      reloadOnSearch: false
+    })
     .when('/about', {
       templateUrl: "<%= asset_path 'dashboard/about.html' %>",
       controller: "DashboardCtrl"
@@ -56,7 +61,8 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
     })
     .when('/collections/:collectionId', {
       templateUrl: "<%= asset_path 'collections/show.html' %>",
-      controller: "CollectionCtrl"
+      controller: "CollectionCtrl",
+      reloadOnSearch: false
     })
     .when('/items/:id', {
       templateUrl: "<%= asset_path 'items/show.html' %>",
@@ -70,18 +76,13 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
       templateUrl: "<%= asset_path 'search/index.html' %>",
       controller: "SearchCtrl"
     })
-    .when('/search', {
-      templateUrl: "<%= asset_path 'search/index.html' %>",
-      controller: "SearchCtrl",
-      reloadOnSearch: false
-    })
     .when('/imports/:importId', {
       templateUrl: "<%= asset_path 'imports/show.html' %>",
       controller: "ImportCtrl"
     })
     .otherwise({
       template: "<h1>404 - not found</h1>"
-    })
+    });
 
   }
 
@@ -101,5 +102,12 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
 
   window.directory = angular.module('Directory', depends);
   window.directory.config(applicationConfig);
+
+  window.directory.controller("DirectoryCtrl", ['$scope', function($scope) {
+    $scope.modalOpts = {
+      backdropFade: true,
+      dialogFade:true
+    };
+  }]);
 
 }());

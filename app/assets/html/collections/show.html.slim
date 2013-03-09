@@ -1,10 +1,28 @@
-h1 {{collection.title}}
+button.btn.pull-right ng-click="openAddItem()"
+  i.icon-plus  Add an Item
+h2 Browsing {{collection.title}}
 
-table.table.table-striped
-  thead
-    tr
-      td Name
-  tfoot
-    tr
-      td
-  tbody
+div modal='addingItem' close='closeAddItem()' options='modalOpts'
+  .modal-header
+    button.close ng-click='closeAddItem()' ×
+    h3 Add an item to '{{collection.title}}'
+  .modal-body
+    form.form-horizontal name='newItem'
+      .alert.alert-error ng-show="newItem.title.$error.required"
+        strong Error
+        | &nbsp;Title is required
+      .control-group
+        label.control-label
+          | Title
+        .controls
+          input ng-model='newItem.title' required='' placeholder="Title"
+      .control-group
+        label.control-label
+          | Desc
+        .controls
+          input ng-model='newItem.description'
+  .modal-footer
+    button.btn ng-click='closeAddItem()' Close
+    button.btn.btn-primary ng-click='submit()' ng-hide="newItem.title.$error.required" Save
+
+ng-include ng-controller="SearchResultsCtrl" src="'#{asset_path 'search/results.html'}'"

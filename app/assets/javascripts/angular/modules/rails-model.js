@@ -34,7 +34,8 @@ angular.module('RailsModel', ['rails'])
       for (index in resource.attrAccessible) {
         var key = resource.attrAccessible[index];
         var val = data[key.replace(/Attributes$/, '')];
-        if (typeof val !== 'undefined') {
+        if (typeof val !== 'undefined' && val != null && !(angular.isArray(val) && !val.length)) {
+          console.log(val);
           obj[key] = val;
         }
       }

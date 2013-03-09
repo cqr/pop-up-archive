@@ -12,8 +12,21 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
     }
   });
 }])
-.controller('CollectionCtrl', ['$scope', '$routeParams', 'Collection', 'Loader', function CollectionCtrl($scope, $routeParams, Collection, Loader) {
+.controller('CollectionCtrl', ['$scope', '$routeParams', 'Collection', 'Loader', 'Item', function CollectionCtrl($scope, $routeParams, Collection, Loader, Item) {
   Loader.page(Collection.get($routeParams.collectionId), 'Collection/' + $routeParams.collectionId,  $scope);
+
+  $scope.openAddItem = function () {
+    $scope.addingItem = true;
+  }
+
+  $scope.closeAddItem = function () {
+    $scope.newItem = new Item;
+    $scope.addingItem = false;
+  }
+
+  $scope.closeAddItem();
+
+  $scope.hasFilters = false;
 }])
 .controller('CollectionFormCtrl', ['$scope', 'Collection', function CollectionFormCtrl($scope, Collection) {
   $scope.open = function () {
@@ -23,11 +36,6 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
 
   $scope.close = function () {
     $scope.shouldBeOpen = false;
-  };
-
-  $scope.opts = {
-    backdropFade: true,
-    dialogFade:true
   };
 
   $scope.collection = ($scope.collection || new Collection);
