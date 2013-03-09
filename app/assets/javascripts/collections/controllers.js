@@ -15,16 +15,16 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
 .controller('CollectionCtrl', ['$scope', '$routeParams', 'Collection', 'Loader', 'Item', function CollectionCtrl($scope, $routeParams, Collection, Loader, Item) {
   Loader.page(Collection.get($routeParams.collectionId), 'Collection/' + $routeParams.collectionId,  $scope);
 
-  $scope.addingItem = false;
-
   $scope.openAddItem = function () {
-    $scope.newItem = new Item();
     $scope.addingItem = true;
   }
 
   $scope.closeAddItem = function () {
+    $scope.newItem = new Item;
     $scope.addingItem = false;
   }
+
+  $scope.closeAddItem();
 }])
 .controller('CollectionFormCtrl', ['$scope', 'Collection', function CollectionFormCtrl($scope, Collection) {
   $scope.open = function () {

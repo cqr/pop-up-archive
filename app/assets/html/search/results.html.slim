@@ -17,7 +17,7 @@ ul.pager
     .media.search-result ng-repeat="item in search.resultsAsItems()"
       .media-body
         a.pull-left ng-href="/items/{{item.id}}"
-          img.media-object src="http://placedog.com/85/85?i={{item.dateAdded}}"
+          img.media-object
         h4.media-heading ng-show="item.getTitle()"
           a ng-href="/items/{{item.id}}" {{item.getTitle()}}
         .media
