@@ -42,6 +42,11 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
       templateUrl: "<%= asset_path 'dashboard/guest.html' %>",
       controller: "DashboardCtrl"
     })
+    .when('/search', {
+      templateUrl: "<%= asset_path 'search/results.html' %>",
+      controller: "SearchResultsCtrl",
+      reloadOnSearch: false
+    })
     .when('/about', {
       templateUrl: "<%= asset_path 'dashboard/about.html' %>",
       controller: "DashboardCtrl"

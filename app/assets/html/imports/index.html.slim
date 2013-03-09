@@ -2,7 +2,7 @@ div ng-show="csvImports"
   ul.media-list
     li.media ng-repeat="import in csvImports | sortByImportState" ng-class="{muted:(import.terminal())}"
       a.pull-left ng-href="/imports/{{import.id}}"
-        img.media-object src='http://placekitten.com/85/85'
+        img.media-object src='#{asset_path("minimark.png")}'
       .media-body
         a ng-href="/imports/{{import.id}}"
           h4.media-heading Import: {{import.file}}

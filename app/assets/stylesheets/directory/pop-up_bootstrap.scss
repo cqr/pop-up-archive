@@ -1,13 +1,9 @@
 $navbarBackground: rgb(242, 239, 239);
 
 .facets {
-  .well {
-    border: none;
-    border-radius: 0;
-    background: none;
-    box-shadow: none;
+  .facet {
 
-    strong {
+    h5 {
       color: #B59B6D;
       font-family: "soleil", sans-serif !important;
       font-weight: 800;
@@ -56,10 +52,6 @@ $navbarBackground: rgb(242, 239, 239);
 
 
 .search-result {
-  img.media-object {
-    border-radius: 43px;
-  }
-
   .media-heading a {
     color: #B59B6D;
     font-family: "soleil", sans-serif !important;

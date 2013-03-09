@@ -25,6 +25,8 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
   }
 
   $scope.closeAddItem();
+
+  $scope.hasFilters = false;
 }])
 .controller('CollectionFormCtrl', ['$scope', 'Collection', function CollectionFormCtrl($scope, Collection) {
   $scope.open = function () {

@@ -1,23 +1,31 @@
 ul.pager
-  li.previous ng-show="search.page > 1"
-    a ng-click="backPage()" &larr; Back
-  li.next ng-show="search.hasMoreResults()"
-    a ng-click="nextPage()" More &rarr;
+  li.previous ng-class="{disabled: search.page <= 1}"
+    a ng-click="backPage()" href='#' &larr; Back
+  li.centered
+    form.form-search.with-tags ng-controller="SearchCtrl" ng-submit="query.commit()"
+      .input-append
+        input.search-query ng-model='query.string' type='search' placeholder="Search Query"
+        button.btn type='submit' go
+      ul.inline.tags
+        li.label ng-repeat="part in query.queryParts"
+          | {{part | withoutFieldname }}  
+          i.icon-remove-sign ng-click="query.remove(part)"
+  li.next ng-class="{disabled:!search.hasMoreResults()}"
+    a ng-click="nextPage()" href="#" More &rarr;
 .row
   .span4.facets
-    .well ng-repeat="facet in search.facetsAsObjects()" ng-show="facet.visible()"
-        strong {{facet.name}}
-        ul.unstyled.terms
-          li ng-repeat="entry in facet.entries()"
-            small.pull-right ({{entry.count}}) 
-            .label.label-info ng-click="addSearchFilter(entry)" {{entry.nameForPresenting()}}
-    section
-      .pull-right {{search.totalHits}} results.
+    .facet ng-repeat="facet in search.facetsAsObjects()" ng-show="facet.visible()"
+      h5 {{facet.name}}
+      ul.unstyled.terms
+        li ng-repeat="entry in facet.entries()"
+          small.pull-right ({{entry.count}}) 
+          .label.label-info ng-click="addSearchFilter(entry)" {{entry.nameForPresenting()}}
   .span8
+    h5.results-count {{search.firstItemNumber()}} to {{search.lastItemNumber()}} of {{search.totalHits}} items
     .media.search-result ng-repeat="item in search.resultsAsItems()"
       .media-body
         a.pull-left ng-href="/items/{{item.id}}"
-          img.media-object
+          img.media-object src="#{asset_path('minimark.png')}"
         h4.media-heading ng-show="item.getTitle()"
           a ng-href="/items/{{item.id}}" {{item.getTitle()}}
         .media
