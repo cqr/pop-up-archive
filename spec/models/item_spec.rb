@@ -27,4 +27,13 @@ describe Item do
 
     Item.find(item.id).extra['testKey'].should eq 'testValue2'
   end
+
+  it "should create a unique token fromthe title and keep it" do
+    item = FactoryGirl.build :item
+    item.title = 'test'
+    item.token.should start_with('test_')
+    item.title = 'test2'
+    item.token.should start_with('test_')
+  end
+
 end
