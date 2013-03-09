@@ -3,6 +3,8 @@ class Item < ActiveRecord::Base
   include Tire::Model::Callbacks
   include Tire::Model::Search
 
+  belongs_to :storage, class_name: "StorageConfiguration", foreign_key: :storage_id
+
   DEFAULT_INDEX_PARAMS = {
     include: [:contributors, :interviewers, :interviewees, :producers, :creators]
   }
@@ -50,6 +52,21 @@ class Item < ActiveRecord::Base
 
   delegate :title, to: :collection, prefix: true
 
+  @@instance_lock = Mutex.new
+
+  def token
+    read_attribute(:token) || generate_token
+  end
+
+  def generate_token
+    @@instance_lock.synchronize do
+      begin
+        t = "#{(self.title||'untitled')[0,50].parameterize}_" + SecureRandom.urlsafe_base64(6)
+      end while Item.where(:token => t).exists?
+      self.update_attribute(:token, t)
+      t
+    end
+  end
 
   def geographic_location=(name)
     self.geolocation = Geolocation.for_name(name)
@@ -72,4 +89,5 @@ class Item < ActiveRecord::Base
       json[:location]     = geolocation.to_indexed_json if geolocation.present?
     end.to_json
   end
+
 end

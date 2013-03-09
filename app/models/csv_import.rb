@@ -1,4 +1,7 @@
+# encoding: utf-8
+
 require 'csv'
+
 class CsvImport < ActiveRecord::Base
 
   STATES = ["new", "queued_analyze", "analyzing", "analyzed", "queued_import", "importing", "imported", "error"]

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130227192651) do
+ActiveRecord::Schema.define(:version => 20130304233804) do
 
   add_extension "hstore"
 
@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(:version => 20130227192651) do
     t.string   "original_file_url"
     t.string   "identifier"
     t.integer  "instance_id"
-    t.string   "url"
     t.text     "transcript"
     t.string   "format"
     t.integer  "size"
@@ -47,6 +46,8 @@ ActiveRecord::Schema.define(:version => 20130227192651) do
     t.datetime "created_at",                                  :null => false
     t.datetime "updated_at",                                  :null => false
     t.boolean  "items_visible_by_default", :default => false
+    t.boolean  "copy_media"
+    t.integer  "default_storage_id"
   end
 
   create_table "contributions", :force => true do |t|
@@ -139,6 +140,8 @@ ActiveRecord::Schema.define(:version => 20130227192651) do
     t.datetime "updated_at",        :null => false
     t.integer  "csv_import_id"
     t.integer  "collection_id"
+    t.string   "token"
+    t.integer  "storage_id"
   end
 
   add_index "items", ["collection_id"], :name => "index_items_on_collection_id"
@@ -148,6 +151,17 @@ ActiveRecord::Schema.define(:version => 20130227192651) do
   create_table "people", :force => true do |t|
     t.string   "name"
     t.string   "slug"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "storage_configurations", :force => true do |t|
+    t.string   "provider"
+    t.string   "key"
+    t.string   "secret"
+    t.string   "bucket"
+    t.string   "region"
+    t.boolean  "is_public"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
