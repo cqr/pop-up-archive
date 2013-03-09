@@ -563,6 +563,7 @@ form.with-tags {
   ul.tags {
     position: absolute;
     top: 4px;
+    z-index: 100;
     right: 65px;
   }
 }
