@@ -124,14 +124,14 @@ angular.module('Directory.searches.models', ['RailsModel', 'Directory.items.mode
 })
 .factory('Query', ['$location', function ($location) {
 
-  Array.prototype.getUnique = function(){
+  var getUnique = function(things){
     var u = {}, a = [];
-    for(var i = 0, l = this.length; i < l; ++i){
-      if(u.hasOwnProperty(this[i])) {
+    for(var i = 0, l = things.length; i < l; ++i){
+      if(u.hasOwnProperty(things[i])) {
         continue;
       }
-      a.push(this[i]);
-      u[this[i]] = 1;
+      a.push(things[i]);
+      u[things[i]] = 1;
     }
     return a;
   }
@@ -143,7 +143,7 @@ angular.module('Directory.searches.models', ['RailsModel', 'Directory.items.mode
       }
       var match = queryString.match(/([^,]*\"[^\"]+\"|[^,]+)/g);
       if (match) {
-        return match.getUnique();
+        return getUnique(match);
       } else {
         return [];
       }

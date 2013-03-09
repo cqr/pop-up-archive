@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   has_many :collection_grants
   has_many :collections, through: :collection_grants
 
+  has_many :csv_imports
+
   def self.find_for_oauth(auth, signed_in_resource=nil)
     where(provider: auth.provider, uid: auth.uid).first || (create do |user|
       user.provider = auth.provider

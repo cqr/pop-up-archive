@@ -9,6 +9,7 @@ angular.module('Directory.csvImports.models', ['RailsModel'])
   CsvImport.prototype.cancel = function () {
     var $this = this;
     this.commit = 'cancel';
+    console.log(this);
     this.update().then(function(){ $this.state = "cancelled" });
   };
 
