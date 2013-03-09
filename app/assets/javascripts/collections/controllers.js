@@ -1,6 +1,6 @@
-angular.module('Directory.collections.controllers', ['Directory.loader', 'Directory.user', 'Directory.collections.models', 'Directory.items.models'])
+angular.module('Directory.collections.controllers', ['Directory.loader', 'Directory.user', 'Directory.collections.models'])
 .controller('CollectionsCtrl', ['$scope', 'Collection', 'Loader', 'Me', function CollectionsCtrl($scope, Collection, Loader, Me) {
-  Me.authenticated(function () {
+  Me.authenticated(function (data) {
     Loader.page(Collection.query(), 'Collections', $scope);
 
     $scope.delete = function(index) {

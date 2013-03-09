@@ -4,7 +4,7 @@ ul.pager
   li.next ng-show="search.hasMoreResults()"
     a ng-click="nextPage()" More &rarr;
 .row
-  .span3
+  .span4.facets
     .well ng-repeat="facet in search.facetsAsObjects()" ng-show="facet.visible()"
         strong {{facet.name}}
         ul.unstyled.terms
@@ -13,7 +13,7 @@ ul.pager
             .label.label-info ng-click="addSearchFilter(entry)" {{entry.nameForPresenting()}}
     section
       .pull-right {{search.totalHits}} results.
-  .span9
+  .span8
     .media.search-result ng-repeat="item in search.resultsAsItems()"
       .media-body
         a.pull-left ng-href="/items/{{item.id}}"
@@ -36,4 +36,4 @@ ul.pager
     a ng-click="backPage()" &larr; Back
   li.next ng-show="search.hasMoreResults()"
     a ng-click="nextPage()" More &rarr;
-center {{search.firstItemNumber()}} to {{search.lastItemNumber()}} of {{search.totalHits}} results.
+center.result-count {{search.firstItemNumber()}} to {{search.lastItemNumber()}} of {{search.totalHits}} results.

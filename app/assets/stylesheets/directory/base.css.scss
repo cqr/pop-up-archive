@@ -55,43 +55,48 @@ body {
       text-shadow: none !important;
 
       &:hover {
-        color: #BA4641 !important;
+        color: #5970B1 !important;
       }
     }
   }
 }
 
 .brochure {
-  color: #997067;
+  color: #7C7B81;
   background: none;
   font-family: "freight-text-pro", serif;
-  font-size: 1.5em;
+  font-size: 22px;
   padding: 0;
 
   h1 {
-    color: #FFB959;
+    color: #B59B6D;
     font-family: "soleil", sans-serif !important;
     font-weight: 800;
-    font-size: 38px !important;
+    font-size: 32px !important;
     line-height: 38px;
     margin-bottom: 12px;
   }
 
   h3 {
+    color: #B59B6D;
     font-family: "soleil", sans-serif !important;
-    margin-top: 35px;
-    border-top: 1px solid rgb(219, 215, 212);
+    margin-top: 26px;
     padding-top: 15px;
   }
 
   h4 {
+    color: #B59B6D;
     font-family: "soleil", sans-serif;
-    margin-top: 20px;
-    text-transform: uppercase;
+    margin-top: 25px;
+    font-size: 22px;
     font-weight: 800;
   }
 
-  ul {
+  p {
+    line-height: 1.25em;
+  }
+
+  ul.big {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -103,14 +108,14 @@ body {
 
       a {
         display: block;
-        border-top: 3px solid white;
+        border-top: 6px solid white;
         margin-right: 25px;
         color: #7d7c82;
         font-size: 24px;
         cursor: pointer;
 
         &:hover {
-          border-top: 3px solid #5970B1;
+          border-top: 6px solid #5970B1;
           text-decoration: none;
         }
       }
@@ -224,6 +229,31 @@ form.form-big {
   .input-append .search-query {
     border-radius: 28px 0 0 28px;
   }
+}
+
+button.pua-pill {
+  border: 0px;
+  border-radius: 8px;
+  background: #7C7B81;
+  color: white;
+  font-family: "soleil", sans-serif;
+  padding: 7px 14px;
+  font-size: 14px;
+  font-weight: 800;
+  display: block;
+  float: left;
+  clear: both;
+}
+
+input[type='file'] {
+  color: red;
+  float: left;
+  display: block;
+  color: #7C7B81;
+  margin-top: -5px;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: "soleil", sans-serif;
 }
 
 .container-footer {
@@ -383,7 +413,7 @@ $persistent-player-scrollpading: 15px;
   h3 {
     margin-left: 180px;
   }
-} 
+}
 
 ul.terms {
   li {
@@ -442,7 +472,7 @@ ul.search-pills {
       cursor: pointer;
     }
   }
-
+}
 
 footer, footer p {
   color: #7C7B81;
