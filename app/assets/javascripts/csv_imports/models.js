@@ -7,14 +7,19 @@ angular.module('Directory.csvImports.models', ['RailsModel'])
   };
 
   CsvImport.prototype.cancel = function () {
+    var $this = this;
     this.commit = 'cancel';
-    return this.update();
+    this.update().then(function(){ $this.state = "cancelled" });
   };
 
   CsvImport.prototype.resetMappingToExtra = function (index) {
     this.mappings[index].column = Schema.columnize(this.headers[index]);
     this.mappings[index].type =   '*';
   };
+
+  CsvImport.prototype.terminal = function () {
+    return (this.state == "cancelled" || this.state == "imported");
+  }
 
   CsvImport.attrAccessible = ['mappingsAttributes', 'collectionId', 'commit'];
 

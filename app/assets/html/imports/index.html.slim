@@ -1,6 +1,6 @@
 div ng-show="csvImports"
   ul.media-list
-    li.media ng-repeat="import in csvImports" ng-class="{muted:(import.state == 'imported')}"
+    li.media ng-repeat="import in csvImports | sortByImportState" ng-class="{muted:(import.terminal())}"
       a.pull-left ng-href="/imports/{{import.id}}"
         img.media-object src='http://placekitten.com/85/85'
       .media-body
@@ -12,7 +12,7 @@ div ng-show="csvImports"
           span.badge.badge-inverse ng-show='import.rowCount' {{import.rowCount}} rows 
           |  
           span.label.label-info Started: {{import.createdAt}}
-        p
+        p ng-hide="import.terminal()"
           a.btn.btn-primary ng-href="/imports/{{import.id}}" {{import.editButtonMessage()}}
           |  
           button.btn.btn-link ng-click="import.cancel()" Cancel

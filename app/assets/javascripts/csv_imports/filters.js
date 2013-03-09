@@ -45,4 +45,26 @@ angular.module('Directory.csvImports.filters', ['Directory.csvImports.models'])
       return headers;
     }
   }
-}]);
+}])
+.filter('sortByImportState', function() {
+  function getIntVal(state) {
+    switch(state) {
+      case 'error': return 0;
+      case 'new': return 1;
+      case 'analyzed': return 2;
+      case 'analyzing': return 3;
+      case 'importing': return 4;
+      case 'queued_analyze': return 5;
+      case 'queud_import': return 6;
+      case 'imported': return 7;
+      case 'cancelled': return 8;
+      default: return 9;
+    }
+  }
+
+  return function sortByImportState (imports) {
+    return imports.sort(function (a, b) {
+      return getIntVal(a.state) - getIntVal(b.state);
+    })
+  }
+});

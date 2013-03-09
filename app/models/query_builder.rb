@@ -1,5 +1,7 @@
 class QueryBuilder
 
+  DEFAULT_FACETS = {date_created: {type:'date'}, date_broadcast: {type:'date'}, date_added: {type:'date'}, duration: {type:'histogram'}, interviewer:{}, interviewee:{}, producer:{}, creator:{}, tag:{}}
+
   attr_accessor :params
 
   def initialize(params)
@@ -25,7 +27,7 @@ class QueryBuilder
   end
 
   def facets
-    (facet_params).map do |name, details|
+    facet_params.map do |name, details|
       Facet.new(name).tap do |facet|
         if details.present?
           facet.type = details[:type]
@@ -38,7 +40,7 @@ class QueryBuilder
   end
 
   def filters
-    (filter_params).map do |name, value|
+    filter_params.map do |name, value|
       Filter.new(name, value)
     end
   end
@@ -49,7 +51,7 @@ class QueryBuilder
 
     def initialize(name)
       self.field_name = name
-      self.name = "facet_#{name}"
+      self.name = "#{name}"
     end
 
     def to_proc
@@ -65,6 +67,7 @@ class QueryBuilder
     def default_options
       case type
       when 'date' then {interval: 'year'}
+      when 'histogram' then {interval: 1}
       else {}
       end
     end
@@ -77,7 +80,7 @@ class QueryBuilder
     if params[:facet].present?
       return {:"#{params[:facet].delete(:name)}" => params[:facet]}
     end
-    {}
+    DEFAULT_FACETS
   end
 
   def filter_params
@@ -109,7 +112,7 @@ class QueryBuilder
     end
 
     def to_proc
-      lambda {|x| x.send(@value[:type], @name.intern => @value[:value])}
+      lambda {|x| x.send(value[0].intern, value[1])}
     end
 
     def type

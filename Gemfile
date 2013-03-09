@@ -25,7 +25,7 @@ group :assets do
   gem 'bootstrap-sass'
   gem 'angularjs-rails-resource'
   gem "font-awesome-sass-rails"
-  gem 'angular-rails', github: 'gistia/angular-rails'
+  # gem 'angular-rails', github: 'gistia/angular-rails'
 end
 
 group :development do

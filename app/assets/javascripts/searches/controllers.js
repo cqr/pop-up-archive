@@ -1,19 +1,17 @@
-angular.module('Directory.searches.controllers', ['Directory.loader', 'Directory.searches.models'])
-.controller('SearchCtrl', ['$scope', '$location', function ($scope, $location) {
-  $scope.fetchResults = function (e) {
-    $location.path('/search').search('query', $scope.search.query);
-  }
+angular.module('Directory.searches.controllers', ['Directory.loader', 'Directory.searches.models', 'Directory.searches.filters'])
+.controller('SearchCtrl', ['$scope', '$location', 'Query', function ($scope, $location, Query) {
+  $scope.location = $location;
+  $scope.$watch('location.search().query', function (search) {
+    $scope.query = new Query(search);
+  });
 }])
-.controller('SearchResultsCtrl', ['$scope', 'Search', 'Loader', '$location', '$routeParams', function ($scope, Search, Loader, $location, $routeParams) {
+.controller('SearchResultsCtrl', ['$scope', 'Search', 'Loader', '$location', '$routeParams', 'Query', function ($scope, Search, Loader, $location, $routeParams, Query) {
+  $scope.location = $location;
   
-
-  $scope.$watch(function () {
-    return $location.search().query;
-  }, function (is, was, scope) {
-    if (was != is) {
-      scope.search.query = $location.search().query;
-      Loader(Search.query({query:is}), scope);
-    }
+  $scope.$watch('location.search().query', function (searchquery) {
+    console.log("OK");
+    $scope.query = new Query(searchquery);
+    fetchPage();
   });
 
   $scope.nextPage = function () {
@@ -27,6 +25,10 @@ angular.module('Directory.searches.controllers', ['Directory.loader', 'Directory
   }
 
 
+  $scope.addSearchFilter = function (filter) {
+    $scope.query.add(filter.field+":"+'"'+filter.name+'"');
+  }
+
   function fetchPage () {
     searchParams = {};
 
@@ -34,8 +36,18 @@ angular.module('Directory.searches.controllers', ['Directory.loader', 'Directory
       searchParams['filters[contributor]'] = $routeParams.contributorName;
     }
 
-    searchParams.query = $location.search().query;
+    if ($scope.query) {
+      searchParams.query = $scope.query.toSearchQuery();
+    }
     searchParams.page = $location.search().page;
+
+    var filters = $location.search().filters;
+
+    // if (typeof filters !== 'undefined') {
+    //   angular.forEach(JSON.parse(filters), function (value, key) {
+    //     searchParams['filters['+key+']'] = value;
+    //   });
+    // }
 
     if (!$scope.search) {
       $scope.search = Loader.page(Search.query(searchParams));
@@ -43,6 +55,4 @@ angular.module('Directory.searches.controllers', ['Directory.loader', 'Directory
       Loader(Search.query(searchParams), $scope);
     }
   }
-
-  fetchPage();
 }]);

@@ -1,18 +1,141 @@
+@import "pop-up_bootstrap";
 @import "bootstrap";
 @import "font-awesome";
+
+
+::selection {
+  background: #85D0F1;
+  color: rgb(242, 239, 239);
+}
+
+.scrubbing {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 
 html {
   height: 100%;
 }
 
 body {
-  padding-top: 60px;
+  padding-top: 120px;
   box-sizing: border-box;
   min-height: 100%;
   height:auto !important;
   height:500px;
   position: relative;
   padding-bottom: 35px;
+  background: rgb(242, 239, 239);
+}
+
+.navbar {
+  .navbar-inner {
+    background: rgb(242, 239, 239) !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding-top: 40px;
+  }
+
+  .logo {
+    text-indent: -9999px;
+    width: 150px;
+    height: 48px;
+    background: image-url('wordmark_150_prx.png') no-repeat top left;
+  }
+
+  .nav {
+    a {
+      font-family: "soleil", sans-serif !important;
+      font-weight: bold !important;
+      font-size: 16px !important;
+      color: rgb(125, 125, 130) !important;
+      text-shadow: none !important;
+
+      &:hover {
+        color: #5970B1 !important;
+      }
+    }
+  }
+}
+
+.brochure {
+  color: #7C7B81;
+  background: none;
+  font-family: "freight-text-pro", serif;
+  font-size: 22px;
+  padding: 0;
+
+  h1 {
+    color: #B59B6D;
+    font-family: "soleil", sans-serif !important;
+    font-weight: 800;
+    font-size: 32px !important;
+    line-height: 38px;
+    margin-bottom: 12px;
+  }
+
+  h3 {
+    color: #B59B6D;
+    font-family: "soleil", sans-serif !important;
+    margin-top: 26px;
+    padding-top: 15px;
+  }
+
+  h4 {
+    color: #B59B6D;
+    font-family: "soleil", sans-serif;
+    margin-top: 25px;
+    font-size: 22px;
+    font-weight: 800;
+  }
+
+  p {
+    line-height: 1.25em;
+  }
+
+  ul.big {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: block;
+      float: left;
+      max-width: 200px;
+
+      a {
+        display: block;
+        border-top: 6px solid white;
+        margin-right: 25px;
+        color: #7d7c82;
+        font-size: 24px;
+        cursor: pointer;
+
+        &:hover {
+          border-top: 6px solid #5970B1;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+h1 {
+  color: #7c7b81;
+  font-family: "soleil", sans-serif !important;
+  font-weight: 800;
+  font-size: 32px;
+  }
+
+h2 {
+  color: #7c7b81;
+  font-family: "soleil", sans-serif !important;
+  font-weight: 800;
+  font-size: 24px;
 }
 
 .file-drop-zone-overlay {
@@ -31,15 +154,23 @@ a[href=""]:hover {
 
 a.with-information {
   color: #eee !important;
-  text-shadow: 0 0 5px #eee !important;  
+  text-shadow: 0 0 5px #eee !important;
 }
 
-.dropdown-menu li.alert-shower {
+.dropdown-menu, .dropdown-menu li.alert-shower {
   width: 300px;
 
-  &.pending a:hover {
-    color: #333;
+  a:hover, li a:hover {
     background: none !important;
+  }
+
+  &.pending a:hover, .pending a:hover {
+    color: #333 !important;
+    background: none !important;
+  }
+
+  a span {
+    text-transform: uppercase;
   }
 
   .message {
@@ -76,15 +207,20 @@ table.fit-in-window {
 }
 
 form.form-big {
+  position: relative;
+
   input, button.btn {
     font-size: 28px;
     height: 28px;
+    line-height: 38px;
     border-radius: 28px;
     padding-left: 20px;
   }
 
   button.btn {
     height: 38px;
+    padding-left: 10px;
+    line-height: 28px;
   }
 
   .input-append .btn {
@@ -96,6 +232,31 @@ form.form-big {
   }
 }
 
+button.pua-pill {
+  border: 0px;
+  border-radius: 8px;
+  background: #7C7B81;
+  color: white;
+  font-family: "soleil", sans-serif;
+  padding: 7px 14px;
+  font-size: 14px;
+  font-weight: 800;
+  display: block;
+  float: left;
+  clear: both;
+}
+
+input[type='file'] {
+  color: red;
+  float: left;
+  display: block;
+  color: #7C7B81;
+  margin-top: -5px;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: "soleil", sans-serif;
+}
+
 .container-footer {
   position: absolute;
   width: 100%;
@@ -103,6 +264,7 @@ form.form-big {
 }
 
 .loading-overlay {
+  z-index: 100;
   position: absolute;
   top: 0;
   left: 0;
@@ -160,4 +322,159 @@ form.form-big {
     background: #000;
   }
 }
+}
+
+footer, footer p {
+  color: #7C7B81;
+  font-size: 12px;
+}
+
+$persistent-player-width: 100px;
+$persistent-player-scrollpading: 15px;
+
+#persistent-player {
+  position: fixed;
+  z-index:10;
+  top: 0;
+  width: $persistent-player-width;
+  overflow:hidden;
+  right: $persistent-player-scrollpading;
+  bottom: 3px;
+  padding-top: 40px;
+  margin-right:0;
+
+  transition: transform 0.5s ease-in-out;
+  -o-transition: -o-transform 0.5s ease-in-out;
+  -moz-transition: -moz-transform 0.5s ease-in-out;
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+
+  &.hidden {
+    transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+    -o-transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
+  }
+
+  background: #333;
+
+  .player-controls {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+    a {
+      display: inline-block;
+      color: #ddd;
+      text-shadow: 0 -1px 0 #000;
+      width: $persistent-player-width / 3;
+      line-height: 30px;
+      font-size: 20px;
+      cursor: pointer;
+      &:hover {
+        color: #fff;
+      }
+      &[disabled] {
+        color: #666;
+      }
+    }
+  }
+
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+
+}
+
+.vertical-scrubber {
+  background: #fff url("/waveform.png") center repeat-y;
+  position:absolute;
+  top:37px;
+  bottom:30px;
+  left: 2px;
+  right: 2px;
+  z-index: 10;
+  overflow:hidden;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  box-shadow: 0 2px 2px #000 inset, 0 1px 0 rgba(255, 255, 255, 0.5);
+
+  .bar {
+    width: 100%;
+    z-index: 10;
+    background: #fff;
+    bottom:0;
+    position: absolute;
+    background: rgba(186, 70, 65, 0.8);
+  }
+}
+
+.search-result{
+  img {
+    width: 85px;
+    height: 85px;
+    background: url("http://placedog.com/85/85");
+    border: 1px solid #aaa !important;
+  }
+
+  h3 {
+    margin-left: 180px;
+  }
+}
+
+ul.terms {
+  li {
+    position: relative;
+    height: 25px;
+    .label {
+      position: absolute;
+      cursor: pointer;
+      max-width: 150px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+        transition: max-width 0.3s ease-in-out;
+        -o-transition: max-width 0.3s ease-in-out;
+        -moz-transition: max-width 0.3s ease-in-out;
+        -webkit-transition: max-width 0.3s ease-in-out;
+
+      &:hover {
+        max-width: 350px;
+      };
+    }
+  }
+  small {
+    color: #999;
+    font-size: 0.7em;
+  }
+}
+
+ul.pager {
+  height: 32px;
+}
+
+ul.search-pills {
+  position: absolute;
+  top: 5px;
+  right: 65px;
+  li {
+    margin-left: 3px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 22px;
+    span {
+      display: inline-block;
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow:ellipsis;
+      transition: max-width 0.3s ease-in-out;
+      -o-transition: max-width 0.3s ease-in-out;
+      -moz-transition: max-width 0.3s ease-in-out;
+      -webkit-transition: max-width 0.3s ease-in-out;
+
+      &:hover {
+        max-width: 450px;
+      };
+    }
+    i {
+      cursor: pointer;
+    }
+  }
 }

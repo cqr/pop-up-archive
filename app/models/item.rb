@@ -5,26 +5,29 @@ class Item < ActiveRecord::Base
 
   belongs_to :storage, class_name: "StorageConfiguration", foreign_key: :storage_id
 
-  DEFAULT_INDEX_PARAMS = {
-    include: [:contributors, :interviewers, :interviewees, :producers, :creators]
-  }
+  DEFAULT_INDEX_PARAMS = {}
 
-  mapping do
-    indexes :date_created,      type: 'date',   include_in_all: false
-    indexes :date_broadcast,    type: 'date',   include_in_all: false
-    indexes :description,       type: 'string'
-    indexes :identifier,        type: 'string',  boost: 2.0
-    indexes :title,             type: 'string',  boost: 2.0
-    indexes :interviewers,      type: 'string',  include_in_all: false, index_name: "interviewer"
-    indexes :interviewees,      type: 'string',  include_in_all: false, index_name: "interviewee"
-    indexes :producers,         type: 'string',  include_in_all: false
-    indexes :tags,              type: 'string',  index_name: "tag", analyzer: "keyword"
-    indexes :contributors,      type: 'string',  index_name: "contributor"
-    indexes :physical_location, type: 'string'
-    indexes :transcription,     type: 'string'
-    indexes :location do
-      indexes :name
-      indexes :position, type: 'geo_point'
+  tire do
+    mapping do
+      indexes :id, index: :not_analyzed
+      indexes :date_created,      type: 'date',   include_in_all: false
+      indexes :date_broadcast,    type: 'date',   include_in_all: false
+      indexes :created_at,        type: 'date',   include_in_all: false, index_name:"date_added"
+      indexes :description,       type: 'string'
+      indexes :identifier,        type: 'string',  boost: 2.0
+      indexes :title,             type: 'string',  boost: 2.0
+      indexes :interviewers,      type: 'string',  include_in_all: false, index_name: "interviewer", index: "not_analyzed"
+      indexes :interviewees,      type: 'string',  include_in_all: false, index_name: "interviewee", index: "not_analyzed"
+      indexes :producers,         type: 'string',  include_in_all: false, index_name: "producer",    index: "not_analyzed"
+      indexes :tags,              type: 'string',  index_name: "tag",                                index: "not_analyzed"
+      indexes :contributors,      type: 'string',  index_name: "contributor"
+      indexes :physical_location, type: 'string'
+      indexes :transcription,     type: 'string'
+      indexes :duration,          type: 'long',    include_in_all: false
+      indexes :location do
+        indexes :name
+        indexes :position, type: 'geo_point'
+      end
     end
   end
   
@@ -86,6 +89,9 @@ class Item < ActiveRecord::Base
 
   def to_indexed_json(params={})
     as_json(params.reverse_merge(DEFAULT_INDEX_PARAMS)).tap do |json|
+      [:contributors, :interviewers, :interviewees, :producers, :creators].each do |assoc|
+        json[assoc] = send(assoc).map{|c| c.as_json } 
+      end
       json[:location]     = geolocation.to_indexed_json if geolocation.present?
     end.to_json
   end

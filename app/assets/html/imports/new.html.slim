@@ -1,0 +1,21 @@
+.row-fluid
+  .span9
+    .brochure(style='margin-top: 50px;')
+      h1 to get started...
+
+      h4 drag the files you would like to import onto the browser window
+
+      p They will be uploaded in the background, and once they're done you can start to organize them into your collections. We will take care of the uploading to the Internet Archive, voice transcription, and other magical bits for you.
+
+      p At the moment, we accept:
+      ul
+        li CSV files
+        li PBCore files
+        li Individual audio files
+
+      h4 ...or select a file from your hard drive
+
+      form
+        fieldset ng-controller='FSImportCtrl'
+          input type='file' onchange='angular.element(this).scope().setFile(this)'
+          button.pua-pill ng-click='submit()' import
