@@ -308,17 +308,64 @@ input[type='file'] {
 }
 
 .player {
-  width: 400px;
+
+  background: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  .player-button {
+    color: #fff;
+    border: 5px solid #ccc;
+    background: transparent;
+    border-radius: 50%;
+    padding: 5px;
+    margin-right: 10px;
+
+    i {
+      font-size: 24px;
+      line-height: 24px;
+      padding: 8px;
+      width: 24px;
+      height: 24px;
+      display: block;
+      border-radius: 50%;
+      background: #ccc;
+      margin: 0;
+    }
+
+    &:hover {
+      border-color: #5970B1;
+      i {
+        background: #5970B1;
+      }
+    }
+  }
+
+  width: 700px;
   .scrubber {
-    border: 1px solid #666;
     border-radius: 10px;
-    height: 30px;
+    height: 60px;
     overflow: hidden;
+    float: right;
+    width: 550px;
+    border-radius: 30px;
+    background: rgb(242, 239, 239);
+    position: relative;
+
+    .timecodes {
+      margin: 0 auto;
+      position: relative;
+      top: -40px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 24px;
+      color: rgb(89,112,177);
+    }
 
     .bar {
       width: 0;
       height: 100%;
-      background: #000;
+      background: #85D0F1;
+      opacity: 0.5;
     }
   }
 }
