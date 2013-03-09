@@ -112,9 +112,9 @@ angular.module('Directory.searches.models', ['RailsModel', 'Directory.items.mode
       }, this._entries);
       break;
     case "date_histogram":
-      angular.forEach(this.data.entries, function(entry) {
-        this.push(new DateTimeFacetEntry(entry.time, entry.count, name));
-      }, this._entries);
+      // angular.forEach(this.data.entries, function(entry) {
+      //   this.push(new DateTimeFacetEntry(entry.time, entry.count, name));
+      // }, this._entries);
     }
 
     return this._entries;
