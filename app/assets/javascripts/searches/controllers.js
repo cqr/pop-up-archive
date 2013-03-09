@@ -5,6 +5,14 @@ angular.module('Directory.searches.controllers', ['Directory.loader', 'Directory
     $scope.query = new Query(search);
   });
 }])
+.controller('GlobalSearchCtrl', ['$scope', 'Query', '$location', function ($scope, Query, $location) {
+  $scope.query = new Query();
+  $scope.go = function () {
+    $location.path('/search');
+    $scope.query.commit();
+    $scope.query = new Query();
+  }
+}])
 .controller('SearchResultsCtrl', ['$scope', 'Search', 'Loader', '$location', '$routeParams', 'Query', 'Collection', function ($scope, Search, Loader, $location, $routeParams, Query, Collection) {
   $scope.location = $location;
   
