@@ -15,16 +15,33 @@ div ng-controller="SearchResultsCtrl"
     li.next ng-show="search.hasMoreResults()"
       a ng-click="nextPage()" More &rarr;
   .row
-    .span3
+    .span4.facets
       .well ng-repeat="facet in search.facetsAsObjects()" ng-show="facet.visible()"
           strong {{facet.name}}
           ul.unstyled.terms
             li ng-repeat="entry in facet.entries()"
-              small.pull-right ({{entry.count}}) 
+              small.pull-right ({{entry.count}})
               .label.label-info ng-click="addSearchFilter(entry)" {{entry.name}}
       section
         .pull-right {{search.totalHits}} results.
-    .span9
+    .span8
+      .media.search-result
+        .media-body
+          a.pull-left ng-href="/items/{{item.id}}"
+            img.media-object src="http://placedog.com/85/85?"
+          h4.media-heading
+            a ng-href="/items/{{item.id}}" Title lorem isul
+          .media
+            p Description
+            ul.inline.dates
+              li.label g-show="item.dateCreated" Created | Jan 1 2012
+              li.label g-show="item.dateBroadcast" Broadcast | Jan 2 2012
+              li.label g-show="item.dateAdded" Added | Jan 3 2012
+            ul.inline.contributors
+              li.label g-repeat="creator in item.creators" Creator | {{creator}}
+              li.label g-repeat="producer in item.producers" Producer | {{producer}}
+              li.label g-repeat="interviewer in item.interviewers" Interviewer | {{interviewer}}
+              li.label g-repeat="interviewee in item.interviewees" Interviewee | {{interviewee}}
       .media.search-result ng-repeat="item in search.resultsAsItems()"
         .media-body
           a.pull-left ng-href="/items/{{item.id}}"
@@ -47,4 +64,4 @@ div ng-controller="SearchResultsCtrl"
       a ng-click="backPage()" &larr; Back
     li.next ng-show="search.hasMoreResults()"
       a ng-click="nextPage()" More &rarr;
-  center {{search.firstItemNumber()}} to {{search.lastItemNumber()}} of {{search.totalHits}} results.
+  center.result-count {{search.firstItemNumber()}} to {{search.lastItemNumber()}} of {{search.totalHits}} results.
