@@ -1,6 +1,6 @@
 class Collection < ActiveRecord::Base
   # include ActiveModel::ForbiddenAttributesProtection
-  attr_accessible :title, :description
+  attr_accessible :title, :description, :items_visible_by_default
 
   belongs_to :default_storage, class_name: "StorageConfiguration"
   has_many :collection_grants

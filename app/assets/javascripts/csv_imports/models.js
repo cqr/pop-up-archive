@@ -22,6 +22,17 @@ angular.module('Directory.csvImports.models', ['RailsModel'])
     return (this.state == "cancelled" || this.state == "imported");
   }
 
+  CsvImport.prototype.link = function () {
+    if (this.terminal() || this.unActionable()) {
+      return; 
+    }
+    return "/imports/" + this.id;
+  }
+
+  CsvImport.prototype.unActionable = function () {
+    return (this.state.match(/^queued/) || this.state == 'analyzing' || this.state == 'importing');
+  }
+
   CsvImport.attrAccessible = ['mappingsAttributes', 'collectionId', 'commit'];
 
   CsvImport.prototype.alertSync = function () {

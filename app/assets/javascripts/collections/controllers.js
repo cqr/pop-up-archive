@@ -30,21 +30,34 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
 }])
 .controller('CollectionFormCtrl', ['$scope', 'Collection', function CollectionFormCtrl($scope, Collection) {
   $scope.open = function () {
-    $scope.shouldBeOpen = true;
+    $scope.editCollection = true;
   };
 
+  $scope.edit = function (collection) {
+    $scope.collection = (collection || new Collection);
+    $scope.open();
+  }
 
   $scope.close = function () {
-    $scope.shouldBeOpen = false;
+    $scope.editCollection = false;
   };
 
-  $scope.collection = ($scope.collection || new Collection);
-
   $scope.submit = function() {
-    $scope.collection.create().then(function(data) {
-      $scope.collections.push($scope.collection);
-      $scope.collection = new Collection;
+    var promise;
+    if ($scope.collection.id) {
+      promise = $scope.collection.update().then(function (data) {
+        $scope.close();
+        return data;
+      });
+    } else {
+      $scope.collection.create().then(function (data) {
+        $scope.collections.push($scope.collection);
+        return data;
+      });
+    }
+    return promise.then(function (data) {
       $scope.close();
+      return data;
     });
   }
 }]);

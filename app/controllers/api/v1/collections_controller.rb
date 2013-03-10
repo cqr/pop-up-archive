@@ -11,6 +11,11 @@ class Api::V1::CollectionsController < Api::V1::BaseController
     respond_with :api, collection
   end
 
+  def update
+    collection.save
+    respond_with :api, collection
+  end 
+
   def destroy
     collection.delete
     respond_with :api, collection

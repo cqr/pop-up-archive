@@ -1,10 +1,10 @@
 div ng-show="csvImports"
   ul.media-list
     li.media ng-repeat="import in csvImports | sortByImportState" ng-class="{muted:(import.terminal())}"
-      a.pull-left ng-href="/imports/{{import.id}}"
+      a.pull-left ng-href="{{import.link()}}"
         img.media-object src='#{asset_path("minimark.png")}'
       .media-body
-        a ng-href="/imports/{{import.id}}"
+        a ng-href="{{import.link()}}"
           h4.media-heading Import: {{import.file}}
         p
           span.label ng-class="{'label-success':(import.state=='imported'), 'label-important':(import.state == 'error'), 'label-info':(import.state == 'analyzed')}" {{import.state.charAt(0).toUpperCase() + import.state.slice(1);}}
@@ -12,7 +12,7 @@ div ng-show="csvImports"
           span.badge.badge-inverse ng-show='import.rowCount' {{import.rowCount}} rows 
           |  
           span.label.label-info Started: {{import.createdAt}}
-        p ng-hide="import.terminal()"
+        p ng-hide="import.terminal() || import.unActionable()"
           a.btn.btn-primary ng-href="/imports/{{import.id}}" {{import.editButtonMessage()}}
           |  
           button.btn.btn-link ng-click="import.cancel()" Cancel

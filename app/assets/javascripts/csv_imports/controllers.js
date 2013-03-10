@@ -16,7 +16,7 @@ angular.module('Directory.csvImport.controllers', ['Directory.alerts', 'Director
   }
 
 }])
-.controller("ImportMappingCtrl", ['$scope', 'Schema', 'Alert', 'MappingSet', function ($scope, Schema, Alert, MappingSet) {
+.controller("ImportMappingCtrl", ['$scope', 'Schema', 'Alert', 'MappingSet', '$location', function ($scope, Schema, Alert, MappingSet, $location) {
   $scope.schema = Schema.get();
 
   $scope.parseNestedQuery = window.parseNestedQuery;
@@ -30,6 +30,7 @@ angular.module('Directory.csvImport.controllers', ['Directory.alerts', 'Director
     var alert = new Alert({status:"Submitting", message:i.file, progress:1, sync: i.alertSync()});
     alert.i = i;
     alert.add();
+    $location.path('/imports');
   }
 
   $scope.$watch('csvImport.headers', function watchImportHeaders (headers) {
@@ -76,10 +77,8 @@ angular.module('Directory.csvImport.controllers', ['Directory.alerts', 'Director
   // Wrap that method up - middleware style
   var oldAddAlert = Alert.prototype.add;
   Alert.prototype.add = function () {
-    if ($scope.alertData.alerts.length < 1) {
-      $scope.forceAlertsShow = true;
-      $timeout(function () { $scope.forceAlertsShow = false }, 2000);
-    }
+    $scope.forceAlertsShow = true;
+    $timeout(function () { $scope.forceAlertsShow = false }, 2000);
     return oldAddAlert.call(this);
   }
 }])
@@ -119,5 +118,4 @@ angular.module('Directory.csvImport.controllers', ['Directory.alerts', 'Director
       });
     });
   };
-}])
-
+}]);
