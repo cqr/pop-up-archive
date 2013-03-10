@@ -14,7 +14,11 @@ PopUpArchive::Application.routes.draw do
           post '', action: 'update'
         end
       end
-      resources :collections
+      resources :collections do
+        collection do
+          resources :public_collections, path: 'public', only: [:index]
+        end
+      end
       resources :csv_imports
     end
   end

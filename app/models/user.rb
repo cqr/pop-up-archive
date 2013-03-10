@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
 
   has_many :collection_grants
   has_many :collections, through: :collection_grants
+  after_create :add_public_collection
 
   has_many :csv_imports
 
@@ -41,5 +42,13 @@ class User < ActiveRecord::Base
 
   def name_required?
     !provider.present? || !name.present?
+  end
+
+  private
+
+  def add_public_collection
+    collection = Collection.new(title: "#{name}'s Collection", items_visible_by_default: true)
+    collection.users << self
+    collection.save
   end
 end

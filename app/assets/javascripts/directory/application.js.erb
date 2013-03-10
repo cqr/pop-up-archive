@@ -59,6 +59,10 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
       templateUrl: "<%= asset_path 'collections/index.html' %>",
       controller: "CollectionsCtrl"
     })
+    .when('/collections/public', {
+      templateUrl: "<%= asset_path 'collections/index.html' %>",
+      controller: "PublicCollectionsCtrl"
+    })
     .when('/collections/:collectionId', {
       templateUrl: "<%= asset_path 'collections/show.html' %>",
       controller: "CollectionCtrl",

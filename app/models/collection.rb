@@ -10,6 +10,8 @@ class Collection < ActiveRecord::Base
 
   before_validation :set_defaults
 
+  scope :public, where(items_visible_by_default: true)
+
   def set_defaults
     self.copy_media = true if self.copy_media.nil?
   end
