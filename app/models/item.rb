@@ -4,12 +4,15 @@ class Item < ActiveRecord::Base
   include Tire::Model::Search
 
   belongs_to :storage, class_name: "StorageConfiguration", foreign_key: :storage_id
+  before_validation :set_public, if: :new_record? 
 
   DEFAULT_INDEX_PARAMS = {}
 
   tire do
     mapping do
       indexes :id, index: :not_analyzed
+      indexes :public, index: :not_analyzed
+      indexes :collection_id, index: :not_analyzed
       indexes :date_created,      type: 'date',   include_in_all: false
       indexes :date_broadcast,    type: 'date',   include_in_all: false
       indexes :created_at,        type: 'date',   include_in_all: false, index_name:"date_added"
@@ -94,6 +97,16 @@ class Item < ActiveRecord::Base
       end
       json[:location]     = geolocation.to_indexed_json if geolocation.present?
     end.to_json
+  end
+
+  private
+
+  def set_public
+    if collection.present? && public.nil?
+      self.public = collection.items_visible_by_default
+    elsif public.nil?
+      self.public = false
+    end
   end
 
 end
