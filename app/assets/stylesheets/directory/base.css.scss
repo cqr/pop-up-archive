@@ -36,14 +36,16 @@ body {
     background: rgb(242, 239, 239) !important;
     border: none !important;
     box-shadow: none !important;
-    padding-top: 40px;
+    padding-top: 10px;
   }
 
   .logo {
     text-indent: -9999px;
-    width: 150px;
-    height: 48px;
-    background: image-url('wordmark_150_prx.png') no-repeat top left;
+    width: 235px;
+    height: 80px;
+    background: image-url('logo_powered-by-prx_fit.png') no-repeat top left;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .nav {
@@ -556,7 +558,7 @@ $navbarHeight: 105px;
 }
 
 .navbar-shadow-hider {
-  position:absolute; 
+  position:absolute;
   top: $navbarHeight;
   z-index: 6;
   background: #f2efef;
