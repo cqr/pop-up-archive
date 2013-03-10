@@ -60,7 +60,15 @@ class QueryBuilder
   end
 
   def current_user_filter
-    OrFilter.new([Filter.new(:collection_id, type: 'terms', value: current_user.collection_ids)])
+    if current_user.present?
+      OrFilter.new([Filter.new(:collection_id, type: 'terms', value: current_user.collection_ids), public_filter])
+    else
+      public_filter
+    end
+  end
+
+  def public_filter
+    Filter.new(:public, type:'term', value: 'true')
   end
 
   def default_facets
