@@ -26,4 +26,10 @@ class Api::V1::ItemsController < Api::V1::BaseController
   def show
     respond_with :api, searched_item
   end
+
+  def create
+    item.valid?
+    item.save
+    respond_with :api, item
+  end
 end

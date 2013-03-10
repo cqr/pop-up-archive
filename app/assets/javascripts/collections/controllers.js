@@ -12,19 +12,23 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
     }
   });
 }])
-.controller('CollectionCtrl', ['$scope', '$routeParams', 'Collection', 'Loader', 'Item', function CollectionCtrl($scope, $routeParams, Collection, Loader, Item) {
+.controller('CollectionCtrl', ['$scope', '$routeParams', 'Collection', 'Loader', 'Item', '$location', '$timeout', function CollectionCtrl($scope, $routeParams, Collection, Loader, Item, $location, $timeout) {
   Loader.page(Collection.get($routeParams.collectionId), 'Collection/' + $routeParams.collectionId,  $scope);
 
-  $scope.openAddItem = function () {
-    $scope.addingItem = true;
+  $scope.edit = function () {
+    $scope.editItem = true;
   }
 
-  $scope.closeAddItem = function () {
-    $scope.newItem = new Item;
-    $scope.addingItem = false;
+  $scope.close = function () {
+    $scope.editItem = false;
+    $scope.item = new Item({collectionId:$routeParams.collectionId});
   }
 
-  $scope.closeAddItem();
+  $scope.itemAdded = function (item) {
+    $timeout(function(){ $scope.$broadcast('datasetChanged')}, 750);
+  }
+
+  $scope.close();
 
   $scope.hasFilters = false;
 }])

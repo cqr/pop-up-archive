@@ -1,28 +1,16 @@
-button.btn.pull-right ng-click="openAddItem()"
+button.btn.pull-right ng-click="edit()"
   i.icon-plus  Add an Item
 h2 Browsing {{collection.title}}
 
-div modal='addingItem' close='closeAddItem()' options='modalOpts'
-  .modal-header
-    button.close ng-click='closeAddItem()' ×
-    h3 Add an item to '{{collection.title}}'
-  .modal-body
-    form.form-horizontal name='newItem'
-      .alert.alert-error ng-show="newItem.title.$error.required"
-        strong Error
-        | &nbsp;Title is required
-      .control-group
-        label.control-label
-          | Title
-        .controls
-          input ng-model='newItem.title' required='' placeholder="Title"
-      .control-group
-        label.control-label
-          | Desc
-        .controls
-          input ng-model='newItem.description'
-  .modal-footer
-    button.btn ng-click='closeAddItem()' Close
-    button.btn.btn-primary ng-click='submit()' ng-hide="newItem.title.$error.required" Save
+section ng-controller="ItemFormCtrl"
+  div modal='editItem' close='close()' options='modalOpts'
+    .modal-header
+      button.close ng-click='close()' ×
+      h3 Add Item to {{collection.title}}
+    .modal-body
+      ng-include src="'#{asset_path 'items/form.html'}'"
+    .modal-footer
+      button.btn ng-click='close()' Close
+      button.btn.btn-primary ng-click='submit()' ng-hide="newItem.title.$error.required" Save
 
 ng-include ng-controller="SearchResultsCtrl" src="'#{asset_path 'search/results.html'}'"
