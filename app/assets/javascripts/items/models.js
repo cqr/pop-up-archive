@@ -17,5 +17,7 @@ angular.module('Directory.items.models', ['RailsModel'])
     return "/collections/" + this.collectionId + "/items/" + this.id; 
   }
 
+  Item.attrAccessible = "dateBroadcast datePeg description digitalFormat digitalLocation episodeTitle identifier musicSoundUsed notes physicalFormat physicalLocation rights seriesTitle title transcription".split(' ');
+
   return Item;
 }])

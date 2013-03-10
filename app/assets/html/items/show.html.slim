@@ -10,7 +10,7 @@ section ng-controller="ItemFormCtrl"
     .modal-body
       ng-include src="'#{asset_path 'items/form.html'}'"
     .modal-footer
-      button.btn ng-click='closeAddItem()' Close
+      button.btn ng-click='close()' Close
       button.btn.btn-primary ng-click='submit()' ng-hide="newItem.title.$error.required" Save
 
 section ng-repeat="contributorGroup in ['Producers','Interviewers','Interviewees']" ng-show="item[contributorGroup.toLowerCase()]"

@@ -5,6 +5,7 @@ class Collection < ActiveRecord::Base
   belongs_to :default_storage, class_name: "StorageConfiguration"
   has_many :collection_grants
   has_many :users, through: :collection_grants
+  has_many :items
 
   validates_presence_of :title
 

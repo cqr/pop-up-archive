@@ -1,7 +1,8 @@
 class Api::V1::ItemsController < Api::V1::BaseController
   expose(:collection)
   expose(:items, ancestor: :collection)
-  expose(:item) do
+  expose(:item)
+  expose(:searched_item) do
     query_builder = QueryBuilder.new({query:"id:#{params[:id].to_i}"}, current_user)
     Item.search do
       query_builder.query do |q|
@@ -15,5 +16,14 @@ class Api::V1::ItemsController < Api::V1::BaseController
         raise ActiveRecord::RecordNotFound
       end
     end
+  end
+
+  def update
+    item.save
+    respond_with :api, item
+  end
+
+  def show
+    respond_with :api, searched_item
   end
 end

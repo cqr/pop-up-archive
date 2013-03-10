@@ -19,5 +19,24 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
   }
 }])
 .controller('ItemFormCtrl', ['$scope', 'Schema', function ($scope, Schema) {
+  $scope.item = {};
+  $scope.$parent.$watch('item', function (is) {
+    if (is && $scope.item != is) {
+      angular.copy(is, $scope.item);
+    }
+  });
   $scope.fields = Schema.columns;
+
+  $scope.submit = function () {
+    if ($scope.item.id) {
+      $scope.item.update().then(function (data) {
+        angular.copy($scope.item, $scope.$parent.item);
+        $scope.close();
+      });
+    } else {
+      $scope.item.create().then(function (data) {
+        $scope.close();
+      });
+    }
+  }
 }]);
