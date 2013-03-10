@@ -28,6 +28,9 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
 
   $scope.hasFilters = false;
 }])
+.controller('PublicCollectionsCtrl', ['$scope', 'Collection', 'Loader', function PublicCollectionsCtrl($scope, Collection, Loader) {
+  $scope.collections = Loader(Collection.public());
+}])
 .controller('CollectionFormCtrl', ['$scope', 'Collection', function CollectionFormCtrl($scope, Collection) {
   $scope.open = function () {
     $scope.editCollection = true;

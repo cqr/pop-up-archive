@@ -1,5 +1,7 @@
-div ng-controller='CollectionFormCtrl'
-  button.btn ng-click='edit()' Create new collection
+div ng-controller='CollectionFormCtrl' ng-show="currentUser"
+  button.pull-right.btn ng-click='edit()'
+    i.icon-plus  Add a Collection
+  h3 My Collections
 
   div modal='editCollection' close='close()' options='modalOpts'
     .modal-header
@@ -37,17 +39,21 @@ div ng-controller='CollectionFormCtrl'
       tr
     tbody
       tr
-        th ID
         th Title
         th Description
-        th Visible?
+        th Public?
         th
       tr ng-repeat='collection in collections' ng-class='{error:collection.deleting}'
-        td {{collection.id}}
         td
           a ng-href='/collections/{{collection.id}}' {{collection.title}}
         td {{collection.description}}
-        td {{collection.itemsVisibleByDefault}}
+        td ng-show="collection.itemsVisibleByDefault" Yes
+        td ng-hide="collection.itemsVisibleByDefault" No
         td
           button.btn ng-click="edit(collection)" Edit
           button.btn ng-click="delete($index)"  Delete
+div ng-controller="PublicCollectionsCtrl"
+  h3 Public Collections
+  ul
+    li ng-repeat="collection in collections"
+      a ng-href="/collections/{{collection.id}}" {{collection.title}}
