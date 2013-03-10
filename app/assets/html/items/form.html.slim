@@ -1,0 +1,18 @@
+form.form-horizontal name='itemForm'
+  section ng-repeat="field in fields" ng-switch="field.typeName"
+    .control-group ng-switch-when="string"
+      label.control-label {{field.humanName}}
+      .controls 
+        input ng-model='item[field.camelCaseName]'
+    .control-group ng-switch-when="short_text"
+      label.control-label {{field.humanName}}
+      .controls 
+        input ng-model='item[field.camelCaseName]'
+    .control-group ng-switch-when="geolocation"
+      label.control-label {{field.humanName}}
+      .controls 
+        input ng-model='item[field.camelCaseName]'
+    .control-group ng-switch-when="text"
+      label.control-label {{field.humanName}}
+      .controls 
+        textarea ng-model='item[field.camelCaseName]'

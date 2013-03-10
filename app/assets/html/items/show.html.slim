@@ -1,5 +1,17 @@
+button.btn.pull-right ng-click="edit()" Edit
 h1 {{item.title}}
 h3 ng-show="item.identifier" {{item.identifier}}
+
+section ng-controller="ItemFormCtrl"
+  div modal='editItem' close='close()' options='modalOpts'
+    .modal-header
+      button.close ng-click='close()' ×
+      h3 Edit Item
+    .modal-body
+      ng-include src="'#{asset_path 'items/form.html'}'"
+    .modal-footer
+      button.btn ng-click='closeAddItem()' Close
+      button.btn.btn-primary ng-click='submit()' ng-hide="newItem.title.$error.required" Save
 
 section ng-repeat="contributorGroup in ['Producers','Interviewers','Interviewees']" ng-show="item[contributorGroup.toLowerCase()]"
   h4 {{contributorGroup}}
@@ -11,9 +23,9 @@ section ng-show="item.tags"
   ul
     li ng-repeat="tag in item.tags"
       button.btn ng-click="searchTags(tag)" {{tag}}
-section ng-controller="AudioFileCtrl"
+section ng-repeat="audioFile in audioFiles" ng-controller="AudioFileCtrl" 
   h4 Audio File
-
+  h6 {{audioFile.fileName}}
   .player
     button.player-button ng-disabled="player.time == 0" ng-click="player.rewind()"
       i.icon-fast-backward

@@ -9,4 +9,15 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
   if ($routeParams.id) {
     Loader.page(Item.get({collectionId:$routeParams.collectionId, id: $routeParams.id}), 'Item/'+$routeParams.id, $scope);
   }
+
+  $scope.edit = function () {
+    $scope.editItem = true;
+  }
+
+  $scope.close = function () {
+    $scope.editItem = false;
+  }
+}])
+.controller('ItemFormCtrl', ['$scope', 'Schema', function ($scope, Schema) {
+  $scope.fields = Schema.columns;
 }]);
