@@ -68,7 +68,7 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
       controller: "CollectionCtrl",
       reloadOnSearch: false
     })
-    .when('/items/:id', {
+    .when('/collections/:collectionId/items/:id', {
       templateUrl: "<%= asset_path 'items/show.html' %>",
       controller:  "ItemCtrl"
     })

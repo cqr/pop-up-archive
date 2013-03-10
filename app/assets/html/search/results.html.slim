@@ -24,10 +24,10 @@ ul.pager
     h5.results-count {{search.firstItemNumber()}} to {{search.lastItemNumber()}} of {{search.totalHits}} items
     .media.search-result ng-repeat="item in search.resultsAsItems()"
       .media-body
-        a.pull-left ng-href="/items/{{item.id}}"
+        a.pull-left ng-href="{{item.link()}}"
           img.media-object src="#{asset_path('minimark.png')}"
         h4.media-heading ng-show="item.getTitle()"
-          a ng-href="/items/{{item.id}}" {{item.getTitle()}}
+          a ng-href="{{item.link()}}" {{item.getTitle()}}
         .media
           p ng-show="item.getDescription()" {{item.getDescription()}}
           ul.inline.dates

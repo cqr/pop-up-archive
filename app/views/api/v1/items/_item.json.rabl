@@ -1,4 +1,4 @@
-attributes :id, :title, :description, :date_created, :identifier, :producers, :interviewers, :interviewees, :creator
+attributes :id, :title, :description, :date_created, :identifier, :producers, :interviewers, :interviewees, :creator, :collection_id
 attribute :_score => :score, created_at: :date_added
 attribute :tags
 
