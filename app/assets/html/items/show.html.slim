@@ -30,8 +30,8 @@
           button.player-button ng-show="isPlaying()" ng-click="player.pause()"
             i.icon-pause
           .scrubber
-            .bar ng-style="{width:player.time*100/player.duration+'%'}"
-            .timecodes ng-show="player.duration" {{player.time | timeCode }} / {{player.duration | timeCode }}
+            .bar ng-show="isLoaded()" ng-style="{width:player.time*100/player.duration+'%'}"
+            .timecodes ng-show="isLoaded() && player.duration" {{player.time | timeCode }} / {{player.duration | timeCode }}
 
 .row-fluid.item-detail
   .span6

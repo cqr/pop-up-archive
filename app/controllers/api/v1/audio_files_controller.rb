@@ -19,4 +19,8 @@ class Api::V1::AudioFilesController < Api::V1::BaseController
     audio_file.save
     respond_with :api, audio_file.item, audio_file
   end
+
+  def show
+    redirect_to audio_file.file.url || audio_file.original_file_url
+  end
 end

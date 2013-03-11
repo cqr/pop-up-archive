@@ -30,7 +30,11 @@ class AudioFile < ActiveRecord::Base
   end
 
   def url
-    self.file.url || original_file_url
+    if file.url 
+      Rails.application.routes.url_helpers.api_item_audio_file_url(item_id, id)
+    else
+      original_file_url
+    end
   end
 
   def update_from_fixer(params)

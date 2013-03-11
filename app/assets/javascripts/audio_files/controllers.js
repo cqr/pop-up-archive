@@ -9,7 +9,11 @@ angular.module("Directory.audioFiles.controllers", ['ngPlayer'])
   $scope.player = Player;
 
   $scope.isPlaying = function () {
-    return Player.nowPlaying() == $scope.fileUrl && !Player.paused();
+    return $scope.isLoaded() && !Player.paused();
+  }
+
+  $scope.isLoaded = function () {
+    return Player.nowPlaying() == $scope.fileUrl;
   }
 
 }])
