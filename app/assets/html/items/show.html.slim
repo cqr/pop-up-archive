@@ -39,7 +39,7 @@ p ng-show="item.description" {{item.description}}
     dd ng-show="item.datePeg" {{item.datePeg}}
     dt ng-show="item.duration" Duration
     dd ng-show="item.duration" {{item.getDurationString()}}
-    section ng-repeat="field, value in item.extra"
+    section ng-repeat="(field, value) in item.extra"
       dt {{field|titleize}}
       dd value
 
