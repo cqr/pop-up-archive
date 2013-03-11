@@ -11,7 +11,8 @@ class AudioFile < ActiveRecord::Base
   delegate :collection_title, to: :item
 
   def transcript_text
-    transcript.collect{|i| i[:text]}.join(' ')
+    trans_json = JSON.parse(transcript)
+    trans_json.collect{|i| i['text']}.join(' ')
   end
 
   def remote_file_url=(url)
