@@ -47,6 +47,6 @@ angular.module('Directory.items.models', ['RailsModel'])
     if (!angular.isString(value)) {
       return value;
     }
-    return value.replace(/_+/g, ' ');
+    return value.slice(0,1).toUpperCase() + value.slice(1).replace(/([A-Z])/g, ' $1');
   }
 });

@@ -41,7 +41,7 @@ p ng-show="item.description" {{item.description}}
     dd ng-show="item.duration" {{item.getDurationString()}}
     section ng-repeat="(field, value) in item.extra"
       dt {{field|titleize}}
-      dd value
+      dd {{value}}
 
 section ng-show="item.rights"
   h5 Rights
