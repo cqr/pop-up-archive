@@ -68,9 +68,9 @@ ActiveRecord::Schema.define(:version => 20130310195034) do
     t.integer  "state_index",   :default => 0
     t.string   "headers",                                      :array => true
     t.string   "file_name"
+    t.integer  "collection_id", :default => 0
     t.string   "error_message"
     t.text     "backtrace"
-    t.integer  "collection_id", :default => 0
     t.integer  "user_id"
   end
 

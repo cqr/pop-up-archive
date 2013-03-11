@@ -116,6 +116,8 @@ class Item < ActiveRecord::Base
     elsif public.nil?
       self.public = false
     end
+
+    return true
   end
 
 end
