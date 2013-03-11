@@ -19,7 +19,7 @@
 
       p ng-show="item.description" {{item.description}}
 
-      section ng-repeat="audioFile in audioFiles" ng-controller="AudioFileCtrl"
+      section ng-repeat="audioFile in item.audioFiles" ng-controller="AudioFileCtrl"
         h4 audio file
         h6 {{audioFile.fileName}}
         .player

@@ -1,6 +1,6 @@
 angular.module("Directory.audioFiles.controllers", ['ngPlayer'])
 .controller("AudioFileCtrl", ['$scope', 'Player', function($scope, Player) {
-  $scope.fileUrl = "https://dl.dropbox.com/u/125516/02%20Your%20Side.mp3";
+  $scope.fileUrl = $scope.audioFile.url;
 
   $scope.play = function () {
     Player.play($scope.fileUrl);

@@ -3,7 +3,7 @@ angular.module('Directory.items.models', ['RailsModel'])
   var Item = Model({url:'/api/collections/{{collectionId}}/items/{{id}}', name: 'item'});
 
   Item.prototype.getTitle = function () {
-    if (this.title) { return this.title + (this.identifier ? ' ('+ this.identifier +')' : ''); }
+    if (this.title) { return this.title; }
     if (this.episodeTitle) { return this.episodeTitle + " : " + this.identifier; }
     if (this.seriesTitle) { return this.seriesTitle + " : " + this.identifier; }
   } 
