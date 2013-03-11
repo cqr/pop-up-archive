@@ -2,12 +2,15 @@ class CsvImportWorker
   include Sidekiq::Worker
 
   def perform(import_id)
-    logger.debug("starting import #{import_id}")
+    p  "starting import #{import_id}"
     import = CsvImport.find(import_id)
-    logger.debug("Got that import")
+    p import
     import.process!
-    logger.debug("Process!")
+    p import
+    true
   rescue Exception => e
+    p e
     import.error!(e)
+    true
   end
 end
