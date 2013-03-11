@@ -7,6 +7,10 @@ child :audio_files do |af|
   extends 'api/v1/audio_files/audio_file'
 end
 
+node :extra do |i|
+  i.extra
+end
+
 node(:urls) do |i|
   { self: url_for(api_item_path(i)) }
 end
