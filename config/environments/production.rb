@@ -77,6 +77,13 @@ PopUpArchive::Application.configure do
   end
 
   Sidekiq.configure_server do |config|
+
+    database_url = ENV['DATABASE_URL']
+    if(database_url)
+      ENV['DATABASE_URL'] = "#{database_url}?pool=30"
+      ActiveRecord::Base.establish_connection
+    end
+
     config.server_middleware do |chain|
       chain.add(Autoscaler::Sidekiq::Server, Autoscaler::HerokuScaler.new, 300)
     end

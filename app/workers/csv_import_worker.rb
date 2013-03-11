@@ -1,20 +1,27 @@
 class CsvImportWorker
   include Sidekiq::Worker
 
+  sidekiq_options :timeout => 300, :retry => false, :backtrace => true
+
   def perform(import_id)
-    p  "starting import #{import_id}"
-    import = CsvImport.find(import_id)
-    CsvImport.transaction do 
+    ActiveRecord::Base.connection_pool.with_connection do
+      p  "starting import #{import_id}"
+      import = CsvImport.find(import_id)
+      CsvImport.transaction do 
+        p import
+        import.process!
+        p import
+      end
       p import
-      import.process!
-      p import
+      p "transaction complete"
+      true
     end
-    p import
-    p "transaction complete"
-    true
   rescue Exception => e
-    p e
-    import.error!(e)
-    true
+    ActiveRecord::Base.connection_pool.with_connection do
+      p e
+      import.error!(e)
+      true
+    end
+    raise e
   end
 end
