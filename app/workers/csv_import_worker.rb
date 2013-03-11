@@ -3,8 +3,8 @@ class CsvImportWorker
 
   def perform(import_id)
     p  "starting import #{import_id}"
+    import = CsvImport.find(import_id)
     CsvImport.transaction do 
-      import = CsvImport.find(import_id)
       p import
       import.process!
       p import
