@@ -1,7 +1,7 @@
 angular.module("Directory.audioFiles.controllers", ['ngPlayer'])
 .controller("AudioFileCtrl", ['$scope', 'Player', function($scope, Player) {
   $scope.fileUrl = $scope.audioFile.url;
-
+  
   $scope.play = function () {
     Player.play($scope.fileUrl);
   }
