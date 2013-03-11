@@ -42,3 +42,11 @@ angular.module('Directory.items.models', ['RailsModel'])
 
   return Item;
 }])
+.filter('titleize', function () {
+  return function (value) {
+    if (!angular.isString(value)) {
+      return value;
+    }
+    return value.replace(/_+/g, ' ');
+  }
+});

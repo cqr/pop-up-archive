@@ -19,11 +19,8 @@ class ImportMapping < ActiveRecord::Base
       end
 
       if apply_column.match /(\w+)\[([^\]]+)\]/
-        p model
         model = model.send($1)
-        p model
         apply_column = $2
-        p apply_column
       end
 
       if apply_column =~ /\[\]/
