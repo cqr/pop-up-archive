@@ -68,7 +68,7 @@ class ImportMapping < ActiveRecord::Base
 
   def parse_to_i(value)
     if value.include? ':'
-      Time.parse('00:29:18').seconds_since_midnight
+      Time.parse(value).seconds_since_midnight
     else
       value.to_i
     end
