@@ -90,6 +90,15 @@ class Item < ActiveRecord::Base
     self.creators.try(:first)
   end
 
+  def update_transcription!
+    self.transcription = transcript_text
+    self.save!
+  end
+
+  def transcript_text
+    audio_files.collect{|af| af.transcript_text}.join("\n")
+  end
+
   def to_indexed_json(params={})
     as_json(params.reverse_merge(DEFAULT_INDEX_PARAMS)).tap do |json|
       [:contributors, :interviewers, :interviewees, :producers, :creators].each do |assoc|

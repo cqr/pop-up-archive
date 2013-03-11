@@ -3,7 +3,7 @@ class PBCoreImporter
   attr_accessor :file, :collection
 
   def initialize(options={})
-    PBCore.config[:date_format] = '%m/%d/%Y'
+    PBCore.config[:date_formats] = ['%m/%d/%Y', '%Y-%m-%d']
 
     raise "File missing or 0 length: #{options[:file]}" unless (File.size?(options[:file]).to_i > 0)
 
@@ -21,6 +21,13 @@ class PBCoreImporter
     pbc_collection.description_documents.each do |doc|
       item_for_omeka_doc(doc).save!
     end
+  end
+
+  def is_audio_file?(url)
+    puts "is_audio_file? url:#{url}"
+    uri = URI.parse(url)
+    ext = (File.extname(uri.path)[1..-1] || "").downcase
+    ['mp3', 'wav', 'mp2', 'aac'].include?(ext)
   end
 
   def item_for_omeka_doc(doc)
@@ -42,30 +49,36 @@ class PBCoreImporter
 
     # process each instance
     doc.instantiations.each do |pbcInstance|
-      next if pbcInstance.digital.nil?
+      next if pbcInstance.physical
 
       instance = item.instances.build
       instance.digital    = true
-      instance.format     = pbcInstance.digital.value
+      instance.format     = pbcInstance.try(:digital).try(:value)
       instance.identifier = pbcInstance.detect_element(:identifiers)
       instance.location   = pbcInstance.location
 
       if pbcInstance.parts.blank?
+        url = pbcInstance.detect_element(:identifiers, match_attr: :source, match_value: ['URL', nil])
+        next unless is_audio_file?(url)
+
         audio = AudioFile.new
         instance.audio_files << audio
         item.audio_files << audio
-        audio.identifier        = pbcInstance.detect_element(:identifiers)
-        audio.remote_file_url   = pbcInstance.location
-        audio.format            = pbcInstance.digital.value
+        audio.identifier        = url
+        audio.remote_file_url   = url
+        audio.format            = instance.format
         audio.size              = pbcInstance.file_size.try(:value).to_i
       else
         pbcInstance.parts.each do |pbcPart|
+          url = pbcPart.detect_element(:identifiers, match_attr: :source, match_value: ['URL', nil])
+          next unless is_audio_file?(url)
+
           audio = AudioFile.new
           instance.audio_files << audio
           item.audio_files << audio
-          audio.identifier        = pbcPart.detect_element(:identifiers, match_attr: :source, match_value: /item_id$/)
-          audio.remote_file_url   = pbcPart.location
-          audio.format            = pbcPart.digital.value
+          audio.identifier        = url
+          audio.remote_file_url   = url
+          audio.format            = pbcPart.try(:digital).try(:value) || instance.format
           audio.size              = pbcPart.file_size.try(:value).to_i
         end   
       end
