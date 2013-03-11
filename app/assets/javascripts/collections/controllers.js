@@ -28,6 +28,13 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
     $timeout(function(){ $scope.$broadcast('datasetChanged')}, 750);
   }
 
+  $scope.$on('fileAdded', function (e, file) {
+    var item = new Item({collectionId:$routeParams.collectionId, title:file.name});
+    item.create().then(function () {
+      item.addAudioFile(file);
+    });
+  });
+
   $scope.close();
 
   $scope.hasFilters = false;

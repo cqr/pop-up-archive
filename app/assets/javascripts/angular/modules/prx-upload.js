@@ -25,7 +25,7 @@ angular.module('fileDropzone', [])
                 position: 'absolute',
                 top: '0px',
                 left: '0px',
-                'z-index':99
+                'z-index':10000
             }
 
             overlayTemplateLinker(scope, function(overlayElement) {

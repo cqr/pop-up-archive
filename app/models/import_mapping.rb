@@ -3,11 +3,6 @@ class ImportMapping < ActiveRecord::Base
   attr_accessible :column, :type
   acts_as_list scope: :csv_import_id
 
-  @_stdout_logger = Logger.new($stdout)
-  def self.logger
-    @_stdout_logger
-  end
-
   def type=(val)
     self.data_type = val
   end
@@ -46,7 +41,6 @@ class ImportMapping < ActiveRecord::Base
   private
 
   def transform(value)
-    ImportMapping.logger.debug("transforming #{value.inspect} as #{data_type}")
     if value.present?
       case data_type
       when "string" then value.to_s
@@ -65,7 +59,6 @@ class ImportMapping < ActiveRecord::Base
   end
 
   def put_value(model, key, value)
-    ImportMapping.logger.debug("setting #{model.inspect}##{key}=#{value.inspect}")
     if model.respond_to?(:"#{key}=")
       model.send(:"#{key}=", value)
     elsif model.respond_to?(:[]=)

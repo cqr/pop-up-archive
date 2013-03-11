@@ -1,5 +1,5 @@
 angular.module('Directory.items.models', ['RailsModel'])
-.factory('Item', ['Model', function (Model) {
+.factory('Item', ['Model', '$http', '$q', function (Model, $http, $q) {
   var Item = Model({url:'/api/collections/{{collectionId}}/items/{{id}}', name: 'item'});
 
   Item.prototype.getTitle = function () {
@@ -15,6 +15,22 @@ angular.module('Directory.items.models', ['RailsModel'])
 
   Item.prototype.link = function () {
     return "/collections/" + this.collectionId + "/items/" + this.id; 
+  }
+
+  Item.prototype.addAudioFile = function (file) {
+    var promise = $q.defer();
+    var fData = new FormData();
+    fData.append('audio_file[file]', file);
+    $http({
+      method: 'POST',
+      url: '/api/items/' + this.id + '/audio_files',
+      data: fData,
+      headers: { "Content-Type": undefined },
+      transformRequest: angular.identity
+    })
+    .success(function(data, status, headers, config) {promise.resolve(data)})
+    .error(function() { promise.reject();});
+    return promise.promise;
   }
 
   Item.attrAccessible = "dateBroadcast datePeg description digitalFormat digitalLocation episodeTitle identifier musicSoundUsed notes physicalFormat physicalLocation rights seriesTitle title transcription".split(' ');

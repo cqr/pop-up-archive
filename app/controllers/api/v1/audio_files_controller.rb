@@ -1,5 +1,6 @@
 class Api::V1::AudioFilesController < Api::V1::BaseController
-  expose :audio_files
+  expose :item
+  expose :audio_files, ancestor: :item
   expose :audio_file
 
   def update
@@ -8,6 +9,11 @@ class Api::V1::AudioFilesController < Api::V1::BaseController
     else
       audio_file.update_attributes(params[:audio_file])
     end
+    respond_with :api, audio_file.item, audio_file
+  end
+
+  def create
+    audio_file.save
     respond_with :api, audio_file.item, audio_file
   end
 end
