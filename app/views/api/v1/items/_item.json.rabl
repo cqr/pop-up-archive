@@ -1,4 +1,5 @@
 attributes :id, :title, :description, :date_created, :identifier, :producers, :interviewers, :interviewees, :creator, :collection_id
+attributes :episode_title, :series_title, :date_broadcast, :date_created, :physical_format, :digital_format, :digital_location, :physical_location, :music_sound_used, :date_peg, :rights
 attribute :_score => :score, created_at: :date_added
 attribute :tags
 
