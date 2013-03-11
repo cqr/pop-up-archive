@@ -14,27 +14,29 @@ section ng-controller="ItemFormCtrl"
       button.btn.btn-primary ng-click='submit()' ng-hide="newItem.title.$error.required" Save
 p ng-show="item.description" {{item.description}}
 
-dl.dl-horizontal
-  dt ng-show="item.seriesTitle" Series Title
-  dd ng-show="item.seriesTitle" {{item.seriesTitle}}
-  dt ng-show="item.episodeTitle" Episode Title
-  dd ng-show="item.episodeTitle" {{item.episodeTitle}}
-  dt ng-show="item.dateBroadcast" Broadcast
-  dd ng-show="item.dateBroadcast" {{item.dateBroadcast}}
-  dt ng-show="item.dateCreated" Created
-  dd ng-show="item.dateCreated" {{item.dateCreated}}
-  dt ng-show="item.physicalFormat" Physical Format
-  dd ng-show="item.physicalFormat" {{item.physicalFormat}}
-  dt ng-show="item.digitalFormat" Digital Format
-  dd ng-show="item.digitalFormat" {{item.digitalFormat}}
-  dt ng-show="item.physicalLocation" Physical Location
-  dd ng-show="item.physicalLocation" {{item.physicalLocation}}
-  dt ng-show="item.digitalLocation" Digital Location
-  dd ng-show="item.digitalLocation" {{item.digitalLocation}}
-  dt ng-show="item.musicSoundUsed" Music/Sound Used
-  dd ng-show="item.musicSoundUsed" {{item.musicSoundUsed}}
-  dt ng-show="item.datePeg" Date Peg
-  dd ng-show="item.datePeg" {{item.datePeg}}
+.well
+  h4 Metadata
+  dl.dl-horizontal
+    dt ng-show="item.seriesTitle" Series Title
+    dd ng-show="item.seriesTitle" {{item.seriesTitle}}
+    dt ng-show="item.episodeTitle" Episode Title
+    dd ng-show="item.episodeTitle" {{item.episodeTitle}}
+    dt ng-show="item.dateBroadcast" Broadcast
+    dd ng-show="item.dateBroadcast" {{item.dateBroadcast}}
+    dt ng-show="item.dateCreated" Created
+    dd ng-show="item.dateCreated" {{item.dateCreated}}
+    dt ng-show="item.physicalFormat" Physical Format
+    dd ng-show="item.physicalFormat" {{item.physicalFormat}}
+    dt ng-show="item.digitalFormat" Digital Format
+    dd ng-show="item.digitalFormat" {{item.digitalFormat}}
+    dt ng-show="item.physicalLocation" Physical Location
+    dd ng-show="item.physicalLocation" {{item.physicalLocation}}
+    dt ng-show="item.digitalLocation" Digital Location
+    dd ng-show="item.digitalLocation" {{item.digitalLocation}}
+    dt ng-show="item.musicSoundUsed" Music/Sound Used
+    dd ng-show="item.musicSoundUsed" {{item.musicSoundUsed}}
+    dt ng-show="item.datePeg" Date Peg
+    dd ng-show="item.datePeg" {{item.datePeg}}
 
 
 section ng-show="item.rights"
