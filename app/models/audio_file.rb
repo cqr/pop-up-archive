@@ -10,10 +10,14 @@ class AudioFile < ActiveRecord::Base
 
   delegate :collection_title, to: :item
 
+  def transcript_text
+    transcript.collect{|i| i[:text]}.join(' ')
+  end
+
   def remote_file_url=(url)
     self.original_file_url = url
     self.should_trigger_fixer_copy = !!url
-    logger.debug "remote_file_url: #{self.original_file_url}"
+    # logger.debug "remote_file_url: #{self.original_file_url}"
   end
 
   def collection
@@ -65,17 +69,17 @@ class AudioFile < ActiveRecord::Base
         job.priority = 1
         job.original = self.url
         job.add_sequence do |seq|
-          seq.add_task task_type: 'cut', options: {length: 30, fade: 0}
+          seq.add_task task_type: 'cut', options: {length: 120, fade: 0}
           seq.add_task task_type: 'transcribe', result: "#{destination}_ts30.json", call_back: audio_file_callback_url, label:'ts30'
         end
       end
 
-      MediaMonsterClient.create_job do |job|
-        job.job_type = 'audio'
-        job.priority = 1
-        job.original = self.url
-        job.add_task task_type: 'transcribe', result: "#{destination}_ts.json", call_back: audio_file_callback_url, label:'ts'
-      end
+      # MediaMonsterClient.create_job do |job|
+      #   job.job_type = 'audio'
+      #   job.priority = 1
+      #   job.original = self.url
+      #   job.add_task task_type: 'transcribe', result: "#{destination}_ts.json", call_back: audio_file_callback_url, label:'ts'
+      # end
     end
 
     self.should_trigger_fixer_copy = false
