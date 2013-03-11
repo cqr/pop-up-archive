@@ -17,6 +17,11 @@ angular.module('Directory.items.models', ['RailsModel'])
     return "/collections/" + this.collectionId + "/items/" + this.id; 
   }
 
+  Item.prototype.getDurationString = function () {
+    var d = new Date(this.duration * 1000);
+    return d.getUTCHours() + ":" + d.getUTCMinutes() + ":" + d.getUTCSeconds();
+  }
+
   Item.prototype.addAudioFile = function (file) {
     var promise = $q.defer();
     var fData = new FormData();

@@ -37,7 +37,8 @@ p ng-show="item.description" {{item.description}}
     dd ng-show="item.musicSoundUsed" {{item.musicSoundUsed}}
     dt ng-show="item.datePeg" Date Peg
     dd ng-show="item.datePeg" {{item.datePeg}}
-
+    dt ng-show="item.duration" Duration
+    dd ng-show="item.duration" {{item.getDurationString()}}
 
 section ng-show="item.rights"
   h5 Rights
