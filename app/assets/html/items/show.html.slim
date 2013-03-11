@@ -77,3 +77,7 @@
       ul
         li ng-repeat="tag in item.tags"
           button.btn ng-click="searchTags(tag)" {{tag}}
+
+    section.transcription ng-show="item.transcription"
+      h4 Transcription
+      p {{item.transcription}}

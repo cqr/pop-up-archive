@@ -123,6 +123,15 @@ $navbarBackground: rgb(242, 239, 239);
     display: block;
   }
 
+  section.transcription {
+    h5 {
+      color: #7D7C82;
+      font-family: "soleil", sans-serif !important;
+    }
+    clear: both;
+    display: block;
+  }
+
   section.tags {
     h4 {
       font-family: "soleil", sans-serif !important;
