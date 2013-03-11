@@ -17,6 +17,13 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
   $scope.close = function () {
     $scope.editItem = false;
   }
+
+  $scope.$on("fileAdded", function (e, file) {
+    console.log(file);
+    $scope.item.addAudioFile(file).then(function(data) {
+      $scope.item.audioFiles.push(data);
+    });
+  });
 }])
 .controller('ItemFormCtrl', ['$scope', 'Schema', function ($scope, Schema) {
   $scope.item = {};

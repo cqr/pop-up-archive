@@ -13,6 +13,9 @@ class Api::V1::AudioFilesController < Api::V1::BaseController
   end
 
   def create
+    if params[:file]
+      audio_file.file = params[:file]
+    end
     audio_file.save
     respond_with :api, audio_file.item, audio_file
   end

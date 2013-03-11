@@ -25,7 +25,8 @@ angular.module('Directory.items.models', ['RailsModel'])
   Item.prototype.addAudioFile = function (file) {
     var promise = $q.defer();
     var fData = new FormData();
-    fData.append('audio_file[file]', file);
+    fData.append('file', file);
+    fData.append('file', file);
     $http({
       method: 'POST',
       url: '/api/items/' + this.id + '/audio_files',
