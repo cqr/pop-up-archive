@@ -372,19 +372,23 @@ input[type='file'] {
   }
 }
 
-$persistent-player-width: 100px;
+$persistent-player-width: 70px;
 $persistent-player-scrollpading: 15px;
 
 #persistent-player {
   position: fixed;
-  z-index:10;
+  z-index:2000;
   top: 0;
   width: $persistent-player-width;
+  padding: 10px;
+  background: #fff;
   overflow:hidden;
   right: $persistent-player-scrollpading;
-  bottom: 3px;
-  padding-top: 40px;
+  bottom: 10px;
   margin-right:0;
+  border-radius: 0;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 
   transition: transform 0.5s ease-in-out;
   -o-transition: -o-transform 0.5s ease-in-out;
@@ -398,55 +402,29 @@ $persistent-player-scrollpading: 15px;
     -moz-transform: translateY(-100%);
   }
 
-  background: #333;
-
   .player-controls {
     position: absolute;
-    bottom: 0px;
-    width: 100%;
+    bottom: 5px;
+    margin-left: 5px;
     text-align: center;
-    a {
-      display: inline-block;
-      color: #ddd;
-      text-shadow: 0 -1px 0 #000;
-      width: $persistent-player-width / 3;
-      line-height: 30px;
-      font-size: 20px;
-      cursor: pointer;
-      &:hover {
-        color: #fff;
-      }
-      &[disabled] {
-        color: #666;
-      }
-    }
   }
-
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
-
 }
 
 .vertical-scrubber {
-  background: #fff url("/waveform.png") center repeat-y;
-  position:absolute;
-  top:37px;
-  bottom:30px;
-  left: 2px;
-  right: 2px;
-  z-index: 10;
+  background: rgb(242, 239, 239);
+  position: absolute;
+  top: 2px;
+  bottom: 70px;
+  left: 10px;
+  right: 10px;
   overflow:hidden;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  box-shadow: 0 2px 2px #000 inset, 0 1px 0 rgba(255, 255, 255, 0.5);
+  border-radius: $persistent-player-width / 2;
 
   .bar {
     width: 100%;
-    z-index: 10;
-    background: #fff;
-    bottom:0;
-    position: absolute;
-    background: rgba(186, 70, 65, 0.8);
+    margin-top: 0px;
+    background: #85D0F1;
+    opacity: 0.5;
   }
 }
 
