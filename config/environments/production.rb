@@ -67,6 +67,7 @@ PopUpArchive::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   config.action_mailer.default_url_options = { :host => 'pop-up-archive.herokuapp.com' }
+  Rails.application.routes.default_url_options = { host: 'pop-up-archive.herokuapp.com' } 
 
   require 'autoscaler/sidekiq'
   require 'autoscaler/heroku_scaler'
