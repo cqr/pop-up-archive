@@ -1,18 +1,8 @@
 .row-fluid.item-detail
   .span12
     .well
-      button.btn.pull-right ng-click="edit()" Edit
 
-      section ng-controller="ItemFormCtrl"
-        div modal='editItem' close='close()' options='modalOpts'
-          .modal-header
-            button.close ng-click='close()' ×
-            h3 Edit Item
-          .modal-body
-            ng-include src="'#{asset_path 'items/form.html'}'"
-          .modal-footer
-            button.btn ng-click='close()' Close
-            button.btn.btn-primary ng-click='submit()' ng-hide="newItem.title.$error.required" Save
+      button.btn.pull-right bs-modal="'#{asset_path 'items/form.html'}'" Edit
 
       h1 {{item.title}}
       h3 ng-show="item.identifier" {{item.identifier}}

@@ -1,16 +1,6 @@
-button.btn.pull-right ng-click="edit()"
+button.btn.pull-right bs-modal="'#{asset_path 'items/form.html'}'"
   i.icon-plus  Add an Item
-h2 Browsing {{collection.title}}
 
-section ng-controller="ItemFormCtrl"
-  div modal='editItem' close='close()' options='modalOpts'
-    .modal-header
-      button.close ng-click='close()' ×
-      h3 Add Item to {{collection.title}}
-    .modal-body
-      ng-include src="'#{asset_path 'items/form.html'}'"
-    .modal-footer
-      button.btn ng-click='close()' Close
-      button.btn.btn-primary ng-click='submit()' ng-hide="newItem.title.$error.required" Save
+h2 Browsing {{collection.title}}
 
 ng-include ng-controller="SearchResultsCtrl" src="'#{asset_path 'search/results.html'}'"

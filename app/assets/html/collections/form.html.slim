@@ -1,0 +1,28 @@
+div ng-controller='CollectionFormCtrl' ng-show="currentUser"
+  .modal-header
+    button type="button" class="close" data-dismiss="modal" aria-hidden="true" x
+    h3 ng-show="collection.id" Edit {{collection.title}}
+    h3 ng-hide="collection.id" Create a new Collection
+  .modal-body
+    form.form-horizontal name='collectionForm'
+      .alert.alert-error ng-show="collectionForm.title.$error.required"
+        strong Error
+        | &nbsp;Title is required
+      .control-group
+        label.control-label
+          | Title
+        .controls
+          input name='title' ng-model='collection.title' required=''
+      .control-group
+        label.control-label
+          | Desc
+        .controls
+          input ng-model='collection.description'
+      .control-group
+        .controls
+          label
+            input type='checkbox' ng-model='collection.itemsVisibleByDefault'
+            |&nbsp;Items visible by default?
+  .modal-footer
+    button.btn type="button" ng-click="dismiss()" Close
+    button.btn.btn-primary ng-click='submit();dismiss()' ng-hide="newCollection.title.$error.required" Save

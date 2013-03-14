@@ -9,7 +9,7 @@ angular.module('Directory.csvImports.models', ['RailsModel'])
   CsvImport.prototype.cancel = function () {
     var $this = this;
     this.commit = 'cancel';
-    console.log(this);
+    // console.log(this);
     this.update().then(function(){ $this.state = "cancelled" });
   };
 
@@ -40,11 +40,11 @@ angular.module('Directory.csvImports.models', ['RailsModel'])
       'promise': [CsvImport, CsvImport.get, this.id],
       'state':{
         'analyzing':     {status: 'Analyzing', progress: 50},
-        'analyzed':      {status: 'Analyzed', done: true, progress: 100, path: '/imports/:id' },
-        'error':         {status: 'Error', progress:undefined, done: true, path: '/imports/:id' },
-        'queued_import': {status: 'Waiting', progress: 10},
+        'analyzed':      {status: 'Analyzed',  progress: 100, done: true, path: '/imports/:id' },
+        'error':         {status: 'Error',     progress: undefined, done: true, path: '/imports/:id' },
+        'queued_import': {status: 'Waiting',   progress: 10},
         'importing':     {status: 'Importing', progress: 30},
-        'imported':      {status: 'Imported', done: true, progress: 100, path: '/collections/:id' }
+        'imported':      {status: 'Imported',  progress: 100, done: true, path: '/collections/:id' }
       }
     }
   };

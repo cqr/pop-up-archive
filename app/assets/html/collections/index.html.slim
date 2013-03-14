@@ -1,57 +1,29 @@
-div ng-controller='CollectionFormCtrl' ng-show="currentUser"
-  button.pull-right.btn ng-click='edit()'
-    i.icon-plus  Add a Collection
-  h3 My Collections
+button.pull-right.btn bs-modal="'#{asset_path 'collections/form.html'}'"
+  i.icon-plus  Add a Collection
 
-  div modal='editCollection' close='close()' options='modalOpts'
-    .modal-header
-      button.close ng-click='close()' ×
-      h3 ng-show="collection.id" Edit {{collection.title}}
-      h3 ng-hide="collection.id" Create a new Collection
-    .modal-body
-      form.form-horizontal name='collectionForm'
-        .alert.alert-error ng-show="collectionForm.title.$error.required"
-          strong Error
-          | &nbsp;Title is required
-        .control-group
-          label.control-label
-            | Title
-          .controls
-            input name='title' ng-model='collection.title' required=''
-        .control-group
-          label.control-label
-            | Desc
-          .controls
-            input ng-model='collection.description'
-        .control-group
-          .controls
-            label
-              input type='checkbox' ng-model='collection.itemsVisibleByDefault'
-              |&nbsp;Items visible by default?
-    .modal-footer
-      button.btn ng-click='close()' Close
-      button.btn.btn-primary ng-click='submit()' ng-hide="newCollection.title.$error.required" Save
+h3 My Collections
 
-  table.table.table-striped
-    thead
-      tr
-    tfoot
-      tr
-    tbody
-      tr
-        th Title
-        th Description
-        th Public?
-        th
-      tr ng-repeat='collection in collections' ng-class='{error:collection.deleting}'
-        td
-          a ng-href='/collections/{{collection.id}}' {{collection.title}}
-        td {{collection.description}}
-        td ng-show="collection.itemsVisibleByDefault" Yes
-        td ng-hide="collection.itemsVisibleByDefault" No
-        td
-          button.btn ng-click="edit(collection)" Edit
-          button.btn ng-click="delete($index)"  Delete
+table.table.table-striped
+  thead
+    tr
+  tfoot
+    tr
+  tbody
+    tr
+      th Title
+      th Description
+      th Public?
+      th
+    tr ng-repeat='collection in collections' ng-class='{error:collection.deleting}'
+      td
+        a ng-href='/collections/{{collection.id}}' {{collection.title}}
+      td {{collection.description}}
+      td ng-show="collection.itemsVisibleByDefault" Yes
+      td ng-hide="collection.itemsVisibleByDefault" No
+      td
+        button.btn bs-modal="'#{asset_path 'collections/form.html'}'" ng-click="edit(collection)"  Edit
+        button.btn ng-click="delete($index)"  Delete
+
 div ng-controller="PublicCollectionsCtrl"
   h3 Public Collections
   ul

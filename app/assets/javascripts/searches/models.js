@@ -95,7 +95,7 @@ angular.module('Directory.searches.models', ['RailsModel', 'Directory.items.mode
   }
 
   Facet.prototype.visible = function () {
-    return (this._entries && this._entries.length > 1);
+    return (this._entries && this._entries.length >= 1);
   }
 
   Facet.prototype.entries = function () {

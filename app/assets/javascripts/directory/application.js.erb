@@ -11,9 +11,11 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require_tree .
+//= require jquery
+//= require bootstrap
 //= require angular
-//= require ui-bootstrap-tpls
 //= require angular-ui
+//= require angular-strap
 //= require angularjs/rails/resource
 //= require_tree ../
 
@@ -93,7 +95,7 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
   applicationConfig.$inject = ["$httpProvider", "$locationProvider", "$routeProvider"];
 
   var depends =  ['ui',
-                  'ui.bootstrap',
+                  '$strap',
                   'RailsUjs',
                   'Directory.dashboard.controllers',
                   'Directory.files.controllers',

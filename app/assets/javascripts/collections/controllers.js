@@ -43,35 +43,22 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
   $scope.collections = Loader(Collection.public());
 }])
 .controller('CollectionFormCtrl', ['$scope', 'Collection', function CollectionFormCtrl($scope, Collection) {
-  $scope.open = function () {
-    $scope.editCollection = true;
-  };
 
   $scope.edit = function (collection) {
-    $scope.collection = (collection || new Collection);
-    $scope.open();
+    $scope.collection = collection;
   }
 
-  $scope.close = function () {
-    $scope.editCollection = false;
-  };
-
   $scope.submit = function() {
-    var promise;
-    if ($scope.collection.id) {
-      promise = $scope.collection.update().then(function (data) {
-        $scope.close();
-        return data;
-      });
+
+    // make sure this is a resource object.
+    var collection = new Collection($scope.collection);
+
+    if (collection.id) {
+      collection.update();
     } else {
-      $scope.collection.create().then(function (data) {
-        $scope.collections.push($scope.collection);
-        return data;
+      collection.create().then(function (data) {
+        $scope.collections.push(collection);
       });
     }
-    return promise.then(function (data) {
-      $scope.close();
-      return data;
-    });
   }
 }]);
