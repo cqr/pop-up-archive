@@ -9,15 +9,15 @@ section ng-controller="ItemFormCtrl"
         .control-group ng-switch-when="string"
           label.control-label {{field.humanName}}
           .controls 
-            input ng-model='item[field.camelCaseName]'
+            input type='text'  ng-model='item[field.camelCaseName]'
         .control-group ng-switch-when="short_text"
           label.control-label {{field.humanName}}
           .controls 
-            input ng-model='item[field.camelCaseName]'
+            input type='text' ng-model='item[field.camelCaseName]'
         .control-group ng-switch-when="geolocation"
           label.control-label {{field.humanName}}
           .controls 
-            input ng-model='item[field.camelCaseName]'
+            input type='text'  ng-model='item[field.camelCaseName]'
         .control-group ng-switch-when="text"
           label.control-label {{field.humanName}}
           .controls 
@@ -25,11 +25,13 @@ section ng-controller="ItemFormCtrl"
         .control-group ng-switch-when="array"
           label.control-label {{field.humanName}}
           .controls 
-            input ng-model='item[field.camelCaseName]' ng-list=''
+            input type='text' ng-model='item[field.camelCaseName]' ng-list=""
         .control-group ng-switch-when="date"
           label.control-label {{field.humanName}}
           .controls 
-            input ng-model='item[field.camelCaseName]'
+            input.input-small type='text' ng-model='item[field.camelCaseName]' data-date-format="yyyy-mm-dd" bs-datepicker="" data-toggle="datepicker"
+              button.btn type="button" data-toggle="datepicker"
+                i class="icon-calendar"
   .modal-footer
     button.btn type="button" ng-click="dismiss()" Close
     button.btn.btn-primary ng-click='submit();dismiss()' ng-hide="newItem.title.$error.required" Save

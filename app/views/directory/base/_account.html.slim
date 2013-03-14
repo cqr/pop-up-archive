@@ -8,7 +8,7 @@
     li
       a.dropdown-toggle dropdown-open="forceAlertsShow" ng-class="{'with-information':alertData.alerts.length}"
         i.icon-tasks
-      ul.dropdown-menu
+      ul.dropdown-menu.alert-showers
         li.pending ng-show="alertData.alerts.length == 0"
           a No pending tasks.
         li.alert-shower ng-repeat="alert in alertData.alerts" ng-class="{pending:!(alert.done || alert.path)}"

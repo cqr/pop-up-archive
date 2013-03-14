@@ -1,6 +1,7 @@
 @import "pop-up_bootstrap";
 @import "bootstrap";
 @import "font-awesome";
+@import "bootstrap-datepicker";
 
 .scrubbing {
   -webkit-touch-callout: none;
@@ -158,7 +159,7 @@ a.with-information {
   text-shadow: 0 0 5px #eee !important;
 }
 
-.dropdown-menu, .dropdown-menu li.alert-shower {
+.alert-showers, .alert-showers li.alert-shower {
   width: 300px;
 
   a:hover, li a:hover {
@@ -294,6 +295,7 @@ input[type='file'] {
   }
 }
 
+/*
 .dropdown-menu, .dropdown-menu * {
   opacity: 0;
   transition: opacity 0.2s ease, max-height 0.2s ease;
@@ -308,6 +310,7 @@ input[type='file'] {
   opacity: 1;
   max-height: 100000px;
 }
+*/
 
 .player {
 
