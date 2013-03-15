@@ -1,5 +1,6 @@
 angular.module('Directory.alerts', ['ngLoadingIndicators'])
 .factory('Alert', ['$timeout', 'loading', function ($timeout, loading) {
+
   var alerts = [];
 
   function schedulePeriodicUpdate (alert) {
@@ -91,4 +92,41 @@ angular.module('Directory.alerts', ['ngLoadingIndicators'])
   }
 
   return Alert;
+}]).directive('popUpAlertsDropdown', ['$parse', '$compile', function($parse, $compile) {
+
+  var template = '' +
+  '<ul class="dropdown-menu alert-showers" role="menu" aria-labelledby="alerts-dropdown">' +
+    '<li class="pending" ng-show="alerts.length == 0">' +
+      '<a> No pending tasks.</a>' +
+    '</li>' +
+    '<li class="alert-shower" ng-repeat="alert in alerts" ng-class="{pending:!(alert.done || alert.path)}">' +
+      '<a ng-click="dismissIfDone(alert)" ng-href="{{alert.path}}">' +
+        '<div class="message">' +
+          '<span class="status">{{alert.status}}:</span> {{alert.message}}' +
+        '</div>' +
+        '<div class="progress progress-striped" ng-class="{active:alert.progress && alert.progress < 100}">' +
+          '<div class="bar" ng-style="{width:alert.progress+\'%\'}"></div>' +
+        '</div>' +
+      '</a>' +
+    '</li>' +
+  '<ul>';
+
+  return {
+    restrict: 'A',
+    scope: true,
+    link: function postLink(scope, element, attr) {
+
+      var getter = $parse(attr.popUpAlertsDropdown);
+
+      scope.alerts = getter(scope);
+      var dropdown = $compile(template)(scope);
+      dropdown.insertAfter(element);
+
+      element
+        .addClass('dropdown-toggle')
+        .attr('data-toggle', "dropdown");
+    
+    }
+  };
+
 }]);

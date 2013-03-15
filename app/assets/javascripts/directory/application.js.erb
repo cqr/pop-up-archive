@@ -110,11 +110,21 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
   window.directory = angular.module('Directory', depends);
   window.directory.config(applicationConfig);
 
+  <% url = Rails.application.routes.url_helpers %>
+  
   window.directory.controller("DirectoryCtrl", ['$scope', function($scope) {
     $scope.modalOpts = {
       backdropFade: true,
-      dialogFade:true
+      dialogFade: true
     };
+
+    $scope.userMenu = [{
+      text: 'Log out',
+      href: '<%= CGI.unescape(url.destroy_user_session_path) %>',
+      target: '_self',
+      method: 'delete'
+    }];
+
   }]);
 
 }());

@@ -1,16 +1,24 @@
 angular.module('RailsUjs', [])
-.directive('method', function () {
+.directive('method', ['$compile', function ($compile) {
+
+  var template = $compile("<form style='display:none' action='{{formInfo.href}}' target='{{formInfo.target}}'><input type='hidden' name='_method' value='{{formInfo.method}}'></form>");
+
   return function(scope, el, attrs) {
-    if (el[0].nodeName == "A" && attrs.method && attrs.target) {
-      el.bind('click', function (e) {
-        e.stopPropagation();
-        e.preventDefault();
-        var form = angular.element("<div style='display:none'><form action='" + attrs.href +
-          "' method='POST'><input type='hidden' name='_method' value='" + attrs.method +
-          "' ></form></div>")
-        el.parent().append(form);
-        form.children()[0].submit();
-      });
-    }
+
+    scope.formInfo = attrs;
+    var form;
+
+    template(scope, function(formElement) {
+        form = angular.element(formElement);
+        form.attr('method', "POST");
+        el.append(form);
+    });
+
+    el.bind('click', function (e) {
+      e.stopPropagation();
+      e.preventDefault();
+      form.submit();
+    });
+
   }
-});
+}]);

@@ -75,7 +75,7 @@ angular.module('fileDropzone', [])
             function _drop(e) {
                 _hideOverlay(e);
                 var files = [];
-                angular.forEach(e.dataTransfer.files, function (file) {
+                angular.forEach(e.originalEvent.dataTransfer.files, function (file) {
                     files.push(file);
                 });
                 scope.$apply(function (scope) {
