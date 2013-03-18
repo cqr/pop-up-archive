@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
 
   has_many :collection_grants
   has_many :collections, through: :collection_grants
+  has_many :items, through: :collections
   after_create :add_public_collection
 
   has_many :csv_imports

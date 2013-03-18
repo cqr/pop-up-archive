@@ -4,7 +4,7 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
     $scope.items = Loader.page(Item.query(), 'Items');
   });
 }])
-.controller('ItemCtrl', ['$scope', 'Item', 'Loader', '$routeParams', function ItemCtrl($scope, Item, Loader, $routeParams) {
+.controller('ItemCtrl', ['$scope', 'Item', 'Loader', 'Me', '$routeParams', function ItemCtrl($scope, Item, Loader, Me, $routeParams) {
 
   if ($routeParams.id) {
     Loader.page(Item.get({collectionId:$routeParams.collectionId, id: $routeParams.id}), 'Item/'+$routeParams.id, $scope);

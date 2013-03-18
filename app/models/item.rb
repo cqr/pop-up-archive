@@ -41,7 +41,11 @@ class Item < ActiveRecord::Base
     :tags, :title, :transcription
   belongs_to :geolocation
   belongs_to :csv_import
+
   belongs_to :collection
+  has_many :collection_grants, through: :collection
+  has_many :users, through: :collection_grants
+
   has_many   :contributions
   has_many   :instances
   has_many   :audio_files

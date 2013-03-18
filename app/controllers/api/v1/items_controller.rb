@@ -18,6 +18,8 @@ class Api::V1::ItemsController < Api::V1::BaseController
     end
   end
 
+  authorize_resource decent_exposure: true
+
   def update
     item.save
     respond_with :api, item

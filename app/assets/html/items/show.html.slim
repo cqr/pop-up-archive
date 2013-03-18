@@ -2,7 +2,7 @@
   .span12
     .well
 
-      button.btn.pull-right bs-modal="'#{asset_path 'items/form.html'}'" Edit
+      button.btn.pull-right ng-show="currentUser.collectionIds.indexOf(item.collectionId) > -1" bs-modal="'#{asset_path 'items/form.html'}'" Edit
 
       h1 {{item.title}}
 
