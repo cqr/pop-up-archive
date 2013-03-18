@@ -5,7 +5,6 @@
       button.btn.pull-right bs-modal="'#{asset_path 'items/form.html'}'" Edit
 
       h1 {{item.title}}
-      h3 ng-show="item.identifier" {{item.identifier}}
 
       p ng-show="item.description" {{item.description}}
 
@@ -31,6 +30,8 @@
       dd ng-show="item.seriesTitle" {{item.seriesTitle}}
       dt ng-show="item.episodeTitle" Episode Title
       dd ng-show="item.episodeTitle" {{item.episodeTitle}}
+      dt ng-show="item.identifier" Identifier
+      dd ng-show="item.identifier" {{item.identifier}}
       dt ng-show="item.dateBroadcast" Broadcast
       dd ng-show="item.dateBroadcast" {{item.dateBroadcast}}
       dt ng-show="item.dateCreated" Created
@@ -68,6 +69,7 @@
         li ng-repeat="tag in item.tags"
           button.btn ng-click="searchTags(tag)" {{tag}}
 
+  .span12
     section.transcription ng-show="item.transcription"
       h4 Transcription
       p {{item.transcription}}
