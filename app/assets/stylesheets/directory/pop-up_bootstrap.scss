@@ -113,6 +113,26 @@ $navbarBackground: rgb(242, 239, 239);
     }
   }
 
+  section.notes {
+    h5 {
+      color: #7D7C82;
+      font-family: "soleil", sans-serif !important;
+    }
+
+    padding: 0px;
+    display: block;
+  }
+
+  section.transcription {
+    h5 {
+      color: #7D7C82;
+      font-family: "soleil", sans-serif !important;
+    }
+
+    padding: 0px;
+    display: block;
+  }
+
   section.rights {
     h5 {
       color: #7D7C82;
@@ -123,22 +143,14 @@ $navbarBackground: rgb(242, 239, 239);
     display: block;
   }
 
-  section.transcription {
-    h5 {
-      color: #7D7C82;
-      font-family: "soleil", sans-serif !important;
-    }
-    clear: both;
-    display: block;
-  }
-
   section.tags {
-    h4 {
+    h5 {
       font-family: "soleil", sans-serif !important;
       color: #7D7C82;
-      font-size: 16px;
       clear: both;
     }
+
+    padding: 0px 15px;
 
     ul {
       list-style: none;

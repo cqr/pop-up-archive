@@ -49,15 +49,14 @@ class Item < ActiveRecord::Base
   has_many   :contributions
   has_many   :instances
   has_many   :audio_files
-  has_many   :producer_contributions,    class_name: "Contribution", conditions: {role: "producer"}
-  has_many   :interviewer_contributions, class_name: "Contribution", conditions: {role: "interviewer"}
-  has_many   :interviewee_contributions, class_name: "Contribution", conditions: {role: "interviewee"}
-  has_many   :creator_contributions,     class_name: "Contribution", conditions: {role: "creator"}
-  has_many   :contributors, through: :contributions, source: :person
-  has_many   :interviewees, through: :interviewee_contributions, source: :person
-  has_many   :interviewers, through: :interviewer_contributions, source: :person
-  has_many   :producers,    through: :producer_contributions,    source: :person
-  has_many   :creators,     through: :creator_contributions,     source: :person
+
+  STANDARD_ROLES = ['producer', 'interviewer', 'interviewee', 'creator', 'host']
+
+  STANDARD_ROLES.each do |role|
+    has_many "#{role}_contributions", class_name: "Contribution", conditions: {role: role}
+    has_many role.pluralize, through: "#{role}_contributions", source: :person
+  end
+
   serialize :extra, HstoreCoder
 
   delegate :title, to: :collection, prefix: true

@@ -53,23 +53,30 @@
       section ng-repeat="(field, value) in item.extra"
         dt {{field|titleize}}
         dd {{value}}
+
   .span6
     section.rights ng-show="item.rights"
       h5 Rights
       p {{item.rights}}
 
-    section.tags ng-repeat="contributorGroup in ['Producers','Interviewers','Interviewees']" ng-show="item[contributorGroup.toLowerCase()]"
-      h4 {{contributorGroup}}
+    section.tags ng-repeat="contributorGroup in item.standardRoles" ng-show="item[contributorGroup.toLowerCase()]"
+      h5 {{contributorGroup}}
       ul
         li ng-repeat="contributor in item[contributorGroup.toLowerCase()]"
           a.btn ng-href="/contributors/{{contributor}}" {{contributor}}
+
     section.tags ng-show="item.tags"
-      h4 Tags
+      h5 Tags
       ul
         li ng-repeat="tag in item.tags"
           button.btn ng-click="searchTags(tag)" {{tag}}
 
+.row-fluid.item-detail
   .span12
-    section.transcription ng-show="item.transcription"
-      h4 Transcription
+    section.notes ng-show="true || item.notes"
+      h5 Notes
+      p {{item.notes}}
+
+    section.transcription ng-show="true || item.transcription"
+      h5 Transcription
       p {{item.transcription}}

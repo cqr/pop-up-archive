@@ -134,14 +134,15 @@ class CsvImport < ActiveRecord::Base
     headers.each_with_index do |header, index|
       column, type = case header.downcase
       when /identifier/ then ["identifier", "string"]
-      when /interviewee/ then ["interviewees[]", "person"]
       when /piece|title/ then ["title", "string"]
       when /duration/ then ["duration", "number"]
       when /url|digital loc/ then ["audio_files[][remote_file_url]", "array"]
       when /broadcast/ then ['date_broadcast', 'date']
       when /date/ then ["date_created", "date"]
+      when /creator/ then ['creators[]', 'person']
+      when /host/ then ['hosts[]', 'person']
       when /interviewer/ then ["interviewers[]", 'person']
-      when /creator/ then ['creator', 'person']
+      when /interviewee/ then ["interviewees[]", "person"]      
       when /producer/ then ['producers[]', 'person']
       when /episode/ then ['episode_title', 'string']
       when /series/ then ['series_title', 'string']
