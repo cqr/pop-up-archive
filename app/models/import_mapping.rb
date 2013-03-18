@@ -1,3 +1,5 @@
+require 'chronic'
+
 class ImportMapping < ActiveRecord::Base
   belongs_to :csv_import
   attr_accessible :column, :type
@@ -55,7 +57,7 @@ class ImportMapping < ActiveRecord::Base
       when "short_text" then value.to_s
       when "number" then parse_to_i(value)
       when "text" then value.to_s
-      when "date" then DateTime.parse(value) rescue nil
+      when "date" then Chronic.parse(value, :context => :past) rescue nil
       when "*" then value.to_s
       end
     else

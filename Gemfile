@@ -51,6 +51,8 @@ gem 'fog'
 gem 'pb_core', "~> 0.1.5"
 # gem 'pb_core', path: '~/dev/projects/pb_core'
 
+gem 'chronic'
+
 group :assets do
   gem 'sprockets'
   gem 'sass-rails',   '~> 3.2.3'

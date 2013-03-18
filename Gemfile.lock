@@ -87,6 +87,7 @@ GEM
       timers (>= 1.0.0)
     childprocess (0.3.8)
       ffi (~> 1.0, >= 1.0.11)
+    chronic (0.9.1)
     coderay (1.0.8)
     connection_pool (1.0.0)
     copyrighter (1.0.0)
@@ -361,6 +362,7 @@ DEPENDENCIES
   cancan
   capybara
   carrierwave
+  chronic
   copyrighter
   dalli
   decent_exposure
