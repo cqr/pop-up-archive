@@ -4,22 +4,41 @@ div ng-controller='CollectionFormCtrl' ng-show="currentUser"
     h3 ng-show="collection.id" Edit {{collection.title}}
     h3 ng-hide="collection.id" Create a new Collection
   .modal-body
-    form.form-horizontal name='collectionForm'
+    form.form-horizontal name="collectionForm"
       .control-group
         label.control-label
           | Title
         .controls
-          input name='title' ng-model='collection.title' required=''
+          input name="title" ng-model="collection.title" required=""
       .control-group
         label.control-label
           | Desc
         .controls
-          input ng-model='collection.description'
-      .control-group
+          input ng-model="collection.description"
+      .control-group ng-show="collection.id"
+        label.control-label
+          | Privacy
+        .controls ng-show="collection.itemsVisibleByDefault"
+          b Public Collection:
+          |&nbsp;media is stored at the Internet Archive and is visible to all users.
+        .controls ng-hide="collection.itemsVisibleByDefault"
+          b Private Collection:
+          |&nbsp;media is stored privately and is only visible to you.
+
+      .control-group ng-hide="collection.id"
+        label.control-label
+          | Privacy
         .controls
-          label
-            input type='checkbox' ng-model='collection.itemsVisibleByDefault'
-            |&nbsp;Items visible by default?
+          .alert
+            | Once you have created a collection, you can delete it, but you cannot change its privacy setting.
+          label.radio
+            input type="radio" ng-value="true" ng-model="collection.itemsVisibleByDefault"
+            b Make collection public:
+            |&nbsp;media in public collections is stored at the Internet Archive and will be visible to all users.
+          label.radio
+            input type="radio" ng-value="false" ng-model="collection.itemsVisibleByDefault"
+            b Make collection private:
+            |&nbsp;media in private collections is stored privately and will only be visible to you.
   .modal-footer
     button.btn type="button" ng-click="dismiss()" Close
-    button.btn.btn-primary ng-click='submit();dismiss()' ng-hide="newCollection.title.$error.required" Save
+    button.btn.btn-primary ng-click="submit();dismiss()" ng-hide="newCollection.title.$error.required" Save

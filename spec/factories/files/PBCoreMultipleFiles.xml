@@ -1,0 +1,78 @@
+<pbcoreDescriptionDocument xmlns="http://www.pbcore.org/PBCore/PBCoreNamespace.html" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.pbcore.org/PBCore/PBCoreNamespace.html http://pbcore.org/xsd/pbcore-2.0.xsd">
+              
+	<pbcoreAssetDate dateType="Created">02/25/2006</pbcoreAssetDate>
+	<pbcoreIdentifier source="kitchensisters.org/archive">http://kitchensisters.org/archive/items/show/265</pbcoreIdentifier>
+	<pbcoreTitle>F-130-01_HKT_end_HKong_Mkt</pbcoreTitle>
+	<pbcoreTitle titleType="Episode">Hidden Kitchens Texas</pbcoreTitle>
+     <pbcoreTitle titleType="Series">Hidden Kitchens</pbcoreTitle>
+	<pbcoreSubject source="Free tags">tag</pbcoreSubject>
+	<pbcoreDescription>Davia at Hong Kong Mall in Texas.</pbcoreDescription>
+	<pbcoreCoverage>
+		<coverage>Houston, TX</coverage>
+	    <coverageType>Spatial</coverageType>
+	</pbcoreCoverage>
+	<pbcoreCreator>
+	   <creator>Kitchen Sisters</creator>
+	   <creatorRole>Creator</creatorRole>
+	</pbcoreCreator> 
+	<pbcoreContributor>
+		<contributor>Doe, John</contributor>
+		<contributorRole>Interviewee</contributorRole>
+	</pbcoreContributor>	
+	<pbcoreContributor>
+		<contributor>Nelson, Davia</contributor>
+		<contributorRole>Interviewer</contributorRole>
+	</pbcoreContributor>
+    <pbcoreRightsSummary>
+	    <rightsSummary></rightsSummary>
+	</pbcoreRightsSummary>
+
+	<pbcoreInstantiation>
+		<instantiationIdentifier source="kitchensisters.org/archive">http://kitchensisters.org/archive/items/show/265</instantiationIdentifier>
+		<instantiationDigital>audio/x-aiff</instantiationDigital>
+		<instantiationLocation>http://archive.org/details/KitchenSistersF-130-01</instantiationLocation>
+		<instantiationPart>
+		    <instantiationIdentifier source="Internet Archive">http://archive.org/download/KitchenSistersF-130-01/F-130-01_HKT_end_HKong_Mkt.aiff</instantiationIdentifier>
+			<instantiationLocation>http://archive.org/details/KitchenSistersF-130-01</instantiationLocation>
+		</instantiationPart>
+		<instantiationPart>
+		    <instantiationIdentifier source="Internet Archive">http://archive.org/download/KitchenSistersF-130-01/F-130-02_Houston-HKT_End_Hong_Kong_Mall_Car_Tape_8.aif</instantiationIdentifier>
+			<instantiationLocation>http://archive.org/details/KitchenSistersF-130-01</instantiationLocation>
+		</instantiationPart>
+	</pbcoreInstantiation>
+
+<pbcoreInstantiation>
+    <instantiationIdentifier source="kitchensisters.org/archive">http://kitchensisters.org/archive/items/show/265</instantiationIdentifier>
+ <instantiationDigital>audio/mpeg</instantiationDigital>
+<instantiationLocation>http://archive.org/details/KitchenSistersF-130-01</instantiationLocation>
+<instantiationPart>
+    <instantiationIdentifier source="Internet Archive">http://archive.org/download/KitchenSistersF-130-01/F-130-01_HKT_end_HKong_Mkt.mp3</instantiationIdentifier>
+<instantiationLocation>http://archive.org/details/KitchenSistersF-130-01</instantiationLocation>
+</instantiationPart>
+<instantiationPart>
+    <instantiationIdentifier source="Internet Archive">http://archive.org/download/KitchenSistersF-130-01/F-130-02_Houston-HKT_End_Hong_Kong_Mall_Car_Tape_8.mp3</instantiationIdentifier>
+<instantiationLocation>http://archive.org/details/KitchenSistersF-130-01</instantiationLocation>
+</instantiationPart>
+</pbcoreInstantiation>
+
+<pbcoreInstantiation>
+    <instantiationIdentifier source="kitchensisters.org/archive">http://kitchensisters.org/archive/items/show/265</instantiationIdentifier>
+    <instantiationDigital>audio/ogg</instantiationDigital>
+    <instantiationLocation>http://archive.org/details/KitchenSistersF-130-01</instantiationLocation>
+<instantiationPart>
+    <instantiationIdentifier source="Internet Archive">http://archive.org/download/KitchenSistersF-130-01/F-130-01_HKT_end_HKong_Mkt.ogg</instantiationIdentifier>
+<instantiationLocation>http://archive.org/details/KitchenSistersF-130-01</instantiationLocation>
+</instantiationPart>
+<instantiationPart>
+    <instantiationIdentifier source="Internet Archive">http://archive.org/download/KitchenSistersF-130-01/F-130-02_Houston-HKT_End_Hong_Kong_Mall_Car_Tape_8.ogg</instantiationIdentifier>
+<instantiationLocation>http://archive.org/details/KitchenSistersF-130-01</instantiationLocation>
+</instantiationPart>
+</pbcoreInstantiation>
+	
+	<pbcoreAnnotation annotationType="Transcription"></pbcoreAnnotation>
+	<pbcoreAnnotation annotationType="Notes"></pbcoreAnnotation>
+	<pbcoreAnnotation annotationType="MusicUsed"></pbcoreAnnotation>
+	<pbcoreAnnotation annotationType="DatePeg"></pbcoreAnnotation>
+	
+</pbcoreDescriptionDocument>				
+

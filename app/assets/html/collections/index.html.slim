@@ -21,8 +21,8 @@ table.table.table-striped
       td ng-show="collection.itemsVisibleByDefault" Yes
       td ng-hide="collection.itemsVisibleByDefault" No
       td
-        button.btn bs-modal="'#{asset_path 'collections/form.html'}'" ng-click="edit(collection)"  Edit
-        button.btn ng-click="delete($index)"  Delete
+        button.btn bs-modal="'#{asset_path 'collections/form.html'}'" Edit
+        button.btn ng-click="delete($index)" Delete
 
 div ng-controller="PublicCollectionsCtrl"
   h3 Public Collections

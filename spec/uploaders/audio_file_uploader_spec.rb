@@ -10,8 +10,8 @@ describe AudioFileUploader do
 
     it "handles no item storage" do
       @uploader.fog_credentials[:provider].should eq "AWS"
-      @uploader.fog_credentials[:aws_access_key_id].should eq ENV['UPLOAD_S3_ACCESS_KEY_ID']
-      @uploader.fog_credentials[:aws_secret_access_key].should eq ENV['UPLOAD_S3_ACCESS_KEY']
+      @uploader.fog_credentials[:aws_access_key_id].should eq ENV['AWS_ACCESS_KEY_ID']
+      @uploader.fog_credentials[:aws_secret_access_key].should eq ENV['AWS_SECRET_ACCESS_KEY']
     end
     
     it "handles item storage" do

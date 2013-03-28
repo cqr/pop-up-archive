@@ -29,6 +29,7 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
   }
 
   $scope.$on('fileAdded', function (e, file) {
+    // console.log('ItemCtrl on fileAdded', file);
     var item = new Item({collectionId:$routeParams.collectionId, title:file.name});
     item.create().then(function () {
       item.addAudioFile(file);

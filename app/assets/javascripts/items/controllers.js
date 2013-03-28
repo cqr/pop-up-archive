@@ -19,7 +19,7 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
   }
 
   $scope.$on("fileAdded", function (e, file) {
-    // console.log(file);
+    // console.log('ItemCtrl on fileAdded', file);
     $scope.item.addAudioFile(file).then(function(data) {
       $scope.item.audioFiles.push(data);
     });

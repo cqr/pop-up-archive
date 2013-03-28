@@ -3,15 +3,16 @@ class Item < ActiveRecord::Base
   include Tire::Model::Callbacks
   include Tire::Model::Search
 
-  belongs_to :storage, class_name: "StorageConfiguration", foreign_key: :storage_id
-  before_validation :set_public, if: :new_record? 
-
   DEFAULT_INDEX_PARAMS = {}
+  
+  STANDARD_ROLES = ['producer', 'interviewer', 'interviewee', 'creator', 'host']
+
+  before_validation :set_defaults, if: :new_record?
 
   tire do
     mapping do
       indexes :id, index: :not_analyzed
-      indexes :public, index: :not_analyzed
+      indexes :is_public, index: :not_analyzed
       indexes :collection_id, index: :not_analyzed
       indexes :date_created,      type: 'date',   include_in_all: false
       indexes :date_broadcast,    type: 'date',   include_in_all: false
@@ -19,10 +20,7 @@ class Item < ActiveRecord::Base
       indexes :description,       type: 'string'
       indexes :identifier,        type: 'string',  boost: 2.0
       indexes :title,             type: 'string',  boost: 2.0
-      indexes :interviewers,      type: 'string',  include_in_all: false, index_name: "interviewer", index: "not_analyzed"
-      indexes :interviewees,      type: 'string',  include_in_all: false, index_name: "interviewee", index: "not_analyzed"
-      indexes :producers,         type: 'string',  include_in_all: false, index_name: "producer",    index: "not_analyzed"
-      indexes :tags,              type: 'string',  index_name: "tag",                                index: "not_analyzed"
+      indexes :tags,              type: 'string',  index_name: "tag",    index: "not_analyzed"
       indexes :contributors,      type: 'string',  index_name: "contributor"
       indexes :physical_location, type: 'string'
       indexes :transcription,     type: 'string'
@@ -31,6 +29,11 @@ class Item < ActiveRecord::Base
         indexes :name
         indexes :position, type: 'geo_point'
       end
+
+      STANDARD_ROLES.each do |role|
+        indexes role.pluralize.to_sym, type: 'string', include_in_all: false, index_name: role, index: "not_analyzed"
+      end
+
     end
   end
   
@@ -39,22 +42,26 @@ class Item < ActiveRecord::Base
     :episode_title, :extra, :identifier, :music_sound_used, :notes,
     :physical_format, :physical_location, :rights, :series_title,
     :tags, :title, :transcription
+
   belongs_to :geolocation
   belongs_to :csv_import
-
+  belongs_to :storage_configuration, class_name: "StorageConfiguration", foreign_key: :storage_id
   belongs_to :collection
-  has_many :collection_grants, through: :collection
-  has_many :users, through: :collection_grants
 
-  has_many   :contributions
+  has_many   :collection_grants, through: :collection
+  has_many   :users, through: :collection_grants
+
   has_many   :instances
   has_many   :audio_files
 
+  has_many   :contributions
+  has_many   :contributors, through: :contributions, source: :person
+  
   STANDARD_ROLES = ['producer', 'interviewer', 'interviewee', 'creator', 'host']
 
   STANDARD_ROLES.each do |role|
-    has_many "#{role}_contributions", class_name: "Contribution", conditions: {role: role}
-    has_many role.pluralize, through: "#{role}_contributions", source: :person
+    has_many "#{role}_contributions".to_sym, class_name: "Contribution", conditions: {role: role}
+    has_many role.pluralize.to_sym, through: "#{role}_contributions".to_sym, source: :person
   end
 
   serialize :extra, HstoreCoder
@@ -75,6 +82,10 @@ class Item < ActiveRecord::Base
       self.update_attribute(:token, t)
       t
     end
+  end
+
+  def storage
+    self.storage_configuration || self.collection.try(:default_storage) || StorageConfiguration.default_storage(is_public)
   end
 
   def geographic_location=(name)
@@ -104,23 +115,20 @@ class Item < ActiveRecord::Base
 
   def to_indexed_json(params={})
     as_json(params.reverse_merge(DEFAULT_INDEX_PARAMS)).tap do |json|
-      [:contributors, :interviewers, :interviewees, :producers, :creators].each do |assoc|
+      ([:contributors] + STANDARD_ROLES.collect{|r| r.pluralize.to_sym}).each do |assoc|
         json[assoc] = send(assoc).map{|c| c.as_json } 
       end
-      json[:location]     = geolocation.to_indexed_json if geolocation.present?
+      json[:location] = geolocation.to_indexed_json if geolocation.present?
     end.to_json
   end
 
   private
 
-  def set_public
-    if collection.present? && public.nil?
-      self.public = collection.items_visible_by_default
-    elsif public.nil?
-      self.public = false
-    end
-
-    return true
+  def set_defaults
+    return true unless is_public.nil?
+    self.is_public = (collection.present? && collection.items_visible_by_default)
+    self.storage_configuration = self.storage
+    true
   end
 
 end

@@ -68,7 +68,7 @@ class QueryBuilder
   end
 
   def public_filter
-    Filter.new(:public, type:'term', value: 'true')
+    Filter.new(:is_public, type:'term', value: 'true')
   end
 
   def default_facets

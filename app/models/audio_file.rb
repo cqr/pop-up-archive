@@ -26,7 +26,7 @@ class AudioFile < ActiveRecord::Base
   end
 
   def storage
-    self.try(:item).try(:storage)
+    item.try(:storage) || StorageConfiguration.default_storage
   end
 
   def url
@@ -68,23 +68,22 @@ class AudioFile < ActiveRecord::Base
     end
 
     if self.transcript.blank?
-      # get 30 sec transcript first
       MediaMonsterClient.create_job do |job|
         job.job_type = 'audio'
         job.priority = 1
         job.original = self.url
         job.add_sequence do |seq|
-          seq.add_task task_type: 'cut', options: {length: 120, fade: 0}
-          seq.add_task task_type: 'transcribe', result: "#{destination}_ts30.json", call_back: audio_file_callback_url, label:'ts30'
+          seq.add_task task_type: 'cut', options: {length: 60, fade: 0}
+          seq.add_task task_type: 'transcribe', result: "#{destination}_ts_start.json", call_back: audio_file_callback_url, label:"ts_start"
         end
       end
 
-      # MediaMonsterClient.create_job do |job|
-      #   job.job_type = 'audio'
-      #   job.priority = 1
-      #   job.original = self.url
-      #   job.add_task task_type: 'transcribe', result: "#{destination}_ts.json", call_back: audio_file_callback_url, label:'ts'
-      # end
+      MediaMonsterClient.create_job do |job|
+        job.job_type = 'audio'
+        job.priority = 1
+        job.original = self.url
+        job.add_task task_type: 'transcribe', result: "#{destination}_ts_all.json", call_back: audio_file_callback_url, label:'ts_all'
+      end
     end
 
     self.should_trigger_fixer_copy = false

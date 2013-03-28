@@ -33,6 +33,7 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.csvImp
       if (newFile.name.match(/csv$/i)) {
         uploadCSV(newFile);
       } else {
+        // console.log('broadcast fileAdded', newFile);
         $scope.$broadcast('fileAdded', newFile);
       }
     }

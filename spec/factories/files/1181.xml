@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pbcoreDescriptionDocument xsi:schemaLocation="http://www.PBCore.org/PBCore/PBCoreNamespace.html http://pbcore.org/xsd/pbcore-2.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.pbcore.org/PBCore/PBCoreNamespace.html">
+	<pbcoreTitle>Interview with Ed Wright</pbcoreTitle>
+    <pbcoreRelation>
+        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+        <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">Society for American Baseball Research</pbcoreRelationIdentifier>
+    </pbcoreRelation>
+	<pbcoreCoverage>
+		<coverage></coverage>
+		<coverageType>Spatial</coverageType>
+	</pbcoreCoverage>
+	<pbcoreContributor>
+		<contributor>Wright,  Ed</contributor>
+		<contributorRole>Interviewee</contributorRole>
+	</pbcoreContributor>
+	<pbcoreContributor>
+		<contributor>Kelley, Brent</contributor>
+		<contributorRole>Interviewer</contributorRole>
+	</pbcoreContributor>
+	<pbcoreInstantiation>
+		
+		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/1181</instantiationIdentifier>
+		<instantiationDigital></instantiationDigital>
+		<instantiationLocation></instantiationLocation>
+		<instantiationDuration>01:16:38</instantiationDuration>
+		        <instantiationPart>
+            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">1181</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">https://sabr.box.com/shared/static/hl0boqdq2pt2fb2u78du.mp3</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">79c5e81315e454fb12926f9d95554942.mp3</instantiationIdentifier>
+            <instantiationDate dateType="Date Modified">2013-02-26 04:59:11</instantiationDate>
+            <instantiationDigital>audio/mpeg</instantiationDigital>
+            <instantiationLocation>http://s3.amazonaws.com/101archive%2Ffiles%2F79c5e81315e454fb12926f9d95554942.mp3</instantiationLocation>
+            <instantiationFileSize unitsOfMeasure="bytes">13476924</instantiationFileSize>
+            <instantiationAnnotation annotationType="md5">703606182b8d3f7ad0462ac113743d55</instantiationAnnotation>
+        </instantiationPart>
+                <instantiationPart>
+            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">1181</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">https://sabr.box.com/shared/static/m7l1ma2p4e.mp3</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">3eccafdb916c33c5b4fc7df8ffaff28e.mp3</instantiationIdentifier>
+            <instantiationDate dateType="Date Modified">2013-02-26 04:59:11</instantiationDate>
+            <instantiationDigital>audio/mpeg</instantiationDigital>
+            <instantiationLocation>http://s3.amazonaws.com/101archive%2Ffiles%2F3eccafdb916c33c5b4fc7df8ffaff28e.mp3</instantiationLocation>
+            <instantiationFileSize unitsOfMeasure="bytes">12329568</instantiationFileSize>
+            <instantiationAnnotation annotationType="md5">eb98cd4032e277bf9973aee11e183fcd</instantiationAnnotation>
+        </instantiationPart>
+                <instantiationPart>
+            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">1181</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">https://sabr.box.com/shared/static/utpe97yk68yjazqedewy.mp3</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">1bfb26b108eae1b8e44e4e80fccdf82a.mp3</instantiationIdentifier>
+            <instantiationDate dateType="Date Modified">2013-02-26 04:59:11</instantiationDate>
+            <instantiationDigital>audio/mpeg</instantiationDigital>
+            <instantiationLocation>http://s3.amazonaws.com/101archive%2Ffiles%2F1bfb26b108eae1b8e44e4e80fccdf82a.mp3</instantiationLocation>
+            <instantiationFileSize unitsOfMeasure="bytes">5163300</instantiationFileSize>
+            <instantiationAnnotation annotationType="md5">7fc1112f6f9945064ba1057e81ce32f8</instantiationAnnotation>
+        </instantiationPart>
+                <instantiationPart>
+            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">1181</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">WrightEd.jpg</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">cd8d9f5b690548f2060e758dc74ccc24.jpg</instantiationIdentifier>
+            <instantiationDate dateType="Date Modified">2013-02-26 04:59:11</instantiationDate>
+            <instantiationDigital>image/jpeg</instantiationDigital>
+            <instantiationLocation>http://s3.amazonaws.com/101archive%2Ffiles%2Fcd8d9f5b690548f2060e758dc74ccc24.jpg</instantiationLocation>
+            <instantiationFileSize unitsOfMeasure="bytes">32063</instantiationFileSize>
+            <instantiationAnnotation annotationType="md5">dd02bd10c7dbdd849201bafbd76f84ad</instantiationAnnotation>
+        </instantiationPart>
+        	</pbcoreInstantiation>
+	<pbcoreInstantiation>
+		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">/items/show/1181</instantiationIdentifier>
+		<instantiationPhysical></instantiationPhysical>
+		<instantiationLocation></instantiationLocation>
+	</pbcoreInstantiation>
+	<pbcoreAnnotation annotationType="Notes">http://sabr.org/bioproj/person/e3bb377d</pbcoreAnnotation>
+	<pbcoreAnnotation annotationType="MusicUsed"></pbcoreAnnotation>
+	<pbcoreAnnotation annotationType="DatePeg"></pbcoreAnnotation>
+</pbcoreDescriptionDocument>

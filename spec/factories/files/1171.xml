@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pbcoreDescriptionDocument xsi:schemaLocation="http://www.PBCore.org/PBCore/PBCoreNamespace.html http://pbcore.org/xsd/pbcore-2.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.pbcore.org/PBCore/PBCoreNamespace.html">
+	<pbcoreTitle>Interview with Leo &amp;quot;Muscle&amp;quot; Shoals</pbcoreTitle>
+    <pbcoreRelation>
+        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+        <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">Society for American Baseball Research</pbcoreRelationIdentifier>
+    </pbcoreRelation>
+	<pbcoreCoverage>
+		<coverage></coverage>
+		<coverageType>Spatial</coverageType>
+	</pbcoreCoverage>
+	<pbcoreContributor>
+		<contributor>Shoals, Leo &amp;quot;Muscle&amp;quot;</contributor>
+		<contributorRole>Interviewee</contributorRole>
+	</pbcoreContributor>
+	<pbcoreContributor>
+		<contributor>Harville, Charles</contributor>
+		<contributorRole>Interviewer</contributorRole>
+	</pbcoreContributor>
+	<pbcoreInstantiation>
+		
+		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/1171</instantiationIdentifier>
+		<instantiationDigital></instantiationDigital>
+		<instantiationLocation></instantiationLocation>
+		<instantiationDuration></instantiationDuration>
+		        <instantiationPart>
+            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">1171</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">https://sabr.box.com/shared/static/dx0fcd5q2lb1ohv5w73s.mp3</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">1404976c4842546b352d5332cded9f2b.mp3</instantiationIdentifier>
+            <instantiationDate dateType="Date Modified">2013-01-07 02:41:31</instantiationDate>
+            <instantiationDigital>audio/mpeg</instantiationDigital>
+            <instantiationLocation>http://s3.amazonaws.com/101archive%2Ffiles%2F1404976c4842546b352d5332cded9f2b.mp3</instantiationLocation>
+            <instantiationFileSize unitsOfMeasure="bytes">13424940</instantiationFileSize>
+            <instantiationAnnotation annotationType="md5">ca27b90368807fb5536c9c92955142e4</instantiationAnnotation>
+        </instantiationPart>
+                <instantiationPart>
+            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">1171</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">https://sabr.box.com/shared/static/mxj2wa7tavxnhfumvooq.mp3</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">1ebf5051f33f4a0ec8a52c9251dc7596.mp3</instantiationIdentifier>
+            <instantiationDate dateType="Date Modified">2013-01-07 02:41:44</instantiationDate>
+            <instantiationDigital>audio/mpeg</instantiationDigital>
+            <instantiationLocation>http://s3.amazonaws.com/101archive%2Ffiles%2F1ebf5051f33f4a0ec8a52c9251dc7596.mp3</instantiationLocation>
+            <instantiationFileSize unitsOfMeasure="bytes">18151740</instantiationFileSize>
+            <instantiationAnnotation annotationType="md5">93fd56c827afa3d1a1ca6e1e5276f8b3</instantiationAnnotation>
+        </instantiationPart>
+                <instantiationPart>
+            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">1171</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">https://sabr.box.com/shared/static/s983g08aajxjjjlig94j.mp3</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">38c6a7dd410341841a2515f787bdce65.mp3</instantiationIdentifier>
+            <instantiationDate dateType="Date Modified">2013-01-07 02:41:47</instantiationDate>
+            <instantiationDigital>audio/mpeg</instantiationDigital>
+            <instantiationLocation>http://s3.amazonaws.com/101archive%2Ffiles%2F38c6a7dd410341841a2515f787bdce65.mp3</instantiationLocation>
+            <instantiationFileSize unitsOfMeasure="bytes">2490696</instantiationFileSize>
+            <instantiationAnnotation annotationType="md5">011cf85c41a58f2422b6b4ee3c75ef2b</instantiationAnnotation>
+        </instantiationPart>
+                <instantiationPart>
+            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">1171</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">https://sabr.box.com/shared/static/sntzx7pe95qpgwl131ek.mp3</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">54129784f7a0681fe4d8513c460d9a28.mp3</instantiationIdentifier>
+            <instantiationDate dateType="Date Modified">2013-01-07 02:41:55</instantiationDate>
+            <instantiationDigital>audio/mpeg</instantiationDigital>
+            <instantiationLocation>http://s3.amazonaws.com/101archive%2Ffiles%2F54129784f7a0681fe4d8513c460d9a28.mp3</instantiationLocation>
+            <instantiationFileSize unitsOfMeasure="bytes">13632732</instantiationFileSize>
+            <instantiationAnnotation annotationType="md5">8b57cfa8fbeed307c343d8a05b623bd0</instantiationAnnotation>
+        </instantiationPart>
+                <instantiationPart>
+            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">1171</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">https://sabr.box.com/shared/static/ufu2jdz9ae3ucbgj97v7.mp3</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">f422dcaf7c605c758ac39391465cfbb9.mp3</instantiationIdentifier>
+            <instantiationDate dateType="Date Modified">2013-01-07 02:42:05</instantiationDate>
+            <instantiationDigital>audio/mpeg</instantiationDigital>
+            <instantiationLocation>http://s3.amazonaws.com/101archive%2Ffiles%2Ff422dcaf7c605c758ac39391465cfbb9.mp3</instantiationLocation>
+            <instantiationFileSize unitsOfMeasure="bytes">19440108</instantiationFileSize>
+            <instantiationAnnotation annotationType="md5">29f61fa0b74c2770f1f4e4cd44a4de4e</instantiationAnnotation>
+        </instantiationPart>
+        	</pbcoreInstantiation>
+	<pbcoreInstantiation>
+		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">/items/show/1171</instantiationIdentifier>
+		<instantiationPhysical></instantiationPhysical>
+		<instantiationLocation></instantiationLocation>
+	</pbcoreInstantiation>
+	<pbcoreAnnotation annotationType="Notes">http://www.baseball-reference.com/minors/player.cgi?id=shoals001leo</pbcoreAnnotation>
+	<pbcoreAnnotation annotationType="MusicUsed"></pbcoreAnnotation>
+	<pbcoreAnnotation annotationType="DatePeg"></pbcoreAnnotation>
+</pbcoreDescriptionDocument>
