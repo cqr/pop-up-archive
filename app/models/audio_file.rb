@@ -31,7 +31,8 @@ class AudioFile < ActiveRecord::Base
 
   def url
     if file.url 
-      Rails.application.routes.url_helpers.api_item_audio_file_url(item_id, id)
+      # Rails.application.routes.url_helpers.api_item_audio_file_url(item_id, id)
+      self.file.url
     else
       original_file_url
     end
@@ -53,6 +54,14 @@ class AudioFile < ActiveRecord::Base
     end
   end
 
+  def url_with_credentials
+    return url unless self.file.url
+    uri = URI.parse(self.file.url)
+    uri.user = storage.key
+    uri.password = storage.secret
+    uri.to_s
+  end
+
   private
 
   def process_file
@@ -71,7 +80,7 @@ class AudioFile < ActiveRecord::Base
       MediaMonsterClient.create_job do |job|
         job.job_type = 'audio'
         job.priority = 1
-        job.original = self.url
+        job.original = url_with_credentials
         job.add_sequence do |seq|
           seq.add_task task_type: 'cut', options: {length: 60, fade: 0}
           seq.add_task task_type: 'transcribe', result: "#{destination}_ts_start.json", call_back: audio_file_callback_url, label:"ts_start"
@@ -81,7 +90,7 @@ class AudioFile < ActiveRecord::Base
       MediaMonsterClient.create_job do |job|
         job.job_type = 'audio'
         job.priority = 1
-        job.original = self.url
+        job.original = url_with_credentials
         job.add_task task_type: 'transcribe', result: "#{destination}_ts_all.json", call_back: audio_file_callback_url, label:'ts_all'
       end
     end
