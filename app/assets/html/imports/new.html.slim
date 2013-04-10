@@ -1,16 +1,48 @@
+script#import-instructions type='text/ng-template'
+  .modal-header
+    button type="button" class="close" data-dismiss="modal" aria-hidden="true" x
+    h3 CSV Import Instructions
+  .modal-body
+    p Pop Up Archive accepts CSV spreadsheets where each row represents one item, and columns are used for descriptive fields.
+    p You can attach audio files to each row by creating a "Digital Location" column and pasting comma-separated links to the files (for example, on your server or Dropbox public folder).
+    p If you have a pre-existing spreadsheet, try to match your fields with the Pop Up template spreadsheet.
+    p Pop Up will analyze your spreadsheet and attempt to map your fields, which you can edit, as well as account for any "Extra" fields.
+  .modal-footer
+    button.btn type="button" ng-click="dismiss()" Close
+
+
 .row-fluid
   .span9
     .brochure(style='margin-top: 50px;')
       h1 to get started...
 
-      h4 Drag a CSV file you would like to import onto the browser window.
-      p If you have links to your audio, include them in one of your CSV columns and we'll upload them.
-      p Don't have a CSV? Create a collection, then add items and drag audio files directly onto that item.
-      p They will be uploaded in the background, and once they're done you can start to organize them. We'll take care of voice transcription and other magical bits for you. 
 
-      h4 ...or select a CSV file from your hard drive
+      h4 To upload an audio file: 
+      p It's easy! Create a new item for any collection. When you've saved the item, you can drag files directly onto the item page and they will be uploaded in the background.
 
-      form
-        fieldset ng-controller='FSImportCtrl'
-          input type='file' onchange='angular.element(this).scope().setFile(this)'
-          button.pua-pill ng-click='submit()' import
+      h4 To upload multiple audio files at once:
+      p
+        a bs-modal="'import-instructions'" Click here for CSV batch import instructions.
+      p
+        a href='https://docs.google.com/spreadsheet/pub?key=0AtWrmSCFjFb2dHJoY2V2eGxiRHktM0sxQ1dlQXNwNVE&output=csv' target="_blank"
+          | Click here for a template CSV file.
+
+      p 
+        a href="https://docs.google.com/document/d/1Bg0bD0AgOU6yjk31vKqJxAgxQKjVXVSDKalb_9OKYg0/pub" target="_blank" Click here for definitions for the Pop Up descriptive fields.
+      ul
+        li Drag and drop the CSV file you would like to import onto the browser window
+
+        li
+          | Or, select a CSV file from your hard drive:
+          form.import
+            fieldset ng-controller='FSImportCtrl'
+              span file-button=""
+                button.btn ng-hide='files.length' Select CSV
+              button.btn.btn-success ng-show='files.length' ng-click='submit()' Import {{files[0].name}}
+
+
+      p Your file(s) will be uploaded in the background, and once they're done you can start to organize them. We'll take care of transcription and the other magical bits.
+
+      p
+        | Have media stored on another secure server?&nbsp;
+        a href='mailto:anne@popuparchive.org' Contact us.

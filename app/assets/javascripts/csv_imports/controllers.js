@@ -1,4 +1,4 @@
-angular.module('Directory.csvImport.controllers', ['Directory.alerts', 'Directory.csvImports.models', 'Directory.collections.models', 'Directory.loader', 'Directory.csvImports.filters'])
+angular.module('Directory.csvImport.controllers', ['fileButton', 'Directory.alerts', 'Directory.csvImports.models', 'Directory.collections.models', 'Directory.loader', 'Directory.csvImports.filters'])
 .controller("ImportCtrl", ['$scope', 'CsvImport', '$routeParams', 'Collection', 'Loader', function($scope, CsvImport, $routeParams, Collection, Loader) {
 
   Loader.page(CsvImport.get($routeParams.importId), Collection.query(), 'importEdit-'+$routeParams.importId, $scope).then(function (data) {
@@ -88,7 +88,7 @@ angular.module('Directory.csvImport.controllers', ['Directory.alerts', 'Director
 .controller('FSImportCtrl', ['$scope', '$http', 'CsvImport', '$timeout', 'Alert', function ($scope, $http, CsvImport, $timeout, Alert) {
   $scope.setFile = function(element) {
     $scope.$apply(function($scope) {
-      $scope.files = element.files;
+      $scope.files = element[0].files;
     });
   };
 
