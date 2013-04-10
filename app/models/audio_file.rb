@@ -11,6 +11,7 @@ class AudioFile < ActiveRecord::Base
   delegate :collection_title, to: :item
 
   def transcript_text
+    return '' unless transcript
     trans_json = JSON.parse(transcript)
     trans_json.collect{|i| i['text']}.join(' ')
   end
@@ -99,12 +100,25 @@ class AudioFile < ActiveRecord::Base
 
   end
 
+  def analyze_transcript
+    MediaMonsterClient.create_job do |job|
+      job.job_type = 'text'
+      job.priority = 1
+      job.original = transcript_text_url
+      job.add_task task_type: 'analyze', result: "#{destination}_analysis.json", call_back: audio_file_callback_url, label:'analyze'
+    end
+  end
+
   def file_path
     file.store_path(File.basename(original_file_url))
   end
 
   def audio_file_callback_url
-    Rails.application.routes.url_helpers.api_item_audio_file_url(item_id, id)
+    Rails.application.routes.url_helpers.api_item_audio_file_url(item_id, id)    
+  end
+
+  def transcript_text_url
+    Rails.application.routes.url_helpers.api_item_audio_file_transcript_text(item_id, id)
   end
 
   def destination

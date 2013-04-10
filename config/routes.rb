@@ -12,6 +12,7 @@ PopUpArchive::Application.routes.draw do
       resources :items do
         resources :audio_files do
           post '', action: 'update'
+          get 'transcript_text', action: 'transcript_text'
         end
       end
       resources :collections do

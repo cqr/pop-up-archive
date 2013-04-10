@@ -23,4 +23,10 @@ class Api::V1::AudioFilesController < Api::V1::BaseController
   def show
     redirect_to audio_file.file.url || audio_file.original_file_url
   end
+
+  def transcript_text
+    response.headers['Content-Disposition'] = 'attachment'
+    render text: audio_file.transcript_text, content_type: 'text/plain'
+  end
+
 end
