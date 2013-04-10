@@ -64,3 +64,23 @@ The site should now be running. If you need to use sidekiq, or elasticsearch, yo
 All that should be required is running `guard` in the project root. You can also just run `rake`.
 
 We have the project on Travis-CI. If you submit a pull request, I assume it should check on that. I don't know.
+
+
+### Copyright & License
+
+The Pop Up Archive software is released under the [Affero GNU General Public License](http://www.gnu.org/licenses/agpl.html).
+
+Copyright (c) 2013 The Public Radio Exchange, www.prx.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the Affero GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+Affero GNU General Public License for more details.
+
+You should have received a copy of the Affero GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
