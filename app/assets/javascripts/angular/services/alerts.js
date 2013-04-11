@@ -1,5 +1,5 @@
 angular.module('Directory.alerts', ['ngLoadingIndicators'])
-.factory('Alert', ['$timeout', 'loading', function ($timeout, loading) {
+.factory('Alert', ['$rootScope', '$timeout', 'loading', function ($rootScope, $timeout, loading) {
 
   var alerts = [];
 
@@ -9,6 +9,7 @@ angular.module('Directory.alerts', ['ngLoadingIndicators'])
         if (!(alert.done || alert.path || alert.progress == 100)){
           schedulePeriodicUpdate(alert);
         } else {
+          $rootScope.$broadcast('alertEnded', alert);
           loading(false);
         }
         return arg;

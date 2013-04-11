@@ -115,6 +115,25 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
       dialogFade: true
     };
 
+    $scope.messages = [];
+
+    $scope.addMessage = function(message) {
+      // $scope.$apply(function($scope) {
+        $scope.messages.push(message);
+      // });
+    };
+
+    $scope.$on("alertEnded", function (e, alert) {
+      console.log('alertEnded!', alert);
+      if (alert.status == 'Analyzed') {
+        $scope.addMessage({
+          'type': 'success',
+          'title': 'Congratulations!',
+          'content': '<em>' + alert.message + '</em> has been analyzed! <a data-dismiss="alert" href="' + alert.path + '">Complete your import.</a>'
+        });
+      }
+    });
+
     $scope.userMenu = [{
       text: 'Log out',
       href: '/users/sign_out',

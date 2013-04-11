@@ -34,10 +34,10 @@ script#import-instructions type='text/ng-template'
 
         li
           | Or, select a CSV file from your hard drive:
-          form.import
-            fieldset ng-controller='FSImportCtrl'
-              span file-button=""
-                button.btn ng-hide='files.length' Select CSV
+          form.import ng-controller='FSImportCtrl'
+            fieldset 
+              span file-button="" style='margin-right: 4px;'
+                button.btn Select CSV
               button.btn.btn-success ng-show='files.length' ng-click='submit()' Import {{files[0].name}}
 
 

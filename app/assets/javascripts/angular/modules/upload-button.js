@@ -13,7 +13,6 @@ angular.module('fileButton', [])
         height: button.offsetHeight
       })
 
-      // onchange="angular.element(this).scope().setFile(this)"
       var fileInput = angular.element('<input type="file" multiple />')
       fileInput.css({
         position: 'absolute',

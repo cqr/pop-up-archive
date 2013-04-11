@@ -12,6 +12,7 @@ html lang='en' ng-app='Directory' ng-controller='DirectoryCtrl'
   body ng-controller="FilesCtrl" file-dropzone="files"
     header= render('header')
     .container
+      messages= render('messages')
       ng-view
         div.loading-overlay ui-if="pageLoading()" ui-animate=""
           div.loading-indicator

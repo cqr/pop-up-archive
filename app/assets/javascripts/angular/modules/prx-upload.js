@@ -50,9 +50,9 @@ angular.module('fileDropzone', [])
                 }
             });
 
-            scope.$watch('files', function (val) {
+            // scope.$watch('files', function (val) {
 
-            });
+            // });
 
             if (element.css('position') == 'static') element.css({'position':'relative'});
 

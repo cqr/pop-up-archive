@@ -32,7 +32,15 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
     // console.log('ItemCtrl on fileAdded', file);
     var item = new Item({collectionId:$routeParams.collectionId, title:file.name});
     item.create().then(function () {
-      item.addAudioFile(file);
+      item.addAudioFile(file).then(function(data) {
+        $scope.addMessage({
+          'type': 'success',
+          'title': 'Congratulations!',
+          'content': 'Your upload completed. <a data-dismiss="alert" href="' + item.link() + '">View and edit the new item!</a>'
+        });
+      }, function(data){
+        console.log('fileAdded: addAudioFile: reject', data, item);
+      });
     });
   });
 

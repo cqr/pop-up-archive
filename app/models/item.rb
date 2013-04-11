@@ -57,8 +57,6 @@ class Item < ActiveRecord::Base
   has_many   :contributions
   has_many   :contributors, through: :contributions, source: :person
   
-  STANDARD_ROLES = ['producer', 'interviewer', 'interviewee', 'creator', 'host']
-
   STANDARD_ROLES.each do |role|
     has_many "#{role}_contributions".to_sym, class_name: "Contribution", conditions: {role: role}
     has_many role.pluralize.to_sym, through: "#{role}_contributions".to_sym, source: :person
