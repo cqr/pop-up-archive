@@ -1,5 +1,16 @@
 form.form-inline ng-controller="ImportMappingCtrl"
-  h2 File Import: {{csvImport.file}}
+  h1
+    | Map Your Data
+    small &nbsp; {{csvImport.file}}
+
+  div.alert.alert-info
+    p Pop Up Archive has attempted to automatically map your spreadsheet columns to the Pop Up Archive metadata fields. You can verify that these mappings are correct below.
+
+    p If a field is incorrectly mapped, choose the correct field from the dropdown.
+
+    p If Pop Up Archive does not provide a field that matches your data, you can choose to create an "Extra" field.
+
+    p However, to ensure the best possible filtering and search results, we recommend mapping to a pre-existing Pop Up Archive field whenever possible.
 
   .well
     label for='collection-id'
