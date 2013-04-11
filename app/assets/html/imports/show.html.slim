@@ -51,8 +51,8 @@ form.form-inline ng-controller="ImportMappingCtrl"
             i.icon-warning-sign  {{header}}
           td ng-repeat='row in csvImport.previewRows' {{schema.getValue(schema.columnize(header), csvImport.mappings, row)}}
   .alert ng-show='schema.includesExtraFields(csvImport.mappings)'
-    | Warning: the fields in yellow above are <strong>extra</strong> fields, meaning that they will not be given the same
-    | care that first-class fields are given. If any field can reasonably be mapped to a Pop-Up field, you should do so
+    | Warning: the fields in yellow above are <strong>extra</strong> fields, meaning that they will not be given the same 
+    | care that first-class fields are given. If any field can reasonably be mapped to a Pop-Up field, you should do so 
     | before import to ensure the best possible filtering and search results.
   .well
     button.btn.btn-link ng-disabled="csvImport.isSaving" ng-click="cancel()" Cancel
