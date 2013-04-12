@@ -6,7 +6,7 @@
 
       h1 {{item.title}}
 
-      p ng-show="item.description" {{item.description}}
+      p ng-show="item.description" ng-bind-html-unsafe="item.description"
 
       section ng-repeat="audioFile in item.audioFiles" ng-controller="AudioFileCtrl"
         h4 audio file
