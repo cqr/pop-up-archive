@@ -1,0 +1,9 @@
+.modal-header
+  button type="button" class="close" data-dismiss="modal" aria-hidden="true" x
+  h3 Destination Field Descriptions
+.modal-body
+  .decriptions ng-repeat="item in itemHelp"
+    h2.title {{item.title}}
+    .content ng-bind-html-unsafe="item.content"
+.modal-footer
+  button.btn type="button" ng-click="dismiss()" Close

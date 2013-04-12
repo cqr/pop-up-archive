@@ -10,7 +10,6 @@ script#import-instructions type='text/ng-template'
   .modal-footer
     button.btn type="button" ng-click="dismiss()" Close
 
-
 .row-fluid
   .span9
     .brochure(style='margin-top: 50px;')
@@ -28,7 +27,7 @@ script#import-instructions type='text/ng-template'
           | Click here for a template CSV file.
 
       p 
-        a href="https://docs.google.com/document/d/1Bg0bD0AgOU6yjk31vKqJxAgxQKjVXVSDKalb_9OKYg0/pub" target="_blank" Click here for definitions for the Pop Up descriptive fields.
+        a bs-modal="'#{asset_path 'imports/field_descriptions.html'}'" Click here for definitions for the Pop Up descriptive fields.
       ul
         li Drag and drop the CSV file you would like to import onto the browser window
 
