@@ -17,7 +17,7 @@ class Api::V1::CollectionsController < Api::V1::BaseController
   end 
 
   def destroy
-    collection.delete
+    collection.destroy
     respond_with :api, collection
   end
 end

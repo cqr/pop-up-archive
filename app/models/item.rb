@@ -51,10 +51,10 @@ class Item < ActiveRecord::Base
   has_many   :collection_grants, through: :collection
   has_many   :users, through: :collection_grants
 
-  has_many   :instances
-  has_many   :audio_files
+  has_many   :instances, dependent: :destroy
+  has_many   :audio_files, dependent: :destroy
 
-  has_many   :contributions
+  has_many   :contributions, dependent: :destroy
   has_many   :contributors, through: :contributions, source: :person
   
   STANDARD_ROLES.each do |role|

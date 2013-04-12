@@ -1,7 +1,7 @@
 class Person < ActiveRecord::Base
   attr_accessible :name
   before_save :generate_slug, on: :create
-  has_many :contributions
+  has_many :contributions, dependent: :destroy
 
   def self.for_name(string)
     find_by_slug slugify string or create name: string

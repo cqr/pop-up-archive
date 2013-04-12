@@ -12,4 +12,9 @@ class Api::V1::CsvImportsController < Api::V1::BaseController
     csv_import.save
     respond_with(:api, csv_import)
   end
+
+  def destroy
+    csv_import.destroy
+    respond_with :api, csv_import
+  end
 end

@@ -16,10 +16,10 @@ class CsvImport < ActiveRecord::Base
   validates_presence_of :file
   mount_uploader :file, ::CsvFileUploader
 
-  has_many :rows, class_name: 'CsvRow'
-  has_many :items
+  has_many :rows, class_name: 'CsvRow', dependent: :destroy
+  has_many :items, dependent: :destroy
 
-  has_many :mappings, order: "position", class_name:'ImportMapping' do
+  has_many :mappings, order: "position", class_name:'ImportMapping', dependent: :destroy do
     def [](index)
       conditions(['import_mappings.position = ?', index - 1]).limit(1).first
     end
