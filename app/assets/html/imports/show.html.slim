@@ -44,11 +44,14 @@ form.form-inline ng-controller="ImportMappingCtrl"
           th ng-repeat="row in csvImport.previewRows" Preview Item \#{{$index + 1}}
       tbody
         tr ng-repeat='column in schema.columns | schemaMapped:csvImport.mappings'
-          th {{column.humanName}}
+          td
+            i.icon-question-sign bs-popover='itemHelp[column.camelCaseName]' data-placement="right"
+              b  {{column.humanName}}
           td ng-repeat='row in csvImport.previewRows' {{schema.getValue(column, csvImport.mappings, row)}}
         tr.warning ng-repeat="header in csvImport.headers | isExtraField:csvImport.mappings"
           td
-            i.icon-warning-sign  {{header}}
+            i.icon-warning-sign
+              b  {{header}}
           td ng-repeat='row in csvImport.previewRows' {{schema.getValue(schema.columnize(header), csvImport.mappings, row)}}
   .alert ng-show='schema.includesExtraFields(csvImport.mappings)'
     | Warning: the fields in yellow above are <strong>extra</strong> fields, meaning that they will not be given the same 

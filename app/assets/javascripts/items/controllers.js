@@ -34,6 +34,7 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
   });
 }])
 .controller('ItemFormCtrl', ['$scope', 'Schema', function ($scope, Schema) {
+
   $scope.item = {};
   $scope.$parent.$watch('item', function (is) {
     if (is && $scope.item != is) {

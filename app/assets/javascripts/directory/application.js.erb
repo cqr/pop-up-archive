@@ -141,6 +141,83 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
       method: 'delete'
     }];
 
+    $scope.itemHelp = {
+      'title'           : { 'title': 'Title',
+                            'content': '<p>The name given to the media item. It is the unique name that should be used to refer to or search for an item. There are situations in which no title is available, e.g., photographs or segments harvested from a longer work or program. In these situations a "supplied title" must be invented and used to name the media item. Be considerate of and sensitive to the end user who is attempting to search for your media item.</p><p>Examples</p><ul><li>Willie Nelson Interview</li><li>War of the Worlds</li><li>NASA Apollo 11 Onboard Recordings</li></ul>'
+                          },
+      'episodeTitle'    : { 'title': 'Episode Title',
+                            'content': '<p>If applicable, the episode or piece to which a media item contributed.</p><p>Examples</p><ul><li>Hidden Kitchens Texas</li><li>Notes on Camp</li><li>Parasites</li></ul>'
+                          },
+      'seriesTitle'     : { 'title': 'Series Title',
+                            'content': '<p>If applicable, the larger series to which the episode or piece contributed.</p><p>Examples</p><ul><li>Hidden Kitchens</li><li>This American Life</li><li>Love and Radio</li></ul>'
+                          },
+      'identifier'      : { 'title': 'Item ID',
+                            'content': '<p>Best practice is to identify the media item (whether analog or digital) by means of an unambiguous string or number corresponding to an established or formal identification system if one exists. You can use an identifier invented for your own organizational system or a URL.</p><p>Examples</p><ul><li>PROG_SV2BT0GDPUE28XX</li><li>NOVA003406</li><li>http://archive.org/details/<br/>TheApollo11MoonLanding</li></ul>' 
+                          },
+      'description'     : { 'title': 'Description',
+                            'content': '<p>An abstract or summary of the content of a media item. The information may be in the form of a paragraph giving an individual program description or brief content reviews.</p><p>Examples</p><ul><li>Willie Nelson takes us across The Lone Star State in this lively hour of stories from KUT Austin and NPR. Explore the history of Texas through food—told by people who find it, grow it, cook it, eat it, sell it, share it, and celebrate with it.</li></ul>'
+                          },
+      'rights'          : { 'title': 'Rights',
+                            'content': '<p>Information about rights to the media item. Typically, rights information includes a statement about various property rights associated with the resource, including intellectual property rights.</p><p>Examples</p><ul><li>Creative Commons Attribution 3.0 Unported License</li><li>Please contact kitchen@kitchensisters.org to get permission for use.</li></ul>'
+                           },
+      'dateCreated'     : { 'title': 'Date Created',
+                            'content': '<p>The original date that the media item was created. In the case of raw interviews, the date on which the interview was conducted.</p>'
+                          },
+      'dateBroadcast'   : { 'title': 'Date Broadcast',
+                            'content': '<p>The date on which the audio was originally broadcast.</p>'
+                            },
+      'physicalFormat'  : { 'title': 'Physical Format',
+                            'content': '<p>The format of a particular version or rendition of a media item as it exists in an actual physical form that occupies physical space (e.g., a tape on a shelf), rather than as a digital file residing on a server or hard drive.</p><p>Examples</p><ul><li>1 inch audio tape</li><li>1/2 inch digital audio tape</li></ul>'
+                           },
+      'physicalLocation': { 'title': 'Physical Location',
+                            'content': '<p>An address for a physical media item. For an organization or producer acting as caretaker of a media resource, this field may contain information about a specific shelf location for an item, including an organization\'s name, departmental name, shelf ID and contact information.</p><p>Examples</p><ul><li>Vault: ML007859.121.1.</li><li>Bay 12, Shelf 21</li></ul>'
+                          },
+      'digitalFormat'   : { 'title': 'Digital Format',
+                            'content': '<p>The format of a particular instantiation of a media item as it exists in its digital form, i.e., as a digital file on a server or hard drive. Digital media formats may be expressed with formal Internet MIME types (e.g., mpeg, wav).</p><p>Examples</p><ul><li>MP3</li><li>WAV</li></ul>'
+                           },
+      'audioFiles[][remoteFileUrl]' : { 'title': 'URL',
+                            'content': ' <p>An address for a digital media item on the web. A single item may have multiple values.</p><p>Examples</p><ul><li>http://archive.org/download/NasaApollo11OnboardRecordings/11_highlight_1.mp3</li><li>http://archive.org/download/NasaApollo11OnboardRecordings/11_highlight_2.mp3</li><li>http://archive.org/download/NasaApollo11OnboardRecordings/11_highlight_3.mp3</li></ul>'
+                          },
+      'digitalLocation' : { 'title': 'URL',
+                            'content': ' <p>An address for a digital media item on the web. A single item may have multiple values.</p><p>Examples</p><ul><li>http://archive.org/download/NasaApollo11OnboardRecordings/11_highlight_1.mp3</li><li>http://archive.org/download/NasaApollo11OnboardRecordings/11_highlight_2.mp3</li><li>http://archive.org/download/NasaApollo11OnboardRecordings/11_highlight_3.mp3</li></ul>'
+                          },
+      'musicSoundUsed'  : { 'title': 'Music',
+                            'content': '<p>Details on music or other sound clips that contributed to the piece. May include title, artist, album, timestamp, producer and record label information.</p><p>Examples</p><ul><li>"Dole It Out", Podington Bear</li><li>At Club St. Germain, Django Reinhardt</li><li>The Beatles, Apple</li></ul>'
+                          },
+      'datePeg'         : { 'title': 'Date Peg',
+                            'content': '<p>A holiday or other date relevant to the item.</p><p>Examples</p><ul><li>Christmas</li><li>Yom Kippur</li><li>Independence Day</li></ul>'
+                          },
+      'notes'           : { 'title': 'Notes',
+                            'content': 'Additional notes or information about the item.'
+                          },
+      'duration'        : { 'title': 'Duration',
+                            'content': '<p>A timestamp for the overall length or duration of the audio. Represents the playback time.</p><p>Examples</p><ul><li>00:56:46</li><li>00:56:46.0006</li></ul>'
+                          },
+      'tags'            : { 'title': 'Tags',
+                            'content': '<p>A keyword or term that describes the item.</p><p>Examples</p><ul><li>space exploration</li><li>cosmology</li><li>physics</li></ul>'
+                          },
+      'transcription'   : { 'title': 'Transcription',
+                            'content': 'Text transcript of the speech in the audio.'
+                          },
+      'locations[]'     : { 'title': 'Geolocation',
+                            'content': '<p>A place that is the subject of a piece of media.</p><p>Examples</p><ul><li>37.2000,-76.7667</li><li>1600 Pennsylvania Avenue NW, Washington, D.C.</li><li>Chicago, IL</li></ul>'
+                          },
+      'interviewers[]'  : { 'title': 'Interviewer',
+                            'content': '<p>The person(s) conducting the interview.</p><p>Examples</p><ul><li>Davia Nelson</li><li>Nicholas van der Kolk</li><li>Chana Joffe-Walt</li></ul>'
+                          },
+      'interviewees[]'  : { 'title': 'Interviewee',
+                            'content': '<p>The person(s) being interviewed.</p><p>Examples</p><ul><li>Willie Nelson</li><li>George Foreman</li><li>Senator Barney Frank</li></ul>'
+                          },
+      'producers[]'     : { 'title': 'Producer',
+                          'content': '<p>The person(s) who supervised or financed the work.</p><p>Examples</p><ul><li>Nancy Updike</li><li>Ellen Horne</li></ul>'
+                          },
+      'hosts[]'         : { 'title': 'Host',
+                            'content': '<p>The person(s) hosting the broadcast piece.</p><p>Examples</p><ul><li>Ira Glass</li><li>Robert Krulwich</li><li>Art Bell</li></ul>'
+                          }
+    };
+
+
+
   }]);
 
 }());
