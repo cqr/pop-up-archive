@@ -4,6 +4,11 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
     Loader.page(Collection.query(), 'Collections', $scope);
 
     $scope.delete = function(index) {
+      var confirmed = confirm("Delete collection and all items?");
+      if (!confirmed) {
+        return false;
+      }
+
       var collection = $scope.collections[index];
       collection.deleting = true;
       collection.delete().then(function() {
