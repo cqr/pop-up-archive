@@ -1,18 +1,25 @@
-.fluid-row
-  .span9
-    .hero-unit.brochure
-      h1 hi beta-testers and SXSWers
-      p Welcome to Pop Up Archive, a simple system for organizing and accessing audio and related material.
-      p We’re leveraging emerging technology and standards to help preserve and add metadata to your audio. In the process, we’re building an archive of sound from journalists, oral history collections, and accidental archivists from around the world.
+.fluid-row.brochure
 
-      h3 so, what would you like to do?
+  span.slide-span.first
+    span.number-circle 1
+    a.title href='/imports/new' Create an account
+    img.image src='#{asset_path("account.svg")}'
+    .content It's easy to sign up using your existing Facebook, Twitter, or PRX account.
 
-      ul.big
-        li
-          a(href='/imports/new') Add your audio
-        li
-          a(href='/search') Search the archive
-        li
-          a(href='http://www.popuparchive.org') Learn more about Pop Up Archive
+  span.slide-span
+    span.number-circle 2
+    a.title href='/imports/new' Archive your audio
+    img.image src='#{asset_path("archive.svg")}'
+    .content You can upload individual files or batch import with a CSV.
 
+  span.slide-span
+    span.number-circle 3
+    a.title href='/search' Make it searchable
+    img.image src='#{asset_path("search.svg")}' style='padding-bottom: 0px;'
+    .content Tags &amp; transcripts will be automatically generated. You can also customize your own metadata. 
 
+  span.slide-span
+    span.number-circle 4
+    a.title href='http://www.popuparchive.org' Explore
+    img.image src='#{asset_path("explore.svg")}'
+    .content You can search &amp; browse your own material or the entire public archive.
