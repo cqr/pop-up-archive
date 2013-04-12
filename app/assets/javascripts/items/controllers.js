@@ -33,7 +33,7 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
     });
   });
 }])
-.controller('ItemFormCtrl', ['$scope', 'Schema', function ($scope, Schema) {
+.controller('ItemFormCtrl', ['$scope', 'Schema', 'Item', function ($scope, Schema, Item) {
 
   $scope.item = {};
   $scope.$parent.$watch('item', function (is) {
@@ -41,7 +41,9 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
       angular.copy(is, $scope.item);
     }
   });
+
   $scope.fields = Schema.columns;
+  // $scope.accessibleAttributes = Item.attrAccessible;
 
   $scope.submit = function () {
     if ($scope.item.id) {

@@ -30,7 +30,7 @@ section ng-controller="ItemFormCtrl"
             i.icon-question-sign style="margin-left:8px" bs-popover='itemHelp[field.camelCaseName]' data-placement="bottom"
           .controls 
             textarea ng-model='item[field.camelCaseName]'
-        .control-group ng-switch-when="array"
+        .control-group ng-switch-when="array" style='display:none;'
           label.control-label
             | {{field.humanName}}
             i.icon-question-sign style="margin-left:8px" bs-popover='itemHelp[field.camelCaseName]' data-placement="bottom"
