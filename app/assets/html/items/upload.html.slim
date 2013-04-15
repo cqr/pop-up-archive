@@ -1,0 +1,28 @@
+.modal-header
+  button type="button" class="close" data-dismiss="modal" aria-hidden="true" x
+  h3 Import Audio
+
+.modal-body 
+  form.import
+
+    fieldset
+      label for='collection-id'
+        strong Pick a collection for the new item:
+      select#collection-id ng-model='item.collectionId' ng-options="collection.id as collection.title for collection in collections"
+
+    fieldset
+      span file-button="" style='margin-right: 4px;'
+        button.btn Select files
+      ul ng-show='item.audioFiles.length > 0'
+        li ng-repeat="audioFile in item.audioFiles" {{audioFile.name}}
+
+
+    fieldset ng-show='item.audioFiles.length > 0 && item.collectionId'
+      label
+        strong New Item Title:
+      input.text#title ng-model='item.title' type='text'
+
+
+.modal-footer
+  button.btn type="button" ng-click="dismiss()" Close
+  button.btn.btn-success ng-disabled='!item.collectionId || item.audioFiles.length <= 0' ng-click='submit()' Create item

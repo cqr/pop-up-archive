@@ -54,6 +54,10 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
       templateUrl: "<%= asset_path 'dashboard/about.html' %>",
       controller: "DashboardCtrl"
     })
+    .when('/imports/choose', {
+      templateUrl: "<%= asset_path 'imports/choose.html' %>",
+      controller: "ItemsCtrl"
+    })
     .when('/imports/new', {
       templateUrl: "<%= asset_path 'imports/new.html' %>",
       controller: "ItemsCtrl"
@@ -97,6 +101,7 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
 
   var depends =  ['ui',
                   '$strap',
+                  '$strap.directives',
                   'RailsUjs',
                   'Directory.dashboard.controllers',
                   'Directory.files.controllers',
@@ -129,7 +134,7 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
         $scope.addMessage({
           'type': 'success',
           'title': 'Congratulations!',
-          'content': '<em>' + alert.message + '</em> has been analyzed! <a data-dismiss="alert" href="' + alert.path + '">Complete your import.</a>'
+          'content': '<em>' + alert.message + '</em> has been analyzed! <a data-dismiss="alert" data-target=":parent" ng-href="' + alert.path + '">Complete your import.</a>'
         });
       }
     });

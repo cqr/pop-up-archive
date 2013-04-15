@@ -28,7 +28,7 @@ angular.module('fileButton', [])
       })
 
       fileInput.bind('change', function() {
-        scope.setFile(fileInput);
+        scope.setFiles(fileInput);
       });
 
       el.append(fileInput)

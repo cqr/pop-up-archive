@@ -86,9 +86,12 @@ angular.module('Directory.csvImport.controllers', ['fileButton', 'Directory.aler
   Loader.page(CsvImport.query(), 'Imports', $scope);
 }])
 .controller('FSImportCtrl', ['$scope', '$http', 'CsvImport', '$timeout', 'Alert', function ($scope, $http, CsvImport, $timeout, Alert) {
-  $scope.setFile = function(element) {
+
+  $scope.setFiles = function(element) {
     $scope.$apply(function($scope) {
-      $scope.files = element[0].files;
+      angular.forEach(element[0].files, function (file) {
+        $scope.files.push(file);
+      });
     });
   };
 

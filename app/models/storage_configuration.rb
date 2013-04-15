@@ -22,7 +22,7 @@ class StorageConfiguration < ActiveRecord::Base
     case provider.downcase
     when 'aws' then 'aws'
     when 'internetarchive' then 'ia'
-    else nil
+    else provider.downcase
     end
   end
 

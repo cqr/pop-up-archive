@@ -21,12 +21,13 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
   }
 
   $scope.$on("fileAdded", function (e, file) {
+    console.log('ItemCtrl on fileAdded', file);
     $scope.item.addAudioFile(file).then(function(data) {
       $scope.item.audioFiles.push(data);
       $scope.addMessage({
         'type': 'success',
         'title': 'Congratulations!',
-        'content': 'Your upload completed. <a data-dismiss="alert" href="' + $scope.item.link() + '">View and edit the item!</a>'
+        'content': 'Your upload completed. <a data-dismiss="alert" data-target=":parent" href="' + $scope.item.link() + '">View and edit the item!</a>'
       });
     }, function(data){
       console.log('fileAdded: item: addAudioFile: reject', data, $scope.item);
