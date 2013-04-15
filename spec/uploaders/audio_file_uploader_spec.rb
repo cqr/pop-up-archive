@@ -17,7 +17,7 @@ describe AudioFileUploader do
     it "handles item storage" do
       @uploader = AudioFileUploader.new(AudioFile.new)
       @item = Item.new
-      @item.storage = StorageConfiguration.new(provider: 'InternetArchive', key: 'k', secret: 's')
+      @item.storage_configuration = StorageConfiguration.new(provider: 'InternetArchive', key: 'k', secret: 's')
       @uploader.model.item = @item
       @uploader.fog_credentials[:provider].should eq "InternetArchive"
       @uploader.fog_credentials[:ia_access_key_id].should eq 'k'

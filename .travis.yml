@@ -1,7 +1,7 @@
 language: ruby
 rvm:
   - "1.9.3" 
-env: TEST_DATABASE_URL=postgres://postgres@locahost/travispopup RAILS_ENV=test
+env: TEST_DATABASE_URL=postgres://postgres@locahost/travispopup RAILS_ENV=test AWS_ACCESS_KEY_ID=fake AWS_SECRET_ACCESS_KEY=fake AWS_BUCKET=fake
 before_script:
   - rake db:create db:migrate
 bundler_args: --without development assets
