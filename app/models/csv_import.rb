@@ -132,7 +132,8 @@ class CsvImport < ActiveRecord::Base
     mappings.delete_all
 
     headers.each_with_index do |header, index|
-      column, type = case header.downcase
+      header = header.blank? ? "Field #{index}" : header.downcase
+      column, type = case header
       when /identifier/ then ["identifier", "string"]
       when /piece|title/ then ["title", "string"]
       when /duration/ then ["duration", "number"]
