@@ -39,7 +39,10 @@ angular.module('Directory.items.models', ['RailsModel'])
     return promise.promise;
   }
 
+  Item.prototype.standardRoles = ['producer', 'interviewer', 'interviewee', 'creator', 'host'];
+
   Item.attrAccessible = "dateBroadcast datePeg description digitalFormat digitalLocation episodeTitle identifier musicSoundUsed notes physicalFormat physicalLocation rights seriesTitle title transcription".split(' ');
+
 
   return Item;
 }])
