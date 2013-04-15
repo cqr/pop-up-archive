@@ -98,7 +98,7 @@
         return "00:00.0";
       }
       var date = new Date(data*1000);
-      return [date.getHours()-19, pad(date.getMinutes()), pad(date.getSeconds())].join(':') + '.' + parseInt(date.getMilliseconds()/100);
+      return [date.getUTCHours(), pad(date.getMinutes()), pad(date.getUTCSeconds())].join(':') + '.' + parseInt(date.getUTCMilliseconds()/100);
     }
   })
   .directive("verticalScrubber", ["Player", '$timeout', function (Player, $timeout) {
