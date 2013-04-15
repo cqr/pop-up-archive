@@ -19,4 +19,13 @@ angular.module("Directory.audioFiles.controllers", ['ngPlayer'])
 }])
 .controller("PersistentPlayerCtrl", ["$scope", 'Player', function ($scope, Player) {
   $scope.player = Player;
+  $scope.collapsed = false;
+
+  $scope.collapse = function () {
+    $scope.collapsed = true;
+  }
+
+  $scope.expand = function () {
+    $scope.collapsed = false;
+  }
 }]);

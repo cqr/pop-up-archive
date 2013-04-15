@@ -395,13 +395,13 @@ $persistent-player-scrollpading: 15px;
   bottom: 10px;
   margin-right:0;
   border-radius: 0;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: $persistent-player-width / 2 + 10px;
+  border-bottom-right-radius: $persistent-player-width / 2 + 10px;
 
-  transition: transform 0.5s ease-in-out;
-  -o-transition: -o-transform 0.5s ease-in-out;
-  -moz-transition: -moz-transform 0.5s ease-in-out;
-  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out, bottom 0.5s ease-in-out;
+  -o-transition: -o-transform 0.5s ease-in-out, bottom 0.5s ease-in-out;
+  -moz-transition: -moz-transform 0.5s ease-in-out, bottom 0.5s ease-in-out;
+  -webkit-transition: -webkit-transform 0.5s ease-in-out, bottom 0.5s ease-in-out;
 
   &.hidden {
     transform: translateY(-100%);
@@ -410,23 +410,57 @@ $persistent-player-scrollpading: 15px;
     -moz-transform: translateY(-100%);
   }
 
+  &.collapsed {
+    min-height: 80px;
+    bottom: 90%;
+
+    .vertical-scrubber {
+      bottom: 100px;
+    }
+  }
+
   .player-controls {
     position: absolute;
-    bottom: 5px;
-    margin-left: 5px;
+    bottom: 10px;
     text-align: center;
+    .player-button i {
+      font-size: 34px;
+      line-height: 30px;
+      width: 30px;
+      height: 30px;
+      padding: 10px;
+
+      &.icon-play {
+        padding: 10px 7px 10px 13px;
+      }
+    }
+  }
+
+  .collapse-button, .expand-button {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    font-size: 10px;
+    line-height: 10px;
+    width: $persistent-player-width;
+    text-align: center;
+    font-variant: small-caps;
+    i {
+      margin: 5px;
+    }
   }
 }
 
 .vertical-scrubber {
   background: rgb(242, 239, 239);
   position: absolute;
-  top: 2px;
-  bottom: 70px;
+  top: 15px;
+  bottom: 90px;
   left: 10px;
   right: 10px;
   overflow:hidden;
-  border-radius: $persistent-player-width / 2;
+  border-bottom-left-radius: $persistent-player-width / 2;
+  border-bottom-right-radius: $persistent-player-width / 2;
 
   .bar {
     width: 100%;
