@@ -23,8 +23,12 @@
         form.import ng-controller='FSImportCtrl'
           fieldset 
             span file-button="" style='margin-right: 4px;'
-              button.btn Select a CSV
-            button.btn.btn-success ng-show='files.length' ng-click='submit()' Import {{files[0].name}}
+              button.btn Select CSV
+
+            ul ng-show='files.length > 0'
+              li ng-repeat="file in files" {{file.name}}
+
+            button.btn.btn-success ng-show='files.length > 0' ng-click='submit()' Import
 
       p Pop Up will analyze your spreadsheet and map your fields. Don't worry, you can edit the mapping in case we don't get it right at first.
 
