@@ -118,7 +118,9 @@ angular.module('Directory.csvImports.models', ['RailsModel'])
   });
 
   schema.columnize = function stringToColumnName(name) {
-    return 'extra[' + escape(name.toLowerCase().replace(/\W+/g,'_')) + ']';
+    if (typeof name !== 'undefined' && name != null) {
+      return 'extra[' + escape(name.toLowerCase().replace(/\W+/g,'_')) + ']';
+    }
   }
 
   angular.forEach({
@@ -195,7 +197,7 @@ angular.module('Directory.csvImports.models', ['RailsModel'])
   }
 
   schema.isMapped = function (column, mappings) {
-    if (!mappings) return false;
+    if (!mappings || !column) return false;
     for (var i=0; i < mappings.length; i++) {
       var colName = (column.name || column);
       if (mappings[i].column == colName) { return i }
