@@ -20,18 +20,40 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
     $scope.editItem = false;
   }
 
-  $scope.$on("fileAdded", function (e, file) {
-    console.log('ItemCtrl on fileAdded', file);
-    $scope.item.addAudioFile(file).then(function(data) {
-      $scope.item.audioFiles.push(data);
-      $scope.addMessage({
-        'type': 'success',
-        'title': 'Congratulations!',
-        'content': 'Your upload completed. <a data-dismiss="alert" data-target=":parent" href="' + $scope.item.link() + '">View and edit the item!</a>'
+  $scope.$on("filesAddedNope", function (e, files) {
+    console.log('ItemCtrl filesAdded', e, files);
+    return;
+
+    angular.forEach(files, function (file) {
+
+      var alert = new Alert();
+      alert.status = "Uploading";
+      alert.progress = 1;
+      alert.message = file.name;
+      alert.add();
+
+      $scope.item.addAudioFile(file).then(function(data) {
+        $scope.item.audioFiles.push(data);
+        $scope.addMessage({
+          'type': 'success',
+          'title': 'Congratulations!',
+          'content': '"' + file.name + '" upload completed. <a data-dismiss="alert" data-target=":parent" href="' + $scope.item.link() + '">View and edit the item!</a>'
+        });
+        alert.progress = 100;
+        alert.status = "Uploaded";
+
+      }, function(data){
+        $scope.addMessage({
+          'type': 'error',
+          'title': 'Oops...',
+          'content': '"' + file.name + '" upload failed. Hmmm... try again?'
+        });
+
+        alert.progress = 100;
+        alert.status = "Error";
       });
-    }, function(data){
-      console.log('fileAdded: item: addAudioFile: reject', data, $scope.item);
-    });
+
+    });    
   });
 }])
 .controller('ItemFormCtrl', ['$scope', 'Schema', 'Item', function ($scope, Schema, Item) {

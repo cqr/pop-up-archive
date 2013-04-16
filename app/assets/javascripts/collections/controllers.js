@@ -26,28 +26,12 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
 
   $scope.close = function () {
     $scope.editItem = false;
-    $scope.item = new Item({collectionId:$routeParams.collectionId});
+    $scope.item = new Item({collectionId:parseInt($routeParams.collectionId)});
   }
 
   $scope.itemAdded = function (item) {
     $timeout(function(){ $scope.$broadcast('datasetChanged')}, 750);
   }
-
-  $scope.$on('fileAdded', function (e, file) {
-    console.log('CollectionCtrl on fileAdded', file);
-    var item = new Item({collectionId:$routeParams.collectionId, title:file.name});
-    item.create().then(function () {
-      item.addAudioFile(file).then(function(data) {
-        $scope.addMessage({
-          'type': 'success',
-          'title': 'Congratulations!',
-          'content': 'Your upload completed. <a data-dismiss="alert" data-target=":parent" href="' + item.link() + '">View and edit the new item!</a>'
-        });
-      }, function(data){
-        console.log('fileAdded: addAudioFile: reject', data, item);
-      });
-    });
-  });
 
   $scope.close();
 

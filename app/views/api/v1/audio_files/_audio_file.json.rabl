@@ -1,1 +1,1 @@
-attributes :id, :filename, :url
+attributes :id, :url, :filename

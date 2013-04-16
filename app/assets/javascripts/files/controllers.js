@@ -1,11 +1,10 @@
 angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.csvImports.models', 'Directory.alerts'])
-.controller('FilesCtrl', ['$scope', '$http', 'CsvImport', '$timeout', 'Alert', '$modal', '$routeParams', 'Collection', 'Loader', 'Item', function ($scope, $http, CsvImport, $timeout, Alert, $modal, $routeParams, Collection, Loader, Item) {
+.controller('FilesCtrl', ['$scope', '$http', 'CsvImport', '$timeout', 'Alert', '$modal', '$route', '$routeParams', 'Collection', 'Loader', 'Item', function ($scope, $http, CsvImport, $timeout, Alert, $modal, $route, $routeParams, Collection, Loader, Item) {
 
   $scope.files = [];
 
-  function uploadCSV(file) {
+  $scope.uploadCSV = function (file) {
     var alert = new Alert();
-
     alert.status = "Uploading";
     alert.progress = 1;
     alert.message = file.name;
@@ -28,20 +27,78 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.csvImp
     });
   }
 
-  $scope.uploadAudioFiles = function(newFiles) {
+  $scope.uploadAudioFiles = function(item, newFiles) {
 
-    newFiles = newFiles || [];
+    angular.forEach(newFiles, function (file) {
 
-    Loader(Collection.query(), $scope);
+      var alert = new Alert();
+      alert.status = "Uploading";
+      alert.progress = 1;
+      alert.message = file.name;
+      alert.add();
 
-    $scope.item = new Item({collectionId:$routeParams.collectionId, title:'', audioFiles:newFiles});
+      item.addAudioFile(file).then(function(data) {
+        item.audioFiles.push(data);
+        $scope.addMessage({
+          'type': 'success',
+          'title': 'Congratulations!',
+          'content': '"' + file.name + '" upload completed. <a data-dismiss="alert" data-target=":parent" ng-href="' + item.link() + '">View and edit the item!</a>'
+        });
 
-    if (newFiles.length == 1)
-      $scope.item.title = newFiles[0].name;
+        alert.progress = 100;
+        alert.status = "Uploaded";
 
-    var modal = $modal({template: '/assets/items/upload.html', show: true, backdrop: 'static', scope: $scope});
+      }, function(data){
+        console.log('fileUploaded: addAudioFile: reject', data, item);
+        $scope.addMessage({
+          'type': 'error',
+          'title': 'Oops...',
+          'content': '"' + file.name + '" upload failed. Hmmm... try again?'
+        });
+
+        alert.progress = 100;
+        alert.status = "Error";
+
+      });
+
+    });
+
+  };
+
+  $scope.submit = function() {
+    console.log('submit', $scope.item);
+    var item = $scope.item;
+    var audioFiles = item.audioFiles;
+    item.audioFiles = [];
+
+    item.create().then(function () {
+      $scope.uploadAudioFiles(item, audioFiles);
+    });
+
+    $scope.dismiss();
+  };
+
+  $scope.handleAudioFilesAdded = function(newFiles) {
+    if ($route.current.controller == 'ItemCtrl' && 
+        $route.current.locals.$scope.item &&
+        $route.current.locals.$scope.item.id > 0)
+    {
+      var item = $route.current.locals.$scope.item;
+      $scope.uploadAudioFiles(item, newFiles);
+    } else {
+      Loader(Collection.query(), $scope);
+      var collectionId = parseInt($route.routeParams.collectionId);
+      console.log('collectionId', collectionId);
+      $scope.item = new Item({collectionId:collectionId, title:'', audioFiles:newFiles});
+
+      if (newFiles.length == 1)
+        $scope.item.title = newFiles[0].name;
+
+      var modal = $modal({template: '/assets/items/upload.html', show: true, backdrop: 'static', scope: $scope});
+    }
   }
 
+  // used by the upload-button callback when new files are selected
   $scope.setFiles = function(element) {
     $scope.$apply(function($scope) {
       angular.forEach(element[0].files, function (file) {
@@ -50,55 +107,9 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.csvImp
     });
   };
 
-  $scope.submit = function() {
-
-    console.log('submit', $scope.item);
-    var item = $scope.item;
-    var audioFiles = item.audioFiles;
-    item.audioFiles = [];
-
-    item.create().then(function () {
-
-      angular.forEach(audioFiles, function (file) {
-
-
-        var alert = new Alert();
-
-        alert.status = "Uploading";
-        alert.progress = 1;
-        alert.message = file.name;
-        alert.add();
-
-        item.addAudioFile(file).then(function(data) {
-          $scope.addMessage({
-            'type': 'success',
-            'title': 'Congratulations!',
-            'content': '"' + file.name + '" upload completed. <a data-dismiss="alert" data-target=":parent" ng-href="' + item.link() + '">View and edit the new item!</a>'
-          });
-
-          alert.progress = 100;
-          alert.status = "Uploaded";
-
-        }, function(data){
-          console.log('fileUploaded: addAudioFile: reject', data, item);
-          $scope.addMessage({
-            'type': 'error',
-            'title': 'Oops...',
-            'content': '"' + file.name + '" upload failed. Hmmm... try again?'
-          });
-
-          alert.progress = 100;
-          alert.status = "Error";
-
-        });
-
-      });
-
-    });
-
-    $scope.dismiss();
-
-  };
+  $scope.$on("filesAdded", function (e, files) {
+    $scope.handleAudioFilesAdded(files);
+  });
 
   $scope.$watch('files', function(files) {
 
@@ -116,7 +127,7 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.csvImp
 
     if (newFiles.length > 0) {
       console.log('new files added', newFiles);
-      $scope.uploadAudioFiles(newFiles);
+      $scope.$broadcast('filesAdded', newFiles);
     }
 
   });

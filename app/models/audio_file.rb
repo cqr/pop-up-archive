@@ -39,6 +39,11 @@ class AudioFile < ActiveRecord::Base
     end
   end
 
+  def filename
+    return '' unless self.file.path
+    File.basename(self.file.path)
+  end
+
   def update_from_fixer(params)
     if params['result_details']['status'] == 'complete'
       case params['task_type']

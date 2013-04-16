@@ -9,8 +9,7 @@
       p ng-show="item.description" ng-bind-html-unsafe="item.description"
 
       section ng-repeat="audioFile in item.audioFiles" ng-controller="AudioFileCtrl"
-        h4 audio file
-        h6 {{audioFile.fileName}}
+        h4 {{audioFile.filename || 'audio file'}}
         .player
           button.player-button ng-disabled="player.time == 0" ng-click="player.rewind()"
             i.icon-fast-backward
