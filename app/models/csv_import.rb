@@ -78,7 +78,7 @@ class CsvImport < ActiveRecord::Base
         end
         item.save
       end
-      user.collections << collection
+      user.collections << collection unless user.collections.include? collection
       user.save
       self.collection_id = collection.id
       self.state = "imported"
