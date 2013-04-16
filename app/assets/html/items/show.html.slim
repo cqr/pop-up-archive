@@ -58,10 +58,10 @@
       h5 Rights
       p {{item.rights}}
 
-    section.tags ng-repeat="contributorGroup in item.standardRoles" ng-show="item[contributorGroup.toLowerCase()]"
-      h5 {{contributorGroup}}
+    section.tags ng-repeat="contributorGroup in item.standardRoles" ng-show="item[(contributorGroup|pluralize)]"
+      h5 {{contributorGroup | titleize | pluralize}}
       ul
-        li ng-repeat="contributor in item[contributorGroup.toLowerCase()]"
+        li ng-repeat="contributor in item[(contributorGroup|pluralize)]"
           a.btn ng-href="/contributors/{{contributor}}" {{contributor}}
 
     section.tags ng-show="item.tags"

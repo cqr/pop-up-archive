@@ -53,4 +53,12 @@ angular.module('Directory.items.models', ['RailsModel'])
     }
     return value.slice(0,1).toUpperCase() + value.slice(1).replace(/([A-Z])/g, ' $1');
   }
+})
+.filter('pluralize', function () {
+  return function (value) {
+    if (!angular.isString(value)) {
+      return value;
+    }
+    return value + "s";
+  }
 });

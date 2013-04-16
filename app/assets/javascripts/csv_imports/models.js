@@ -92,15 +92,15 @@ angular.module('Directory.csvImports.models', ['RailsModel'])
   var schema = {columns: [], types: [{humanName: '---', name: '*'}], get: function () { return schema }};
 
   function camelize(key) {
-        if (!angular.isString(key)) {
-            return key;
-        }
-
-        // should this match more than word and digit characters?
-        return key.replace(/_[\w\d]/g, function (match, index, string) {
-            return index === 0 ? match : string.charAt(index + 1).toUpperCase();
-        });
+    if (!angular.isString(key)) {
+      return key;
     }
+
+    // should this match more than word and digit characters?
+    return key.replace(/_[\w\d]/g, function (match, index, string) {
+      return index === 0 ? match : string.charAt(index + 1).toUpperCase();
+    });
+  }
 
   schema.typesByName = {
     string:      "Title / Label",
