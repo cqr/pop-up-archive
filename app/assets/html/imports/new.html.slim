@@ -1,47 +1,36 @@
-script#import-instructions type='text/ng-template'
-  .modal-header
-    button type="button" class="close" data-dismiss="modal" aria-hidden="true" x
-    h3 CSV Import Instructions
-  .modal-body
-    p Pop Up Archive accepts CSV spreadsheets where each row represents one item, and columns are used for descriptive fields.
-    p You can attach audio files to each row by creating a "Digital Location" column and pasting comma-separated links to the files (for example, on your server or Dropbox public folder).
-    p If you have a pre-existing spreadsheet, try to match your fields with the Pop Up template spreadsheet.
-    p Pop Up will analyze your spreadsheet and attempt to map your fields, which you can edit, as well as account for any "Extra" fields.
-  .modal-footer
-    button.btn type="button" ng-click="dismiss()" Close
 
 .row-fluid
   .span9
     .brochure(style='margin-top: 50px;')
       h1 to get started...
 
-
-      h4 To upload an audio file: 
-      p It's easy! Create a new item for any collection. When you've saved the item, you can drag files directly onto the item page and they will be uploaded in the background.
-
-      h4 To upload multiple audio files at once:
-      p
-        a bs-modal="'import-instructions'" Click here for CSV batch import instructions.
-      p
-        a href='https://docs.google.com/spreadsheet/pub?key=0AtWrmSCFjFb2dHJoY2V2eGxiRHktM0sxQ1dlQXNwNVE&output=csv' target="_blank"
-          | Click here for a template CSV file.
-
-      p 
-        a bs-modal="'#{asset_path 'imports/field_descriptions.html'}'" Click here for definitions for the Pop Up descriptive fields.
-      ul
-        li Drag and drop the CSV file you would like to import onto the browser window
-
-        li
-          | Or, select a CSV file from your hard drive:
-          form.import ng-controller='FSImportCtrl'
-            fieldset 
-              span file-button="" style='margin-right: 4px;'
-                button.btn Select CSV
-              button.btn.btn-success ng-show='files.length' ng-click='submit()' Import {{files[0].name}}
-
-
-      p Your file(s) will be uploaded in the background, and once they're done you can start to organize them. We'll take care of transcription and the other magical bits.
+      p Pop Up Archive accepts CSV spreadsheets where each row represents one item, and columns are used for descriptive fields.
 
       p
-        | Have media stored on another secure server?&nbsp;
-        a href='mailto:anne@popuparchive.org' Contact us.
+        | If you have a pre-existing spreadsheet, try to match your fields with the Pop Up template spreadsheet. Otherwise, you can 
+        a href='https://docs.google.com/spreadsheet/pub?key=0AtWrmSCFjFb2dHJoY2V2eGxiRHktM0sxQ1dlQXNwNVE&output=csv' target="_blank" create a spreadsheet using this template.
+      p
+        | Tips:
+        ul
+          li We've seeded it with some examples &mdash; go ahead and replace them.
+          li If you want multiple values (like two interviewers), use two columns.
+          li
+            a bs-modal="'#{asset_path 'imports/field_descriptions.html'}'" Click here for definitions for the Pop Up descriptive fields.
+          li After you map your spreadsheet to Pop Up, you can add audio files to your newly-created items.
+
+      p
+        | Got your spreadsheet ready? Just drag & drop OR 
+        form.import ng-controller='FSImportCtrl'
+          fieldset 
+            span file-button="" style='margin-right: 4px;'
+              button.btn Select a CSV
+            button.btn.btn-success ng-show='files.length' ng-click='submit()' Import {{files[0].name}}
+
+      p Pop Up will analyze your spreadsheet and map your fields. Don't worry, you can edit the mapping in case we don't get it right at first.
+
+      p
+        i Pssss.... hey! Already got audio stored on a server or other public storage (like Dropbox, Google Drive, or Box.com)? Save yourself time by by creating a "Link to Audio File" column in your spreadsheet and pasting comma-separated direct links to your files. Check out the template spreadsheet for examples.
+
+      p
+        | Other questions?
+        a href='mailto:anne@popuparchive.org'  Contact us.
