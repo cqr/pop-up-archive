@@ -3,7 +3,7 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.csvImp
 
   $scope.files = [];
 
-  $scope.uploadCSV = function (file) {
+  var uploadCSV = function (file) {
     var alert = new Alert();
     alert.status = "Uploading";
     alert.progress = 1;
@@ -27,7 +27,7 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.csvImp
     });
   }
 
-  $scope.uploadAudioFiles = function(item, newFiles) {
+  var uploadAudioFiles = function(item, newFiles) {
 
     angular.forEach(newFiles, function (file) {
 
@@ -72,7 +72,7 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.csvImp
     item.audioFiles = [];
 
     item.create().then(function () {
-      $scope.uploadAudioFiles(item, audioFiles);
+      uploadAudioFiles(item, audioFiles);
     });
 
     $scope.dismiss();
@@ -84,7 +84,7 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.csvImp
         $route.current.locals.$scope.item.id > 0)
     {
       var item = $route.current.locals.$scope.item;
-      $scope.uploadAudioFiles(item, newFiles);
+      uploadAudioFiles(item, newFiles);
     } else {
       Loader(Collection.query(), $scope);
       var collectionId = parseInt($route.routeParams.collectionId);
