@@ -32,7 +32,7 @@ form.form-inline ng-controller="ImportMappingCtrl"
         td
           select ng-model="csvImport.mappings[$index].column" ng-options="column.name as column.humanName group by schema.types[column.typeId].humanName for column in schema.columnsWith(header) | type:csvImport.mappings[$index].type"
         td
-          em {{schema.getValue(schema.columnize(header), csvImport.mappings, csvImport.previewRows[0])}}
+          em {{schema.getValue(csvImport.mappings[$index].column, csvImport.mappings, csvImport.previewRows[0])}}
 
   
   h3 Preview
