@@ -21,9 +21,11 @@ form.form-inline ng-controller="ImportMappingCtrl"
   table.table.table-striped.table-bordered
     thead
       tr
-        th Source Column
+        th Your Column Name
         th Pop Up Field
-        th Preview
+        th ng-click="getNewPreviewRows()"
+          | Data Preview 
+          i.icon-refresh 
     tbody
       tr ng-repeat="header in csvImport.headers"
         td {{header}}
@@ -32,8 +34,7 @@ form.form-inline ng-controller="ImportMappingCtrl"
         td
           em {{schema.getValue(schema.columnize(header), csvImport.mappings, csvImport.previewRows[0])}}
 
-  button.btn.pull-right ng-click="getNewPreviewRows()"
-    i.icon-refresh  Fetch New Previews
+  
   h3 Preview
   .inset
   .clearfix style='overflow:scroll'
