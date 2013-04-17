@@ -62,7 +62,7 @@
       h5 {{contributorGroup | titleize | pluralize}}
       ul
         li ng-repeat="contributor in item[(contributorGroup|pluralize)]"
-          a.btn ng-href="/contributors/{{contributor}}" {{contributor}}
+          a.btn ng-href='/search?query=contributor:"{{contributor}}"' {{contributor}}
 
     section.tags ng-show="item.tags"
       h5 Tags
