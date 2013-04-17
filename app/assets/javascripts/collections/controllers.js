@@ -18,7 +18,15 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
   });
 }])
 .controller('CollectionCtrl', ['$scope', '$routeParams', 'Collection', 'Loader', 'Item', '$location', '$timeout', function CollectionCtrl($scope, $routeParams, Collection, Loader, Item, $location, $timeout) {
-  Loader.page(Collection.get($routeParams.collectionId), 'Collection/' + $routeParams.collectionId,  $scope);
+  $scope.canEdit = false;
+
+  Loader.page(Collection.get($routeParams.collectionId), Collection.query(), 'Collection/' + $routeParams.collectionId,  $scope).then(function () {
+    angular.forEach($scope.collections, function (collection) {
+      if (collection.id == $scope.collection.id) {
+        $scope.canEdit = true;
+      }
+    });
+  });
 
   $scope.edit = function () {
     $scope.editItem = true;
