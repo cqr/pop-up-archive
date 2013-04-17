@@ -22,15 +22,15 @@ form.form-inline ng-controller="ImportMappingCtrl"
     thead
       tr
         th Source Column
-        th Destination
-        th Kind of Data
+        th Pop Up Field
+        th Preview
     tbody
       tr ng-repeat="header in csvImport.headers"
         td {{header}}
         td
           select ng-model="csvImport.mappings[$index].column" ng-options="column.name as column.humanName group by schema.types[column.typeId].humanName for column in schema.columnsWith(header) | type:csvImport.mappings[$index].type"
         td
-          select ng-model="csvImport.mappings[$index].type" ng-options="type.name as type.humanName for type in schema.types"
+          em {{schema.getValue(schema.columnize(header), csvImport.mappings, csvImport.previewRows[0])}}
 
   button.btn.pull-right ng-click="getNewPreviewRows()"
     i.icon-refresh  Fetch New Previews

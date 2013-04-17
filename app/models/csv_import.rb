@@ -37,8 +37,13 @@ class CsvImport < ActiveRecord::Base
   end
 
   def collection_with_build
-    return Collection.new(title: file_name) if collection_id == 0
-    collection
+    if collection_id == 0
+      self.collection = Collection.new(title: file_name)
+    elsif collection_id == -1
+      self.collection = Collection.new(title: file_name, items_visible_by_default: true)
+    else
+      collection
+    end
   end
 
   def analyze!
@@ -73,7 +78,7 @@ class CsvImport < ActiveRecord::Base
         end
         item.save
       end
-      user.collections << collection
+      user.collections << collection unless user.collections.include? collection
       user.save
       self.collection_id = collection.id
       self.state = "imported"
@@ -132,7 +137,8 @@ class CsvImport < ActiveRecord::Base
     mappings.delete_all
 
     headers.each_with_index do |header, index|
-      column, type = case header.downcase
+      header = header.blank? ? "Field #{index}" : header.downcase
+      column, type = case header
       when /identifier/ then ["identifier", "string"]
       when /piece|title/ then ["title", "string"]
       when /duration/ then ["duration", "number"]
