@@ -19,7 +19,7 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
 
   if ($routeParams.id) {
     Loader.page(Item.get({collectionId:$routeParams.collectionId, id: $routeParams.id}), Collection.query(), 'Item/'+$routeParams.id, $scope).then(function (datum) {
-      angular.foreach($scope.collections, function (collection) {
+      angular.forEach($scope.collections, function (collection) {
         if (collection.id == $scope.item.collectionId) {
           $scope.canEdit = true;
         }
