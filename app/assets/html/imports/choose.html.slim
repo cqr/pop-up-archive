@@ -5,9 +5,9 @@
       .slide-span
         span.title Add an audio file.
         img.image src='#{asset_path("archive.svg")}'
-        span.content ng-controller='FilesCtrl'
+        span.content
           | Or several! Just drag &amp; drop OR 
-          a ng-click='uploadAudioFiles()' pick an audio file.
+          a ng-click='startUpload()' pick an audio file.
     .span4
       .slide-span
         a ng-href='/imports/new'

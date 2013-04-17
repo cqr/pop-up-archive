@@ -5,6 +5,13 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
       $scope.items = Loader.page(Item.query(), 'Items');
     }
   });
+
+  $scope.startUpload = function() {
+    var newFiles = [];
+    // console.log('startUpload!', newFiles);
+    $scope.$emit('filesAdded', newFiles);
+  }
+
 }])
 .controller('ItemCtrl', ['$scope', 'Item', 'Loader', 'Me', '$routeParams', 'Collection', function ItemCtrl($scope, Item, Loader, Me, $routeParams, Collection) {
 
@@ -28,41 +35,6 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
     $scope.editItem = false;
   }
 
-  $scope.$on("filesAddedNope", function (e, files) {
-    console.log('ItemCtrl filesAdded', e, files);
-    return;
-
-    angular.forEach(files, function (file) {
-
-      var alert = new Alert();
-      alert.status = "Uploading";
-      alert.progress = 1;
-      alert.message = file.name;
-      alert.add();
-
-      $scope.item.addAudioFile(file).then(function(data) {
-        $scope.item.audioFiles.push(data);
-        $scope.addMessage({
-          'type': 'success',
-          'title': 'Congratulations!',
-          'content': '"' + file.name + '" upload completed. <a data-dismiss="alert" data-target=":parent" href="' + $scope.item.link() + '">View and edit the item!</a>'
-        });
-        alert.progress = 100;
-        alert.status = "Uploaded";
-
-      }, function(data){
-        $scope.addMessage({
-          'type': 'error',
-          'title': 'Oops...',
-          'content': '"' + file.name + '" upload failed. Hmmm... try again?'
-        });
-
-        alert.progress = 100;
-        alert.status = "Error";
-      });
-
-    });    
-  });
 }])
 .controller('ItemFormCtrl', ['$scope', 'Schema', 'Item', function ($scope, Schema, Item) {
 

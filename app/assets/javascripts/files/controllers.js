@@ -66,7 +66,7 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.csvImp
   };
 
   $scope.submit = function() {
-    console.log('submit', $scope.item);
+    // console.log('submit', $scope.item);
     var item = $scope.item;
     var audioFiles = item.audioFiles;
     item.audioFiles = [];
@@ -79,6 +79,11 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.csvImp
   };
 
   $scope.handleAudioFilesAdded = function(newFiles) {
+    // console.log('handleAudioFilesAdded', newFiles);
+
+    newFiles = newFiles || [];
+    Loader(Collection.query(), $scope);
+
     if ($route.current.controller == 'ItemCtrl' && 
         $route.current.locals.$scope.item &&
         $route.current.locals.$scope.item.id > 0)
@@ -86,9 +91,8 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.csvImp
       var item = $route.current.locals.$scope.item;
       uploadAudioFiles(item, newFiles);
     } else {
-      Loader(Collection.query(), $scope);
-      var collectionId = parseInt($route.routeParams.collectionId);
-      console.log('collectionId', collectionId);
+
+      var collectionId = parseInt($routeParams.collectionId);
       $scope.item = new Item({collectionId:collectionId, title:'', audioFiles:newFiles});
 
       if (newFiles.length == 1)
@@ -107,8 +111,9 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.csvImp
     });
   };
 
-  $scope.$on("filesAdded", function (e, files) {
-    $scope.handleAudioFilesAdded(files);
+  $scope.$on("filesAdded", function (e, newFiles) {
+    // console.log('on filesAdded', newFiles);
+    $scope.handleAudioFilesAdded(newFiles);
   });
 
   $scope.$watch('files', function(files) {
@@ -126,7 +131,7 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.csvImp
     }
 
     if (newFiles.length > 0) {
-      console.log('new files added', newFiles);
+      // console.log('new files added', newFiles);
       $scope.$broadcast('filesAdded', newFiles);
     }
 
