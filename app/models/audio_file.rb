@@ -5,7 +5,7 @@ class AudioFile < ActiveRecord::Base
   belongs_to :instance
   attr_accessible :file
   mount_uploader :file, ::AudioFileUploader
-  after_commit :process_file
+  after_commit :process_file, on: :create
   attr_accessor :should_trigger_fixer_copy
 
   delegate :collection_title, to: :item
@@ -19,7 +19,7 @@ class AudioFile < ActiveRecord::Base
   def remote_file_url=(url)
     self.original_file_url = url
     self.should_trigger_fixer_copy = !!url
-    # logger.debug "remote_file_url: #{self.original_file_url}"
+    logger.debug "remote_file_url: #{self.original_file_url}"
   end
 
   def collection
@@ -72,15 +72,16 @@ class AudioFile < ActiveRecord::Base
 
   def process_file
     logger.debug "fixer_copy start: collection: #{self.item.try(:collection).inspect}, should_trigger_fixer_copy: #{should_trigger_fixer_copy}"
-    return unless should_trigger_fixer_copy
 
-    if self.item.collection.copy_media
+    if self.item.collection.copy_media && should_trigger_fixer_copy
       MediaMonsterClient.create_job do |job|
         job.original = original_file_url
         job.job_type = "audio"
         job.add_task task_type: 'copy', result: destination, call_back: audio_file_callback_url
       end
     end
+
+    self.should_trigger_fixer_copy = false
 
     if self.transcript.blank?
       MediaMonsterClient.create_job do |job|
@@ -101,8 +102,6 @@ class AudioFile < ActiveRecord::Base
       end
     end
 
-    self.should_trigger_fixer_copy = false
-
   end
 
   def analyze_transcript
@@ -115,7 +114,7 @@ class AudioFile < ActiveRecord::Base
   end
 
   def file_path
-    file.store_path(File.basename(original_file_url))
+    file.store_path(File.basename(original_file_url || self.file.path))
   end
 
   def audio_file_callback_url
