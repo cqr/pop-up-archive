@@ -31,7 +31,7 @@ class AudioFile < ActiveRecord::Base
   end
 
   def url
-    if file.url 
+    if file.url
       self.file.url
     else
       original_file_url
@@ -59,22 +59,19 @@ class AudioFile < ActiveRecord::Base
     end
   end
 
-  def url_with_credentials
-    return url unless self.file.url
-    uri = URI.parse(self.file.url)
-    uri.user = storage.key
-    uri.password = storage.secret
-    uri.to_s
-  end
-
   # private
 
   def process_file
     logger.debug "fixer_copy start: collection: #{self.item.try(:collection).inspect}, should_trigger_fixer_copy: #{should_trigger_fixer_copy}"
 
+    audio_url = destination
+
     if self.item.collection.copy_media && should_trigger_fixer_copy
+
+      audio_url = original_file_url
+      
       MediaMonsterClient.create_job do |job|
-        job.original = original_file_url
+        job.original = audio_url
         job.job_type = "audio"
         job.add_task task_type: 'copy', result: destination, call_back: audio_file_callback_url
       end
@@ -86,7 +83,7 @@ class AudioFile < ActiveRecord::Base
       MediaMonsterClient.create_job do |job|
         job.job_type = 'audio'
         job.priority = 1
-        job.original = url_with_credentials
+        job.original = audio_url
         job.add_sequence do |seq|
           seq.add_task task_type: 'cut', options: {length: 60, fade: 0}
           seq.add_task task_type: 'transcribe', result: "#{destination}_ts_start.json", call_back: audio_file_callback_url, label:"ts_start"
@@ -96,7 +93,7 @@ class AudioFile < ActiveRecord::Base
       MediaMonsterClient.create_job do |job|
         job.job_type = 'audio'
         job.priority = 1
-        job.original = url_with_credentials
+        job.original = audio_url
         job.add_task task_type: 'transcribe', result: "#{destination}_ts_all.json", call_back: audio_file_callback_url, label:'ts_all'
       end
     end
@@ -132,6 +129,10 @@ class AudioFile < ActiveRecord::Base
 
     host = file.fog_directory
 
-    (URI::Generic.build scheme: scheme, host: host, path: "/#{file_path}").to_s
+    uri = URI::Generic.build scheme: scheme, host: host, path: "/#{file_path}"
+    # uri.user = storage.key
+    # uri.password = storage.secret
+    uri.to_s
   end
+
 end
