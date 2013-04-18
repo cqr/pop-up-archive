@@ -75,7 +75,7 @@ class Item < ActiveRecord::Base
   def generate_token
     @@instance_lock.synchronize do
       begin
-        t = "#{(self.title||'untitled')[0,50].parameterize}_" + SecureRandom.urlsafe_base64(6)
+        t = "#{(self.title||'untitled')[0,50].parameterize}." + SecureRandom.urlsafe_base64(6) + ".popuparchive.org"
       end while Item.where(:token => t).exists?
       self.update_attribute(:token, t)
       t

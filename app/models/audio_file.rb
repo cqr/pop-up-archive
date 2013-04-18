@@ -64,37 +64,31 @@ class AudioFile < ActiveRecord::Base
   def process_file
     logger.debug "fixer_copy start: collection: #{self.item.try(:collection).inspect}, should_trigger_fixer_copy: #{should_trigger_fixer_copy}"
 
-    audio_url = destination
-
     if self.item.collection.copy_media && should_trigger_fixer_copy
-
-      audio_url = original_file_url
-      
       MediaMonsterClient.create_job do |job|
-        job.original = audio_url
+        job.original = process_audio_url
         job.job_type = "audio"
         job.add_task task_type: 'copy', result: destination, call_back: audio_file_callback_url
       end
     end
-
     self.should_trigger_fixer_copy = false
 
     if self.transcript.blank?
       MediaMonsterClient.create_job do |job|
         job.job_type = 'audio'
         job.priority = 1
-        job.original = audio_url
+        job.original = process_audio_url
         job.add_sequence do |seq|
           seq.add_task task_type: 'cut', options: {length: 60, fade: 0}
-          seq.add_task task_type: 'transcribe', result: "#{destination}_ts_start.json", call_back: audio_file_callback_url, label:"ts_start"
+          seq.add_task task_type: 'transcribe', result: destination('_ts_start.json'), call_back: audio_file_callback_url, label:"ts_start"
         end
       end
 
       MediaMonsterClient.create_job do |job|
         job.job_type = 'audio'
         job.priority = 1
-        job.original = audio_url
-        job.add_task task_type: 'transcribe', result: "#{destination}_ts_all.json", call_back: audio_file_callback_url, label:'ts_all'
+        job.original = process_audio_url
+        job.add_task task_type: 'transcribe', result: destination('_ts_all.json'), call_back: audio_file_callback_url, label:'ts_all'
       end
     end
 
@@ -105,7 +99,7 @@ class AudioFile < ActiveRecord::Base
       job.job_type = 'text'
       job.priority = 1
       job.original = transcript_text_url
-      job.add_task task_type: 'analyze', result: "#{destination}_analysis.json", call_back: audio_file_callback_url, label:'analyze'
+      job.add_task task_type: 'analyze', result: destination('_analysis.json'), call_back: audio_file_callback_url, label:'analyze'
     end
   end
 
@@ -121,7 +115,19 @@ class AudioFile < ActiveRecord::Base
     Rails.application.routes.url_helpers.api_item_audio_file_transcript_text_url(item_id, id)
   end
 
-  def destination
+  def process_audio_url
+    if file.url
+      if file.fog_credentials[:provider].downcase == 's3'
+        destination
+      else
+        file.url
+      end
+    else
+      original_file_url
+    end
+  end
+
+  def destination(suffix='')
     scheme = case file.fog_credentials[:provider].downcase
     when 'aws' then 's3'
     when 'internetarchive' then 'ia'
@@ -130,9 +136,9 @@ class AudioFile < ActiveRecord::Base
     host = file.fog_directory
 
     uri = URI::Generic.build scheme: scheme, host: host, path: "/#{file_path}"
-    # uri.user = storage.key
-    # uri.password = storage.secret
-    uri.to_s
+    uri.user = storage.key
+    uri.password = storage.secret
+    uri.to_s + suffix
   end
 
 end
