@@ -32,7 +32,6 @@ class AudioFile < ActiveRecord::Base
 
   def url
     if file.url 
-      # Rails.application.routes.url_helpers.api_item_audio_file_url(item_id, id)
       self.file.url
     else
       original_file_url
@@ -68,7 +67,7 @@ class AudioFile < ActiveRecord::Base
     uri.to_s
   end
 
-  private
+  # private
 
   def process_file
     logger.debug "fixer_copy start: collection: #{self.item.try(:collection).inspect}, should_trigger_fixer_copy: #{should_trigger_fixer_copy}"
@@ -122,7 +121,7 @@ class AudioFile < ActiveRecord::Base
   end
 
   def transcript_text_url
-    Rails.application.routes.url_helpers.api_item_audio_file_transcript_text(item_id, id)
+    Rails.application.routes.url_helpers.api_item_audio_file_transcript_text_url(item_id, id)
   end
 
   def destination
