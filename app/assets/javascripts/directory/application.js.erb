@@ -25,7 +25,10 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
 
 ;(function() {
 
-  function applicationConfig($httpProvider, $locationProvider, $routeProvider) {
+  function applicationConfig($httpProvider, $locationProvider, $routeProvider, AnalyticsProvider) {
+
+    // config ga
+    AnalyticsProvider.account = '<%= ENV["GOOGLE_ANALYTICS_KEY"]%>';
 
     // Add our CSRF stuff to all our requests by default
     var metaTags = document.getElementsByTagName('meta'), token = "";
@@ -98,9 +101,10 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
 
   }
 
-  applicationConfig.$inject = ["$httpProvider", "$locationProvider", "$routeProvider"];
+  applicationConfig.$inject = ["$httpProvider", "$locationProvider", "$routeProvider", "AnalyticsProvider"];
 
-  var depends =  ['ui',
+  var depends =  ['analytics',
+                  'ui',
                   '$strap',
                   '$strap.directives',
                   'RailsUjs',
