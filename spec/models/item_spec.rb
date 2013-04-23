@@ -31,9 +31,17 @@ describe Item do
   it "should create a unique token fromthe title and keep it" do
     item = FactoryGirl.build :item
     item.title = 'test'
-    item.token.should start_with('test_')
+    item.token.should start_with('test.')
+    item.token.should end_with('.popuparchive.org')
     item.title = 'test2'
-    item.token.should start_with('test_')
+    item.token.should start_with('test.')
+  end
+
+  it "should create entities from content analysis" do
+    analysis = '{"language":"","topics":[{"name":"Business and finance","score":0.952,"original":"Business_Finance"},{"name":"Hospitality and recreation","score":0.937,"original":"Hospitality_Recreation"},{"name":"Law and crime","score":0.868,"original":"Law_Crime"},{"name":"Entertainment and culture","score":0.587,"original":"Entertainment_Culture"},{"name":"Media","score":0.742268,"original":"Media"}],"tags":[{"name":"cashola","score":0.5}],"entities":[],"relations":[],"locations":[]}'
+    item = FactoryGirl.create :item
+    item.process_analysis(analysis)
+    item.entities.count.should eq 6
   end
 
 end

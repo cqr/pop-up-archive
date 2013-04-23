@@ -8,7 +8,6 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
 
   $scope.startUpload = function() {
     var newFiles = [];
-    // console.log('startUpload!', newFiles);
     $scope.$emit('filesAdded', newFiles);
   }
 
@@ -45,10 +44,17 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
     }
   });
 
+  $scope.itemTags = [];
+  angular.forEach($scope.item.tags, function(v,k){ this.push({id:v, text:v}); }, $scope.itemTags);
+
   $scope.fields = Schema.columns;
-  // $scope.accessibleAttributes = Item.attrAccessible;
 
   $scope.submit = function () {
+
+    var cleanTags = [];
+    angular.forEach($scope.itemTags, function(v,k){ this.push(v.id); }, cleanTags);
+    $scope.item.tags = cleanTags;
+    
     if ($scope.item.id) {
       $scope.item.update().then(function (data) {
         angular.copy($scope.item, $scope.$parent.item);

@@ -8,6 +8,10 @@ child :audio_files do |af|
   extends 'api/v1/audio_files/audio_file'
 end
 
+child :entities do |e|
+  extends 'api/v1/entities/entity'
+end
+
 node :extra do |i|
   i.extra
 end

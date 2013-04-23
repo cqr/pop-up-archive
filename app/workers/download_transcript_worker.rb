@@ -12,6 +12,8 @@ class DownloadTranscriptWorker
     audio_file.transcript = Utils.download_private_file(connection, uri)
     audio_file.save!
     audio_file.item.update_transcription!
+
+    audio_file.analyze_transcript
   end
 
 end

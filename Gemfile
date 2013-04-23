@@ -46,7 +46,9 @@ gem 'geocoder'
 gem 'will_paginate'
 
 gem 'carrierwave'
+
 gem 'fog', github: 'fog/fog'
+# gem 'fog', path: '~/dev/projects/fog'
 
 gem 'heroku-api', github: 'heroku/heroku.rb'
 gem 'excon', '~> 0.20.1'

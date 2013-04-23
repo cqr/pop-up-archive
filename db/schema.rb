@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130416201505) do
+ActiveRecord::Schema.define(:version => 20130417235047) do
 
   add_extension "hstore"
 
@@ -69,9 +69,9 @@ ActiveRecord::Schema.define(:version => 20130416201505) do
     t.integer  "state_index",   :default => 0
     t.string   "headers",                                      :array => true
     t.string   "file_name"
+    t.integer  "collection_id", :default => 0
     t.string   "error_message"
     t.text     "backtrace"
-    t.integer  "collection_id", :default => 0
     t.integer  "user_id"
   end
 
@@ -85,6 +85,21 @@ ActiveRecord::Schema.define(:version => 20130416201505) do
   end
 
   add_index "csv_rows", ["csv_import_id"], :name => "index_csv_rows_on_csv_import_id"
+
+  create_table "entities", :force => true do |t|
+    t.boolean  "is_confirmed"
+    t.string   "identifier"
+    t.string   "name"
+    t.float    "score"
+    t.string   "category"
+    t.string   "entity_type"
+    t.integer  "item_id"
+    t.text     "extra"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "entities", ["item_id"], :name => "index_entities_on_item_id"
 
   create_table "geolocations", :force => true do |t|
     t.string   "name"

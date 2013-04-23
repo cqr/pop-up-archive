@@ -56,6 +56,8 @@ class Item < ActiveRecord::Base
 
   has_many   :contributions, dependent: :destroy
   has_many   :contributors, through: :contributions, source: :person
+
+  has_many   :entities, dependent: :destroy
   
   STANDARD_ROLES.each do |role|
     has_many "#{role}_contributions".to_sym, class_name: "Contribution", conditions: {role: role}
@@ -67,6 +69,25 @@ class Item < ActiveRecord::Base
   delegate :title, to: :collection, prefix: true
 
   @@instance_lock = Mutex.new
+
+  def process_analysis(analysis)
+    analysis = JSON.parse(analysis) if analysis.is_a?(String)
+    ["entities", "locations", "relations", "tags", "topics"].each do |category|
+      analysis[category].each{|analysis_entity|
+        entity = self.entities.build
+        entity.category     = category
+        entity.entity_type  = analysis_entity.delete('type')
+        entity.is_confirmed = false
+        entity.name         = analysis_entity.delete('name')
+        entity.identifier   = analysis_entity.delete('guid')
+        entity.score        = analysis_entity.delete('score')
+
+        # anything left over, put it in the extra
+        entity.extra        = analysis_entity
+        entity.save
+      }
+    end
+  end
 
   def token
     read_attribute(:token) || generate_token
