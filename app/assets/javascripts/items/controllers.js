@@ -42,6 +42,8 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
   $scope.fields = Schema.columns;
 
   $scope.tagSelect = {
+    width: '220px',
+    containerCssClass: 'select2-tag-container',
     tags:[],
     initSelection: function (element, callback) { callback($scope.itemTags); }
   };
