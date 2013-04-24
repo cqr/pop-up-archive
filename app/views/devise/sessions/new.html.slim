@@ -1,5 +1,17 @@
 = form_for resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-signin'} do |f|
-  h2.form-signin-heading Sign in to PopUp Archive
+  .clearfix
+    h1.site-title
+      a ng-href='/' title="Pop Up Archive" rel="home"
+        .logo.pop Pop
+        .logo.up.raised-logo Up
+        .logo.archive &nbsp;Archive
+      a ng-href='/' title="Pop Up Archive" rel="home"
+        logo.prx
+          | with 
+          img src='#{asset_path("prx_logo.png")}' alt="PRX"
+  h2.form-signin-heading Create an account or Login
+
+
   - flash.each do |type, message|
     .alert= message
   = f.email_field :email, autofocus: true, placeholder: "Email Address"

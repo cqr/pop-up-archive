@@ -41,11 +41,19 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
   $scope.$parent.$watch('item', function (is) {
     if (is && $scope.item != is) {
       angular.copy(is, $scope.item);
+      $scope.itemTags = [];
+      angular.forEach($scope.item.tags, function(v,k){ this.push({id:v, text:v}); }, $scope.itemTags);
     }
   });
 
   $scope.itemTags = [];
-  angular.forEach($scope.item.tags, function(v,k){ this.push({id:v, text:v}); }, $scope.itemTags);
+
+  $scope.tagSelect = {
+    tags:[],
+    initSelection: function (element, callback) { callback($scope.itemTags); }
+  };
+
+  angular.forEach($scope.$parent.item.tags, function(v,k){ this.push({id:v, text:v}); }, $scope.itemTags);
 
   $scope.fields = Schema.columns;
 

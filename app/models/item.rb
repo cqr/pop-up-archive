@@ -75,7 +75,7 @@ class Item < ActiveRecord::Base
     ["entities", "locations", "relations", "tags", "topics"].each do |category|
       analysis[category].each{|analysis_entity|
         entity = self.entities.build
-        entity.category     = category
+        entity.category     = category.try(:singularize)
         entity.entity_type  = analysis_entity.delete('type')
         entity.is_confirmed = false
         entity.name         = analysis_entity.delete('name')

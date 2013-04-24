@@ -3,7 +3,16 @@
 .navbar.navbar-fixed-top
   .navbar-inner
     .container
-      a.brand.logo ng-href='/' Pop-up Archive with PRX
+      h1.site-title
+        a ng-href='/' title="Pop Up Archive" rel="home"
+          .logo.pop Pop
+          .logo.up.raised-logo Up
+          .logo.archive &nbsp;Archive
+        a ng-href='/' title="Pop Up Archive" rel="home"
+          logo.prx
+            | with 
+            img src='#{asset_path("prx_logo.png")}' alt="PRX"
+
       a.btn.btn-navbar data-toggle="collapse" data-target=".nav-collapse"
         span.icon-bar
         span.icon-bar

@@ -1,0 +1,149 @@
+$navbarBackground: rgb(242, 239, 239);
+
+html {
+  height: 100%;
+}
+
+body {
+  padding-top: 120px;
+  box-sizing: border-box;
+  min-height: 100%;
+  height:auto !important;
+  height:500px;
+  position: relative;
+  padding-bottom: 35px;
+  background: rgb(242, 239, 239);
+}
+
+::selection {
+  background: #85D0F1;
+  color: rgb(242, 239, 239);
+}
+
+.navbar {
+
+  .navbar-inner {
+    background: rgb(242, 239, 239) !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding-top: 10px;
+  }
+
+  .nav {
+    li {
+      a {
+        font-family: "soleil", sans-serif !important;
+        font-weight: bold !important;
+        font-size: 16px !important;
+        color: rgb(125, 125, 130) !important;
+        text-shadow: none !important;
+
+        &:hover {
+          color: #5970B1 !important;
+        }
+      }
+
+      ul.dropdown-menu {
+        li {
+          a {
+            &:hover {
+              color: white !important;
+            }          
+          }
+        }
+
+      }
+    }
+  }
+
+}
+
+
+h1 {
+  color: #7c7b81;
+  font-family: "soleil", sans-serif !important;
+  font-weight: 800;
+  font-size: 32px;
+  }
+
+h2 {
+  color: #7c7b81;
+  font-family: "soleil", sans-serif !important;
+  font-weight: 800;
+  font-size: 24px;
+}
+
+a[href=""] {
+  color: #333;
+  cursor: default;
+}
+
+a[href=""]:hover {
+  text-decoration: none;
+}
+
+a.with-information {
+  color: #eee !important;
+  text-shadow: 0 0 5px #eee !important;
+}
+
+input[type='file'] {
+  color: red;
+  float: left;
+  display: block;
+  color: #7C7B81;
+  margin-top: -5px;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: "soleil", sans-serif;
+}
+
+footer, footer p {
+  color: #7C7B81;
+  font-size: 12px;
+}
+
+.site-title {
+  display: block;
+  float: left;
+  height: 82px;
+  font-family: "Soleil", sans-serif;
+  font-weight: 900;
+  font-size: 2em;
+  text-transform: lowercase;
+  margin-top: 4px;
+  padding-right: 12px;
+
+  a {
+    display: block;
+    text-decoration: none;
+    color: #F25A4C; /* red */
+
+    .logo {
+      display: block;
+      float: left;
+      height: 33px;
+      transition: all 250ms ease;
+      -webkit-transition: all 250ms ease;
+      -moz-transition: all 250ms ease;
+      -o-transition: all 250ms ease;
+    }
+
+    .prx {
+      padding-top: 8px;
+      font-size: 14px !important;
+      color: #7d7d82 !important;
+      text-shadow: none !important;
+      font-family: "freight-text-pro", serif;
+
+      img {
+        width: 72px;
+      }
+    }
+    
+    .raised-logo {
+      margin-top: -6px;
+    }
+
+  }
+}

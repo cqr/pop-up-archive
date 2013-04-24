@@ -72,10 +72,16 @@
 
 .row-fluid.item-detail
   .span12
-    section.notes ng-show="true || item.notes"
+    section.notes ng-show="item.notes"
       h5 Notes
       p {{item.notes}}
 
-    section.transcription ng-show="true || item.transcription"
+    section.transcription ng-show="item.transcription"
       h5 Transcription
       p {{item.transcription}}
+
+    section.tags ng-show="item.entities"
+      h5 Related
+      ul
+        li ng-repeat="entity in item.entities|orderBy:'score':true"
+          button.btn ng-class="entity.category" ng-style="{opacity:entity.score}" {{entity.category}}: {{entity.name}}
