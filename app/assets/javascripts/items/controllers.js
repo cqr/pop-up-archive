@@ -38,6 +38,14 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
 .controller('ItemFormCtrl', ['$scope', 'Schema', 'Item', function ($scope, Schema, Item) {
 
   $scope.item = {};
+  $scope.itemTags = [];
+  $scope.fields = Schema.columns;
+
+  $scope.tagSelect = {
+    tags:[],
+    initSelection: function (element, callback) { callback($scope.itemTags); }
+  };
+
   $scope.$parent.$watch('item', function (is) {
     if (is && $scope.item != is) {
       angular.copy(is, $scope.item);
@@ -46,16 +54,6 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
     }
   });
 
-  $scope.itemTags = [];
-
-  $scope.tagSelect = {
-    tags:[],
-    initSelection: function (element, callback) { callback($scope.itemTags); }
-  };
-
-  angular.forEach($scope.$parent.item.tags, function(v,k){ this.push({id:v, text:v}); }, $scope.itemTags);
-
-  $scope.fields = Schema.columns;
 
   $scope.submit = function () {
 
