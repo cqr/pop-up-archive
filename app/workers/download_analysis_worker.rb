@@ -9,7 +9,7 @@ class DownloadAnalysisWorker
     audio_file = AudioFile.find(audio_file_id)
     file = audio_file.file
     connection = Fog::Storage.new(file.fog_credentials)
-    uri = URI.parse(transcript_url)
+    uri = URI.parse(analysis_url)
     analysis = Utils.download_private_file(connection, uri)
     item.process_analysis(analysis)
   end
