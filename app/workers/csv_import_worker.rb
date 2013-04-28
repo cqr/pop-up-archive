@@ -3,7 +3,7 @@
 class CsvImportWorker
   include Sidekiq::Worker
 
-  sidekiq_options :timeout => 300, :retry => false, :backtrace => true
+  sidekiq_options :retry => false, :backtrace => true
 
   def perform(import_id)
     ActiveRecord::Base.connection_pool.with_connection do
