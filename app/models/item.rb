@@ -30,6 +30,11 @@ class Item < ActiveRecord::Base
         indexes :position, type: 'geo_point'
       end
 
+      indexes :entities do 
+        indexes :name, type: 'string'
+        indexes :category, type: 'string'
+      end
+
       STANDARD_ROLES.each do |role|
         indexes role.pluralize.to_sym, type: 'string', include_in_all: false, index_name: role, index: "not_analyzed"
       end
