@@ -14,5 +14,13 @@ angular.module('Directory.users.models', ['RailsModel'])
     return false;
   }
 
+  User.prototype.canEdit = function (obj) {
+    if (this.authenticated && obj && obj.collectionId) {
+      return (this.collectionIds.indexOf(obj.collectionId) > -1);
+    } else {
+      return false;
+    }
+  }
+
   return User;
 }])
