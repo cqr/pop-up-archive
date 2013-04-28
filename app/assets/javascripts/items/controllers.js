@@ -26,12 +26,15 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
     });
   }
 
-  $scope.edit = function () {
-    $scope.editItem = true;
+  $scope.deleteEntity = function(entity) {
+    console.log('deleteEntity', entity);
+    entity.score = 0.0;
   }
 
-  $scope.close = function () {
-    $scope.editItem = false;
+  $scope.confirmEntity = function(entity) {
+    console.log('confirmEntity', entity);
+    entity.isConfirmed = true;
+    entity.score = 1.0;
   }
 
 }])
@@ -39,12 +42,20 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
 
   $scope.item = {};
   $scope.itemTags = [];
+
+  if ($scope.$parent.item) {
+    angular.copy($scope.$parent.item, $scope.item);
+    angular.forEach($scope.item.tags, function(v,k){ this.push({id:v, text:v}); }, $scope.itemTags);
+  }
+
   $scope.fields = Schema.columns;
 
   $scope.tagSelect = {
     width: '220px',
     tags:[],
-    initSelection: function (element, callback) { callback($scope.itemTags); }
+    initSelection: function (element, callback) { 
+      callback($scope.itemTags);
+    }
   };
 
   $scope.$parent.$watch('item', function (is) {
@@ -55,7 +66,6 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
     }
   });
 
-
   $scope.submit = function () {
 
     var cleanTags = [];
@@ -65,7 +75,7 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
     if ($scope.item.id) {
       $scope.item.update().then(function (data) {
         angular.copy($scope.item, $scope.$parent.item);
-        $scope.close();
+        // $scope.close();
       });
     } else {
       $scope.item.create().then(function (data) {
@@ -76,4 +86,5 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
       });
     }
   }
+
 }]);
