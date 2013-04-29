@@ -1,4 +1,4 @@
-angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.user', 'Directory.items.models'])
+angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.user', 'Directory.items.models', 'Directory.entities.models'])
 .controller('ItemsCtrl', [ '$scope', 'Item', 'Loader', 'Me', function ItemsCtrl($scope, Item, Loader, Me) {
   Me.authenticated(function (data) {
     if ($scope.collectionId) {
@@ -12,7 +12,7 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
   }
 
 }])
-.controller('ItemCtrl', ['$scope', 'Item', 'Loader', 'Me', '$routeParams', 'Collection', function ItemCtrl($scope, Item, Loader, Me, $routeParams, Collection) {
+.controller('ItemCtrl', ['$scope', 'Item', 'Loader', 'Me', '$routeParams', 'Collection', 'Entity', function ItemCtrl($scope, Item, Loader, Me, $routeParams, Collection, Entity) {
 
   $scope.canEdit = false;
 
@@ -28,13 +28,20 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
 
   $scope.deleteEntity = function(entity) {
     console.log('deleteEntity', entity);
-    entity.score = 0.0;
+    var e = new Entity(entity);
+    e.itemId = $scope.item.id;
+    e.deleting = true;
+    e.delete().then(function() {
+      $scope.item.entities.splice($scope.item.entities.indexOf(entity), 1);
+    });
   }
 
   $scope.confirmEntity = function(entity) {
     console.log('confirmEntity', entity);
+    entity.itemId = $scope.item.id;
     entity.isConfirmed = true;
-    entity.score = 1.0;
+    var entity = new Entity(entity);
+    entity.update();
   }
 
 }])

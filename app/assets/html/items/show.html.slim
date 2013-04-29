@@ -76,18 +76,18 @@
       h5 Notes
       p {{item.notes}}
 
-    section.entities ng-show="item.entities"
+    section.entities ng-show="item.entities.length"
       h5 Related
       ul
         li.entity ng-repeat="entity in item.entities|filter:{isConfirmed:true}"
           .btn-group
-            button.btn.delete ng-style="{opacity:entity.score}" ng-click="deleteEntity(entity)" ng-show="currentUser.canEdit(item)"
+            button.btn.delete ng-click="deleteEntity(entity)" ng-show="currentUser.canEdit(item)"
               i.icon-remove
 
-            button.btn.confirmed ng-style="{opacity:entity.score}" ng-class="{tag: !currentUser.canEdit(item)}" {{entity.name}} 
+            button.btn.confirmed ng-class="{tag: !currentUser.canEdit(item)}" {{entity.name}} 
       .clearfix
 
-      .well ng-show="item.entities|filter:{isConfirmed:false}"
+      .well ng-show="(item.entities| filter:{isConfirmed:false}).length"
         section.entities
           b Suggested
           ul
@@ -102,7 +102,7 @@
                   i.icon-ok
           .clearfix
 
-    section.transcription ng-show="item.audioFiles" 
+    section.transcription ng-show="item.audioFiles.length"
       h5 Transcript
       .file-transcript ng-repeat="audio in item.audioFiles" ng-show="audio.transcript"
         b {{audio.filename}}

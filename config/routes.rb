@@ -14,6 +14,7 @@ PopUpArchive::Application.routes.draw do
           post '', action: 'update'
           get 'transcript_text', action: 'transcript_text'
         end
+        resources :entities
       end
       resources :collections do
         collection do
