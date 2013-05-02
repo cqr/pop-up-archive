@@ -136,8 +136,10 @@ class AudioFile < ActiveRecord::Base
     host = file.fog_directory
 
     uri = URI::Generic.build scheme: scheme, host: host, path: "/#{file_path}"
-    uri.user = storage.key
-    uri.password = storage.secret
+    if scheme == 'ia'
+      uri.user = storage.key
+      uri.password = storage.secret
+    end
     uri.to_s + suffix
   end
 
