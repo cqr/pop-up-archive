@@ -29,16 +29,16 @@ ul.pager
         h4.media-heading ng-show="item.getTitle()"
           a ng-href="{{item.link()}}" {{item.getTitle()}}
         .media
-          p ng-show="item.getDescription()" {{item.getDescription()}}
+          p ng-show="item.getDescription()" ng-bind-html-unsafe="item.getDescription()"
           ul.inline.dates
-            li.label ng-show="item.dateCreated" Created | {{item.dateCreated}}
-            li.label ng-show="item.dateBroadcast" Broadcast | {{item.dateBroadcast}}
-            li.label ng-show="item.dateAdded" Added | {{item.dateAdded}}
+            li.label ng-show="item.dateCreated" Created | {{item.dateCreated}} 
+            li.label ng-show="item.dateBroadcast" Broadcast | {{item.dateBroadcast}} 
+            li.label ng-show="item.dateAdded" Added | {{item.dateAdded}} 
           ul.inline.contributors
-            li.label ng-repeat="creator in item.creators" Creator | {{creator}}
-            li.label ng-repeat="producer in item.producers" Producer | {{producer}}
-            li.label ng-repeat="interviewer in item.interviewers" Interviewer | {{interviewer}}
-            li.label ng-repeat="interviewee in item.interviewees" Interviewee | {{interviewee}}
+            li.label ng-repeat="creator in item.creators" Creator | {{creator}} 
+            li.label ng-repeat="producer in item.producers" Producer | {{producer}} 
+            li.label ng-repeat="interviewer in item.interviewers" Interviewer | {{interviewer}} 
+            li.label ng-repeat="interviewee in item.interviewees" Interviewee | {{interviewee}} 
 ul.pager
   li.previous ng-show="search.page > 1"
     a ng-click="backPage()" &larr; Back
