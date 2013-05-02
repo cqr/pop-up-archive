@@ -4,7 +4,7 @@ section ng-controller="ItemFormCtrl"
     h3 ng-show="item.id" Edit {{item.title}}
     h3 ng-hide="item.id" Add Item to {{collection.title}}
   .modal-body
-    form.form-horizontal name='itemForm'
+    form.item-form.form-horizontal name='itemForm'
       section ng-repeat="field in fields" ng-switch="field.typeName"
         .control-group ng-switch-when="string"
           label.control-label
@@ -38,16 +38,31 @@ section ng-controller="ItemFormCtrl"
             input.input-small type='text' ng-model='item[field.camelCaseName]' data-date-format="yyyy-mm-dd" bs-datepicker="" data-toggle="datepicker"
               button.btn type="button" data-toggle="datepicker"
                 i class="icon-calendar"
-
-      / special values here
       section
         .control-group
-          / pre {{itemTags|json}}
           label.control-label
             | Tags
             i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['tags']" data-placement="bottom"
           .controls
             input type='hidden' ng-model="itemTags" ui-select2="tagSelect"
+
+      section
+        .clearfix
+          .control-label
+            label
+              | Contributors
+              i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['contributors']" data-placement="bottom"
+        .control-row.contributor ng-repeat="contribution in item.contributions"
+          span.field
+            select ui-select2="roleSelect" ng-model="contribution.role"
+              option
+              option ng-repeat="role in item.standardRoles" value="{{role}}" {{role}}
+
+          span.field
+            input ui-select2="peopleSelect" ng-model="contribution.person"
+
+          button.btn type="button" ng-click="deleteContributor(contributor)" Delete
+
 
     .spacer style='height: 100px;' &nbsp;
   .modal-footer

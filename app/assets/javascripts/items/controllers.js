@@ -1,4 +1,4 @@
-angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.user', 'Directory.items.models', 'Directory.entities.models'])
+angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.user', 'Directory.items.models', 'Directory.entities.models', 'Directory.people.models'])
 .controller('ItemsCtrl', [ '$scope', 'Item', 'Loader', 'Me', function ItemsCtrl($scope, Item, Loader, Me) {
   Me.authenticated(function (data) {
     if ($scope.collectionId) {
@@ -27,7 +27,7 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
   }
 
   $scope.deleteEntity = function(entity) {
-    console.log('deleteEntity', entity);
+    // console.log('deleteEntity', entity);
     var e = new Entity(entity);
     e.itemId = $scope.item.id;
     e.deleting = true;
@@ -37,7 +37,7 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
   }
 
   $scope.confirmEntity = function(entity) {
-    console.log('confirmEntity', entity);
+    // console.log('confirmEntity', entity);
     entity.itemId = $scope.item.id;
     entity.isConfirmed = true;
     var entity = new Entity(entity);
@@ -45,7 +45,7 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
   }
 
 }])
-.controller('ItemFormCtrl', ['$scope', 'Schema', 'Item', function ($scope, Schema, Item) {
+.controller('ItemFormCtrl', ['$scope', '$routeParams', 'Schema', 'Item', 'Person', function ($scope, $routeParams, Schema, Item, Person) {
 
   $scope.item = {};
   $scope.itemTags = [];
@@ -58,12 +58,47 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
   $scope.fields = Schema.columns;
 
   $scope.tagSelect = {
+    placeholder: 'Tags...',
     width: '220px',
     tags:[],
     initSelection: function (element, callback) { 
       callback($scope.itemTags);
     }
   };
+
+  $scope.roleSelect = {
+    placeholder:'Role...',
+    width: '160px'
+  };
+
+  $scope.peopleSelect = {
+    placeholder: 'Name...',
+    width: '240px',
+    minimumInputLength: 2,
+    quietMillis: 100,
+    formatSelection: function (person) { return person.name; },
+    formatResult: function (result, container, query, escapeMarkup) { 
+      var markup=[];
+      window.Select2.util.markMatch(result.name, query.term, markup, escapeMarkup);
+      return markup.join("");
+    },
+    createSearchChoice: function (term, data) {
+      if ($(data).filter(function() {
+        return this.name.toUpperCase().localeCompare(term.toUpperCase()) === 0;
+      }).length === 0) {
+        return { id: 'new', name: term };
+      }
+    },
+    initSelection: function (element, callback) {
+      var scope = angular.element(element).scope();
+      callback(scope.contribution.person);
+    },
+    ajax: {
+      url: '/api/collections/' + $routeParams.collectionId + '/people',
+      data: function (term, page) { return { q: term }; },
+      results: function (data, page) { return { results: data }; }
+    }
+  }
 
   $scope.$parent.$watch('item', function (is) {
     if (is && $scope.item != is) {

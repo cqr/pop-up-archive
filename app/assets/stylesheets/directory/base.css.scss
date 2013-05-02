@@ -475,6 +475,18 @@ img.media-object {
   font-size: 14px;
 }
 
+.item-form {
+
+  .contributor {
+    float: right;
+
+    .field {
+      padding-right: 8px;
+    }
+  }
+
+}
+
 .item-detail {
   h4 {
     color: #7D7C82;

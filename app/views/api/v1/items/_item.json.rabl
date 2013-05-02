@@ -19,3 +19,7 @@ end
 node(:urls) do |i|
   { self: url_for(api_item_path(i)) }
 end
+
+child :contributions do |c|
+  extends 'api/v1/contributions/contribution'
+end

@@ -14,11 +14,11 @@
 //= require jquery
 //= require bootstrap
 //= require bootstrap-datepicker
+//= require select2
 //= require angular
 //= require angular-ui
 //= require angular-strap
 //= require angularjs/rails/resource
-//= require select2
 //= require_tree ../
 
 if(window.location.hash=="#_=_"){window.location.hash = ""}
@@ -223,6 +223,9 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
                           },
       'hosts[]'         : { 'title': 'Host',
                             'content': '<p>The person(s) hosting the broadcast piece.</p><p>Examples</p><ul><li>Ira Glass</li><li>Robert Krulwich</li><li>Art Bell</li></ul>'
+                          },
+      'contributors'    : { 'title': 'Contributors',
+                            'content': '<p>The person(s) with various roles related to the item, such as producers, interviewees, etc.'
                           }
     };
 

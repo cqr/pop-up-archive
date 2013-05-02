@@ -21,6 +21,7 @@ PopUpArchive::Application.routes.draw do
           resources :public_collections, path: 'public', only: [:index]
         end
         resources :items
+        resources :people
       end
       resources :csv_imports
     end

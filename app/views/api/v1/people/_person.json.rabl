@@ -1,0 +1,2 @@
+attributes :id
+attributes :name
