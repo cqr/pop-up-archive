@@ -64,7 +64,9 @@ class AudioFileUploader < CarrierWave::Uploader::Base
   end
 
   def fog_credentials
-    model.storage.credentials
+    c = model.storage.credentials
+    c[:path_style] = true if c[:provider].to_s == 'AWS'
+    c
   end
 
 end
