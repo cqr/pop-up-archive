@@ -20,6 +20,7 @@ gem 'acts_as_list'
 gem 'multi_json', "~> 1.5.0"
 
 gem 'decent_exposure'
+# gem 'decent_exposure', github: 'voxdolo/decent_exposure'
 
 # login to prx.org using omniauth
 gem 'omniauth'
@@ -28,6 +29,7 @@ gem "omniauth-prx", github: 'PRX/omniauth-prx'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'devise'
+gem 'devise_invitable', '~> 1.1.0'
 gem 'bootstrap_form'
 gem 'cancan'
 
