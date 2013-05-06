@@ -1,0 +1,25 @@
+= form_for resource, as: resource_name, url: invitation_path(resource_name), html: { class: 'form-signin', method: :put } do |f|
+  .clearfix
+    h1.site-title
+      a ng-href='/' title="Pop Up Archive" rel="home"
+        .logo.pop Pop
+        .logo.up.raised-logo Up
+        .logo.archive &nbsp;Archive
+      a ng-href='/' title="Pop Up Archive" rel="home"
+        logo.prx
+          | in cahoots with 
+          img src='#{asset_path("prx_logo.png")}' alt="PRX"
+  h2.form-signin-heading Create a password or Login
+
+  = devise_error_messages!
+
+  = f.hidden_field :invitation_token
+
+  = f.password_field :password, placeholder: "Password"
+  = f.password_field :password_confirmation, placeholder: "Confirm Password"
+  .pull-right.social-signin
+    - resource_class.omniauth_providers.each do |provider|
+      = link_to "Login with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider), { target: '_self', class: "btn-auth btn-#{provider} pull-right" }
+      br/
+  p.clearfix
+    button.btn.btn-primary.btn-large Create Password

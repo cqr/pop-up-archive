@@ -3,7 +3,10 @@
   - flash.each do |type, message|
     .alert class="#{type}" == message
   = f.alert_message "Please fix the errors below."
-  = f.email_field :email, autofocus: true, placeholder: "Email Address"
+  - if !resource.email.present? || !resource.invitation_token.present?
+    = f.email_field :email, autofocus: true, placeholder: "Email Address"
+  - if !resource.invitation_token.present?
+    = f.email_field :invitation_token, label: 'Invitation', placeholder: 'Token'
   - if resource.name_required?
     = f.text_field  :name, placeholder: "Name"
   - if resource.password_required?

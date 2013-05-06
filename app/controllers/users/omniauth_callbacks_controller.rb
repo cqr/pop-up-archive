@@ -33,6 +33,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
 
   def oauth_login(auth_hash=omniauth)
+    auth_hash[:invitation_token] = session[:invitation_token]
+
+    logger.debug("token: #{auth_hash.inspect}")
+
     @user = User.find_for_oauth(auth_hash, current_user)
 
     if @user.persisted?

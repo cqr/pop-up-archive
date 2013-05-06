@@ -35,6 +35,15 @@ GIT
       actionpack (>= 3.2)
       activesupport (>= 3.2)
 
+GIT
+  remote: git://github.com/scambra/devise_invitable.git
+  revision: a46bfc05bf7247de2a4f3bc89d963dd0518c6c95
+  specs:
+    devise_invitable (1.1.8)
+      actionmailer (~> 3.0)
+      devise (>= 2.1.2)
+      railties (~> 3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -117,10 +126,6 @@ GEM
       orm_adapter (~> 0.1)
       railties (~> 3.1)
       warden (~> 1.2.1)
-    devise_invitable (1.1.7)
-      actionmailer (~> 3.0)
-      devise (>= 2.1.2)
-      railties (~> 3.0)
     diff-lcs (1.2.4)
     dotenv (0.7.0)
     erubis (2.7.0)
@@ -222,6 +227,8 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
+    quiet_assets (1.0.2)
+      railties (>= 3.1, < 5.0)
     rabl (0.8.4)
       activesupport (>= 2.3.14)
     rack (1.4.5)
@@ -376,7 +383,7 @@ DEPENDENCIES
   dalli
   decent_exposure
   devise
-  devise_invitable (~> 1.1.0)
+  devise_invitable!
   etagger!
   excon (~> 0.20.1)
   factory_girl_rails
@@ -397,6 +404,7 @@ DEPENDENCIES
   pb_core (~> 0.1.5)
   pg
   postgres_ext
+  quiet_assets
   rabl
   rails (~> 3.2.0)
   rb-fsevent (~> 0.9.1)

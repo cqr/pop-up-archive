@@ -29,7 +29,7 @@ gem "omniauth-prx", github: 'PRX/omniauth-prx'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'devise'
-gem 'devise_invitable', '~> 1.1.0'
+gem 'devise_invitable', github: 'scambra/devise_invitable'
 gem 'bootstrap_form'
 gem 'cancan'
 
@@ -71,6 +71,7 @@ group :assets do
 end
 
 group :development do
+  gem 'quiet_assets'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'ruby_gntp'

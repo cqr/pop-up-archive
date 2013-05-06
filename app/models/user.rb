@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   # Setup accessible (or protected) attributes for your model
@@ -15,14 +15,19 @@ class User < ActiveRecord::Base
 
   has_many :csv_imports
 
+  validates_presence_of :invitation_token
+
   def self.find_for_oauth(auth, signed_in_resource=nil)
-    where(provider: auth.provider, uid: auth.uid).first || (create do |user|
-      user.provider = auth.provider
-      user.uid      = auth.uid
-      user.name     = auth.info.name
-      user.email    = auth.info.email
-      user.password = Devise.friendly_token[0,20]
-    end)
+    where(provider: auth.provider, uid: auth.uid).first || 
+    find_invited(auth) ||
+    create{|user| user.apply_oauth(auth)}
+  end
+
+  def self.find_invited(auth)
+    return nil unless auth.invitation_token
+    user = where(invitation_token: auth.invitation_token).first
+    user.apply_oauth(auth) if user
+    user
   end
 
   def self.new_with_session(params, session)
@@ -32,9 +37,17 @@ class User < ActiveRecord::Base
         user.uid      = data['uid']
         user.email    = data["email"] if user.email.blank?
         user.name     = data["name"] if user.name.blank?
+        user.invitation_token = session[:invitation_token]
         user.valid? if data[:should_validate]
       end
     end
+  end
+
+  def apply_oauth(auth)
+    self.provider = auth.provider
+    self.uid      = auth.uid
+    self.name     = auth.info.name
+    self.email    = auth.info.email
   end
 
   def password_required?
