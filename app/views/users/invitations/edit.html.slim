@@ -7,7 +7,7 @@
 
   = f.password_field :password, placeholder: "Password"
   br
-  = f.password_field :password_confirmation, placeholder: "Confirm Password"
+  = f.password_field :password_confirmation, placeholder: "Password (again)"
   .pull-right.social-signin
     - resource_class.omniauth_providers.each do |provider|
       = link_to "Login with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider), { target: '_self', class: "btn-auth btn-#{provider} pull-right" }
