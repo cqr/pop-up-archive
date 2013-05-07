@@ -7,3 +7,14 @@ h2= t "devise.invitations.new.header"
   - resource.class.invite_key_fields.each do |field|
     = f.text_field field
   button.btn.btn-primary =t("devise.invitations.new.submit_button")
+
+h2 Invited Users
+
+table.table
+  tr
+    th Email
+    th Invitation
+  - @users.each do |user|
+    tr
+      td= user.email
+      td= link_to user.invitation_token, accept_invitation_url(user, :invitation_token => user.invitation_token)
