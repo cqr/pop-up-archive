@@ -2,9 +2,10 @@ class Users::InvitationsController < Devise::InvitationsController
 
   layout 'login'
 
-  def new
+  before_filter :get_current_invites, :only => [:new, :create]
+
+  def get_current_invites
     @users = User.invitation_not_accepted
-    super
   end
 
   # GET /resource/invitation/accept?invitation_token=abcdef
