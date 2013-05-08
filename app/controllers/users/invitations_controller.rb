@@ -8,6 +8,10 @@ class Users::InvitationsController < Devise::InvitationsController
     @users = User.invitation_not_accepted
   end
 
+  def after_invite_path_for(resource)
+    new_user_invitation_path
+  end
+
   # GET /resource/invitation/accept?invitation_token=abcdef
   def edit
     if params[:invitation_token] && self.resource = resource_class.to_adapter.find_first( :invitation_token => params[:invitation_token] )

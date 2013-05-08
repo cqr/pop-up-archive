@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
   end
 
   def password_required?
-    !provider.present?
+    !provider.present? && !@skip_password && super
   end
 
   def name_required?
