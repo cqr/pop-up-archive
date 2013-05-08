@@ -1,15 +1,15 @@
 - if user_signed_in?
-  ul.nav.pull-right
+  ul.nav
     li
       a bs-dropdown="userMenu" = current_user.name
-  ul.nav.pull-right ng-controller="AlertCtrl"
+  ul.nav ng-controller="AlertCtrl"
     li
       a pop-up-alerts-dropdown="alertData.alerts" ng-class="{'with-information':alertData.alerts.length}"
         i.icon-tasks
 - else
-  ul.nav.pull-right
+  ul.nav
     li = link_to('Sign in', new_user_session_path, { target: '_self' })
-ul.nav.pull-right
+ul.nav
   li
     a
       i.icon-cog.icon-spin style="color: #333" ng-show="loading()"

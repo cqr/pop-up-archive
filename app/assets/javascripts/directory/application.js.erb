@@ -144,12 +144,24 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
       }
     });
 
-    $scope.userMenu = [{
+    $scope.userMenu = [
+    {
+      text: 'My Collections',
+      href: '/collections',
+      target: '_self'
+    },
+    {
+      text: 'My Imports',
+      href: '/imports',
+      target: '_self'
+    },
+    {
       text: 'Log out',
       href: '/users/sign_out',
       target: '_self',
       method: 'delete'
-    }];
+    }
+    ];
 
     $scope.itemHelp = {
       'title'           : { 'title': 'Title',

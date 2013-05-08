@@ -39,6 +39,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     @user = User.find_for_oauth(auth_hash, current_user)
 
+    if @user.invited?
+      @user.accept_invitation!
+    end
+
     if @user.persisted?
       sign_in_and_redirect @user, event: :authentication
     else
