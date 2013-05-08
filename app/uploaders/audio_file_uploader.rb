@@ -6,7 +6,7 @@ class AudioFileUploader < CarrierWave::Uploader::Base
   include Sprockets::Helpers::IsolatedHelper
 
   def extension_white_list
-    ['mp3', 'wav', 'mp2', 'aac']
+    ['aac', 'aif', 'aiff', 'alac', 'flac', 'm4a', 'm4p', 'mp2', 'mp3', 'mp4', 'ogg', 'raw', 'spx', 'wav', 'wma']
   end
 
   def store_dir
