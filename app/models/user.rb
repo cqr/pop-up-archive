@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :csv_imports
 
   validates_presence_of :invitation_token
+  validates_presence_of :name, if: :name_required?
 
   def self.find_for_oauth(auth, signed_in_resource=nil)
     where(provider: auth.provider, uid: auth.uid).first || 
@@ -51,11 +52,13 @@ class User < ActiveRecord::Base
   end
 
   def password_required?
+    # logger.debug "password_required? checked on #{self.inspect}\n"
     !provider.present? && !@skip_password && super
   end
 
   def name_required?
-    !provider.present? || !name.present?
+    # logger.debug "name_required? checked on #{self.inspect}\n"
+    !provider.present? && !@skip_password && !name.present?
   end
 
   private
