@@ -5,7 +5,7 @@
   ul.nav ng-controller="AlertCtrl"
     li
       a pop-up-alerts-dropdown="alertData.alerts" ng-class="{'with-information':alertData.alerts.length}"
-        i.icon-tasks
+        span.number-circle ng-show="alertData.alerts.length" {{alertData.alerts.length}}
 - else
   ul.nav
     li = link_to('Sign in', new_user_session_path, { target: '_self' })

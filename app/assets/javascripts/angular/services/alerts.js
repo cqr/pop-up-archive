@@ -96,7 +96,7 @@ angular.module('Directory.alerts', ['ngLoadingIndicators'])
 }]).directive('popUpAlertsDropdown', ['$parse', '$compile', function($parse, $compile) {
 
   var template = '' +
-  '<ul class="dropdown-menu alert-showers" role="menu" aria-labelledby="alerts-dropdown">' +
+  '<ul class="dropdown-menu alert-showers pull-right" role="menu" aria-labelledby="alerts-dropdown">' +
     '<li class="pending" ng-show="alerts.length == 0">' +
       '<a> No pending tasks.</a>' +
     '</li>' +
