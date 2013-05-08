@@ -1,8 +1,27 @@
 <p>Hello <%= @resource.email %>!</p>
 
-<p>Someone has invited you to <%= root_url %>, you can accept it through the link below.</p>
+
+<p>We’re excited to offer you a special preview of <%= root_url %>!</p> 
+
+<p>What does beta testing entail? To begin, we’ll let you loose in the archive. There will be a built-in help feature on the site where you can ask questions, and of course you can email us anytime.<br />
+After two weeks, we’ll follow up with a short survey. We’ll be releasing new features all the time.</p>
+
+<p>Be honest. We really and truly want to know what you like, what you don’t like, what goes wrong or is unclear, and what features you’d like to see in the future or just aren't that useful for you.<br />
+Your feedback will help us improve the service, so don’t hold back.</p> 
+
+<p>Ready? Click the link below to unlock the archive.</p>
 
 <p><%= link_to 'Accept invitation', accept_invitation_url(@resource, :invitation_token => @resource.invitation_token) %></p>
 
+<p>You’ll be able to create your own public or private collections, view automatically generated transcripts, and search your own material or a range of collections from producers, stations, and archives.<br />
+Pop Up Archive will be free through at least June 30 and will always include free public storage and a certain amount of transcription. We’re working on coming up with affordable pricing models for more robust services in the future. </p>
+
+<p>We're glad to have you! Confused, frustrated, thrilled, or bored beyond belief? Email anne@popuparchive.org with anything, anytime.</p>
+
+<p>Yours truly, <br />
+  Pop Up Archive</p>
+  
 <p>If you don't want to accept the invitation, please ignore this email.<br />
 Your account won't be created until you access the link above and set your password.</p>
+
+
