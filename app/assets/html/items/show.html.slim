@@ -91,7 +91,7 @@
         section.entities
           b Suggested
           ul
-            li.entity ng-repeat="entity in item.entities|filter:{isConfirmed:false}|orderBy:'score':true"
+            li.entity ng-repeat="entity in item.entities| filter:{category:'!relation'} | filter:{isConfirmed:false}| orderBy:'score':true"
               .btn-group
                 button.btn.delete ng-style="{opacity:entity.score}" ng-click="deleteEntity(entity)" ng-show="currentUser.canEdit(item)"
                   i.icon-remove

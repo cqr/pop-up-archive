@@ -52,6 +52,8 @@ class AudioFile < ActiveRecord::Base
       when 'transcribe' then
         # self.transcript = Utils.download_file
         DownloadTranscriptWorker.perform_async(self.id, params[:result]) unless Rails.env.test?
+      when 'analyze'
+        DownloadAnalysisWorker.perform_async(self.id, params[:result]) unless Rails.env.test?
       else
         nil
       end
