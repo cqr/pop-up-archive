@@ -11,12 +11,11 @@ class User < ActiveRecord::Base
   has_many :collection_grants
   has_many :collections, through: :collection_grants
   has_many :items, through: :collections
-  after_create :add_public_collection
-
   has_many :csv_imports
 
-  validates_presence_of :invitation_token
   validates_presence_of :name, if: :name_required?
+
+  after_invitation_accepted :add_public_collection
 
   def self.find_for_oauth(auth, signed_in_resource=nil)
     where(provider: auth.provider, uid: auth.uid).first || 
