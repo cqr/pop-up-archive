@@ -66,16 +66,17 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.csvImp
   };
 
   $scope.submit = function() {
-    // console.log('submit', $scope.item);
+    // console.log('FilesCtrl submit: ', $scope.item);
     var item = $scope.item;
     var audioFiles = item.audioFiles;
     item.audioFiles = [];
 
     item.create().then(function () {
+      // console.log('FilesCtrl submit upload: ', audioFiles);
       uploadAudioFiles(item, audioFiles);
     });
 
-    $scope.dismiss();
+    // console.log('FilesCtrl submit scope: ', $scope);
   };
 
   $scope.handleAudioFilesAdded = function(newFiles) {

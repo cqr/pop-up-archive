@@ -24,5 +24,5 @@
 
 
 .modal-footer
-  button.btn type="button" ng-click="dismiss()" Close
-  button.btn.btn-success ng-disabled='!item.collectionId || item.audioFiles.length <= 0' ng-click='submit()' Create item
+  button.btn type="button" ng-click="hide()" Close
+  button.btn.btn-success ng-disabled='!item.collectionId || item.audioFiles.length <= 0' ng-click='submit();hide()' Create item
