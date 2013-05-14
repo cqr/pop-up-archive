@@ -39,7 +39,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     @user = User.find_for_oauth(auth_hash, current_user)
 
-    if @user.invited?
+    if @user.invited_to_sign_up?
       @user.accept_invitation!
     end
 

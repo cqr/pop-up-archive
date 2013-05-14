@@ -88,7 +88,7 @@ class AudioFile < ActiveRecord::Base
 
       MediaMonsterClient.create_job do |job|
         job.job_type = 'audio'
-        job.priority = 1
+        job.priority = 2
         job.original = process_audio_url
         job.add_task task_type: 'transcribe', result: destination('_ts_all.json'), call_back: audio_file_callback_url, label:'ts_all'
       end

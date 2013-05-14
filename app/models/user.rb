@@ -6,26 +6,27 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :provider, :uid, :name
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :provider, :uid, :name, :invitation_token
 
   has_many :collection_grants
   has_many :collections, through: :collection_grants
   has_many :items, through: :collections
   has_many :csv_imports
 
+  validates_presence_of :invitation_token, if: :invitation_token_required?
   validates_presence_of :name, if: :name_required?
 
   after_invitation_accepted :add_public_collection
 
   def self.find_for_oauth(auth, signed_in_resource=nil)
-    where(provider: auth.provider, uid: auth.uid).first || 
     find_invited(auth) ||
+    where(provider: auth.provider, uid: auth.uid).first || 
     create{|user| user.apply_oauth(auth)}
   end
 
   def self.find_invited(auth)
-    return nil unless auth.invitation_token
-    user = where(invitation_token: auth.invitation_token).first
+    user = where(invitation_token: auth.invitation_token).first if auth.invitation_token
+    user = where(email: auth.info.email).first if !user && auth.info.email
     user.apply_oauth(auth) if user
     user
   end
@@ -58,6 +59,10 @@ class User < ActiveRecord::Base
   def name_required?
     # logger.debug "name_required? checked on #{self.inspect}\n"
     !provider.present? && !@skip_password && !name.present?
+  end
+
+  def invitation_token_required?
+    !invitation_accepted_at.present?
   end
 
   private
