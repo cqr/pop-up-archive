@@ -1,31 +1,28 @@
-button.pull-right.btn bs-modal="'#{asset_path 'collections/form.html'}'"
-  i.icon-plus  Add a Collection
+h3 My Media
 
-h3 My Collections
+.row.holding-cell
+  .span12 Here's all of your newly uploaded stuff.
 
-table.table.table-striped
-  thead
-    tr
-  tfoot
-    tr
-  tbody
-    tr
-      th Title
-      th Description
-      th Public?
-      th
-    tr ng-repeat='collection in collections' ng-class='{error:collection.deleting}'
-      td
-        a ng-href='/collections/{{collection.id}}' {{collection.title}}
-      td {{collection.description}}
-      td ng-show="collection.itemsVisibleByDefault" Yes
-      td ng-hide="collection.itemsVisibleByDefault" No
-      td
-        button.btn bs-modal="'#{asset_path 'collections/form.html'}'" Edit
-        button.btn ng-click="delete($index)" Delete
+.row.collections.public-collections
+  .span12
+    h4 Internet Archive Collections
+    .row
+      ul.inline.collections
+        li.add-collection
+          a href="#" bs-modal="'#{asset_path 'collections/form.html'}'"
+            i.icon-plus
+            | Add a Collection
+        li ng-repeat="collection in collections | publicCollections"
+          a ng-href="/collections/{{collection.id}}" {{collection.title}}
 
-div ng-controller="PublicCollectionsCtrl"
-  h3 Public Collections
-  ul
-    li ng-repeat="collection in collections"
-      a ng-href="/collections/{{collection.id}}" {{collection.title}}
+.row.collections.private-collections
+  .span12
+    h4 Private Collections
+    .row
+      ul.inline.collections
+        li.add-collection
+          a href="#" bs-modal="'#{asset_path 'collections/form.html'}'"
+            i.icon-plus
+            | Add a Collection
+        li ng-repeat="collection in collections | privateCollections"
+          a ng-href="/collections/{{collection.id}}" {{collection.title}}
