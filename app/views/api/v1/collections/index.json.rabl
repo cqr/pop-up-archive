@@ -1,3 +1,7 @@
-collection collections, root: 'collections'
+object nil
+node :collections do
+  collections.map do |collection|
+    partial 'api/v1/collections/collection', object: collection
+  end
+end
 
-extends 'api/v1/collections/show'
