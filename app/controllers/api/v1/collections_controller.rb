@@ -1,23 +1,22 @@
 class Api::V1::CollectionsController < Api::V1::BaseController
   expose(:collections, ancestor: :current_user)
-  expose(:collection)
-  expose(:kollection) { collection }
+  expose(:kollection) { current_user.collections.find_by_id(params[:id]) || Collection.is_public.find(params[:id])}
 
   def create
-    if collection.save
-      current_user.collections << collection
+    if kollection.save
+      current_user.collections << kollection
       current_user.save
     end
-    respond_with :api, collection
+    respond_with :api, kollection
   end
 
   def update
-    collection.save
-    respond_with :api, collection
+    kollection.save
+    respond_with :api, kollection
   end 
 
   def destroy
-    collection.destroy
-    respond_with :api, collection
+    kollection.destroy
+    respond_with :api, kollection
   end
 end
