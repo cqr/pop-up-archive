@@ -2,8 +2,7 @@ doctype html
 html lang='en' ng-app='Directory' ng-controller='DirectoryCtrl'
   head
     meta charset='utf-8'
-
-    title PopUpArchive
+    title ng-bind-html-unsafe="breadcrumbsTitle()" PopUpArchive
 
     = stylesheet_link_tag 'directory/base', media: 'all'
     = javascript_include_tag 'directory/application'
