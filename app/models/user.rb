@@ -19,8 +19,8 @@ class User < ActiveRecord::Base
   after_invitation_accepted :add_public_collection
 
   def self.find_for_oauth(auth, signed_in_resource=nil)
-    find_invited(auth) ||
     where(provider: auth.provider, uid: auth.uid).first || 
+    find_invited(auth) ||
     create{|user| user.apply_oauth(auth)}
   end
 
