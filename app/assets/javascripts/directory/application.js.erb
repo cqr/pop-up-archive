@@ -64,6 +64,7 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
     .when('/imports/choose', {
       templateUrl: "<%= asset_path 'imports/choose.html' %>",
       controller: "ItemsCtrl",
+      loginRequired: true,
       title: "Upload Files"
     })
     .when('/imports/new', {
@@ -129,7 +130,7 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
 
   window.directory = angular.module('Directory', depends);
   window.directory.config(applicationConfig);
-  window.directory.controller("DirectoryCtrl", ['$scope', '$route', '$interpolate', function($scope, $route, $interpolate) {
+  window.directory.controller("DirectoryCtrl", ['$scope', '$route', '$interpolate', 'Me', function($scope, $route, $interpolate, Me) {
     $scope.modalOpts = {
       backdropFade: true,
       dialogFade: true
@@ -250,6 +251,19 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
     };
 
     var titleExpression = function(){};
+
+    $scope.$on('$routeChangeStart', function(event, next) {
+      if (typeof next !== 'undefined') {
+        if (next.$$route.loginRequired) {
+          event.preventDefault();
+          Me.authenticated(function () {
+            $scope.$root.broadcast(event);
+          }, function () {
+            window.location = "/users/sign_in"
+          });
+        }
+      }
+    });
 
     $scope.$on('$routeChangeSuccess', function(event, next) {
       $scope.currentRoute = next;

@@ -1,12 +1,10 @@
 angular.module('Directory.user', ['Directory.loader', 'Directory.users.models'])
-.factory('Me', ['$q', '$timeout', 'Loader', 'User', '$rootScope', function ($q, $timeout, Loader, User, $rootScope) {
+.factory('Me', ['$q', '$timeout', 'Loader', 'User', function ($q, $timeout, Loader, User) {
   var currentUser;
 
   var Me = Loader(User.get('me')).then(function(user) {
     currentUser = user;
-    $rootScope.currentUser = user;
     Me.authenticated.apply(Me, Me.authenticatedParams);
-
     return currentUser;
   });
 
