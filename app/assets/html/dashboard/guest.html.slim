@@ -1,28 +1,18 @@
 .brochure
   span.slide-span.first
-    span.number-circle 1
     a ng-href='http://www.popuparchive.org/request-invite' target="_self"
-      span.title Create an account
-      img.image src='#{asset_path("account.svg")}' style='padding-bottom: 0px;'
+      span.title Request an invite
+      img.image src='#{asset_path("account.svg")}'
       span.content Pop Up Archive is offering access to a limited group of pioneering users. Like to give it a try? Request an invite.
 
   span.slide-span
-    span.number-circle 2
     a ng-href='/imports/choose'
       span.title Archive your audio
       img.image src='#{asset_path("archive.svg")}'
-      span.content You can upload individual files or batch import with a CSV.
+      span.content Tags & transcripts will be automatically generated to make your audio searchable.
 
   span.slide-span
-    span.number-circle 3
-    a ng-href='/collections'
-      span.title Make it searchable
-      img.image src='#{asset_path("search.svg")}' style='padding-bottom: 0px;'
-      span.content Tags &amp; transcripts will be automatically generated. You can also customize your own metadata. 
-
-  span.slide-span
-    span.number-circle 4
     a ng-href='/search'
       span.title Explore
       img.image src='#{asset_path("explore.svg")}'
-      span.content You can search &amp; browse your own material or the entire public archive.
+      span.content Explore the wild west of archival sound. You can search &amp; browse your own material or the entire public archive.
