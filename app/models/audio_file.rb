@@ -50,8 +50,11 @@ class AudioFile < ActiveRecord::Base
         file_will_change!
         raw_write_attribute :file, File.basename(params[:result])
       when 'transcribe' then
-        # self.transcript = Utils.download_file
-        DownloadTranscriptWorker.perform_async(self.id, params[:result]) unless Rails.env.test?
+        # don't overwrite with partial
+        # only add transcript if there is none, or it is the full tranascript
+        if params['label'] == 'ts_all' || self.transcript.blank?
+          DownloadTranscriptWorker.perform_async(self.id, params[:result]) unless Rails.env.test?
+        end
       when 'analyze'
         DownloadAnalysisWorker.perform_async(self.id, params[:result]) unless Rails.env.test?
       else
@@ -70,6 +73,8 @@ class AudioFile < ActiveRecord::Base
       MediaMonsterClient.create_job do |job|
         job.original = process_audio_url
         job.job_type = "audio"
+        job.retry_delay = 3600 # 1 hour
+        job.retry_max = 24 # try for a whole day
         job.add_task task_type: 'copy', result: destination, call_back: audio_file_callback_url
       end
     end
@@ -80,6 +85,8 @@ class AudioFile < ActiveRecord::Base
         job.job_type = 'audio'
         job.priority = 1
         job.original = process_audio_url
+        job.retry_delay = 3600 # 1 hour
+        job.retry_max = 24 # try for a whole day
         job.add_sequence do |seq|
           seq.add_task task_type: 'cut', options: {length: 60, fade: 0}
           seq.add_task task_type: 'transcribe', result: destination('_ts_start.json'), call_back: audio_file_callback_url, label:"ts_start"
@@ -89,6 +96,8 @@ class AudioFile < ActiveRecord::Base
       MediaMonsterClient.create_job do |job|
         job.job_type = 'audio'
         job.priority = 2
+        job.retry_delay = 3600 # 1 hour
+        job.retry_max = 24 # try for a whole day
         job.original = process_audio_url
         job.add_task task_type: 'transcribe', result: destination('_ts_all.json'), call_back: audio_file_callback_url, label:'ts_all'
       end
@@ -100,6 +109,8 @@ class AudioFile < ActiveRecord::Base
     MediaMonsterClient.create_job do |job|
       job.job_type = 'text'
       job.priority = 1
+      job.retry_delay = 3600 # 1 hour
+      job.retry_max = 24 # try for a whole day
       job.original = transcript_text_url
       job.add_task task_type: 'analyze', result: destination('_analysis.json'), call_back: audio_file_callback_url, label:'analyze'
     end
