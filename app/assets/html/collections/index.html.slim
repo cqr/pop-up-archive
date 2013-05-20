@@ -9,7 +9,7 @@ h3 My Media
     .row
       ul.inline.collections
         li.add-collection
-          a href="#" bs-modal="'#{asset_path 'collections/form.html'}'"
+          a href="#" bs-modal="'#{asset_path 'collections/form_public.html'}'"
             i.icon-plus
             | Add a Collection
         li ng-repeat="collection in collections | publicCollections"
@@ -21,7 +21,7 @@ h3 My Media
     .row
       ul.inline.collections
         li.add-collection
-          a href="#" bs-modal="'#{asset_path 'collections/form.html'}'"
+          a href="#" bs-modal="'#{asset_path 'collections/form_private.html'}'"
             i.icon-plus
             | Add a Collection
         li ng-repeat="collection in collections | privateCollections"
