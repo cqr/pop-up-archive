@@ -144,6 +144,7 @@ class Item < ActiveRecord::Base
       ([:contributors] + STANDARD_ROLES.collect{|r| r.pluralize.to_sym}).each do |assoc|
         json[assoc] = send(assoc).map{|c| c.as_json } 
       end
+      json[:tags]     = tags_for_index
       json[:location] = geolocation.to_indexed_json if geolocation.present?
     end.to_json
   end
@@ -155,6 +156,17 @@ class Item < ActiveRecord::Base
     self.is_public = (collection.present? && collection.items_visible_by_default)
     self.storage_configuration = self.storage
     true
+  end
+
+  def tags_for_index
+    tfi = tags.dup
+    tags.each do |tag|
+      parts = tag.split('/')
+      1.upto(parts.size-1) do |number|
+        tfi.push(parts[0...number].join('/'))
+      end
+    end
+    tfi
   end
 
 end
