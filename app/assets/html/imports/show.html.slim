@@ -63,4 +63,4 @@ form.form-inline ng-controller="ImportMappingCtrl"
     .pull-right
       button.btn ng-click="save()" ng-disabled="csvImport.isSaving" Save
       | &nbsp;
-      button.btn.btn-primary ng-disabled="csvImport.isSaving" ng-click="submitMapping()" Import!
+      button.btn.btn-primary ng-disabled="!csvImport.importable()" ng-click="submitMapping()" Import!

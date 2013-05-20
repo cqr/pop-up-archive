@@ -29,6 +29,10 @@ angular.module('Directory.csvImports.models', ['RailsModel'])
     return "/imports/" + this.id;
   }
 
+  CsvImport.prototype.importable = function () {
+    return !(this.isSaving || (this.state != "analyzed"));
+  }
+
   CsvImport.prototype.unActionable = function () {
     return (this.state.match(/^queued/) || this.state == 'analyzing' || this.state == 'importing');
   }
