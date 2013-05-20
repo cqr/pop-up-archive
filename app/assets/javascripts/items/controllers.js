@@ -17,7 +17,7 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
   $scope.canEdit = false;
 
   if ($routeParams.id) {
-    Loader.page(Item.get({collectionId:$routeParams.collectionId, id: $routeParams.id}), Collection.query(), 'Item/'+$routeParams.id, $scope).then(function (datum) {
+    Loader.page(Item.get({collectionId:$routeParams.collectionId, id: $routeParams.id}), Collection.get({id:$routeParams.collectionId}), Collection.query(), 'Item-v2/'+$routeParams.id, $scope).then(function () {
       angular.forEach($scope.collections, function (collection) {
         if (collection.id == $scope.item.collectionId) {
           $scope.canEdit = true;
@@ -27,7 +27,6 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
   }
 
   $scope.deleteEntity = function(entity) {
-    // console.log('deleteEntity', entity);
     var e = new Entity(entity);
     e.itemId = $scope.item.id;
     e.deleting = true;
