@@ -75,7 +75,8 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
     .when('/collections', {
       templateUrl: "<%= asset_path 'collections/index.html' %>",
       controller: "CollectionsCtrl",
-      title: "Collections"
+      loginRequired: true,
+      title: "My Collections"
     })
     .when('/collections/public', {
       templateUrl: "<%= asset_path 'collections/index.html' %>",
@@ -253,14 +254,20 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
     var titleExpression = function(){};
 
     $scope.$on('$routeChangeStart', function(event, next) {
-      if (typeof next !== 'undefined') {
-        if (next.$$route.loginRequired) {
-          event.preventDefault();
-          Me.authenticated(function () {
-            $scope.$root.broadcast(event);
-          }, function () {
-            window.location = "/users/sign_in"
-          });
+      var arguments = Array.prototype.slice.call(arguments);
+      arguments.shift();
+
+      if (arguments[arguments.length-1] != 'IGNOREME') {
+        arguments.push('IGNOREME');
+        if (typeof next !== 'undefined') {
+          if (next.$$route.loginRequired) {
+            event.preventDefault();
+            Me.authenticated(function () {
+              $scope.$root.$broadcast.apply($scope.$root, arguments);
+            }, function () {
+              window.location = "/users/sign_in"
+            });
+          }
         }
       }
     });
