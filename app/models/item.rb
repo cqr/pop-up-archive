@@ -61,7 +61,7 @@ class Item < ActiveRecord::Base
 
   has_many   :contributions, dependent: :destroy
   has_many   :contributors, through: :contributions, source: :person
-
+  
   has_many   :entities, dependent: :destroy
   
   STANDARD_ROLES.each do |role|
@@ -72,6 +72,8 @@ class Item < ActiveRecord::Base
   serialize :extra, HstoreCoder
 
   delegate :title, to: :collection, prefix: true
+
+  accepts_nested_attributes_for :contributions
 
   @@instance_lock = Mutex.new
 
