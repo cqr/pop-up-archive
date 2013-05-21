@@ -1,10 +1,14 @@
 .row-fluid
   h3 My Media
 
-  .holding-cell ng-show="uploadsCollection.items"
+  .holding-cell.fade ng-class="{in: uploadsCollection.items}"
     ul.inline.items
-      li ng-repeat="item in uploadsCollection.items"
-        a ng-href="/" {{item.getTitle()}}
+      li ng-repeat="item in uploadsCollection.items" ng-click="toggleItemSelection(item)" ng-class="{selected: item.selected}" title="{{item.getTitle()}}"
+        .item-thumb ng-class="item.getThumbClass()"
+        | {{item.getTitle()}}
+    .selection-actions ng-class="{in: selectedItems.length}"
+      button.btn Clear Selection
+      button.btn Move to Collection
 
   .collections.public-collections
     h4 Internet Archive Collections

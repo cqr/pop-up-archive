@@ -2,8 +2,24 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
 .controller('CollectionsCtrl', ['$scope', 'Collection', 'Loader', 'Me', function CollectionsCtrl($scope, Collection, Loader, Me) {
   Me.authenticated(function (me) {
     Loader.page(Collection.query(), Collection.get(me.uploadsCollectionId), 'Collections', $scope).then(function (data) {
-      $scope.uploadsCollection = data[1].fetchItems();
+      $scope.uploadsCollection = Loader.page(data[1].fetchItems());
     });
+
+    $scope.selectedItems = [];
+
+    $scope.toggleItemSelection = function (item) {
+      if (item.selected) {
+        item.selected = false;
+        if ($scope.selectedItems.indexOf(item) != -1) {
+          $scope.selectedItems.splice($scope.selectedItems.indexOf(item), 1);
+        }
+      } else {
+        item.selected = true;
+        if ($scope.selectedItems.indexOf(item) == -1) {
+          $scope.selectedItems.push(item);
+        }
+      }
+    }
 
     $scope.delete = function(index) {
       var confirmed = confirm("Delete collection and all items?");

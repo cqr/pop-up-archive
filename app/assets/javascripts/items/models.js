@@ -13,6 +13,14 @@ angular.module('Directory.items.models', ['RailsModel'])
     if (this.notes) { return this.notes; }
   }
 
+  Item.prototype.getThumbClass = function () {
+    if (this.audioFiles && this.audioFiles.length > 0) {
+      return "icon-music";
+    } else {
+      return "icon-file-alt"
+    }
+  }
+
   Item.prototype.link = function () {
     return "/collections/" + this.collectionId + "/items/" + this.id; 
   }
