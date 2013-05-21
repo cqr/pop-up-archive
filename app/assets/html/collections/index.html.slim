@@ -1,9 +1,9 @@
 .row-fluid
   h3 My Media
 
-  .holding-cell
+  .holding-cell ng-show="uploadsCollection.items"
     ul.inline.items
-      li ng-repeat="item in uploadsItems"
+      li ng-repeat="item in uploadsCollection.items"
         a ng-href="/" {{item.getTitle()}}
 
   .collections.public-collections
@@ -13,7 +13,7 @@
         a href="#" bs-modal="'#{asset_path 'collections/form_public.html'}'"
           i.icon-plus
           | Add a Collection
-      li ng-repeat="collection in collections | publicCollections"
+      li ng-repeat="collection in collections | publicCollections | notUploads"
         a ng-href="/collections/{{collection.id}}" {{collection.title}}
 
   .collections.private-collections
@@ -23,5 +23,5 @@
         a href="#" bs-modal="'#{asset_path 'collections/form_private.html'}'"
           i.icon-plus
           | Add a Collection
-      li ng-repeat="collection in collections | privateCollections"
+      li ng-repeat="collection in collections | privateCollections | notUploads"
         a ng-href="/collections/{{collection.id}}" {{collection.title}}

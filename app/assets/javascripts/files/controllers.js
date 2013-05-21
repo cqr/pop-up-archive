@@ -93,7 +93,7 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.csvImp
       uploadAudioFiles(item, newFiles);
     } else {
 
-      var collectionId = parseInt($routeParams.collectionId, 10);
+      var collectionId = parseInt($routeParams.collectionId, 10) || $scope.currentUser.uploadsCollectionId;
       $scope.item = new Item({collectionId:collectionId, title:'', audioFiles:newFiles});
 
       if (newFiles.length == 1)

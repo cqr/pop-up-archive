@@ -2,8 +2,7 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
 .controller('CollectionsCtrl', ['$scope', 'Collection', 'Loader', 'Me', function CollectionsCtrl($scope, Collection, Loader, Me) {
   Me.authenticated(function (me) {
     Loader.page(Collection.query(), Collection.get(me.uploadsCollectionId), 'Collections', $scope).then(function (data) {
-      $scope.uploadsCollection = data[1];
-      console.log($scope);
+      $scope.uploadsCollection = data[1].fetchItems();
     });
 
     $scope.delete = function(index) {

@@ -1,10 +1,18 @@
 ;(function(){
 angular.module('Directory.collections.models', ['RailsModel'])
-.factory('Collection', ['Model', function (Model) {
+.factory('Collection', ['Model', 'Item', function (Model, Item) {
   var Collection = Model({url:'/api/collections/{{id}}', name: 'collection'});
   var PublicCollection = Model({url:'/api/collections/public', name:'collection'});
   Collection.public = function () {
     return PublicCollection.query.apply(PublicCollection, arguments);
+  }
+
+  Collection.prototype.fetchItems = function () {
+    var self = this;
+    return Item.get({collectionId: this.id}).then(function (items) {
+      self.items = items;
+      return self;
+    });
   }
 
   Collection.attrAccessible = ['title', 'description', 'itemsVisibleByDefault'];
@@ -16,7 +24,26 @@ angular.module('Directory.collections.models', ['RailsModel'])
 })
 .filter('privateCollections', function() {
   return buildCollectionFilter(false);
-});
+})
+.filter('notUploads', ['Me', function (Me) {
+  var user = {};
+  Me.authenticated(function (currentUser) {
+    user = currentUser;
+  });
+  return function (collections) {
+
+    if (angular.isArray(collections)) {
+      angular.forEach(collections, function (collection, index) {
+        if (collection.id == user.uploadsCollectionId) {
+          collections.splice(index, 1);
+        }
+      });
+      return collections;
+    } else {
+      return collections;
+    }
+  };
+}]);
 
 function buildCollectionFilter(visible) {
   return function(collections) {
