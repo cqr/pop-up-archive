@@ -117,3 +117,10 @@ div.collections, div.holding-cell {
 div.holding-cell {
   background: rgba(255, 100, 100, 0.5);
 }
+
+.page-nav {
+  margin: 10px 0;
+  .btn {
+    margin-left: 3px;
+  }
+}
