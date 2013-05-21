@@ -61,12 +61,6 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
       controller: "DashboardCtrl",
       title: "About"
     })
-    .when('/imports/choose', {
-      templateUrl: "<%= asset_path 'imports/choose.html' %>",
-      controller: "ItemsCtrl",
-      loginRequired: true,
-      title: "Upload Files"
-    })
     .when('/imports/new', {
       templateUrl: "<%= asset_path 'imports/new.html' %>",
       controller: "ItemsCtrl",

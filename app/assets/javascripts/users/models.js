@@ -19,7 +19,7 @@ angular.module('Directory.users.models', ['RailsModel'])
   }
 
   User.prototype.canEdit = function (obj) {
-    if (this.authenticated && obj && obj.collectionId) {
+    if (this.authenticated() && obj && obj.collectionId) {
       return (this.collectionIds.indexOf(obj.collectionId) > -1);
     } else {
       return false;
