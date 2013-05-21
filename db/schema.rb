@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130506175316) do
+ActiveRecord::Schema.define(:version => 20130521142943) do
 
   add_extension "hstore"
 
@@ -33,8 +33,9 @@ ActiveRecord::Schema.define(:version => 20130506175316) do
   create_table "collection_grants", :force => true do |t|
     t.integer  "collection_id"
     t.integer  "user_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.boolean  "uploads_collection", :default => false
   end
 
   add_index "collection_grants", ["collection_id"], :name => "index_collection_grants_on_collection_id"
@@ -69,9 +70,9 @@ ActiveRecord::Schema.define(:version => 20130506175316) do
     t.integer  "state_index",   :default => 0
     t.string   "headers",                                      :array => true
     t.string   "file_name"
-    t.integer  "collection_id", :default => 0
     t.string   "error_message"
     t.text     "backtrace"
+    t.integer  "collection_id", :default => 0
     t.integer  "user_id"
   end
 

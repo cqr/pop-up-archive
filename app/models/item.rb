@@ -149,6 +149,10 @@ class Item < ActiveRecord::Base
     end.to_json
   end
 
+  def tags
+    super || self.tags = []
+  end
+
   private
 
   def set_defaults

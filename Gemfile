@@ -75,12 +75,12 @@ group :development do
   gem 'binding_of_caller'
   gem 'ruby_gntp'
   gem 'guard-rspec'
-  gem 'guard-spork'
+  gem 'spring'
   gem 'rb-fsevent', '~> 0.9.1'
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 2.0'
+  gem 'rspec-rails', '~> 2.4'
   gem 'spring'
 end
 

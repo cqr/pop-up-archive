@@ -1,28 +1,25 @@
-h3 My Media
+.row-fluid
+  h3 My Media
 
-.row.holding-cell
-  .span12 Here's all of your newly uploaded stuff.
+  .holding-cell
+    p Here's all of your newly uploaded stuff.
 
-.row.collections.public-collections
-  .span12
+  .collections.public-collections
     h4 Internet Archive Collections
-    .row
-      ul.inline.collections
-        li.add-collection
-          a href="#" bs-modal="'#{asset_path 'collections/form_public.html'}'"
-            i.icon-plus
-            | Add a Collection
-        li ng-repeat="collection in collections | publicCollections"
-          a ng-href="/collections/{{collection.id}}" {{collection.title}}
+    ul.inline.collections
+      li.add-collection
+        a href="#" bs-modal="'#{asset_path 'collections/form_public.html'}'"
+          i.icon-plus
+          | Add a Collection
+      li ng-repeat="collection in collections | publicCollections"
+        a ng-href="/collections/{{collection.id}}" {{collection.title}}
 
-.row.collections.private-collections
-  .span12
+  .collections.private-collections
     h4 Private Collections
-    .row
-      ul.inline.collections
-        li.add-collection
-          a href="#" bs-modal="'#{asset_path 'collections/form_private.html'}'"
-            i.icon-plus
-            | Add a Collection
-        li ng-repeat="collection in collections | privateCollections"
-          a ng-href="/collections/{{collection.id}}" {{collection.title}}
+    ul.inline.collections
+      li.add-collection
+        a href="#" bs-modal="'#{asset_path 'collections/form_private.html'}'"
+          i.icon-plus
+          | Add a Collection
+      li ng-repeat="collection in collections | privateCollections"
+        a ng-href="/collections/{{collection.id}}" {{collection.title}}

@@ -9,12 +9,15 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :provider, :uid, :name, :invitation_token
 
   has_many :collection_grants
+  has_one  :uploads_collection_grant, class_name: 'CollectionGrant', conditions: {uploads_collection: true}
+  has_one  :uploads_collection, through: :uploads_collection_grant, source: :collection
   has_many :collections, through: :collection_grants
   has_many :items, through: :collections
   has_many :csv_imports
 
   validates_presence_of :invitation_token, if: :invitation_token_required?
   validates_presence_of :name, if: :name_required?
+  validates_presence_of :uploads_collection
 
   after_invitation_accepted :add_public_collection
 
@@ -65,11 +68,19 @@ class User < ActiveRecord::Base
     !invitation_accepted_at.present?
   end
 
+  def uploads_collection
+    super || add_uploads_collection
+  end
+
   private
 
   def add_public_collection
     collection = Collection.new(title: "#{name}'s Collection", items_visible_by_default: true)
     collection.users << self
     collection.save
+  end
+
+  def add_uploads_collection
+    self.uploads_collection = Collection.new(title: "My Uploads", items_visible_by_default: false)
   end
 end

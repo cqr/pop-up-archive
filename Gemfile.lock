@@ -89,8 +89,6 @@ GEM
       activesupport (>= 3.2.0)
     celluloid (0.13.0)
       timers (>= 1.0.0)
-    childprocess (0.3.9)
-      ffi (~> 1.0, >= 1.0.11)
     chronic (0.9.1)
     coderay (1.0.9)
     connection_pool (1.0.0)
@@ -146,10 +144,6 @@ GEM
     guard-rspec (2.5.4)
       guard (>= 1.1)
       rspec (~> 2.11)
-    guard-spork (1.5.0)
-      childprocess (>= 0.2.3)
-      guard (>= 1.1)
-      spork (>= 0.8.4)
     hashie (2.0.4)
     hashr (0.0.22)
     heroku-api (0.3.10)
@@ -382,7 +376,6 @@ DEPENDENCIES
   foreman
   geocoder
   guard-rspec
-  guard-spork
   heroku-api (~> 0.3.10)
   media_monster_client
   multi_json (~> 1.5.0)
@@ -399,7 +392,7 @@ DEPENDENCIES
   rails (~> 3.2.0)
   rb-fsevent (~> 0.9.1)
   routing_concerns
-  rspec-rails (~> 2.0)
+  rspec-rails (~> 2.4)
   ruby_gntp
   sass-rails (~> 3.2.3)
   shoulda-matchers
