@@ -93,4 +93,26 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
       });
     }
   }
+}])
+.controller('UploadCategorizationCtrl', ['$scope', function($scope) {
+  var dismiss = $scope.dismiss;
+
+  for (var i=0; i < $scope.collections.length; i++) {
+    if ($scope.collections[i].id != $scope.currentUser.uploadsCollectionId) {
+      $scope.selectedItems.collectionId = $scope.collections[i].id;
+      break;
+    }
+  }
+
+  $scope.dismiss = function () {
+    $scope.clearSelection();
+    dismiss();
+  }
+
+  $scope.submit = function () {
+    angular.forEach($scope.selectedItems, function (item) {
+      console.log("should move " + item.getTitle() + " to collection " + $scope.selectedItems.collectionId);
+    });
+    $scope.dismiss();
+  }
 }]);

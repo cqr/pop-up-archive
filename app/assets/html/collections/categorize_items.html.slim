@@ -1,4 +1,4 @@
-div
+div ng-controller="UploadCategorizationCtrl"
   .modal-header
     button type="button" class="close" data-dismiss="modal" aria-hidden="true" x
     h3 Move Uploads to a Collection
@@ -12,7 +12,7 @@ div
         label.control-label
           | Collection
         .controls
-          select ng-model="selectionCollectionId" ng-options="collection.id as collection.title for collection in collections | notUploads"
+          select ng-options="collection.id as collection.title for collection in collections | notUploads" ng-model="selectedItems.collectionId"
   .modal-footer
-    button.btn type="button" ng-click="dismiss()" Close
-    button.btn.btn-primary ng-click="submit();dismiss()" Save
+    button.btn ng-click="dismiss()" Close
+    button.btn.btn-primary ng-click="submit()" Save

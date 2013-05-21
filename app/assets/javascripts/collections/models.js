@@ -20,19 +20,22 @@ angular.module('Directory.collections.models', ['RailsModel'])
   return Collection;
 }])
 .filter('publicCollections', function () {
-  return buildCollectionFilter(true);
+  var pub = [];
+  return buildCollectionFilter(true, pub);
 })
 .filter('privateCollections', function() {
-  return buildCollectionFilter(false);
+  var pvt = [];
+  return buildCollectionFilter(false, pvt);
 })
 .filter('notUploads', ['Me', function (Me) {
   var user = {};
+  var c = [];
   Me.authenticated(function (currentUser) {
     user = currentUser;
   });
   return function (collections) {
-    var c = [];
     if (angular.isArray(collections)) {
+      c.splice(0, c.length);
       angular.forEach(collections, function (collection, index) {
         if (collection.id != user.uploadsCollectionId) {
           c.push(collection);
@@ -45,16 +48,16 @@ angular.module('Directory.collections.models', ['RailsModel'])
   };
 }]);
 
-function buildCollectionFilter(visible) {
+function buildCollectionFilter(visible, array) {
   return function(collections) {
     if (angular.isArray(collections)) {
-      var publicCollections = [];
+      array.splice(0, array.length);
       angular.forEach(collections, function(collection) {
         if (collection.itemsVisibleByDefault == visible) {
-          publicCollections.push(collection);
+          array.push(collection);
         }
       });
-      return publicCollections
+      return array
     } else {
       return collections;
     }
