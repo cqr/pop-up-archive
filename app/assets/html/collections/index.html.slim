@@ -7,8 +7,12 @@
         .item-thumb ng-class="item.getThumbClass()"
         | {{item.getTitle()}}
     .selection-actions ng-class="{in: selectedItems.length}"
-      button.btn Clear Selection
-      button.btn Move to Collection
+      button.btn.btn-danger bs-tooltip="'Delete'" data-trigger="hover" ng-click="deleteSelection()"
+        i.icon-trash
+      button.btn bs-tooltip="'Clear Selection'" data-trigger="hover" ng-click="clearSelection()"
+        i.icon-remove-sign
+      button.btn ng-disabled="collections.length < 2" bs-tooltip="'Move to Collection'" data-trigger="hover" bs-modal="'#{asset_path 'collections/categorize_items.html'}'"
+        i.icon-circle-arrow-down 
 
   .collections.public-collections
     h4 Internet Archive Collections

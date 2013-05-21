@@ -31,14 +31,14 @@ angular.module('Directory.collections.models', ['RailsModel'])
     user = currentUser;
   });
   return function (collections) {
-
+    var c = [];
     if (angular.isArray(collections)) {
       angular.forEach(collections, function (collection, index) {
-        if (collection.id == user.uploadsCollectionId) {
-          collections.splice(index, 1);
+        if (collection.id != user.uploadsCollectionId) {
+          c.push(collection);
         }
       });
-      return collections;
+      return c;
     } else {
       return collections;
     }

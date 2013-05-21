@@ -18,7 +18,7 @@ html lang='en' ng-app='Directory' ng-controller='DirectoryCtrl'
             i.icon-cog.icon-spin
             |  Loading
     footer= render('footer')
-    #persistent-player.player ng-controller="PersistentPlayerCtrl" ng-class="{hidden:!player.nowPlaying(),collapsed:collapsed}" ng-cloak=""
+    #persistent-player.player.hidden ng-controller="PersistentPlayerCtrl" ng-class="{hidden:!player.nowPlaying(),collapsed:collapsed}" ng-cloak=""
       .collapse-button ng-hide="collapsed" ng-click="collapse()"
         i.icon-angle-up
         | hide
