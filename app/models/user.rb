@@ -82,5 +82,7 @@ class User < ActiveRecord::Base
 
   def add_uploads_collection
     self.uploads_collection = Collection.new(title: "My Uploads", items_visible_by_default: false)
+    build_uploads_collection_grant collection: uploads_collection
+    uploads_collection
   end
 end
