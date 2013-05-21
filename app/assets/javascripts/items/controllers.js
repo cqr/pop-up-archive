@@ -72,12 +72,6 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
 
   $scope.deleteContribution = function(contribution) {
     contribution._delete = true;
-    // var c = new Contribution(contribution);
-    // c.itemId = $scope.item.id;
-    // c.deleting = true;
-    // c.delete().then(function() {
-    //   $scope.item.contributions.splice($scope.item.entities.indexOf(contribution), 1);
-    // });
   }
 
   $scope.peopleSelect = {
