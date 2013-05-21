@@ -58,11 +58,11 @@
       h5 Rights
       p {{item.rights}}
 
-    section.tags ng-repeat="contributorGroup in item.standardRoles" ng-show="item[(contributorGroup|pluralize)]"
+    section.tags ng-repeat="contributorGroup in item.standardRoles" ng-hide="(item.contributions|filter:{role:contributorGroup}).length==0"
       h5 {{contributorGroup | titleize | pluralize}}
       ul
-        li ng-repeat="contributor in item[(contributorGroup|pluralize)]"
-          a.btn ng-href='/search?query=contributor:%22{{contributor}}%22' {{contributor}}
+        li ng-repeat="contribution in item.contributions|filter:{role:contributorGroup}"
+          a.btn ng-href='/search?query=contributor:%22{{contribution.person.name}}%22' {{contribution.person.name}}
 
     section.tags ng-show="item.tags"
       h5 Tags

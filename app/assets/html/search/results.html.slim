@@ -31,14 +31,19 @@ ul.pager
         .media
           p ng-show="item.getDescription()" ng-bind-html-unsafe="item.getDescription()"
           ul.inline.dates
-            li.label ng-show="item.dateCreated" Created | {{item.dateCreated}} 
-            li.label ng-show="item.dateBroadcast" Broadcast | {{item.dateBroadcast}} 
-            li.label ng-show="item.dateAdded" Added | {{item.dateAdded}} 
+            li.label ng-show="item.dateCreated"
+              b Created: 
+              | {{item.dateCreated}} &nbsp;
+            li.label ng-show="item.dateBroadcast"
+              b Broadcast: 
+              | {{item.dateBroadcast}} &nbsp;
+            li.label ng-show="item.dateAdded"
+              b Added: 
+              | {{item.dateAdded}} &nbsp;
           ul.inline.contributors
-            li.label ng-repeat="creator in item.creators" Creator | {{creator}} 
-            li.label ng-repeat="producer in item.producers" Producer | {{producer}} 
-            li.label ng-repeat="interviewer in item.interviewers" Interviewer | {{interviewer}} 
-            li.label ng-repeat="interviewee in item.interviewees" Interviewee | {{interviewee}} 
+            li.label ng-repeat="contributorGroup in item.standardRoles" ng-hide="(item[(contributorGroup|pluralize)]).length==0"
+             b {{contributorGroup | titleize | pluralize}}: 
+             | {{item[(contributorGroup|pluralize)].join(', ')}} &nbsp;
 ul.pager
   li.previous ng-show="search.page > 1"
     a ng-click="backPage()" &larr; Back

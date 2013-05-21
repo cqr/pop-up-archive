@@ -30,6 +30,19 @@ angular.module('Directory.items.models', ['RailsModel'])
     return d.getUTCHours() + ":" + d.getUTCMinutes() + ":" + d.getUTCSeconds();
   }
 
+  Item.prototype.contributors = function(role) {
+    var result = ['test', 'value'];
+    console.log('contributions', this.contributions, this);
+    angular.forEach(this.contributions, function (contribution) {
+      if (contribution.role == role) {
+        result.push(contribution.person.name);
+      } else {
+        console.log('no match', contribution.role, role);
+      }
+    });
+    return result;
+  }
+
   Item.prototype.addAudioFile = function (file) {
     var promise = $q.defer();
     var fData = new FormData();
