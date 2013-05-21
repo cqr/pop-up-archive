@@ -2,7 +2,9 @@
   h3 My Media
 
   .holding-cell
-    p Here's all of your newly uploaded stuff.
+    ul.inline.items
+      li ng-repeat="item in uploadsItems"
+        a ng-href="/" {{item.getTitle()}}
 
   .collections.public-collections
     h4 Internet Archive Collections

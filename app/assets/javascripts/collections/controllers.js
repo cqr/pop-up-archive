@@ -1,7 +1,10 @@
 angular.module('Directory.collections.controllers', ['Directory.loader', 'Directory.user', 'Directory.collections.models'])
 .controller('CollectionsCtrl', ['$scope', 'Collection', 'Loader', 'Me', function CollectionsCtrl($scope, Collection, Loader, Me) {
-  Me.authenticated(function (data) {
-    Loader.page(Collection.query(), 'Collections', $scope);
+  Me.authenticated(function (me) {
+    Loader.page(Collection.query(), Collection.get(me.uploadsCollectionId), 'Collections', $scope).then(function (data) {
+      $scope.uploadsCollection = data[1];
+      console.log($scope);
+    });
 
     $scope.delete = function(index) {
       var confirmed = confirm("Delete collection and all items?");
