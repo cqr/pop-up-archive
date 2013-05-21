@@ -1,5 +1,5 @@
 angular.module('Directory.items.models', ['RailsModel'])
-.factory('Item', ['Model', '$http', '$q', function (Model, $http, $q) {
+.factory('Item', ['Model', '$http', '$q', 'Contribution', 'Person', function (Model, $http, $q, Contribution, Person) {
   var Item = Model({url:'/api/collections/{{collectionId}}/items/{{id}}', name: 'item'});
 
   Item.prototype.getTitle = function () {
@@ -45,6 +45,45 @@ angular.module('Directory.items.models', ['RailsModel'])
     .success(function(data, status, headers, config) {promise.resolve(data)})
     .error(function() { promise.reject();});
     return promise.promise;
+  }
+
+  // update existing contributions
+  Item.prototype.updateContributions = function () {
+
+    var item = this;
+
+    angular.forEach(this.contributions, function (contribution, index) {
+
+      var c = new Contribution(contribution);
+      c.itemId = item.id;
+
+      // delete c if marked for delete
+      if (c._delete) {
+        c.delete();
+        item.contributions.splice(index, 1);
+      } else if (!c.person.id  || (c.person.id == 'new')) {
+
+        var p = new Person({'name': c.person.name, 'collectionId':item.collectionId});
+
+        p.create().then( function() {
+          c.personId = p.id;
+          if (!c.id || (c.id == 'new')) {
+            c.id = null;
+            c.create();
+          } else {
+            c.update();
+          }
+
+        });
+      } else if (!c.id || (c.id == 'new')) {
+        c.id = null;
+        c.personId = c.person.id;
+        c.create();
+      } else {
+        c.personId = c.person.id;
+        c.update();
+      }
+    });
   }
 
   Item.prototype.standardRoles = ['producer', 'interviewer', 'interviewee', 'creator', 'host'];

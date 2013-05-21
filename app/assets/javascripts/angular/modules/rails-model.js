@@ -1,6 +1,6 @@
 angular.module('RailsModel', ['rails'])
 .factory('Model', ['railsResourceFactory', function (railsResourceFactory) {
-  var requestTransformers =  'protectedAttributeRemovalTransformer railsRootWrappingTransformer railsFieldRenamingTransformer'.split(' ');
+  var requestTransformers =  'protectedAttributeRemovalTransformer updateParentNestedValue railsRootWrappingTransformer railsFieldRenamingTransformer'.split(' ');
   return function (options) {
     options.requestTransformers = requestTransformers;
     var factory = railsResourceFactory(options);
@@ -24,6 +24,21 @@ angular.module('RailsModel', ['rails'])
     }
 
     return factory;
+  }
+}])
+.factory('updateParentNestedValue', [function () {
+  return function (data, resource) {
+    if (resource.attrNested && resource.attrNested.length && resource.attrNested.length > 0) {
+      for (index in resource.attrNested) {
+        var key = resource.attrNested[index];
+        var attrVals = key.split('_');
+        if (attrVals.length == 2) {
+          var nestedAttr = data[attrVals[0]][attrVals[1]];
+          data[key] = nestedAttr;          
+        }
+      }
+    }
+    return data;
   }
 }])
 .factory('protectedAttributeRemovalTransformer', [function () {

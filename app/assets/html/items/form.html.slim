@@ -52,7 +52,7 @@ section ng-controller="ItemFormCtrl"
             label
               | Contributors
               i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['contributors']" data-placement="bottom"
-        .control-row.contributor ng-repeat="contribution in item.contributions"
+        .control-row.contributor ng-repeat="contribution in item.contributions" ng-hide="contribution._delete"
           span.field
             select ui-select2="roleSelect" ng-model="contribution.role"
               option
@@ -61,7 +61,7 @@ section ng-controller="ItemFormCtrl"
           span.field
             input ui-select2="peopleSelect" ng-model="contribution.person"
 
-          button.btn type="button" ng-click="deleteContributor(contributor)" Delete
+          button.btn type="button" ng-click="deleteContribution(contribution)" Delete
 
 
     .spacer style='height: 100px;' &nbsp;

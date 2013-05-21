@@ -2,6 +2,8 @@ class Api::V1::ItemsController < Api::V1::BaseController
   expose(:collection)
   expose(:items, ancestor: :collection)
   expose(:item)
+  expose(:contributions, ancestor: :item)
+
   expose(:searched_item) do
     query_builder = QueryBuilder.new({query:"id:#{params[:id].to_i}"}, current_user)
     Item.search do
@@ -21,6 +23,7 @@ class Api::V1::ItemsController < Api::V1::BaseController
   authorize_resource decent_exposure: true
 
   def update
+    logger.debug("\n\nupdate: #{item.inspect}\n\n")
     item.save
     respond_with :api, item
   end

@@ -44,7 +44,7 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
   }
 
 }])
-.controller('ItemFormCtrl', ['$scope', '$routeParams', 'Schema', 'Item', 'Person', function ($scope, $routeParams, Schema, Item, Person) {
+.controller('ItemFormCtrl', ['$scope', '$routeParams', 'Schema', 'Item', 'Contribution', function ($scope, $routeParams, Schema, Item, Contribution) {
 
   $scope.item = {};
   $scope.itemTags = [];
@@ -69,6 +69,16 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
     placeholder:'Role...',
     width: '160px'
   };
+
+  $scope.deleteContribution = function(contribution) {
+    contribution._delete = true;
+    // var c = new Contribution(contribution);
+    // c.itemId = $scope.item.id;
+    // c.deleting = true;
+    // c.delete().then(function() {
+    //   $scope.item.contributions.splice($scope.item.entities.indexOf(contribution), 1);
+    // });
+  }
 
   $scope.peopleSelect = {
     placeholder: 'Name...',
@@ -115,6 +125,7 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
     
     if ($scope.item.id) {
       $scope.item.update().then(function (data) {
+        $scope.item.updateContributions();
         angular.copy($scope.item, $scope.$parent.item);
         // $scope.close();
       });
