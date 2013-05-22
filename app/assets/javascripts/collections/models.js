@@ -15,6 +15,10 @@ angular.module('Directory.collections.models', ['RailsModel'])
     });
   }
 
+  Collection.prototype.getThumbClass = function () {
+    return "icon-inbox"
+  }
+
   Collection.attrAccessible = ['title', 'description', 'itemsVisibleByDefault'];
 
   return Collection;

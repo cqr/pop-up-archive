@@ -29,7 +29,9 @@
           i.icon-plus
           | Add a Collection
       li ng-repeat="collection in collections | publicCollections | notUploads"
-        a ng-href="/collections/{{collection.id}}" {{collection.title}}
+        a ng-href="/collections/{{collection.id}}" 
+          .collection-thumb ng-class="collection.getThumbClass()"
+          | {{collection.title}}
 
   .collections.private-collections
     h4 Private Collections

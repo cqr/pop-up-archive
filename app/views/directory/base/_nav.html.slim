@@ -2,3 +2,7 @@ ul.nav.pull-right
   li= link_to('get started', '/')
   li= link_to('about', 'http://www.popuparchive.org', {target: '_self'})
   li= link_to('browse', '/search')
+  li
+    form.navbar-search ng-controller="GlobalSearchCtrl" ng-submit="go()"
+      input.search-query style="width:150px" ng-model="query.string" placeholder='Search' type='search'
+
