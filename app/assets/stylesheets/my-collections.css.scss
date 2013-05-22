@@ -115,15 +115,19 @@ div.collections, div.holding-cell {
   overflow: hidden;
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3) inset, 0 1px 0 #fff;
-  margin: 10px 0;
+  margin: 10px 0 0;
 
   h4 {
     margin-left: 10px;
   }
+
+  .alert {
+    margin: 0 10px 10px;
+  }
 }
 
 div.collections {
-  max-height: 250px;
+  max-height: 300px;
   overflow-x: hidden;
   overflow-y: scroll;
 }

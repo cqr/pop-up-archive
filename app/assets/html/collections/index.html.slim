@@ -23,6 +23,7 @@
 
   .collections.public-collections
     h4 Internet Archive Collections
+    .alert.alert-info Media added to your Public Collection will be stored at the Internet Archive. It will be available for anyone to search, stream, or download. You can delete public collections but you cannot make them private.
     ul.inline.collections
       li.add-collection
         a href="#" bs-modal="'#{asset_path 'collections/form_public.html'}'"
@@ -35,6 +36,7 @@
 
   .collections.private-collections
     h4 Private Collections
+    .alert.alert-error Media added to your Private Collection will be stored at Pop Up Archive. It will only to be visible to you.
     ul.inline.collections
       li.add-collection
         a href="#" bs-modal="'#{asset_path 'collections/form_private.html'}'"
