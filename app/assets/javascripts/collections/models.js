@@ -15,6 +15,14 @@ angular.module('Directory.collections.models', ['RailsModel'])
     });
   }
 
+  Collection.prototype.visibilityIsSet = function () {
+    return this.id || this.itemsVisibleByDefault === false || this.itemsVisibleByDefault;
+  }
+
+  Collection.prototype.privateOrPublic = function () {
+    return this.itemsVisibleByDefault ? 'public' : 'private';
+  }
+
   Collection.prototype.getThumbClass = function () {
     return "icon-inbox"
   }

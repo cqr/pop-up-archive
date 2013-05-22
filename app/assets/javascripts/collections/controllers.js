@@ -120,4 +120,10 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
     });
     $scope.dismiss();
   }
+}])
+.controller('NewPublicCollectionCtrl', ['$scope', 'Collection', function ($scope, Collection) {
+  $scope.collection = new Collection({itemsVisibleByDefault: true});
+}])
+.controller('NewPrivateCollectionCtrl', ['$scope', 'Collection', function ($scope, Collection) {
+  $scope.collection = new Collection({itemsVisibleByDefault: false});
 }]);

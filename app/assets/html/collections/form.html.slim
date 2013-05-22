@@ -1,8 +1,8 @@
-div ng-controller='CollectionFormCtrl' ng-show="currentUser"
+div ng-controller='CollectionFormCtrl'
   .modal-header
     button type="button" class="close" data-dismiss="modal" aria-hidden="true" x
     h3 ng-show="collection.id" Edit {{collection.title}}
-    h3 ng-hide="collection.id" Create a new Collection
+    h3 ng-hide="collection.id" Create a new {{collection.privateOrPublic()}} Collection
   .modal-body
     form.form-horizontal name="collectionForm"
       .control-group
@@ -15,7 +15,7 @@ div ng-controller='CollectionFormCtrl' ng-show="currentUser"
           | Description
         .controls
           input ng-model="collection.description"
-      .control-group ng-show="collection.id"
+      .control-group ng-show="collection.visibilityIsSet()"
         label.control-label
           | Privacy
         .controls ng-show="collection.itemsVisibleByDefault"
@@ -25,7 +25,7 @@ div ng-controller='CollectionFormCtrl' ng-show="currentUser"
           b Private Collection:
           |&nbsp;media is stored privately and is only visible to you.
 
-      .control-group ng-hide="collection.id"
+      .control-group ng-hide="collection.visibilityIsSet()"
         label.control-label
           | Privacy
         .controls
