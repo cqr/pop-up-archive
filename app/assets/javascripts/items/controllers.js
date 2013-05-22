@@ -74,6 +74,11 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
     contribution._delete = true;
   }
 
+  $scope.addContribution = function () {
+    var c = new Contribution();
+    $scope.item.contributions.push(c);
+  }
+
   $scope.peopleSelect = {
     placeholder: 'Name...',
     width: '240px',

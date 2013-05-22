@@ -52,16 +52,19 @@ section ng-controller="ItemFormCtrl"
             label
               | Contributors
               i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['contributors']" data-placement="bottom"
-        .control-row.contributor ng-repeat="contribution in item.contributions" ng-hide="contribution._delete"
-          span.field
-            select ui-select2="roleSelect" ng-model="contribution.role"
-              option
-              option ng-repeat="role in item.standardRoles" value="{{role}}" {{role}}
+        .clearfix
+          .control-row.contributor ng-repeat="contribution in item.contributions" ng-hide="contribution._delete"
+            span.field
+              select ui-select2="roleSelect" ng-model="contribution.role"
+                option
+                option ng-repeat="role in item.standardRoles" value="{{role}}" {{role}}
 
-          span.field
-            input ui-select2="peopleSelect" ng-model="contribution.person"
+            span.field
+              input ui-select2="peopleSelect" ng-model="contribution.person"
 
-          button.btn type="button" ng-click="deleteContribution(contribution)" Delete
+            button.btn type="button" ng-click="deleteContribution(contribution)" Delete
+        .form-actions
+          button.btn.pull-right type="button" ng-click="addContribution()" Add Contributor
 
 
     .spacer style='height: 100px;' &nbsp;
