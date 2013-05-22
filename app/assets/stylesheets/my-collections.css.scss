@@ -1,7 +1,6 @@
 ul.collections {
 
   margin: 0px 10px 10px;
-  min-height: 120px;
 
   li {
     overflow: hidden;
@@ -26,6 +25,12 @@ ul.collections {
   i.icon-plus {
     font-size: 100px;
     display:block;
+  }
+
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
   }
 }
 
@@ -89,6 +94,10 @@ div.collections, div.holding-cell {
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3) inset, 0 1px 0 #fff;
   margin: 10px 0;
+
+  h4 {
+    margin-left: 10px;
+  }
 }
 
 .selection-actions {
