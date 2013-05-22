@@ -58,7 +58,7 @@ ul.collections {
 
 ul.items {
   margin: 0;
-  padding: 10px 0;
+  padding: 10px 0 0;
 
   li {
     cursor: pointer;
@@ -87,12 +87,30 @@ ul.items {
       background: rgba(200, 200, 255, 0.9);
     }
 
+    &.add-item {
+
+      .item-thumb {
+        font-size: 45px;
+      }
+
+      background: transparent;
+      border: 3px dashed rgba(255, 255, 255, 0.5);
+      width: 67px;
+      height: 67px;
+
+      a {
+        color: rgba(255, 255, 255, 0.7);
+        &:hover, &:active {
+          text-decoration: none;
+        }
+      }
+    }
+
     transition: background 0.2s ease;
     -moz-transition: background 0.2s ease;
     -webkit-transition: background 0.2s ease;
 
     .item-thumb {
-      height: 55px;
       font-size: 50px;
     }
   }
@@ -115,7 +133,7 @@ div.collections, div.holding-cell {
   overflow: hidden;
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3) inset, 0 1px 0 #fff;
-  margin: 10px 0 0;
+  margin: 0 0 30px;
 
   h4 {
     margin-left: 10px;
@@ -127,7 +145,8 @@ div.collections, div.holding-cell {
 }
 
 div.collections {
-  max-height: 300px;
+  max-height: 250px;
+  padding-top: 10px;
   overflow-x: hidden;
   overflow-y: scroll;
 }

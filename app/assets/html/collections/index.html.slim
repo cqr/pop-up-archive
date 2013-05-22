@@ -1,15 +1,19 @@
 .row-fluid
   .page-nav.pull-right
-    a.btn href="/imports/choose"
-      i.icon-cloud-upload  Upload
     a.btn href="/imports/new"
       i.icon-th-list  Batch Import
     button.btn
       i.icon-edit  Batch Edit
   h3 My Media
 
-  .holding-cell.fade ng-class="{in: uploadsCollection.items}"
+  h4 My Uploads
+  .alert When you upload new audio, it is stored in My Uploads. Select audio below, then choose a collection to be its permanent home.
+  .holding-cell
     ul.inline.items
+      li.add-item
+        a href="/imports/choose"
+          .item-thumb.icon-cloud-upload
+          | Upload
       li ng-repeat="item in uploadsCollection.items" ng-click="toggleItemSelection(item)" ng-class="{selected: item.selected}" title="{{item.getTitle()}}"
         .item-thumb ng-class="item.getThumbClass()"
         | {{item.getTitle()}}
@@ -21,9 +25,9 @@
       button.btn ng-disabled="collections.length < 2" bs-tooltip="'Move to Collection'" data-trigger="hover" bs-modal="'#{asset_path 'collections/categorize_items.html'}'"
         i.icon-circle-arrow-down 
 
+  h4 Internet Archive Collections
+  .alert.alert-info Media added to your Public Collection will be stored at the Internet Archive. It will be available for anyone to search, stream, or download. You can delete public collections but you cannot make them private.
   .collections.public-collections
-    h4 Internet Archive Collections
-    .alert.alert-info Media added to your Public Collection will be stored at the Internet Archive. It will be available for anyone to search, stream, or download. You can delete public collections but you cannot make them private.
     ul.inline.collections
       li.add-collection
         a href="#" bs-modal="'#{asset_path 'collections/form_public.html'}'"
@@ -33,10 +37,9 @@
         a ng-href="/collections/{{collection.id}}" 
           .collection-thumb ng-class="collection.getThumbClass()"
           | {{collection.title}}
-
+  h4 Private Collections
+  .alert.alert-error Media added to your Private Collection will be stored at Pop Up Archive. It will only to be visible to you.
   .collections.private-collections
-    h4 Private Collections
-    .alert.alert-error Media added to your Private Collection will be stored at Pop Up Archive. It will only to be visible to you.
     ul.inline.collections
       li.add-collection
         a href="#" bs-modal="'#{asset_path 'collections/form_private.html'}'"
