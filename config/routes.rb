@@ -1,4 +1,7 @@
 PopUpArchive::Application.routes.draw do
+
+  match '/*path' => redirect {|params, request| "http://beta.popuparchive.org/#{params[:path]}" }, constraints: { host: 'pop-up-archive.herokuapp.com' }
+  
   devise_for :users, controllers: { registrations: 'users/registrations', invitations: 'users/invitations', omniauth_callbacks: 'users/omniauth_callbacks' }
 
   namespace :api, defaults: { format: 'json' }, path: 'api' do
