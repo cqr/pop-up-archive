@@ -19,11 +19,11 @@
         | {{item.getTitle()}}
     .selection-actions ng-class="{in: selectedItems.length}"
       button.btn.btn-danger bs-tooltip="'Delete'" data-trigger="hover" ng-click="deleteSelection()"
-        i.icon-trash
+        i.icon-trash  Delete Selection
       button.btn bs-tooltip="'Clear Selection'" data-trigger="hover" ng-click="clearSelection()"
-        i.icon-remove-sign
+        i.icon-remove-sign  Clear Selection
       button.btn ng-disabled="collections.length < 2" bs-tooltip="'Move to Collection'" data-trigger="hover" bs-modal="'#{asset_path 'collections/categorize_items.html'}'"
-        i.icon-circle-arrow-down 
+        i.icon-circle-arrow-down  Move to Collection
 
   h4 Public Collections
   .alert.alert-info Media added to your Public Collection will be stored at the Internet Archive. It will be available for anyone to search, stream, or download. You can delete public collections but you cannot make them private.
