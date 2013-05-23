@@ -23,6 +23,26 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
       }
     }
 
+    $scope.selectAll = function (items) {
+      angular.forEach(items, function (item) {
+        if (!item.selected) {
+          $scope.toggleItemSelection(item);
+        }
+      });
+    }
+
+    $scope.deleteSelection = function () {
+      if (confirm("Are you sure you would like to delete these " + $scope.selectedItems.length + " items from My Uploads?\n\nThis is permanent and cannot be undone.")) {
+        angular.forEach($scope.selectedItems, function (item) {
+          item.delete();
+          if ($scope.uploadsCollection.items.indexOf(item) !== -1) {
+            $scope.uploadsCollection.items.splice($scope.uploadsCollection.items.indexOf(item), 1);
+          }
+        });
+        $scope.selectedItems.length = 0;
+      }
+    }
+
     $scope.clearSelection = function () {
       angular.forEach($scope.selectedItems, function (item) {
         item.selected = false;

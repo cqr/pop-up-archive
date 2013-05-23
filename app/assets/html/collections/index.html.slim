@@ -20,6 +20,8 @@
     .selection-actions ng-class="{in: selectedItems.length}"
       button.btn.btn-danger bs-tooltip="'Delete'" data-trigger="hover" ng-click="deleteSelection()"
         i.icon-trash  Delete Selection
+      button.btn ng-click="selectAll(uploadsCollection.items)"
+        i.icon-check  Select All
       button.btn bs-tooltip="'Clear Selection'" data-trigger="hover" ng-click="clearSelection()"
         i.icon-remove-sign  Clear Selection
       button.btn ng-disabled="collections.length < 2" bs-tooltip="'Move to Collection'" data-trigger="hover" bs-modal="'#{asset_path 'collections/categorize_items.html'}'"

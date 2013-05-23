@@ -3,6 +3,7 @@ class Api::V1::ItemsController < Api::V1::BaseController
   expose(:items, ancestor: :collection)
   expose(:item)
   expose(:contributions, ancestor: :item)
+  expose(:users_item, ancestor: :current_users_items)
 
   expose(:searched_item) do
     query_builder = QueryBuilder.new({query:"id:#{params[:id].to_i}"}, current_user)
@@ -35,5 +36,16 @@ class Api::V1::ItemsController < Api::V1::BaseController
     item.valid?
     item.save
     respond_with :api, item
+  end
+
+  def destroy
+    users_item.destroy
+    respond_with :api, users_item
+  end
+
+  private
+
+  def current_users_items
+    current_user.items
   end
 end
