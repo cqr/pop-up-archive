@@ -8,13 +8,14 @@
   a.btn href="/imports/new"
     i.icon-th-list  Batch Import
   .selection-actions
-    small ng-pluralize="" count="selectedItems.length" when="{'0':'', 'one':'(1 item)', 'other': '({} items)'}"
-    button.btn
-      i.icon-tags  Edit Tags
-    button.btn ng-click="clearSelection()"
-      i.icon-remove-sign  Clear Selection
-    button.btn.btn-danger
-      i.icon-trash  Delete
+    small ng-pluralize="" count="selectedItems.length" when="{'0':'', 'one':'{{selectedItems[0].getTitle()}}', 'other': 'selecting {} items'}"
+    .buttons
+      button.btn
+        i.icon-tags  Edit Tags
+      button.btn ng-click="clearSelection()"
+        i.icon-remove-sign  Clear Selection
+      button.btn.btn-danger
+        i.icon-trash  Delete
 
 h3
   a href="/collections" My Collections
