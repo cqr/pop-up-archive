@@ -254,20 +254,11 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
     var titleExpression = function(){};
 
     $scope.$on('$routeChangeStart', function(event, next) {
-      var arguments = Array.prototype.slice.call(arguments);
-      arguments.shift();
-
-      if (arguments[arguments.length-1] != 'IGNOREME') {
-        arguments.push('IGNOREME');
-        if (typeof next !== 'undefined') {
-          if (next.$$route.loginRequired) {
-            event.preventDefault();
-            Me.authenticated(function () {
-              $scope.$root.$broadcast.apply($scope.$root, arguments);
-            }, function () {
-              window.location = "/users/sign_in"
-            });
-          }
+      if (typeof next !== 'undefined') {
+        if (next.$$route.loginRequired) {
+          Me.authenticated(undefined, function () {
+            window.location = "/users/sign_in"
+          });
         }
       }
     });
