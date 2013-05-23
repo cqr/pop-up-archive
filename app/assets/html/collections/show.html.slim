@@ -1,5 +1,8 @@
-button.btn.pull-right bs-modal="'#{asset_path 'items/form.html'}'" ng-show="canEdit"
-  i.icon-plus  Add an Item
+.page-nav.pull-right
+  button.btn bs-modal="'#{asset_path 'items/form.html'}'" ng-show="canEdit"
+    i.icon-plus  Add an Item
+  button.btn.btn-danger ng-click="delete()" ng-show="canEdit"
+    i.icon-trash  Delete
 
 h2 Browsing {{collection.title}}
 

@@ -63,6 +63,14 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
     $scope.item = new Item({collectionId:parseInt($routeParams.collectionId)});
   }
 
+  $scope.delete = function () {
+    if (confirm("Are you sure you want to delete the collection " + $scope.collection.title + " and all items it contains?\n\n This cannot be undone.")) {
+      $scope.collection.delete().then(function () {
+        $location.path('/collections');
+      })
+    }
+  }
+
   $scope.itemAdded = function (item) {
     $timeout(function(){ $scope.$broadcast('datasetChanged')}, 750);
   }
