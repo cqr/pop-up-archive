@@ -203,27 +203,32 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
 
       angular.forEach($scope.collections, function (collection) {
         if (collection.items && collection.items.length)
-          $scope.itemsByCollection[collection.title] = collection.items;
+          $scope.itemsByCollection[collection.id] = {name: collection.title, items: collection.items};
       });
 
       var date, month, year, string;
 
       angular.forEach(is, function (item) {
-        item.__dateString = item.__dateString || getStringForItem(item);
-        $scope.itemsByMonth[item.__dateString] = $scope.itemsByMonth[item.__dateString] || [];
-        $scope.itemsByMonth[item.__dateString].push(item);
+        item.__dateHash = item.__dateHash || getDateHashForItem(item);
+        $scope.itemsByMonth[item.__dateHash] = $scope.itemsByMonth[item.__dateHash] || {name: dateString(item.__dateHash), items: []};
+        $scope.itemsByMonth[item.__dateHash].items.push(item);
       });
     }
   }, true);
 
-  function getStringForItem(item) {
+  function getDateHashForItem(item) {
     date = new Date(item.dateAdded);
     month = date.getUTCMonth();
     year  = date.getUTCFullYear();
-    return dateString(month, year);
+    return 1000000 - (year * 100 + month);
   }
 
-  function dateString (month, year) {
+  function dateString (dateHash) {
+    dateHash = 1000000 - dateHash;
+
+    var year = Math.floor(dateHash / 100);
+    var month = dateHash - (year * 100);
+
     var string;
 
     switch (month) {

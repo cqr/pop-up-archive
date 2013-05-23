@@ -21,9 +21,9 @@ h3
   a href="/collections" My Collections
   |  &raquo; Batch Edit
 .items.fill
-  .collection ng-repeat="(category, items) in sortedItems()"
-    h4 {{category}}
+  .collection ng-repeat="category in sortedItems()"
+    h4 {{category.name}}
     ul.inline.items
-      li ng-repeat="item in items" ng-click="toggleItemSelection(item)" ng-class="{selected: item.selected}" title="{{item.getTitle()}}"
+      li ng-repeat="item in category.items" ng-click="toggleItemSelection(item)" ng-class="{selected: item.selected}" title="{{item.getTitle()}}"
         .item-thumb ng-class="item.getThumbClass()"
         | {{item.getTitle()}}
