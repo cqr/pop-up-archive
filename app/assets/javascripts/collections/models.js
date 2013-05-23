@@ -1,6 +1,9 @@
 ;(function(){
 angular.module('Directory.collections.models', ['RailsModel'])
 .factory('Collection', ['Model', 'Item', function (Model, Item) {
+  var collections = {};
+
+
   var Collection = Model({url:'/api/collections/{{id}}', name: 'collection'});
   var PublicCollection = Model({url:'/api/collections/public', name:'collection'});
   Collection.public = function () {
@@ -9,10 +12,11 @@ angular.module('Directory.collections.models', ['RailsModel'])
 
   Collection.prototype.fetchItems = function () {
     var self = this;
-    return Item.get({collectionId: this.id}).then(function (items) {
+    Item.get({collectionId: this.id}).then(function (items) {
       self.items = items;
-      return self;
+      return items;
     });
+    return this;
   }
 
   Collection.prototype.visibilityIsSet = function () {

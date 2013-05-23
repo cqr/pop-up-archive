@@ -3,10 +3,8 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
   Me.authenticated(function (me) {
     Loader.page(Collection.query(), Collection.get(me.uploadsCollectionId), 'Collections', $scope).then(function (data) {
       $scope.collection = undefined;
-      $scope.uploadsCollection = Loader.page(data[1].fetchItems(), 'uploadsCollection').then(function (uploadsCollection) {
-        $scope.uploadsCollection = uploadsCollection;
-        return uploadsCollection;
-      });
+      $scope.uploadsCollection = data[1];
+      $scope.uploadsCollection.fetchItems();
     });
 
     $scope.selectedItems = [];
@@ -29,7 +27,7 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
       angular.forEach($scope.selectedItems, function (item) {
         item.selected = false;
       })
-      $scope.selectedItems = [];
+      $scope.selectedItems.length = 0;
     }
 
     $scope.delete = function(index) {
@@ -255,6 +253,6 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
     angular.forEach($scope.selectedItems, function (item) {
       item.selected = false;
     })
-    $scope.selectedItems = [];
+    $scope.selectedItems.length = 0;
   };
 }]);
