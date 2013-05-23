@@ -1,0 +1,34 @@
+.page-nav.pull-right ng-class="{selection: selectedItems.length}"
+  button.btn ng-click="sortType = 1" ng-hide="sortType"
+    i.icon-folder-open  Sort by Collection
+  button.btn ng-click="sortType = 0" ng-show="sortType"
+    i.icon-calendar  Sort by Date
+  a.btn href="/collections"
+    i.icon-inbox  Manage Collections
+  a.btn href="/imports/new"
+    i.icon-th-list  Batch Import
+  .selection-actions
+    small ng-pluralize="" count="selectedItems.length" when="{'0':'', 'one':'(1 item)', 'other': '({} items)'}"
+    button.btn
+      i.icon-tags  Edit Tags
+    button.btn ng-click="clearSelection()"
+      i.icon-remove-sign  Clear Selection
+    button.btn.btn-danger
+      i.icon-trash  Delete
+
+h3
+  a href="/collections" My Collections
+  |  &raquo; Batch Edit
+.items.fill.nobg
+  .collection ng-repeat="(category, items) in sortedItems()"
+    h4 {{category}}
+    ul.inline.items
+      li ng-repeat="item in items" ng-click="toggleItemSelection(item)" ng-class="{selected: item.selected}" title="{{item.getTitle()}}"
+        .item-thumb ng-class="item.getThumbClass()"
+        | {{item.getTitle()}}
+  / .collection ng-repeat="collection in collections" ng-show="collection.items"
+  /   h4 {{collection.title}}
+  /   ul.inline.items
+  /     li ng-repeat="item in collection.items" ng-click="toggleItemSelection(item)" ng-class="{selected: item.selected}" title="{{item.getTitle()}}"
+  /         .item-thumb ng-class="item.getThumbClass()"
+  /         | {{item.getTitle()}}

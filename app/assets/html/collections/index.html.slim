@@ -2,14 +2,14 @@
   .page-nav.pull-right
     a.btn href="/imports/new"
       i.icon-th-list  Batch Import
-    button.btn
+    a.btn href="/collections/edit"
       i.icon-edit  Batch Edit
   h3 My Media
 
   h4 My Uploads
   .alert When you upload new audio, it is stored in My Uploads. Select audio below, then choose a collection to be its permanent home.
   .holding-cell
-    ul.inline.items
+    ul.inline.items.uploads
       li.add-item
         a href="/imports/choose"
           .item-thumb.icon-cloud-upload
@@ -25,7 +25,7 @@
       button.btn ng-disabled="collections.length < 2" bs-tooltip="'Move to Collection'" data-trigger="hover" bs-modal="'#{asset_path 'collections/categorize_items.html'}'"
         i.icon-circle-arrow-down 
 
-  h4 Internet Archive Collections
+  h4 Public Collections
   .alert.alert-info Media added to your Public Collection will be stored at the Internet Archive. It will be available for anyone to search, stream, or download. You can delete public collections but you cannot make them private.
   .collections.public-collections
     ul.inline.collections

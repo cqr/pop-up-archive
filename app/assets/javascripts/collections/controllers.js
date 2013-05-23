@@ -126,4 +126,108 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
 }])
 .controller('NewPrivateCollectionCtrl', ['$scope', 'Collection', function ($scope, Collection) {
   $scope.collection = new Collection({itemsVisibleByDefault: false});
+}])
+.controller('BatchEditCtrl', ['$scope', 'Loader', 'Collection', 'Me', function ($scope, Loader, Collection, Me) {
+  Me.authenticated(function (currentUser) {
+    Loader.page(Collection.query(), 'BatchEdit', $scope).then(function (collections) {
+      angular.forEach(collections, function (collection) {
+        collection.fetchItems();
+      });
+    });
+  });
+
+  $scope.sortType = 0;
+
+  var itemsByMonth = {};
+  var logged = false;
+
+  $scope.$watch(function () {
+    var items = [];
+    if ($scope.collections) {
+      angular.forEach($scope.collections, function (collection) {
+        if (collection.items) {
+          items.push.apply(items, collection.items);
+        }
+      });
+    }
+    return items;
+  }, function (is) {
+    $scope.itemsByMonth = {};
+    $scope.itemsByCollection = {};
+    if (is.length) {
+
+      angular.forEach($scope.collections, function (collection) {
+        if (collection.items && collection.items.length)
+          $scope.itemsByCollection[collection.title] = collection.items;
+      });
+
+      var date, month, year, string;
+
+      angular.forEach(is, function (item) {
+        item.__dateString = item.__dateString || getStringForItem(item);
+        $scope.itemsByMonth[item.__dateString] = $scope.itemsByMonth[item.__dateString] || [];
+        $scope.itemsByMonth[item.__dateString].push(item);
+      });
+    }
+  }, true);
+
+  function getStringForItem(item) {
+    date = new Date(item.dateAdded);
+    month = date.getUTCMonth();
+    year  = date.getUTCFullYear();
+    return dateString(month, year);
+  }
+
+  function dateString (month, year) {
+    var string;
+
+    switch (month) {
+      case 0: string = "January"; break;
+      case 1: string = "February"; break;
+      case 2: string = "March"; break;
+      case 3: string = "April"; break;
+      case 4: string = "May"; break;
+      case 5: string = "June"; break;
+      case 6: string = "July"; break;
+      case 7: string = "August"; break;
+      case 8: string = "September"; break;
+      case 9: string = "October"; break;
+      case 10: string = "November"; break;
+      case 11: string = "December"; break;
+      default: string = "chris"; break;
+    }
+
+    return string + ", " + year;
+  }
+
+  $scope.selectedItems = [];
+
+  $scope.sortedItems = function () {
+    if ($scope.sortType) {
+      return $scope.itemsByCollection;
+    } else {
+      return $scope.itemsByMonth;
+    }
+  }
+
+  $scope.toggleItemSelection = function (item) {
+    if (item.selected) {
+      item.selected = false;
+      if ($scope.selectedItems.indexOf(item) != -1) {
+        $scope.selectedItems.splice($scope.selectedItems.indexOf(item), 1);
+      }
+    } else {
+      item.selected = true;
+      if ($scope.selectedItems.indexOf(item) == -1) {
+        $scope.selectedItems.push(item);
+      }
+    }
+  };
+
+  $scope.clearSelection = function () {
+    angular.forEach($scope.selectedItems, function (item) {
+      item.selected = false;
+    })
+    $scope.selectedItems = [];
+  };
 }]);

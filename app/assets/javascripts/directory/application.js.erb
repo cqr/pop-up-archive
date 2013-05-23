@@ -72,6 +72,12 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
       loginRequired: true,
       title: "My Collections"
     })
+    .when('/collections/edit', {
+      templateUrl: "<%= asset_path 'collections/batch_edit.html' %>",
+      controller: "BatchEditCtrl",
+      loginRequired: true,
+      title: "My Collections &raquo; Batch Edit"
+    })
     .when('/collections/public', {
       templateUrl: "<%= asset_path 'collections/index.html' %>",
       controller: "PublicCollectionsCtrl",

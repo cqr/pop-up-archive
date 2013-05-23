@@ -60,6 +60,13 @@ ul.items {
   margin: 0;
   padding: 10px 0 0;
 
+  &.uploads {
+    max-height: 250px;
+    li {
+      background: rgba(255, 255, 255, 0.5);
+    }
+  }
+
   li {
     cursor: pointer;
     overflow:hidden;
@@ -67,11 +74,10 @@ ul.items {
     height: 73px;
     margin-left: 10px;
     margin-bottom: 10px;
-    background: rgba(255, 255, 255, 0.5);
     float: left;
     text-align: center;
     text-overflow:ellipsis;
-
+    background: rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     padding: 5px;
 
@@ -115,8 +121,6 @@ ul.items {
     }
   }
 
-
-  max-height: 250px;
   overflow-x: hidden;
   overflow-y: scroll;
 
@@ -127,7 +131,7 @@ ul.items {
   }
 }
 
-div.collections, div.holding-cell {
+div.collections, div.holding-cell, div.items {
   border-radius: 10px;
   position: relative;
   overflow: hidden;
@@ -139,8 +143,24 @@ div.collections, div.holding-cell {
     margin-left: 10px;
   }
 
+  &.nobg {
+    background: transparent;
+    box-shadow: none;
+  }
+
   .alert {
     margin: 0 10px 10px;
+  }
+
+  &.fill {
+    position: absolute;
+    top: 180px;
+    height: auto;
+    max-height: auto;
+    overflow-x: hidden;
+    overflow-y: auto; 
+    bottom: 15px;
+    width: 940px;
   }
 }
 
@@ -150,7 +170,7 @@ div.collections {
   overflow-x: hidden;
   overflow-y: scroll;
 }
-
+.holding-cell
 .selection-actions {
   position: absolute;
   bottom: -100px;
@@ -165,12 +185,14 @@ div.collections {
   -moz-transition: bottom 0.2s ease;
   -webkit-transition: bottom 0.2s ease;
 
-  button {
-    margin-left: 3px;
-  }
-
   &.in {
     bottom: 0px;
+  }
+}
+
+.selection-actions {
+  button {
+    margin-left: 3px;
   }
 }
 
@@ -182,5 +204,43 @@ div.holding-cell {
   margin: 10px 0;
   .btn {
     margin-left: 3px;
+  }
+
+  width: 50%;
+  text-align: right;
+
+  & > * {
+    transition: opacity ease 0.2s, top ease 0.2s;
+    -moz-transition: opacity ease 0.2s, top ease 0.2s;
+    -webkit-transition: opacity ease 0.2s, top ease 0.2s;
+  }
+
+  position: relative;
+
+  &.selection {
+    & > * {
+      opacity: 0;
+    }
+
+    .selection-actions {
+      opacity: 1;
+      top: -5px;
+    }
+  }
+
+  .selection-actions {
+    position: absolute;
+    top: 100%;
+    right: -5px;
+    opacity: 0;
+    padding: 5px;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    white-space: nowrap;
+    small {
+      float: left;
+      margin-top: 5px;
+    }
   }
 }
