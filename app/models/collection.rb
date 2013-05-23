@@ -4,6 +4,9 @@ class Collection < ActiveRecord::Base
 
   belongs_to :default_storage, class_name: "StorageConfiguration"
   has_many :collection_grants, dependent: :destroy
+
+  has_many  :uploads_collection_grants, class_name: 'CollectionGrant', conditions: {uploads_collection: true}
+
   has_many :users, through: :collection_grants
   has_many :items, dependent: :destroy
 
@@ -15,5 +18,9 @@ class Collection < ActiveRecord::Base
 
   def set_defaults
     self.copy_media = true if self.copy_media.nil?
+  end
+
+  def uploads_collection?
+    uploads_collection_grants.present?
   end
 end

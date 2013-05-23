@@ -3,7 +3,10 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
   Me.authenticated(function (me) {
     Loader.page(Collection.query(), Collection.get(me.uploadsCollectionId), 'Collections', $scope).then(function (data) {
       $scope.collection = undefined;
-      $scope.uploadsCollection = Loader.page(data[1].fetchItems());
+      $scope.uploadsCollection = Loader.page(data[1].fetchItems(), 'uploadsCollection').then(function (uploadsCollection) {
+        $scope.uploadsCollection = uploadsCollection;
+        return uploadsCollection;
+      });
     });
 
     $scope.selectedItems = [];
@@ -105,6 +108,8 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
 .controller('UploadCategorizationCtrl', ['$scope', function($scope) {
   var dismiss = $scope.dismiss;
 
+  var currentCollection;
+
   $scope.$watch('collections', function (is, was) {
     if (typeof is !== 'undefined') {
       for (var i=0; i < $scope.collections.length; i++) {
@@ -116,6 +121,17 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
     }
   });
 
+  $scope.$watch('selectedItsm.collectionId', function (is) {
+    if (typeof is !== 'undefined') {
+      for (var i=0; i < $scope.collections.length; i++) {
+        if ($scope.collections[i].id == is) {
+          currentCollection = $scope.collections[i];
+          break;
+        }
+      }
+    }
+  })
+
 
   $scope.dismiss = function () {
     $scope.clearSelection();
@@ -124,7 +140,10 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
 
   $scope.submit = function () {
     angular.forEach($scope.selectedItems, function (item) {
-      console.log("should move " + item.getTitle() + " to collection " + $scope.selectedItems.collectionId);
+      item.adopt($scope.selectedItems.collectionId);
+      $scope.uploadsCollection.items.splice($scope.uploadsCollection.items.indexOf(item), 1);
+      if (currentCollection && currentCollection.items && currentCollection.items.push)
+        curcurrentCollection.items.push(item);
     });
     $scope.dismiss();
   }

@@ -9,6 +9,8 @@ class Item < ActiveRecord::Base
 
   before_validation :set_defaults, if: :new_record?
 
+  validate :collection_changes
+
   tire do
     mapping do
       indexes :id, index: :not_analyzed
@@ -46,7 +48,7 @@ class Item < ActiveRecord::Base
     :description, :digital_format, :digital_location, :duration,
     :episode_title, :extra, :identifier, :music_sound_used, :notes,
     :physical_format, :physical_location, :rights, :series_title,
-    :tags, :title, :transcription
+    :tags, :title, :transcription, :adopt_to_collection
 
   belongs_to :geolocation
   belongs_to :csv_import
@@ -153,6 +155,10 @@ class Item < ActiveRecord::Base
     super || self.tags = []
   end
 
+  def adopt_to_collection=(collection_id)
+    self.collection_id = collection_id
+  end
+
   private
 
   def set_defaults
@@ -171,6 +177,12 @@ class Item < ActiveRecord::Base
       end
     end
     tfi
+  end
+
+  def collection_changes
+    if collection_id_changed? && collection_id_was != nil
+      errors.add(:collection, "cannot be changed once set") unless Collection.find(collection_id_was).uploads_collection?
+    end
   end
 
 end

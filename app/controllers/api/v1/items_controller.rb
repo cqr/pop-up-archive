@@ -23,7 +23,6 @@ class Api::V1::ItemsController < Api::V1::BaseController
   authorize_resource decent_exposure: true
 
   def update
-    logger.debug("\n\nupdate: #{item.inspect}\n\n")
     item.save
     respond_with :api, item
   end

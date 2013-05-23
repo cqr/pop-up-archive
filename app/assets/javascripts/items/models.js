@@ -30,6 +30,15 @@ angular.module('Directory.items.models', ['RailsModel'])
     return d.getUTCHours() + ":" + d.getUTCMinutes() + ":" + d.getUTCSeconds();
   }
 
+  Item.prototype.adopt = function (collectionId) {
+    var self = this;
+    this.adoptToCollection = collectionId;
+    return this.update().then(function (data) {
+      self.adoptToCollection = undefined;
+      return data;
+    });
+  }
+
   Item.prototype.contributors = function(role) {
     var result = ['test', 'value'];
     console.log('contributions', this.contributions, this);
@@ -101,7 +110,7 @@ angular.module('Directory.items.models', ['RailsModel'])
 
   Item.prototype.standardRoles = ['producer', 'interviewer', 'interviewee', 'creator', 'host'];
 
-  Item.attrAccessible = "dateBroadcast datePeg description digitalFormat digitalLocation episodeTitle identifier musicSoundUsed notes physicalFormat physicalLocation rights seriesTitle tags title transcription".split(' ');
+  Item.attrAccessible = "dateBroadcast datePeg description digitalFormat digitalLocation episodeTitle identifier musicSoundUsed notes physicalFormat physicalLocation rights seriesTitle tags title transcription adoptToCollection".split(' ');
 
   return Item;
 }])
