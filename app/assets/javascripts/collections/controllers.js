@@ -275,4 +275,14 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
     })
     $scope.selectedItems.length = 0;
   };
+
+  $scope.deleteSelection = function () {
+    if (confirm("Are you sure you would like to delete these " + $scope.selectedItems.length + " items from My Uploads?\n\nThis is permanent and cannot be undone.")) {
+      angular.forEach($scope.selectedItems, function (item) {
+        item.delete();
+        item.getCollection().items.splice(item.getCollection().items.indexOf(item), 1);
+      });
+      $scope.selectedItems.length = 0;
+    }
+  };
 }]);

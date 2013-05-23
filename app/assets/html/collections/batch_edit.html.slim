@@ -14,7 +14,7 @@
         i.icon-tags  Edit Tags
       button.btn ng-click="clearSelection()"
         i.icon-remove-sign  Clear Selection
-      button.btn.btn-danger
+      button.btn.btn-danger ng-click="deleteSelection()"
         i.icon-trash  Delete
 
 h3
@@ -27,9 +27,3 @@ h3
       li ng-repeat="item in items" ng-click="toggleItemSelection(item)" ng-class="{selected: item.selected}" title="{{item.getTitle()}}"
         .item-thumb ng-class="item.getThumbClass()"
         | {{item.getTitle()}}
-  / .collection ng-repeat="collection in collections" ng-show="collection.items"
-  /   h4 {{collection.title}}
-  /   ul.inline.items
-  /     li ng-repeat="item in collection.items" ng-click="toggleItemSelection(item)" ng-class="{selected: item.selected}" title="{{item.getTitle()}}"
-  /         .item-thumb ng-class="item.getThumbClass()"
-  /         | {{item.getTitle()}}

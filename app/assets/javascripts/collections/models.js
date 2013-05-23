@@ -14,6 +14,11 @@ angular.module('Directory.collections.models', ['RailsModel'])
     var self = this;
     Item.get({collectionId: this.id}).then(function (items) {
       self.items = items;
+      angular.forEach(items, function (item) {
+        item.getCollection = function () {
+          return self;
+        }
+      });
       return items;
     });
     return this;
