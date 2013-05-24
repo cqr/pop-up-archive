@@ -71,6 +71,8 @@ class Item < ActiveRecord::Base
     has_many role.pluralize.to_sym, through: "#{role}_contributions".to_sym, source: :person
   end
 
+  default_scope includes(:contributors, :interviewees, :interviewers, :hosts, :creators, :producers, :geolocation)
+
   serialize :extra, HstoreCoder
 
   delegate :title, to: :collection, prefix: true
