@@ -71,8 +71,13 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.csvImp
     var audioFiles = item.audioFiles;
     item.audioFiles = [];
 
+    Collection.get($scope.item.collectionId).then(function (collection) {
+      if (angular.isArray(collection.items)) {
+        collection.items.push($scope.item);
+      }
+    });
+
     item.create().then(function () {
-      // console.log('FilesCtrl submit upload: ', audioFiles);
       uploadAudioFiles(item, audioFiles);
     });
 
