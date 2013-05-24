@@ -131,7 +131,10 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
 
   window.directory = angular.module('Directory', depends);
   window.directory.config(applicationConfig);
-  window.directory.controller("DirectoryCtrl", ['$scope', '$route', '$interpolate', 'Me', function($scope, $route, $interpolate, Me) {
+  window.directory.controller("DirectoryCtrl", ['$scope', '$route', '$interpolate', 'Me', '$timeout', function($scope, $route, $interpolate, Me, $timeout) {
+
+    $timeout(function() { angular.element('.logo.up').addClass('raised-logo'); }, 1000);
+
     $scope.modalOpts = {
       backdropFade: true,
       dialogFade: true

@@ -3,15 +3,13 @@
     li
       a.btn.user-menu bs-dropdown="userMenu" = current_user.name
     li
-      / why is this a element here?
       a 
-        / why is this span element here?
         span#loading-gear.animated.flash ng-show="loading()"
           img.image.icon-spin src='#{asset_path("gear.svg")}' style="color: #333"
   ul.nav ng-controller="AlertCtrl"
     li
       a pop-up-alerts-dropdown="alertData.alerts" ng-class="{'with-information':alertData.alerts.length}"
-        span.number-circle ng-show="alertData.alerts.length" {{alertData.alerts.length}}
+        span.number-circle.ng-cloak ng-show="alertData.alerts.length" {{alertData.alerts.length}}
 - else
   ul.nav
     li = link_to('Sign in', new_user_session_path, { target: '_self', class: 'btn' })

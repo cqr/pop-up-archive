@@ -167,5 +167,55 @@
         });
       }
     }
+  }])
+  .directive("transcript", ["Player", function (Player) {
+    // d.scrollTop=r.rowIndex * r.scrollHeight;
+    return {
+      restrict: 'C',
+      replace: true,
+      template: '<div class="file-transcript">' +
+                  '<table class="table">' +
+                    '<tr ng-class="{current: transcriptStart==text.startTime}" ng-repeat="text in audioFile.transcript" id="{{audioFile.id}}-{{text.startTime}}">' +
+                      '<td style="width: 8px; text-align:left;"><a ng-click="seekTo(text.startTime)"><i class="icon-play-circle"></i></a></td>' +
+                      '<td style="width: 16px; text-align:right">{{text.startTime}}</td>' +
+                      '<td style="width: 8px;text-align:center">&ndash;</td>' +
+                      '<td style="width: 16px; text-align:left; padding-right:10px">{{text.endTime}}</td>' +
+                      '<td>{{text.text}}</td>' +
+                    '</tr>' +
+                  '</table>' +
+                '</div>',
+      link: function (scope, el, attrs) {
+        var lastSecond = -1;
+        scope.transcriptStart = 0;
+
+        scope.transcriptRows = {};
+        angular.forEach(scope.audioFile.transcript, function(row) {
+          scope.transcriptRows[row.startTime] = row;
+        });
+
+        scope.seekTo = function(time) {
+          Player.seekTo(time);
+        }
+
+        scope.$watch('player.time', function (time) {
+          var second = parseInt(time, 10);
+          if (second != lastSecond) {
+            // console.log('second', second, scope.transcriptRows);
+            if (second in scope.transcriptRows) {
+              var r = scope.transcriptRows[second];
+              var eid = "#" + scope.audioFile.id + "-" + r.startTime;
+              var tr = angular.element(eid)[0];
+
+              if (tr) {
+                el[0].scrollTop = Math.max((tr.rowIndex - 1), 0) * tr.scrollHeight;
+                // angular.element(el).css('max-height', (tr.scrollHeight * 3));
+                scope.transcriptStart = second;
+              }
+            }
+            lastSecond = second;
+          }
+        });
+      }
+    }
   }]);
 })();

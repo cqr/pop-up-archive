@@ -123,10 +123,10 @@ footer, footer p {
       display: block;
       float: left;
       height: 33px;
-      transition: all 250ms ease;
-      -webkit-transition: all 250ms ease;
-      -moz-transition: all 250ms ease;
-      -o-transition: all 250ms ease;
+      transition: margin-top 250ms ease 500ms;
+      -webkit-transition: margin-top 250ms ease 500ms;
+      -moz-transition: margin-top 250ms ease 500ms;
+      -o-transition: margin-top 250ms ease 500ms;
     }
 
     .prx {
