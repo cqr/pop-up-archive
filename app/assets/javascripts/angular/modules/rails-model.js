@@ -4,6 +4,8 @@ angular.module('RailsModel', ['rails'])
   return function (options) {
 
     var idMap = {};
+    var queryCache = {};
+
     function objectForData(klass, data) {
       var result;
       if (typeof data.id !== 'undefined') {
@@ -87,6 +89,52 @@ angular.module('RailsModel', ['rails'])
         return factory.$get(factory.resourceUrl(context), queryParams);
       }
     };
+
+    factory.query = function (queryParams, context) {
+      queryParams = queryParams || {};
+      context = context || {};
+      var hash = JSON.stringify([queryParams, context]);
+
+      var result = factory.$get(factory.resourceUrl(context), queryParams).then(function (data) {
+        if (typeof queryCache[hash] == 'undefined') {
+          queryCache[hash] = data;
+        } else {
+          if (angular.isObject(data)) {
+            angular.forEach(data, function (value, key) {
+              queryCache[hash][key] = value;
+            });
+          } else {
+            var array = queryCache[hash];
+            var loc = -1;
+            angular.forEach(data, function (obj, index) {
+              loc = array.indexOf(obj);
+              if (loc !== -1 && loc !== index) {
+                array.splice(loc, 1);
+                loc = -1;
+              }
+              if (loc == -1) {
+                array.splice(index, 0, obj);
+              }
+            });
+            array.length = data.length;
+          }
+        }
+        return queryCache[hash];
+      });
+
+      if (typeof queryCache[hash] !== 'undefined') {
+        console.log("Getting it from the query cache");
+        console.log(queryCache[hash]);
+        var deferred = $q.defer();
+        deferred.resolve(queryCache[hash]);
+        result = deferred.promise;
+      }
+
+      console.log(queryCache);
+      console.log(result);
+
+      return result;
+    }
 
     return factory;
   }
