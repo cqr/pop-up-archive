@@ -6,7 +6,19 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
       $scope.uploadsCollection = data[1];
       $scope.uploadsCollection.fetchItems();
     });
-
+		
+		$scope.tour = {
+		  'iapublic': { 
+				'content': 'Your public collections will be<br/>stored at the Internet Archive.<br/>They will be available for anyone<br/>to search, stream, or download.',
+			},
+		  's3private': { 
+				'content': 'Private collections allow you to store your audio so that is visible only to you. Users automatically have 2GB of private storage.',
+			},
+		  'tempuploads': { 
+				'content': 'If you don\'t specify a collection, audio will be automatically added to temporary uploads. Select your audio and add it to a collection to make it searchable.',
+			},
+		};
+		
     $scope.selectedItems = [];
 
     $scope.$watch('uploadsCollection.items', function (is) {
