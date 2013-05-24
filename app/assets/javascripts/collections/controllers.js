@@ -203,6 +203,9 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
     });
   });
 
+  $scope.selectedItems = [];
+  $scope.selectedTags = [];
+
   $scope.sortType = 0;
 
   var itemsByMonth = {};
@@ -221,7 +224,7 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
   }, function (is) {
     $scope.itemsByMonth = {};
     $scope.itemsByCollection = {};
-    $scope.selectedItems = [];
+    $scope.selectedItems.length = 0;
     if (is.length) {
 
       angular.forEach($scope.collections, function (collection) {
@@ -236,8 +239,6 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
           $scope.selectedItems.push(item);
         }
 
-
-
         item.__dateHash = item.__dateHash || getDateHashForItem(item);
         $scope.itemsByMonth[item.__dateHash] = $scope.itemsByMonth[item.__dateHash] || {name: dateString(item.__dateHash), items: []};
         $scope.itemsByMonth[item.__dateHash].items.push(item);
@@ -245,20 +246,20 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
     }
   }, true);
 
-  $scope.allTags = [];
-
   $scope.$watch('selectedItems', function (is) {
-    $scope.allTags.length = 0;
-    if (angular.isArray(is) && is.length) {
+    $scope.selectedTags.length = 0;
+    if (is.length) {
       var tagSet = {};
       angular.forEach(is, function (selectedItem) {
         angular.forEach(selectedItem.tags, function (tag) {
           tagSet[tag] = 1;
         });
       });
-      $scope.allTags.push.apply($scope.allTags, Object.keys(tagSet));
+      $scope.selectedTags.push.apply($scope.selectedTags, Object.keys(tagSet).map(function (tag) {
+        return { text: tag, id: tag };
+      }));
     }
-  });
+  }, true);
 
   function getDateHashForItem(item) {
     date = new Date(item.dateAdded);
@@ -294,8 +295,6 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
     return string + ", " + year;
   }
 
-  $scope.selectedItems = [];
-
   $scope.sortedItems = function () {
     if ($scope.sortType) {
       return $scope.itemsByCollection;
@@ -317,6 +316,25 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
       }
     }
   };
+
+  $scope.tagSelect = {
+    placeholder: 'Tags...',
+    width: '220px',
+    tags: []
+  };
+
+  $scope.submit = function () {
+    var actualTags = [];
+    angular.forEach($scope.selectedTags, function (tag) {
+      actualTags.push(tag.text);
+    });
+
+    angular.forEach($scope.selectedItems, function (item) {
+      item.tags = actualTags;
+      item.update();
+    });
+    $scope.clearSelection();
+  }
 
   $scope.clearSelection = function () {
     angular.forEach($scope.selectedItems, function (item) {

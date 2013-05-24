@@ -10,7 +10,7 @@
   .selection-actions
     small ng-pluralize="" count="selectedItems.length" when="{'0':'', 'one':'{{selectedItems[0].getTitle()}}', 'other': 'selecting {} items'}"
     .buttons
-      button.btn
+      button.btn bs-modal="'#{asset_path 'collections/tags_form.html'}'"
         i.icon-tags  Edit Tags
       button.btn ng-click="clearSelection()"
         i.icon-remove-sign  Clear Selection
