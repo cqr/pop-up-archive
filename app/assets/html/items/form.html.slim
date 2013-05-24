@@ -44,7 +44,7 @@ section ng-controller="ItemFormCtrl"
             | Tags
             i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['tags']" data-placement="bottom"
           .controls
-            input type='hidden' ng-model="itemTags" ui-select2="tagSelect"
+            input type='hidden' ng-model="itemTags" ui-select2="tagSelect()"
 
       section
         .clearfix
