@@ -223,12 +223,31 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
         if (item.selected && $scope.selectedItems.indexOf(item) == -1) {
           $scope.selectedItems.push(item);
         }
+
+
+
         item.__dateHash = item.__dateHash || getDateHashForItem(item);
         $scope.itemsByMonth[item.__dateHash] = $scope.itemsByMonth[item.__dateHash] || {name: dateString(item.__dateHash), items: []};
         $scope.itemsByMonth[item.__dateHash].items.push(item);
       });
     }
   }, true);
+
+  $scope.allTags = [];
+
+  $scope.$watch('selectedItems', function (is) {
+    $scope.allTags.length = 0;
+    if (angular.isArray(is) && is.length) {
+      var tagSet = {};
+      angular.forEach(is, function (selectedItem) {
+        angular.forEach(selectedItem.tags, function (tag) {
+          tagSet[tag] = 1;
+        });
+      });
+      $scope.allTags.push.apply($scope.allTags, Object.keys(tagSet));
+    }
+    
+  });
 
   function getDateHashForItem(item) {
     date = new Date(item.dateAdded);
