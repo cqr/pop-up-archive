@@ -1,10 +1,10 @@
 angular.module('RailsModel', ['rails'])
-.factory('Model', ['railsResourceFactory', '$q', function (railsResourceFactory, $q) {
+.factory('Model', ['railsResourceFactory', '$q', '$rootScope', function (railsResourceFactory, $q, $rootScope) {
   var requestTransformers =  'protectedAttributeRemovalTransformer updateParentNestedValue railsRootWrappingTransformer railsFieldRenamingTransformer'.split(' ');
   return function (options) {
 
-    var idMap = {};
-    var queryCache = {};
+    var idMap = {"__identity": options.name};
+    var queryCache = {"__identity": options.name};
 
     function objectForData(klass, data) {
       var result;
@@ -99,11 +99,7 @@ angular.module('RailsModel', ['rails'])
         if (typeof queryCache[hash] == 'undefined') {
           queryCache[hash] = data;
         } else {
-          if (angular.isObject(data)) {
-            angular.forEach(data, function (value, key) {
-              queryCache[hash][key] = value;
-            });
-          } else {
+           if (angular.isArray(data)) {
             var array = queryCache[hash];
             var loc = -1;
             angular.forEach(data, function (obj, index) {
@@ -117,6 +113,10 @@ angular.module('RailsModel', ['rails'])
               }
             });
             array.length = data.length;
+          } else {
+            angular.forEach(data, function (value, key) {
+              queryCache[hash][key] = value;
+            });
           }
         }
         return queryCache[hash];

@@ -1,8 +1,6 @@
 angular.module('Directory.loader', ['ngLoadingIndicators'])
 .factory('Loader', ['$q', 'loading', '$timeout', function ($q, loading, $timeout) {
 
-  var cacheTable = {};
-
   function camelize (key) {
     if (!angular.isString(key)) {
       return key;
@@ -12,20 +10,8 @@ angular.module('Directory.loader', ['ngLoadingIndicators'])
     });
   }
 
-  function cacheSet (key, value) {
-    cacheTable[key] = value;
-  }
-
-  function cacheGet(key) {
-    return cacheTable[key];
-  }
-
   function resolveData($scope, deferred, cacheKey) {
     return function (data) {
-      if (cacheKey) {
-        cacheSet(cacheKey, data);
-      }
-
       if ($scope) {
         angular.forEach(data, function (response) {
           var setName;
@@ -74,23 +60,6 @@ angular.module('Directory.loader', ['ngLoadingIndicators'])
       console.error(data);
       deferred.reject(data);
     });
-
-
-
-    if (cacheGet(cacheKey)) {
-      var data = cacheGet(cacheKey);
-
-      data = resolveData($scope)(data);
-
-      data.then = function doThen (callback, errback) {
-        data      = (callback(data) || data);
-        data.then = doThen;
-        promise   = promise.then(callback, errback);
-        return data;
-      }
-
-      return data;
-    }
 
     return promise;
   }
