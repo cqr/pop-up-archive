@@ -8,8 +8,6 @@
     }
   }
 
-
-
   angular.module('ngPlayer', [])
   .factory('Player', ['$timeout', function ($timeout) {
     var nowPlayingItem, playing = false;
@@ -21,13 +19,14 @@
     }
 
     function loadFile(file) {
-      nowPlayingItem = file;
+      nowPlayingItem = (file || nowPlayingItem);
+      if (audioElement.src != nowPlayingItem) {
+        audioElement.src = nowPlayingItem;
+      }
     }
 
     function play(file) {
-      nowPlayingItem = (file || nowPlayingItem);
-      if (audioElement.src != nowPlayingItem)
-        audioElement.src = nowPlayingItem;
+      loadFile(file);
       audioElement.play();
       scheduleUpdate();
     }
@@ -64,8 +63,12 @@
     }
 
     function seekTo (position) {
-      audioElement.currentTime = position;
-      $timeout(updateTimecodes, 0);
+      if (audioElement.duration) {
+        audioElement.currentTime = position;
+        $timeout(updateTimecodes, 0);
+      } else {
+        $timeout(function(){seekTo(position)}, 100);
+      }
     }
 
     function scheduleUpdate () {
@@ -168,14 +171,13 @@
       }
     }
   }])
-  .directive("transcript", ["Player", function (Player) {
-    // d.scrollTop=r.rowIndex * r.scrollHeight;
+  .directive("transcript", ['Player','$parse', function (Player, $parse) {
     return {
       restrict: 'C',
       replace: true,
       template: '<div class="file-transcript">' +
                   '<table class="table">' +
-                    '<tr ng-class="{current: transcriptStart==text.startTime}" ng-repeat="text in audioFile.transcript" id="{{audioFile.id}}-{{text.startTime}}">' +
+                    '<tr ng-class="{current: transcriptStart==text.startTime}" ng-repeat="text in transcript">' +
                       '<td style="width: 8px; text-align:left;"><a ng-click="seekTo(text.startTime)"><i class="icon-play-circle"></i></a></td>' +
                       '<td style="width: 16px; text-align:right">{{text.startTime}}</td>' +
                       '<td style="width: 8px;text-align:center">&ndash;</td>' +
@@ -186,29 +188,28 @@
                 '</div>',
       link: function (scope, el, attrs) {
         var lastSecond = -1;
-        scope.transcriptStart = 0;
 
+        scope.transcriptStart = 0;
+        scope.transcript = $parse(attrs.transcriptText)(scope);
         scope.transcriptRows = {};
-        angular.forEach(scope.audioFile.transcript, function(row) {
-          scope.transcriptRows[row.startTime] = row;
+
+        angular.forEach(scope.transcript, function(row, index) {
+          scope.transcriptRows[row.startTime] = index;
         });
 
         scope.seekTo = function(time) {
-          Player.seekTo(time);
+          scope.$emit('transcriptSeek', time);
         }
 
         scope.$watch('player.time', function (time) {
           var second = parseInt(time, 10);
+          var height = angular.element(".file-transcript table tr")[0].scrollHeight;
           if (second != lastSecond) {
-            // console.log('second', second, scope.transcriptRows);
             if (second in scope.transcriptRows) {
-              var r = scope.transcriptRows[second];
-              var eid = "#" + scope.audioFile.id + "-" + r.startTime;
-              var tr = angular.element(eid)[0];
+              var index = scope.transcriptRows[second];
 
-              if (tr) {
-                el[0].scrollTop = Math.max((tr.rowIndex - 1), 0) * tr.scrollHeight;
-                // angular.element(el).css('max-height', (tr.scrollHeight * 3));
+              if (index != undefined) {
+                el[0].scrollTop = Math.max((index - 1), 0) * height;
                 scope.transcriptStart = second;
               }
             }
