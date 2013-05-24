@@ -46,7 +46,6 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
     }
 
     $scope.uploadFile = function () {
-      console.log("UPLOADING A FILE");
       $scope.$emit('filesAdded', []);
     };
 
