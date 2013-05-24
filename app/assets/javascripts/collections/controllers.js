@@ -258,7 +258,6 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
       });
       $scope.allTags.push.apply($scope.allTags, Object.keys(tagSet));
     }
-    
   });
 
   function getDateHashForItem(item) {
