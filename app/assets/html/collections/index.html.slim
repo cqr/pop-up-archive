@@ -11,10 +11,9 @@
   .alert When you upload new audio, it is stored in My Uploads. Select audio below, then choose a collection to be its permanent home.
   .holding-cell
     ul.inline.items.uploads
-      li.add-item
-        a href="/imports/choose"
-          .item-thumb.icon-cloud-upload
-          | Upload
+      li.add-item ng-click="uploadFile()"
+        .item-thumb.icon-cloud-upload
+        | Upload
       li ng-repeat="item in uploadsCollection.items" ng-click="toggleItemSelection(item)" ng-class="{selected: item.selected}" title="{{item.getTitle()}}"
         .item-thumb ng-class="item.getThumbClass()"
         | {{item.getTitle()}}
