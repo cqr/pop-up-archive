@@ -6,6 +6,14 @@ angular.module('RailsModel', ['rails'])
     var idMap = {"__identity": options.name};
     var queryCache = {"__identity": options.name};
 
+    <% if Rails.env.development? %>
+      window.identityMaps = window.identityMaps || {};
+      window.queryCaches = window.queryCaches || {};
+
+      window.identityMaps[options.name] = window.identityMaps[options.name] || idMap;
+      window.queryCaches[options.name] = window.queryCaches[options.name] || queryCache;
+    <% end %>
+
     function objectForData(klass, data) {
       var result;
       if (typeof data.id !== 'undefined') {
@@ -21,31 +29,7 @@ angular.module('RailsModel', ['rails'])
       return angular.extend(result, data);
     }
 
-
     options.requestTransformers = requestTransformers;
-    options.responseInterceptors = ['railsFieldRenamingInterceptor', 'railsRootWrappingInterceptor', [function () {
-      return function (promise) {
-        var RailsResource = promise.resource;
-        promise.resource.processResponse = function (promise) {
-          promise = RailsResource.callInterceptors(promise);
-          return promise.then(function (response) {
-            var result;
-            if (angular.isArray(response.data)) {
-              result = [];
-              angular.forEach(response.data, function (value) {
-                result.push(objectForData(RailsResource, value));
-              });
-            } else if (angular.isObject(response.data)) {
-              result = objectForData(RailsResource, response.data);
-            } else {
-              result = response.data;
-            }
-            return result;
-          });
-        };
-        return promise;
-      }
-    }]];
 
     var factory = railsResourceFactory(options);
     var originalUpdate = factory.prototype.update;
@@ -87,7 +71,16 @@ angular.module('RailsModel', ['rails'])
         });
         return deferred.promise;
       } else {
-        return factory.query(queryParams, context);
+        return factory.query(queryParams, context).then(function (data) {
+          if (typeof data.id !== 'undefined') {
+            if (typeof idMap[data.id] !== 'undefined') {
+              return angular.extend(idMap[data.id], data);
+            } else {
+              idMap[data.id] = data;
+            }
+          }
+          return data;
+        });
       }
     };
 
@@ -133,7 +126,25 @@ angular.module('RailsModel', ['rails'])
       }
 
       return result;
-    }
+    };
+
+    factory.processResponse = function (promise) {
+      promise = factory.callInterceptors(promise);
+      return promise.then(function (response) {
+        var result;
+        if (angular.isArray(response.data)) {
+          result = [];
+          angular.forEach(response.data, function (value) {
+            result.push(objectForData(factory, value));
+          });
+        } else if (angular.isObject(response.data)) {
+          result = objectForData(factory, response.data);
+        } else {
+          result = response.data;
+        }
+        return result;
+      });
+    };
 
     return factory;
   }
