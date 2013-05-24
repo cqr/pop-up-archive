@@ -61,7 +61,7 @@ class QueryBuilder
 
   def current_user_filter
     if current_user.present?
-      OrFilter.new([Filter.new(:collection_id, type: 'terms', value: current_user.collection_ids), public_filter])
+      OrFilter.new([Filter.new(:collection_id, type: 'terms', value: current_user.searchable_collection_ids), public_filter])
     else
       public_filter
     end
@@ -72,6 +72,6 @@ class QueryBuilder
   end
 
   def default_facets
-    {date_created: {type:'date'}, date_broadcast: {type:'date'}, date_added: {type:'date'}, duration: {type:'histogram'}, interviewer:{}, interviewee:{}, producer:{}, creator:{}, host:{}, tag:{}}
+    {date_created: {type:'date'}, date_broadcast: {type:'date'}, date_added: {type:'date'}, duration: {type:'histogram'}, interviewer:{}, interviewee:{}, producer:{}, creator:{}, host:{}, tag:{}, collection_id:{}}
   end
 end

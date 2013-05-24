@@ -5,7 +5,6 @@ class Api::V1::SearchesController < Api::V1::BaseController
 
     @search = Item.search do
 
-
       if page.present? && page > 1
         from (page - 1) * 25
       end

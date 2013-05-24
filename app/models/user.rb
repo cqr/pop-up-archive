@@ -72,6 +72,10 @@ class User < ActiveRecord::Base
     super || add_uploads_collection
   end
 
+  def searchable_collection_ids
+    collection_ids - uploads_collection_id
+  end
+
   private
 
   def add_public_collection

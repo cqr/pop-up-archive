@@ -52,7 +52,7 @@ angular.module('Directory.searches.models', ['RailsModel', 'Directory.items.mode
 
   return Search;
 }])
-.factory('Facet', function () {
+.factory('Facet', ['Collection', function (Collection) {
   function FacetEntry(name, count, field) {
     this.name = name;
     this.count = count;
@@ -68,6 +68,15 @@ angular.module('Directory.searches.models', ['RailsModel', 'Directory.items.mode
     this.count = count;
     this.field = field;
   }
+
+  function ReferenceFacetEntry(model, count, field) {
+    this.name = model.id;
+    this.model = model;
+    this.count = count;
+    this.field = field;
+  }
+
+  ReferenceFacetEntry.prototype = new FacetEntry();
 
   DateTimeFacetEntry.prototype = new FacetEntry();
 
@@ -88,9 +97,18 @@ angular.module('Directory.searches.models', ['RailsModel', 'Directory.items.mode
     return this._dateString;
   }
 
+  ReferenceFacetEntry.prototype.nameForPresenting = function () {
+    return this.model.title;
+  }
+
   function Facet(name, options) {
     this.name    = name;
     this.type    = options._type;
+    if (this.name == 'collectionId') {
+      this.name = "Collection";
+      this.type = "reference";
+      this.klass = Collection;
+    }
     this.data    = options;
   }
 
@@ -111,6 +129,13 @@ angular.module('Directory.searches.models', ['RailsModel', 'Directory.items.mode
         this.push(new FacetEntry(term.term, term.count, name));
       }, this._entries);
       break;
+    case "reference":
+      var entries = this._entries;
+      angular.forEach(this.data.terms, function (term) {
+        this.klass.get(parseInt(term.term)).then(function (model) {
+          entries.push(new ReferenceFacetEntry(model, term.count, name.toLowerCase() + "_id"));
+        })
+      }, this);
     case "date_histogram":
       // angular.forEach(this.data.entries, function(entry) {
       //   this.push(new DateTimeFacetEntry(entry.time, entry.count, name));
@@ -121,7 +146,7 @@ angular.module('Directory.searches.models', ['RailsModel', 'Directory.items.mode
   }
 
   return Facet;
-})
+}])
 .factory('Query', ['$location', function ($location) {
 
   var getUnique = function(things){
