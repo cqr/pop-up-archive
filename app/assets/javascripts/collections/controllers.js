@@ -9,6 +9,16 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
 
     $scope.selectedItems = [];
 
+    $scope.$watch('uploadsCollection.items', function (is) {
+      if (angular.isArray(is)) {
+        angular.forEach(is, function (item) {
+          if (item.selected && $scope.selectedItems.indexOf(item) == -1) {
+            $scope.selectedItems.push(item);
+          }
+        });
+      }
+    }, true);
+
     $scope.toggleItemSelection = function (item) {
       if (item.selected) {
         item.selected = false;
@@ -199,6 +209,7 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
   }, function (is) {
     $scope.itemsByMonth = {};
     $scope.itemsByCollection = {};
+    $scope.selectedItems = [];
     if (is.length) {
 
       angular.forEach($scope.collections, function (collection) {
@@ -209,6 +220,9 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
       var date, month, year, string;
 
       angular.forEach(is, function (item) {
+        if (item.selected && $scope.selectedItems.indexOf(item) == -1) {
+          $scope.selectedItems.push(item);
+        }
         item.__dateHash = item.__dateHash || getDateHashForItem(item);
         $scope.itemsByMonth[item.__dateHash] = $scope.itemsByMonth[item.__dateHash] || {name: dateString(item.__dateHash), items: []};
         $scope.itemsByMonth[item.__dateHash].items.push(item);
