@@ -19,14 +19,14 @@
         .item-thumb ng-class="item.getThumbClass()"
         | {{item.getTitle()}}
     .selection-actions ng-class="{in: selectedItems.length}"
-      button.btn.btn-danger bs-tooltip="'Delete'" data-placement="right" data-trigger="hover" ng-click="deleteSelection()"
-        i.icon-trash
-      button.btn bs-tooltip="'Select All'" data-placement="right" ng-click="selectAll(uploadsCollection.items)"
-        i.icon-check
-      button.btn bs-tooltip="'Clear Selection'" data-placement="left" data-trigger="hover" ng-click="clearSelection()"
-        i.icon-remove-sign
-      button.btn ng-disabled="collections.length < 2" bs-tooltip="'Add to Collection'" data-placement="left" bs-modal="'#{asset_path 'collections/categorize_items.html'}'"
-        i.icon-circle-arrow-down 
+      button.btn.btn-danger ng-click="deleteSelection()"
+        i.icon-trash  Delete
+      button.btn ng-click="selectAll(uploadsCollection.items)"
+        i.icon-check  Select All
+      button.btn ng-click="clearSelection()"
+        i.icon-remove-sign  Clear Selection
+      button.btn ng-disabled="collections.length < 2" bs-modal="'#{asset_path 'collections/categorize_items.html'}'"
+        i.icon-circle-arrow-down  Move to Collection
 
   h4 
 	span bs-tooltip="tour.iapublic.content" data-placement="right" tutorial-order="2" Public Collections
