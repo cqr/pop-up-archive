@@ -123,15 +123,10 @@ angular.module('RailsModel', ['rails'])
       });
 
       if (typeof queryCache[hash] !== 'undefined') {
-        console.log("Getting it from the query cache");
-        console.log(queryCache[hash]);
         var deferred = $q.defer();
         deferred.resolve(queryCache[hash]);
         result = deferred.promise;
       }
-
-      console.log(queryCache);
-      console.log(result);
 
       return result;
     }
