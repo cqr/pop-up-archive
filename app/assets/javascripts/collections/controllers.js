@@ -125,7 +125,7 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
 .controller('PublicCollectionsCtrl', ['$scope', 'Collection', 'Loader', function PublicCollectionsCtrl($scope, Collection, Loader) {
   $scope.collections = Loader(Collection.public());
 }])
-.controller('CollectionFormCtrl', ['$scope', 'Collection', function CollectionFormCtrl($scope, Collection) {
+.controller('CollectionFormCtrl', ['$scope', 'Collection', 'Me', function CollectionFormCtrl($scope, Collection, Me) {
 
   $scope.edit = function (collection) {
     $scope.collection = collection;
@@ -141,6 +141,9 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
     } else {
       collection.create().then(function (data) {
         $scope.collections.push(collection);
+        Me.authenticated(function (me) {
+          me.collectionIds.push(data.id);
+        });
       });
     }
   }
@@ -203,8 +206,10 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
     });
   });
 
+  $scope.selected = {};
+
   $scope.selectedItems = [];
-  $scope.selectedTags = [];
+  $scope.selected.tags = [];
 
   $scope.sortType = 0;
 
@@ -247,7 +252,7 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
   }, true);
 
   $scope.$watch('selectedItems', function (is) {
-    $scope.selectedTags.length = 0;
+    $scope.selected.tags.length = 0;
     if (is.length) {
       var tagSet = {};
       angular.forEach(is, function (selectedItem) {
@@ -255,7 +260,7 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
           tagSet[tag] = 1;
         });
       });
-      $scope.selectedTags.push.apply($scope.selectedTags, Object.keys(tagSet).map(function (tag) {
+      $scope.selected.tags.push.apply($scope.selected.tags, Object.keys(tagSet).map(function (tag) {
         return { text: tag, id: tag };
       }));
     }
@@ -325,7 +330,7 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
 
   $scope.submit = function () {
     var actualTags = [];
-    angular.forEach($scope.selectedTags, function (tag) {
+    angular.forEach($scope.selected.tags, function (tag) {
       actualTags.push(tag.text);
     });
 
