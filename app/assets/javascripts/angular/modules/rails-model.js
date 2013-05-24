@@ -78,6 +78,7 @@ angular.module('RailsModel', ['rails'])
           result = idMap[context.id];
         }
       }
+
       if (typeof result !== 'undefined') {
         var deferred = $q.defer();
         deferred.resolve(result);
@@ -86,7 +87,7 @@ angular.module('RailsModel', ['rails'])
         });
         return deferred.promise;
       } else {
-        return factory.$get(factory.resourceUrl(context), queryParams);
+        return factory.query(queryParams, context);
       }
     };
 
@@ -118,6 +119,9 @@ angular.module('RailsModel', ['rails'])
               queryCache[hash][key] = value;
             });
           }
+        }
+        if(!$rootScope.$$phase) {
+          $rootScope.$digest();
         }
         return queryCache[hash];
       });
