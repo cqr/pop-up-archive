@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
   end
 
   def searchable_collection_ids
-    collection_ids - uploads_collection_id
+    collection_ids - uploads_collection.id
   end
 
   private
