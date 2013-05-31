@@ -148,6 +148,7 @@ class AudioFile < ActiveRecord::Base
 
     host = file.fog_directory
 
+    logger.debug("audio_file: destination: scheme: #{scheme}, host:#{host}, path: /#{file_path}")
     uri = URI::Generic.build scheme: scheme, host: host, path: "/#{file_path}"
     if scheme == 'ia'
       uri.user = storage.key
