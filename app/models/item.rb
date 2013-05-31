@@ -101,17 +101,22 @@ class Item < ActiveRecord::Base
   end
 
   def token
-    read_attribute(:token) || generate_token
+    read_attribute(:token) || update_token
   end
 
-  def generate_token
+  def update_token
     @@instance_lock.synchronize do
       begin
-        t = "#{(self.title||'untitled')[0,50].parameterize}." + SecureRandom.urlsafe_base64(6) + ".popuparchive.org"
+        t = "#{(self.title||'untitled')[0,50].parameterize}." + generate_token(6) + ".popuparchive.org"
       end while Item.where(:token => t).exists?
       self.update_attribute(:token, t)
       t
     end
+  end
+
+  def generate_token(length=10)
+    cs = ('A'..'Z').to_a + ('a'..'z').to_a + ('0'..'9').to_a
+    SecureRandom.random_bytes(length).each_char.map{|c| cs[(c.ord % cs.length)]}.join
   end
 
   def storage
