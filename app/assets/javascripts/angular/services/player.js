@@ -182,7 +182,7 @@
                       '<td style="width: 16px; text-align:right">{{text.startTime}}</td>' +
                       '<td style="width: 8px;text-align:center">&ndash;</td>' +
                       '<td style="width: 16px; text-align:left; padding-right:10px">{{text.endTime}}</td>' +
-                      '<td>{{text.text}}</td>' +
+                      '<td><div class="file-transcript-text">{{text.text}}</div></td>' +
                     '</tr>' +
                   '</table>' +
                 '</div>',
