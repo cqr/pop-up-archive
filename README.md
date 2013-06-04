@@ -41,7 +41,6 @@ This guide expects that you have git and homebrew installed, and have a ruby env
     bundle install
     powder link
     cp config/env_vars.example config/env_vars
-    bundle exec rake db:create
     
 
 #### Environment variables
@@ -52,6 +51,7 @@ In order to mimic the way Heroku works, many application configuration settings 
 
 You will need to set the SECRET_TOKEN value for the app to start (the default value is too short). The other default value may not be required. If need to point the app to a database or database user different than what is in the included database.yml, you should do that with an environment variable. Once complete:
 
+    bundle exec rake db:create
     rake db:setup
     rake db:migrate
 
