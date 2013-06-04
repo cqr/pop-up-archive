@@ -41,6 +41,8 @@ This guide expects that you have git and homebrew installed, and have a ruby env
     bundle install
     powder link
     cp config/env_vars.example config/env_vars
+    bundle exec rake db:create
+    
 
 #### Environment variables
 
