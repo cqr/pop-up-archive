@@ -29,7 +29,7 @@
 
   h4 
 	span bs-tooltip="tour.iapublic.content" data-placement="right" tutorial-order="2" Public Collections
-  .alert.alert-info 
+  .alert.alert-error 
 	| Media in public collections is stored on servers at the Internet Archive. Anyone can see or hear this media through Pop Up Archive’s website, or download it from the 
 	a href="http://archive.org" target="blank" Internet Archive’s website.
   .collections.public-collections
@@ -44,7 +44,7 @@
           | {{collection.title}}
   h4 
 	span bs-tooltip="tour.s3private.content" data-placement="right" tutorial-order="3" Private Collections
-  .alert.alert-error Media added to your Private Collection will be stored at Pop Up Archive. It will only to be visible to you.
+  .alert.alert-info Media added to your Private Collection will be stored at Pop Up Archive. It will only to be visible to you.
   .collections.private-collections
     ul.inline.collections
       li.add-collection
