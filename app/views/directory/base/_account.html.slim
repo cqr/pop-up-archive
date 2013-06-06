@@ -1,7 +1,7 @@
 - if user_signed_in?
   ul.nav
     li
-      a.btn.user-menu bs-dropdown="userMenu" = current_user.name
+      a.btn.user-menu id="navbarbutton" bs-dropdown="userMenu" = current_user.name
     li
       a 
         span#loading-gear.animated.flash ng-show="loading()"
