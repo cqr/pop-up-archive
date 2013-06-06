@@ -895,35 +895,16 @@ div#-assets-collections-tutorial1-00M.modal, div#-assets-collections-tutorial2-0
 }
 
 .big-modal .modal-body{
-		max-height: 900px;
-		color: white;
-		alignment: center;
+	max-height: 1100px;
+	color: white;
+	text-align: center;
 }
 
-@media (min-width: 1200px) { 
-	.big-modal .modal{
-	    width: 960px;
-	    margin-left: -480px;}
-}
- 
-/* Portrait tablet to landscape and desktop */
-@media (min-width: 768px) and (max-width: 979px) { 
-	.big-modal .modal{
-	    width: 760px;
-	    margin-left: -380px;}
-	 }
- 
-/* Landscape phone to portrait tablet */
-@media (max-width: 767px) {
-	.big-modal .modal{
-		width: 400px;
-		margin-left: -200px;
+@media (max-width: 767px) { 
+	div.big-modal{
+	  width: 460px;
+	  margin-left: -230px;}
+	img{
+		display: none;
 	}
-}
- 
-/* Landscape phones and down */
-@media (max-width: 480px) { 
-	.big-modal .modal{
-	    width: 460px;
-	    margin-left: -230px;}
-}
+}	
