@@ -201,6 +201,9 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
 .controller('NewPrivateCollectionCtrl', ['$scope', 'Collection', function ($scope, Collection) {
   $scope.collection = new Collection({itemsVisibleByDefault: false});
 }])
+.controller('PrivacyFAQ', ['$scope', 'Collection', function ($scope, Collection) {
+  $scope.collection = new Collection({itemsVisibleByDefault: false});
+}])
 .controller('BatchEditCtrl', ['$scope', 'Loader', 'Collection', 'Me', function ($scope, Loader, Collection, Me) {
   Me.authenticated(function (currentUser) {
     Loader.page(Collection.query(), 'BatchEdit', $scope).then(function (collections) {
