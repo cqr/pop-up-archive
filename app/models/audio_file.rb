@@ -3,6 +3,8 @@
 class AudioFile < ActiveRecord::Base
   belongs_to :item
   belongs_to :instance
+  has_many :tasks, as: :owner
+  
   attr_accessible :file
   mount_uploader :file, ::AudioFileUploader
   after_commit :process_file, on: :create

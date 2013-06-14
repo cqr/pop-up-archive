@@ -168,7 +168,7 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
     }
   });
 
-  $scope.$watch('selectedItsm.collectionId', function (is) {
+  $scope.$watch('selectedItems.collectionId', function (is) {
     if (typeof is !== 'undefined') {
       for (var i=0; i < $scope.collections.length; i++) {
         if ($scope.collections[i].id == is) {

@@ -37,32 +37,36 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.csvImp
       alert.message = file.name;
       alert.add();
 
-      item.addAudioFile(file).then(function(data) {
-        item.audioFiles.push(data);
-        $scope.addMessage({
-          'type': 'success',
-          'title': 'Congratulations!',
-          'content': '"' + file.name + '" upload completed. <a data-dismiss="alert" data-target=":parent" ng-href="' + item.link() + '">View and edit the item!</a>'
-        });
+      var audioFile = item.addAudioFile(file,
+      {
+        onComplete: function(upload) {
+          console.log('fileUploaded: addAudioFile: complete',upload, item);
+          $scope.addMessage({
+            'type': 'success',
+            'title': 'Congratulations!',
+            'content': '"' + file.name + '" upload completed. <a data-dismiss="alert" data-target=":parent" ng-href="' + item.link() + '">View and edit the item!</a>'
+          });
 
-        alert.progress = 100;
-        alert.status = "Uploaded";
+          alert.progress = 100;
+          alert.status = "Uploaded";
+        },
+        onError: function() {
+          console.log('fileUploaded: addAudioFile: error', item);
+          $scope.addMessage({
+            'type': 'error',
+            'title': 'Oops...',
+            'content': '"' + file.name + '" upload failed. Hmmm... try again?'
+          });
 
-      }, function(data){
-        console.log('fileUploaded: addAudioFile: reject', data, item);
-        $scope.addMessage({
-          'type': 'error',
-          'title': 'Oops...',
-          'content': '"' + file.name + '" upload failed. Hmmm... try again?'
-        });
-
-        alert.progress = 100;
-        alert.status = "Error";
-
+          alert.progress = 100;
+          alert.status = "Error";
+        },
+        onProgress: function(progress) {
+          console.log('uploadAudioFiles: onProgress', progress);
+          alert.progress = progress;
+        }
       });
-
     });
-
   };
 
   $scope.submit = function() {
