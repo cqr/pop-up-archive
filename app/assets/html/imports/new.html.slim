@@ -2,24 +2,10 @@
 .row-fluid
   .span9
     .brochure(style='margin-top: 50px;')
-      h1 to get started...
-
-      p Pop Up Archive accepts CSV spreadsheets where each row represents one item, and columns are used for descriptive fields.
+      h1 drag and drop or select a spreadsheet:
 
       p
-        | If you have a pre-existing spreadsheet, try to match your fields with the Pop Up template spreadsheet. Otherwise, you can 
-        a href='https://docs.google.com/spreadsheet/pub?key=0AtWrmSCFjFb2dHJoY2V2eGxiRHktM0sxQ1dlQXNwNVE&output=csv' target="_blank" create a spreadsheet using this template.
-      p
-        | Tips:
-        ul
-          li We've seeded it with some examples &mdash; go ahead and replace them.
-          li If you want multiple values (like two interviewers), use two columns.
-          li
-            a bs-modal="'#{asset_path 'imports/field_descriptions.html'}'" Click here for definitions for the Pop Up descriptive fields.
-          li After you map your spreadsheet to Pop Up, you can add audio files to your newly-created items.
-
-      p
-        | Got your spreadsheet ready? Just drag & drop OR 
+        |  
         form.import ng-controller='FSImportCtrl'
           fieldset 
             span file-button="" style='margin-right: 4px;'
@@ -30,7 +16,22 @@
 
             button.btn.btn-success ng-show='files.length > 0' ng-click='submit()' Import
 
-      p Pop Up will analyze your spreadsheet and map your fields. Don't worry, you can edit the mapping in case we don't get it right at first.
+      p Pop Up Archive accepts CSV spreadsheets where each row represents one item, and columns are used for descriptive fields.
+
+			p Pop Up will analyze your spreadsheet and map your fields. Don't worry, you can edit the mapping in case we don't get it right at first.
+			
+			 p
+	        | If you have a pre-existing spreadsheet, try to match your fields with the Pop Up template spreadsheet. Otherwise, you can 
+	        a href='https://docs.google.com/spreadsheet/pub?key=0AtWrmSCFjFb2dHJoY2V2eGxiRHktM0sxQ1dlQXNwNVE&output=csv' target="_blank" create a spreadsheet using this template.  
+			        | Tips:
+			        ul
+			          li We've seeded it with some examples &mdash; go ahead and replace them.
+			          li If you want multiple values (like two interviewers), use two columns.
+			          li
+			            a bs-modal="'#{asset_path 'imports/field_descriptions.html'}'" Click here for definitions for the Pop Up descriptive fields.
+			          li After you map your spreadsheet to Pop Up, you can add audio files to your newly-created items.
+
+			
 
       p
         i Pssss.... hey! Already got audio stored on a server or other public storage (like Dropbox, Google Drive, or Box.com)? Save yourself time by by creating a "Link to Audio File" column in your spreadsheet and pasting comma-separated direct links to your files. Check out the template spreadsheet for examples.

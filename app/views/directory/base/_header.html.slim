@@ -20,3 +20,13 @@
       .nav-collapse.collapse
         = render('account')
         = render('nav')
+
+div
+  ul.breadcrumb
+    li ng-repeat="breadcrumb in breadcrumbs.getAll()"
+      span.divider /
+      ng-switch on="$last"
+        span ng-switch-when="true" {{breadcrumb.name}}
+        span ng-switch-default
+        a href = "{{breadcrumb.path}}"
+				| {{breadcrumb.name}}
