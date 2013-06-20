@@ -819,15 +819,15 @@ form.with-tags {
   }
 }
 
-.slide-span {
-  width: 270px;
+.background-container {
+	background-color: rgba(255,255,255,.5);
+	text-align: center;
+	padding: 15px 0;
+}
+
+.brochure.slide-span {
   height: 240px;
-
-  float: left;
-  margin-left: 16px;
-  margin-bottom: 20px;
   background-color: rgb(255, 255, 255);
-
   padding: 8px;
 
   -webkit-border-radius: 4px;
@@ -836,10 +836,6 @@ form.with-tags {
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-}
-
-.slide-span.first {
-  margin-left: 0px;  
 }
 
 .slide-span a:hover {
@@ -913,3 +909,4 @@ div#-assets-collections-tutorial1-00M.modal, div#-assets-collections-tutorial2-0
 	padding: 4px 4px 4px;
 	margin: 9px 0px 0px 0px;
 }
+

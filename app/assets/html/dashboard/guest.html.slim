@@ -1,21 +1,24 @@
-.row-fluid
-  .span4 ng-hide="currentUser.authenticated()"
-    .brochure.slide-span
-      a ng-href='http://www.popuparchive.org/request-invite' target="_self"
-        span.title Request an invite
-        img.image src='#{asset_path("account.svg")}'
-        span.content Pop Up Archive is offering access to a limited group of pioneering users. Like to give it a try? Request an invite.
-
-  .span4
-    .brochure.slide-span
-      a ng-href='/collections'
-        span.title Archive your audio
-        img.image src='#{asset_path("archive.svg")}'
-        span.content Tags & transcripts will be automatically generated to make your audio searchable.
-
-  .span4
-    .brochure.slide-span
-      a ng-href='/search'
-        span.title Explore
-        img.image src='#{asset_path("explore.svg")}'
-        span.content Explore the wild west of archival sound. You can search &amp; browse your own material or the entire public archive.
+.background-container
+	.row-fluid
+		.span12
+			.row-fluid
+				.span4 ng-hide="currentUser.authenticated()"
+					.brochure.slide-span
+						a ng-href='http://www.popuparchive.org/request-invite' target="_self"
+							span.title Request an invite
+							img.image src='#{asset_path("account.svg")}'
+							span.content Pop Up Archive is offering access to a limited group of pioneering users. Like to give it a try? Request an invite.
+				.span8
+					.row-fluid
+						.span6
+							.brochure.slide-span
+								a ng-href='/collections'
+									span.title Archive your audio
+									img.image src='#{asset_path("archive.svg")}'
+									span.content Tags & transcripts will be automatically generated to make your audio searchable.
+						.span6
+							.brochure.slide-span
+								a ng-href='/search'
+									span.title Explore
+									img.image src='#{asset_path("explore.svg")}'
+									span.content Explore the wild west of archival sound. You can search &amp; browse your own material or the entire public archive.
