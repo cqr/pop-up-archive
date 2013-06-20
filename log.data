@@ -1,0 +1,28 @@
+2013-06-20T20:56:02.479627+00:00 app[web.1]:   Parameters: {"path"=>"collections/452/items/3715"}
+2013-06-20T20:56:02.479627+00:00 app[web.1]:   Rendered directory/base/_header.html.slim (7.4ms)
+2013-06-20T20:56:02.455984+00:00 app[web.1]: Started GET "/collections/452/items/3715" for 67.180.255.221 at 2013-06-20 20:56:02 +0000
+2013-06-20T20:56:02.479627+00:00 app[web.1]: Completed 200 OK in 15ms (Views: 10.3ms | ActiveRecord: 4.6ms)
+2013-06-20T20:56:02.479627+00:00 app[web.1]: Processing by Directory::DashboardController#user as HTML
+...
+2013-06-20T20:56:03.070545+00:00 app[web.1]: Completed 200 OK in 43ms (Views: 7.9ms | ActiveRecord: 26.1ms)
+2013-06-20T20:56:03.070545+00:00 app[web.1]:   Rendered api/v1/users/me.json.rabl (33.1ms)
+2013-06-20T20:56:03.070545+00:00 app[web.1]: Processing by Api::V1::UsersController#me as JSON
+2013-06-20T20:56:03.090455+00:00 heroku[router]: at=info method=GET path=/assets/items/show-98cc798ae466fa688a56fe177b26f19b.html host=beta.popuparchive.org fwd="67.180.255.221" dyno=web.1 connect=1ms service=4ms status=304 bytes=0
+2013-06-20T20:56:03.219678+00:00 app[web.1]: Started GET "/api/collections/452/items/3715" for 67.180.255.221 at 2013-06-20 20:56:03 +0000
+2013-06-20T20:56:03.675289+00:00 heroku[router]: at=info method=GET path=/api/collections/452? host=beta.popuparchive.org fwd="67.180.255.221" dyno=web.1 connect=1ms service=449ms status=304 bytes=0
+2013-06-20T20:56:03.682247+00:00 heroku[router]: at=info method=GET path=/api/collections? host=beta.popuparchive.org fwd="67.180.255.221" dyno=web.1 connect=1ms service=448ms status=304 bytes=0
+2013-06-20T20:56:03.499059+00:00 heroku[router]: at=info method=GET path=/api/collections/452/items/3715? host=beta.popuparchive.org fwd="67.180.255.221" dyno=web.1 connect=0ms service=281ms status=304 bytes=0
+2013-06-20T20:56:03.491161+00:00 app[web.1]: Processing by Api::V1::ItemsController#show as JSON
+2013-06-20T20:56:03.491161+00:00 app[web.1]:   Parameters: {"collection_id"=>"452", "id"=>"3715"}
+2013-06-20T20:56:03.491161+00:00 app[web.1]: Completed 200 OK in 250ms (Views: 60.4ms | ActiveRecord: 72.9ms)
+2013-06-20T20:56:03.491161+00:00 app[web.1]:   Rendered api/v1/items/show.json.rabl (86.5ms)
+2013-06-20T20:56:03.591001+00:00 app[web.1]: Completed 200 OK in 58ms (Views: 40.4ms | ActiveRecord: 17.7ms)
+2013-06-20T20:56:03.498138+00:00 app[web.1]: Started GET "/api/collections/452" for 67.180.255.221 at 2013-06-20 20:56:03 +0000
+2013-06-20T20:56:03.667812+00:00 app[web.1]: Completed 200 OK in 63ms (Views: 58.1ms | ActiveRecord: 4.8ms)
+2013-06-20T20:56:03.591001+00:00 app[web.1]:   Parameters: {"id"=>"452"}
+2013-06-20T20:56:03.591001+00:00 app[web.1]:   Rendered api/v1/collections/show.json.rabl (57.2ms)
+2013-06-20T20:56:03.667812+00:00 app[web.1]: Processing by Api::V1::CollectionsController#index as JSON
+2013-06-20T20:56:03.591001+00:00 app[web.1]: 
+Processing by Api::V1::CollectionsController#show as JSON
+2013-06-20T20:56:03.667812+00:00 app[web.1]:   Rendered api/v1/collections/index.json.rabl (53.1ms)
+2013-06-20T20:56:03.597435+00:00 app[web.1]: Started GET "/api/collections" for 67.180.255.221 at 2013-06-20 20:56:03 +0000
