@@ -55,6 +55,14 @@ test:
   username: <%= @connect_uri.user %>
   password: <%= @connect_uri.password %>
 
+staging:
+  adapter: postgresql
+  encoding: unicode
+  database: pop-up-archive_staging
+  pool: 5
+  username: pop-up-archive
+  password:
+
 production:
   adapter: postgresql
   encoding: unicode
@@ -62,3 +70,4 @@ production:
   pool: 5
   username: pop-up-archive
   password:
+
