@@ -29,7 +29,7 @@
             .bar ng-show="isLoaded()" ng-style="{width:player.time*100/player.duration+'%'}"
             .timecodes ng-show="isLoaded() && player.duration" {{player.time | timeCode }} / {{player.duration | timeCode }}
         .transcript transcript-text="audioFile.transcript"
-.row-fluid.item-detail
+.row-fluid.item-detail.metadata
   .span6
     h4 Metadata
     dl.dl-horizontal

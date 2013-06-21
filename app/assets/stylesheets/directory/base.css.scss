@@ -543,6 +543,7 @@ img.media-object {
     border-radius: 14px;
     border: none;
     padding: 10px 20px;
+    word-wrap: break-word;
 
     .btn {
       background: #5970B1;
@@ -908,4 +909,14 @@ div#-assets-collections-tutorial1-00M.modal, div#-assets-collections-tutorial2-0
 	padding: 4px 4px 4px;
 	margin: 9px 0px 0px 0px;
 }
+
+.metadata {
+  word-wrap: break-word;
+}
+
+.newimportdiv {
+	padding: 10px;
+	border-radius: 4px;
+	background-color: rgba(255, 255, 255, .7);
+	}
 
