@@ -8,7 +8,7 @@
 							span.title Request an invite
 							img.image src='#{asset_path("account.svg")}'
 							span.content Pop Up Archive is offering access to a limited group of pioneering users. Like to give it a try? Request an invite.
-				.span8
+				.span8 ng-class="{ offset2 : currentUser.authenticated() == 1}"
 					.row-fluid
 						.span6
 							.brochure.slide-span
