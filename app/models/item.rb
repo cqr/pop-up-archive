@@ -107,7 +107,7 @@ class Item < ActiveRecord::Base
   def update_token
     @@instance_lock.synchronize do
       begin
-        t = "#{(self.title||'untitled')[0,50].parameterize}." + generate_token(6) + ".popuparchive.org"
+        t = "#{hosterize((self.title||'untitled')[0,50])}." + generate_token(6) + ".popuparchive.org"
       end while Item.where(:token => t).exists?
       self.update_attribute(:token, t)
       t
@@ -119,8 +119,28 @@ class Item < ActiveRecord::Base
     SecureRandom.random_bytes(length).each_char.map{|c| cs[(c.ord % cs.length)]}.join
   end
 
+  # like parameterize, but no '_'
+  def hosterize(string, sep = '-')
+    # replace accented chars with their ascii equivalents
+    parameterized_string = ActiveSupport::Inflector.transliterate(string).downcase
+    # Turn unwanted chars into the separator
+    parameterized_string.gsub!(/[^a-z0-9\-]+/, sep)
+    unless sep.nil? || sep.empty?
+      re_sep = Regexp.escape(sep)
+      # No more than one of the separator in a row.
+      parameterized_string.gsub!(/#{re_sep}{2,}/, sep)
+      # Remove leading/trailing separator.
+      parameterized_string.gsub!(/^#{re_sep}|#{re_sep}$/, '')
+    end
+    parameterized_string
+  end
+
+  def upload_to
+    storage.direct_upload? ? storage : collection.upload_to
+  end
+
   def storage
-    self.storage_configuration || self.collection.try(:default_storage) || StorageConfiguration.default_storage(is_public)
+    self.storage_configuration || self.collection.default_storage
   end
 
   def geographic_location=(name)
@@ -171,7 +191,6 @@ class Item < ActiveRecord::Base
   def set_defaults
     return true unless is_public.nil?
     self.is_public = (collection.present? && collection.items_visible_by_default)
-    self.storage_configuration = self.storage
     true
   end
 

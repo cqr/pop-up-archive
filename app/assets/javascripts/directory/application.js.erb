@@ -10,6 +10,8 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+// require s3_multipart/lib
+//
 //= require_tree .
 //= require jquery
 //= require bootstrap
@@ -19,6 +21,7 @@
 //= require angular-ui
 //= require angular-strap
 //= require angularjs/rails/resource
+//= require mule-upload
 //= require_tree ../
 
 if(window.location.hash=="#_=_"){window.location.hash = ""}
@@ -112,6 +115,10 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
       templateUrl: "<%= asset_path 'imports/show.html' %>",
       controller: "ImportCtrl"
     })
+    .when('/condouploads', {
+      templateUrl: "<%= asset_path 'uploads/index.html' %>",
+      controller: "UploadsCtrl"
+    })
     .otherwise({
       template: "<h1>404 - not found</h1>"
     });
@@ -125,16 +132,24 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
                   '$strap',
                   '$strap.directives',
                   'RailsUjs',
+                  // 'Condo',
                   'Directory.dashboard.controllers',
                   'Directory.files.controllers',
                   'Directory.csvImport.controllers',
                   'Directory.searches.controllers',
                   'Directory.items.controllers',
                   'Directory.audioFiles.controllers',
-                  'Directory.collections.controllers'
+                  'Directory.collections.controllers',
+                  // 'Directory.uploads.controllers',
                   ];
 
   window.directory = angular.module('Directory', depends);
+
+  window.directory.constant('STORAGE_PROVIDER', {
+    bucket: '<%= ENV["AWS_BUCKET"] %>',
+    access_key: '<%= ENV["AWS_ACCESS_KEY_ID"] %>'
+  });
+
   window.directory.config(applicationConfig);
   window.directory.controller("DirectoryCtrl", ['$scope', '$route', '$interpolate', 'Me', '$timeout', function($scope, $route, $interpolate, Me, $timeout) {
 
