@@ -1,5 +1,5 @@
 angular.module('Directory.audioFiles.models', ['RailsModel', 'S3Upload'])
-.factory('AudioFile', ['Model', 'S3Upload', 'STORAGE_PROVIDER', function (Model, S3Upload, STORAGE_PROVIDER) {
+.factory('AudioFile', ['Model', 'S3Upload', 'STORAGE_PROVIDER', '$http', function (Model, S3Upload, STORAGE_PROVIDER, $http) {
   var AudioFile = Model({url:'/api/items/{{itemId}}/audio_files/{{id}}', name: 'audio_file'});
 
   AudioFile.attrAccessible = ['url', 'filename'];
@@ -9,19 +9,30 @@ angular.module('Directory.audioFiles.models', ['RailsModel', 'S3Upload'])
     return (token + '/' + cleanFileName);
   }
 
+  AudioFile.prototype.getStorage = function() {
+    var self = this;
+    return AudioFile.processResponse($http.get(self.$url() + '/upload_to')).then(function (storage) {
+      self.storage = storage;
+      return self.storage;
+    });
+  }
+
   AudioFile.prototype.upload = function(file, options) {
-    options = options || {};
+    var self = this;
+    self.getStorage().then(function(storage) {
+      // console.log('upload_to!', storage, self, self.storage);
 
-    // options.uploader = options.uploader || "fe667054313e5098844b7b5143a183c93ad6f38d";
-    options.bucket     = options.bucket       || STORAGE_PROVIDER.bucket;
-    options.access_key = options.access_key   || STORAGE_PROVIDER.access_key;
-    options.ajax_base  = this.$url();
-    options.key        = createKey(options.token, file.name);
-    options.file       = file;
+      options = options || {};
 
-    this.upload = new S3Upload(options);
-    this.upload.upload();
-    return this.upload;
+      options.bucket     = options.bucket       || self.storage.bucket;
+      options.access_key = options.access_key   || self.storage.key;
+      options.ajax_base  = self.$url();
+      options.key        = createKey(options.token, file.name);
+      options.file       = file;
+
+      self.upload = new S3Upload(options);
+      self.upload.upload();
+    });
   };
 
   return AudioFile;

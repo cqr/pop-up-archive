@@ -7,7 +7,7 @@
  */
 
 function mule_upload(settings) {
-    var debug = true;
+    var debug = false;
 
     // custom logging function that prepends a text for easy identification;
     // it is also toggled by the `debug` flag
@@ -129,6 +129,17 @@ function mule_upload(settings) {
         // or you'll get an Invalid Signature error. If unsure about the
         // mime type, use application/octet-stream
         settings.content_type = settings.content_type || "application/octet-stream";
+
+
+        // acl can be set to:
+        // private
+        // public-read (* default)
+        // public-read-write
+        // authenticated-read
+        // bucket-owner-read
+        // bucket-owner-full-control
+        // log-delivery-write
+        settings.acl = settings.acl || 'public-read';
 
         // various callbacks
         settings.on_progress = settings.on_progress || function() {};
@@ -252,7 +263,7 @@ function mule_upload(settings) {
                     error_callback: handler,
                     headers: {
                         "x-amz-date": date,
-                        "x-amz-acl": "public-read",
+                        "x-amz-acl": settings.acl,
                         "Authorization": authorization,
                         "Content-Disposition": "attachment; filename=" + u.file.name
                     }

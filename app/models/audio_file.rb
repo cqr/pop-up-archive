@@ -4,13 +4,41 @@ class AudioFile < ActiveRecord::Base
   belongs_to :item
   belongs_to :instance
   has_many :tasks, as: :owner
-  
+
+  belongs_to :storage_configuration, class_name: "StorageConfiguration", foreign_key: :storage_id
+
   attr_accessible :file
+
   mount_uploader :file, ::AudioFileUploader
+
   after_commit :process_file, on: :create
+
   attr_accessor :should_trigger_fixer_copy
 
   delegate :collection_title, to: :item
+
+  def multipart_upload_complete(task=nil)
+    # this works for the case when it is a private file, need to do a copy when it is public
+    if task ||= tasks.complete.where(name: 'upload').last
+      write_attribute(:file, File.basename(task.extras['key']))
+      self.storage_configuration = upload_to
+      save!
+    end
+  end
+
+  def copy_storage
+    # if the storage is not the same as the item, we need to copy/move it over
+    if storage != item.storage
+
+      # see if there is already a copy task in progress
+
+      if tasks = tasks.where(name: 'copy')
+        tasks.each{|t| t.options['destination']}
+      end
+
+    end
+  end
+
 
   def transcript_text
     return '' unless transcript
@@ -28,8 +56,12 @@ class AudioFile < ActiveRecord::Base
     instance.try(:item).try(:collection) || item.try(:collection)
   end
 
+  def upload_to
+    storage.direct_upload? ? storage : item.upload_to
+  end
+
   def storage
-    item.try(:storage) || StorageConfiguration.default_storage
+    self.storage_configuration || self.item.storage
   end
 
   def url
@@ -114,8 +146,18 @@ class AudioFile < ActiveRecord::Base
       job.retry_delay = 3600 # 1 hour
       job.retry_max = 24 # try for a whole day
       job.original = transcript_text_url
-      job.add_task task_type: 'analyze', result: destination('_analysis.json'), call_back: audio_file_callback_url, label:'analyze'
+      job.add_task task_type: 'analyze', result: destination('_analysis.json'), call_back: audio_file_callback_url, label:'analyze', options: transcribe_options
     end
+  end
+
+  def transcribe_options
+    {
+      language:         'en-US',
+      chunk_duration:   5,
+      overlap:          1,
+      max_results:      1,
+      profanity_filter: true
+    }
   end
 
   def file_path

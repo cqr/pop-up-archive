@@ -14,8 +14,9 @@ PopUpArchive::Application.routes.draw do
       resource :search
       resources :items do
         resources :audio_files do
-          post '', action: 'update'
-          get 'transcript_text', action: 'transcript_text'  
+          post '',                    action: 'update'
+          get 'transcript_text',      action: 'transcript_text'  
+          get 'upload_to',            action: 'upload_to'
 
           # s3 upload actions
           get 'chunk_loaded',         action: 'chunk_loaded'

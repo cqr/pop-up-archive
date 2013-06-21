@@ -35,12 +35,13 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.csvImp
       alert.status = "Uploading";
       alert.progress = 1;
       alert.message = file.name;
+      alert.path = item.link();
       alert.add();
 
       var audioFile = item.addAudioFile(file,
       {
         onComplete: function(upload) {
-          console.log('fileUploaded: addAudioFile: complete',upload, item);
+          // console.log('fileUploaded: addAudioFile: complete',upload, item);
           $scope.addMessage({
             'type': 'success',
             'title': 'Congratulations!',
@@ -49,6 +50,9 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.csvImp
 
           alert.progress = 100;
           alert.status = "Uploaded";
+
+          // let search results know that there is a new item
+          $timeout(function(){ $scope.$broadcast('datasetChanged')}, 750);
         },
         onError: function() {
           console.log('fileUploaded: addAudioFile: error', item);
@@ -62,7 +66,7 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.csvImp
           alert.status = "Error";
         },
         onProgress: function(progress) {
-          console.log('uploadAudioFiles: onProgress', progress);
+          // console.log('uploadAudioFiles: onProgress', progress);
           alert.progress = progress;
         }
       });

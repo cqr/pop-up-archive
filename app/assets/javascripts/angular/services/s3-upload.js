@@ -10,10 +10,10 @@
       u.progress = 0;
 
       u.callbacks = {};
-      u.callbacks.onStart    = options.onStart    || function(fileObj){ console.log("onStart", fileObj); };
-      u.callbacks.onComplete = options.onComplete || function(fileObj){ console.log("onComplete", fileObj); };
-      u.callbacks.onError    = options.onError    || function(){ console.log("onError"); };
-      u.callbacks.onProgress = options.onProgress || function(progress){ console.log("onProgress", progress); };
+      u.callbacks.onStart    = options.onStart    || function(fileObj){ return; };
+      u.callbacks.onComplete = options.onComplete || function(fileObj){ return; };
+      u.callbacks.onError    = options.onError    || function(){ return; };
+      u.callbacks.onProgress = options.onProgress || function(progress){ return; };
     }
 
     S3Upload.prototype = {
@@ -31,7 +31,7 @@
           on_error:     function(){ u.callbacks.onError(); $rootScope.$apply();},
           on_progress:  function(bytesUploaded, bytesTotal){
             var percent = bytesUploaded / bytesTotal * 100;
-            console.log("File is %f percent done (%f of %f total)", percent, bytesUploaded, bytesTotal);
+            // console.log("File is %f percent done (%f of %f total)", percent, bytesUploaded, bytesTotal);
             u.progress = parseInt(percent, 10);
             u.callbacks.onProgress(u.progress);
             $rootScope.$apply();

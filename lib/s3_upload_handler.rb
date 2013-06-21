@@ -62,5 +62,4 @@ module S3UploadHandler
     }
   end
 
-
 end

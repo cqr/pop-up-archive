@@ -2,20 +2,6 @@ angular.module('Directory.searches.models', ['RailsModel', 'Directory.items.mode
 .factory('Search', ['Model', 'Item', 'Facet',  function (Model, Item, Facet) {
   var Search = Model({url:'/api/search', name: 'search'});
 
-  Search.prototype.resultsAsItems = function () {
-    if (typeof this.itemsResults !== 'undefined') {
-      return this.itemsResults;
-    }
-    
-    this.itemsResults = [];
-
-    angular.forEach(this.results, function (result) {
-      this.itemsResults.push(new Item(result));
-    }, this);
-
-    return this.itemsResults;
-  }
-
   Search.prototype.lastItemNumber = function () {
     return Math.min(this.page * 25, this.totalHits);
   }
@@ -146,6 +132,16 @@ angular.module('Directory.searches.models', ['RailsModel', 'Directory.items.mode
   }
 
   return Facet;
+}])
+.filter('toItems', ['Item', function (Item) {
+  return function (data, options) {
+    if (data) {
+      angular.forEach(data, function (result) {
+        angular.copy((new Item(result)), result);
+      });
+    }
+    return data;
+  }
 }])
 .factory('Query', ['$location', function ($location) {
 

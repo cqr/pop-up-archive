@@ -5,6 +5,7 @@ class Api::V1::AudioFilesController < Api::V1::BaseController
   expose :item
   expose :audio_files, ancestor: :item
   expose :audio_file
+  expose :storage
 
   def update
     if params[:task].present? && params[:task][:result_details][:status] == 'complete'
@@ -30,6 +31,11 @@ class Api::V1::AudioFilesController < Api::V1::BaseController
   def transcript_text
     response.headers['Content-Disposition'] = 'attachment'
     render text: audio_file.transcript_text, content_type: 'text/plain'
+  end
+
+  def upload_to
+    @storage = audio_file.upload_to
+    respond_with :api
   end
 
   # these are for the request signing
@@ -93,6 +99,7 @@ class Api::V1::AudioFilesController < Api::V1::BaseController
       task.extras['chunks_uploaded'] = chunks_uploaded.to_csv
       task.status = Task::COMPLETE if (task.extras['num_chunks'].to_i <= chunks_uploaded.size)
       task.save!
+      audio_file.multipart_upload_complete(task)
 
       result = task.extras
     end
