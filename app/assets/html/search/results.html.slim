@@ -24,26 +24,26 @@ ul.pager
     h5.results-count {{search.firstItemNumber()}} to {{search.lastItemNumber()}} of {{search.totalHits}} items
     .media.search-result ng-repeat="item in search.results | toItems"
       .media-body
-        a.pull-left ng-href="{{item.link()}}"
-          img.media-object src="#{asset_path('minimark.png')}"
-        h4.media-heading ng-show="item.getTitle()"
-          a ng-href="{{item.link()}}" {{item.getTitle()}}
-        .media
-          p ng-show="item.getDescription()" ng-bind-html-unsafe="item.getDescription()"
-          ul.inline.dates
-            li.label ng-show="item.dateCreated"
-              b Created: 
-              | {{item.dateCreated}} &nbsp;
-            li.label ng-show="item.dateBroadcast"
-              b Broadcast: 
-              | {{item.dateBroadcast}} &nbsp;
-            li.label ng-show="item.dateAdded"
-              b Added: 
-              | {{item.dateAdded}} &nbsp;
-          ul.inline.contributors
-            li.label ng-repeat="contributorGroup in item.standardRoles" ng-hide="(item[(contributorGroup|pluralize)]).length==0"
-             b {{contributorGroup | titleize | pluralize}}: 
-             | {{item[(contributorGroup|pluralize)].join(', ')}} &nbsp;
+				a.pull-left ng-href="{{item.link()}}"
+					img.media-object src="#{asset_path('minimark.png')}"
+				.media
+					h4.media-heading ng-show="item.getTitle()"
+						a ng-href="{{item.link()}}" {{item.getTitle()}}
+					p ng-show="item.getDescription()" ng-bind-html-unsafe="item.getDescription()"
+					ul.inline.dates
+						li.label ng-show="item.dateCreated"
+							b Created: 
+							| {{item.dateCreated}} &nbsp;
+						li.label ng-show="item.dateBroadcast"
+							b Broadcast: 
+							| {{item.dateBroadcast}} &nbsp;
+						li.label ng-show="item.dateAdded"
+							b Added: 
+							| {{item.dateAdded}} &nbsp;
+					ul.inline.contributors
+						li.label ng-repeat="contributorGroup in item.standardRoles" ng-hide="(item[(contributorGroup|pluralize)]).length==0"
+							b {{contributorGroup | titleize | pluralize}}: 
+							| {{item[(contributorGroup|pluralize)].join(', ')}} &nbsp;
 ul.pager
   li.previous ng-show="search.page > 1"
     a ng-click="backPage()" &larr; Back

@@ -372,23 +372,35 @@ $persistent-player-scrollpading: 15px;
   }
 }
 
+//Search results partial
+.search-result {
+  width: 100%;
+}
 .media .pull-left {
-  border-radius: 50%;
-  box-sizing: border-box;
-  border: 3px solid;
+  float: left;
   overflow:hidden;
-  width: 90px;
-  height: 90px;
-  display:block;
-  text-align:center;
-  line-height: 80px
+  width: 15%;
+  min-width: 75px;
 }
 
-img.media-object {
-  max-width: 90px;
-  max-height: 90px;
-  display: inline;
+.media .pull-left img{
+  width: 75px;
+  height: 75px;
 }
+
+.search-result .media {
+  float: left;
+  width: 85%;
+  word-wrap: break-word;
+}
+
+//img.media-object {
+//  max-width: 90px;
+//  max-height: 90px;
+//  display: inline;
+//}
+
+
 
 .facets {
   .facet {
