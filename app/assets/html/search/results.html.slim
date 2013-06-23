@@ -39,7 +39,7 @@ ul.pager
 							| {{item.dateBroadcast}} &nbsp;
 						li.label ng-show="item.dateAdded"
 							b Added: 
-							| {{item.dateAdded}} &nbsp;
+							| {{item.dateAdded | date:'yyyy-MM-dd hh:mma'}} &nbsp;
 					ul.inline.contributors
 						li.label ng-repeat="contributorGroup in item.standardRoles" ng-hide="(item[(contributorGroup|pluralize)]).length==0"
 							b {{contributorGroup | titleize | pluralize}}: 
