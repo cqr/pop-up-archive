@@ -1,7 +1,7 @@
 PopUpArchive::Application.routes.draw do
 
   match '/*path' => redirect {|params, request| "http://beta.popuparchive.org/#{params[:path]}" }, constraints: { host: 'pop-up-archive.herokuapp.com' }
-
+  
   devise_for :users, controllers: { registrations: 'users/registrations', invitations: 'users/invitations', omniauth_callbacks: 'users/omniauth_callbacks' }
 
   namespace :api, defaults: { format: 'json' }, path: 'api' do
@@ -14,18 +14,8 @@ PopUpArchive::Application.routes.draw do
       resource :search
       resources :items do
         resources :audio_files do
-          post '',                    action: 'update'
-          get 'transcript_text',      action: 'transcript_text'  
-          get 'upload_to',            action: 'upload_to'
-
-          # s3 upload actions
-          get 'chunk_loaded',         action: 'chunk_loaded'
-          get 'get_init_signature',   action: 'init_signature'
-          get 'get_chunk_signature',  action: 'chunk_signature'
-          get 'get_end_signature',    action: 'end_signature'
-          get 'get_list_signature',   action: 'list_signature'
-          get 'get_delete_signature', action: 'delete_signature'
-          get 'get_all_signatures',   action: 'all_signatures'
+          post '', action: 'update'
+          get 'transcript_text', action: 'transcript_text'
         end
         resources :entities
         resources :contributions

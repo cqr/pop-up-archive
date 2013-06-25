@@ -1,5 +1,5 @@
 class StorageConfiguration < ActiveRecord::Base
-  attr_accessible :bucket, :key, :provider, :secret, :is_public
+  attr_accessible :bucket, :key, :provider, :secret
 
   validates_presence_of :key, :secret, :provider
 
@@ -30,31 +30,20 @@ class StorageConfiguration < ActiveRecord::Base
     is_public ? public_storage : private_storage
   end
 
-  def direct_upload?
-    # currently using aws for this
-    case provider.downcase
-    when 'aws' then true
-    when 'internetarchive' then false
-    else false
-    end
-  end
-
   def self.public_storage
-    self.new({
-      provider:  'InternetArchive',
-      key:       ENV['IA_ACCESS_KEY_ID'],
-      secret:    ENV['IA_SECRET_ACCESS_KEY'],
-      is_public: true
+    @_pub ||= self.new({
+      provider: 'InternetArchive',
+      key:      ENV['IA_ACCESS_KEY_ID'],
+      secret:   ENV['IA_SECRET_ACCESS_KEY']
     })
   end
 
   def self.private_storage
-    self.new({
-      provider:  'AWS',
-      key:       ENV['AWS_ACCESS_KEY_ID'],
-      secret:    ENV['AWS_SECRET_ACCESS_KEY'],
-      bucket:    ENV['AWS_BUCKET'],
-      is_public: false
+    @_priv ||= self.new({
+      provider: 'AWS',
+      key:      ENV['AWS_ACCESS_KEY_ID'],
+      secret:   ENV['AWS_SECRET_ACCESS_KEY'],
+      bucket:   ENV['AWS_BUCKET']
     })
   end
 

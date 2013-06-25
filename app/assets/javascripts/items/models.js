@@ -1,5 +1,5 @@
-angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.models'])
-.factory('Item', ['Model', '$http', '$q', 'Contribution', 'Person', 'AudioFile', function (Model, $http, $q, Contribution, Person, AudioFile) {
+angular.module('Directory.items.models', ['RailsModel'])
+.factory('Item', ['Model', '$http', '$q', 'Contribution', 'Person', function (Model, $http, $q, Contribution, Person) {
   var Item = Model({url:'/api/collections/{{collectionId}}/items/{{id}}', name: 'item'});
 
   Item.prototype.getTitle = function () {
@@ -52,23 +52,26 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
     return result;
   }
 
-  Item.prototype.addAudioFile = function (file, options) {
-    var options = options || {};
-    var item = this;
-    var audioFile = new AudioFile({itemId: item.id});
-    audioFile.create().then(function(){
-      // create relationships
-      // audioFile.item = item;      
-      item.audioFiles = item.audioFiles || [];
-      item.audioFiles.push(audioFile);
-      options.token = item.token;
-      audioFile.upload(file, options);
-    });
-    return audioFile;
+  Item.prototype.addAudioFile = function (file) {
+    var promise = $q.defer();
+    var fData = new FormData();
+    fData.append('file', file);
+    fData.append('file', file);
+    $http({
+      method: 'POST',
+      url: '/api/items/' + this.id + '/audio_files',
+      data: fData,
+      headers: { "Content-Type": undefined },
+      transformRequest: angular.identity
+    })
+    .success(function(data, status, headers, config) {promise.resolve(data)})
+    .error(function() { promise.reject();});
+    return promise.promise;
   }
 
   // update existing contributions
   Item.prototype.updateContributions = function () {
+
     var item = this;
 
     angular.forEach(this.contributions, function (contribution, index) {

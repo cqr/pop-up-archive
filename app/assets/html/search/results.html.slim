@@ -22,7 +22,7 @@ ul.pager
           .label.label-info ng-click="addSearchFilter(entry)" {{entry.nameForPresenting()}}
   .span8
     h5.results-count {{search.firstItemNumber()}} to {{search.lastItemNumber()}} of {{search.totalHits}} items
-    .media.search-result ng-repeat="item in search.results | toItems"
+    .media.search-result ng-repeat="item in search.resultsAsItems()"
       .media-body
 				a.pull-left ng-href="{{item.link()}}"
 					img.media-object src="#{asset_path('minimark.png')}"

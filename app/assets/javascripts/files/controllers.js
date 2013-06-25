@@ -35,42 +35,34 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.csvImp
       alert.status = "Uploading";
       alert.progress = 1;
       alert.message = file.name;
-      alert.path = item.link();
       alert.add();
 
-      var audioFile = item.addAudioFile(file,
-      {
-        onComplete: function(upload) {
-          // console.log('fileUploaded: addAudioFile: complete',upload, item);
-          $scope.addMessage({
-            'type': 'success',
-            'title': 'Congratulations!',
-            'content': '"' + file.name + '" upload completed. <a data-dismiss="alert" data-target=":parent" ng-href="' + item.link() + '">View and edit the item!</a>'
-          });
+      item.addAudioFile(file).then(function(data) {
+        item.audioFiles.push(data);
+        $scope.addMessage({
+          'type': 'success',
+          'title': 'Congratulations!',
+          'content': '"' + file.name + '" upload completed. <a data-dismiss="alert" data-target=":parent" ng-href="' + item.link() + '">View and edit the item!</a>'
+        });
 
-          alert.progress = 100;
-          alert.status = "Uploaded";
+        alert.progress = 100;
+        alert.status = "Uploaded";
 
-          // let search results know that there is a new item
-          $timeout(function(){ $scope.$broadcast('datasetChanged')}, 750);
-        },
-        onError: function() {
-          console.log('fileUploaded: addAudioFile: error', item);
-          $scope.addMessage({
-            'type': 'error',
-            'title': 'Oops...',
-            'content': '"' + file.name + '" upload failed. Hmmm... try again?'
-          });
+      }, function(data){
+        console.log('fileUploaded: addAudioFile: reject', data, item);
+        $scope.addMessage({
+          'type': 'error',
+          'title': 'Oops...',
+          'content': '"' + file.name + '" upload failed. Hmmm... try again?'
+        });
 
-          alert.progress = 100;
-          alert.status = "Error";
-        },
-        onProgress: function(progress) {
-          // console.log('uploadAudioFiles: onProgress', progress);
-          alert.progress = progress;
-        }
+        alert.progress = 100;
+        alert.status = "Error";
+
       });
+
     });
+
   };
 
   $scope.submit = function() {

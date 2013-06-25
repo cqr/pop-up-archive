@@ -77,7 +77,6 @@ angular.module('Directory.csvImport.controllers', ['fileButton', 'Directory.aler
   // Wrap that method up - middleware style
   var oldAddAlert = Alert.prototype.add;
   Alert.prototype.add = function () {
-    $("#alerts-container").addClass("open");
     $scope.forceAlertsShow = true;
     $timeout(function () { $scope.forceAlertsShow = false }, 2000);
     return oldAddAlert.call(this);

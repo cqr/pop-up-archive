@@ -3,8 +3,6 @@ class Collection < ActiveRecord::Base
   attr_accessible :title, :description, :items_visible_by_default
 
   belongs_to :default_storage, class_name: "StorageConfiguration"
-  belongs_to :upload_storage, class_name: "StorageConfiguration"
-
   has_many :collection_grants, dependent: :destroy
 
   has_many  :uploads_collection_grants, class_name: 'CollectionGrant', conditions: {uploads_collection: true}
@@ -17,17 +15,6 @@ class Collection < ActiveRecord::Base
   before_validation :set_defaults
 
   scope :is_public, where(items_visible_by_default: true)
-
-  after_update :set_storage
-
-  def upload_to
-    upload_storage || default_storage
-  end
-
-  def set_storage
-    self.default_storage = StorageConfiguration.default_storage(items_visible_by_default) if !default_storage
-    self.upload_storage  = StorageConfiguration.private_storage if (!upload_storage && items_visible_by_default)
-  end
 
   def set_defaults
     self.copy_media = true if self.copy_media.nil?

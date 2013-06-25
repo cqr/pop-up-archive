@@ -10,7 +10,7 @@
         span#loading-gear.animated.flash ng-show="loading()"
           img.image.icon-spin src='#{asset_path("gear.svg")}' style="color: #333"
   ul.nav ng-controller="AlertCtrl"
-    li#alerts-container
+    li
       a pop-up-alerts-dropdown="alertData.alerts" ng-class="{'with-information':alertData.alerts.length}"
         span.number-circle.ng-cloak ng-show="alertData.alerts.length" {{alertData.alerts.length}}
 - else
