@@ -1,9 +1,10 @@
 .row-fluid
   .page-nav.pull-right
-    a.btn href="/imports/new"
-      i.icon-th-list  Batch Import
-    a.btn href="/collections/edit"
-      i.icon-edit  Batch Edit
+		a.btn href="/imports/new"
+			i.icon-th-list Batch Import
+		span bs-tooltip="tour.edit.content" data-placement="left" tutorial-order="4"
+			a.btn href="/collections/edit" 
+				i.icon-edit  Batch Edit
   h3 My Media
 
   h4 
@@ -60,7 +61,7 @@
           | {{collection.title}}
 
 .hide 
-	a ng-href="#" bs-modal="'#{asset_path 'collections/tutorial1.html'}'" tutorial-order="4"
+	a ng-href="#" bs-modal="'#{asset_path 'collections/tutorial1.html'}'" tutorial-order="5"
 		|Tutorial 1
-	a ng-href="#" bs-modal="'#{asset_path 'collections/tutorial2.html'}'" tutorial-order="5"
+	a ng-href="#" bs-modal="'#{asset_path 'collections/tutorial2.html'}'" tutorial-order="6"
 		|Tutorial 2
