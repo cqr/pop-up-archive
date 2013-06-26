@@ -927,3 +927,48 @@ div#-assets-collections-tutorial1-00M.modal, div#-assets-collections-tutorial2-0
 	background-color: rgba(255, 255, 255, .7);
 }
 
+//footer
+
+#colophon {
+  margin-top: 20px;
+	border-top: 4px solid white;
+	padding-top: 20px;
+}
+
+.site-info {  
+  a{
+    color: #777777;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #5970B1;
+    outline: none;
+  };
+  
+  ul{
+    margin: 0;
+    padding-top: 10px;
+    font-family: "freight-text-pro", serif !important;
+    font-size: 16px !important;
+    font-size: 1.6rem;
+    color: #E0DCDC;
+  }
+  
+  li{
+    display: inline;
+  } 
+} 
+
+.sponsors {
+	display: block;
+	height: 45px;
+	opacity: .7;
+}	
+
+.sponsors:hover { 
+  opacity: 1; 
+}
+//end footer
+
+
