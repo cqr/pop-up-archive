@@ -2,7 +2,7 @@
 <pbcoreCollection xsi:schemaLocation="http://www.PBCore.org/PBCore/PBCoreNamespace.html http://pbcore.org/xsd/pbcore-2.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.pbcore.org/PBCore/PBCoreNamespace.html">
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">01/14/04</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">01/14/2004</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2224</pbcoreIdentifier>
 	<pbcoreTitle>F-015 Mark Furstenberg at the Breadline, Washington D.C.</pbcoreTitle>
 	<pbcoreTitle titleType="Series">Hidden Kitchens</pbcoreTitle>
@@ -43,7 +43,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/21/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/21/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2223</pbcoreIdentifier>
 	<pbcoreTitle>F-773_Eleanor_Bertino_CP40</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Chez Panisse 40th Anniv Book</pbcoreTitle>
@@ -84,7 +84,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/16/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/16/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2222</pbcoreIdentifier>
 	<pbcoreTitle>F-774-01_Sally_Clarke_Slate_1</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Chez Panisse 40th Anniv Book</pbcoreTitle>
@@ -158,7 +158,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/16/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/16/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2221</pbcoreIdentifier>
 	<pbcoreTitle>F-775_Claire_Ptak-CP40-110311</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Chez Panisse 40th Anniv Book</pbcoreTitle>
@@ -199,7 +199,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/16/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/16/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2220</pbcoreIdentifier>
 	<pbcoreTitle>F-776-01_Malgosia_Szemberg_reading_Teddy_Szemberg_O&amp;#039;Connor-CP40-110311</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Chez Panisse 40th Anniv Book</pbcoreTitle>
@@ -251,7 +251,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/22/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/22/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2219</pbcoreIdentifier>
 	<pbcoreTitle>F-777_Samantha_Greenwood-CP40</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Chez Panisse 40th Anniv Book</pbcoreTitle>
@@ -292,7 +292,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/20/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/20/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2218</pbcoreIdentifier>
 	<pbcoreTitle>F-778_Red_Hook_Soccer_Stalls</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Red Hook Soccer Stalls</pbcoreTitle>
@@ -424,7 +424,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">08/06/04</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">08/06/2004</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2215</pbcoreIdentifier>
 	<pbcoreTitle>Mooch with Ladle and Steam Pot</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">George Foreman Grill</pbcoreTitle>
@@ -462,7 +462,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/17/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/17/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2213</pbcoreIdentifier>
 	<pbcoreTitle>F-763-01_Bob_Carrau_Slate</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Chez Panisse 40th Anniv Book</pbcoreTitle>
@@ -546,7 +546,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/21/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/21/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2212</pbcoreIdentifier>
 	<pbcoreTitle>F-764_Tom_Luddy_Reading_CP40</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Chez Panisse 40th Anniv Book</pbcoreTitle>
@@ -590,7 +590,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/22/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/22/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2211</pbcoreIdentifier>
 	<pbcoreTitle>F-765-01_CP40-Christina_Kim_Slate</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Chez Panisse 40th Anniv Book</pbcoreTitle>
@@ -645,7 +645,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/23/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/23/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2210</pbcoreIdentifier>
 	<pbcoreTitle>F-766-01_CP40_Bob_Cannard&amp;#039;s_Farm</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Chez Panisse 40th Anniv Book</pbcoreTitle>
@@ -843,7 +843,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/31/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/31/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2209</pbcoreIdentifier>
 	<pbcoreTitle>F-767_Eric_Schlosster-CP40-SLOWFOODNATION</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Chez Panisse 40th Anniv Book</pbcoreTitle>
@@ -883,7 +883,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/2/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/02/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2208</pbcoreIdentifier>
 	<pbcoreTitle>F-768-01_Edible_Schoolyard-Kitchen_Classroom_Ambience</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Chez Panisse 40th Anniv Book</pbcoreTitle>
@@ -934,7 +934,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/8/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/08/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2207</pbcoreIdentifier>
 	<pbcoreTitle>F-769-01_CP40-Josh_Viertel-Jv_1</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Chez Panisse 40th Anniv Book</pbcoreTitle>
@@ -985,7 +985,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/14/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/14/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2206</pbcoreIdentifier>
 	<pbcoreTitle>F-770_McGegan_Chez_P_30th</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Chez Panisse 40th Anniv Book</pbcoreTitle>
@@ -1025,7 +1025,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/21/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/21/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2204</pbcoreIdentifier>
 	<pbcoreTitle>F-772_Varun_Mehra_CP40</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Chez Panisse 40th Anniv Book</pbcoreTitle>
@@ -1109,7 +1109,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">5/10/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">05/10/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2203</pbcoreIdentifier>
 	<pbcoreTitle>F-737-01_Anne_Isaac_Slate</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Chez Panisse 40th Anniv Book</pbcoreTitle>
@@ -1197,7 +1197,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">5/12/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">05/12/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2202</pbcoreIdentifier>
 	<pbcoreTitle>F-738-01_Ruth_Reichl_Slate</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Chez Panisse 40th Anniv Book</pbcoreTitle>
@@ -1252,7 +1252,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">5/13/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">05/13/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2201</pbcoreIdentifier>
 	<pbcoreTitle>F-739-01_Scott_Peacock_Slate</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Chez Panisse 40th Anniv Book</pbcoreTitle>
@@ -1307,7 +1307,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">5/16/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">05/16/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2200</pbcoreIdentifier>
 	<pbcoreTitle>F-740_Calvin_Trillin</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Chez Panisse 40th Anniv Book</pbcoreTitle>
@@ -1351,7 +1351,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">8/26/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">08/26/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2198</pbcoreIdentifier>
 	<pbcoreTitle>F-756-01_Chez_Panisse_40th-Malgosia_Szemberg</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Chez Panisse 40th Anniv Book</pbcoreTitle>
@@ -1446,7 +1446,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">8/21/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">08/21/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2199</pbcoreIdentifier>
 	<pbcoreTitle>F-755-01_Slate-Fanny_Singer</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Chez Panisse 40th Anniv Book</pbcoreTitle>
@@ -1479,7 +1479,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">8/15/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">08/15/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2197</pbcoreIdentifier>
 	<pbcoreTitle>F-758-01_Dario_Cecchini_1</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Dario Cecchini</pbcoreTitle>
@@ -1545,7 +1545,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">9/30/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">09/30/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2196</pbcoreIdentifier>
 	<pbcoreTitle>F-760-01_Peggy_Knickerbocker-CP40</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Chez Panisse 40th Anniv Book</pbcoreTitle>
@@ -1611,7 +1611,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/17/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/17/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2194</pbcoreIdentifier>
 	<pbcoreTitle>F-762-01_CP40-Niloufer_King_1</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Chez Panisse 40th Anniv Book</pbcoreTitle>
@@ -1662,7 +1662,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/12/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/12/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2195</pbcoreIdentifier>
 	<pbcoreTitle>F-761-01_Davia_Nelson-Chez_Panisse_40th-Slate</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Chez Panisse 40th Anniv Book</pbcoreTitle>
@@ -1966,7 +1966,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">3/10/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">03/10/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2191</pbcoreIdentifier>
 	<pbcoreTitle>F-727-01_Uruguay</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Uruguay</pbcoreTitle>
@@ -2164,7 +2164,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">3/13/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">03/13/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2190</pbcoreIdentifier>
 	<pbcoreTitle>F-728-01_Buenos_Aires</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Buenos Aires</pbcoreTitle>
@@ -2284,7 +2284,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">3/14/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">03/14/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2189</pbcoreIdentifier>
 	<pbcoreTitle>F-729-01_Buenos_Aires-Furniture_Store</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Buenos Aires</pbcoreTitle>
@@ -2414,7 +2414,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">1/18/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">01/18/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2186</pbcoreIdentifier>
 	<pbcoreTitle>F-734_marion_cunningham</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Marion Cunningham</pbcoreTitle>
@@ -2458,7 +2458,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">1/17/11</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">01/17/2011</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2185</pbcoreIdentifier>
 	<pbcoreTitle>F-736-01_Brett_Ottolenghi_SF</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Las Vegas HK</pbcoreTitle>
@@ -2514,7 +2514,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/24/10</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/24/2010</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2183</pbcoreIdentifier>
 	<pbcoreTitle>F-706-01_TM2010_Last_Day_Slate</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Terre Madre</pbcoreTitle>
@@ -4629,7 +4629,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">1/26/10</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">01/26/2010</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2173</pbcoreIdentifier>
 	<pbcoreTitle>F-618_Joe_Boyd_on_Eel_Pie_Island</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Eel Pie Island</pbcoreTitle>
@@ -4673,7 +4673,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/15/10</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/15/2010</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2172</pbcoreIdentifier>
 	<pbcoreTitle>F-621-01_Anna-Lena_Banzhaf_Bread_and_the_Fall_of_the_Wall</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Berlinale</pbcoreTitle>
@@ -4772,7 +4772,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/16/10</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/16/2010</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2171</pbcoreIdentifier>
 	<pbcoreTitle>F-622-01_Berlinale_Culinary_Cinema</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Berlinale</pbcoreTitle>
@@ -4915,7 +4915,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">8/28/10</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">08/28/2010</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2170</pbcoreIdentifier>
 	<pbcoreTitle>F-675-01_Eat_Real_Fest_2010</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Eat Real Festival</pbcoreTitle>
@@ -5003,7 +5003,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/6/10</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/06/2010</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2169</pbcoreIdentifier>
 	<pbcoreTitle>F-685-01_Brett_Ottolenghi</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Las Vegas</pbcoreTitle>
@@ -5201,7 +5201,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/6/10</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/06/2010</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2168</pbcoreIdentifier>
 	<pbcoreTitle>F-686-01_Brett_Ottolenghi_PCMD50_1</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Las Vegas HK</pbcoreTitle>
@@ -5422,7 +5422,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/22/10</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/22/2010</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2165</pbcoreIdentifier>
 	<pbcoreTitle>F-704-01_TM2010_Day_2_slate</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Terre Madre</pbcoreTitle>
@@ -5576,7 +5576,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/21/10</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/21/2010</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2166</pbcoreIdentifier>
 	<pbcoreTitle>F-703-01_TM2010_Slate</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Terre Madre</pbcoreTitle>
@@ -5928,7 +5928,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/23/10</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/23/2010</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2164</pbcoreIdentifier>
 	<pbcoreTitle>F-705-01_TM2010_Slow_Food_USA_Meeting,_Frederic_Jordan_interview</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Terre Madre</pbcoreTitle>
@@ -7198,7 +7198,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">4/20/09</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">04/20/2009</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2160</pbcoreIdentifier>
 	<pbcoreTitle>Greenfield Walking Club</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Breadbasket Blues</pbcoreTitle>
@@ -7509,7 +7509,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">12/3/09</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">12/03/2009</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2157</pbcoreIdentifier>
 	<pbcoreTitle>F-601-01_Emma_Robertson_Slate</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Chocolate Town</pbcoreTitle>
@@ -7620,7 +7620,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/20/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/20/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2158</pbcoreIdentifier>
 	<pbcoreTitle>F-600-01_David_Perkins-Roots_and_Shoots_2_112106</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Honey Hunters</pbcoreTitle>
@@ -7692,7 +7692,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">12/7/09</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">12/07/2009</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2156</pbcoreIdentifier>
 	<pbcoreTitle>F-602-01_James_Walvin_Slate</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Chocolate Town</pbcoreTitle>
@@ -7847,7 +7847,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">12/10/09</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">12/10/2009</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2155</pbcoreIdentifier>
 	<pbcoreTitle>F-603-01_Sylvie_Franquet_Slate</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">HK World - Morocco</pbcoreTitle>
@@ -7924,7 +7924,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">1/25/10</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">01/25/2010</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2154</pbcoreIdentifier>
 	<pbcoreTitle>F-607-01_Felipe_Fernandez_Armesto_Slate</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Chocolate Town</pbcoreTitle>
@@ -8013,7 +8013,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">1/19/09</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">01/19/2009</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2153</pbcoreIdentifier>
 	<pbcoreTitle>F-448-01_DC-Inauguration-Andrew_Mariani_Recordings</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">First Year/Art Food Hope</pbcoreTitle>
@@ -8188,7 +8188,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">1/17/09</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">01/17/2009</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2152</pbcoreIdentifier>
 	<pbcoreTitle>F-449-01_DC-Inauguration_Trip-Edirol_Recordings</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">First Year/Art Food Hope</pbcoreTitle>
@@ -8374,7 +8374,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">3/19/09</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">03/19/2009</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2151</pbcoreIdentifier>
 	<pbcoreTitle>F-450-01_Kreuz_Market-Texas</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">HK Texas</pbcoreTitle>
@@ -8516,7 +8516,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">4/14/09</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">04/14/2009</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2149</pbcoreIdentifier>
 	<pbcoreTitle>F-452-01_Veva_Islas-Hooker_Interview</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Central Valley</pbcoreTitle>
@@ -8582,7 +8582,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">4/14/09</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">04/14/2009</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2150</pbcoreIdentifier>
 	<pbcoreTitle>F-451-01_Fresno_TV_Station</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Central Valley</pbcoreTitle>
@@ -8681,7 +8681,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">4/14/09</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">04/14/2009</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2148</pbcoreIdentifier>
 	<pbcoreTitle>F-453-01_Beth_Caffrey_Interview-Fresno_SPCA</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Central Valley</pbcoreTitle>
@@ -8769,7 +8769,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">9/23/09</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">09/23/2009</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2147</pbcoreIdentifier>
 	<pbcoreTitle>F-472-01_Outstanding_in_the_Field_Slate</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Outstanding in the Field</pbcoreTitle>
@@ -8922,7 +8922,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">9/24/09</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">09/24/2009</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2146</pbcoreIdentifier>
 	<pbcoreTitle>F-473-01_Amanda_Storey-Birmingham</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Birmingham, Alabama</pbcoreTitle>
@@ -8987,7 +8987,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">9/24/09</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">09/24/2009</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2145</pbcoreIdentifier>
 	<pbcoreTitle>F-474-01_Edwin_Marty-JVUF</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Birmingham, Alabama</pbcoreTitle>
@@ -9041,7 +9041,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">9/24/09</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">09/24/2009</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2144</pbcoreIdentifier>
 	<pbcoreTitle>F-475_Southern-Birmingham_Dessert_Potluck</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Birmingham, AL</pbcoreTitle>
@@ -9085,7 +9085,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/22/08</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/22/2008</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2143</pbcoreIdentifier>
 	<pbcoreTitle>F-417-01_Bournville</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Chocolate Town</pbcoreTitle>
@@ -9261,7 +9261,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/8/08</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/08/2008</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2142</pbcoreIdentifier>
 	<pbcoreTitle>F-427-01_Edible_Schoolyard_Dining_Hall_Opening</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Sustainable Dining Hall</pbcoreTitle>
@@ -9436,7 +9436,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">1/16/09</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">01/16/2009</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2139</pbcoreIdentifier>
 	<pbcoreTitle>F-442-01_Martha_Sheppard</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">First Year/Art Food Hope</pbcoreTitle>
@@ -9590,7 +9590,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">1/10/09</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">01/10/2009</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2141</pbcoreIdentifier>
 	<pbcoreTitle>F-437-01_Alice_Waters-Slate</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Alice Waters - White House Garden</pbcoreTitle>
@@ -9776,7 +9776,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/10/09</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/10/2009</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2137</pbcoreIdentifier>
 	<pbcoreTitle>F-444-01_Berlinale-Sally_Potter_Slate</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Berlinale</pbcoreTitle>
@@ -9896,7 +9896,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/13/09</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/13/2009</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2136</pbcoreIdentifier>
 	<pbcoreTitle>F-445-01_Berlinale</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Berlinale</pbcoreTitle>
@@ -10060,7 +10060,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">1/18/09</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">01/18/2009</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2135</pbcoreIdentifier>
 	<pbcoreTitle>F-446-01_DC-Inauguration_Trip-Day_1</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">First Year/Art Food Hope</pbcoreTitle>
@@ -10334,7 +10334,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">1/19/09</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">01/19/2009</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2134</pbcoreIdentifier>
 	<pbcoreTitle>F-447-01_DC-Inauguration_Trip-Day_2</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">First Year/Art Food Hope</pbcoreTitle>
@@ -10871,7 +10871,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">5/21/08</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">05/21/2008</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2130</pbcoreIdentifier>
 	<pbcoreTitle>F-384-01_Pehlivanian_01_052108</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Birth of Rice-A-Roni</pbcoreTitle>
@@ -10927,7 +10927,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/30/07</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/30/2007</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2129</pbcoreIdentifier>
 	<pbcoreTitle>F-386-01</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Weenie Royale</pbcoreTitle>
@@ -10993,7 +10993,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">8/10/08</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">08/10/2008</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2128</pbcoreIdentifier>
 	<pbcoreTitle>F-402-01_Salman_Rushdie_1_081008</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Sweete Town</pbcoreTitle>
@@ -11148,7 +11148,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">8/28/08</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">08/28/2008</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2126</pbcoreIdentifier>
 	<pbcoreTitle>F-407-01_Slow_Food_Nation</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Slow Food Nation</pbcoreTitle>
@@ -11324,7 +11324,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/22/08</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/22/2008</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2124</pbcoreIdentifier>
 	<pbcoreTitle>F-416-01_Bournville</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Chocolate Town</pbcoreTitle>
@@ -11478,7 +11478,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/29/07</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/29/2007</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2125</pbcoreIdentifier>
 	<pbcoreTitle>F-408-01_Jeanne_Wakatsuki_Houston_Inteview_pt_1</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Weenie Royale</pbcoreTitle>
@@ -11582,7 +11582,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">4/18/08</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">04/18/2008</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2122</pbcoreIdentifier>
 	<pbcoreTitle>F-370-01_L-De_Domenico-slate</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Rice-A-Roni</pbcoreTitle>
@@ -11681,7 +11681,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">4/30/08</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">04/30/2008</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2121</pbcoreIdentifier>
 	<pbcoreTitle>F-371-01_Allotments_O-Rowe</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Allotments</pbcoreTitle>
@@ -11770,7 +11770,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">4/30/08</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">04/30/2008</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2120</pbcoreIdentifier>
 	<pbcoreTitle>F-372-01_Allot_J-Sumner</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Allotments</pbcoreTitle>
@@ -12459,7 +12459,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/20/08</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/20/2008</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2113</pbcoreIdentifier>
 	<pbcoreTitle>F-358_Niloufer_at_Home_3_and_Shopping_in_Berkeley</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Sugar In the Milk: A Parsi Kitchen Story</pbcoreTitle>
@@ -12508,7 +12508,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/15/07</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/15/2007</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2112</pbcoreIdentifier>
 	<pbcoreTitle>F-360_Niloufer_at_Foreign_Cinema_2</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Sugar In the Milk: A Parsi Kitchen Story</pbcoreTitle>
@@ -12558,7 +12558,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/15/07</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/15/2007</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2111</pbcoreIdentifier>
 	<pbcoreTitle>F-361_Niloufer_at_Foreign_Cineman_3</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Sugar In the Milk: A Parsi Kitchen Story</pbcoreTitle>
@@ -12608,7 +12608,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/15/07</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/15/2007</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2110</pbcoreIdentifier>
 	<pbcoreTitle>F-362_Niloufer_at_Foreign_Cineman_4</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Sugar In the Milk: A Parsi Kitchen Story</pbcoreTitle>
@@ -12658,7 +12658,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/15/07</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/15/2007</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2109</pbcoreIdentifier>
 	<pbcoreTitle>F-363_Niloufer_at_Foreign_Cinema_5</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Sugar In the Milk: A Parsi Kitchen Story</pbcoreTitle>
@@ -12708,7 +12708,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/25/08</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/25/2008</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2107</pbcoreIdentifier>
 	<pbcoreTitle>F-365_Bharati_2</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Sugar In the Milk: A Parsi Kitchen Story</pbcoreTitle>
@@ -12757,7 +12757,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/20/08</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/20/2008</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2108</pbcoreIdentifier>
 	<pbcoreTitle>F-364_Peggy_Knickerbocker_and_Bharati</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Sugar In the Milk: A Parsi Kitchen Story</pbcoreTitle>
@@ -12953,7 +12953,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">1/31/08</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">01/31/2008</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2103</pbcoreIdentifier>
 	<pbcoreTitle>F-348-01_Sharron_Wilkins_Conrad</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Hercules &amp;amp; Hemings</pbcoreTitle>
@@ -13073,7 +13073,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/11/08</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/11/2008</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2101</pbcoreIdentifier>
 	<pbcoreTitle>F-350-01_CHEF_RANDALL_-_PART_1</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Hercules &amp;amp; Hemings</pbcoreTitle>
@@ -13144,7 +13144,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">3/21/07</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">03/21/2007</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2100</pbcoreIdentifier>
 	<pbcoreTitle>F-351_Parsi_New_Year_2007</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Sugar In the Milk: A Parsi Kitchen Story</pbcoreTitle>
@@ -13193,7 +13193,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">5/19/07</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">05/19/2007</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2097</pbcoreIdentifier>
 	<pbcoreTitle>F-354_Niloufer-Tape_Clicks</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Sugar In the Milk: A Parsi Kitchen Story</pbcoreTitle>
@@ -13243,7 +13243,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">4/29/07</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">04/29/2007</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2098</pbcoreIdentifier>
 	<pbcoreTitle>F-353_Niloufer_King_Hayes_Street_Party</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Sugar In the Milk: A Parsi Kitchen Story</pbcoreTitle>
@@ -13292,7 +13292,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">3/21/07</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">03/21/2007</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2099</pbcoreIdentifier>
 	<pbcoreTitle>F-352_Parsi_New_Year_2007</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Sugar In the Milk: A Parsi Kitchen Story</pbcoreTitle>
@@ -13341,7 +13341,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">5/19/07</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">05/19/2007</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2096</pbcoreIdentifier>
 	<pbcoreTitle>F-355_Niloufer_at_Alemany_Market</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Sugar In the Milk: A Parsi Kitchen Story</pbcoreTitle>
@@ -13390,7 +13390,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/19/08</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/19/2008</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2095</pbcoreIdentifier>
 	<pbcoreTitle>F-356_Niloufer_at_Home_1</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Sugar In the Milk: A Parsi Kitchen Story</pbcoreTitle>
@@ -13439,7 +13439,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/19/08</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/19/2008</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2094</pbcoreIdentifier>
 	<pbcoreTitle>F-357_Niloufer_at_Home_2_and_Civic_Center_Mkt</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Sugar In the Milk: A Parsi Kitchen Story</pbcoreTitle>
@@ -13488,7 +13488,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/29/07</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/29/2007</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2093</pbcoreIdentifier>
 	<pbcoreTitle>F-337_Joe_Sherman_Viking</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Kibbe at the Crossroads</pbcoreTitle>
@@ -13537,7 +13537,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/28/07</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/28/2007</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2092</pbcoreIdentifier>
 	<pbcoreTitle>F-338_Tami_Takahashi</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Weenie Royale</pbcoreTitle>
@@ -13586,7 +13586,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/28/07</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/28/2007</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2091</pbcoreIdentifier>
 	<pbcoreTitle>F-339_Tami_Takahashi_2</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Weenie Royale</pbcoreTitle>
@@ -13635,7 +13635,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/28/07</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/28/2007</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2090</pbcoreIdentifier>
 	<pbcoreTitle>F-340_Tami_Takahashi_3</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Weenie Royale</pbcoreTitle>
@@ -13684,7 +13684,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/15/07</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/15/2007</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2089</pbcoreIdentifier>
 	<pbcoreTitle>F-341_Niloufer_King-Foreign_Cinema</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Sugar In the Milk: A Parsi Kitchen Story</pbcoreTitle>
@@ -13734,7 +13734,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/30/07</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/30/2007</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2088</pbcoreIdentifier>
 	<pbcoreTitle>F-342_Delta_Amusement_Blues_Class_Radio_Robert_Gordon_1</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Kibbe at the Crossroads</pbcoreTitle>
@@ -13783,7 +13783,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/30/07</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/30/2007</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2087</pbcoreIdentifier>
 	<pbcoreTitle>F-343_Robert_Gordon_2</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Kibbe at the Crossroads</pbcoreTitle>
@@ -13832,7 +13832,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/30/07</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/30/2007</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2086</pbcoreIdentifier>
 	<pbcoreTitle>F-344_Delta_Lunchbox_1</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Kibbe at the Crossroads</pbcoreTitle>
@@ -13881,7 +13881,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/29/07</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/29/2007</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2085</pbcoreIdentifier>
 	<pbcoreTitle>F-345_Robert_Johnson_Grave</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Kibbe at the Crossroads</pbcoreTitle>
@@ -13930,7 +13930,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">1/30/08</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">01/30/2008</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2084</pbcoreIdentifier>
 	<pbcoreTitle>F-346_William_Seale</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Hercules &amp;amp; Hemings</pbcoreTitle>
@@ -13979,7 +13979,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/27/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/27/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2083</pbcoreIdentifier>
 	<pbcoreTitle>F-285_Farmers_and_Chefs_Dinner_2</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Tables of New Crowned Hope</pbcoreTitle>
@@ -14069,7 +14069,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/27/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/27/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2081</pbcoreIdentifier>
 	<pbcoreTitle>F-287_Farmers_and_Chefs_Din_3</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Tables of New Crowned Hope</pbcoreTitle>
@@ -14118,7 +14118,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/29/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/29/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2082</pbcoreIdentifier>
 	<pbcoreTitle>F-286_Dinner_3_Future_Din_Tape2</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Tables of New Crowned Hope</pbcoreTitle>
@@ -14167,7 +14167,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/29/07</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/29/2007</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2079</pbcoreIdentifier>
 	<pbcoreTitle>F-331_Pat_Davis_Abes_BBQ</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Kibbe at the Crossroads</pbcoreTitle>
@@ -14216,7 +14216,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/29/07</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/29/2007</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2078</pbcoreIdentifier>
 	<pbcoreTitle>F-332_Chamouns</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Kibbe at the Crossroads</pbcoreTitle>
@@ -14265,7 +14265,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/25/07</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/25/2007</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2075</pbcoreIdentifier>
 	<pbcoreTitle>F-335_Jimmy_Thomas_2_Kevin_Young_Roy_Blount_Jr</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Kibbe at the Crossroads</pbcoreTitle>
@@ -14314,7 +14314,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/25/07</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/25/2007</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2076</pbcoreIdentifier>
 	<pbcoreTitle>F-334_Jimmy_Thomas_1</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Kibbe at the Crossroads</pbcoreTitle>
@@ -14363,7 +14363,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/29/07</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/29/2007</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2077</pbcoreIdentifier>
 	<pbcoreTitle>F-333_Chafik_Chamoun</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Kibbe at the Crossroads</pbcoreTitle>
@@ -14412,7 +14412,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/29/07</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/29/2007</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2074</pbcoreIdentifier>
 	<pbcoreTitle>F-336_Lunchbox_2</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Kibbe at the Crossroads</pbcoreTitle>
@@ -14461,7 +14461,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">9/30/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">09/30/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2073</pbcoreIdentifier>
 	<pbcoreTitle>F-251_FAconcert4-2</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Farm Aid</pbcoreTitle>
@@ -14510,7 +14510,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">9/30/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">09/30/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2072</pbcoreIdentifier>
 	<pbcoreTitle>F-252-01_FAconcert5</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Farm Aid</pbcoreTitle>
@@ -14570,7 +14570,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">9/30/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">09/30/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2071</pbcoreIdentifier>
 	<pbcoreTitle>F-253_FAconcert7</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Farm Aid</pbcoreTitle>
@@ -14662,7 +14662,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/30/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/30/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2069</pbcoreIdentifier>
 	<pbcoreTitle>F-271_Vandana_Shiva</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Manifesto of Seed</pbcoreTitle>
@@ -14711,7 +14711,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/29/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/29/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2068</pbcoreIdentifier>
 	<pbcoreTitle>F-273_School_Lunch,_Sellars</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Tables of New Crowned Hope</pbcoreTitle>
@@ -14760,7 +14760,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/3/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/03/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2067</pbcoreIdentifier>
 	<pbcoreTitle>F-281_Kurt_Palm-Mozart_Book</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Tables of New Crowned Hope</pbcoreTitle>
@@ -14809,7 +14809,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/27/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/27/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2066</pbcoreIdentifier>
 	<pbcoreTitle>F-282_Farmers_and_Chefs_Dinner_4</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Tables of New Crowned Hope</pbcoreTitle>
@@ -14858,7 +14858,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/29/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/29/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2064</pbcoreIdentifier>
 	<pbcoreTitle>F-284_Dinner_3-Future_Din</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Tables of New Crowned Hope</pbcoreTitle>
@@ -14907,7 +14907,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">11/27/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">11/27/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2065</pbcoreIdentifier>
 	<pbcoreTitle>F-283_Farmers_and_Chefs_Dinner_1</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Tables of New Crowned Hope</pbcoreTitle>
@@ -14956,7 +14956,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">7/14/05</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">07/14/2005</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2063</pbcoreIdentifier>
 	<pbcoreTitle>F-230_Jimi_Yamaichi</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Weenie Royale/Japanese</pbcoreTitle>
@@ -15005,7 +15005,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">7/23/05</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">07/23/2005</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2062</pbcoreIdentifier>
 	<pbcoreTitle>F-231_Jimi_Yamaichi</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Weenie Royale/Japanese</pbcoreTitle>
@@ -15054,7 +15054,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">7/27/05</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">07/27/2005</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2061</pbcoreIdentifier>
 	<pbcoreTitle>F-232_Mas_Kawaguchi</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Weenie Royale/Japanese</pbcoreTitle>
@@ -15261,7 +15261,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">9/30/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">09/30/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2057</pbcoreIdentifier>
 	<pbcoreTitle>F-247-01_FarmAid1</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Farm Aid</pbcoreTitle>
@@ -15343,7 +15343,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">9/30/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">09/30/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2056</pbcoreIdentifier>
 	<pbcoreTitle>F-248-01_FAPressconf1</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Farm Aid</pbcoreTitle>
@@ -15403,7 +15403,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">9/30/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">09/30/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2055</pbcoreIdentifier>
 	<pbcoreTitle>F-249-01_FAconcert1</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Farm Aid</pbcoreTitle>
@@ -15474,7 +15474,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">9/30/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">09/30/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2054</pbcoreIdentifier>
 	<pbcoreTitle>F-250_FAconcert4-1</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Farm Aid</pbcoreTitle>
@@ -15793,7 +15793,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">8/11/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">08/11/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2047</pbcoreIdentifier>
 	<pbcoreTitle>F-226_San_Antonio-Sanchez_Beer_Dep_Shirley_6</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">HK Texas</pbcoreTitle>
@@ -15832,7 +15832,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">8/14/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">08/14/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2046</pbcoreIdentifier>
 	<pbcoreTitle>F-227_TomPetrini_KimMcPherson_ColmanAndrews</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">HK Texas</pbcoreTitle>
@@ -15875,7 +15875,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">8/14/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">08/14/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2045</pbcoreIdentifier>
 	<pbcoreTitle>F-228_Rhett_Rushing_andMike_SA_4</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">HK Texas</pbcoreTitle>
@@ -15914,7 +15914,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">8/15/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">08/15/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2044</pbcoreIdentifier>
 	<pbcoreTitle>F-229_SA3_Blancos_Rushing</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">HK Texas</pbcoreTitle>
@@ -16382,7 +16382,7 @@
 				</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">1/10/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">01/10/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2034</pbcoreIdentifier>
 	<pbcoreTitle>F-203_Peoples_Grocery_011006</pbcoreTitle>
     <pbcoreRelation>
@@ -17410,7 +17410,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/24/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/24/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2012</pbcoreIdentifier>
 	<pbcoreTitle>F-123-01_David_Klose_HK_TX_2-24-06</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">HK Texas</pbcoreTitle>
@@ -17471,7 +17471,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/24/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/24/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2011</pbcoreIdentifier>
 	<pbcoreTitle>F-124_David_Klose_Houston</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">HK Texas</pbcoreTitle>
@@ -17521,7 +17521,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/24/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/24/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2010</pbcoreIdentifier>
 	<pbcoreTitle>F-125_Houston_BBQ_Cookoff</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">HK Texas</pbcoreTitle>
@@ -17571,7 +17571,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/25/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/25/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2009</pbcoreIdentifier>
 	<pbcoreTitle>F-126_Rodeo_Parade_Tape4</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">HK Texas</pbcoreTitle>
@@ -18043,7 +18043,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">5/30/04</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">05/30/2004</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2000</pbcoreIdentifier>
 	<pbcoreTitle>F-036-01_Bakersfiled_Basque_Picnic_Tape_1_05-29-04</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Basque</pbcoreTitle>
@@ -18115,7 +18115,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">4/28/04</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">04/28/2004</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1999</pbcoreIdentifier>
 	<pbcoreTitle>F-037-01_Espe_Radio_Show-Reels</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Basque</pbcoreTitle>
@@ -18209,7 +18209,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">4/28/04</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">04/28/2004</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1998</pbcoreIdentifier>
 	<pbcoreTitle>F-038_Lasarte_Brothers</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Basque</pbcoreTitle>
@@ -18259,7 +18259,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/2/04</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/02/2004</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1997</pbcoreIdentifier>
 	<pbcoreTitle>F-070_Mariachi_San_Antonio_Ice_House_John_Taxi</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Icehouses</pbcoreTitle>
@@ -18309,7 +18309,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/2/04</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/02/2004</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1996</pbcoreIdentifier>
 	<pbcoreTitle>F-071_Acaplulco_Ice_House</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Icehouses</pbcoreTitle>
@@ -18359,7 +18359,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">10/3/05</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">10/03/2005</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1995</pbcoreIdentifier>
 	<pbcoreTitle>F-114_Kitako_Izumizaki</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Weenie Royale/Japanese</pbcoreTitle>
@@ -18459,7 +18459,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">4/22/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">04/22/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1993</pbcoreIdentifier>
 	<pbcoreTitle>F-165_Angola_Tape_1-Morning_Angola_Rodeo_042206</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Angola</pbcoreTitle>
@@ -18509,7 +18509,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">4/22/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">04/22/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1991</pbcoreIdentifier>
 	<pbcoreTitle>F-166_Angola_Tape_2-_Angola_Food_Vendors_042206</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Angola</pbcoreTitle>
@@ -18559,7 +18559,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">4/22/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">04/22/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1989</pbcoreIdentifier>
 	<pbcoreTitle>F-167_Angola_Tape_3_042206</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Angola</pbcoreTitle>
@@ -18609,7 +18609,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">4/22/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">04/22/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1987</pbcoreIdentifier>
 	<pbcoreTitle>F-168_Angola_Tape_4_042206</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Angola</pbcoreTitle>
@@ -18659,7 +18659,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">4/22/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">04/22/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1985</pbcoreIdentifier>
 	<pbcoreTitle>F-169_Angola_Tape_5_042206</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Angola</pbcoreTitle>
@@ -18709,7 +18709,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">4/23/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created"/pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1983</pbcoreIdentifier>
 	<pbcoreTitle>F-170_Angola_Tape_6_042306</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Angola</pbcoreTitle>
@@ -18759,7 +18759,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">4/23/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">04/23/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1982</pbcoreIdentifier>
 	<pbcoreTitle>F-171_Angola_Tape_7_042306</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Angola</pbcoreTitle>
@@ -18809,7 +18809,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">4/23/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">04/23/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1981</pbcoreIdentifier>
 	<pbcoreTitle>F-172_Angola_Tape_8</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Angola</pbcoreTitle>
@@ -18859,7 +18859,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">4/22/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">04/22/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1980</pbcoreIdentifier>
 	<pbcoreTitle>F-173_Angola_Tape_9_Stereo</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Angola</pbcoreTitle>
@@ -18909,7 +18909,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">6/17/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">06/17/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1978</pbcoreIdentifier>
 	<pbcoreTitle>F-174_La_Tuna_Tape_2</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Icehouses</pbcoreTitle>
@@ -19008,7 +19008,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/27/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/27/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1971</pbcoreIdentifier>
 	<pbcoreTitle>F-142_Pitts_and_Spits_Wayne_Whitsworth_HKTX</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">HK Texas</pbcoreTitle>
@@ -19058,7 +19058,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/28/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/28/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1972</pbcoreIdentifier>
 	<pbcoreTitle>F-141_Rodeo_Opening_Night_George_Strait_HKT-Houston</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">HK Texas</pbcoreTitle>
@@ -19108,7 +19108,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">3/29/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">03/29/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1970</pbcoreIdentifier>
 	<pbcoreTitle>F-143-01_Cathy_Fontenot</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Angola Prison Rodeo</pbcoreTitle>
@@ -19884,7 +19884,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/24/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/24/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1969</pbcoreIdentifier>
 	<pbcoreTitle>F-144_John_Nova_Lomax_Houston_Day_2</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">HK Texas</pbcoreTitle>
@@ -19934,7 +19934,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">3/28/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">03/28/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1968</pbcoreIdentifier>
 	<pbcoreTitle>F-150_Peggy_Knickerbocker-HK_Mothers</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Mother&amp;#039;s Day Kitchen</pbcoreTitle>
@@ -19984,7 +19984,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">3/30/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">03/30/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1967</pbcoreIdentifier>
 	<pbcoreTitle>F-151_FranMcDormand</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">Mother&amp;#039;s Day Kitchen</pbcoreTitle>
@@ -20183,7 +20183,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/25/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/25/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1963</pbcoreIdentifier>
 	<pbcoreTitle>F-130-01_HKT_end_HKong_Mkt</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">HK Texas</pbcoreTitle>
@@ -20244,7 +20244,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/26/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/26/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1962</pbcoreIdentifier>
 	<pbcoreTitle>F-131_Frenchys_Chicken_Holman_Church_Supper_J_Lomax_Tape9</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">HK Texas</pbcoreTitle>
@@ -20294,7 +20294,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/26/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/26/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1961</pbcoreIdentifier>
 	<pbcoreTitle>F-132_Houston-HKT_John_Lomax_2nd_Breakfast_Club_Tape_10</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">HK Texas</pbcoreTitle>
@@ -20344,7 +20344,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/27/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/27/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1960</pbcoreIdentifier>
 	<pbcoreTitle>F-133_Pitts_and_Spitts</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">HK Texas</pbcoreTitle>
@@ -20394,7 +20394,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/27/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/27/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1959</pbcoreIdentifier>
 	<pbcoreTitle>F-134_PittsAndSpits</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">HK Texas</pbcoreTitle>
@@ -20444,7 +20444,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/28/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/28/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1958</pbcoreIdentifier>
 	<pbcoreTitle>F-135_Sammy_Ray_Only</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">HK Texas</pbcoreTitle>
@@ -20494,7 +20494,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/28/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/28/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1957</pbcoreIdentifier>
 	<pbcoreTitle>F-136_Houston-HKT_Stereo_Smith_Pt_Nelsons_Oysters</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">HK Texas</pbcoreTitle>
@@ -20544,7 +20544,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/28/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/28/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1955</pbcoreIdentifier>
 	<pbcoreTitle>F-137_Galveston-HKT_Oysters_Boat_Hammering</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">HK Texas</pbcoreTitle>
@@ -20594,7 +20594,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/28/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/28/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1952</pbcoreIdentifier>
 	<pbcoreTitle>F-138_Driving_to_Galveston_w_Dr_Sammy</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">HK Texas</pbcoreTitle>
@@ -20644,7 +20644,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/28/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/28/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1950</pbcoreIdentifier>
 	<pbcoreTitle>F-139_Houston-HKT_Last_Sammy_Ray_Galveston</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">HK Texas</pbcoreTitle>
@@ -20694,7 +20694,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">5/24/04</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">05/24/2004</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1943</pbcoreIdentifier>
 	<pbcoreTitle>F-032_George_Foreman</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">George Foreman</pbcoreTitle>
@@ -20744,7 +20744,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/25/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/25/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1942</pbcoreIdentifier>
 	<pbcoreTitle>F-127_Stereo_Bfast_Club_Parade_Tape5</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">HK Texas</pbcoreTitle>
@@ -20795,7 +20795,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/25/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/25/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1941</pbcoreIdentifier>
 	<pbcoreTitle>F-128_Robb_Walsh_Hong_Kong_City_Tape6</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">HK Texas</pbcoreTitle>
@@ -20845,7 +20845,7 @@
 			</pbcoreDescriptionDocument>
 
     <pbcoreDescriptionDocument>
-	<pbcoreAssetDate dateType="Created">2/25/06</pbcoreAssetDate>
+	<pbcoreAssetDate dateType="Created">02/25/2006</pbcoreAssetDate>
 	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/1940</pbcoreIdentifier>
 	<pbcoreTitle>F-129_robb_walsh_hkong_mkt</pbcoreTitle>
 	<pbcoreTitle titleType="Episode">HK Texas</pbcoreTitle>

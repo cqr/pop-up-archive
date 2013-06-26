@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pbcoreDescriptionDocument xmlns="http://www.pbcore.org/PBCore/PBCoreNamespace.html">
+  <pbcoreIdentifier source="openvault.wgbh.org id"/>
+  <pbcoreIdentifier source="UMass Boston">H50-28</pbcoreIdentifier>
+  <pbcoreTitle titleType="Photograph">Americans and Vietnamese on Danang's China Beach on Sunday.</pbcoreTitle>
+  <pbcoreSubject source="">Vietnam War, 1961-1975</pbcoreSubject>
+  <pbcoreDescription>No Description Available</pbcoreDescription>
+  <pbcoreRightsSummary>
+    <rightsSummary>Copyright resides with Archives and Special Collections, Healey Library, UMass Boston.</rightsSummary>
+  </pbcoreRightsSummary>
+  <pbcoreInstantiation>
+    <instantiationIdentifier source="http://openvault.wgbh.org/oai">http://openvault.wgbh.org/catalog/sully-1477-americans-and-vietnamese-on-danang-s-china-beach-on-sunday</instantiationIdentifier>
+    <instantiationPhysical>Scanned from b&amp;w negative</instantiationPhysical>
+    <instantiationStandard/>
+    <instantiationLocation>http://openvault.wgbh.org/catalog/sully-1477-americans-and-vietnamese-on-danang-s-china-beach-on-sunday</instantiationLocation>
+    <instantiationGenerations>Static image/Photograph</instantiationGenerations>
+    <instantiationDuration/>
+    <instantiationColors/>
+  </pbcoreInstantiation>
+  <pbcoreInstantiation>
+    <instantiationIdentifier source="http://openvault.wgbh.org/oai"/>
+    <instantiationLocation/>
+  </pbcoreInstantiation>
+</pbcoreDescriptionDocument>

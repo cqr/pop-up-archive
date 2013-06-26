@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pbcoreDescriptionDocument xmlns="http://www.pbcore.org/PBCore/PBCoreNamespace.html">
+  <pbcoreIdentifier source="openvault.wgbh.org id"/>
+  <pbcoreTitle titleType="Clip">Melting Pot</pbcoreTitle>
+  <pbcoreTitle titleType="Episode">404</pbcoreTitle>
+  <pbcoreTitle titleType="Program">New Television</pbcoreTitle>
+  <pbcoreTitle titleType="Series">New Television</pbcoreTitle>
+  <pbcoreSubject source="LC">Racism</pbcoreSubject>
+  <pbcoreDescription descriptionType="Clip">Profile silhouettes are superimposed on top of images of national monuments in Washington, D.C. and street scenes showing economically challenged neighborhoods and individuals. The silhouettes slowly sound out racial slurs. A rhythmic, percussive sound score interacts with the spoken text. These vocals are credited as "The Trojan Horses."&lt;BR&gt; &lt;BR&gt; The work broadcast as a segment of episode 404 (1988) of "New Television." Produced by Neil B. Rolnick.</pbcoreDescription>
+  <pbcoreDescription descriptionType="Series">The New Television Workshop originated at WGBH, a public broadcasting station in Boston, Massachusetts, in 1974 to support the creation and development of experimental video art. This experimental programming included dance, drama, music, performance and visual arts on video and film. As early as 1968, WGBH was committed to the development of video art through residency programs, with artists such as Nam June Paik, and the "Rockefeller Artists-in-Television" project. Many of these early works (pre-1974) were broadcast both locally and nationally.&lt;BR&gt; &lt;BR&gt; As an umbrella for arts related programming, the Workshop included "Artist's Showcase, " "Frames of Reference, " "Dance for Camera, " "Poetry Breaks," and "New Television," as well as acquired arts programming. Individual works were created for "Visions," a series produced by WNET (New York), and "Alive From Off Center," a series produced by KTCA (St. Paul - Minneapolis). The Contemporary Art Television (CAT) Fund was co-founded by the Workshop and Boston's Institute for Contemporary Art (ICA) in the 1980's, to commission works by video artists. In 1993 the Workshop ceased production at WGBH.</pbcoreDescription>
+  <pbcoreCoverage>
+    <coverage>1987</coverage>
+    <coverageType>Temporal</coverageType>
+  </pbcoreCoverage>
+  <pbcoreContributor>
+    <contributor>Rolnick, Neil B.</contributor>
+    <contributorRole>Subject</contributorRole>
+  </pbcoreContributor>
+  <pbcoreContributor>
+    <contributor>Sturgeon, John</contributor>
+    <contributorRole>Subject</contributorRole>
+  </pbcoreContributor>
+  <pbcorePublisher>
+    <publisher>Rolnick/Sturgeon</publisher>
+    <publisherRole>Copyright Holder</publisherRole>
+  </pbcorePublisher>
+  <pbcorePublisher>
+    <publisher>WGBH Educational Foundation</publisher>
+    <publisherRole/>
+  </pbcorePublisher>
+  <pbcoreInstantiation>
+    <instantiationIdentifier source="http://openvault.wgbh.org/oai"/>
+    <instantiationLocation/>
+  </pbcoreInstantiation>
+</pbcoreDescriptionDocument>

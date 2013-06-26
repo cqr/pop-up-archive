@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pbcoreDescriptionDocument xmlns="http://www.pbcore.org/PBCore/PBCoreNamespace.html">
+  <pbcoreIdentifier source="openvault.wgbh.org id"/>
+  <pbcoreTitle titleType="Clip">Mel King at Tent City Meeting</pbcoreTitle>
+  <pbcoreTitle titleType="Series">The Ten O'Clock News</pbcoreTitle>
+  <pbcoreSubject source="LC">African American politicians</pbcoreSubject>
+  <pbcoreSubject source="LC">City planning</pbcoreSubject>
+  <pbcoreSubject source="LC">Housing</pbcoreSubject>
+  <pbcoreSubject source="Corporate Names">Tent City Corporation</pbcoreSubject>
+  <pbcoreSubject source="LC">Civil rights</pbcoreSubject>
+  <pbcoreSubject source="LC">Segregation</pbcoreSubject>
+  <pbcoreDescription descriptionType="Clip">Mel King (candidate for mayor of Boston) attends a meeting of the Tent City Corporation, chaired by Joan Tighe (chairwoman, Tent City Corporation), regarding the development of the Tent City site. Tighe says that the group will work to maintain affordable housing units at the site and to scale down a proposed plan for a parking garage on the site. Christy George interviews King about his position on housing issues and those of his opponents Ray Flynn (candidate for mayor of Boston) and David Finnegan (candidate for mayor of Boston). King criticizes condominium conversions and talks about the need for a strong rent control program. King discusses the link between employment and housing, and says that the community needs more low- and moderate-income housing units. King notes that the federal government is not aware of the housing crisis across the nation; he adds that the federal govenment needs a better housing policy.</pbcoreDescription>
+  <pbcoreDescription descriptionType="Series">A local program aimed at the Boston audience, The Ten O'Clock News debuted on January 15, 1976. Its two immediate predecessors were The Reporters and Evening Compass. A news and public affairs show focusing on neighborhood, local and state issues, The Reporters was produced and broadcast on WGBH from 1970 to 1973. The Reporters was then replaced by Evening Compass, which expanded into a twice-nightly news broadcast during the tense moments of Boston's busing crisis. On the air from 1973 to 1975, Evening Compass found an audience through its in-depth coverage of school desegregation in Boston, which began in 1974. The Ten O'Clock News stood out as an in-depth news program. It strove for a balance between local and national stories, between politics and the Arts. The last The Ten O'Clock News program was broadcast on May 30, 1991.</pbcoreDescription>
+  <pbcoreCoverage>
+    <coverage>09/19/1983</coverage>
+    <coverageType>Temporal</coverageType>
+  </pbcoreCoverage>
+  <pbcoreCoverage>
+    <coverage>South End (Boston, Mass.)</coverage>
+    <coverageType>Spatial</coverageType>
+  </pbcoreCoverage>
+  <pbcoreContributor>
+    <contributor>Finnegan, David</contributor>
+    <contributorRole>Subject</contributorRole>
+  </pbcoreContributor>
+  <pbcoreContributor>
+    <contributor>Flynn, Raymond L.</contributor>
+    <contributorRole>Subject</contributorRole>
+  </pbcoreContributor>
+  <pbcoreContributor>
+    <contributor>King, Mel</contributor>
+    <contributorRole>Subject</contributorRole>
+  </pbcoreContributor>
+  <pbcoreContributor>
+    <contributor>Tighe, Joan</contributor>
+    <contributorRole>Subject</contributorRole>
+  </pbcoreContributor>
+  <pbcorePublisher>
+    <publisher>WGBH Educational Foundation</publisher>
+    <publisherRole/>
+  </pbcorePublisher>
+  <pbcoreInstantiation>
+    <instantiationIdentifier source="http://openvault.wgbh.org/oai"/>
+    <instantiationLocation/>
+  </pbcoreInstantiation>
+</pbcoreDescriptionDocument>

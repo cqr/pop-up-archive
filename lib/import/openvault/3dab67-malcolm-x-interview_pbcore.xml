@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pbcoreDescriptionDocument xmlns="http://www.pbcore.org/PBCore/PBCoreNamespace.html">
+  <pbcoreIdentifier source="openvault.wgbh.org id"/>
+  <pbcoreTitle titleType="Series">Perspectives</pbcoreTitle>
+  <pbcoreTitle titleType="Program">Negro and The American Promise, The</pbcoreTitle>
+  <pbcoreTitle titleType="Element">Malcolm X Interview</pbcoreTitle>
+  <pbcoreTitle titleType="Collection">From the Vault</pbcoreTitle>
+  <pbcoreSubject source="Subject Heading">Civil rights leaders</pbcoreSubject>
+  <pbcoreSubject source="Corporate">Black Muslims</pbcoreSubject>
+  <pbcoreSubject source="Subject Heading">African Americans Politics and government</pbcoreSubject>
+  <pbcoreSubject source="Subject Heading">Civil rights</pbcoreSubject>
+  <pbcoreSubject source="Subject Heading">African Americans Interviews</pbcoreSubject>
+  <pbcoreDescription descriptionType="Summary">Excerpted interview with Malcolm X from the program "Negro and the American Promise."</pbcoreDescription>
+  <pbcoreCoverage>
+    <coverage>06/24/1963</coverage>
+    <coverageType>Temporal</coverageType>
+  </pbcoreCoverage>
+  <pbcoreCoverage>
+    <coverage>1963-06-24 00:00:00.0</coverage>
+    <coverageType>Temporal</coverageType>
+  </pbcoreCoverage>
+  <pbcoreContributor>
+    <contributor>X, Malcolm, 1925-1965</contributor>
+    <contributorRole>Interviewee</contributorRole>
+  </pbcoreContributor>
+  <pbcoreContributor>
+    <contributor>Clark, Kenneth Bancroft, 1914-2005</contributor>
+    <contributorRole>Interviewer</contributorRole>
+  </pbcoreContributor>
+  <pbcorePublisher>
+    <publisher>WGBH Educational Foundation</publisher>
+    <publisherRole>Publisher</publisherRole>
+  </pbcorePublisher>
+  <pbcoreInstantiation>
+    <instantiationIdentifier source="http://openvault.wgbh.org/oai">http://openvault.wgbh.org/catalog/3dab67-malcolm-x-interview</instantiationIdentifier>
+    <instantiationPhysical>Digital betacam</instantiationPhysical>
+    <instantiationStandard>NTSC</instantiationStandard>
+    <instantiationLocation>http://openvault.wgbh.org/catalog/3dab67-malcolm-x-interview</instantiationLocation>
+    <instantiationGenerations>Preservation Master</instantiationGenerations>
+    <instantiationDuration>00:13:05:19</instantiationDuration>
+    <instantiationColors>B&amp;W</instantiationColors>
+  </pbcoreInstantiation>
+  <pbcoreInstantiation>
+    <instantiationIdentifier source="http://openvault.wgbh.org/oai">http://openvault.wgbh.org/fedora/get/org.wgbh.mla:dbc105fefb1dd947aa735d0b6469aa35a33dab67/Video.mp4</instantiationIdentifier>
+    <instantiationLocation>http://openvault.wgbh.org/fedora/get/org.wgbh.mla:dbc105fefb1dd947aa735d0b6469aa35a33dab67/Video.mp4</instantiationLocation>
+  </pbcoreInstantiation>
+</pbcoreDescriptionDocument>

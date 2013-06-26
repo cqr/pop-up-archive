@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pbcoreCollection xsi:schemaLocation="http://www.PBCore.org/PBCore/PBCoreNamespace.html http://pbcore.org/xsd/pbcore-2.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.pbcore.org/PBCore/PBCoreNamespace.html">
+
+    <pbcoreDescriptionDocument>
+	<pbcoreAssetDate dateType="Created">01/14/2004</pbcoreAssetDate>
+	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2224</pbcoreIdentifier>
+	<pbcoreTitle>F-015 Mark Furstenberg at the Breadline, Washington D.C.</pbcoreTitle>
+	<pbcoreTitle titleType="Series">Hidden Kitchens</pbcoreTitle>
+	<pbcoreSubject source="Free tags">tag</pbcoreSubject>
+	<pbcoreDescription>No Description Available</pbcoreDescription>
+    <pbcoreRelation>
+        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+        <pbcoreRelationIdentifier source="Omeka:Kitchen Sisters Archive"></pbcoreRelationIdentifier>
+    </pbcoreRelation>
+	<pbcoreCoverage>
+		<coverage></coverage>
+		<coverageType>Spatial</coverageType>
+	</pbcoreCoverage>
+	<pbcoreCreator>
+		<creator>Kitchen Sisters</creator>
+		<creatorRole>Creator</creatorRole>
+	</pbcoreCreator>
+	<pbcoreContributor>
+		<contributor>Mark Furstenberg</contributor>
+		<contributorRole>Interviewee</contributorRole>
+	</pbcoreContributor>
+	<pbcoreContributor>
+		<contributor>Davia Nelson</contributor>
+		<contributorRole>Interviewer</contributorRole>
+	</pbcoreContributor>
+<pbcoreInstantiation>
+			<instantiationIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2224</instantiationIdentifier>
+		<instantiationIdentifier source="Omeka:Kitchen Sisters Archive.item_id">2224</instantiationIdentifier>		
+				
+				     
+				<instantiationDuration>58:28</instantiationDuration>
+		        	</pbcoreInstantiation>
+		<pbcoreInstantiation>
+			<instantiationIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2224</instantiationIdentifier>
+		<instantiationPhysical>Cassette</instantiationPhysical>
+		<instantiationLocation>SF Office</instantiationLocation>
+	</pbcoreInstantiation>
+				</pbcoreDescriptionDocument>
+
+    <pbcoreDescriptionDocument>
+	<pbcoreAssetDate dateType="Created">11/21/2011</pbcoreAssetDate>
+	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2223</pbcoreIdentifier>
+	<pbcoreTitle>F-773_Eleanor_Bertino_CP40</pbcoreTitle>
+	<pbcoreTitle titleType="Episode">Chez Panisse 40th Anniv Book</pbcoreTitle>
+	<pbcoreTitle titleType="Series">Hidden Kitchens</pbcoreTitle>
+	<pbcoreDescription>No Description Available</pbcoreDescription>
+    <pbcoreRelation>
+        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+        <pbcoreRelationIdentifier source="Omeka:Kitchen Sisters Archive">Chez Panisse 40th Anniv Book</pbcoreRelationIdentifier>
+    </pbcoreRelation>
+	<pbcoreCoverage>
+		<coverage></coverage>
+		<coverageType>Spatial</coverageType>
+	</pbcoreCoverage>
+	<pbcoreCreator>
+		<creator>Kitchen Sisters</creator>
+		<creatorRole>Creator</creatorRole>
+	</pbcoreCreator>
+<pbcoreInstantiation>
+			<instantiationIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2223</instantiationIdentifier>
+		<instantiationIdentifier>http://www.archive.org/details/KitchenSistersF-773</instantiationIdentifier>
+	<instantiationIdentifier>http://www.archive.org/download/KitchenSistersF-773/F-773_Eleanor_Bertino_CP40.mp3</instantiationIdentifier>
+	<instantiationIdentifier source="Omeka:Kitchen Sisters Archive.item_id">2223</instantiationIdentifier>		
+				<instantiationLocation>http://www.archive.org/details/KitchenSistersF-773</instantiationLocation>
+				
+						<instantiationDigital></instantiationDigital>  
+		     
+		                <instantiationPart>
+            <instantiationIdentifier>http://www.kitchensisters.org/archive/files/original/5619ed2aecba529c9d92733f195ea183.WAV</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Kitchen Sisters Archive.original_filename">F-773_Eleanor_Bertino_CP40.WAV</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Kitchen Sisters Archive.filename">5619ed2aecba529c9d92733f195ea183.WAV</instantiationIdentifier>
+        		<instantiationLocation>http://www.archive.org/details/KitchenSistersF-773</instantiationLocation>
+			     
+		 <instantiationDate dateType="Date Modified">2013-02-28 10:54:39</instantiationDate>
+		<instantiationFileSize unitsOfMeasure="bytes">80358648</instantiationFileSize>
+            <instantiationAnnotation annotationType="md5">5deb8d7c248aae065ba9ae21b5f24b6b</instantiationAnnotation>
+        </instantiationPart>
+       	</pbcoreInstantiation>
+				</pbcoreDescriptionDocument>
+
+    <pbcoreDescriptionDocument>
+	<pbcoreAssetDate dateType="Created">11/16/2011</pbcoreAssetDate>
+	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2222</pbcoreIdentifier>
+	<pbcoreTitle>F-774-01_Sally_Clarke_Slate_1</pbcoreTitle>
+	<pbcoreTitle titleType="Episode">Chez Panisse 40th Anniv Book</pbcoreTitle>
+	<pbcoreTitle titleType="Series">Hidden Kitchens</pbcoreTitle>
+	<pbcoreDescription>No Description Available</pbcoreDescription>
+    <pbcoreRelation>
+        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+        <pbcoreRelationIdentifier source="Omeka:Kitchen Sisters Archive">Chez Panisse 40th Anniv Book</pbcoreRelationIdentifier>
+    </pbcoreRelation>
+	<pbcoreCoverage>
+		<coverage></coverage>
+		<coverageType>Spatial</coverageType>
+	</pbcoreCoverage>
+	<pbcoreCreator>
+		<creator>Kitchen Sisters</creator>
+		<creatorRole>Creator</creatorRole>
+	</pbcoreCreator>
+<pbcoreInstantiation>
+			<instantiationIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2222</instantiationIdentifier>
+		<instantiationIdentifier>http://www.archive.org/details/KitchenSistersF-774-01</instantiationIdentifier>
+	<instantiationIdentifier>http://www.archive.org/download/KitchenSistersF-774-01/F-774-01_Sally_Clarke_Slate_1.mp3</instantiationIdentifier>
+	<instantiationIdentifier source="Omeka:Kitchen Sisters Archive.item_id">2222</instantiationIdentifier>		
+				<instantiationLocation>http://www.archive.org/details/KitchenSistersF-774-01</instantiationLocation>
+				
+						<instantiationDigital></instantiationDigital>  
+				<instantiationDigital></instantiationDigital>  
+				<instantiationDigital></instantiationDigital>  
+				<instantiationDigital></instantiationDigital>  
+		     
+		                <instantiationPart>
+            <instantiationIdentifier>http://www.kitchensisters.org/archive/files/original/8ae97d1b542d545280786bac42c2b7b6.WAV</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Kitchen Sisters Archive.original_filename">F-774-01_Sally_Clarke_Slate_1.WAV</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Kitchen Sisters Archive.filename">8ae97d1b542d545280786bac42c2b7b6.WAV</instantiationIdentifier>
+        		<instantiationLocation>http://www.archive.org/details/KitchenSistersF-774-01</instantiationLocation>
+			     
+		 <instantiationDate dateType="Date Modified">2013-02-28 10:54:55</instantiationDate>
+		<instantiationFileSize unitsOfMeasure="bytes">7731200</instantiationFileSize>
+            <instantiationAnnotation annotationType="md5">31c761f3e3e762cfbf996c36093039f9</instantiationAnnotation>
+        </instantiationPart>
+               <instantiationPart>
+            <instantiationIdentifier>http://www.kitchensisters.org/archive/files/original/470ed159e0a006c1b239f32f14db4b17.WAV</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Kitchen Sisters Archive.original_filename">F-774-02_Sally_Clarke_Slate_2.WAV</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Kitchen Sisters Archive.filename">470ed159e0a006c1b239f32f14db4b17.WAV</instantiationIdentifier>
+        		<instantiationLocation>http://www.archive.org/details/KitchenSistersF-774-01</instantiationLocation>
+			     
+		 <instantiationDate dateType="Date Modified">2013-02-28 10:54:55</instantiationDate>
+		<instantiationFileSize unitsOfMeasure="bytes">10065920</instantiationFileSize>
+            <instantiationAnnotation annotationType="md5">4c04d5c8847a9f3bef6b89703c3eed8c</instantiationAnnotation>
+        </instantiationPart>
+               <instantiationPart>
+            <instantiationIdentifier>http://www.kitchensisters.org/archive/files/original/5078e474097c390c11e7ece686190617.WAV</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Kitchen Sisters Archive.original_filename">F-774-03_Sally_Clarke_Slate_3.WAV</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Kitchen Sisters Archive.filename">5078e474097c390c11e7ece686190617.WAV</instantiationIdentifier>
+        		<instantiationLocation>http://www.archive.org/details/KitchenSistersF-774-01</instantiationLocation>
+			     
+		 <instantiationDate dateType="Date Modified">2013-02-28 10:54:55</instantiationDate>
+		<instantiationFileSize unitsOfMeasure="bytes">2164736</instantiationFileSize>
+            <instantiationAnnotation annotationType="md5">b5cccf88e0cd7f53deb68e0b22ec2ef4</instantiationAnnotation>
+        </instantiationPart>
+               <instantiationPart>
+            <instantiationIdentifier>http://www.kitchensisters.org/archive/files/original/eeb1418327fa7f38beeeaa8d88bc2967.WAV</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Kitchen Sisters Archive.original_filename">F-774-04_Sally_Clarke-CP40-110311.WAV</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Kitchen Sisters Archive.filename">eeb1418327fa7f38beeeaa8d88bc2967.WAV</instantiationIdentifier>
+        		<instantiationLocation>http://www.archive.org/details/KitchenSistersF-774-01</instantiationLocation>
+			     
+		 <instantiationDate dateType="Date Modified">2013-02-28 10:54:55</instantiationDate>
+		<instantiationFileSize unitsOfMeasure="bytes">186484736</instantiationFileSize>
+            <instantiationAnnotation annotationType="md5">e19d82292267768101a4e9d6c3246f39</instantiationAnnotation>
+        </instantiationPart>
+       	</pbcoreInstantiation>
+				</pbcoreDescriptionDocument>
+
+    <pbcoreDescriptionDocument>
+	<pbcoreAssetDate dateType="Created">11/16/2011</pbcoreAssetDate>
+	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2221</pbcoreIdentifier>
+	<pbcoreTitle>F-775_Claire_Ptak-CP40-110311</pbcoreTitle>
+	<pbcoreTitle titleType="Episode">Chez Panisse 40th Anniv Book</pbcoreTitle>
+	<pbcoreTitle titleType="Series">Hidden Kitchens</pbcoreTitle>
+	<pbcoreDescription>No Description Available</pbcoreDescription>
+    <pbcoreRelation>
+        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+        <pbcoreRelationIdentifier source="Omeka:Kitchen Sisters Archive">Chez Panisse 40th Anniv Book</pbcoreRelationIdentifier>
+    </pbcoreRelation>
+	<pbcoreCoverage>
+		<coverage></coverage>
+		<coverageType>Spatial</coverageType>
+	</pbcoreCoverage>
+	<pbcoreCreator>
+		<creator>Kitchen Sisters</creator>
+		<creatorRole>Creator</creatorRole>
+	</pbcoreCreator>
+<pbcoreInstantiation>
+			<instantiationIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2221</instantiationIdentifier>
+		<instantiationIdentifier>http://www.archive.org/details/KitchenSistersF-775</instantiationIdentifier>
+	<instantiationIdentifier>http://www.archive.org/download/KitchenSistersF-775/F-775_Claire_Ptak-CP40-110311.mp3</instantiationIdentifier>
+	<instantiationIdentifier source="Omeka:Kitchen Sisters Archive.item_id">2221</instantiationIdentifier>		
+				<instantiationLocation>http://www.archive.org/details/KitchenSistersF-775</instantiationLocation>
+				
+						<instantiationDigital></instantiationDigital>  
+		     
+		                <instantiationPart>
+            <instantiationIdentifier>http://www.kitchensisters.org/archive/files/original/862d0626aecb8ed20814b635b716b7a8.WAV</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Kitchen Sisters Archive.original_filename">F-775_Claire_Ptak-CP40-110311.WAV</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Kitchen Sisters Archive.filename">862d0626aecb8ed20814b635b716b7a8.WAV</instantiationIdentifier>
+        		<instantiationLocation>http://www.archive.org/details/KitchenSistersF-775</instantiationLocation>
+			     
+		 <instantiationDate dateType="Date Modified">2013-02-28 10:55:58</instantiationDate>
+		<instantiationFileSize unitsOfMeasure="bytes">192124928</instantiationFileSize>
+            <instantiationAnnotation annotationType="md5">af3f48939a0ce5dc80da1d537df3378a</instantiationAnnotation>
+        </instantiationPart>
+       	</pbcoreInstantiation>
+				</pbcoreDescriptionDocument>
+
+    <pbcoreDescriptionDocument>
+	<pbcoreAssetDate dateType="Created">11/16/2011</pbcoreAssetDate>
+	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2220</pbcoreIdentifier>
+	<pbcoreTitle>F-776-01_Malgosia_Szemberg_reading_Teddy_Szemberg_O&amp;#039;Connor-CP40-110311</pbcoreTitle>
+	<pbcoreTitle titleType="Episode">Chez Panisse 40th Anniv Book</pbcoreTitle>
+	<pbcoreTitle titleType="Series">Hidden Kitchens</pbcoreTitle>
+	<pbcoreDescription>No Description Available</pbcoreDescription>
+    <pbcoreRelation>
+        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+        <pbcoreRelationIdentifier source="Omeka:Kitchen Sisters Archive">Chez Panisse 40th Anniv Book</pbcoreRelationIdentifier>
+    </pbcoreRelation>
+	<pbcoreCoverage>
+		<coverage></coverage>
+		<coverageType>Spatial</coverageType>
+	</pbcoreCoverage>
+	<pbcoreCreator>
+		<creator>Kitchen Sisters</creator>
+		<creatorRole>Creator</creatorRole>
+	</pbcoreCreator>
+<pbcoreInstantiation>
+			<instantiationIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2220</instantiationIdentifier>
+		<instantiationIdentifier>http://www.archive.org/details/KitchenSistersF-776-01</instantiationIdentifier>
+	<instantiationIdentifier>http://www.archive.org/download/KitchenSistersF-776-01/F-776-01_Malgosia_Szemberg_reading_Teddy_Szemberg_O&amp;#039;Connor-CP40-110311.mp3</instantiationIdentifier>
+	<instantiationIdentifier source="Omeka:Kitchen Sisters Archive.item_id">2220</instantiationIdentifier>		
+				<instantiationLocation>http://www.archive.org/details/KitchenSistersF-776-01</instantiationLocation>
+				
+						<instantiationDigital></instantiationDigital>  
+				<instantiationDigital></instantiationDigital>  
+		     
+		                <instantiationPart>
+            <instantiationIdentifier>http://www.kitchensisters.org/archive/files/original/3adb87620f4da94ed0a611c090604629.WAV</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Kitchen Sisters Archive.original_filename">F-776-01_Malgosia_Szemberg_reading_Teddy_Szemberg_OConnor-CP40-110311.WAV</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Kitchen Sisters Archive.filename">3adb87620f4da94ed0a611c090604629.WAV</instantiationIdentifier>
+        		<instantiationLocation>http://www.archive.org/details/KitchenSistersF-776-01</instantiationLocation>
+			     
+		 <instantiationDate dateType="Date Modified">2013-02-28 10:57:21</instantiationDate>
+		<instantiationFileSize unitsOfMeasure="bytes">352163840</instantiationFileSize>
+            <instantiationAnnotation annotationType="md5">27a63cb85329b8ac0767469df153ef8c</instantiationAnnotation>
+        </instantiationPart>
+               <instantiationPart>
+            <instantiationIdentifier>http://www.kitchensisters.org/archive/files/original/9bd6dca776b8c2baa20673c9ffb8ddee.WAV</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Kitchen Sisters Archive.original_filename">F-776-02_Malgosia_Szemberg_2-CP40-110311.WAV</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Kitchen Sisters Archive.filename">9bd6dca776b8c2baa20673c9ffb8ddee.WAV</instantiationIdentifier>
+        		<instantiationLocation>http://www.archive.org/details/KitchenSistersF-776-01</instantiationLocation>
+			     
+		 <instantiationDate dateType="Date Modified">2013-02-28 10:57:21</instantiationDate>
+		<instantiationFileSize unitsOfMeasure="bytes">5445632</instantiationFileSize>
+            <instantiationAnnotation annotationType="md5">b2c3b3634608d03876a155eaa8c62d8c</instantiationAnnotation>
+        </instantiationPart>
+       	</pbcoreInstantiation>
+				</pbcoreDescriptionDocument>
+
+    <pbcoreDescriptionDocument>
+	<pbcoreAssetDate dateType="Created">11/22/2011</pbcoreAssetDate>
+	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2219</pbcoreIdentifier>
+	<pbcoreTitle>F-777_Samantha_Greenwood-CP40</pbcoreTitle>
+	<pbcoreTitle titleType="Episode">Chez Panisse 40th Anniv Book</pbcoreTitle>
+	<pbcoreTitle titleType="Series">Hidden Kitchens</pbcoreTitle>
+	<pbcoreDescription>No Description Available</pbcoreDescription>
+    <pbcoreRelation>
+        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+        <pbcoreRelationIdentifier source="Omeka:Kitchen Sisters Archive">Chez Panisse 40th Anniv Book</pbcoreRelationIdentifier>
+    </pbcoreRelation>
+	<pbcoreCoverage>
+		<coverage></coverage>
+		<coverageType>Spatial</coverageType>
+	</pbcoreCoverage>
+	<pbcoreCreator>
+		<creator>Kitchen Sisters</creator>
+		<creatorRole>Creator</creatorRole>
+	</pbcoreCreator>
+<pbcoreInstantiation>
+			<instantiationIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2219</instantiationIdentifier>
+		<instantiationIdentifier>http://www.archive.org/details/KitchenSistersF-777</instantiationIdentifier>
+	<instantiationIdentifier>http://www.archive.org/download/KitchenSistersF-777/F-777_Samantha_Greenwood-CP40.mp3</instantiationIdentifier>
+	<instantiationIdentifier source="Omeka:Kitchen Sisters Archive.item_id">2219</instantiationIdentifier>		
+				<instantiationLocation>http://www.archive.org/details/KitchenSistersF-777</instantiationLocation>
+				
+						<instantiationDigital></instantiationDigital>  
+		     
+		                <instantiationPart>
+            <instantiationIdentifier>http://www.kitchensisters.org/archive/files/original/92e5f13c8c65da4904cda8d716242e68.WAV</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Kitchen Sisters Archive.original_filename">F-777_Samantha_Greenwood-CP40.WAV</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Kitchen Sisters Archive.filename">92e5f13c8c65da4904cda8d716242e68.WAV</instantiationIdentifier>
+        		<instantiationLocation>http://www.archive.org/details/KitchenSistersF-777</instantiationLocation>
+			     
+		 <instantiationDate dateType="Date Modified">2013-02-28 10:57:39</instantiationDate>
+		<instantiationFileSize unitsOfMeasure="bytes">130924032</instantiationFileSize>
+            <instantiationAnnotation annotationType="md5">0d764f0cae4da3a1a73489b180b11d85</instantiationAnnotation>
+        </instantiationPart>
+       	</pbcoreInstantiation>
+				</pbcoreDescriptionDocument>
+
+    <pbcoreDescriptionDocument>
+	<pbcoreAssetDate dateType="Created">10/20/2006</pbcoreAssetDate>
+	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2218</pbcoreIdentifier>
+	<pbcoreTitle>F-778_Red_Hook_Soccer_Stalls</pbcoreTitle>
+	<pbcoreTitle titleType="Episode">Red Hook Soccer Stalls</pbcoreTitle>
+	<pbcoreTitle titleType="Series">Hidden Kitchens</pbcoreTitle>
+	<pbcoreDescription>No Description Available</pbcoreDescription>
+    <pbcoreRelation>
+        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+        <pbcoreRelationIdentifier source="Omeka:Kitchen Sisters Archive">Hidden Kitchens</pbcoreRelationIdentifier>
+    </pbcoreRelation>
+	<pbcoreCoverage>
+		<coverage></coverage>
+		<coverageType>Spatial</coverageType>
+	</pbcoreCoverage>
+	<pbcoreCreator>
+		<creator>Kitchen Sisters</creator>
+		<creatorRole>Creator</creatorRole>
+	</pbcoreCreator>
+<pbcoreInstantiation>
+			<instantiationIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2218</instantiationIdentifier>
+		<instantiationIdentifier>http://www.archive.org/details/KitchenSistersF-778</instantiationIdentifier>
+	<instantiationIdentifier>http://www.archive.org/download/KitchenSistersF-778/F-778_Red_Hook_Soccer_Stalls.mp3</instantiationIdentifier>
+	<instantiationIdentifier source="Omeka:Kitchen Sisters Archive.item_id">2218</instantiationIdentifier>		
+				<instantiationLocation>http://www.archive.org/details/KitchenSistersF-778</instantiationLocation>
+				
+						<instantiationDigital></instantiationDigital>  
+		     
+		                <instantiationPart>
+            <instantiationIdentifier>http://www.kitchensisters.org/archive/files/original/4ee19c9802b1c6e46542038e65f77544.aiff</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Kitchen Sisters Archive.original_filename">F-778_Red_Hook_Soccer_Stalls.aiff</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Kitchen Sisters Archive.filename">4ee19c9802b1c6e46542038e65f77544.aiff</instantiationIdentifier>
+        		<instantiationLocation>http://www.archive.org/details/KitchenSistersF-778</instantiationLocation>
+			     
+		 <instantiationDate dateType="Date Modified">2013-02-28 10:58:02</instantiationDate>
+		<instantiationFileSize unitsOfMeasure="bytes">775618614</instantiationFileSize>
+            <instantiationAnnotation annotationType="md5">4010262be8fabc88a5fbba23744fbbdf</instantiationAnnotation>
+        </instantiationPart>
+       	</pbcoreInstantiation>
+				</pbcoreDescriptionDocument>
+
+    <pbcoreDescriptionDocument>
+	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2217</pbcoreIdentifier>
+	<pbcoreTitle>F-779-01_Kogi_BBQ_Truck_1</pbcoreTitle>
+	<pbcoreTitle titleType="Episode">Kogi BBQ Truck</pbcoreTitle>
+	<pbcoreTitle titleType="Series">Hidden Kitchens</pbcoreTitle>
+	<pbcoreDescription>No Description Available</pbcoreDescription>
+    <pbcoreRelation>
+        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+        <pbcoreRelationIdentifier source="Omeka:Kitchen Sisters Archive">Hidden Kitchens</pbcoreRelationIdentifier>
+    </pbcoreRelation>
+	<pbcoreCoverage>
+		<coverage></coverage>
+		<coverageType>Spatial</coverageType>
+	</pbcoreCoverage>
+	<pbcoreCreator>
+		<creator>Kitchen Sisters</creator>
+		<creatorRole>Creator</creatorRole>
+	</pbcoreCreator>
+<pbcoreInstantiation>
+			<instantiationIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2217</instantiationIdentifier>
+		<instantiationIdentifier>http://www.archive.org/details/KitchenSistersF-779-01</instantiationIdentifier>
+	<instantiationIdentifier>http://www.archive.org/download/KitchenSistersF-779-01/F-779-01_Kogi_BBQ_Truck_1.mp3</instantiationIdentifier>
+	<instantiationIdentifier source="Omeka:Kitchen Sisters Archive.item_id">2217</instantiationIdentifier>		
+				<instantiationLocation>http://www.archive.org/details/KitchenSistersF-779-01</instantiationLocation>
+				
+						<instantiationDigital></instantiationDigital>  
+				<instantiationDigital></instantiationDigital>  
+		     
+		                <instantiationPart>
+            <instantiationIdentifier>http://www.kitchensisters.org/archive/files/original/c484b6deb906f1eeb2ec3ca6421eaabe.WAV</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Kitchen Sisters Archive.original_filename">F-779-01_Kogi_BBQ_Truck_1.WAV</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Kitchen Sisters Archive.filename">c484b6deb906f1eeb2ec3ca6421eaabe.WAV</instantiationIdentifier>
+        		<instantiationLocation>http://www.archive.org/details/KitchenSistersF-779-01</instantiationLocation>
+			     
+		 <instantiationDate dateType="Date Modified">2013-02-28 10:58:21</instantiationDate>
+		<instantiationFileSize unitsOfMeasure="bytes">18396716</instantiationFileSize>
+            <instantiationAnnotation annotationType="md5">3a2de816c82f04ae843761fd95497580</instantiationAnnotation>
+        </instantiationPart>
+               <instantiationPart>
+            <instantiationIdentifier>http://www.kitchensisters.org/archive/files/original/eefbe88f74b5f107ba36c1686649d00a.WAV</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Kitchen Sisters Archive.original_filename">F-779-02_Kogi_BBQ_Truck_2.WAV</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Kitchen Sisters Archive.filename">eefbe88f74b5f107ba36c1686649d00a.WAV</instantiationIdentifier>
+        		<instantiationLocation>http://www.archive.org/details/KitchenSistersF-779-01</instantiationLocation>
+			     
+		 <instantiationDate dateType="Date Modified">2013-02-28 10:58:21</instantiationDate>
+		<instantiationFileSize unitsOfMeasure="bytes">31924268</instantiationFileSize>
+            <instantiationAnnotation annotationType="md5">a297ea73f9751b5c71f7e0349fc81bd0</instantiationAnnotation>
+        </instantiationPart>
+       	</pbcoreInstantiation>
+				</pbcoreDescriptionDocument>
+
+    <pbcoreDescriptionDocument>
+	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2216</pbcoreIdentifier>
+	<pbcoreTitle>George Foreman at Some Event</pbcoreTitle>
+	<pbcoreTitle titleType="Episode">George Foreman Grill</pbcoreTitle>
+	<pbcoreTitle titleType="Series">Hidden Kitchens</pbcoreTitle>
+	<pbcoreDescription>No Description Available</pbcoreDescription>
+    <pbcoreRelation>
+        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+        <pbcoreRelationIdentifier source="Omeka:Kitchen Sisters Archive">George Foreman Grill</pbcoreRelationIdentifier>
+    </pbcoreRelation>
+	<pbcoreCoverage>
+		<coverage></coverage>
+		<coverageType>Spatial</coverageType>
+	</pbcoreCoverage>
+	<pbcoreCreator>
+		<creator>el grito</creator>
+		<creatorRole>Creator</creatorRole>
+	</pbcoreCreator>
+	<pbcoreRightsSummary>
+		<rightsSummary>CC BY</rightsSummary>
+	</pbcoreRightsSummary>
+<pbcoreInstantiation>
+			<instantiationIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2216</instantiationIdentifier>
+		<instantiationIdentifier source="Omeka:Kitchen Sisters Archive.item_id">2216</instantiationIdentifier>		
+				
+						<instantiationDigital></instantiationDigital>  
+		     
+		                <instantiationPart>
+            <instantiationIdentifier>http://www.kitchensisters.org/archive/files/original/f42765919de615e7b54608bcf1a12900.jpg</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Kitchen Sisters Archive.original_filename">flickr-3901846051-original.jpg</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Kitchen Sisters Archive.filename">f42765919de615e7b54608bcf1a12900.jpg</instantiationIdentifier>
+        	     
+		 <instantiationDate dateType="Date Modified">2013-02-28 10:58:43</instantiationDate>
+		<instantiationFileSize unitsOfMeasure="bytes">2794062</instantiationFileSize>
+            <instantiationAnnotation annotationType="md5">8f9713514f2c8ec60bac55b2a01ba2c6</instantiationAnnotation>
+        </instantiationPart>
+       	</pbcoreInstantiation>
+			<pbcoreAnnotation annotationType="Notes">jpeg</pbcoreAnnotation>
+			</pbcoreDescriptionDocument>
+
+    <pbcoreDescriptionDocument>
+	<pbcoreAssetDate dateType="Created">08/06/2004</pbcoreAssetDate>
+	<pbcoreIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2215</pbcoreIdentifier>
+	<pbcoreTitle>Mooch with Ladle and Steam Pot</pbcoreTitle>
+	<pbcoreTitle titleType="Episode">George Foreman Grill</pbcoreTitle>
+	<pbcoreTitle titleType="Series">Hidden Kitchens</pbcoreTitle>
+	<pbcoreDescription>A man with a ladle standing next to a huge steam pot.</pbcoreDescription>
+    <pbcoreRelation>
+        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+        <pbcoreRelationIdentifier source="Omeka:Kitchen Sisters Archive">George Foreman Grill</pbcoreRelationIdentifier>
+    </pbcoreRelation>
+	<pbcoreCoverage>
+		<coverage></coverage>
+		<coverageType>Spatial</coverageType>
+	</pbcoreCoverage>
+	<pbcoreCreator>
+		<creator>Kitchen Sisters</creator>
+		<creatorRole>Creator</creatorRole>
+	</pbcoreCreator>
+<pbcoreInstantiation>
+			<instantiationIdentifier source="Omeka">http://www.kitchensisters.org/archive/items/show/2215</instantiationIdentifier>
+		<instantiationIdentifier source="Omeka:Kitchen Sisters Archive.item_id">2215</instantiationIdentifier>		
+				
+						<instantiationDigital></instantiationDigital>  
+		     
+		                <instantiationPart>
+            <instantiationIdentifier>http://www.kitchensisters.org/archive/files/original/db12d789358d9bed3fd53cd51ae33dbd.jpg</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Kitchen Sisters Archive.original_filename">Mooch with ladle and steam pot.jpg</instantiationIdentifier>
+            <instantiationIdentifier source="Omeka:Kitchen Sisters Archive.filename">db12d789358d9bed3fd53cd51ae33dbd.jpg</instantiationIdentifier>
+        	     
+		 <instantiationDate dateType="Date Modified">2013-02-28 10:59:02</instantiationDate>
+		<instantiationFileSize unitsOfMeasure="bytes">135585</instantiationFileSize>
+            <instantiationAnnotation annotationType="md5">526dd84b6e79e3f1279c00a488c0f618</instantiationAnnotation>
+        </instantiationPart>
+       	</pbcoreInstantiation>
+			<pbcoreAnnotation annotationType="Notes">jpeg</pbcoreAnnotation>
+			</pbcoreDescriptionDocument>
+</pbcoreCollection>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pbcoreDescriptionDocument xmlns="http://www.pbcore.org/PBCore/PBCoreNamespace.html">
+  <pbcoreIdentifier source="openvault.wgbh.org id"/>
+  <pbcoreIdentifier source="NOLA">WPNA</pbcoreIdentifier>
+  <pbcoreIdentifier source="Source Reference Number">5.1:2</pbcoreIdentifier>
+  <pbcoreTitle titleType="Series">War and Peace in the Nuclear Age</pbcoreTitle>
+  <pbcoreTitle titleType="Program">Reagan's Shield</pbcoreTitle>
+  <pbcoreTitle titleType="Episode">112</pbcoreTitle>
+  <pbcoreTitle titleType="Element">Interview with Les Aspin, 1987 [Part 1 of 2]</pbcoreTitle>
+  <pbcoreSubject source="Subject Heading">Nuclear weapons</pbcoreSubject>
+  <pbcoreSubject source="Subject Heading">Nuclear arms control</pbcoreSubject>
+  <pbcoreDescription descriptionType="Description">Les Aspin was a U.S. senator from Wisconsin from 1971 to 1993. He then served as President Bill Clinton’s secretary of defense from 1993 to 1994.    In the interview he conducted for War and Peace in the Nuclear Age, Aspin tracks the decade-long debate over the function, funding, basing, and quantity of the new, super-accurate missile. The absence of progress on arms control, coupled with some 34 basing modes proposed to house the MX missile, created public and congressional discontent and distrust. While Aspin supported producing 100 MX missiles, he was prepared to cap the number at 50 to halt the endless congressional floor fights. He explains the difficulty of reaching and sustaining a complex compromise given the turnover of elected and appointed personnel. Overall, he says, “to solve the vulnerability problem, you need a combination of cuts and deployments.” For this reason, he supported the MX missile—which might be traded away for reductions in Soviet heavy missiles—and the design of the smaller, mobile Midgetman. Creating such survivable systems, he explains, is expensive.     Aspin reflects on the validity of the “window of vulnerability” claimed by Ronald Reagan’s administration, and comments on the formation of the Scowcroft Commission to resolve the protracted debate about the MX missile. He expressed little patience with the proposal to close the Reagan administration’s “window” by pursuing the exponentially more costly Strategic Defense Initiative (SDI) instead of the Midgetman. The “SDI Mafia,” Aspin concludes, “is just twisting the whole argument in order to justify building SDI to defend missiles. Make them mobile—it’s a lot cheaper.”</pbcoreDescription>
+  <pbcoreCoverage>
+    <coverage>12/15/1987</coverage>
+    <coverageType>Temporal</coverageType>
+  </pbcoreCoverage>
+  <pbcoreContributor>
+    <contributor>Aspin, Les</contributor>
+    <contributorRole>Interviewee</contributorRole>
+  </pbcoreContributor>
+  <pbcoreContributor>
+    <contributor>Aspin, Les</contributor>
+    <contributorRole>Subject</contributorRole>
+  </pbcoreContributor>
+  <pbcorePublisher>
+    <publisher>WGBH Educational Foundation</publisher>
+    <publisherRole>Publisher</publisherRole>
+  </pbcorePublisher>
+  <pbcoreRightsSummary>
+    <rightsSummary>WGBH Educational Foundation</rightsSummary>
+  </pbcoreRightsSummary>
+  <pbcoreInstantiation>
+    <instantiationIdentifier source="http://openvault.wgbh.org/oai">http://openvault.wgbh.org/catalog/wpna-e0512e-interview-with-les-aspin-1987-part-1-of-2</instantiationIdentifier>
+    <instantiationPhysical>Betacam</instantiationPhysical>
+    <instantiationStandard>NTSC</instantiationStandard>
+    <instantiationLocation>http://openvault.wgbh.org/catalog/wpna-e0512e-interview-with-les-aspin-1987-part-1-of-2</instantiationLocation>
+    <instantiationGenerations>Original footage</instantiationGenerations>
+    <instantiationDuration>00:19:10;05</instantiationDuration>
+    <instantiationColors>Color</instantiationColors>
+  </pbcoreInstantiation>
+  <pbcoreInstantiation>
+    <instantiationIdentifier source="http://openvault.wgbh.org/oai">http://openvault.wgbh.org/fedora/get/org.wgbh.mla:550838fd88b85a767d97d06a008b16a08ee0512e/Video.mp4</instantiationIdentifier>
+    <instantiationLocation>http://openvault.wgbh.org/fedora/get/org.wgbh.mla:550838fd88b85a767d97d06a008b16a08ee0512e/Video.mp4</instantiationLocation>
+  </pbcoreInstantiation>
+</pbcoreDescriptionDocument>

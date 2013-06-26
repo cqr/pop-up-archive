@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pbcoreDescriptionDocument xmlns="http://www.pbcore.org/PBCore/PBCoreNamespace.html">
+  <pbcoreIdentifier source="openvault.wgbh.org id"/>
+  <pbcoreTitle titleType="Clip">Meredith Monk's "Turtle Dreams"</pbcoreTitle>
+  <pbcoreTitle titleType="Program">Turtle Dreams</pbcoreTitle>
+  <pbcoreSubject source="LC">Avant-garde (Music)</pbcoreSubject>
+  <pbcoreSubject source="LC">Dance</pbcoreSubject>
+  <pbcoreSubject source="LC">Modern dance</pbcoreSubject>
+  <pbcoreSubject source="LC">Music</pbcoreSubject>
+  <pbcoreDescription descriptionType="Clip">In this short excerpt from Meredith Monk's "Turtle Dreams, " the performers execute shifting movements and sing repetitive sounds against a spare backdrop.</pbcoreDescription>
+  <pbcoreDescription descriptionType="Program">The dance/theater artist and composer Meredith Monk created this one-off special.&lt;BR&gt; &lt;BR&gt; "Turtle Dreams," is a collage-style work that juxtaposes minimalist movement phrasing and vocal work with images of a live turtle traversing various terrains. The turtle is pictured both in an outdoor natural habitat and roaming through constructed sets (the moon's surface, a city block), which play with scale to make the turtle seem gigantic. The performers execute shifting movements and sing repetitive sounds against a spare backdrop. Close-ups of their features and hands appear. The music is by Meredith Monk. Vocal parts are executed by the performers. Costumes were designed by Yoshio Yabara.&lt;BR&gt; &lt;BR&gt; The "Television Workshop" created several shows that were broadcast on WGBH without being a part of a series sponsored specifically by the Workshop. Additionally, they were commissioned to create shows showcasing video art for national broadcast and created several shows in collaboration with existing series at other stations, such as WNET''s "American Playhouse."</pbcoreDescription>
+  <pbcoreDescription descriptionType="Series">The New Television Workshop originated at WGBH, a public broadcasting station in Boston, Massachusetts, in 1974 to support the creation and development of experimental video art. This experimental programming included dance, drama, music, performance and visual arts on video and film. As early as 1968, WGBH was committed to the development of video art through residency programs, with artists such as Nam June Paik, and the "Rockefeller Artists-in-Television" project. Many of these early works (pre-1974) were broadcast both locally and nationally.&lt;BR&gt; &lt;BR&gt; As an umbrella for arts related programming, the Workshop included "Artist's Showcase, " "Frames of Reference, " "Dance for Camera, " "Poetry Breaks," and "New Television," as well as acquired arts programming. Individual works were created for "Visions," a series produced by WNET (New York), and "Alive From Off Center," a series produced by KTCA (St. Paul - Minneapolis). The Contemporary Art Television (CAT) Fund was co-founded by the Workshop and Boston's Institute for Contemporary Art (ICA) in the 1980's, to commission works by video artists. In 1993 the Workshop ceased production at WGBH.</pbcoreDescription>
+  <pbcoreCoverage>
+    <coverage>1983</coverage>
+    <coverageType>Temporal</coverageType>
+  </pbcoreCoverage>
+  <pbcoreContributor>
+    <contributor>Een, Robert</contributor>
+    <contributorRole>Subject</contributorRole>
+  </pbcoreContributor>
+  <pbcoreContributor>
+    <contributor>Goodman, Andrea</contributor>
+    <contributorRole>Subject</contributorRole>
+  </pbcoreContributor>
+  <pbcoreContributor>
+    <contributor>Langland, Paul</contributor>
+    <contributorRole>Subject</contributorRole>
+  </pbcoreContributor>
+  <pbcoreContributor>
+    <contributor>Monk, Meredith</contributor>
+    <contributorRole>Subject</contributorRole>
+  </pbcoreContributor>
+  <pbcorePublisher>
+    <publisher>Meredith Monk</publisher>
+    <publisherRole>Copyright Holder</publisherRole>
+  </pbcorePublisher>
+  <pbcorePublisher>
+    <publisher>WGBH Educational Foundation</publisher>
+    <publisherRole/>
+  </pbcorePublisher>
+  <pbcoreInstantiation>
+    <instantiationIdentifier source="http://openvault.wgbh.org/oai">http://openvault.wgbh.org/fedora/get/org.wgbh.mla:MLA000256/Video.mp4</instantiationIdentifier>
+    <instantiationLocation>http://openvault.wgbh.org/fedora/get/org.wgbh.mla:MLA000256/Video.mp4</instantiationLocation>
+  </pbcoreInstantiation>
+</pbcoreDescriptionDocument>

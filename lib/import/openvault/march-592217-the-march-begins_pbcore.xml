@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pbcoreDescriptionDocument xmlns="http://www.pbcore.org/PBCore/PBCoreNamespace.html">
+  <pbcoreIdentifier source="openvault.wgbh.org id"/>
+  <pbcoreTitle titleType="Working Program">Part 6 of 17</pbcoreTitle>
+  <pbcoreTitle titleType="Series">March on Washington</pbcoreTitle>
+  <pbcoreTitle titleType="Program">The March Begins</pbcoreTitle>
+  <pbcoreSubject source="Subject Heading">March on Washington for Jobs and Freedom, Washington, D.C., 1963</pbcoreSubject>
+  <pbcoreSubject source="Corporate">United States--Politics and government--1961-1963</pbcoreSubject>
+  <pbcoreSubject source="Subject Heading">Imprisonment--United States</pbcoreSubject>
+  <pbcoreSubject source="Personalities">Farmer, James, 1920-</pbcoreSubject>
+  <pbcoreSubject source="Subject Heading">Race--Religious aspects--Christianity</pbcoreSubject>
+  <pbcoreSubject source="Subject Heading">Discrimination in employment--United States--History--20th century</pbcoreSubject>
+  <pbcoreSubject source="Corporate">Civil rights movement</pbcoreSubject>
+  <pbcoreSubject source="Subject Heading">Civil rights movements--United States--History--20th century</pbcoreSubject>
+  <pbcoreSubject source="Corporate">African Americans--Politics and government--20th century</pbcoreSubject>
+  <pbcoreSubject source="Subject Heading">Civil rights</pbcoreSubject>
+  <pbcoreSubject source="Subject Heading">Segregation</pbcoreSubject>
+  <pbcoreDescription descriptionType="Summary">The Educational Radio Network / ERN's coverage of the March on Washington for Jobs and Freedom. Sixth of fifteen hours of broadcast: 1:58:30 P.M. - 3 P.M. A. Philip Randolph introduces the program, "Pass the bill" chant, Daisy Bates, Marion Anderson sings, John Lewis, and message from Farmer read, and the Eva Jessye Choir performs.</pbcoreDescription>
+  <pbcoreCoverage>
+    <coverage>08/28/1963</coverage>
+    <coverageType>Temporal</coverageType>
+  </pbcoreCoverage>
+  <pbcoreCoverage>
+    <coverage>Washington, DC</coverage>
+    <coverageType>Spatial</coverageType>
+  </pbcoreCoverage>
+  <pbcoreContributor>
+    <contributor>Anderson, Marion</contributor>
+    <contributorRole>Musician</contributorRole>
+  </pbcoreContributor>
+  <pbcoreContributor>
+    <contributor>Randolph, A. Philip</contributor>
+    <contributorRole>Speaker</contributorRole>
+  </pbcoreContributor>
+  <pbcoreContributor>
+    <contributor>Bates, Daisy</contributor>
+    <contributorRole>Speaker</contributorRole>
+  </pbcoreContributor>
+  <pbcoreContributor>
+    <contributor>Lewis, John</contributor>
+    <contributorRole>Speaker</contributorRole>
+  </pbcoreContributor>
+  <pbcoreContributor>
+    <contributor>Labor leaders--United States--1960-1970</contributor>
+    <contributorRole>Subject</contributorRole>
+  </pbcoreContributor>
+  <pbcorePublisher>
+    <publisher>WGBH Educational Foundation</publisher>
+    <publisherRole>Publisher</publisherRole>
+  </pbcorePublisher>
+  <pbcoreInstantiation>
+    <instantiationIdentifier source="http://openvault.wgbh.org/oai">http://openvault.wgbh.org/catalog/march-592217-the-march-begins</instantiationIdentifier>
+    <instantiationPhysical>1/4 inch audiotape</instantiationPhysical>
+    <instantiationStandard/>
+    <instantiationLocation>http://openvault.wgbh.org/catalog/march-592217-the-march-begins</instantiationLocation>
+    <instantiationGenerations>Radio program (Master)</instantiationGenerations>
+    <instantiationDuration>01:02:19</instantiationDuration>
+    <instantiationColors/>
+  </pbcoreInstantiation>
+  <pbcoreInstantiation>
+    <instantiationIdentifier source="http://openvault.wgbh.org/oai"/>
+    <instantiationLocation/>
+  </pbcoreInstantiation>
+</pbcoreDescriptionDocument>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pbcoreDescriptionDocument xmlns="http://www.pbcore.org/PBCore/PBCoreNamespace.html">
+  <pbcoreIdentifier source="openvault.wgbh.org id"/>
+  <pbcoreTitle titleType="Episode">922</pbcoreTitle>
+  <pbcoreTitle titleType="Program">Case of Justice, A [Part 1 of 2]</pbcoreTitle>
+  <pbcoreTitle titleType="Series">Say Brother</pbcoreTitle>
+  <pbcoreSubject source="LC">African American prisoners--Attitudes</pbcoreSubject>
+  <pbcoreSubject source="LC">African American prisoners--Massachusetts</pbcoreSubject>
+  <pbcoreSubject source="LC">Discrimination in criminal justice administration</pbcoreSubject>
+  <pbcoreSubject source="Personal Names">Carney, Saundra</pbcoreSubject>
+  <pbcoreSubject source="Personal Names">Dershowitz, Alan M.</pbcoreSubject>
+  <pbcoreSubject source="Personal Names">Gaines, Larry</pbcoreSubject>
+  <pbcoreSubject source="Personal Names">Harris, Mary</pbcoreSubject>
+  <pbcoreSubject source="Personal Names">Jamal, Hakim A., 1931-</pbcoreSubject>
+  <pbcoreSubject source="Personal Names">Kamau, Dinizulu (Efrid Brown, Jr.)</pbcoreSubject>
+  <pbcoreSubject source="Personal Names">Neisser, Frank</pbcoreSubject>
+  <pbcoreSubject source="Personal Names">Sabree, Abdullah Khalil (William Johnson)</pbcoreSubject>
+  <pbcoreSubject source="Personal Names">Sanders, Undrey</pbcoreSubject>
+  <pbcoreSubject source="Corporate Names">Citywide Coalition for Justice and Equality</pbcoreSubject>
+  <pbcoreSubject source="Corporate Names">Willie Sanders Defense Committee</pbcoreSubject>
+  <pbcoreSubject source="LC">Civil rights</pbcoreSubject>
+  <pbcoreSubject source="LC">Segregation</pbcoreSubject>
+  <pbcoreDescription descriptionType="Program">&lt;resource_link res="MLA000957"&gt;African Americans and the United States judicial system&lt;/resource_link&gt; Program is the first in a two-part series discussing the harsh sentencing of African Americans in the Massachusetts court system using the Paplo case, the Hakim Jamal case, and the Willie Saunders/Brighton rape case as studies in injustice. Host Barbara Barrow-Murray speaks with individuals involved with the cases, including Frank Neisser (Secretary to the Citywide Coalition for Justice and Equality), Mary Harris (mother of Edward Soares, one of the defendants in the Paplo case and member of Family and Friends of Prisoners and the Citywide Coalition for Justice and Equality ), Larry Gaines (Chairman of the Citywide Coalition for Justice and Equality), Professor Alan Dershowitz (with Harvard Law School), Saundra Carney (Coordinator for Brown, Johnson, Clinkscales Support Committee), and Undrey Sanders (brother of Willie Sanders, who was arrested for the rapes in Brighton, and representative for the Willie Sanders Defense Committee). Program includes interview footage with Dinizula Kamau (Efrid Brown, Jr.) and Abdullah Khalil Sabree (both convicted in the Hakim Jamal case) from Say Brother's visit to the Walpole correctional facility and viewer calls related to the cases. Produced by Barbara Barrow-Murray. Directed by Brian Clarke.</pbcoreDescription>
+  <pbcoreDescription descriptionType="Series">Say Brother is WGBH's longest running public affairs television program by, for and about African Americans, and is now known as Basic Black. Since its inception in 1968, Say Brother has featured the voices of both locally and nationally known African American artists, athletes, performers, politicians, professionals, and writers including: Muhammad Ali, Maya Angelou, Thomas Atkins, Amiri Baraka, Doris Bunte, Julian Bond, Stokely Carmichael, Louis Farrakhan, Nikki Giovanni, Odetta Gordon, Henry Hampton, Benjamin Hooks, Jesse Jackson, Hubie Jones, Mel King, Eartha Kitt, Elma Lewis, Haki Madhubuti, Wallace D. Muhammad, Charles Ogletree, Byron Rushing, Owusu Sadaukai, and Sonia Sanchez.</pbcoreDescription>
+  <pbcoreCoverage>
+    <coverage>06/29/1979</coverage>
+    <coverageType>Temporal</coverageType>
+  </pbcoreCoverage>
+  <pbcoreContributor>
+    <contributor>Carney, Saundra</contributor>
+    <contributorRole>Subject</contributorRole>
+  </pbcoreContributor>
+  <pbcoreContributor>
+    <contributor>Dershowitz, Dr. Alan</contributor>
+    <contributorRole>Subject</contributorRole>
+  </pbcoreContributor>
+  <pbcoreContributor>
+    <contributor>Gaines, Larry</contributor>
+    <contributorRole>Subject</contributorRole>
+  </pbcoreContributor>
+  <pbcoreContributor>
+    <contributor>Harris, Mary</contributor>
+    <contributorRole>Subject</contributorRole>
+  </pbcoreContributor>
+  <pbcoreContributor>
+    <contributor>Jamal, Hakim</contributor>
+    <contributorRole>Subject</contributorRole>
+  </pbcoreContributor>
+  <pbcoreContributor>
+    <contributor>Kamau, Dinizulu (Efrid Brown, Jr.)</contributor>
+    <contributorRole>Subject</contributorRole>
+  </pbcoreContributor>
+  <pbcoreContributor>
+    <contributor>Neisser, Frank</contributor>
+    <contributorRole>Subject</contributorRole>
+  </pbcoreContributor>
+  <pbcoreContributor>
+    <contributor>Sabree, Abdullah Khalil (William Johnson)</contributor>
+    <contributorRole>Subject</contributorRole>
+  </pbcoreContributor>
+  <pbcoreContributor>
+    <contributor>Sanders, Undrey</contributor>
+    <contributorRole>Subject</contributorRole>
+  </pbcoreContributor>
+  <pbcorePublisher>
+    <publisher>WGBH Educational Foundation</publisher>
+    <publisherRole/>
+  </pbcorePublisher>
+  <pbcoreInstantiation>
+    <instantiationIdentifier source="http://openvault.wgbh.org/oai"/>
+    <instantiationLocation/>
+  </pbcoreInstantiation>
+</pbcoreDescriptionDocument>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pbcoreDescriptionDocument xmlns="http://www.pbcore.org/PBCore/PBCoreNamespace.html">
+  <pbcoreIdentifier source="openvault.wgbh.org id"/>
+  <pbcoreTitle titleType="Series">Vietnam: A Television History</pbcoreTitle>
+  <pbcoreTitle titleType="Program">America’s Mandarin (1954 - 1963)</pbcoreTitle>
+  <pbcoreTitle titleType="Episode">103</pbcoreTitle>
+  <pbcoreTitle titleType="Element">Interview with Everett Bumgardner [1], 1981</pbcoreTitle>
+  <pbcoreSubject source="Subject Heading">United States--History--1945-</pbcoreSubject>
+  <pbcoreSubject source="Corporate">Vietnam--Politics and government</pbcoreSubject>
+  <pbcoreSubject source="Subject Heading">Vietnam--History--1945-1975</pbcoreSubject>
+  <pbcoreSubject source="Subject Heading">Vietnam War, 1961-1975--Personal narratives, American</pbcoreSubject>
+  <pbcoreSubject source="Subject Heading">Relocation (Housing)</pbcoreSubject>
+  <pbcoreSubject source="Subject Heading">Developing countries--Social conditions</pbcoreSubject>
+  <pbcoreSubject source="Subject Heading">Insurgency</pbcoreSubject>
+  <pbcoreSubject source="Subject Heading">Developing countries--Foreign relations</pbcoreSubject>
+  <pbcoreSubject source="Subject Heading">Presidents--Messages</pbcoreSubject>
+  <pbcoreSubject source="Subject Heading">Rural children</pbcoreSubject>
+  <pbcoreSubject source="Subject Heading">Rural development</pbcoreSubject>
+  <pbcoreSubject source="Subject Heading">Police--Attitudes</pbcoreSubject>
+  <pbcoreSubject source="Subject Heading">Vietnam War, 1961-1975</pbcoreSubject>
+  <pbcoreSubject source="Personalities">Tran, Le Xuan, 1924-</pbcoreSubject>
+  <pbcoreSubject source="Subject Heading">Rural conditions</pbcoreSubject>
+  <pbcoreSubject source="Personalities">Ngo, Dinh Diem, 1901-1963</pbcoreSubject>
+  <pbcoreSubject source="Corporate">Viet Nam doc lap dong minh hoi</pbcoreSubject>
+  <pbcoreSubject source="Personalities">Ngo, Dinh Nhu, 1910-1963</pbcoreSubject>
+  <pbcoreSubject source="Subject Heading">Geneva Conference (1954)</pbcoreSubject>
+  <pbcoreSubject source="Personalities">Ngo, Dinh Nhu, Mme.</pbcoreSubject>
+  <pbcoreSubject source="Subject Heading">Communism--Vietnam</pbcoreSubject>
+  <pbcoreSubject source="Subject Heading">War and society</pbcoreSubject>
+  <pbcoreDescription descriptionType="Editorial Comments">Contains sensitive content.</pbcoreDescription>
+  <pbcoreDescription descriptionType="Description">Everett Bumgardner, a US Information Agency employee recalls meeting Ngo Dinh Diem and Diem’s reaction to the United States and American attitudes to Vietnamese customs and traditions. He describes Americans entering Vietnam and not fully understanding the culture and not having the background or experience to make professional judgments. Bumgardner explains in detail the dynamic between the Americans and Ngo Dinh Diem and the Agroville Program.</pbcoreDescription>
+  <pbcoreCoverage>
+    <coverage>04/29/1981</coverage>
+    <coverageType>Temporal</coverageType>
+  </pbcoreCoverage>
+  <pbcoreCoverage>
+    <coverage>Vietnam (Democratic Republic)</coverage>
+    <coverageType>Spatial</coverageType>
+  </pbcoreCoverage>
+  <pbcoreCoverage>
+    <coverage>Vietnam (Republic)</coverage>
+    <coverageType>Spatial</coverageType>
+  </pbcoreCoverage>
+  <pbcoreContributor>
+    <contributor>Bumgardner, Everett</contributor>
+    <contributorRole>Interviewee</contributorRole>
+  </pbcoreContributor>
+  <pbcorePublisher>
+    <publisher>WGBH Educational Foundation</publisher>
+    <publisherRole>Publisher</publisherRole>
+  </pbcorePublisher>
+  <pbcoreRightsSummary>
+    <rightsSummary>WGBH Educational Foundation</rightsSummary>
+  </pbcoreRightsSummary>
+  <pbcoreInstantiation>
+    <instantiationIdentifier source="http://openvault.wgbh.org/oai">http://openvault.wgbh.org/catalog/vietnam-7d0a90-interview-with-everett-bumgardner-1-1981</instantiationIdentifier>
+    <instantiationPhysical>Digital betacam</instantiationPhysical>
+    <instantiationStandard>NTSC</instantiationStandard>
+    <instantiationLocation>http://openvault.wgbh.org/catalog/vietnam-7d0a90-interview-with-everett-bumgardner-1-1981</instantiationLocation>
+    <instantiationGenerations>Original footage</instantiationGenerations>
+    <instantiationDuration>00:39:23:11</instantiationDuration>
+    <instantiationColors>Color</instantiationColors>
+  </pbcoreInstantiation>
+  <pbcoreInstantiation>
+    <instantiationIdentifier source="http://openvault.wgbh.org/oai">http://openvault.wgbh.org/fedora/get/org.wgbh.mla:64c26ee0e339be0b219c3e936976db241e7d0a90/Video.mp4</instantiationIdentifier>
+    <instantiationLocation>http://openvault.wgbh.org/fedora/get/org.wgbh.mla:64c26ee0e339be0b219c3e936976db241e7d0a90/Video.mp4</instantiationLocation>
+  </pbcoreInstantiation>
+</pbcoreDescriptionDocument>

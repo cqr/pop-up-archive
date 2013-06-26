@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pbcoreDescriptionDocument xmlns="http://www.pbcore.org/PBCore/PBCoreNamespace.html">
+  <pbcoreIdentifier source="openvault.wgbh.org id"/>
+  <pbcoreTitle titleType="Series">Rock and Roll</pbcoreTitle>
+  <pbcoreTitle titleType="Episode">103</pbcoreTitle>
+  <pbcoreTitle titleType="Program">Shakespeares in The Alley</pbcoreTitle>
+  <pbcoreTitle titleType="Element">Interview with Al Aronowitz [Part 2 of 3]</pbcoreTitle>
+  <pbcoreSubject source="Personalities">Aronowitz, Al</pbcoreSubject>
+  <pbcoreSubject source="Topical">Rock and Roll</pbcoreSubject>
+  <pbcoreSubject source="Keyword">Dylan, Bob</pbcoreSubject>
+  <pbcoreSubject source="Keyword">Beatles</pbcoreSubject>
+  <pbcoreDescription descriptionType="Summary">Interview with Al Aronowitz [Part 2 of 3]</pbcoreDescription>
+  <pbcoreContributor>
+    <contributor>Aronowitz, Al</contributor>
+    <contributorRole>Interviewee</contributorRole>
+  </pbcoreContributor>
+  <pbcorePublisher>
+    <publisher>Funded by a grant from the GRAMMY Foundation®.</publisher>
+    <publisherRole>Publisher</publisherRole>
+  </pbcorePublisher>
+  <pbcoreRightsSummary>
+    <rightsSummary>WGBH Educational Foundation</rightsSummary>
+  </pbcoreRightsSummary>
+  <pbcoreInstantiation>
+    <instantiationIdentifier source="http://openvault.wgbh.org/oai">http://openvault.wgbh.org/catalog/1fae11-interview-with-al-aronowitz-part-2-of-3</instantiationIdentifier>
+    <instantiationPhysical>Betacam</instantiationPhysical>
+    <instantiationStandard>NTSC</instantiationStandard>
+    <instantiationLocation>http://openvault.wgbh.org/catalog/1fae11-interview-with-al-aronowitz-part-2-of-3</instantiationLocation>
+    <instantiationGenerations>Original footage</instantiationGenerations>
+    <instantiationDuration>00:21:53:09</instantiationDuration>
+    <instantiationColors>Color</instantiationColors>
+  </pbcoreInstantiation>
+  <pbcoreInstantiation>
+    <instantiationIdentifier source="http://openvault.wgbh.org/oai">http://openvault.wgbh.org/fedora/get/org.wgbh.mla:74c446a0ef74832e3ccc42e8cc9239cb501fae11/Video.mp4</instantiationIdentifier>
+    <instantiationLocation>http://openvault.wgbh.org/fedora/get/org.wgbh.mla:74c446a0ef74832e3ccc42e8cc9239cb501fae11/Video.mp4</instantiationLocation>
+  </pbcoreInstantiation>
+</pbcoreDescriptionDocument>
