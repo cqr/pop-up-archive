@@ -1,4 +1,5 @@
 # encoding: utf-8
+require "digest/sha1"
 
 class AudioFile < ActiveRecord::Base
   belongs_to :item
@@ -17,33 +18,24 @@ class AudioFile < ActiveRecord::Base
 
   delegate :collection_title, to: :item
 
-  def multipart_upload_complete(task=nil)
-    # this works for the case when it is a private file, need to do a copy when it is public
-    if task ||= tasks.complete.where(name: 'upload').last
-      write_attribute(:file, File.basename(task.extras['key']))
-      self.storage_configuration = upload_to
-      save!
-    end
+  def collection
+    instance.try(:item).try(:collection) || item.try(:collection)
   end
 
-  def copy_storage
-    # if the storage is not the same as the item, we need to copy/move it over
-    if storage != item.storage
-
-      # see if there is already a copy task in progress
-
-      if tasks = tasks.where(name: 'copy')
-        tasks.each{|t| t.options['destination']}
-      end
-
-    end
+  def filename
+    file.try(:path) ? File.basename(file.path) : ''
   end
 
+  def url
+    file.try(:url) ? file.url : original_file_url
+  end
 
-  def transcript_text
-    return '' unless transcript
-    trans_json = JSON.parse(transcript)
-    trans_json.collect{|i| i['text']}.join(' ')
+  def storage
+    storage_configuration || item.storage
+  end
+
+  def store_dir(stor=storage)
+    stor.use_folders? ? "#{item.try(:token)}/#{path}" : nil
   end
 
   def remote_file_url=(url)
@@ -52,128 +44,127 @@ class AudioFile < ActiveRecord::Base
     logger.debug "remote_file_url: #{self.original_file_url}"
   end
 
-  def collection
-    instance.try(:item).try(:collection) || item.try(:collection)
+  def transcript_text
+    return '' unless transcript
+    trans_json = JSON.parse(transcript)
+    trans_json.collect{|i| i['text']}.join(' ')
   end
 
   def upload_to
     storage.direct_upload? ? storage : item.upload_to
   end
 
-  def storage
-    self.storage_configuration || self.item.storage
-  end
+  def update_file!(name, sid)
+    sid = sid.to_i
+    file_will_change!
+    raw_write_attribute(:file, name)
+    if (sid > 0) && (self.storage.id != sid)
+      # see if the item is right
+      if item.storage.id == sid
+        self.storage_id = nil
+        self.storage_configuration = nil
+      else
+        self.storage_id = sid
+        self.storage_configuration = StorageConfiguration.find(sid)
+      end
 
-  def url
-    if file.url
-      self.file.url
-    else
-      original_file_url
+      save!
     end
-  end
-
-  def filename
-    return '' unless self.file.path
-    File.basename(self.file.path)
   end
 
   def update_from_fixer(params)
-    if params['result_details']['status'] == 'complete'
-      case params['task_type']
-      when 'copy' then
-        file_will_change!
-        raw_write_attribute :file, File.basename(params[:result])
-      when 'transcribe' then
-        # don't overwrite with partial
-        # only add transcript if there is none, or it is the full tranascript
-        if params['label'] == 'ts_all' || self.transcript.blank?
-          DownloadTranscriptWorker.perform_async(self.id, params[:result]) unless Rails.env.test?
-        end
-      when 'analyze'
-        DownloadAnalysisWorker.perform_async(self.id, params[:result]) unless Rails.env.test?
-      else
-        nil
-      end
-      save
+    case params['result_details']['status']
+    when 'created'
+      logger.debug "task #{params['label']} fixer created"
+      task = tasks.where(id: params['label']).last
+      task.extras['job_id'] = params['job']['id']
+      task.save!
+    when 'processing'
+      logger.debug "task #{params['label']} fixer processing"
+      tasks.where(id: params['label']).last.begin!
+    when 'complete'
+      logger.debug "task #{params['label']} fixer complete"
+      tasks.where(id: params['label']).last.finish!
+    when 'error'
+      logger.debug "task #{params['label']} fixer error"
+      tasks.where(id: params['label']).last.failure!
+    else
+      nil
     end
+  rescue Exception => e
+    logger.error e.message
+    logger.error e.backtrace.join("\n")
   end
 
-  # private
-
   def process_file
-    logger.debug "fixer_copy start: collection: #{self.item.try(:collection).inspect}, should_trigger_fixer_copy: #{should_trigger_fixer_copy}"
+    # don't process file if no file to process
+    return unless process_audio_url
 
-    if self.item.collection.copy_media && should_trigger_fixer_copy
-      MediaMonsterClient.create_job do |job|
-        job.original = process_audio_url
-        job.job_type = "audio"
-        job.retry_delay = 3600 # 1 hour
-        job.retry_max = 24 # try for a whole day
-        job.add_task task_type: 'copy', result: destination, call_back: audio_file_callback_url
-      end
-    end
+    copy_original
+    
+    transcribe_audio
+
+  rescue Exception => e
+    logger.error e.message
+    logger.error e.backtrace.join("\n")
+  end
+
+  def copy_original
+    return unless (should_trigger_fixer_copy && item.collection.copy_media && original_file_url)
+    create_copy_task(original_file_url, destination, storage)
     self.should_trigger_fixer_copy = false
+  end
 
-    if self.transcript.blank?
-      MediaMonsterClient.create_job do |job|
-        job.job_type = 'audio'
-        job.priority = 1
-        job.original = process_audio_url
-        job.retry_delay = 3600 # 1 hour
-        job.retry_max = 24 # try for a whole day
-        job.add_sequence do |seq|
-          seq.add_task task_type: 'cut', options: {length: 60, fade: 0}
-          seq.add_task task_type: 'transcribe', result: destination('_ts_start.json'), call_back: audio_file_callback_url, label:"ts_start"
-        end
-      end
+  def copy_to_item_storage
+    return unless (storage != item.storage)
+    create_copy_task(destination, destination(storage: item.storage), item.storage)
+  end
 
-      MediaMonsterClient.create_job do |job|
-        job.job_type = 'audio'
-        job.priority = 2
-        job.retry_delay = 3600 # 1 hour
-        job.retry_max = 24 # try for a whole day
-        job.original = process_audio_url
-        job.add_task task_type: 'transcribe', result: destination('_ts_all.json'), call_back: audio_file_callback_url, label:'ts_all'
-      end
+  def create_copy_task(orig, dest, stor=storage)
+    # see if there is already a copy task in progress
+    if task = tasks.incomplete.copy.where(identifier: dest).last
+      logger.debug "copy task #{task.id} already exists for audio_file #{self.id}"
+    else
+      task = Tasks::CopyTask.new(extras: {
+        original:    orig,
+        destination: dest,
+        storage_id:  stor.id
+      })
+      self.tasks << task
+    end
+    task
+  end
+
+  def transcribe_audio
+    # TODO add force
+    if task = tasks.incomplete.transcribe.where(identifier: 'ts_start').last
+      logger.debug "transcribe task ts_start #{task.id} already exists for audio_file #{self.id}"
+    else
+      self.tasks << Tasks::TranscribeTask.new(identifier: 'ts_start', extras: { start_only: true, original: process_audio_url })
     end
 
+    if task = tasks.incomplete.transcribe.where(identifier: 'ts_all').last
+      logger.debug "transcribe task ts_all #{task.id} already exists for audio_file #{self.id}"
+    else
+      self.tasks << Tasks::TranscribeTask.new(identifier: 'ts_all', extras: { original: process_audio_url })
+    end
   end
 
   def analyze_transcript
-    MediaMonsterClient.create_job do |job|
-      job.job_type = 'text'
-      job.priority = 1
-      job.retry_delay = 3600 # 1 hour
-      job.retry_max = 24 # try for a whole day
-      job.original = transcript_text_url
-      job.add_task task_type: 'analyze', result: destination('_analysis.json'), call_back: audio_file_callback_url, label:'analyze', options: transcribe_options
-    end
-  end
-
-  def transcribe_options
-    {
-      language:         'en-US',
-      chunk_duration:   5,
-      overlap:          1,
-      max_results:      1,
-      profanity_filter: true
-    }
-  end
-
-  def file_path
-    file.store_path(File.basename(original_file_url || self.file.path))
-  end
-
-  def audio_file_callback_url
-    Rails.application.routes.url_helpers.api_item_audio_file_url(item_id, id)    
+    # TODO add dupe check and force
+    self.tasks << Tasks::AnalyzeTask.new(extras: { original: transcript_text_url })
   end
 
   def transcript_text_url
     Rails.application.routes.url_helpers.api_item_audio_file_transcript_text_url(item_id, id)
   end
 
+  def call_back_url
+    Rails.application.routes.url_helpers.api_item_audio_file_url(item_id, id)
+  end
+
   def process_audio_url
-    if file.url
+    if file
       if file.fog_credentials[:provider].downcase == 'aws'
         destination
       else
@@ -184,21 +175,62 @@ class AudioFile < ActiveRecord::Base
     end
   end
 
-  def destination(suffix='')
-    scheme = case file.fog_credentials[:provider].downcase
+  def destination_options(options={})
+    stor = options[:storage] || storage
+    dest_opts = options[:options] || {}
+    da = stor.attributes || {}
+    da.reverse_merge!(dest_opts)
+
+    if stor.provider == 'InternetArchive'
+      if Rails.env.production?
+        da[:collections] = [] unless da.has_key?(:collections)
+        da[:collections] << 'popuparchive' unless da[:collections].include?('popuparchive')
+      end
+
+      default_subject = item.try(:collection).try(:title)
+      da[:subjects] = [] unless da.has_key?(:subjects)
+      da[:subjects] << default_subject unless da[:subjects].include?(default_subject)
+
+      da[:metadata] = {} unless da.has_key?(:metadata)
+      da[:metadata]['x-archive-meta-title'] ||= item.try(:title)
+      da[:metadata]['x-archive-meta-mediatype'] ||= 'audio'
+    end
+
+    da
+  end
+
+  def destination_path(options={})
+    stor = options[:storage] || storage
+    File.join([ "/", (store_dir(stor) || ''), File.basename(original_file_url || self.filename)])
+  end
+
+  def destination_directory(options={})
+    stor = options[:storage] || storage
+    stor.use_folders? ? stor.bucket : item.token
+  end
+
+  def destination(options={})
+    stor = options[:storage] || storage
+  
+    scheme = case stor.provider.downcase
     when 'aws' then 's3'
     when 'internetarchive' then 'ia'
+    else 's3'
     end
 
-    host = file.fog_directory
+    opts = destination_options(options)
+    query = opts.inject({}){|h, p| h["x-fixer-#{p[0]}"] = p[1]; h}.to_query if !opts.blank?
 
-    logger.debug("audio_file: destination: scheme: #{scheme}, host:#{host}, path: /#{file_path}")
-    uri = URI::Generic.build scheme: scheme, host: host, path: "/#{file_path}"
+    host = destination_directory(options)
+    path = destination_path(options)
+
+    # logger.debug("audio_file: destination: scheme: #{scheme}, host:#{host}, path:#{path}")
+    uri = URI::Generic.build scheme: scheme, host: host, path: path, query: query
     if scheme == 'ia'
-      uri.user = storage.key
-      uri.password = storage.secret
+      uri.user = stor.key
+      uri.password = stor.secret
     end
-    uri.to_s + suffix
+    uri.to_s
   end
 
 end

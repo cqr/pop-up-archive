@@ -8,7 +8,7 @@ class Api::V1::AudioFilesController < Api::V1::BaseController
   expose :storage
 
   def update
-    if params[:task].present? && params[:task][:result_details][:status] == 'complete'
+    if params[:task].present?
       audio_file.update_from_fixer(params[:task])
     else
       audio_file.update_attributes(params[:audio_file])
@@ -57,23 +57,17 @@ class Api::V1::AudioFilesController < Api::V1::BaseController
   end
 
   def init_signature
-    key           = params[:key]
-    filesize      = params[:filesize].to_i
-    filename      = params[:filename]
-    last_modified = params[:last_modified]
-
-    if task = audio_file.tasks.incomplete.where(name: 'upload', identifier: identifier).first
+    if task = audio_file.tasks.incomplete.upload.where(identifier: upload_identifier).first
       result = task.extras
     else
       extras = {
         user_id:         current_user.id,
-        filename:        filename,
-        filesize:        filesize,
-        last_modified:   last_modified,
-        chunks_uploaded: [].to_csv,
-        key:             key
+        filename:        params[:filename],
+        filesize:        params[:filesize].to_i,
+        last_modified:   params[:last_modified],
+        key:             params[:key]
       }
-      task = audio_file.tasks.create!(name: 'upload', identifier: identifier, extras: extras, status: Task::CREATED)
+      task = audio_file.tasks << Tasks::UploadTask.new(extras: extras)
       result = signature_hash(:init)
     end
 
@@ -81,7 +75,9 @@ class Api::V1::AudioFilesController < Api::V1::BaseController
   end
 
   def all_signatures
-    task = audio_file.tasks.incomplete.where(name: 'upload', identifier: identifier).first
+    task = audio_file.tasks.incomplete.upload.where(identifier: upload_identifier).first
+    raise "No Task found for id:#{upload_identifier}, #{params}" unless task
+
     task.extras['num_chunks'] = params['num_chunks'].to_i
     task.extras['upload_id'] = params['upload_id']
     task.status = Task::WORKING
@@ -93,14 +89,8 @@ class Api::V1::AudioFilesController < Api::V1::BaseController
   def chunk_loaded
     result = {}
 
-    if task = audio_file.tasks.incomplete.where(name: 'upload', identifier: identifier).first
-      chunk = params[:chunk].to_i
-      chunks_uploaded = (task.extras['chunks_uploaded'].parse_csv.map(&:to_i) << chunk).sort.uniq
-      task.extras['chunks_uploaded'] = chunks_uploaded.to_csv
-      task.status = Task::COMPLETE if (task.extras['num_chunks'].to_i <= chunks_uploaded.size)
-      task.save!
-      audio_file.multipart_upload_complete(task)
-
+    if task = audio_file.tasks.incomplete.upload.where(identifier: upload_identifier).first
+      task.add_chunk!(params[:chunk])
       result = task.extras
     end
 
@@ -109,14 +99,14 @@ class Api::V1::AudioFilesController < Api::V1::BaseController
 
   protected
 
-  def identifier(options=nil)
+  def upload_identifier(options=nil)
     o = options || {
       user_id:       current_user.id,
       filename:      params[:filename],
       filesize:      params[:filesize],
       last_modified: params[:last_modified]
     }
-    Digest::SHA1.hexdigest("u:#{o[:user_id]};n:#{o[:filename]};s:#{o[:filesize]};m:#{o[:last_modified]}")
+    Tasks::UploadTask.make_identifier(o)
   end
 
 end
