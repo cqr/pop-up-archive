@@ -1,12 +1,14 @@
-angular.module('Directory.collections.controllers', ['Directory.loader', 'Directory.user', 'Directory.collections.models'])
-.controller('CollectionsCtrl', ['$scope', 'Collection', 'Loader', 'Me', function CollectionsCtrl($scope, Collection, Loader, Me) {
+angular.module('Directory.collections.controllers', ['Directory.loader', 'Directory.user', 'Directory.collections.models', 'ngTutorial'])
+.controller('CollectionsCtrl', ['$scope', 'Collection', 'Loader', 'Me', 'Tutorial', function CollectionsCtrl($scope, Collection, Loader, Me, Tutorial) {
   Me.authenticated(function (me) {
     Loader.page(Collection.query(), Collection.get(me.uploadsCollectionId), 'Collections', $scope).then(function (data) {
       $scope.collection = undefined;
       $scope.uploadsCollection = data[1];
       $scope.uploadsCollection.fetchItems();
     });
-		
+
+    $scope.tutorial = new Tutorial();
+
 		$scope.tour = {
 		  'iapublic': { 
 				'content': 'Your public collections will be<br/>stored at the Internet Archive.<br/>They will be available for anyone<br/>to search, stream, or download.',

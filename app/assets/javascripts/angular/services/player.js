@@ -180,7 +180,7 @@
                     '<tr ng-class="{current: transcriptStart==text.startTime}" ng-repeat="text in transcript">' +
                       '<td style="width: 8px; text-align:left;"><a ng-click="seekTo(text.startTime)"><i class="icon-play-circle"></i></a></td>' +
                       '<td style="width: 16px; text-align:right">{{text.startTime}}</td>' +
-                      '<td style="width: 8px;text-align:center">&ndash;</td>' +
+                      '<td style="width: 8px;  text-align:center">&ndash;</td>' +
                       '<td style="width: 16px; text-align:left; padding-right:10px">{{text.endTime}}</td>' +
                       '<td><div class="file-transcript-text">{{text.text}}</div></td>' +
                     '</tr>' +
