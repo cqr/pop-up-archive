@@ -73,24 +73,30 @@ class AudioFile < ActiveRecord::Base
   end
 
   def update_from_fixer(params)
-    case params['result_details']['status']
-    when 'created'
-      logger.debug "task #{params['label']} fixer created"
-      task = tasks.where(id: params['label']).last
+
+    # get the status of the fixer task
+    result = params['result_details']['status']
+
+    # get the task id from the label
+    task = tasks.where(id: params['label']).last
+    return unless task
+
+    logger.debug "update_from_fixer: task #{params['label']} is #{result}"
+
+    # update with the job id
+    if !task.extras['job_id'] && params['job'] && params['job']['id']
       task.extras['job_id'] = params['job']['id']
       task.save!
-    when 'processing'
-      logger.debug "task #{params['label']} fixer processing"
-      tasks.where(id: params['label']).last.begin!
-    when 'complete'
-      logger.debug "task #{params['label']} fixer complete"
-      tasks.where(id: params['label']).last.finish!
-    when 'error'
-      logger.debug "task #{params['label']} fixer error"
-      tasks.where(id: params['label']).last.failure!
-    else
-      nil
     end
+
+    case result
+    when 'created'    then logger.debug "task #{params['label']} created"
+    when 'processing' then task.begin!
+    when 'complete'   then task.finish!
+    when 'error'      then task.failure!
+    else nil
+    end
+
   rescue Exception => e
     logger.error e.message
     logger.error e.backtrace.join("\n")
@@ -211,6 +217,7 @@ class AudioFile < ActiveRecord::Base
 
   def destination(options={})
     stor = options[:storage] || storage
+    suffix = options[:suffix] || ''
   
     scheme = case stor.provider.downcase
     when 'aws' then 's3'
@@ -222,7 +229,7 @@ class AudioFile < ActiveRecord::Base
     query = opts.inject({}){|h, p| h["x-fixer-#{p[0]}"] = p[1]; h}.to_query if !opts.blank?
 
     host = destination_directory(options)
-    path = destination_path(options)
+    path = destination_path(options) + suffix
 
     # logger.debug("audio_file: destination: scheme: #{scheme}, host:#{host}, path:#{path}")
     uri = URI::Generic.build scheme: scheme, host: host, path: path, query: query
