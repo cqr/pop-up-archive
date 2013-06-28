@@ -5,7 +5,7 @@ class Api::V1::AudioFilesController < Api::V1::BaseController
   expose :item
   expose :audio_files, ancestor: :item
   expose :audio_file
-  expose :storage
+  expose :upload_to_storage
 
   def update
     if params[:task].present?
@@ -34,9 +34,11 @@ class Api::V1::AudioFilesController < Api::V1::BaseController
   end
 
   def upload_to
-    @storage = audio_file.upload_to
-    logger.error "upload_to: audio_file:#{audio_file.inspect}, storage:#{@storage.inspect}"
     respond_with :api
+  end
+
+  def upload_to_storage
+    audio_file.upload_to
   end
 
   # these are for the request signing
