@@ -55,8 +55,7 @@ class Api::V1::AudioFilesController < Api::V1::BaseController
   end
 
   def storage
-    # could also look up for the item...hmm - AK
-    StorageConfiguration.default_storage(false)
+    upload_to_storage
   end
 
   def init_signature
