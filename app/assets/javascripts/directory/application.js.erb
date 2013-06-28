@@ -151,7 +151,15 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
   });
 
   window.directory.config(applicationConfig);
-  window.directory.controller("DirectoryCtrl", ['$scope', '$route', '$interpolate', 'Me', '$timeout', function($scope, $route, $interpolate, Me, $timeout) {
+  window.directory.controller("DirectoryCtrl", ['$scope', '$route', '$interpolate', 'Me', '$timeout', '$location', function($scope, $route, $interpolate, Me, $timeout, $location) {    
+
+    $scope.$on( '$routeChangeSuccess', function ( event, current, previous ) {
+      if ( $location.path() == '/collections/edit' ) {
+        $scope.hideFooter = true;
+      } else {
+        $scope.hideFooter = false;
+      }
+    });
 
     $timeout(function() { angular.element('.logo.up').addClass('raised-logo'); }, 1000);
 
