@@ -28,11 +28,7 @@ class Task < ActiveRecord::Base
     state :complete, value: COMPLETE
 
     event :begin do
-      transition :created => :working
-    end
-
-    event :retry do
-      transition :failed => :working
+      transition all - [:working] => :working
     end
 
     event :finish do
