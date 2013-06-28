@@ -39,6 +39,14 @@ class StorageConfiguration < ActiveRecord::Base
     end
   end
 
+  def use_folders?
+    case provider.downcase
+    when 'aws' then true
+    when 'internetarchive' then false
+    else false
+    end
+  end
+
   def self.public_storage
     self.new({
       provider:  'InternetArchive',

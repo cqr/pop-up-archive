@@ -9,59 +9,48 @@ class AudioFileUploader < CarrierWave::Uploader::Base
     ['aac', 'aif', 'aiff', 'alac', 'flac', 'm4a', 'm4p', 'mp2', 'mp3', 'mp4', 'ogg', 'raw', 'spx', 'wav', 'wma']
   end
 
-  def store_dir
-    model.item.try(:token) if use_folders?
-  end
+  def public_url
 
-  def store_dir
-    if use_folders?
-      "#{model.item.try(:token)}/#{model.path}"
+    puts "!!!! url called !!!!"
+
+    if !asset_host && (provider == "InternetArchive")
+      "http://archive.org/download/#{model.destination_directory}#{model.destination_path}"
     else
-      nil
+      super
     end
   end
 
+  def store_dir
+    model.store_dir
+  end
 
   def fog_attributes
-    fa = model.storage.attributes
+    # build off these options, set rest that are needed (some are defaults in fixer already)
+    fa = model.destination_options
     fa ||= {}
 
     if provider == 'InternetArchive'
       fa[:collections] = [] unless fa.has_key?(:collections)
       fa[:collections] << 'test_collection' if !Rails.env.production?
-      fa[:collections] << 'popuparchive'    if Rails.env.production?
-      fa[:ignore_preexisting_bucket] = 1
+      fa[:ignore_preexisting_bucket] = 0
       fa[:interactive_priority] = 1
       fa[:auto_make_bucket] = 1
       fa[:cascade_delete] = 1
-      fa[:subjects] = [model.item.try(:collection).try(:title)]
-      fa[:metadata] = {
-        'x-archive-meta-title' => model.item.try(:title),
-        'x-archive-meta-mediatype' => 'audio'
-      }
     end
 
     fa
   end
 
   def fog_directory
-    use_folders? ? model.storage.bucket : model.item.token
+    model.destination_directory
   end
 
   def fog_public
     model.storage.is_public?
   end
 
-  def use_folders?
-    case provider
-    when 'AWS' then true
-    when 'InternetArchive' then false
-    else true
-    end
-  end
-
   def provider
-    self.fog_credentials[:provider].to_s
+    model.storage.credentials[:provider].to_s
   end
 
   def fog_credentials

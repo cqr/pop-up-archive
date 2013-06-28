@@ -60,6 +60,8 @@ gem 'pb_core', '~> 0.1.5'
 
 gem 'chronic'
 
+gem 'state_machine'
+
 group :assets do
   gem 'sprockets'
   gem 'sass-rails',   '~> 3.2.3'
