@@ -18,7 +18,14 @@ class Collection < ActiveRecord::Base
 
   scope :is_public, where(items_visible_by_default: true)
 
-  after_update :set_storage
+  before_validation :set_storage
+
+  validate :validate_storage
+
+  def validate_storage
+    errors.add(:default_storage, "must be set") if !default_storage
+    errors.add(:upload_storage, "must be set when storage is public") if (!upload_storage && items_visible_by_default)
+  end
 
   def upload_to
     upload_storage || default_storage
