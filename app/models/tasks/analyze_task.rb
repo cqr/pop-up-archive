@@ -23,10 +23,9 @@ class Tasks::AnalyzeTask < Task
 
       job.add_task({
         task_type: 'analyze',
-        label:     "analyze_task_#{self.id}",
+        label:     self.id,
         result:    destination,
-        call_back: call_back_url,
-        options:   transcribe_options
+        call_back: call_back_url
       })
     end
   end
@@ -44,16 +43,6 @@ class Tasks::AnalyzeTask < Task
 
   def original
     extras['original'] || owner.try(:original)
-  end
-
-  def transcribe_options
-    {
-      language:         'en-US',
-      chunk_duration:   5,
-      overlap:          1,
-      max_results:      1,
-      profanity_filter: true
-    }
   end
 
 end
