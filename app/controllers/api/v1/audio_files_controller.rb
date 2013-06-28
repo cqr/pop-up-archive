@@ -60,6 +60,8 @@ class Api::V1::AudioFilesController < Api::V1::BaseController
   end
 
   def init_signature
+    result = nil
+
     if task = audio_file.tasks.incomplete.upload.where(identifier: upload_identifier).first
       result = task.extras
     else
@@ -74,8 +76,11 @@ class Api::V1::AudioFilesController < Api::V1::BaseController
       result = signature_hash(:init)
     end
 
+    logger.debug "\ninit_signature:\n\n#{result.inspect}\n\n"
+
     render json: result
   end
+
 
   def all_signatures
     task = audio_file.tasks.incomplete.upload.where(identifier: upload_identifier).first
@@ -86,7 +91,10 @@ class Api::V1::AudioFilesController < Api::V1::BaseController
     task.status = Task::WORKING
     task.save!
 
-    render json: all_signatures_hash
+    ash = all_signatures_hash
+    logger.debug "\nall_signatures_hash:\n\n#{ash.inspect}\n\n"
+
+    render json: ash
   end
 
   def chunk_loaded

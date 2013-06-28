@@ -11,7 +11,7 @@ class S3UploadRequest
     type            = data[:type]
     @bucket         = data[:bucket]
     @secret         = data[:secret]
-    @date           = Time.now.strftime("%a, %d %b %Y %X %Z")
+    @date           = Time.now.utc.strftime("%a, %d %b %Y %X %Z")
     @upload_id      = params[:upload_id]
     @key            = params[:key]
     @chunk          = params[:chunk]
