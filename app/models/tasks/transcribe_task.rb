@@ -22,8 +22,14 @@ class Tasks::TranscribeTask < Task
         job.retry_delay = 3600 # 1 hour
         job.retry_max   = 24 # try for a whole day
         job.add_sequence do |seq|
-          seq.add_task task_type: 'cut', options: {length: 60, fade: 0}
-          seq.add_task task_type: 'transcribe', result: destination, call_back: call_back_url, label: self.id
+          seq.add_task({task_type: 'cut', options: {length: 60, fade: 0}})
+          seq.add_task({
+            task_type: 'transcribe',
+            result:    destination,
+            call_back: call_back_url,
+            label:     self.id,
+            options:   transcribe_options
+          })
         end
       end
     else
@@ -33,9 +39,25 @@ class Tasks::TranscribeTask < Task
         job.priority = 2
         job.retry_delay = 3600 # 1 hour
         job.retry_max = 24 # try for a whole day
-        job.add_task task_type: 'transcribe', result: destination, call_back: call_back_url, label: self.id
+        job.add_task({
+          task_type: 'transcribe',
+          result:    destination,
+          call_back: call_back_url,
+          label:     self.id,
+          options:   transcribe_options
+        })
       end
     end
+  end
+
+  def transcribe_options
+    {
+      language:         'en-US',
+      chunk_duration:   5,
+      overlap:          1,
+      max_results:      1,
+      profanity_filter: true
+    }
   end
 
   def start_only?
