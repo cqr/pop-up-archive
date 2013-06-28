@@ -19,8 +19,6 @@ class User < ActiveRecord::Base
   validates_presence_of :name, if: :name_required?
   validates_presence_of :uploads_collection
 
-  after_invitation_accepted :add_public_collection
-
   def self.find_for_oauth(auth, signed_in_resource=nil)
     where(provider: auth.provider, uid: auth.uid).first || 
     find_invited(auth) ||
@@ -77,12 +75,6 @@ class User < ActiveRecord::Base
   end
 
   private
-
-  def add_public_collection
-    collection = Collection.new(title: "#{name}'s Collection", items_visible_by_default: true)
-    collection.users << self
-    collection.save
-  end
 
   def add_uploads_collection
     self.uploads_collection = Collection.new(title: "My Uploads", items_visible_by_default: false)
