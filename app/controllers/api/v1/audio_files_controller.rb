@@ -75,8 +75,6 @@ class Api::V1::AudioFilesController < Api::V1::BaseController
       result = signature_hash(:init)
     end
 
-    logger.debug "\ninit_signature:\n\n#{result.inspect}\n\n"
-
     render json: result
   end
 
@@ -91,7 +89,6 @@ class Api::V1::AudioFilesController < Api::V1::BaseController
     task.save!
 
     ash = all_signatures_hash
-    logger.debug "\nall_signatures_hash:\n\n#{ash.inspect}\n\n"
 
     render json: ash
   end
