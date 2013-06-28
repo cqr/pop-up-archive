@@ -10,12 +10,17 @@ class AudioFileUploader < CarrierWave::Uploader::Base
   end
 
   def store_dir
+    model.item.try(:token) if use_folders?
+  end
+
+  def store_dir
     if use_folders?
-      "#{model.item.try(:token)}/audio_files"
+      "#{model.item.try(:token)}/#{model.path}"
     else
       nil
     end
   end
+
 
   def fog_attributes
     fa = model.storage.attributes
@@ -44,11 +49,7 @@ class AudioFileUploader < CarrierWave::Uploader::Base
   end
 
   def fog_public
-    case provider
-    when 'AWS' then false
-    when 'InternetArchive' then true
-    else false
-    end
+    model.storage.is_public?
   end
 
   def use_folders?

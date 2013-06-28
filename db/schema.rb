@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130521150841) do
+ActiveRecord::Schema.define(:version => 20130620183500) do
 
   add_extension "hstore"
 
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(:version => 20130521150841) do
     t.text     "transcript"
     t.string   "format"
     t.integer  "size"
+    t.integer  "storage_id"
+    t.string   "path"
   end
 
   add_index "audio_files", ["item_id"], :name => "index_audio_files_on_item_id"
@@ -50,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20130521150841) do
     t.boolean  "items_visible_by_default", :default => false
     t.boolean  "copy_media"
     t.integer  "default_storage_id"
+    t.integer  "upload_storage_id"
   end
 
   create_table "contributions", :force => true do |t|
@@ -183,6 +186,20 @@ ActiveRecord::Schema.define(:version => 20130521150841) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "tasks", :force => true do |t|
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.string   "identifier"
+    t.string   "name"
+    t.string   "status"
+    t.hstore   "extras"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "tasks", ["identifier"], :name => "index_tasks_on_identifier"
+  add_index "tasks", ["owner_id", "owner_type"], :name => "index_tasks_on_owner_id_and_owner_type"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                       :default => "", :null => false
