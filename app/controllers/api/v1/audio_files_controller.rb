@@ -35,8 +35,6 @@ class Api::V1::AudioFilesController < Api::V1::BaseController
 
   def upload_to
     @storage = audio_file.upload_to
-    logger.error "\n\nupload_to #{audio_file.id} storage: #{@storage.inspect}\n\n"
-    raise 'this is not working anymore, temporarily'
     respond_with :api
   end
 
