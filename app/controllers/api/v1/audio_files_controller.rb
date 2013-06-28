@@ -35,6 +35,7 @@ class Api::V1::AudioFilesController < Api::V1::BaseController
 
   def upload_to
     @storage = audio_file.upload_to
+    @storage.provider = "TEST"
     respond_with :api
   end
 
