@@ -5,7 +5,15 @@ describe AudioFileUploader do
   context "handle different providers" do
 
     before :all do
-      @uploader = AudioFileUploader.new(AudioFile.new)
+      @collection = Collection.new
+      @collection.set_storage
+
+      @item = Item.new
+      @audio_file = AudioFile.new
+      @item.collection = @collection
+      @audio_file.item = @item
+
+      @uploader = AudioFileUploader.new(@audio_file)
     end
 
     it "handles no item storage" do
@@ -15,10 +23,9 @@ describe AudioFileUploader do
     end
     
     it "handles item storage" do
-      @uploader = AudioFileUploader.new(AudioFile.new)
-      @item = Item.new
       @item.storage_configuration = StorageConfiguration.new(provider: 'InternetArchive', key: 'k', secret: 's')
-      @uploader.model.item = @item
+      @item.storage.provider.should eq "InternetArchive"
+      @uploader.model.item.should_not be_nil
       @uploader.fog_credentials[:provider].should eq "InternetArchive"
       @uploader.fog_credentials[:ia_access_key_id].should eq 'k'
       @uploader.fog_credentials[:ia_secret_access_key].should eq 's'
