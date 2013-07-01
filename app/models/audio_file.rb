@@ -67,9 +67,9 @@ class AudioFile < ActiveRecord::Base
         self.storage_id = sid
         self.storage_configuration = StorageConfiguration.find(sid)
       end
-
-      save!
     end
+
+    save!
   end
 
   def update_from_fixer(params)
@@ -103,8 +103,8 @@ class AudioFile < ActiveRecord::Base
   end
 
   def process_file
-    # don't process file if no file to process
-    return unless process_audio_url
+    # don't process file if no file to process yet (s3 upload)
+    return if file.blank? && original_file_url.blank?
 
     copy_original
     

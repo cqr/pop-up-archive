@@ -4,21 +4,33 @@ class Tasks::UploadTask < Task
 
   state_machine :status do
     after_transition any => :complete do |task, transition|
-
-      if task.owner.nil?
-        task.extras['debug_message'] = "No owner defined: #{task.id}: #{task.owner_type}, #{task.owner_id}"
-      else
-        # set the file on the owner, and the storage as the upload_to
-        file_name = File.basename(task.extras['key'])
-        upload_id = task.owner.upload_to.id
-
-        task.owner.update_file!(file_name, upload_id)
-
-        # now copy it to the right place if it needs to be (e.g. s3 -> ia)
-        task.owner.copy_to_item_storage
-      end
-
+      task.upload_complete
     end
+  end
+
+  def upload_complete
+    logger.debug "Tasks::UploadTask: after_transition: any => :complete start !!!!"
+
+    if self.owner.nil?
+      logger.debug "Tasks::UploadTask: after_transition: any => :complete owner nil"
+    else
+      logger.debug "Tasks::UploadTask: after_transition: any => :complete owner update file"
+      # set the file on the owner, and the storage as the upload_to
+      file_name = File.basename(self.extras['key'])
+      upload_id = self.owner.upload_to.id
+
+      self.owner.update_file!(file_name, upload_id)
+
+      # now copy it to the right place if it needs to be (e.g. s3 -> ia)
+      self.owner.copy_to_item_storage
+      logger.debug "Tasks::UploadTask: after_transition: any => :complete file updates over"
+    end
+
+    logger.debug "Tasks::UploadTask: after_transition: any => :complete finish !!!!"
+
+  rescue Exception => e
+    logger.error e.message
+    logger.error e.backtrace.join("\n")
   end
 
   before_validation(on: :create) do
