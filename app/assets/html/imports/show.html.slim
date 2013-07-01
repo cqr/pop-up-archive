@@ -61,6 +61,6 @@ form.form-inline ng-controller="ImportMappingCtrl"
   .well
     button.btn.btn-link ng-disabled="csvImport.isSaving" ng-click="cancel()" Cancel
     .pull-right
-      button.btn ng-click="save()" ng-disabled="csvImport.isSaving" Save
+      button.btn ng-click="save()" ng-disabled="csvImport.isSaving" Save &amp; Close
       | &nbsp;
       button.btn.btn-primary ng-disabled="!csvImport.importable()" ng-click="submitMapping()" Import!
