@@ -12,7 +12,7 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
   }
 
 }])
-.controller('ItemCtrl', ['$scope', 'Item', 'Loader', 'Me', '$routeParams', 'Collection', 'Entity', function ItemCtrl($scope, Item, Loader, Me, $routeParams, Collection, Entity) {
+.controller('ItemCtrl', ['$scope', 'Item', 'Loader', 'Me', '$routeParams', 'Collection', 'Entity', '$location', function ItemCtrl($scope, Item, Loader, Me, $routeParams, Collection, Entity, $location) {
 
   $scope.canEdit = false;
 
@@ -41,6 +41,14 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
     entity.isConfirmed = true;
     var entity = new Entity(entity);
     entity.update();
+  }
+    
+  $scope.deleteItem = function () {
+    if (confirm("Are you sure you want to delete the item " + $scope.item.title +"? \n\n This cannot be undone." )){
+      $scope.item.delete().then(function () {
+        $location.path('/collections');
+      })
+    }
   }
 
 }])

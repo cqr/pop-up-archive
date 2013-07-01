@@ -12,6 +12,7 @@
 
       button.btn.pull-right ng-click="fulltranscript = !fulltranscript" 
         i ng-class="{true: 'icon-resize-full', false: 'icon-resize-small'}[!fulltranscript]"
+      button.btn.pull-right ng-click="deleteItem()" Delete
       button.btn.pull-right ng-show="currentUser.canEdit(item)" bs-modal="'#{asset_path 'items/form.html'}'" Edit
 
       h1 {{item.title}}
