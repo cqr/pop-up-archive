@@ -170,7 +170,7 @@ class AudioFile < ActiveRecord::Base
   end
 
   def process_audio_url
-    if file
+    if !file.blank?
       if file.fog_credentials[:provider].downcase == 'aws'
         destination
       else
