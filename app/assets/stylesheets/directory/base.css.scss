@@ -505,10 +505,17 @@ $persistent-player-scrollpading: 15px;
 
 }
 
+.full {
+  max-height: none;
+}
+
+.collapsed {
+  max-height: 75px;
+}
+
 .file-transcript {
   padding: 0px;
   display: block;
-  max-height: 75px;
   overflow: auto;
 
   .current {
@@ -562,6 +569,7 @@ $persistent-player-scrollpading: 15px;
       border: 0;
       border-radius: 8px;
       color: white;
+      margin-left: 3px;
     }
 
     h1 {

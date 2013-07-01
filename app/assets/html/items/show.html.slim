@@ -1,15 +1,17 @@
 .row-fluid
-	.span12
-		p
-			a ng-href='/collections' Pop Up Archive
-			|  > 
-			a ng-href="/collections/{{collection.id}}" {{collection.title}}
+  .span12
+    p
+      a ng-href='/collections' Pop Up Archive
+      |  > 
+      a ng-href="/collections/{{collection.id}}" {{collection.title}}
 
-		
+    
 .row-fluid.item-detail
   .span12
     .well
 
+      button.btn.pull-right ng-click="fulltranscript = !fulltranscript" 
+        i ng-class="{true: 'icon-resize-full', false: 'icon-resize-small'}[!fulltranscript]"
       button.btn.pull-right ng-show="currentUser.canEdit(item)" bs-modal="'#{asset_path 'items/form.html'}'" Edit
 
       h1 {{item.title}}
@@ -28,7 +30,7 @@
           .scrubber
             .bar ng-show="isLoaded()" ng-style="{width:player.time*100/player.duration+'%'}"
             .timecodes ng-show="isLoaded() && player.duration" {{player.time | timeCode }} / {{player.duration | timeCode }}
-        .transcript transcript-text="audioFile.transcript"
+        .transcript ng-class="{true: 'collapsed', false: 'full'}[!fulltranscript]" transcript-text="audioFile.transcript"
 .row-fluid.item-detail.metadata
   .span6
     h4 Metadata
