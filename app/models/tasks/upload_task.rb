@@ -5,7 +5,9 @@ class Tasks::UploadTask < Task
   state_machine :status do
     after_transition any => :complete do |task, transition|
 
-      if task.owner
+      if task.owner.nil?
+        task.extras['debug_message'] = "No owner defined: #{task.id}: #{task.owner_type}, #{task.owner_id}"
+      else
         # set the file on the owner, and the storage as the upload_to
         file_name = File.basename(task.extras['key'])
         upload_id = task.owner.upload_to.id
