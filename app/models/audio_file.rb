@@ -142,14 +142,14 @@ class AudioFile < ActiveRecord::Base
   end
 
   def transcribe_audio
-    # TODO add force
-    if task = tasks.incomplete.transcribe.where(identifier: 'ts_start').last
+    # see if there is a non-failed task for this audio file
+    if task = tasks.transcribe.without_status(:failed).where(identifier: 'ts_start').last
       logger.debug "transcribe task ts_start #{task.id} already exists for audio_file #{self.id}"
     else
       self.tasks << Tasks::TranscribeTask.new(identifier: 'ts_start', extras: { start_only: true, original: process_audio_url })
     end
 
-    if task = tasks.incomplete.transcribe.where(identifier: 'ts_all').last
+    if task = tasks.transcribe.without_status(:failed).where(identifier: 'ts_all').last
       logger.debug "transcribe task ts_all #{task.id} already exists for audio_file #{self.id}"
     else
       self.tasks << Tasks::TranscribeTask.new(identifier: 'ts_all', extras: { original: process_audio_url })
