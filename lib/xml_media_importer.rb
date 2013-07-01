@@ -144,8 +144,8 @@ class XMLMediaImporter
     item = Item.new
     item.collection = collection
     item.title = doc.xpath("title").text
-    item.tags = doc.xpath("keywords").collect { |s| s.text.split(/,|;/) }.flatten.compact.delete_if(&:empty?)
-    item.tags.concat(doc.xpath("category").collect { |s| s.text }.compact.delete_if(&:empty?))
+    item.tags = doc.xpath("keywords").collect { |s| s.text.split(/,|;/) }.flatten.compact.uniq.delete_if(&:empty?)
+    item.tags.concat(doc.xpath("category").collect { |s| s.text.split(/,|;|&gt|\>/) }.flatten.compact.uniq.delete_if(&:empty?))
     item.description = doc.xpath("description").text
     # VOA is not a person, but it is the closest thing to a creator on the BBG file
     item.creators = doc.xpath("credit").collect { |s| Person.for_name(s.text) }
