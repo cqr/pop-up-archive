@@ -33,10 +33,10 @@ ul.pager
 					ul.inline.dates
 						li.label ng-show="item.dateCreated"
 							b Created: 
-							| {{item.dateCreated}} &nbsp;
+							| {{item.dateCreated | date:'yyyy-MM-dd'}} &nbsp;
 						li.label ng-show="item.dateBroadcast"
 							b Broadcast: 
-							| {{item.dateBroadcast}} &nbsp;
+							| {{item.dateBroadcast | date:'yyyy-MM-dd'}} &nbsp;
 						li.label ng-show="item.dateAdded"
 							b Added: 
 							| {{item.dateAdded | date:'yyyy-MM-dd hh:mma'}} &nbsp;

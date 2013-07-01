@@ -11,7 +11,8 @@ div ng-show="csvImports"
           |  
           span.badge.badge-inverse ng-show='import.rowCount' {{import.rowCount}} rows 
           |  
-          span.label.label-info Started: {{import.createdAt | date:'yyyy-MM-dd hh:mma'}}
+          span.label.label-info
+            |{{import.createdAt | date:'yyyy-MM-dd hh:mma'}}
         p ng-hide="import.terminal() || import.unActionable()"
           a.btn.btn-primary ng-href="/imports/{{import.id}}" {{import.editButtonMessage()}}
           |  
