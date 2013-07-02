@@ -84,9 +84,12 @@ class Item < ActiveRecord::Base
   @@instance_lock = Mutex.new
 
   def process_analysis(analysis)
+    existing_names = self.entities.collect{|e| e.name}.sort.uniq
     analysis = JSON.parse(analysis) if analysis.is_a?(String)
     ["entities", "locations", "relations", "tags", "topics"].each do |category|
       analysis[category].each{|analysis_entity|
+        next if (analysis_entity['name'] && existing_names.include?(analysis_entity['name']))
+
         entity = self.entities.build
         entity.category     = category.try(:singularize)
         entity.entity_type  = analysis_entity.delete('type')
@@ -99,6 +102,15 @@ class Item < ActiveRecord::Base
         entity.extra        = analysis_entity
         entity.save
       }
+    end
+  end
+
+  def dedupe_entities
+    groups =  self.entities.group_by(&:name)
+    groups.each do |k,v|
+      next if k.blank?
+      keep = v.detect{|e| e.is_confirmed?} || v.first
+      v.each{|v| v.destroy unless v == keep}
     end
   end
 
