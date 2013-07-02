@@ -1,5 +1,7 @@
 class Item < ActiveRecord::Base
 
+  acts_as_paranoid
+
   include Tire::Model::Callbacks
   include Tire::Model::Search
 
@@ -53,7 +55,7 @@ class Item < ActiveRecord::Base
   belongs_to :geolocation
   belongs_to :csv_import
   belongs_to :storage_configuration, class_name: "StorageConfiguration", foreign_key: :storage_id
-  belongs_to :collection
+  belongs_to :collection, :with_deleted => true
 
   has_many   :collection_grants, through: :collection
   has_many   :users, through: :collection_grants

@@ -2,7 +2,10 @@
 require "digest/sha1"
 
 class AudioFile < ActiveRecord::Base
-  belongs_to :item
+
+  acts_as_paranoid
+
+  belongs_to :item, :with_deleted => true
   belongs_to :instance
   has_many :tasks, as: :owner
 

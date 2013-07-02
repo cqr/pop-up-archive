@@ -64,6 +64,8 @@ gem 'state_machine'
 
 gem 'doorkeeper'
 
+gem "acts_as_paranoid", "~>0.4.0"
+
 group :assets do
   gem 'sprockets'
   gem 'sass-rails',   '~> 3.2.3'
