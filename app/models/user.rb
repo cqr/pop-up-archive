@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :collections, through: :collection_grants
   has_many :items, through: :collections
   has_many :csv_imports
+  has_many :oauth_applications, class_name: 'Doorkeeper::Application', as: :owner
 
   validates_presence_of :invitation_token, if: :invitation_token_required?
   validates_presence_of :name, if: :name_required?

@@ -62,6 +62,8 @@ gem 'chronic'
 
 gem 'state_machine'
 
+gem 'doorkeeper'
+
 group :assets do
   gem 'sprockets'
   gem 'sass-rails',   '~> 3.2.3'

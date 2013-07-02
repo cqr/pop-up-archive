@@ -87,5 +87,20 @@ module PopUpArchive
       config.sass.load_paths << File.expand_path('./lib/assets/stylesheets/')
       config.sass.load_paths << File.expand_path('./vendor/assets/stylesheets/')
     end
+
+    config.to_prepare do
+      # Base layout. Uses app/views/layouts/login.html.erb
+      Doorkeeper::ApplicationController.layout "login"
+
+      # Only Applications list
+      Doorkeeper::ApplicationsController.layout "login"
+
+      # Only Authorization endpoint
+      Doorkeeper::AuthorizationsController.layout "login"
+
+      # Only Authorized Applications
+      Doorkeeper::AuthorizedApplicationsController.layout "login"
+    end
+
   end
 end
