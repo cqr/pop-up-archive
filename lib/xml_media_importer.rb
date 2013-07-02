@@ -77,6 +77,7 @@ class XMLMediaImporter
     xmlFeed.remove_namespaces!
     items = xmlFeed.xpath("//item")
     items.each do |item|
+      sleep(2)
       item_for_bbg(item).save!
     end
   end
