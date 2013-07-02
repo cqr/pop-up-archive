@@ -1,0 +1,24 @@
+doctype html
+html lang='en'
+  head
+    meta charset='utf-8'
+    title PopUpArchive
+    = javascript_include_tag 'doorkeeper/application'
+    = stylesheet_link_tag    'doorkeeper/application'
+    = stylesheet_link_tag    'login/base', media: 'all'
+    = csrf_meta_tags
+  body
+    .container
+      .container-login
+        .clearfix
+          h1.site-title
+            a ng-href='/' title="Pop Up Archive" rel="home"
+              .logo.pop Pop
+              .logo.up.raised-logo Up
+              .logo.archive &nbsp;Archive
+            a ng-href='/' title="Pop Up Archive" rel="home"
+              logo.prx
+                | in cahoots with 
+                img src='#{asset_path("prx_logo.png")}' alt="PRX"
+        == yield
+        = render('footer')

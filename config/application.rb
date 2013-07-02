@@ -90,10 +90,10 @@ module PopUpArchive
 
     # Doorkeeper settings
     config.to_prepare do |config|
-      Doorkeeper::ApplicationController.layout('login')
-      Doorkeeper::ApplicationsController.layout('login')
-      Doorkeeper::AuthorizationsController.layout('login')
-      Doorkeeper::AuthorizedApplicationsController.layout('login')
+      Doorkeeper::ApplicationController.layout('oauth')
+      Doorkeeper::ApplicationsController.layout('oauth')
+      Doorkeeper::AuthorizationsController.layout('oauth')
+      Doorkeeper::AuthorizedApplicationsController.layout('oauth')
     end
 
   end
