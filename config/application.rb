@@ -75,6 +75,12 @@ module PopUpArchive
     require 'sprockets'
     Sprockets.register_engine '.slim', Slim::Template
     
+    # SASS paths
+    if ENV['RAILS_GROUPS'] == 'assets' || Rails.env.development?
+      config.sass.load_paths << File.expand_path('./lib/assets/stylesheets/')
+      config.sass.load_paths << File.expand_path('./vendor/assets/stylesheets/')
+    end
+
     # Devise settings
     config.to_prepare do |config|
       Devise::RegistrationsController.layout('login')
@@ -82,24 +88,12 @@ module PopUpArchive
       Devise::PasswordsController.layout('login')
     end
 
-    # SASS paths
-    if ENV['RAILS_GROUPS'] == 'assets' || Rails.env.development?
-      config.sass.load_paths << File.expand_path('./lib/assets/stylesheets/')
-      config.sass.load_paths << File.expand_path('./vendor/assets/stylesheets/')
-    end
-
-    config.to_prepare do
-      # Base layout. Uses app/views/layouts/login.html.erb
-      Doorkeeper::ApplicationController.layout "login"
-
-      # Only Applications list
-      Doorkeeper::ApplicationsController.layout "login"
-
-      # Only Authorization endpoint
-      Doorkeeper::AuthorizationsController.layout "login"
-
-      # Only Authorized Applications
-      Doorkeeper::AuthorizedApplicationsController.layout "login"
+    # Doorkeeper settings
+    config.to_prepare do |config|
+      Doorkeeper::ApplicationController.layout('login')
+      Doorkeeper::ApplicationsController.layout('login')
+      Doorkeeper::AuthorizationsController.layout('login')
+      Doorkeeper::AuthorizedApplicationsController.layout('login')
     end
 
   end
