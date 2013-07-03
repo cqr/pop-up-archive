@@ -24,7 +24,25 @@ angular.module("Directory.audioFiles.controllers", ['ngPlayer'])
     $scope.player.seekTo(time);
 
   });
-
+  
+  //edit transcripts
+  $scope.editorEnabled = false;
+  
+  $scope.enableEditor = function() {
+    this.editorEnabled = true;
+    this.editableTranscript = this.text.text;
+  };
+  
+  $scope.disableEditor = function() {
+    this.editorEnabled = false;
+  };
+  
+  $scope.save = function(item) {
+    this.text.text = this.editableTranscript;
+    this.disableEditor();
+    //update database
+    // console.log(this.editableTranscript);
+  };
 
 }])
 .controller("PersistentPlayerCtrl", ["$scope", 'Player', function ($scope, Player) {

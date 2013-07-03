@@ -517,6 +517,14 @@ $persistent-player-scrollpading: 15px;
   padding: 0px;
   display: block;
   overflow: auto;
+  
+  input {
+    width: 95%;
+  }
+    
+  a {
+    padding: 0 3px;
+  }
 
   .current {
     background-color: #FFFBCC;
@@ -533,6 +541,7 @@ $persistent-player-scrollpading: 15px;
 
       a i {
         color: black;
+        opacity: .5;
         text-decoration: none;
       }
     }
@@ -978,5 +987,6 @@ div#-assets-collections-tutorial1-00M.modal, div#-assets-collections-tutorial2-0
   opacity: 1; 
 }
 //end footer
+
 
 
