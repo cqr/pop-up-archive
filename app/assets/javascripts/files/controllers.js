@@ -2,7 +2,6 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
 .controller('FilesCtrl', ['$scope', '$http', '$q', '$timeout', '$route', '$routeParams', '$modal', 'Me', 'Loader', 'CsvImport', 'Alert', 'Collection', 'Item', function FilesCtrl($scope, $http, $q, $timeout, $route, $routeParams, $modal, Me, Loader, CsvImport, Alert, Collection, Item) {
 
   Me.authenticated(function (me) {
-    console.log('FilesCtrl authenticated !!!!!');
 
     Loader.page(Collection.query(), Collection.get(me.uploadsCollectionId), 'Collections', $scope).then(function (data) {
       $scope.uploadsCollection = data[1];
@@ -86,7 +85,7 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
     };
 
     $scope.handleAudioFilesAdded = function (newFiles) {
-      console.log('handleAudioFilesAdded', newFiles);
+      // console.log('handleAudioFilesAdded', newFiles);
 
       var newFiles = newFiles || [];
 
@@ -109,11 +108,11 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
         });
         
       }
-      console.log('handleAudioFilesAdded done');
+      // console.log('handleAudioFilesAdded done');
     };
 
     $scope.submit = function () {
-      console.log('FilesCtrl submit: ', $scope.item);
+      // console.log('FilesCtrl submit: ', $scope.item);
       var item = $scope.item;
       var audioFiles = item.audioFiles;
       item.audioFiles = [];
@@ -128,7 +127,7 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
         $scope.uploadAudioFiles(item, audioFiles);
       });
 
-      console.log('FilesCtrl submit scope: ', $scope);
+      // console.log('FilesCtrl submit scope: ', $scope);
     };
 
     // used by the upload-button callback when new files are selected
@@ -160,14 +159,10 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
       }
 
       if (newFiles.length > 0) {
-        console.log('new files added', newFiles);
+        // console.log('new files added', newFiles);
         $scope.$broadcast('filesAdded', newFiles);
       }
 
     });
-  },
-  function(){
-    console.log('!!!!! FilesCtrl NOT authenticated !!!!!');
   });
-
 }]);
