@@ -180,6 +180,7 @@ GEM
     net-scp (1.1.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.6.7)
+    newrelic_rpm (3.6.5.130)
     nokogiri (1.5.9)
     oauth (0.4.7)
     oauth2 (0.8.1)
@@ -386,6 +387,7 @@ DEPENDENCIES
   heroku-api (~> 0.3.10)
   media_monster_client
   multi_json (~> 1.5.0)
+  newrelic_rpm
   omniauth
   omniauth-facebook
   omniauth-oauth2 (~> 1.1.0)
