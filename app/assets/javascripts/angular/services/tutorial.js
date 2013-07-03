@@ -20,7 +20,7 @@ angular.module('ngTutorial', [])
     restrict: 'A',
     scope: false,
     link: function (scope, el, attrs) {
-      console.log('tutorial-step', scope, el, attrs, scope.tutorial);
+      // console.log('tutorial-step', scope, el, attrs, scope.tutorial);
     }
   };
 }]);

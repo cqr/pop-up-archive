@@ -1,26 +1,37 @@
 .modal-header
   button type="button" class="close" data-dismiss="modal" aria-hidden="true" x
-  h3 Import Audio
+  h3 Upload
 
 .modal-body 
   form.import
 
-    fieldset
-      label for='collection-id'
-        strong Pick a collection for the new item:
-      select#collection-id ng-model='item.collectionId' ng-options="collection.id as collection.title for collection in collections"
 
-    fieldset
-      span file-button="" style='margin-right: 4px;'
-        button.btn Select files
-      ul ng-show='item.audioFiles.length > 0'
-        li ng-repeat="audioFile in item.audioFiles" {{audioFile.name}}
+    div ng-show='item.audioFiles.length <= 0'
+      fieldset
+        span style='margin-right: 4px;'
+          b Drag and Drop
+        div or
+        span file-button="" style='margin-right: 4px;'
+          button.btn Select Files
 
+    div ng-show='item.audioFiles.length > 0'
+      fieldset 
+        label for='files'
+          strong Files:
+        ul
+          li ng-repeat="audioFile in item.audioFiles" {{audioFile.name}}
+        span file-button="" style='margin-right: 4px;'
+          button.btn Add Files
 
-    fieldset ng-show='item.audioFiles.length > 0 && item.collectionId'
-      label
-        strong New Item Title:
-      input.text#title ng-model='item.title' type='text'
+      fieldset 
+        label for='collection-id'
+          strong Collection:
+        select#collection-id ng-model='item.collectionId' ng-options="collection.id as collection.title for collection in collections"
+
+      fieldset ng-show='item.collectionId != uploadsCollection.id'
+        label
+          strong Title:
+        input.text#title ng-model='item.title' type='text'
 
 
 .modal-footer
