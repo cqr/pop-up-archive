@@ -183,9 +183,14 @@
                       '<td style="width: 8px;  text-align:center">&ndash;</td>' +
                       '<td style="width: 16px; text-align:left; padding-right:10px">{{text.endTime}}</td>' +
                       '<td ng-hide="editorEnabled" class="file-transcript-text">{{text.text}}</div></td>' +
-                      '<td ng-hide="editorEnabled"><a href="#" ng-click="enableEditor()"><i class="icon-pencil"></i></a></td>' +
+                      '<td ng-hide="editorEnabled" style="width: 8px; padding-right: 10px; text-align: right">'+
+                        '<a href="#" ng-click="enableEditor()"><i class="icon-pencil"></i></a></td>' +
                       '<td ng-show="editorEnabled"><input ng-model="editableTranscript" ng-show="editorEnabled"></td>' +
-                      '<td ng-show="editorEnabled"><a href="#" ng-click="save()"><i class="icon-ok"></i></a><a href="#" ng-click="disableEditor()"><i class="icon-remove"></i></a></td>' +
+                      '<td ng-show="editorEnabled" style="width: 50px;">' + 
+                        '<a href="#" ng-click="save()" style="width: 8px; float: left; padding: 0 8px">' +
+                          '<i class="icon-ok"></i></a>' + 
+                        '<a href="#" ng-click="disableEditor()" style="width: 8px; float: left; padding: 0 10px 0 8px">' + 
+                          '<i class="icon-remove"></i></a></td>' +
                     '</tr>' +
                   '</table>' +
                 '</div>',
