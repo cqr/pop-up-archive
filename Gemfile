@@ -99,7 +99,7 @@ group :test do
   gem 'shoulda-matchers'
 end
 
-group :development, :production do
+group :development, :production, :staging do
   gem 'sinatra' # for sidekiq
   gem 'autoscaler', '~> 0.2.0'
   gem 'foreman'
