@@ -84,17 +84,18 @@ class Item < ActiveRecord::Base
   @@instance_lock = Mutex.new
 
   def process_analysis(analysis)
-    existing_names = self.entities.collect{|e| e.name}.sort.uniq
+    existing_names = self.entities.collect{|e| e.name || ''}.sort.uniq
     analysis = JSON.parse(analysis) if analysis.is_a?(String)
     ["entities", "locations", "relations", "tags", "topics"].each do |category|
       analysis[category].each{|analysis_entity|
-        next if (analysis_entity['name'] && existing_names.include?(analysis_entity['name']))
+        name = analysis_entity.delete('name')
+        next if (name.blank? || existing_names.include?(name))
 
         entity = self.entities.build
         entity.category     = category.try(:singularize)
         entity.entity_type  = analysis_entity.delete('type')
         entity.is_confirmed = false
-        entity.name         = analysis_entity.delete('name')
+        entity.name         = name
         entity.identifier   = analysis_entity.delete('guid')
         entity.score        = analysis_entity.delete('score')
 
@@ -173,9 +174,8 @@ class Item < ActiveRecord::Base
     self.creators.try(:first)
   end
 
-  def update_transcription!
-    self.transcription = transcript_text
-    self.save!
+  def transcription
+    transcript_text || read_attribute(:transcription)
   end
 
   def transcript_text
