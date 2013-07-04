@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130702181604) do
+ActiveRecord::Schema.define(:version => 20130703191719) do
 
   add_extension "hstore"
 
@@ -154,7 +154,6 @@ ActiveRecord::Schema.define(:version => 20130702181604) do
     t.string   "music_sound_used"
     t.string   "date_peg"
     t.text     "notes"
-    t.text     "transcription"
     t.string   "tags",                              :array => true
     t.integer  "geolocation_id"
     t.hstore   "extra"
@@ -166,6 +165,7 @@ ActiveRecord::Schema.define(:version => 20130702181604) do
     t.integer  "storage_id"
     t.boolean  "is_public"
     t.time     "deleted_at"
+    t.text     "transcription"
   end
 
   add_index "items", ["collection_id"], :name => "index_items_on_collection_id"
@@ -246,6 +246,30 @@ ActiveRecord::Schema.define(:version => 20130702181604) do
 
   add_index "tasks", ["identifier"], :name => "index_tasks_on_identifier"
   add_index "tasks", ["owner_id", "owner_type"], :name => "index_tasks_on_owner_id_and_owner_type"
+
+  create_table "timed_texts", :force => true do |t|
+    t.integer  "transcript_id"
+    t.integer  "start_time"
+    t.integer  "end_time"
+    t.text     "text"
+    t.decimal  "confidence"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "timed_texts", ["start_time", "transcript_id"], :name => "index_timed_texts_on_start_time_and_transcript_id"
+
+  create_table "transcripts", :force => true do |t|
+    t.integer  "audio_file_id"
+    t.string   "identifier"
+    t.string   "language"
+    t.integer  "start_time"
+    t.integer  "end_time"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "transcripts", ["audio_file_id", "identifier"], :name => "index_transcripts_on_audio_file_id_and_identifier"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                       :default => "", :null => false

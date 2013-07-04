@@ -4,7 +4,7 @@ class Tasks::TranscribeTask < Task
     after_transition any => :complete do |task, transition|
 
       # only add transcript if there is none, or it is the full tranascript; don't overwrite all with start
-      if task.owner && (task.owner.transcript.blank? || !task.start_only?) && !Rails.env.test?
+      if task.owner && !Rails.env.test?
         DownloadTranscriptWorker.perform_async(task.owner.id, task.destination)
       end
 

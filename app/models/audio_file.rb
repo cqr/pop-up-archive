@@ -8,6 +8,7 @@ class AudioFile < ActiveRecord::Base
   belongs_to :item, :with_deleted => true
   belongs_to :instance
   has_many :tasks, as: :owner
+  has_many :transcripts
 
   belongs_to :storage_configuration, class_name: "StorageConfiguration", foreign_key: :storage_id
 
@@ -45,12 +46,6 @@ class AudioFile < ActiveRecord::Base
     self.original_file_url = url
     self.should_trigger_fixer_copy = !!url
     logger.debug "remote_file_url: #{self.original_file_url}"
-  end
-
-  def transcript_text
-    return '' unless transcript
-    trans_json = JSON.parse(transcript)
-    trans_json.collect{|i| i['text']}.join(' ')
   end
 
   def upload_to
@@ -119,13 +114,13 @@ class AudioFile < ActiveRecord::Base
   end
 
   def copy_original
-    return unless (should_trigger_fixer_copy && item.collection.copy_media && original_file_url)
+    return false unless (should_trigger_fixer_copy && item.collection.copy_media && original_file_url)
     create_copy_task(original_file_url, destination, storage)
     self.should_trigger_fixer_copy = false
   end
 
   def copy_to_item_storage
-    return unless (storage != item.storage)
+    return false unless (storage != item.storage)
     create_copy_task(destination, destination(storage: item.storage), item.storage)
   end
 
@@ -157,6 +152,59 @@ class AudioFile < ActiveRecord::Base
     else
       self.tasks << Tasks::TranscribeTask.new(identifier: 'ts_all', extras: { original: process_audio_url })
     end
+  end
+
+  def transcript_array
+    array = timed_transcript_array
+    array = JSON.parse(transcript) if (array.blank? && !transcript.blank?)
+    array || []
+  end
+
+  def transcript_text
+    txt = timed_transcript_text 
+    txt = JSON.parse(transcript).collect{|i| i['text']}.join("\n") if (txt.blank? && !transcript.blank?)
+    txt || ''
+  end
+
+  def timed_transcript_text(language='en-US')
+    (timed_transcript(language).try(:timed_texts) || []).collect{|tt| tt.text}.join("\n")
+  end
+
+  def timed_transcript_array(language='en-US')
+    (timed_transcript(language).try(:timed_texts) || []).collect{|tt| tt.as_json(only: [:id, :start_time, :end_time, :text])}
+  end
+
+  def timed_transcript(language='en-US')
+    transcripts.where(language: language).order('end_time DESC').first
+  end
+
+  def process_transcript(json)
+    return if json.blank?
+
+    identifier = Digest::MD5.hexdigest(json)
+
+    if trans = transcripts.where(identifier: identifier).first
+      logger.debug "transcript #{trans.id} already exists for this json: #{json[0,50]}"
+    else
+      trans_json = JSON.parse(json) if json.is_a?(String)
+      trans = transcripts.build(language: 'en-US', identifier: identifier, start_time: 0, end_time: 0)
+      trans_json.each do |row|
+        tt = trans.timed_texts.build({
+          start_time: row['start_time'],
+          end_time:   row['end_time'],
+          confidence: row['confidence'],
+          text:       row['text']
+        })
+        trans.end_time = tt.end_time if tt.end_time > trans.end_time
+        trans.start_time = tt.start_time if tt.start_time < trans.start_time
+      end
+      trans.save!
+
+      # delete trans which cover less time
+      partials_to_delete = transcripts.where("language = 'en-US' AND end_time < ?", trans.end_time)
+      partials_to_delete.each{|t| t.destroy}
+    end
+    trans
   end
 
   def analyze_transcript
