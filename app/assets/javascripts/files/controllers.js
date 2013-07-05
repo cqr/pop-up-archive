@@ -1,5 +1,5 @@
 angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts', 'Directory.csvImports.models', 'Directory.user'])
-.controller('FilesCtrl', ['$scope', '$http', '$q', '$timeout', '$route', '$routeParams', '$modal', 'Me', 'Loader', 'CsvImport', 'Alert', 'Collection', 'Item', function FilesCtrl($scope, $http, $q, $timeout, $route, $routeParams, $modal, Me, Loader, CsvImport, Alert, Collection, Item) {
+.controller('FilesCtrl', ['$window', '$scope', '$http', '$q', '$timeout', '$route', '$routeParams', '$modal', 'Me', 'Loader', 'CsvImport', 'Alert', 'Collection', 'Item', function FilesCtrl($window, $scope, $http, $q, $timeout, $route, $routeParams, $modal, Me, Loader, CsvImport, Alert, Collection, Item) {
 
   Me.authenticated(function (me) {
 
@@ -11,12 +11,26 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
 
     $scope.files = [];
 
+    // check to see if there is an upload before navigating away
+    $window.onbeforeunload = function(e) {
+      var warn = null;
+      var alerts = Alert.getAlerts();
+      angular.forEach(alerts, function (alert, i) {
+        if (!alert.isComplete() && alert.category == 'upload') {
+          warn = "There is an upload currently happening!";
+          e.returnValue = warn;
+        }
+      });
+      return warn;
+    };
+
     $scope.uploadFile = function () {
       $scope.$emit('filesAdded', []);
     };
 
     $scope.uploadCSV = function (file) {
       var alert = new Alert();
+      alert.category = 'upload';
       alert.status = "Uploading";
       alert.progress = 1;
       alert.message = file.name;
@@ -43,10 +57,11 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
       angular.forEach(newFiles, function (file) {
 
         var alert = new Alert();
-        alert.status = "Uploading";
+        alert.category = 'upload';
+        alert.status   = 'Uploading';
         alert.progress = 1;
-        alert.message = file.name;
-        alert.path = item.link();
+        alert.message  = file.name;
+        alert.path     = item.link();
         alert.add();
 
         var audioFile = item.addAudioFile(file,
@@ -60,7 +75,7 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
             });
 
             alert.progress = 100;
-            alert.status = "Uploaded";
+            alert.status   = "Uploaded";
 
             // let search results know that there is a new item
             $timeout(function () { $scope.$broadcast('datasetChanged')}, 750);
@@ -74,7 +89,7 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
             });
 
             alert.progress = 100;
-            alert.status = "Error";
+            alert.status   = "Error";
           },
           onProgress: function (progress) {
             // console.log('uploadAudioFiles: onProgress', progress);

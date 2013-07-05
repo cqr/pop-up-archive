@@ -46,6 +46,7 @@ angular.module('Directory.alerts', ['ngLoadingIndicators'])
 
   function Alert(data) {
     data = (data || {});
+    this.category = data.category;
     this.status   = data.status;
     this.message  = data.message;
     this.path     = data.path;
@@ -58,6 +59,11 @@ angular.module('Directory.alerts', ['ngLoadingIndicators'])
     add: function () {
       alerts.push(this);
       this.startSync();
+    },
+
+    isComplete: function () {
+      var alert = this;
+      return (alert.done || parseInt(alert.progress, 10) >= 100);
     },
 
     startSync: function (sync) {

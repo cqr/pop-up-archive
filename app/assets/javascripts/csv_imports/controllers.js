@@ -99,7 +99,7 @@ angular.module('Directory.csvImport.controllers', ['fileButton', 'Directory.aler
   $scope.submit = function () {
     angular.forEach($scope.files, function(file) {
       var alert = new Alert();
-
+      alert.category = 'upload';
       alert.status = "Uploading";
       alert.progress = 1;
       alert.message = file.name;
