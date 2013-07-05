@@ -16,6 +16,7 @@
 //= require bootstrap-datepicker
 //= require select2
 //= require angular
+//= require angular-cookies
 //= require angular-ui
 //= require angular-strap
 //= require angularjs/rails/resource
@@ -121,7 +122,8 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
 
   applicationConfig.$inject = ["$httpProvider", "$locationProvider", "$routeProvider", "AnalyticsProvider"];
 
-  var depends =  ['analytics',
+  var depends =  ['ngCookies',
+                  'analytics',
                   'ui',
                   '$strap',
                   '$strap.directives',
