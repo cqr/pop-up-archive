@@ -99,7 +99,7 @@ class XMLMediaImporter
   def item_for_illinois_doc(doc)
     item = Item.new
     item.collection = collection
-    item.title = doc.search('title')[0].text                               cp
+    item.title = doc.search('title')[0].text
     item.tags = doc.search('subject').collect { |s| s.text }.compact
     item.description = doc.xpath("pbcoreDescription[descriptionType='Abstract']/description").text
     item.physical_location = doc.xpath("pbcoreCoverage[coverageType='Spatial']/coverage").text
@@ -132,7 +132,6 @@ class XMLMediaImporter
       audio = AudioFile.new
       instance.audio_files << audio
       item.audio_files << audio
-
       audio.identifier = url
       audio.remote_file_url= url
       #audio.format        = pbcPart.try(:digital).try(:value) || instance.format

@@ -19,7 +19,8 @@ class PBCoreImporter
   def import_omeka_collection
     pbc_collection = PBCore::V2::Collection.parse(file)
     pbc_collection.description_documents.each do |doc|
-      item_for_omeka_doc(doc).save!
+      sleep(2)
+			item_for_omeka_doc(doc).save!
     end
   end
 
