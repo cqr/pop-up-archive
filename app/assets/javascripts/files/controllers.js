@@ -17,7 +17,7 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
       var alerts = Alert.getAlerts();
       angular.forEach(alerts, function (alert, i) {
         if (!alert.isComplete() && alert.category == 'upload') {
-          warn = "There is an upload currently happening!";
+          warn = "Your upload will be canceled if you leave this page. Are you sure?";
           e.returnValue = warn;
         }
       });
