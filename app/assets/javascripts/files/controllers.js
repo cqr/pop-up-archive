@@ -100,13 +100,22 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
 
         var audioFile = item.addAudioFile(file,
         {
-          onComplete: function (upload) {
-            // console.log('fileUploaded: addAudioFile: complete',upload, item);
-            $scope.addMessage({
-              'type': 'success',
-              'title': 'Congratulations!',
-              'content': '"' + file.name + '" upload completed. <a data-dismiss="alert" data-target=":parent" ng-href="' + item.link() + '">View and edit the item!</a>'
-            });
+          onComplete: function () {
+            console.log($scope.item.id, $scope.currentUser.uploadsCollectionId);
+            if ($scope.item.collectionId == $scope.currentUser.uploadsCollectionId) {
+              $scope.addMessage({
+                'type': 'success',
+                'title': 'Congratulations!',
+                'content': '"' + file.name + '" upload completed. Select items in My Uploads to move them to a collection and to begin autotranscription and autotagging.'
+              });
+            }
+            else {
+              $scope.addMessage({
+                'type': 'success',
+                'title': 'Congratulations!',
+                'content': '"' + file.name + '" upload completed. <a data-dismiss="alert" data-target=":parent" ng-href="' + item.link() + '">View and edit the item!</a>'
+              });
+            }
 
             alert.progress = 100;
             alert.status   = "Uploaded";
