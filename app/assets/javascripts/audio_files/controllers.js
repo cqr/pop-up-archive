@@ -1,5 +1,5 @@
 angular.module("Directory.audioFiles.controllers", ['ngPlayer'])
-.controller("AudioFileCtrl", ['$scope', '$timeout', 'Player', 'TimedText', function($scope, $timeout, Player, TimedText) {
+.controller("AudioFileCtrl", ['$scope', '$timeout', 'Player', 'Me', 'TimedText', function($scope, $timeout, Player, Me, TimedText) {
   $scope.fileUrl = $scope.audioFile.url;
   
   $scope.play = function () {
@@ -24,26 +24,17 @@ angular.module("Directory.audioFiles.controllers", ['ngPlayer'])
     $scope.player.seekTo(time);
 
   });
-  
-  //edit transcripts
-  $scope.editorEnabled = false;
-  
-  $scope.enableEditor = function() {
-    this.editorEnabled = true;
-    this.editableTranscript = this.text.text;
-  };
-  
-  $scope.disableEditor = function() {
-    this.editorEnabled = false;
-  };
-  
-  $scope.save = function() {
-    this.text.text = this.editableTranscript;
-    this.disableEditor();
-    var tt = new TimedText(this.text);
-    console.log('save tt', tt);
-    tt.update();
-  };
+
+  Me.authenticated(function (me) {
+
+    $scope.saveText = function() {
+      this.text.text = this.editableTranscript;
+      this.disableEditor();
+      var tt = new TimedText(this.text);
+      tt.update();
+    };
+
+  });
 
 }])
 .controller("PersistentPlayerCtrl", ["$scope", 'Player', function ($scope, Player) {

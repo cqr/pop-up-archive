@@ -182,12 +182,12 @@
                       '<td style="width: 16px; text-align:right">{{text.startTime}}</td>' +
                       '<td style="width: 8px;  text-align:center">&ndash;</td>' +
                       '<td style="width: 16px; text-align:left; padding-right:10px">{{text.endTime}}</td>' +
-                      '<td ng-hide="editorEnabled" class="file-transcript-text">{{text.text}}</div></td>' +
-                      '<td ng-hide="editorEnabled" style="width: 8px; padding-right: 10px; text-align: right">'+
+                      '<td ng-show="!editorEnabled" class="file-transcript-text">{{text.text}}</div></td>' +
+                      '<td ng-show="!editorEnabled && canEdit" style="width: 8px; padding-right: 10px; text-align: right">'+
                         '<a href="#" ng-click="enableEditor()"><i class="icon-pencil"></i></a></td>' +
-                      '<td ng-show="editorEnabled"><input ng-model="editableTranscript" ng-show="editorEnabled"></td>' +
-                      '<td ng-show="editorEnabled" style="width: 50px;">' + 
-                        '<a href="#" ng-click="save(text)" style="width: 8px; float: left; padding: 0 8px">' +
+                      '<td ng-show="editorEnabled && canEdit"><input ng-model="editableTranscript" ng-show="editorEnabled"></td>' +
+                      '<td ng-show="editorEnabled && canEdit" style="width: 50px;">' + 
+                        '<a href="#" ng-click="saveText(text)" style="width: 8px; float: left; padding: 0 8px">' +
                           '<i class="icon-ok"></i></a>' + 
                         '<a href="#" ng-click="disableEditor()" style="width: 8px; float: left; padding: 0 10px 0 8px">' + 
                           '<i class="icon-remove"></i></a></td>' +
@@ -200,6 +200,7 @@
         scope.transcriptStart = 0;
         scope.transcript = $parse(attrs.transcriptText)(scope);
         scope.transcriptRows = {};
+        scope.canEdit = $parse(attrs.transcriptEditable)(scope);
 
         angular.forEach(scope.transcript, function(row, index) {
           scope.transcriptRows[row.startTime] = index;
@@ -208,6 +209,18 @@
         scope.seekTo = function(time) {
           scope.$emit('transcriptSeek', time);
         }
+
+        //edit transcripts
+        scope.editorEnabled = false;
+        
+        scope.enableEditor = function() {
+          this.editorEnabled = true;
+          this.editableTranscript = this.text.text;
+        };
+        
+        scope.disableEditor = function() {
+          this.editorEnabled = false;
+        };
 
         if (scope.transcript && scope.transcript.length > 0) {
           scope.$watch('player.time', function (time) {
