@@ -187,7 +187,7 @@
                         '<a href="#" ng-click="enableEditor()"><i class="icon-pencil"></i></a></td>' +
                       '<td ng-show="editorEnabled"><input ng-model="editableTranscript" ng-show="editorEnabled"></td>' +
                       '<td ng-show="editorEnabled" style="width: 50px;">' + 
-                        '<a href="#" ng-click="save()" style="width: 8px; float: left; padding: 0 8px">' +
+                        '<a href="#" ng-click="save(text)" style="width: 8px; float: left; padding: 0 8px">' +
                           '<i class="icon-ok"></i></a>' + 
                         '<a href="#" ng-click="disableEditor()" style="width: 8px; float: left; padding: 0 10px 0 8px">' + 
                           '<i class="icon-remove"></i></a></td>' +

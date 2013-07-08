@@ -1,5 +1,5 @@
 angular.module("Directory.audioFiles.controllers", ['ngPlayer'])
-.controller("AudioFileCtrl", ['$scope', 'Player', '$timeout', function($scope, Player, $timeout) {
+.controller("AudioFileCtrl", ['$scope', '$timeout', 'Player', 'TimedText', function($scope, $timeout, Player, TimedText) {
   $scope.fileUrl = $scope.audioFile.url;
   
   $scope.play = function () {
@@ -37,11 +37,12 @@ angular.module("Directory.audioFiles.controllers", ['ngPlayer'])
     this.editorEnabled = false;
   };
   
-  $scope.save = function(item) {
+  $scope.save = function() {
     this.text.text = this.editableTranscript;
     this.disableEditor();
-    //update database
-    // console.log(this.editableTranscript);
+    var tt = new TimedText(this.text);
+    console.log('save tt', tt);
+    tt.update();
   };
 
 }])

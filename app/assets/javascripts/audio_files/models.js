@@ -1,5 +1,5 @@
 angular.module('Directory.audioFiles.models', ['RailsModel', 'S3Upload'])
-.factory('AudioFile', ['Model', 'S3Upload', 'STORAGE_PROVIDER', '$http', function (Model, S3Upload, STORAGE_PROVIDER, $http) {
+.factory('AudioFile', ['Model', 'S3Upload', '$http', function (Model, S3Upload, $http) {
   var AudioFile = Model({url:'/api/items/{{itemId}}/audio_files/{{id}}', name: 'audio_file'});
 
   AudioFile.attrAccessible = ['url', 'filename'];
@@ -36,4 +36,11 @@ angular.module('Directory.audioFiles.models', ['RailsModel', 'S3Upload'])
   };
 
   return AudioFile;
+}])
+.factory('TimedText', ['Model', '$http', function (Model, $http) {
+  var TimedText = Model({url:'/api/timed_texts/{{id}}', name: 'timed_text'});
+
+  TimedText.attrAccessible = ['text'];
+
+  return TimedText;
 }]);

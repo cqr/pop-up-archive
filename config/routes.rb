@@ -34,6 +34,9 @@ PopUpArchive::Application.routes.draw do
         resources :entities
         resources :contributions
       end
+
+      resources :timed_texts
+      
       resources :collections do
         collection do
           resources :public_collections, path: 'public', only: [:index]
