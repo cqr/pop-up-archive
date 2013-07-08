@@ -186,10 +186,10 @@
                       '<td ng-show="!editorEnabled && canEdit" style="width: 8px; padding-right: 10px; text-align: right">'+
                         '<a href="#" ng-click="enableEditor()"><i class="icon-pencil"></i></a></td>' +
                       '<td ng-show="editorEnabled && canEdit"><input ng-model="editableTranscript" ng-show="editorEnabled"></td>' +
-                      '<td ng-show="editorEnabled && canEdit" style="width: 50px;">' + 
+                      '<td ng-show="editorEnabled && canEdit" style="width: 50px;">' +
                         '<a href="#" ng-click="saveText(text)" style="width: 8px; float: left; padding: 0 8px">' +
-                          '<i class="icon-ok"></i></a>' + 
-                        '<a href="#" ng-click="disableEditor()" style="width: 8px; float: left; padding: 0 10px 0 8px">' + 
+                          '<i class="icon-ok"></i></a>' +
+                        '<a href="#" ng-click="disableEditor()" style="width: 8px; float: left; padding: 0 10px 0 8px">' +
                           '<i class="icon-remove"></i></a></td>' +
                     '</tr>' +
                   '</table>' +
