@@ -101,12 +101,12 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
         var audioFile = item.addAudioFile(file,
         {
           onComplete: function () {
-            console.log($scope.item.id, $scope.currentUser.uploadsCollectionId);
+            // console.log($scope.item.id, $scope.currentUser.uploadsCollectionId);
             if ($scope.item.collectionId == $scope.currentUser.uploadsCollectionId) {
               $scope.addMessage({
                 'type': 'success',
                 'title': 'Congratulations!',
-                'content': '"' + file.name + '" upload completed. Select items in My Uploads to move them to a collection and to begin autotranscription and autotagging.'
+                'content': '"' + file.name + '" upload completed. To see transcripts and tags, <a href="/collections">move the item from My Uploads to a collection</a>'
               });
             }
             else {

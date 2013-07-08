@@ -15,7 +15,7 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
 
   Item.prototype.getThumbClass = function () {
     if (this.audioFiles && this.audioFiles.length > 0) {
-      return "icon-music";
+      return "icon-volume-up";
     } else {
       return "icon-file-alt"
     }

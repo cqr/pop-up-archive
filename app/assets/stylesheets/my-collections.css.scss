@@ -69,23 +69,24 @@ ul.items {
 
   li {
     cursor: pointer;
-    overflow:hidden;
-    width: 73px;
-    height: 73px;
+    width: 80px;
+    height: 80px;
     margin-left: 10px;
     margin-bottom: 10px;
     float: left;
-    text-align: center;
-    text-overflow:ellipsis;
     background: rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     padding: 5px;
+    line-height: 15px;
+    overflow:hidden;
+    text-align: center;
+    word-wrap:break-word;
 
     & > * {
       pointer-events:none;
     }
 
-    &:nth-child(10n+10) {
+    &:nth-child(9n+9) {
       margin-right: -10px;
     }
 
@@ -101,8 +102,8 @@ ul.items {
 
       background: transparent;
       border: 3px dashed rgba(255, 255, 255, 0.5);
-      width: 67px;
-      height: 67px;
+      width: 74px;
+      height: 71px;
 
       a {
         color: rgba(255, 255, 255, 0.7);
@@ -117,7 +118,9 @@ ul.items {
     -webkit-transition: background 0.2s ease;
 
     .item-thumb {
-      font-size: 50px;
+      width: 100%;
+      font-size: 20px;
+      padding-bottom: 5px;
     }
   }
 
