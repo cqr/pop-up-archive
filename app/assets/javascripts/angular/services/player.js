@@ -182,7 +182,7 @@
                       '<td style="width: 16px; text-align:right">{{text.startTime}}</td>' +
                       '<td style="width: 8px;  text-align:center">&ndash;</td>' +
                       '<td style="width: 16px; text-align:left; padding-right:10px">{{text.endTime}}</td>' +
-                      '<td ng-show="!editorEnabled" class="file-transcript-text">{{text.text}}</div></td>' +
+                      '<td ng-show="!editorEnabled"><div class="file-transcript-text">{{text.text}}</div></td>' +
                       '<td ng-show="canShowEditor()" style="width: 8px; padding-right: 10px; text-align: right">'+
                         '<a href="#" ng-click="enableEditor()"><i class="icon-pencil"></i></a></td>' +
                       '<td ng-show="editorEnabled"><input ng-model="editableTranscript" ng-show="editorEnabled"></td>' +
