@@ -27,6 +27,7 @@ class Tasks::CopyTask < Task
       job.original    = original
       job.retry_delay = 3600 # 1 hour
       job.retry_max   = 24 # try for a whole day
+      job.priority    = 1
 
       job.add_task({
         task_type: 'copy',

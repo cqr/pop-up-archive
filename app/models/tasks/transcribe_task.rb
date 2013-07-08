@@ -18,7 +18,7 @@ class Tasks::TranscribeTask < Task
       j = MediaMonsterClient.create_job do |job|
         job.job_type    = 'audio'
         job.original    = original
-        job.priority    = 1
+        job.priority    = 2
         job.retry_delay = 3600 # 1 hour
         job.retry_max   = 24 # try for a whole day
         job.add_sequence do |seq|
@@ -36,7 +36,7 @@ class Tasks::TranscribeTask < Task
       j = MediaMonsterClient.create_job do |job|
         job.job_type = 'audio'
         job.original = original
-        job.priority = 2
+        job.priority = 3
         job.retry_delay = 3600 # 1 hour
         job.retry_max = 24 # try for a whole day
         job.add_task({
