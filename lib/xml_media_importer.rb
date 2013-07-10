@@ -105,8 +105,24 @@ class XMLMediaImporter
     item.physical_location = doc.xpath("pbcoreCoverage[coverageType='Spatial']/coverage").text
     item.creators = doc.xpath("pbcoreCreator/creator").collect { |s| Person.for_name(s.text) }
     item.contributions = doc.xpath("pbcoreContributor").collect { |s| Contribution.new(person: Person.for_name(s.xpath("contributor").text), role: s.xpath("contributorRole").text) }
-    # files are not working on illions feed.
-    item
+    mediaContents = doc.xpath("//pbcoreInstantiation[not(instantiationPhysical)]")
+		mediaContents.each do |mediaContent|
+		  url = mediaContent.xpath("instantiationLocation").text
+			next unless is_audio_file?(url)
+			audio = AudioFile.new
+			instance = item.instances.build
+			instance.digital = true
+			#instance.format     = pbcInstance.try(:digital).try(:value)
+			#instance.identifier = pbcInstance.detect_element(:identifiers)
+			#instance.location   = pbcInstance.location
+			audio = AudioFile.new
+			instance.audio_files << audio
+			item.audio_files << audio
+			audio.identifier = url
+			audio.remote_file_url= url
+			#audio.format        = pbcPart.try(:digital).try(:value) || instance.format
+			#audio.size          = mediaContent.attribute('fileSize').value
+		end
   end
 
   def item_for_openvault(doc)
