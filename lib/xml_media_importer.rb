@@ -65,10 +65,12 @@ class XMLMediaImporter
         if mode == 'ONLY' and url.match(filter)
           item_count += 1
           omeka_importer.item_for_omeka_doc(doc).save!
+          sleep(2)
         end
         if mode == 'OMIT' and not url.match(filter)
           item_count += 1
           omeka_importer.item_for_omeka_doc(doc).save!
+          sleep(2)
         end
       end
     end
