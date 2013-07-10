@@ -2,15 +2,15 @@ require 'nokogiri'
 
 class XMLMediaImporter
 
-  attr_accessor :file, :collection, :dir, :collection1, :collection2, :file_name, :max_load_per_collection
+  attr_accessor :file, :collection,:collection_id, :dir, :file_name, :max_items_per_collection, :filter
 
   def initialize(options={})
     #PBCore.config[:date_formats] = ['%m/%d/%Y', '%Y-%m-%d']
-    if options.has_key?(:collection_id_2)
-      self.collection1 = options[:collection_id]
-      self.collection2 = options[:collection_id_2]
+    if options.has_key?(:filter)
+      self.collection_id = options[:collection_id]
       self.file_name = options[:file]
-      self.max_load_per_collection = Integer(options[:max])
+      self.filter = options[:filter]
+      self.max_items_per_collection = Integer(options[:max])
     else
       self.collection = Collection.find(options[:collection_id])
     end
@@ -42,31 +42,34 @@ class XMLMediaImporter
     end
   end
 
-  def split_ks_xml_file
-    importer_FB = PBCoreImporter.new(collection_id: self.collection1, file: self.file_name)
-    importer_B = PBCoreImporter.new(collection_id: self.collection2, file: self.file_name)
-    count_FB = 0
-    count_F = 0
+  def filter_ks_xml_file
+
+    item_count = 0
+    mode=nil
+    mode = filter.slice! 'ONLY' if filter.match('ONLY')
+    mode = filter.slice! 'OMIT' if filter.match('OMIT')
+
+    raise 'unsupported filtering mode' if mode.nil?
+
+    filter.strip!
+    filter.downcase!
+
+    omeka_importer = PBCoreImporter.new(collection_id: self.collection_id, file: self.file_name)
     pbc_collection = PBCore::V2::Collection.parse(file)
     pbc_collection.description_documents.each do |doc|
-      doc.instantiations.each do |pbcInstance|
-        url = pbcInstance.detect_element(:identifiers, match_attr: :source, match_value: ['URL', nil])
-        if url.match('F-B')
-          if count_FB >= max_load_per_collection
-            break
-          end
-          count_FB =count_FB+1
-          puts "F-B " + url
-          importer_FB.item_for_omeka_doc(doc).save!
-        else
-          if count_F >= max_load_per_collection
-            break
-          end
-          count_F = count_F+1
-          puts "NO F" + url
-          importer_B.item_for_omeka_doc(doc).save!
+      break if item_count >= self.max_items_per_collection
+      unless doc.instantiations.to_a.empty?
+        # there are several types of identifiers on the ks file witt references to F-B. small changes on them are probably not expected.
+        url = doc.instantiations[0].detect_element(:identifiers, match_attr: :source, match_value: ['URL', nil])
+        url.downcase!
+        if mode == 'ONLY' and url.match(filter)
+          item_count += 1
+          omeka_importer.item_for_omeka_doc(doc).save!
         end
-        break
+        if mode == 'OMIT' and not url.match(filter)
+          item_count += 1
+          omeka_importer.item_for_omeka_doc(doc).save!
+        end
       end
     end
   end

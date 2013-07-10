@@ -33,10 +33,10 @@ namespace :import do
     importer.import_xml_bbg_feed
   end
 
-  desc "Import Kitche Sisters XML file into 2 collections"
-  task :split_ks_xml_file, [:collection_id, :collection_id_2, :file, :max_files_per_collection] => [:environment] do |t, args|
-    importer = XMLMediaImporter.new(collection_id: args.collection_id, collection_id_2: args.collection_id_2, file: args.file, max: args.max_files_per_collection)
-    importer.split_ks_xml_file
+  desc "Import Kitchen Sisters XML file by filtering urls"
+  task :filter_ks_xml_file, [:collection_id, :file, :max_items_per_collection, :filter] => [:environment] do |t, args|
+    importer = XMLMediaImporter.new(collection_id: args.collection_id, file: args.file, max: args.max_items_per_collection, filter: args.filter)
+    importer.filter_ks_xml_file
   end
 
 end
