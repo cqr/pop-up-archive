@@ -102,20 +102,18 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
         {
           onComplete: function () {
             // console.log($scope.item.id, $scope.currentUser.uploadsCollectionId);
+            var msg = '"' + file.name + '" upload completed.';
             if ($scope.item.collectionId == $scope.currentUser.uploadsCollectionId) {
-              $scope.addMessage({
-                'type': 'success',
-                'title': 'Congratulations!',
-                'content': '"' + file.name + '" upload completed. To see transcripts and tags, <a href="/collections">move the item from My Uploads to a collection</a>'
-              });
+              msg = msg + 'To see transcripts and tags, <a href="/collections">move the item from My Uploads to a collection</a>';
+            } else {
+              msg = msg + '<a data-dismiss="alert" data-target=":parent" ng-href="' + item.link() + '">View and edit the item!</a>';
             }
-            else {
-              $scope.addMessage({
-                'type': 'success',
-                'title': 'Congratulations!',
-                'content': '"' + file.name + '" upload completed. <a data-dismiss="alert" data-target=":parent" ng-href="' + item.link() + '">View and edit the item!</a>'
-              });
-            }
+
+            $scope.addMessage({
+              'type': 'success',
+              'title': 'Congratulations!',
+              'content': msg
+            });
 
             alert.progress = 100;
             alert.status   = "Uploaded";
@@ -151,16 +149,34 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
           $route.current.locals.$scope.item &&
           $route.current.locals.$scope.item.id > 0)
       {
+
+        // if there is an item, add to that item
         var item = $route.current.locals.$scope.item;
         $scope.uploadAudioFiles(item, newFiles);
       } else {
 
-        var collectionId = parseInt($routeParams.collectionId, 10) || $scope.currentUser.uploadsCollectionId;
-        $scope.item = new Item({collectionId:collectionId, title:'', audioFiles:newFiles});
+        // start a new item if there is not one already in scope
+        if(!$scope.item) {
+          var collectionId = parseInt($routeParams.collectionId, 10) || $scope.currentUser.uploadsCollectionId;
+          $scope.item = new Item({collectionId:collectionId, title:'', audioFiles:newFiles});
+        } else {
 
-        if (newFiles.length == 1)
+          if (!$scope.item.audioFiles) {
+            $scope.item.audioFiles = [];
+          }
+
+          // add files to the item
+          angular.forEach(newFiles, function (file) {
+            $scope.item.audioFiles.push(file);
+          });
+        }
+
+        // default title to first file if not already set
+        if (newFiles.length >= 1 && (!$scope.item.title || $scope.item.title == "")) {
           $scope.item.title = newFiles[0].name;
+        }
 
+        // all set, now show that modal!
         $q.when($scope.uploadModal).then( function (modalEl) {
           modalEl.modal('show');
         });
@@ -191,9 +207,19 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
     // used by the upload-button callback when new files are selected
     $scope.setFiles = function(element) {
       $scope.$apply(function($scope) {
-        angular.forEach(element[0].files, function (file) {
+
+        var newFiles = element[0].files;
+
+        // default title to first file if not already set
+        if (!$scope.item.title || $scope.item.title == "") {
+          $scope.item.title = newFiles[0].name;
+        }
+
+        // add files to the item
+        angular.forEach(newFiles, function (file) {
           $scope.item.audioFiles.push(file);
         });
+
       });
     };
 
