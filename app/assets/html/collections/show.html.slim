@@ -1,5 +1,5 @@
 .page-nav.pull-right
-  button.btn bs-modal="'#{asset_path 'items/form.html'}'" ng-show="canEdit"
+  button.btn ng-show="canEdit" ng-click="uploadFile()"
     i.icon-plus  Upload
   button.btn.btn-danger ng-click="delete()" ng-show="canEdit"
     i.icon-trash  Delete Collection

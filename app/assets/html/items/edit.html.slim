@@ -4,7 +4,13 @@ section ng-controller="ItemFormCtrl"
     h3 ng-show="item.id" Edit {{item.title}}
     h3 ng-hide="item.id" Add Item to {{collection.title}}
   .modal-body
-    form.item-form.form-horizontal name='itemForm'
+    form.item-form.form-horizontal name='editItemForm'
+
+      / section ng-repeat="audioFile in item.audioFiles"      
+        / .progress.progress-striped ng-show="file.alert" ng-class="{active:file.alert.progress && file.alert.progress < 100}"
+        /   .bar ng-style="{width:file.alert.progress+'%'}"
+
+
       section ng-repeat="field in fields" ng-switch="field.typeName"
         .control-group ng-switch-when="string"
           label.control-label
@@ -53,7 +59,7 @@ section ng-controller="ItemFormCtrl"
               | Contributors
               i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['contributors']" data-placement="bottom"
         .clearfix
-          .control-row.contributor ng-repeat="contribution in item.contributions" ng-hide="contribution._delete"
+          .control-row.full-row ng-repeat="contribution in item.contributions" ng-hide="contribution._delete"
             span.field
               select ui-select2="roleSelect" ng-model="contribution.role"
                 option

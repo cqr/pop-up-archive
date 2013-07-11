@@ -7,11 +7,11 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
       $scope.uploadsCollection = data[1];
     });
 
-    $scope.uploadModal = $modal({template: '/assets/items/upload.html', persist: true, show: false, backdrop: 'static', scope: $scope});
-
-
+    // for uploads
     $scope.files = [];
+    $scope.uploadModal = $modal({template: '/assets/items/new.html', persist: true, show: false, backdrop: 'static', scope: $scope});
 
+    // for exit survey
     $scope.shouldShowExitSurvey = null;
     $scope.exitSurveyModal = $modal({template: '/assets/dashboard/exit_survey.html', persist: true, show: false, backdrop: 'static', scope: $scope});
 
@@ -58,6 +58,10 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
       }
     };
 
+    $scope.removeAudioFile = function(file) {
+      $scope.item.audioFiles.splice($scope.item.audioFiles.indexOf(file), 1);
+    }
+
     $scope.uploadFile = function () {
       $scope.$emit('filesAdded', []);
     };
@@ -87,56 +91,67 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
       });
     };
 
+
+    $scope.uploadAudioFile = function (item, file) {
+      var alert = new Alert();
+      alert.category = 'upload';
+      alert.status   = 'Uploading';
+      alert.progress = 1;
+      alert.message  = file.name;
+      alert.add();
+
+      if (item.collectionId == $scope.currentUser.uploadsCollectionId) {
+        alert.path = "/collections";
+      } else {
+        alert.path = item.link();
+      }
+
+      file.alert = alert;
+
+      var audioFile = item.addAudioFile(file,
+      {
+        onComplete: function () {
+          // console.log($scope.item.id, $scope.currentUser.uploadsCollectionId);
+          var msg = '"' + file.name + '" upload completed.';
+          if (item.collectionId == $scope.currentUser.uploadsCollectionId) {
+            msg = msg + 'To see transcripts and tags, <a href="/collections">move the item from My Uploads to a collection</a>';
+          } else {
+            msg = msg + '<a data-dismiss="alert" data-target=":parent" ng-href="' + item.link() + '">View and edit the item!</a>';
+          }
+
+          $scope.addMessage({
+            'type': 'success',
+            'title': 'Congratulations!',
+            'content': msg
+          });
+
+          alert.progress = 100;
+          alert.status   = "Uploaded";
+
+          // let search results know that there is a new item
+          $timeout(function () { $scope.$broadcast('datasetChanged')}, 750);
+        },
+        onError: function () {
+          console.log('fileUploaded: addAudioFile: error', item);
+          $scope.addMessage({
+            'type': 'error',
+            'title': 'Oops...',
+            'content': '"' + file.name + '" upload failed. Hmmm... try again?'
+          });
+
+          alert.progress = 100;
+          alert.status   = "Error";
+        },
+        onProgress: function (progress) {
+          // console.log('uploadAudioFiles: onProgress', progress);
+          alert.progress = progress;
+        }
+      });
+    }
+
     $scope.uploadAudioFiles = function (item, newFiles) {
       angular.forEach(newFiles, function (file) {
-
-        var alert = new Alert();
-        alert.category = 'upload';
-        alert.status   = 'Uploading';
-        alert.progress = 1;
-        alert.message  = file.name;
-        alert.path     = item.link();
-        alert.add();
-
-        var audioFile = item.addAudioFile(file,
-        {
-          onComplete: function () {
-            // console.log($scope.item.id, $scope.currentUser.uploadsCollectionId);
-            var msg = '"' + file.name + '" upload completed.';
-            if ($scope.item.collectionId == $scope.currentUser.uploadsCollectionId) {
-              msg = msg + 'To see transcripts and tags, <a href="/collections">move the item from My Uploads to a collection</a>';
-            } else {
-              msg = msg + '<a data-dismiss="alert" data-target=":parent" ng-href="' + item.link() + '">View and edit the item!</a>';
-            }
-
-            $scope.addMessage({
-              'type': 'success',
-              'title': 'Congratulations!',
-              'content': msg
-            });
-
-            alert.progress = 100;
-            alert.status   = "Uploaded";
-
-            // let search results know that there is a new item
-            $timeout(function () { $scope.$broadcast('datasetChanged')}, 750);
-          },
-          onError: function () {
-            console.log('fileUploaded: addAudioFile: error', item);
-            $scope.addMessage({
-              'type': 'error',
-              'title': 'Oops...',
-              'content': '"' + file.name + '" upload failed. Hmmm... try again?'
-            });
-
-            alert.progress = 100;
-            alert.status   = "Error";
-          },
-          onProgress: function (progress) {
-            // console.log('uploadAudioFiles: onProgress', progress);
-            alert.progress = progress;
-          }
-        });
+        $scope.uploadAudioFile(item, file);
       });
     };
 
@@ -185,15 +200,23 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
       // console.log('handleAudioFilesAdded done');
     };
 
+    $scope.hideUploadModal = function() {
+      $q.when($scope.uploadModal).then( function (modalEl) {
+        modalEl.modal('hide');
+      });
+    } 
+
     $scope.submit = function () {
       // console.log('FilesCtrl submit: ', $scope.item);
+      $scope.hideUploadModal();
       var item = $scope.item;
+      $timeout(function () {$scope.item = null;}, 500);
       var audioFiles = item.audioFiles;
       item.audioFiles = [];
 
-      Collection.get($scope.item.collectionId).then(function (collection) {
+      Collection.get(item.collectionId).then(function (collection) {
         if (angular.isArray(collection.items)) {
-          collection.items.push($scope.item);
+          collection.items.push(item);
         }
       });
 
@@ -203,6 +226,11 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
 
       // console.log('FilesCtrl submit scope: ', $scope);
     };
+
+    $scope.clear = function() {
+      $scope.hideUploadModal();
+      $timeout(function () {$scope.item = null;}, 500);
+    }
 
     // used by the upload-button callback when new files are selected
     $scope.setFiles = function(element) {

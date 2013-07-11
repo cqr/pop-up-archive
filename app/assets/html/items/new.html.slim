@@ -1,0 +1,53 @@
+.modal-header ng-hide='item.audioFiles.length <= 0'
+  button type="button" class="close" data-dismiss="modal" aria-hidden="true" x
+
+  h3 Upload
+
+.modal-body 
+  form.item-form.form-horizontal name='newItemForm'
+
+    div ng-show='item.audioFiles.length <= 0' style="text-align:center;"
+      h3 Drag and drop files anywhere on the site
+      div or
+      span file-button="" style='margin-right: 4px;'
+        button.btn.btn-large Choose Files
+
+    div ng-show='item.audioFiles.length > 0'
+      section
+        .control-group
+          label.control-label Files
+          .controls
+            table.table.file-table
+              tr.file ng-repeat="audioFile in item.audioFiles"
+                td.file-icon
+                  .item-thumb ng-class="iconForFile(audioFile)"
+                td.file-name alt="{{audioFile.name}}" {{audioFile.name}}
+                td.file-size {{readableFileSize(audioFile.size)}}
+                td.file-remove
+                  a href="#" ng-click="removeAudioFile(audioFile)" style='text-decoration: none; color: #da4f49;'
+                    i.icon-remove-sign
+
+            span file-button="" style='margin-right: 4px;'
+              button.btn Choose More Files
+
+        section 
+          .control-group
+            label.control-label
+              | Collection
+              i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['collection']" data-placement="bottom"
+
+            .controls
+              select#collection-id ng-model='item.collectionId' ng-options="collection.id as collection.title for collection in collections"
+
+      div ng-show='item.collectionId != uploadsCollection.id'
+        section 
+          .control-group
+            label.control-label
+              | Title
+              i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['title']" data-placement="bottom"
+            .controls 
+              input.text#title type='text' ng-model='item.title'
+
+.modal-footer
+  button.btn type="button" ng-click="clear()" Close
+  button.btn.btn-success ng-hide='item.audioFiles.length <= 0' ng-disabled='!item.collectionId || item.audioFiles.length <= 0' ng-click='submit()' Create item

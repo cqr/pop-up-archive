@@ -495,7 +495,7 @@ $persistent-player-scrollpading: 15px;
 
 .item-form {
 
-  .contributor {
+  .full-row {
     float: right;
 
     .field {
@@ -988,5 +988,33 @@ div#-assets-collections-tutorial1-00M.modal, div#-assets-collections-tutorial2-0
 }
 //end footer
 
+.item-form {
+  fieldset {
+    padding-top: 4px;
+  }
 
+  table.file-table {
+    td {
+      padding: 2px;
+    }
+    .file-icon {
+      padding: 2px 0px; 
+      width: 14px; 
+    }
+    .file-name {
+      padding: 0px 2px 2px 2px;
+      max-width: 220px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .file-size {
+      white-space: nowrap;
+      font-style: italic;
+    }
+    .file-remove {
+      padding: 2px 0px;
+      width: 14px; 
+    }
+  }
 
+}

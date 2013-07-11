@@ -199,6 +199,9 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
     ];
 
     $scope.itemHelp = {
+      'collection'      : { 'title': 'Collection',
+                            'content': '<p>A collection is a set of items. They can be public or private, and are a way to organize your uploads and data.</p><p>Examples</p><ul><li>Hidden Kitchens</li><li>My Project Audio</li></ul>'
+                          },
       'title'           : { 'title': 'Title',
                             'content': '<p>The name that will appear when you search for the item. Not all audio will have a predefined title, e.g., interviews or segments of a longer work. In these situations, make up a title that you think will help you or others easily identify the audio\’s content.</p><p>Examples</p><ul><li>Willie Nelson Interview</li><li>War of the Worlds</li><li>NASA Apollo 11 Onboard Recordings</li></ul>'
                           },
@@ -308,7 +311,22 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
         }
       }
       return "Pop Up Archive";
-    }
+    };
+
+    $scope.iconForFile = function (file) {
+      if (file.type.match(/^audio/) || file.name.match(/\.(aac|aif|aiff|alac|flac|m4a|m4p|mp2|mp3|mp4|ogg|raw|spx|wav|wma)$/)) {
+        return "icon-volume-up";
+      } else {
+        return "icon-file-alt"
+      }
+    };
+
+
+    $scope.readableFileSize = function (size) {
+      var i = Math.floor( Math.log(size) / Math.log(1024) );
+      return ( size / Math.pow(1024, i) ).toFixed(1) * 1 + ' ' + ['B', 'KB', 'MB', 'GB', 'TB'][i];
+    };
+
 
   }]);
 
