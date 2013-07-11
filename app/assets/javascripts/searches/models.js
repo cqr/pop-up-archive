@@ -162,7 +162,7 @@ angular.module('Directory.searches.models', ['RailsModel', 'Directory.items.mode
       if (angular.isArray(queryString)) {
         return queryString;
       }
-      var match = queryString.match(/([^,]*\"[^\"]+\"|[^,]+)/g);
+      var match = queryString.match(/([^,\"]*\"[^\"]+\"|[^,]+)/g);
       if (match) {
         return getUnique(match);
       } else {
