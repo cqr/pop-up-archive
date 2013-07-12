@@ -15,7 +15,9 @@
     div ng-show='item.audioFiles.length > 0'
       section
         .control-group
-          label.control-label Files
+          label.control-label
+            | Files
+            i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['audioFiles']" data-placement="bottom"
           .controls
             table.table.file-table
               tr.file ng-repeat="audioFile in item.audioFiles"
@@ -30,14 +32,14 @@
             span file-button="" style='margin-right: 4px;'
               button.btn Choose More Files
 
-        section 
-          .control-group
-            label.control-label
-              | Collection
-              i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['collection']" data-placement="bottom"
+      section 
+        .control-group
+          label.control-label
+            | Collection
+            i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['collection']" data-placement="bottom"
 
-            .controls
-              select#collection-id ng-model='item.collectionId' ng-options="collection.id as collection.title for collection in collections"
+          .controls
+            select#collection-id ng-model='item.collectionId' ng-options="collection.id as collection.title for collection in collections"
 
       div ng-show='item.collectionId != uploadsCollection.id'
         section 
@@ -46,7 +48,16 @@
               | Title
               i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['title']" data-placement="bottom"
             .controls 
-              input.text#title type='text' ng-model='item.title'
+              input.text.input-xlarge#title type='text' ng-model='item.title'
+
+        section
+          .control-group
+            label.control-label
+              | Tags
+              i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['tags']" data-placement="bottom"
+            .controls
+              input type='hidden' ng-model="item.tags" ui-select2="tagSelect()"
+
 
 .modal-footer
   button.btn type="button" ng-click="clear()" Close

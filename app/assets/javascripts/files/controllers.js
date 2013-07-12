@@ -220,6 +220,10 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
         }
       });
 
+      var cleanTags = [];
+      angular.forEach(item.tags, function(v,k){ this.push(v.id); }, cleanTags);
+      item.tags = cleanTags;
+
       item.create().then(function () {
         $scope.uploadAudioFiles(item, audioFiles);
       });
@@ -249,6 +253,18 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
         });
 
       });
+    };
+
+    $scope.tagSelect = function() {
+
+      return {
+        placeholder: 'Tags...',
+        width: '220px',
+        tags: [],
+        initSelection: function (element, callback) { 
+          callback($scope.item.tags);
+        }
+      }
     };
 
     $scope.$on("filesAdded", function (e, newFiles) {

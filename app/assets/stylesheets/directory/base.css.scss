@@ -989,8 +989,12 @@ div#-assets-collections-tutorial1-00M.modal, div#-assets-collections-tutorial2-0
 //end footer
 
 .item-form {
-  fieldset {
-    padding-top: 4px;
+
+  .control-label {
+    width: 140px
+  }
+  .controls {
+    margin-left: 160px;
   }
 
   table.file-table {
