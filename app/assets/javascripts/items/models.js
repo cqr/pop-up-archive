@@ -107,7 +107,7 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
 
   Item.prototype.standardRoles = ['producer', 'interviewer', 'interviewee', 'creator', 'host'];
 
-  Item.attrAccessible = "dateBroadcast datePeg description digitalFormat digitalLocation episodeTitle identifier musicSoundUsed notes physicalFormat physicalLocation rights seriesTitle tags title transcription adoptToCollection".split(' ');
+  Item.attrAccessible = "dateBroadcast dateCreated datePeg description digitalFormat digitalLocation episodeTitle identifier musicSoundUsed notes physicalFormat physicalLocation rights seriesTitle tags title transcription adoptToCollection".split(' ');
 
   return Item;
 }])
