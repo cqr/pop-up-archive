@@ -317,13 +317,18 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
     };
 
     $scope.iconForFile = function (file) {
-      if (file.type.match(/^audio/) || file.name.match(/\.(aac|aif|aiff|alac|flac|m4a|m4p|mp2|mp3|mp4|ogg|raw|spx|wav|wma)$/)) {
-        return "icon-volume-up";
-      } else {
-        return "icon-file-alt"
-      }
-    };
+      var result = "icon-file-alt";
 
+      if (!file)
+        return result;
+
+      if ((file.type && file.type.match(/^audio/)) || 
+          (file.name && file.name.match(/\.(aac|aif|aiff|alac|flac|m4a|m4p|mp2|mp3|mp4|ogg|raw|spx|wav|wma)$/))) {
+        result = "icon-volume-up";
+      }
+
+      return result;
+    };
 
     $scope.readableFileSize = function (size) {
       var i = Math.floor( Math.log(size) / Math.log(1024) );
