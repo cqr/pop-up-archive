@@ -45,7 +45,7 @@ class XMLMediaImporter
   def filter_ks_xml_file
 
     item_count = 0
-    mode=nil
+    mode = nil
     mode = filter.slice! 'ONLY' if filter.match('ONLY')
     mode = filter.slice! 'OMIT' if filter.match('OMIT')
 
@@ -104,16 +104,18 @@ class XMLMediaImporter
   def item_for_illinois_doc(doc)
     item = Item.new
     item.collection = collection
-    item.title = doc.search('title')[0].text
+    item.title = doc.search('title')[0].text[0..255]
     item.tags = doc.search('subject').collect { |s| s.text }.compact
     item.description = doc.xpath("pbcoreDescription[descriptionType='Abstract']/description").text
     item.physical_location = doc.xpath("pbcoreCoverage[coverageType='Spatial']/coverage").text
     item.creators = doc.xpath("pbcoreCreator/creator").collect { |s| Person.for_name(s.text) }
     item.contributions = doc.xpath("pbcoreContributor").collect { |s| Contribution.new(person: Person.for_name(s.xpath("contributor").text), role: s.xpath("contributorRole").text) }
-    mediaContents = doc.xpath("//pbcoreInstantiation[not(instantiationPhysical)]")
+    mediaContents = doc.xpath("pbcoreInstantiation[not(instantiationPhysical)]")
 		mediaContents.each do |mediaContent|
-		  url = mediaContent.xpath("instantiationLocation").text
-			next unless is_audio_file?(url)
+      next if mediaContent.xpath("formatLocation").to_a.empty?
+      url = mediaContent.xpath("formatLocation")[0].text
+      next unless is_audio_file?(url)
+      next unless is_audio_file?(url) or url.nil?
 			audio = AudioFile.new
 			instance = item.instances.build
 			instance.digital = true
@@ -127,7 +129,8 @@ class XMLMediaImporter
 			audio.remote_file_url= url
 			#audio.format        = pbcPart.try(:digital).try(:value) || instance.format
 			#audio.size          = mediaContent.attribute('fileSize').value
-		end
+    end
+    item
   end
 
   def item_for_openvault(doc)
@@ -142,7 +145,8 @@ class XMLMediaImporter
     item.contributions = doc.xpath("pbcoreContributor").collect { |s| Contribution.new(person: Person.for_name(s.xpath("contributor").text), role: s.xpath("contributorRole").text) }
     mediaContents = doc.xpath("//pbcoreInstantiation[not(instantiationPhysical)]")
     mediaContents.each do |mediaContent|
-      url = mediaContent.xpath("instantiationLocation").text
+      next if mediaContent.xpath("formatLocation").to_a.empty?
+      url = mediaContent.xpath("formatLocation")[0].text
       next unless is_audio_file?(url)
       audio = AudioFile.new
       instance = item.instances.build
