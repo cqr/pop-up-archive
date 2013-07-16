@@ -37,7 +37,7 @@ section ng-controller="NewItemFormCtrl"
             i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['collection']" data-placement="bottom"
 
           .controls
-            select#collection-id ng-model='item.collectionId' ng-options="collection.id as collection.title for collection in collections"
+            select.input-xlarge#collection-id ng-model='item.collectionId' ng-options="collection.id as collection.title for collection in collections"
 
         section ng-show='item.collectionId != uploadsCollection.id'
           .control-group
@@ -64,6 +64,36 @@ section ng-controller="NewItemFormCtrl"
 
             .control-group
               .control-label
+                label
+                  | Contributors
+                  i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['contributors']" data-placement="bottom"
+              .controls  ng-hide="item.contributions.length > 0"
+                label.pull-left style='padding-top: 5px;'
+                  i No contributors.
+
+              .control-row.full-row ng-repeat="contribution in item.contributions" ng-hide="contribution._delete"
+                span.field
+                  select ui-select2="roleSelect" ng-model="contribution.role"
+                    option
+                    option ng-repeat="role in item.standardRoles" value="{{role}}" {{role}}
+
+                span.field
+                  input ui-select2="peopleSelect" ng-model="contribution.person"
+
+                button.btn type="button" ng-click="deleteContribution(contribution)" Delete
+
+              .clearfix.controls
+                button.btn.pull-right type="button" ng-click="addContribution()" Add Contributor
+
+            .control-group
+              label.control-label
+                | Description
+                i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['description']" data-placement="bottom"
+              .controls 
+                textarea.span5 ng-model='item.description' rows="3"
+
+            .control-group
+              .control-label
                 | Series Title
                 i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['seriesTitle']" data-placement="bottom"
               .controls 
@@ -78,39 +108,78 @@ section ng-controller="NewItemFormCtrl"
 
             .control-group
               label.control-label
-                | Description
-                i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['description']" data-placement="bottom"
-              .controls 
-                textarea.input-xlarge ng-model='item.description'
-
-            .control-group
-              label.control-label
                 | Date Created
                 i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['dateCreated']" data-placement="bottom"
               .controls
-                input.input-small type='text' ng-model='item.dateCreated' data-date-format="yyyy-mm-dd" bs-datepicker="" data-toggle="datepicker"
+                input.input-small type='text' ng-model='item.dateCreated' data-date-format="mm-dd-yyyy" bs-datepicker="" data-toggle="datepicker" placeholder="mm-dd-yyyy"
                   button.btn type="button" data-toggle="datepicker"
                     i class="icon-calendar"
 
             .control-group
-              .control-label
-                label
-                  | Contributors
-                  i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['contributors']" data-placement="bottom"
-              .control-row.full-row ng-repeat="contribution in item.contributions" ng-hide="contribution._delete"
-                span.field
-                  select ui-select2="roleSelect" ng-model="contribution.role"
-                    option
-                    option ng-repeat="role in item.standardRoles" value="{{role}}" {{role}}
+              label.control-label
+                | Date Broadcast
+                i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['dateBroadcast']" data-placement="bottom"
+              .controls
+                input.input-small type='text' ng-model='item.dateBroadcast' data-date-format="mm-dd-yyyy" bs-datepicker="" data-toggle="datepicker" placeholder="mm-dd-yyyy"
+                  button.btn type="button" data-toggle="datepicker"
+                    i class="icon-calendar"
 
-                span.field
-                  input ui-select2="peopleSelect" ng-model="contribution.person"
+            .control-group
+              label.control-label
+                | Item ID
+                i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['identifier']" data-placement="bottom"
+              .controls 
+                input.text.input-xlarge#identifier type='text' ng-model='item.identifier'
 
-                button.btn type="button" ng-click="deleteContribution(contribution)" Delete
+            .control-group
+              label.control-label
+                | Rights
+                i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['rights']" data-placement="bottom"
+              .controls 
+                textarea.span5 ng-model='item.rights' rows="3"
 
-              .clearfix.controls
-                button.btn.pull-right type="button" ng-click="addContribution()" Add Contributor
+            .control-group
+              label.control-label
+                | Digital Format
+                i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['digitalFormat']" data-placement="bottom"
+              .controls 
+                input.text.input-xlarge#digitalFormat type='text' ng-model='item.digitalFormat'
+
+            .control-group
+              label.control-label
+                | Physical Format
+                i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['physicalFormat']" data-placement="bottom"
+              .controls 
+                input.text.input-xlarge#physicalFormat type='text' ng-model='item.physicalFormat'
+
+            .control-group
+              label.control-label
+                | Physical Location
+                i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['physicalLocation']" data-placement="bottom"
+              .controls 
+                input.text.input-xlarge#physicalLocation type='text' ng-model='item.physicalLocation'
+
+            .control-group
+              label.control-label
+                | Music
+                i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['musicSoundUsed']" data-placement="bottom"
+              .controls 
+                input.text.input-xlarge#musicSoundUsed type='text' ng-model='item.musicSoundUsed'
   
+            .control-group
+              label.control-label
+                | Date Peg
+                i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['datePeg']" data-placement="bottom"
+              .controls 
+                input.text.input-xlarge#datePeg type='text' ng-model='item.datePeg'
+
+            .control-group
+              label.control-label
+                | Geolocation
+                i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['geographicLocation']" data-placement="bottom"
+              .controls 
+                input.text.input-xlarge#geographicLocation type='text' ng-model='item.geographicLocation'
+
   .modal-footer
     button.btn type="button" ng-click="clear()" Close
     button.btn.btn-success ng-hide='item.audioFiles.length <= 0' ng-disabled='!item.collectionId || item.audioFiles.length <= 0' ng-click='submit()' Create item
