@@ -497,6 +497,7 @@ $persistent-player-scrollpading: 15px;
 
   .full-row {
     float: right;
+    padding-bottom: 8px;
 
     .field {
       padding-right: 8px;
@@ -988,6 +989,11 @@ div#-assets-collections-tutorial1-00M.modal, div#-assets-collections-tutorial2-0
 }
 //end footer
 
+.item-modal {
+  width: 660px;
+  margin-left: -330px;
+}
+
 .item-form {
 
   .control-label {
@@ -1020,5 +1026,31 @@ div#-assets-collections-tutorial1-00M.modal, div#-assets-collections-tutorial2-0
       width: 14px; 
     }
   }
+}
 
+.message-expanded {
+  border-top: 1px solid #edeff2;
+  text-align:center;
+  width: 660px;
+  margin-left: -15px;
+  margin-bottom: 8px;
+}
+
+.message-shadow {
+  display: block;
+  width: 660px;
+  margin-left: -15px;
+
+  border-top: 1px solid #edeff2;
+  border-top: 1px solid rgba(0,0,0,.3);
+
+  -webkit-box-shadow: 0 -3px 2px rgba(0,0,0,.08);
+  -moz-box-shadow: 0 -3px 2px rgba(0,0,0,.08);
+  box-shadow: 0 -3px 2px rgba(0,0,0,.08);
+
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+
+  text-align:center;
 }

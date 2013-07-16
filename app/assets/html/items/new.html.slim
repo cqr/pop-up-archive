@@ -1,19 +1,19 @@
-.modal-header ng-hide='item.audioFiles.length <= 0'
-  button type="button" class="close" data-dismiss="modal" aria-hidden="true" x
+section ng-controller="NewItemFormCtrl"
+  .modal-header ng-hide='item.audioFiles.length <= 0'
+    button type="button" class="close" data-dismiss="modal" aria-hidden="true" x
 
-  h3 Upload
+    h3 Upload
 
-.modal-body 
-  form.item-form.form-horizontal name='newItemForm'
+  .modal-body 
+    form.item-form.form-horizontal name='newItemForm'
 
-    div ng-show='item.audioFiles.length <= 0' style="text-align:center;"
-      h3 Drag and drop files anywhere on the site
-      div or
-      span file-button="" style='margin-right: 4px;'
-        button.btn.btn-large Choose Files
+      div ng-show='item.audioFiles.length <= 0' style="text-align:center;"
+        h3 Drag and drop files anywhere on the site
+        div or
+        span file-button="" style='margin-right: 4px;'
+          button.btn.btn-large Choose Files
 
-    div ng-show='item.audioFiles.length > 0'
-      section
+      section ng-show='item.audioFiles.length > 0'
         .control-group
           label.control-label
             | Files
@@ -28,11 +28,9 @@
                 td.file-remove
                   a href="#" ng-click="removeAudioFile(audioFile)" style='text-decoration: none; color: #da4f49;'
                     i.icon-remove-sign
-
-            span file-button="" style='margin-right: 4px;'
+            span.pull-right file-button=""
               button.btn Choose More Files
 
-      section 
         .control-group
           label.control-label
             | Collection
@@ -41,8 +39,7 @@
           .controls
             select#collection-id ng-model='item.collectionId' ng-options="collection.id as collection.title for collection in collections"
 
-      div ng-show='item.collectionId != uploadsCollection.id'
-        section 
+        section ng-show='item.collectionId != uploadsCollection.id'
           .control-group
             label.control-label
               | Title
@@ -50,15 +47,70 @@
             .controls 
               input.text.input-xlarge#title type='text' ng-model='item.title'
 
-        section
           .control-group
             label.control-label
               | Tags
               i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['tags']" data-placement="bottom"
             .controls
-              input type='hidden' ng-model="item.tags" ui-select2="tagSelect()"
+              input.input-xlarge type='hidden' ng-model="item.tags" ui-select2="tagSelect()"
 
+          .message-shadow ng-hide='showDetails'
+            a ng-click='showDetails = !showDetails' More
 
-.modal-footer
-  button.btn type="button" ng-click="clear()" Close
-  button.btn.btn-success ng-hide='item.audioFiles.length <= 0' ng-disabled='!item.collectionId || item.audioFiles.length <= 0' ng-click='submit()' Create item
+          .message-expanded ng-show='showDetails'
+            a ng-click='showDetails = !showDetails' Less
+
+          section ng-show='showDetails'
+
+            .control-group
+              .control-label
+                | Series Title
+                i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['seriesTitle']" data-placement="bottom"
+              .controls 
+                input.text.input-xlarge#seriesTitle type='text' ng-model='item.seriesTitle'
+
+            .control-group
+              .control-label
+                | Episode Title
+                i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['seriesTitle']" data-placement="bottom"
+              .controls 
+                input.text.input-xlarge#episodeTitle type='text' ng-model='item.seriesTitle'
+
+            .control-group
+              label.control-label
+                | Description
+                i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['description']" data-placement="bottom"
+              .controls 
+                textarea.input-xlarge ng-model='item.description'
+
+            .control-group
+              label.control-label
+                | Date Created
+                i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['dateCreated']" data-placement="bottom"
+              .controls
+                input.input-small type='text' ng-model='item.dateCreated' data-date-format="yyyy-mm-dd" bs-datepicker="" data-toggle="datepicker"
+                  button.btn type="button" data-toggle="datepicker"
+                    i class="icon-calendar"
+
+            .control-group
+              .control-label
+                label
+                  | Contributors
+                  i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['contributors']" data-placement="bottom"
+              .control-row.full-row ng-repeat="contribution in item.contributions" ng-hide="contribution._delete"
+                span.field
+                  select ui-select2="roleSelect" ng-model="contribution.role"
+                    option
+                    option ng-repeat="role in item.standardRoles" value="{{role}}" {{role}}
+
+                span.field
+                  input ui-select2="peopleSelect" ng-model="contribution.person"
+
+                button.btn type="button" ng-click="deleteContribution(contribution)" Delete
+
+              .clearfix.controls
+                button.btn.pull-right type="button" ng-click="addContribution()" Add Contributor
+  
+  .modal-footer
+    button.btn type="button" ng-click="clear()" Close
+    button.btn.btn-success ng-hide='item.audioFiles.length <= 0' ng-disabled='!item.collectionId || item.audioFiles.length <= 0' ng-click='submit()' Create item

@@ -92,6 +92,9 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
 
   $scope.addContribution = function () {
     var c = new Contribution();
+    if (!$scope.item.contributions) {
+      $scope.item.contributions = [];
+    }
     $scope.item.contributions.push(c);
   }
 
