@@ -95,10 +95,9 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
 
       if ($route.current.controller == 'ItemCtrl' && 
           $route.current.locals.$scope.item &&
-          $route.current.locals.$scope.item.id > 0) {
-
+          $route.current.locals.$scope.item.id > 0)
+      {
         $scope.item = $route.current.locals.$scope.item;
-
       } else {
 
         // start a new item if there is not one already in scope
@@ -113,7 +112,7 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
     };
 
     $scope.handleAudioFilesAdded = function (newFiles) {
-      // console.log('handleAudioFilesAdded', newFiles);
+      // console.log('handleAudioFilesAdded', newFiles, $scope.item, $scope);
 
       var newFiles = newFiles || [];
 
@@ -122,6 +121,8 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
       if ($scope.item.id > 0) {
         $scope.uploadAudioFiles($scope.item, newFiles);
       } else {
+
+        // console.log('handleAudioFilesAdded - add files', newFiles, $scope.item, $scope);
 
         // add files to the item
         angular.forEach(newFiles, function (file) {
@@ -139,7 +140,9 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
         });
         
       }
-      // console.log('handleAudioFilesAdded done');
+
+      // console.log('handleAudioFilesAdded - done', $scope.item, $scope);
+
     };
 
     $scope.hideUploadModal = function() {
@@ -178,15 +181,15 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
 }])
 .controller('NewItemFormCtrl', ['$window', '$cookies', '$scope', '$http', '$q', '$timeout', '$route', '$routeParams', '$modal', 'Me', 'Loader', 'Alert', 'Collection', 'Item', 'Contribution', function FilesCtrl($window, $cookies, $scope, $http, $q, $timeout, $route, $routeParams, $modal, Me, Loader, Alert, Collection, Item, Contribution) {
 
-  $scope.item = {};
-  $scope.$parent.$watch('item', function (is) {
-    if (is && $scope.item != is) {
-      angular.copy(is, $scope.item);
-    }
-  });
-  if ($scope.$parent.item) {
-    angular.copy($scope.$parent.item, $scope.item);
-  }
+  // $scope.item = {};
+  // $scope.$parent.$watch('item', function (is) {
+  //   if (is && $scope.item != is) {
+  //     angular.copy(is, $scope.item);
+  //   }
+  // });
+  // if ($scope.$parent.$parent.item) {
+  //   angular.copy($scope.$parent.item, $scope.item);
+  // }
 
   $scope.submit = function () {
     // console.log('NewItemFormCtrl submit: ', $scope.item);
