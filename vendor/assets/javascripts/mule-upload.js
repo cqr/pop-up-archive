@@ -445,6 +445,8 @@ function mule_upload(settings) {
                     // if already uploaded
                     u.set_state("finished");
 
+                    u.notify_upload_finished();
+
                     // trigger a final progress event callback, with 100%
                     u.settings.on_progress.call(u, u.file.size, u.file.size);
 
@@ -562,6 +564,8 @@ function mule_upload(settings) {
                     log("Finished file.");
                     u.set_state("finished");
                     u.settings.on_progress.call(u, u.file.size, u.file.size); // it's 100% done
+
+                    u.notify_upload_finished();
 
                     // trigger the complete event callback
                     u.settings.on_complete.call(u);
@@ -885,6 +889,21 @@ function mule_upload(settings) {
         var key = u.settings.key;
         var upload_id = u.upload_id;
         var url = u.settings.ajax_base + '/chunk_loaded/?key=' + key + "&chunk=" + (chunk + 1)
+            + "&upload_id=" + upload_id + "&filename=" + escape(u.file.name)
+            + "&filesize=" + u.file.size + "&last_modified=" + u.file.lastModifiedDate.valueOf();
+        XHR({
+            url: url
+        });
+    };
+
+    Uploader.prototype.notify_upload_finished = function(callback) {
+        var u = this;
+        if(u.get_state() != "finished") {
+            return;
+        }
+        var key = u.settings.key;
+        var upload_id = u.upload_id;
+        var url = u.settings.ajax_base + '/upload_finished/?key=' + key
             + "&upload_id=" + upload_id + "&filename=" + escape(u.file.name)
             + "&filesize=" + u.file.size + "&last_modified=" + u.file.lastModifiedDate.valueOf();
         XHR({

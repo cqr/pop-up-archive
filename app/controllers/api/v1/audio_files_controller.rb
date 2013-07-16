@@ -104,6 +104,17 @@ class Api::V1::AudioFilesController < Api::V1::BaseController
     render json: result
   end
 
+  def upload_finished
+    result = {}
+
+    if task = audio_file.tasks.incomplete.upload.where(identifier: upload_identifier).first
+      task.finish!
+      result = task.extras
+    end
+
+    render json: result
+  end
+
   protected
 
   def upload_identifier(options=nil)

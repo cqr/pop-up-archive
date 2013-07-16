@@ -40,10 +40,10 @@ class Tasks::UploadTask < Task
     self.identifier = Tasks::UploadTask.make_identifier(extras) unless identifier
   end
 
-  after_commit do
-    return unless ((num_chunks > 0) && (num_chunks <= chunks_uploaded.size) && !complete?)
-    self.finish!
-  end
+  # after_commit do
+  #   return unless ((num_chunks > 0) && (num_chunks <= chunks_uploaded.size) && !complete?)
+  #   self.finish!
+  # end
 
   def num_chunks
     extras['num_chunks'].to_i
