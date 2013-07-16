@@ -40,13 +40,13 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
   }
 
   Item.prototype.contributors = function(role) {
-    var result = ['test', 'value'];
-    console.log('contributions', this.contributions, this);
+    var result = [];
+    // console.log('contributions', this.contributions, this);
     angular.forEach(this.contributions, function (contribution) {
       if (contribution.role == role) {
         result.push(contribution.person.name);
       } else {
-        console.log('no match', contribution.role, role);
+        // console.log('no match', contribution.role, role);
       }
     });
     return result;
@@ -82,7 +82,7 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
         item.contributions.splice(index, 1);
       } else if (!c.person.id  || (c.person.id == 'new')) {
 
-        var p = new Person({'name': c.person.name, 'collectionId':item.collectionId});
+        var p = new Person({'name':c.person.name, 'collectionId':item.collectionId});
 
         p.create().then( function() {
           c.personId = p.id;
