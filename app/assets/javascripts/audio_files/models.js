@@ -1,8 +1,8 @@
 angular.module('Directory.audioFiles.models', ['RailsModel', 'S3Upload'])
 .factory('AudioFile', ['Model', 'S3Upload', '$http', function (Model, S3Upload, $http) {
-  var AudioFile = Model({url:'/api/items/{{itemId}}/audio_files/{{id}}', name: 'audio_file'});
+  var AudioFile = Model({url:'/api/items/{{itemId}}/audio_files/{{id}}', name: 'audio_file', only: ['url', 'filename']});
 
-  AudioFile.attrAccessible = ['url', 'filename'];
+  // AudioFile.attrAccessible = ['url', 'filename'];
 
   function createKey(token, fileName) {
     var cleanFileName = fileName.replace(/[^a-z0-9\.]+/gi,'_');
@@ -38,9 +38,9 @@ angular.module('Directory.audioFiles.models', ['RailsModel', 'S3Upload'])
   return AudioFile;
 }])
 .factory('TimedText', ['Model', '$http', function (Model, $http) {
-  var TimedText = Model({url:'/api/timed_texts/{{id}}', name: 'timed_text'});
+  var TimedText = Model({url:'/api/timed_texts/{{id}}', name: 'timed_text', only: ['text']});
 
-  TimedText.attrAccessible = ['text'];
+  // TimedText.attrAccessible = ['text'];
 
   return TimedText;
 }]);

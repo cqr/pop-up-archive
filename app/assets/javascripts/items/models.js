@@ -1,6 +1,40 @@
 angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.models'])
 .factory('Item', ['Model', '$http', '$q', 'Contribution', 'Person', 'AudioFile', function (Model, $http, $q, Contribution, Person, AudioFile) {
-  var Item = Model({url:'/api/collections/{{collectionId}}/items/{{id}}', name: 'item'});
+
+  var attrAccessible = "dateBroadcast dateCreated datePeg description digitalFormat digitalLocation episodeTitle identifier musicSoundUsed notes physicalFormat physicalLocation rights seriesTitle tags title transcription adoptToCollection tagList text".split(' ');
+
+  var Item = Model({url:'/api/collections/{{collectionId}}/items/{{id}}', name: 'item', only: attrAccessible});
+
+  Item.beforeRequest(function(data, resource) {
+    // console.log('beforeRequest: data', data);
+    data.tags = [];
+    angular.forEach((data.tag_list || []), function (v,k) {
+      // console.log('v, k: ', v, k);
+      data.tags.push(v['text']);
+    });
+    delete data.tag_list;
+
+    return data;
+  });
+
+  Item.beforeResponse(function(data, resource) {
+    // console.log('beforeResponse: data', data, resource);
+    data.tagList = [];
+    angular.forEach((data.tags || []), function (v,k) {
+      // console.log('v, k: ', v, k);
+      data.tagList.push({id:v, text:v});
+    });
+    return data;
+  });
+
+  Item.prototype.tagList2Tags = function() {
+    var self = this;
+    self.tags = [];
+    angular.forEach((self.tagList || []), function (v,k) {
+      // console.log('v, k: ', v, k);
+      self.tags.push(v['text']);
+    });
+  };
 
   Item.prototype.getTitle = function () {
     if (this.title) { return this.title; }
@@ -127,7 +161,7 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
 
   Item.prototype.standardRoles = ['producer', 'interviewer', 'interviewee', 'creator', 'host'];
 
-  Item.attrAccessible = "dateBroadcast dateCreated datePeg description digitalFormat digitalLocation episodeTitle identifier musicSoundUsed notes physicalFormat physicalLocation rights seriesTitle tags title transcription adoptToCollection".split(' ');
+  // Item.attrAccessible = "dateBroadcast dateCreated datePeg description digitalFormat digitalLocation episodeTitle identifier musicSoundUsed notes physicalFormat physicalLocation rights seriesTitle tags tagList title transcription adoptToCollection".split(' ');
 
   return Item;
 }])

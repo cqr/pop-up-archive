@@ -123,10 +123,6 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
     }
   }
 
-  $scope.itemAdded = function (item) {
-    $timeout(function(){ $scope.$broadcast('datasetChanged')}, 750);
-  }
-
   $scope.close();
 
   $scope.hasFilters = false;

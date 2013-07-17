@@ -4,7 +4,7 @@ angular.module('Directory.collections.models', ['RailsModel'])
   var collections = {};
 
 
-  var Collection = Model({url:'/api/collections/{{id}}', name: 'collection'});
+  var Collection = Model({url:'/api/collections/{{id}}', name: 'collection', only: ['title', 'description', 'itemsVisibleByDefault']});
   var PublicCollection = Model({url:'/api/collections/public', name:'collection'});
   Collection.public = function () {
     return PublicCollection.query.apply(PublicCollection, arguments);
@@ -36,7 +36,7 @@ angular.module('Directory.collections.models', ['RailsModel'])
     return "icon-inbox"
   }
 
-  Collection.attrAccessible = ['title', 'description', 'itemsVisibleByDefault'];
+  // Collection.attrAccessible = ['title', 'description', 'itemsVisibleByDefault'];
 
   return Collection;
 }])

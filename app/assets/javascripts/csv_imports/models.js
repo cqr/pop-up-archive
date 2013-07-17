@@ -1,6 +1,6 @@
 angular.module('Directory.csvImports.models', ['RailsModel'])
 .factory('CsvImport', ['Model', 'Schema', function (Model, Schema) {
-  var CsvImport = Model({url:'/api/csv_imports', name: 'csv_import'});
+  var CsvImport = Model({url:'/api/csv_imports', name: 'csv_import', only: ['mappingsAttributes', 'collectionId', 'commit']});
 
   CsvImport.prototype.editButtonMessage = function () {
     return this.state == 'imported' ? 'Edit' : 'Continue';
@@ -37,7 +37,7 @@ angular.module('Directory.csvImports.models', ['RailsModel'])
     return (this.state.match(/^queued/) || this.state == 'analyzing' || this.state == 'importing');
   }
 
-  CsvImport.attrAccessible = ['mappingsAttributes', 'collectionId', 'commit'];
+  // CsvImport.attrAccessible = ['mappingsAttributes', 'collectionId', 'commit'];
 
   CsvImport.prototype.alertSync = function () {
     return {

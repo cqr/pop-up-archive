@@ -75,7 +75,7 @@ section ng-controller="NewItemFormCtrl"
               | Tags
               i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['tags']" data-placement="bottom"
             .controls
-              input.input-xlarge type='hidden' ng-model="item.tags" ui-select2="tagSelect()"
+              input.input-xlarge type='hidden' ng-model="item.tagList" ui-select2="tagSelect()"
 
           .message-shadow ng-hide='showDetails'
             a ng-click='showDetails = !showDetails' More

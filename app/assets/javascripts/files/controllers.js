@@ -92,23 +92,27 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
 
 
     $scope.initializeItem = function(force) {
+      // console.log('initializeItem', $scope.item, $scope);
 
       if ($route.current.controller == 'ItemCtrl' && 
           $route.current.locals.$scope.item &&
           $route.current.locals.$scope.item.id > 0)
       {
         $scope.item = $route.current.locals.$scope.item;
+        // console.log('initializeItem set to', $route.current.locals.$scope.item.id, $route.current.locals.$scope.item);
       } else {
 
         // start a new item if there is not one already in scope
         if(force || !$scope.item) {
           // console.log('initializeItem new item', $scope.item);
           var collectionId = parseInt($routeParams.collectionId, 10) || $scope.currentUser.uploadsCollectionId;
-          $scope.item = new Item({collectionId:collectionId, title:'', files:[]});
+          var newItem = new Item({collectionId:collectionId, title:'', files:[]});
+          $scope.item = newItem;
+          // console.log('initializeItem make new', newItem);
         }
       }
 
-      // console.log('initializeItem', $scope.item);
+      // console.log('initializeItem end', $scope.item);
       return $scope.item;
     };
 
@@ -212,28 +216,35 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
       }
     });
 
-    var cleanTags = [];
-    angular.forEach(saveItem.tags, function(v,k){ this.push(v.id); }, cleanTags);
-    saveItem.tags = cleanTags;
-
     if (saveItem.id) {
       saveItem.update().then(function (data) {
-        $scope.uploadAudioFiles(saveItem, uploadFiles);
-        $scope.updateAudioFiles(saveItem, audioFiles);
-        $scope.updateContributions(saveItem, contributions);        
-        $scope.item = saveItem;
-        angular.copy($scope.item, $scope.$parent.item);
-      });
-    } else {
-      saveItem.create().then(function (data) {
+        // reset tags
+        saveItem.tagList2Tags();
+
         $scope.uploadAudioFiles(saveItem, uploadFiles);
         $scope.updateAudioFiles(saveItem, audioFiles);
         $scope.updateContributions(saveItem, contributions);
-        if (angular.isFunction($scope.itemAdded)) {
-          $scope.itemAdded(saveItem);
-        }
+        delete $scope.item;
+        // console.log('scope after update', $scope);
+        // $scope.item = saveItem;
+        // if ($scope.item != $scope.$parent.item) {
+        //   angular.copy($scope.item, $scope.$parent.item);
+        // }
+      });
+    } else {
+      saveItem.create().then(function (data) {
+        // reset tags
+        saveItem.tagList2Tags();
+
+        $scope.uploadAudioFiles(saveItem, uploadFiles);
+        $scope.updateAudioFiles(saveItem, audioFiles);
+        $scope.updateContributions(saveItem, contributions);
+        $timeout(function(){ $scope.$broadcast('datasetChanged')}, 750);
+        delete $scope.item;
+        // console.log('scope after create', $scope);
       });
     }
+
   };
 
   $scope.clear = function() {
@@ -371,7 +382,7 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
       width: '284px',
       tags: [],
       initSelection: function (element, callback) { 
-        callback($scope.item.tags);
+        callback($scope.item.getTagList());
       }
     }
   };

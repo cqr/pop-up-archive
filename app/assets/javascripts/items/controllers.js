@@ -150,9 +150,7 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
       });
     } else {
       $scope.item.create().then(function (data) {
-        if (angular.isFunction($scope.itemAdded)) {
-          $scope.itemAdded($scope.item);
-        }
+        $timeout(function(){ $scope.$broadcast('datasetChanged')}, 750);
         $scope.close();
       });
     }
