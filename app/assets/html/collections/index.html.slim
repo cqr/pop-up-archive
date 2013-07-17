@@ -39,7 +39,7 @@
       li.add-collection
         a ng-href="#" bs-modal="'#{asset_path 'collections/form_public.html'}'"
           i.icon-plus
-          | Add a Collection
+          | Create a Collection
       li ng-repeat="collection in collections | publicCollections | notUploads"
         a ng-href="/collections/{{collection.id}}" 
           .collection-thumb ng-class="collection.getThumbClass()"
@@ -54,7 +54,7 @@
       li.add-collection
         a ng-href="#" bs-modal="'#{asset_path 'collections/form_private.html'}'"
           i.icon-plus
-          | Add a Collection
+          | Create a Collection
       li ng-repeat="collection in collections | privateCollections | notUploads"
         a ng-href="/collections/{{collection.id}}"
           .collection-thumb ng-class="collection.getThumbClass()"

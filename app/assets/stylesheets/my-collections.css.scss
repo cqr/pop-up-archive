@@ -36,11 +36,15 @@ ul.collections {
     height: $collection-size - 6px;
 
     a {
-      color: #ddd;
+      color: #0088cc;
 
       &:hover, &:active {
         text-decoration: none;
       }
+      
+     i {
+       color: #f2cfa5;
+     }
     }
   }
   i.icon-plus {
