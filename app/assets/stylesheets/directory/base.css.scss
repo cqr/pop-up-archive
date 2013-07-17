@@ -1058,3 +1058,33 @@ div#-assets-collections-tutorial1-00M.modal, div#-assets-collections-tutorial2-0
 
   text-align:center;
 }
+
+#welcome-div {
+  padding: 10px 25px;
+  margin-top: 25px;
+  background-color: #f8f7f7;
+  border-radius: 10px;
+  
+  h1, h2 {
+    color: #f25a4c;
+    padding: 5px 0;
+    font-weight: 600;
+  }
+  h1 {
+    font-size: 1.4em;
+    line-height: 1.4em;
+  }
+  h2 {
+    font-size: 1.2em;
+    line-height: 1.2em;
+    margin-left: 25px;
+  }
+  li {
+    list-style: circle;
+    line-height: 1.5em;
+    color: #f25a4c;
+    font-family: "freight-text-pro";
+    font-size: 1.2em;
+    margin-left: 50px;
+  }
+}

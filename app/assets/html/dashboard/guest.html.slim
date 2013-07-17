@@ -1,24 +1,40 @@
-.background-container
-	.row-fluid
-		.span12
-			.row-fluid
-				.span4 ng-hide="currentUser.authenticated()"
-					.brochure.slide-span
-						a ng-href='http://www.popuparchive.org/request-invite' target="_self"
-							span.title Request an invite
-							img.image src='#{asset_path("account.svg")}'
-							span.content Pop Up Archive is offering access to a limited group of pioneering users. Like to give it a try? Request an invite.
-				.span8 ng-class="{ offset2 : currentUser.authenticated() == 1}"
-					.row-fluid
-						.span6
-							.brochure.slide-span
-								a ng-href='/collections'
-									span.title Archive your audio
-									img.image src='#{asset_path("archive.svg")}'
-									span.content Tags & transcripts will be automatically generated to make your audio searchable.
-						.span6
-							.brochure.slide-span
-								a ng-href='/search'
-									span.title Explore
-									img.image src='#{asset_path("explore.svg")}'
-									span.content Explore the wild west of archival sound. You can search &amp; browse your own material or the entire public archive.
+.row-fluid
+  .span12
+    .background-container
+      .row-fluid
+        .span4 ng-hide="currentUser.authenticated()"
+          .brochure.slide-span
+            a ng-href='http://www.popuparchive.org/request-invite' target="_self"
+              span.title Request an invite
+              img.image src='#{asset_path("account.svg")}'
+              span.content Pop Up Archive is offering access to a limited group of pioneering users. Like to give it a try? Request an invite.
+        .span8 ng-class="{ offset2 : currentUser.authenticated() == 1}"
+          .row-fluid
+            .span6
+              .brochure.slide-span
+                a ng-href='/collections'
+                  span.title Archive your audio
+                  img.image src='#{asset_path("archive.svg")}'
+                  span.content Tags & transcripts will be automatically generated to make your audio searchable.
+            .span6
+              .brochure.slide-span
+                a ng-href='/search'
+                  span.title Explore
+                  img.image src='#{asset_path("explore.svg")}'
+                  span.content Explore the wild west of archival sound. You can search &amp; browse your own material or the entire public archive.
+
+.row-fluid 
+  .span12
+    #welcome-div
+      h1 We've tweaked and nudged and we've got some exciting new features for you to try!
+      h2 Things you'll like:
+      ul
+        li Support for just about <strong>all audio formats</strong> and sizes
+        li Track audio uploads with improved <strong>progress bars</strong>
+        li <strong>Delete</strong> items from collections (or individual audio files from items)
+        li <strong>Batch edit</strong> for adding tags or deleting many items at once
+        li Auto-generated <strong>transcripts are editable</strong>!
+      h2 Coming Soon:
+      ul
+        li <strong>Email alerts</strong> when transcripts are complete
+        li Support for audio playback in <strong>Firefox</strong>
