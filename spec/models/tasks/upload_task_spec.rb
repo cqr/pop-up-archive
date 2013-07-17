@@ -22,14 +22,14 @@ describe Tasks::UploadTask do
     task.chunks_uploaded.should eq [1,2,3]
   end
 
-  it "should mark completed on update" do
+  it "should not mark completed on update of chunk" do
     task = Tasks::UploadTask.new(extras: {num_chunks: 2, chunks_uploaded:"1\n", key: 'this/is/a/key.mp3'})
     task.save!
     task.should be_created
     task.run_callbacks(:commit)
     task.add_chunk!('2')
     task.run_callbacks(:commit)
-    task.should be_complete
+    task.should_not be_complete
   end
 
 end
