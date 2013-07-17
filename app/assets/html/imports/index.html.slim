@@ -1,3 +1,10 @@
+div
+  p This is where completed batch imports live.
+  p Do you have direct public links to your audio (like a Dropbox.com public folder or other server)? 
+	p You can add them to Pop Up Archive all at once with batch import.
+    
+    
+
 div ng-show="csvImports"
   ul.media-list
     li.media ng-repeat="import in csvImports | sortByImportState" ng-class="{muted:(import.terminal())}"
