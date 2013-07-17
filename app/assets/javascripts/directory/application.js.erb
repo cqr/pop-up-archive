@@ -322,8 +322,15 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
       if (!file)
         return result;
 
+      var name = "";
+      if (file.filename) {
+        name = file.filename;
+      } else if (file.name) {
+        name = file.name;
+      }
+
       if ((file.type && file.type.match(/^audio/)) || 
-          (file.name && file.name.match(/\.(aac|aif|aiff|alac|flac|m4a|m4p|mp2|mp3|mp4|ogg|raw|spx|wav|wma)$/))) {
+          (name.match(/\.(aac|aif|aiff|alac|flac|m4a|m4p|mp2|mp3|mp4|ogg|raw|spx|wav|wma)$/))) {
         result = "icon-volume-up";
       }
 

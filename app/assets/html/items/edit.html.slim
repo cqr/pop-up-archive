@@ -1,16 +1,10 @@
 section ng-controller="ItemFormCtrl"
   .modal-header
-    button.close type="button" data-dismiss="modal" aria-hidden="true" x
+    button.close type="button" ng-click="dismiss()" aria-hidden="true" x
     h3 ng-show="item.id" Edit {{item.title}}
     h3 ng-hide="item.id" Add Item to {{collection.title}}
   .modal-body
     form.item-form.form-horizontal name='editItemForm'
-
-      / section ng-repeat="audioFile in item.audioFiles"      
-        / .progress.progress-striped ng-show="file.alert" ng-class="{active:file.alert.progress && file.alert.progress < 100}"
-        /   .bar ng-style="{width:file.alert.progress+'%'}"
-
-
       section ng-repeat="field in fields" ng-switch="field.typeName"
         .control-group ng-switch-when="string"
           label.control-label

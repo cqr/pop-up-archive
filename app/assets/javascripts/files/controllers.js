@@ -104,9 +104,10 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
         if(force || !$scope.item) {
           // console.log('initializeItem new item', $scope.item);
           var collectionId = parseInt($routeParams.collectionId, 10) || $scope.currentUser.uploadsCollectionId;
-          $scope.item = new Item({collectionId:collectionId, title:'', audioFiles:[]});
+          $scope.item = new Item({collectionId:collectionId, title:'', files:[]});
         }
       }
+
       // console.log('initializeItem', $scope.item);
       return $scope.item;
     };
@@ -118,15 +119,19 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
 
       $scope.initializeItem();
 
-      if ($scope.item.id > 0) {
+      if (($scope.item.id > 0) && (newFiles.length > 0)) {
         $scope.uploadAudioFiles($scope.item, newFiles);
       } else {
 
         // console.log('handleAudioFilesAdded - add files', newFiles, $scope.item, $scope);
 
         // add files to the item
+        if (!$scope.item.files) {
+          $scope.item.files = [];
+        }
+
         angular.forEach(newFiles, function (file) {
-          $scope.item.audioFiles.push(file);
+          $scope.item.files.push(file);
         });
 
         // default title to first file if not already set
@@ -197,6 +202,7 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
     this.item = $scope.initializeItem(true);
     $scope.clear();
 
+    var uploadFiles = saveItem.files;
     var audioFiles = saveItem.audioFiles;
     var contributions = saveItem.contributions;
 
@@ -212,16 +218,16 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
 
     if (saveItem.id) {
       saveItem.update().then(function (data) {
-        $scope.uploadAudioFiles(saveItem, audioFiles);
+        $scope.uploadAudioFiles(saveItem, uploadFiles);
+        $scope.updateAudioFiles(saveItem, audioFiles);
         $scope.updateContributions(saveItem, contributions);        
         $scope.item = saveItem;
         angular.copy($scope.item, $scope.$parent.item);
       });
     } else {
       saveItem.create().then(function (data) {
-        // $scope.initializeItem(true);
-
-        $scope.uploadAudioFiles(saveItem, audioFiles);
+        $scope.uploadAudioFiles(saveItem, uploadFiles);
+        $scope.updateAudioFiles(saveItem, audioFiles);
         $scope.updateContributions(saveItem, contributions);
         if (angular.isFunction($scope.itemAdded)) {
           $scope.itemAdded(saveItem);
@@ -245,9 +251,13 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
         $scope.item.title = newFiles[0].name;
       }
 
+      if (!$scope.item.files) {
+        $scope.item.files = [];
+      }
+
       // add files to the item
       angular.forEach(newFiles, function (file) {
-        $scope.item.audioFiles.push(file);
+        $scope.item.files.push(file);
       });
 
       element[0].value = "";
@@ -256,7 +266,11 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
   };
 
   $scope.removeAudioFile = function(file) {
-    $scope.item.audioFiles.splice($scope.item.audioFiles.indexOf(file), 1);
+    if (file.id && (file.id > 0)) {
+      file._delete = true;
+    } else {
+      $scope.item.files.splice($scope.item.files.indexOf(file), 1);
+    }
   }
 
   $scope.uploadAudioFiles = function (item, newFiles) {
@@ -344,6 +358,11 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
   $scope.updateContributions = function(item, contributions) {
     item.contributions = contributions;
     item.updateContributions();
+  };
+
+  $scope.updateAudioFiles = function(item, audioFiles) {
+    item.audioFiles = audioFiles;
+    item.updateAudioFiles();
   };
 
   $scope.tagSelect = function() {

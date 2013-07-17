@@ -28,6 +28,11 @@ class Api::V1::AudioFilesController < Api::V1::BaseController
     redirect_to audio_file.url
   end
 
+  def destroy
+    audio_file.destroy
+    respond_with :api, audio_file
+  end
+
   def transcript_text
     response.headers['Content-Disposition'] = 'attachment'
     render text: audio_file.transcript_text, content_type: 'text/plain'

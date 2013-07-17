@@ -1,26 +1,48 @@
 section ng-controller="NewItemFormCtrl"
-  .modal-header ng-hide='item.audioFiles.length <= 0'
+  .modal-header ng-show='(item.id > 0) || (item.files.length > 0)'
     button type="button" class="close" data-dismiss="modal" aria-hidden="true" x
 
-    h3 Upload
+    h3 ng-show='item.id > 0' Edit {{item.title}}
+    h3 ng-hide='item.id > 0' Upload
 
   .modal-body 
     form.item-form.form-horizontal name='newItemForm'
 
-      div ng-show='item.audioFiles.length <= 0' style="text-align:center;"
+      div ng-hide='(item.id > 0) || (item.files.length > 0)' style="text-align:center;"
         h3 Drag and drop files anywhere on the site
         div or
         span file-button="" style='margin-right: 4px;'
           button.btn.btn-large Choose Files
 
-      section ng-show='item.audioFiles.length > 0'
+      section ng-show='(item.id > 0) || (item.files.length > 0)'
         .control-group
           label.control-label
-            | Files
+            | Current Files
             i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['audioFiles']" data-placement="bottom"
-          .controls
+          .controls ng-hide="item.audioFiles.length > 0"
+            label.pull-left style='padding-top: 5px;'
+              i No current files.
+          .controls ng-show="item.audioFiles.length > 0"
             table.table.file-table
-              tr.file ng-repeat="audioFile in item.audioFiles"
+              tr.file ng-repeat="audioFile in item.audioFiles" ng-hide="audioFile._delete"
+                td.file-icon
+                  .item-thumb ng-class="iconForFile(audioFile)"
+                td.file-name alt="{{audioFile.filename}}" {{audioFile.filename}}
+                / td.file-size {{readableFileSize(audioFile.size)}}
+                td.file-remove
+                  a.btn.btn-danger href="#" ng-click="removeAudioFile(audioFile)" Delete
+
+
+        .control-group
+          label.control-label
+            | Upload Files
+            i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['audioFiles']" data-placement="bottom"
+          .controls ng-hide="item.files.length > 0"
+            label.pull-left style='padding-top: 5px;'
+              i No files to upload.
+          .controls ng-show="item.files.length > 0"
+            table.table.file-table
+              tr.file ng-repeat="audioFile in item.files"
                 td.file-icon
                   .item-thumb ng-class="iconForFile(audioFile)"
                 td.file-name alt="{{audioFile.name}}" {{audioFile.name}}
@@ -28,6 +50,7 @@ section ng-controller="NewItemFormCtrl"
                 td.file-remove
                   a href="#" ng-click="removeAudioFile(audioFile)" style='text-decoration: none; color: #da4f49;'
                     i.icon-remove-sign
+          .clearfix.controls
             span.pull-right file-button=""
               button.btn Choose More Files
 
@@ -67,10 +90,9 @@ section ng-controller="NewItemFormCtrl"
                 label
                   | Contributors
                   i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['contributors']" data-placement="bottom"
-              .controls  ng-hide="item.contributions.length > 0"
+              .controls ng-hide="item.contributions.length > 0"
                 label.pull-left style='padding-top: 5px;'
                   i No contributors.
-
               .control-row.full-row ng-repeat="contribution in item.contributions" ng-hide="contribution._delete"
                 span.field
                   select ui-select2="roleSelect" ng-model="contribution.role"
@@ -182,4 +204,4 @@ section ng-controller="NewItemFormCtrl"
 
   .modal-footer
     button.btn type="button" ng-click="clear()" Close
-    button.btn.btn-success ng-hide='item.audioFiles.length <= 0' ng-disabled='!item.collectionId || item.audioFiles.length <= 0' ng-click='submit()' Create item
+    button.btn.btn-success ng-show='(item.id > 0) || (item.files.length > 0)' ng-disabled='!item.id && (!item.collectionId || item.files.length <= 0)' ng-click='submit()' Save

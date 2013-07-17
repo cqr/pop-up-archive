@@ -58,13 +58,33 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
     var audioFile = new AudioFile({itemId: item.id});
     audioFile.create().then(function(){
       // create relationships
-      // audioFile.item = item;      
+      // audioFile.item = item;
       item.audioFiles = item.audioFiles || [];
       item.audioFiles.push(audioFile);
       options.token = item.token;
       audioFile.upload(file, options);
     });
     return audioFile;
+  }
+
+  // update existing audioFiles
+  Item.prototype.updateAudioFiles = function () {
+    var item = this;
+
+    angular.forEach(this.audioFiles, function (audioFile, index) {
+
+      var af = new AudioFile(audioFile);
+      af.itemId = item.id;
+
+      // delete c if marked for delete
+      if (af._delete) {
+        af.delete();
+        item.audioFiles.splice(index, 1);
+      }
+      // else if (af.id) {
+      //   af.update();
+      // }
+    });
   }
 
   // update existing contributions
