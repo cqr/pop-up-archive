@@ -312,10 +312,12 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
       onComplete: function () {
         // console.log($scope.item.id, $scope.currentUser.uploadsCollectionId);
         var msg = '"' + file.name + '" upload completed.';
-        if (item.collectionId == $scope.currentUser.uploadsCollectionId) {
-          msg = msg + 'To see transcripts and tags, <a href="/collections">move the item from My Uploads to a collection</a>';
+        if (item.collectionId == $scope.currentUser.uploadsCollectionId && $route.current.controller == 'CollectionsCtrl') {
+          msg = msg + ' To see transcripts and tags, move the item from My Uploads to a collection.';
+        } else if (item.collectionId == $scope.currentUser.uploadsCollectionId && $route.current.controller != 'CollectionsCtrl'){
+          msg = msg + ' To see transcripts and tags, move the item from My Uploads to a collection. <a href="/collections">Click here to get back to My Collections.</a>';
         } else {
-          msg = msg + '<a data-dismiss="alert" data-target=":parent" ng-href="' + item.link() + '">View and edit the item!</a>';
+          msg = msg + '<a data-dismiss="alert" data-target=":parent" ng-href="' + item.link() + '"> View and edit the item!</a>';
         }
 
         $scope.addMessage({
