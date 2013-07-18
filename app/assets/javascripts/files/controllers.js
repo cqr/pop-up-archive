@@ -264,23 +264,13 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
 }])
 .controller('NewItemFormCtrl', ['$window', '$cookies', '$scope', '$http', '$q', '$timeout', '$route', '$routeParams', '$modal', 'Me', 'Loader', 'Alert', 'Collection', 'Item', 'Contribution', function FilesCtrl($window, $cookies, $scope, $http, $q, $timeout, $route, $routeParams, $modal, Me, Loader, Alert, Collection, Item, Contribution) {
 
-  // $scope.item = {};
-  // $scope.$parent.$watch('item', function (is) {
-  //   if (is && $scope.item != is) {
-  //     angular.copy(is, $scope.item);
-  //   }
-  // });
-  // if ($scope.$parent.$parent.item) {
-  //   angular.copy($scope.$parent.item, $scope.item);
-  // }
-
   $scope.$watch('item', function (is) {
-    if (!angular.isUndefined(is) && angular.isUndefined(is.adoptToCollection)) {
+    if (!angular.isUndefined(is) && (is.id > 0) && angular.isUndefined(is.adoptToCollection)) {
       is.adoptToCollection = is.collectionId;
     }
   });
 
-  if ($scope.item) {
+  if ($scope.item && $scope.item.id) {
     $scope.item.adoptToCollection = $scope.item.collectionId;
   }
 

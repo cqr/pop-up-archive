@@ -7,23 +7,44 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
 
   Item.beforeRequest(function(data, resource) {
     // console.log('beforeRequest: data', data);
-    data.tags = [];
-    angular.forEach((data.tag_list || []), function (v,k) {
-      // console.log('v, k: ', v, k);
-      data.tags.push(v['text']);
+
+    var dataList = [];
+    if (angular.isArray(data)) {
+      dataList = data;
+    } else {
+      dataList = [data];
+    }
+
+    angular.forEach(dataList, function(value, key){
+
+      value.tags = [];
+      angular.forEach((value.tag_list || []), function (v,k) {
+        // console.log('v, k: ', v, k);
+        value.tags.push(v['text']);
+      });
+      delete value.tag_list;
+
+      if ((!value.id || parseInt(value.id, 10) <= 0) || (value.adoptToCollection == value.collectionId)) {
+        delete value.adoptToCollection;
+      }
+      
     });
-    delete data.tag_list;
 
     return data;
   });
 
   Item.beforeResponse(function(data, resource) {
-    // console.log('beforeResponse: data', data, resource);
+    // console.log('beforeResponse: data', data);
+
     data.tagList = [];
     angular.forEach((data.tags || []), function (v,k) {
       // console.log('v, k: ', v, k);
       data.tagList.push({id:v, text:v});
     });
+
+    if (data.id) {
+      data.adoptToCollection = data.collectionId;
+    }
 
     return data;
   });
