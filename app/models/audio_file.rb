@@ -16,7 +16,8 @@ class AudioFile < ActiveRecord::Base
 
   mount_uploader :file, ::AudioFileUploader
 
-  after_commit :process_file, on: :create
+  after_commit :process_create_file, on: :create
+  after_commit :process_update_file, on: :update
 
   attr_accessor :should_trigger_fixer_copy
 
@@ -45,7 +46,7 @@ class AudioFile < ActiveRecord::Base
   def remote_file_url=(url)
     self.original_file_url = url
     self.should_trigger_fixer_copy = !!url
-    logger.debug "remote_file_url: #{self.original_file_url}"
+    # logger.debug "remote_file_url: #{self.original_file_url}"
   end
 
   def upload_to
@@ -79,7 +80,7 @@ class AudioFile < ActiveRecord::Base
     task = tasks.where(id: params['label']).last
     return unless task
 
-    logger.debug "update_from_fixer: task #{params['label']} is #{result}"
+    # logger.debug "update_from_fixer: task #{params['label']} is #{result}"
 
     # update with the job id
     if !task.extras['job_id'] && params['job'] && params['job']['id']
@@ -100,7 +101,12 @@ class AudioFile < ActiveRecord::Base
     logger.error e.backtrace.join("\n")
   end
 
-  def process_file
+  def process_update_file
+    # logger.debug "af #{id} call copy_to_item_storage"
+    copy_to_item_storage
+  end
+
+  def process_create_file
     # don't process file if no file to process yet (s3 upload)
     return if file.blank? && original_file_url.blank?
 
@@ -120,8 +126,15 @@ class AudioFile < ActiveRecord::Base
   end
 
   def copy_to_item_storage
-    return false unless (storage != item.storage)
-    create_copy_task(destination, destination(storage: item.storage), item.storage)
+    # refresh storage related
+    asc = self.storage_configuration(true)
+    isc = item(true).storage_configuration(true)
+    # logger.debug "copy_to_item_storage: storage(#{asc.inspect}) == item.storage(#{isc.inspect})"
+    return true if (!asc || (asc == isc))
+    orig = destination
+    dest = destination(storage: isc)
+    # logger.debug "copy_to_item_storage: create task: orig: #{orig}, dest: #{dest}, stor: #{isc.inspect}"
+    create_copy_task(orig, dest, isc)
   end
 
   def create_copy_task(orig, dest, stor=storage)

@@ -11,7 +11,43 @@ class Item < ActiveRecord::Base
 
   before_validation :set_defaults, if: :new_record?
 
-  validate :collection_changes
+  before_update :handle_collection_change, if: :collection_id_changed?
+
+  def handle_collection_change
+    # do nothing if item has its own storage config defined
+    return true if (self.storage_configuration)
+    return true unless (self.collection_id_was && self.collection_id)
+    collection_was = Collection.find(self.collection_id_was)
+    collection_is = Collection.find(self.collection_id)
+
+    # logger.debug "was == is: #{collection_was.default_storage.inspect} == #{collection_is.default_storage.inspect}"
+    return true if (collection_was.default_storage == collection_is.default_storage)
+
+    # move each audio file to new collection storage
+    # logger.debug "check each af"
+    self.audio_files.each do |af|
+      if af.storage_configuration
+        # logger.debug "af #{af.id} has storage: #{af.storage_configuration.inspect}"
+        # already stored in the right place? delete af specific storage
+        if af.storage_configuration == collection_is.default_storage
+          af.storage_configuration.delete
+        # not in the right place, move it
+        else
+          af.copy_to_item_storage
+        end
+      else
+        # logger.debug "af #{af.id} has no storage, set to was: #{collection_was.default_storage.inspect}"
+        # no storage defined at the audio file level
+        # so af should be at collection_was storage
+        af.storage_configuration = collection_was.default_storage
+        af.update_attribute(:storage_id, collection_was.default_storage_id)
+      end
+    end
+    true
+  end
+
+
+  # validate :collection_changes
 
   tire do
     mapping do

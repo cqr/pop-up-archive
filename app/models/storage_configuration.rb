@@ -3,6 +3,11 @@ class StorageConfiguration < ActiveRecord::Base
 
   validates_presence_of :key, :secret, :provider
 
+  def ==(acoll)
+    return false unless (acoll && acoll.is_a?(StorageConfiguration))
+    [:bucket, :key, :provider, :secret, :is_public].inject(true){|equal, a| equal && (self.send(a) == acoll.send(a))}
+  end
+
   def attributes
     {}
   end
