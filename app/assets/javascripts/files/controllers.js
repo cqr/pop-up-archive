@@ -200,6 +200,16 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
   //   angular.copy($scope.$parent.item, $scope.item);
   // }
 
+  $scope.$watch('item', function (is) {
+    if (angular.isUndefined(is.adoptToCollection)) {
+      is.adoptToCollection = is.collectionId;
+    }
+  });
+
+  if ($scope.item) {
+    $scope.item.adoptToCollection = $scope.item.collectionId;
+  }
+
   $scope.submit = function () {
     // console.log('NewItemFormCtrl submit: ', $scope.item);
     var saveItem = $scope.item;
@@ -217,6 +227,7 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
     });
 
     if (saveItem.id) {
+
       saveItem.update().then(function (data) {
         // reset tags
         saveItem.tagList2Tags();
@@ -417,7 +428,9 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
       callback(scope.contribution.person);
     },
     ajax: {
-      url: '/api/collections/' + $routeParams.collectionId + '/people',
+      url: function (self, term, page, context) {
+        return '/api/collections/' + ($routeParams.collectionId || $scope.item.collectionId) + '/people';
+      },
       data: function (term, page) { return { q: term }; },
       results: function (data, page) { return { results: data }; }
     }

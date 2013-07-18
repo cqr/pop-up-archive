@@ -24,6 +24,7 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
       // console.log('v, k: ', v, k);
       data.tagList.push({id:v, text:v});
     });
+
     return data;
   });
 

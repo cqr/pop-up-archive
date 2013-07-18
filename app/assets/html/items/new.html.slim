@@ -60,7 +60,8 @@ section ng-controller="NewItemFormCtrl"
             i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['collection']" data-placement="bottom"
 
           .controls
-            select.input-xlarge#collection-id ng-disabled="item.id > 0" ng-model='item.collectionId' ng-options="collection.id as collection.title for collection in collections"
+            select.input-xlarge#collection-id ng-hide="item.id > 0" ng-model='item.collectionId' ng-options="collection.id as collection.title for collection in collections"
+            select.input-xlarge#collection-id ng-show="item.id > 0" ng-model='item.adoptToCollection' ng-options="collection.id as collection.title for collection in collections"
 
         section ng-show='item.collectionId != uploadsCollection.id'
           .control-group
