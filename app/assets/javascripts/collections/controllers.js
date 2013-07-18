@@ -50,10 +50,6 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
       }
     }
 
-    $scope.uploadFile = function () {
-      $scope.$emit('filesAdded', []);
-    };
-
     $scope.selectAll = function (items) {
       angular.forEach(items, function (item) {
         if (!item.selected) {
