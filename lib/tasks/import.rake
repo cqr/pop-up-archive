@@ -21,9 +21,9 @@ namespace :import do
     importer.import_openvault_directory
   end
 
-  desc "Import Illinois Collection XML file "
-  task :import_xml_illinois_collection, [:collection_id, :file] => [:environment] do |t, args|
-    importer = XMLMediaImporter.new(collection_id: args.collection_id, file: args.file)
+  desc "Import Illinois Collection XML file"
+  task :import_xml_illinois_collection, [:collection_id, :file, :first_item, :last_item] => [:environment] do |t, args|
+    importer = XMLMediaImporter.new(collection_id: args.collection_id, file: args.file, first_item: args.first_item, last_item: args.last_item)
     importer.import_xml_illinois_collection
   end
 
@@ -34,8 +34,8 @@ namespace :import do
   end
 
   desc "Import Kitchen Sisters XML file by filtering urls"
-  task :filter_ks_xml_file, [:collection_id, :file, :max_items_per_collection, :filter] => [:environment] do |t, args|
-    importer = XMLMediaImporter.new(collection_id: args.collection_id, file: args.file, max: args.max_items_per_collection, filter: args.filter)
+  task :filter_ks_xml_file, [:collection_id, :file, :filter, :first_item, :last_item] => [:environment] do |t, args|
+    importer = XMLMediaImporter.new(collection_id: args.collection_id, file: args.file, filter: args.filter, first_item: args.first_item, last_item:args.last_item)
     importer.filter_ks_xml_file
   end
 
