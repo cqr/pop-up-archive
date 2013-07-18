@@ -274,11 +274,11 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
   //   angular.copy($scope.$parent.item, $scope.item);
   // }
 
-  // $scope.$watch('item', function (is) {
-  //   if (!angular.isUndefined(is) && angular.isUndefined(is.adoptToCollection)) {
-  //     is.adoptToCollection = is.collectionId;
-  //   }
-  // });
+  $scope.$watch('item', function (is) {
+    if (!angular.isUndefined(is) && angular.isUndefined(is.adoptToCollection)) {
+      is.adoptToCollection = is.collectionId;
+    }
+  });
 
   if ($scope.item) {
     $scope.item.adoptToCollection = $scope.item.collectionId;
