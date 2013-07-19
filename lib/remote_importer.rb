@@ -42,7 +42,7 @@ class RemoteImporter
         file_url ="ftp://#{self.user}:#{self.password}@#{self.url}/"+URI.encode(file)
       else
         #file_url ="ftp://#{self.user}:#{self.password}@#{self.url}/"+URI.encode(""+folder +"/"+file)
-        self.folder.slice! "Web/kswebsite/"
+        self.folder.slice! "kswebsite/"
         file_url ="http://#{self.url}/"+URI.encode(folder+"/"+file)
       end
 
