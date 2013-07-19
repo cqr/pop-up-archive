@@ -13,6 +13,9 @@ class RemoteImporter
     self.user = options[:user] if options.has_key?(:user)
     self.password = options[:password] if options.has_key?(:password)
     self.collection = Collection.find(options[:collection_id])
+    self.folder.gsub!('_',' ')
+    self.folder = URI.escape(folder)
+    self.folder = nil if self.folder == "nothing"
 
     if options.has_key?(:url)
       self.url = options[:url]
@@ -26,11 +29,23 @@ class RemoteImporter
     ftp.connect(self.url, 21)
     ftp.passive = true
     ftp.login(self.user, self.password)
-    list_of_files = ftp.nlst("*.aiff")
+    unless folder == nil
+      ftp.chdir(self.folder+"/")
+    end
+    list_of_files = ftp.nlst("*")
     puts "list out files in root directory:"
     count = 0
     list_of_files.each do |file|
-      file_url ="ftp://#{self.user}:#{self.password}@#{self.url}/"+URI.encode(file)
+      ext = (file[-3,3] || "").downcase
+      next unless ['aac', 'aif', 'aiff', 'alac', 'flac', 'm4a', 'm4p', 'mp2', 'mp3', 'mp4', 'ogg', 'raw', 'spx', 'wav', 'wma'].include?(ext)
+      if folder == nil
+        file_url ="ftp://#{self.user}:#{self.password}@#{self.url}/"+URI.encode(file)
+      else
+        #file_url ="ftp://#{self.user}:#{self.password}@#{self.url}/"+URI.encode(""+folder +"/"+file)
+        self.folder.slice! "Web/kswebsite/"
+        file_url ="http://#{self.url}/"+URI.encode(folder+"/"+file)
+      end
+
       #file_url = URI.encode_www_form_component(file_url)
       puts file_url
       count += 1
@@ -46,7 +61,7 @@ class RemoteImporter
       item.audio_files << audio
       audio.identifier        = file_url
       audio.remote_file_url   = file_url
-      item.save!
+      #item.save!
     end
     ftp.close
   end
