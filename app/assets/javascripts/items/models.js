@@ -115,6 +115,7 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
     audioFile.create().then(function(){
       // create relationships
       // audioFile.item = item;
+      audioFile.filename = audioFile.cleanFileName(file.name);
       item.audioFiles = item.audioFiles || [];
       item.audioFiles.push(audioFile);
       options.token = item.token;
@@ -182,8 +183,6 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
   }
 
   Item.prototype.standardRoles = ['producer', 'interviewer', 'interviewee', 'creator', 'host'];
-
-  // Item.attrAccessible = "dateBroadcast dateCreated datePeg description digitalFormat digitalLocation episodeTitle identifier musicSoundUsed notes physicalFormat physicalLocation rights seriesTitle tags tagList title transcription adoptToCollection".split(' ');
 
   return Item;
 }])

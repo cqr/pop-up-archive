@@ -125,7 +125,31 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
 
       if (($scope.item.id > 0) && (newFiles.length > 0)) {
         if (me.canEdit($scope.item)) {
-          $scope.uploadAudioFiles($scope.item, newFiles);
+
+          var uploadItem = $scope.item;
+
+          $q.when($scope.uploadModal).then( function (modalEl) {
+
+            var modal = modalEl;
+            // console.log('$scope.uploadModal modalEl', modal);
+
+            // console.log('$scope.uploadModal check if it is hidden');
+            if (modal.css('display') == 'none') {
+
+              // console.log('$scope.uploadModal hidden!');
+              $scope.uploadAudioFiles(uploadItem, newFiles);
+
+            } else {
+
+              // console.log('$scope.uploadModal not hidden!');
+              uploadItem.files = uploadItem.files || [];
+              angular.forEach(newFiles, function (file) {
+                uploadItem.files.push(file);
+              });
+
+            }
+          });
+
         } else {
           $scope.addMessage({
             'type': 'Error',
@@ -163,6 +187,7 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
     };
 
     $scope.uploadAudioFiles = function (item, newFiles) {
+      // console.log('$scope.uploadAudioFiles', item, newFiles);
       angular.forEach(newFiles, function (file) {
         $scope.uploadAudioFile(item, file);
       });
