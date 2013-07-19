@@ -128,13 +128,15 @@ class AudioFile < ActiveRecord::Base
   def copy_to_item_storage
     # refresh storage related
     asc = self.storage_configuration(true)
-    isc = item(true).storage_configuration(true)
+    isc = item(true).storage
     # logger.debug "copy_to_item_storage: storage(#{asc.inspect}) == item.storage(#{isc.inspect})"
-    return true if (!asc || (asc == isc))
+    return false if (!asc || (asc == isc))
+
     orig = destination
     dest = destination(storage: isc)
     # logger.debug "copy_to_item_storage: create task: orig: #{orig}, dest: #{dest}, stor: #{isc.inspect}"
     create_copy_task(orig, dest, isc)
+    return true
   end
 
   def create_copy_task(orig, dest, stor=storage)
