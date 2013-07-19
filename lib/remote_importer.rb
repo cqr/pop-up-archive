@@ -61,7 +61,7 @@ class RemoteImporter
       item.audio_files << audio
       audio.identifier        = file_url
       audio.remote_file_url   = file_url
-      #item.save!
+      item.save!
     end
     ftp.close
   end
