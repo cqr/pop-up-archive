@@ -1,14 +1,14 @@
-.row-fluid
+.row-fluid ng-tutorial="collectionsTour"
   .page-nav.pull-right
 		a.btn href="/imports/new"
 			i.icon-th-list Batch Import
-		span bs-tooltip="tour.edit.content" data-placement="left" tutorial-order="4"
+		span tutorial-step="tour.edit" data-placement="left"
 			a.btn href="/collections/edit" 
 				i.icon-edit  Batch Edit
   h3 My Collections
 
   h4
-    span bs-tooltip="tour.tempuploads.content" data-placement="right" tutorial-order="1" My Uploads
+    span tutorial-step="tour.tempuploads" data-placement="right" My Uploads
   .alert This is a temporary place for your audio. Select audio below to move it to your collections. Then: listen, see transcripts, and add tags!
   .holding-cell
     ul.inline.items.uploads
@@ -29,7 +29,7 @@
         i.icon-circle-arrow-down  Move to Collection
 
   h4 
-	span bs-tooltip="tour.iapublic.content" data-placement="right" tutorial-order="2" Public Collections
+	span tutorial-step="tour.iapublic" data-placement="right" Public Collections
   .alert.alert-error 
 	| Media in public collections is stored on servers at the Internet Archive. Anyone can see or hear this media through Pop Up Archive’s website or download it from the 
 	a ng-href="http://archive.org" target="blank" Internet Archive. 
@@ -45,7 +45,7 @@
           .collection-thumb ng-class="collection.getThumbClass()"
           | {{collection.title}}
   h4 
-	span bs-tooltip="tour.s3private.content" data-placement="right" tutorial-order="3" Private Collections
+	span tutorial-step="tour.s3private" data-placement="right" Private Collections
   .alert.alert-info 
 	| Media added to your Private Collection will be stored at Pop Up Archive. It will only to be visible to you. 
 	a ng-href="collections/privacy_faq" Learn more about privacy.
@@ -60,8 +60,8 @@
           .collection-thumb ng-class="collection.getThumbClass()"
           | {{collection.title}}
 
-.hide 
-	a ng-href="#" bs-modal="'#{asset_path 'collections/tutorial1.html'}'" tutorial-order="5"
+.hide
+	a ng-href="#" bs-modal="'#{asset_path 'collections/tutorial1.html'}'"
 		|Tutorial 1
-	a ng-href="#" bs-modal="'#{asset_path 'collections/tutorial2.html'}'" tutorial-order="6"
+	a ng-href="#" bs-modal="'#{asset_path 'collections/tutorial2.html'}'"
 		|Tutorial 2

@@ -17,6 +17,16 @@
   user-select: none;
 }
 
+.tutorial-step {
+  font-family: "soleil", sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+
+  .tutorial-navigation {
+    margin-top: 8px;
+  }
+}
+
 .brochure {
   color: #7C7B81;
   background: none;

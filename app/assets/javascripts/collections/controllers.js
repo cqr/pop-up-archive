@@ -1,5 +1,6 @@
 angular.module('Directory.collections.controllers', ['Directory.loader', 'Directory.user', 'Directory.collections.models', 'ngTutorial'])
 .controller('CollectionsCtrl', ['$scope', 'Collection', 'Loader', 'Me', 'Tutorial', function CollectionsCtrl($scope, Collection, Loader, Me, Tutorial) {
+
   Me.authenticated(function (me) {
     Loader.page(Collection.query(), Collection.get(me.uploadsCollectionId), 'Collections', $scope).then(function (data) {
       $scope.collection = undefined;
@@ -7,20 +8,22 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
       $scope.uploadsCollection.fetchItems();
     });
 
-    $scope.tutorial = new Tutorial();
-
 		$scope.tour = {
+      'tempuploads': { 
+        'content': 'If you don\'t specify a collection, audio will be automatically added to temporary uploads. Select your audio and add it to a collection to make it searchable.',
+        'step': 0
+      },
 		  'iapublic': { 
 				'content': 'Your public collections will be<br/>stored at the Internet Archive.<br/>They will be available for anyone<br/>to search, stream, or download.',
+        'step': 1
 			},
 		  's3private': { 
 				'content': 'Private collections allow you to store your audio so that is visible only to you. Users automatically have two hours of private storage.',
-			},
-		  'tempuploads': { 
-				'content': 'If you don\'t specify a collection, audio will be automatically added to temporary uploads. Select your audio and add it to a collection to make it searchable.',
+        'step': 2
 			},
 			'edit': { 
 				'content': 'To delete items select batch edit.',
+        'step': 3
 			},
 		};
 		
