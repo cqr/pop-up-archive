@@ -6,9 +6,10 @@
 			a.btn href="/collections/edit" 
 				i.icon-edit  Batch Edit
   h3 My Collections
-
   h4
     span tutorial-step="tour.tempuploads" data-placement="right" My Uploads
+    span tutorial-step="tour.tutorial1" data-placement="right"
+    span tutorial-step="tour.tutorial2" data-placement="right"
   .alert This is a temporary place for your audio. Select audio below to move it to your collections. Then: listen, see transcripts, and add tags!
   .holding-cell
     ul.inline.items.uploads
@@ -60,7 +61,7 @@
           .collection-thumb ng-class="collection.getThumbClass()"
           | {{collection.title}}
 
-.hide
+/ 
 	a ng-href="#" bs-modal="'#{asset_path 'collections/tutorial1.html'}'"
 		|Tutorial 1
 	a ng-href="#" bs-modal="'#{asset_path 'collections/tutorial2.html'}'"

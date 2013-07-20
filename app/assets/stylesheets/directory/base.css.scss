@@ -17,16 +17,6 @@
   user-select: none;
 }
 
-.tutorial-step {
-  font-family: "soleil", sans-serif;
-  font-size: 14px;
-  font-weight: normal;
-
-  .tutorial-navigation {
-    margin-top: 8px;
-  }
-}
-
 .brochure {
   color: #7C7B81;
   background: none;
@@ -924,19 +914,32 @@ form.with-tags {
   line-height: 16px;
 }
 
-div#-assets-collections-tutorial1-00M.modal, div#-assets-collections-tutorial2-00O.modal{
- 	background-color: rgba(0, 0, 0, 0);
-	border: none;
-	box-shadow: none;
+.tutorial-step {
+  font-size: 14px;
+  font-weight: normal;
+
+  .tutorial-navigation {
+    margin-top: 8px;
+  }
 }
 
-.big-modal .modal-body{
-	max-height: 1100px;
-	color: white;
-	text-align: center;
+.big-modal {
+
+  .modal-body {
+    max-height: 1100px;
+    color: white;
+    text-align: center;
+  }
+
+  .dark {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    box-shadow: none;
+  }
+
 }
 
-@media (max-width: 767px) { 
+@media (max-width: 460px) { 
 	div.big-modal{
 	  width: 460px;
 	  margin-left: -230px;}

@@ -1,5 +1,12 @@
-.big-modal
-  .modal-body
-		h4 Drag a file (or several) into a collection to create an audio item.
-		img.image ng-src='#{asset_path("collections_tut2.png")}'
-		h4 An item can have one or more files — like an interview recorded in two parts.
+.modal-header
+  button type="button" class="close" data-dismiss="modal" aria-hidden="true" x
+
+  h3 Drag a file (or several) into a collection to create an audio item.
+
+.modal-body.dark
+  img.image ng-src='#{asset_path("collections_tut2.png")}'
+
+.modal-footer
+  div An item can have one or more files — like an interview recorded in two parts.
+
+  button.btn type="button" ng-click="dismiss()" Continue

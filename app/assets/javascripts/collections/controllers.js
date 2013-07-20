@@ -1,5 +1,5 @@
 angular.module('Directory.collections.controllers', ['Directory.loader', 'Directory.user', 'Directory.collections.models', 'ngTutorial'])
-.controller('CollectionsCtrl', ['$scope', 'Collection', 'Loader', 'Me', 'Tutorial', function CollectionsCtrl($scope, Collection, Loader, Me, Tutorial) {
+.controller('CollectionsCtrl', ['$scope', '$modal', 'Collection', 'Loader', 'Me', 'Tutorial', function CollectionsCtrl($scope, $modal, Collection, Loader, Me, Tutorial) {
 
   Me.authenticated(function (me) {
     Loader.page(Collection.query(), Collection.get(me.uploadsCollectionId), 'Collections', $scope).then(function (data) {
@@ -25,7 +25,25 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
 				'content': 'To delete items select batch edit.',
         'step': 3
 			},
+      'tutorial1': {
+        'content': 'Hopefully collections are making more sense.<br/>Next let\'s look at uploading.',
+        'step': 4
+      },
+      'tutorial2': {
+        'content': 'Uploads are just a click or drag &amp; drop away &ndash; give it a try!',
+        'step': 5
+      }
 		};
+
+    $scope.$on('tutorial-step-shown', function (event) {
+      if (event.targetScope.stepOptions) {
+        var step = event.targetScope.stepOptions.step;
+        switch (step) {
+          case 4: $modal({template: "/assets/collections/tutorial1.html", persist: false, show: true, backdrop: 'static', scope: $scope, modalClass: 'big-modal'}); break;
+          case 5: $modal({template: "/assets/collections/tutorial2.html", persist: false, show: true, backdrop: 'static', scope: $scope, modalClass: 'big-modal'}); break;
+        }
+      }
+    });
 		
     $scope.selectedItems = [];
 

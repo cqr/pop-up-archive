@@ -217,7 +217,7 @@ angular.module('ngTutorial', [])
             'hidden'
           ], function (name) {
             element.on(name, function (ev) {
-              scope.$emit('popover-' + name, ev);
+              scope.$emit('tutorial-step-' + name, ev);
             });
           });
         });
