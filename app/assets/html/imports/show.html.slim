@@ -31,8 +31,6 @@ form.form-inline ng-controller="ImportMappingCtrl"
       tr ng-repeat="header in csvImport.headers"
         td {{header}}
         td
-          i.icon-question-sign bs-popover='itemHelp[column.camelCaseName]' data-placement="right"
-        td
           select ng-model="csvImport.mappings[$index].column" ng-options="column.name as column.humanName group by schema.types[column.typeId].humanName for column in schema.columnsWith(header) | type:csvImport.mappings[$index].type"
         td
           em {{schema.getValue(csvImport.mappings[$index].column, csvImport.mappings, csvImport.previewRows[0])}}
