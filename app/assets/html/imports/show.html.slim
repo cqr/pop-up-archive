@@ -24,8 +24,9 @@ form.form-inline ng-controller="ImportMappingCtrl"
         th Your Column Name
         th Pop Up Field
         th ng-click="getNewPreviewRows()"
-          | Data Preview 
-          i.icon-refresh 
+          | Sample Data &nbsp;
+          i.icon-refresh
+          small &nbsp; Fetch new preview 
     tbody
       tr ng-repeat="header in csvImport.headers"
         td {{header}}
@@ -34,30 +35,6 @@ form.form-inline ng-controller="ImportMappingCtrl"
         td
           em {{schema.getValue(csvImport.mappings[$index].column, csvImport.mappings, csvImport.previewRows[0])}}
 
-  
-  h3 Preview
-  .inset
-  .clearfix style='overflow:scroll'
-    table.table.table-striped.table-bordered.table-hover.table-condensed.horizontal-scrolling
-      thead
-        tr
-          th Pop Up Field
-          th ng-repeat="row in csvImport.previewRows" Preview Item \#{{$index + 1}}
-      tbody
-        tr ng-repeat='column in schema.columns | schemaMapped:csvImport.mappings'
-          td
-            i.icon-question-sign bs-popover='itemHelp[column.camelCaseName]' data-placement="right"
-              b  {{column.humanName}}
-          td ng-repeat='row in csvImport.previewRows' {{schema.getValue(column, csvImport.mappings, row)}}
-        tr.warning ng-repeat="header in csvImport.headers | isExtraField:csvImport.mappings"
-          td
-            i.icon-warning-sign
-              b  {{header}}
-          td ng-repeat='row in csvImport.previewRows' {{schema.getValue(schema.columnize(header), csvImport.mappings, row)}}
-  .alert ng-show='schema.includesExtraFields(csvImport.mappings)'
-    | Warning: the fields in yellow above are <strong>extra</strong> fields, meaning that they will not be given the same 
-    | care that first-class fields are given. If any field can reasonably be mapped to a Pop-Up field, you should do so 
-    | before import to ensure the best possible filtering and search results.
   .well
     button.btn.btn-link ng-disabled="csvImport.isSaving" ng-click="cancel()" Cancel
     .pull-right
