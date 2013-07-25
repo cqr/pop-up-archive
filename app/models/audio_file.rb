@@ -169,6 +169,19 @@ class AudioFile < ActiveRecord::Base
     end
   end
 
+  # def transcode_audio
+  #   if storage.automatic_transcode?
+  #     # TODO: start task to detect transcode (scheduled, recurring)
+  #     urls = file.class.version_formats.keys.inject do |h, k|
+  #       h[k] = { url: file.send(k), detected_at: nil }
+  #       h
+  #     end
+  #     self << Tasks::DetectDerivativesTask.new(identifier: 'detect_derivatives', extras: { urls: urls })
+  #   else
+  #     self << Tasks::TranscodeTask.new(identifier: 'transcode')
+  #   end
+  # end
+
   def transcript_array
     array = timed_transcript_array
     array = JSON.parse(transcript) if (array.blank? && !transcript.blank?)
