@@ -28,4 +28,14 @@ describe AudioFile do
     transcript.timed_texts.count.should == 2
   end
 
+  it "should process creating a transcript from JSON and calculate confidence" do
+    json = '[{"start_time":0,"end_time":9,"text":"from Wednesday January 30th 2013 the following is a replay of the radio doctor daily session in North Carolina House of Representatives","confidence":1.0},{"start_time":8,"end_time":17,"text":"tractor seat visitors","confidence":0.0}]'
+    audio_file = FactoryGirl.build :audio_file
+    transcript = audio_file.process_transcript(json)
+    transcript.confidence.should eq 0.5
+    transcript.confidence = 0
+    transcript.set_confidence.should eq 0.5
+    transcript.confidence.should eq 0.5
+  end
+
 end

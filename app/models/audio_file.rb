@@ -216,6 +216,8 @@ class AudioFile < ActiveRecord::Base
     else
       trans_json = JSON.parse(json) if json.is_a?(String)
       trans = transcripts.build(language: 'en-US', identifier: identifier, start_time: 0, end_time: 0)
+      sum = 0.0
+      count = 0.0
       trans_json.each do |row|
         tt = trans.timed_texts.build({
           start_time: row['start_time'],
@@ -225,7 +227,10 @@ class AudioFile < ActiveRecord::Base
         })
         trans.end_time = tt.end_time if tt.end_time > trans.end_time
         trans.start_time = tt.start_time if tt.start_time < trans.start_time
+        sum = sum + tt.confidence.to_f
+        count = count + 1.0
       end
+      trans.confidence = sum / count if count > 0
       trans.save!
 
       # delete trans which cover less time
@@ -233,6 +238,17 @@ class AudioFile < ActiveRecord::Base
       partials_to_delete.each{|t| t.destroy}
     end
     trans
+  end
+
+  def set_confidence
+    sum = 0.0
+    count = 0.0
+    self.timed_texts.each{|tt| sum = sum + tt.confidence.to_f; count = count + 1.0}
+    if count > 0 
+      average = sum / count
+      self.update_attribute(:confidence, average)
+    end
+    average
   end
 
   def analyze_transcript
