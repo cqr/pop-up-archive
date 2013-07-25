@@ -23,6 +23,9 @@ class Item < ActiveRecord::Base
     # logger.debug "was == is: #{collection_was.default_storage.inspect} == #{collection_is.default_storage.inspect}"
     return true if (collection_was.default_storage == collection_is.default_storage)
 
+    # set the item visibility
+    self.update_attribute(:is_public, collection_is.items_visible_by_default)
+
     # move each audio file to new collection storage
     # logger.debug "check each af"
     self.audio_files.each do |af|
@@ -30,7 +33,8 @@ class Item < ActiveRecord::Base
         # logger.debug "af #{af.id} has storage: #{af.storage_configuration.inspect}"
         # already stored in the right place? delete af specific storage
         if af.storage_configuration == collection_is.default_storage
-          af.storage_configuration.delete
+          af.storage_configuration = nil
+          af.update_attribute(:storage_id, nil)
         # not in the right place, move it
         else
           af.copy_to_item_storage
@@ -45,9 +49,6 @@ class Item < ActiveRecord::Base
     end
     true
   end
-
-
-  # validate :collection_changes
 
   tire do
     mapping do
@@ -253,12 +254,6 @@ class Item < ActiveRecord::Base
       end
     end
     tfi
-  end
-
-  def collection_changes
-    if collection_id_changed? && collection_id_was != nil
-      errors.add(:collection, "cannot be changed once set") unless Collection.find(collection_id_was).uploads_collection?
-    end
   end
 
 end
