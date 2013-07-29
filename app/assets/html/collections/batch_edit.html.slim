@@ -22,7 +22,8 @@ h3
   |  &raquo; Batch Edit
 .items.fill
   .collection ng-repeat="category in sortedItems()"
-    h4 {{category.name}}
+    h4
+      | {{category.name}}
     ul.inline.items
       li ng-repeat="item in category.items" ng-click="toggleItemSelection(item)" ng-class="{selected: item.selected}" title="{{item.getTitle()}}"
         .item-thumb ng-class="item.getThumbClass()"
