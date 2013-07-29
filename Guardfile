@@ -1,5 +1,10 @@
-# A sample Guardfile
-# More info at https://github.com/guard/guard#readme
+require 'rbconfig';
+if RbConfig::CONFIG['host_os'].sub(/^[^\d]+/,'').to_i <= 11
+  require 'growl'
+  notification :growl
+else
+  notification :terminal_notifier
+end
 
 guard 'rspec', :cli => '--color', :spring => true, :notification => true do
   watch(%r{^spec/.+_spec\.rb$})

@@ -76,9 +76,9 @@ ActiveRecord::Schema.define(:version => 20130723030841) do
     t.integer  "state_index",   :default => 0
     t.string   "headers",                                      :array => true
     t.string   "file_name"
-    t.integer  "collection_id", :default => 0
     t.string   "error_message"
     t.text     "backtrace"
+    t.integer  "collection_id", :default => 0
     t.integer  "user_id"
   end
 
@@ -155,6 +155,7 @@ ActiveRecord::Schema.define(:version => 20130723030841) do
     t.string   "music_sound_used"
     t.string   "date_peg"
     t.text     "notes"
+    t.text     "transcription"
     t.string   "tags",                              :array => true
     t.integer  "geolocation_id"
     t.hstore   "extra"
@@ -166,7 +167,6 @@ ActiveRecord::Schema.define(:version => 20130723030841) do
     t.integer  "storage_id"
     t.boolean  "is_public"
     t.time     "deleted_at"
-    t.text     "transcription"
   end
 
   add_index "items", ["collection_id"], :name => "index_items_on_collection_id"

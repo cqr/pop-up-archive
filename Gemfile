@@ -19,7 +19,7 @@ gem 'postgres_ext'
 gem 'acts_as_list'
 gem 'multi_json', '~> 1.5.0'
 
-gem 'decent_exposure'
+gem 'decent_exposure', '~> 2.1.0'
 # gem 'decent_exposure', github: 'voxdolo/decent_exposure'
 
 # login to prx.org using omniauth
@@ -83,12 +83,16 @@ group :development do
   gem 'binding_of_caller'
   gem 'ruby_gntp'
   gem 'guard-rspec'
-  gem 'spring'
-  gem 'rb-fsevent', '~> 0.9.1'
 end
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.4'
+  gem 'listen'
+  gem 'terminal-notifier-guard'
+  gem 'growl', require: false
+  gem 'rb-inotify', require: false
+  gem 'rb-fsevent', require: false
+  gem 'rb-fchange', require: false
   gem 'spring'
 end
 
