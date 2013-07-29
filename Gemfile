@@ -37,7 +37,7 @@ gem 'cancan'
 gem 'tire'
 
 # server-side templates
-gem 'slim-rails'
+gem 'slim-rails', '~> 1.0'
 gem 'rabl'
 
 # background processing
