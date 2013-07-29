@@ -15,4 +15,7 @@ class Transcript < ActiveRecord::Base
     average
   end
 
+  def as_json(options={})
+    { sections: timed_texts } 
+  end
 end

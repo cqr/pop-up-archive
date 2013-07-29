@@ -23,3 +23,7 @@ end
 child :contributions do |c|
   extends 'api/v1/contributions/contribution'
 end
+
+node :highlights do |i|
+  {transcripts: i.highlighted_transcripts}
+end

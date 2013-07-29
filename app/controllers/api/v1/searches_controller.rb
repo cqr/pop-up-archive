@@ -22,9 +22,37 @@ class Api::V1::SearchesController < Api::V1::BaseController
         filter my_filter.type, my_filter.value
       end
 
+      highlight transcript: { number_of_fragments: 0 }
     end
 
-    #Rails.logger.debug(@search.inspect)
+    @search.results.each do |result|
+      if result.highlight[:transcript].present?
+        map = Hash[result.highlight[:transcript].map{|t| [t.gsub(/<\/?em>/, ''), t]}]
+      else
+        map = {}
+      end
+
+      def result.audio_files
+        @_audio_files ||= []
+      end
+
+      def result.highlighted_transcripts
+        @_highlighted_transcripts ||= []
+      end
+
+      result.transcripts.each do |t|
+        result.audio_files.push AudioFile.find(t.audio_file_id) unless result.audio_files.map(&:id).include? t.audio_file_id
+      end
+
+      result.audio_files.each do |af|
+        af.transcript_array.each do |tl|
+          if map[tl[:text]].present?
+            tl[:text] = map[tl[:text]]
+            result.highlighted_transcripts.push(tl)
+          end
+        end
+      end
+    end
 
     respond_with @search
   end

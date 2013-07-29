@@ -33,27 +33,13 @@ ul.pager
     .media.search-result ng-repeat="item in search.results | toItems"
 
       .media-body
-				a.pull-left ng-href="{{item.link()}}"
-					img.media-object src="#{asset_path('minimark.png')}"
+        a.pull-left ng-click="item.play()"
+          i.play-overlay.icon-play 
+          img.media-object src="#{asset_path('minimark.png')}"
 				.media
 					h4.media-heading ng-show="item.getTitle()"
 						a ng-href="{{item.link()}}" {{item.getTitle()}}
-					p ng-show="item.getDescription()" ng-bind-html-unsafe="item.getDescription()"
-					ul.inline.dates
-						li.label ng-show="item.dateCreated"
-							b Created: 
-							| {{item.dateCreated | date:'yyyy-MM-dd'}} &nbsp;
-						li.label ng-show="item.dateBroadcast"
-							b Broadcast: 
-							| {{item.dateBroadcast | date:'yyyy-MM-dd'}} &nbsp;
-						li.label ng-show="item.dateAdded"
-							b Added: 
-							| {{item.dateAdded | date:'yyyy-MM-dd hh:mma'}} &nbsp;
-					ul.inline.contributors
-						li.label ng-repeat="contributorGroup in item.standardRoles" ng-hide="(item[(contributorGroup|pluralize)]).length==0"
-							b {{contributorGroup | titleize | pluralize}}: 
-  							| {{item[(contributorGroup|pluralize)].join(', ')}} &nbsp;
-    
+					.transcript transcript-text="item.highlights.transcripts" transcript-editable="currentUser.canEdit(item)" transcript-timestamps="start"
     .result-count-footer        
       ul.pager ng-show="search.hasMoreResults() || search.page > 1"
         li.previous ng-class="{disabled: search.page <= 1}"

@@ -179,10 +179,11 @@
                   '<table class="table">' +
                     '<tr ng-class="{current: transcriptStart==text.startTime}" ng-repeat="text in transcript">' +
                       '<td style="width: 8px; text-align:left;"><a ng-click="seekTo(text.startTime)"><i class="icon-play-circle"></i></a></td>' +
-                      '<td style="width: 16px; text-align:right">{{text.startTime}}</td>' +
-                      '<td style="width: 8px;  text-align:center">&ndash;</td>' +
-                      '<td style="width: 16px; text-align:left; padding-right:10px">{{text.endTime}}</td>' +
-                      '<td ng-show="!editorEnabled"><div class="file-transcript-text">{{text.text}}</div></td>' +
+                      '<td style="width: 16px; text-align:right" ng-show="showRange">{{text.startTime}}</td>' +
+                      '<td style="width: 8px;  text-align:center" ng-show="showRange">&ndash;</td>' +
+                      '<td style="width: 16px; text-align:left; padding-right:10px" ng-show="showRange">{{text.endTime}}</td>' +
+                      '<td ng-show="showStart">{{toTimestamp(text.startTime)}}</td>' +
+                      '<td ng-show="!editorEnabled"><div class="file-transcript-text" ng-bind-html-unsafe="text.text"></div></td>' +
                       '<td ng-show="canShowEditor()" style="width: 8px; padding-right: 10px; text-align: right">'+
                         '<a href="#" ng-click="enableEditor()"><i class="icon-pencil"></i></a></td>' +
                       '<td ng-show="editorEnabled"><input ng-model="editableTranscript" ng-show="editorEnabled"></td>' +
@@ -201,6 +202,31 @@
         scope.transcript = $parse(attrs.transcriptText)(scope);
         scope.transcriptRows = {};
         scope.canEdit = $parse(attrs.transcriptEditable)(scope);
+        scope.transcriptTimestamps = attrs.transcriptTimestamps || 'range';
+
+        if (scope.transcriptTimestamps == 'range') {
+          scope.showRange = true;
+          scope.showStart = false;
+        } else if (scope.transcriptTimestamps = 'start') {
+          scope.showStart = true;
+          scope.showRange = false;
+        }
+
+        scope.toTimestamp = function (seconds) {
+          var d = new Date(seconds * 1000);
+          if (seconds > 3600) {
+            return Math.floor(seconds / 3600) + ":" + dd(Math.floor(seconds % 3600 / 60)) + ":" + dd(seconds % 3600 % 60);
+          } else {
+            return Math.floor(seconds / 60) + ":" + dd(seconds % 60);
+          }
+        }
+
+        var dd = function (dd) {
+          if (dd < 10) {
+            return "0" + dd;
+          }
+          return dd;
+        }
 
         angular.forEach(scope.transcript, function(row, index) {
           scope.transcriptRows[row.startTime] = index;

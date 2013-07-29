@@ -221,8 +221,11 @@ button.pua-pill {
     color: #fff;
     font-weight: 800;
     font-size: 2em;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3), 0 -1px 0 rgba(0,0,0,0.9);
   }
+}
+
+.label {
+  text-shadow: none !important;
 }
 
 .player {
@@ -535,6 +538,29 @@ h5.result-count {
   max-height: 75px;
 }
 
+.search-result .file-transcript {
+  line-height: 16px;
+  font-size: 11px;
+
+  .file-transcript-text {
+    height: 16px;
+    -webkit-marquee: auto medium infinite scroll normal;
+    text-overflow: ellipsis;
+  }
+
+  .current {
+    background-color: transparent;
+  }
+
+  em {
+    background-color: #FFFBCC;
+    font-style: normal;
+    padding: 3px;
+  }
+
+  overflow: hidden;
+}
+
 .file-transcript {
   padding: 0px;
   display: block;
@@ -554,7 +580,14 @@ h5.result-count {
 
   .file-transcript-text {
     height: 22px;
-    overflow: hidden;
+    white-space: nowrap;
+    overflow-x: hidden;
+    margin-left: 5px;
+  }
+
+  td[ng-show="showStart"] {
+    font-weight: 300;
+    font-style: italic;
   }
 
   table {
@@ -758,6 +791,7 @@ ul.terms {
   small {
     color: #999;
     font-size: 0.7em;
+    z-index: 1000
   }
 }
 
@@ -1111,4 +1145,27 @@ form.with-tags {
     font-size: 1.2em;
     margin-left: 50px;
   }
+}
+
+*[ng-click], a[bs-dropdown] {
+  cursor: pointer;
+}
+
+.play-overlay {
+  position: absolute;
+  width: 75px;
+  height: 75px;
+  line-height: 75px;
+  font-size: 50px;
+  margin-left: 23px;
+  opacity: 0.75;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
+  text-decoration: none;
+}
+
+.play-overlay:hover {
+  opacity: 0.99;
 }
