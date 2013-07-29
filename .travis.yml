@@ -7,3 +7,6 @@ before_script:
 bundler_args: --without development assets
 services:
   - elasticsearch
+notifications:
+  email:
+    - popuparchive-tech@prx.org
