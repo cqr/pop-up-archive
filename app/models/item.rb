@@ -15,34 +15,46 @@ class Item < ActiveRecord::Base
 
   def handle_collection_change
     # do nothing if item has its own storage config defined
+    # this means that it has already been explicitly set to this storage. leave it be
     return true if (self.storage_configuration)
+
+    # if there is no change in collection id, no need to change
     return true unless (self.collection_id_was && self.collection_id)
+
+    # get a handle on current and past collections
     collection_was = Collection.find(self.collection_id_was)
     collection_is = Collection.find(self.collection_id)
 
+    # if this is the same storage bucket and provider, leave it be
     # logger.debug "was == is: #{collection_was.default_storage.inspect} == #{collection_is.default_storage.inspect}"
     return true if (collection_was.default_storage == collection_is.default_storage)
 
-    # set the item visibility
+    # ----------
+    # OK - if we are here, then we need to move the item and deal with the consequences
+    # ----------
+
+    # set the item visibility to that of the new collection
     self.update_attribute(:is_public, collection_is.items_visible_by_default)
 
     # move each audio file to new collection storage
     # logger.debug "check each af"
     self.audio_files.each do |af|
       if af.storage_configuration
+
+        # af already stored in the right place? remove association to af specific storage
         # logger.debug "af #{af.id} has storage: #{af.storage_configuration.inspect}"
-        # already stored in the right place? delete af specific storage
         if af.storage_configuration == collection_is.default_storage
           af.storage_configuration = nil
           af.update_attribute(:storage_id, nil)
-        # not in the right place, move it
+
+        # af NOT stored in the right place? move it to the correct storage for this item
         else
           af.copy_to_item_storage
         end
       else
+        # no storage defined at the audio file level; af should be at collection_was storage
+        # updating af triggers af.process_update_file -> copy_to_item_storage, so don't explictly call it here
         # logger.debug "af #{af.id} has no storage, set to was: #{collection_was.default_storage.inspect}"
-        # no storage defined at the audio file level
-        # so af should be at collection_was storage
         af.storage_configuration = collection_was.default_storage
         af.update_attribute(:storage_id, collection_was.default_storage_id)
       end
@@ -237,13 +249,13 @@ class Item < ActiveRecord::Base
     self.collection_id = collection_id
   end
 
-  private
-
   def set_defaults
     return true unless is_public.nil?
     self.is_public = (collection.present? && collection.items_visible_by_default)
     true
   end
+
+  private
 
   def tags_for_index
     tfi = tags.dup
