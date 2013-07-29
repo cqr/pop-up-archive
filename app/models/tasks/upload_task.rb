@@ -9,12 +9,12 @@ class Tasks::UploadTask < Task
   end
 
   def upload_complete
-    logger.debug "Tasks::UploadTask: after_transition: any => :complete start !!!!"
+    # logger.debug "Tasks::UploadTask: after_transition: any => :complete start !!!!"
 
     if self.owner.nil?
-      logger.debug "Tasks::UploadTask: after_transition: any => :complete owner nil"
+      # logger.debug "Tasks::UploadTask: after_transition: any => :complete owner nil"
     else
-      logger.debug "Tasks::UploadTask: after_transition: any => :complete owner update file"
+      # logger.debug "Tasks::UploadTask: after_transition: any => :complete owner update file"
       # set the file on the owner, and the storage as the upload_to
       file_name = File.basename(self.extras['key'])
       upload_id = self.owner.upload_to.id
@@ -23,11 +23,14 @@ class Tasks::UploadTask < Task
 
       # now copy it to the right place if it needs to be (e.g. s3 -> ia)
       # or if it is in the right spot, transcribe it!
-      self.owner(true).copy_to_item_storage || self.owner(true).transcribe_audio
-      logger.debug "Tasks::UploadTask: after_transition: any => :complete file updates over"
+      unless self.owner(true).copy_to_item_storage
+        self.owner(true).transcribe_audio
+        # self.owner(true).transcode_audio
+      end
+      # logger.debug "Tasks::UploadTask: after_transition: any => :complete file updates over"
     end
 
-    logger.debug "Tasks::UploadTask: after_transition: any => :complete finish !!!!"
+    # logger.debug "Tasks::UploadTask: after_transition: any => :complete finish !!!!"
 
   rescue Exception => e
     logger.error e.message

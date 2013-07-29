@@ -2,7 +2,8 @@ class Task < ActiveRecord::Base
   serialize :extras, HstoreCoder
 
   attr_accessible :name, :extras, :owner_id, :owner_type, :status, :identifier, :type
-  belongs_to :owner, :polymorphic => true
+  belongs_to :owner, polymorphic: true
+  belongs_to :storage, class_name: "StorageConfiguration", foreign_key: :storage_id
 
   CREATED  = 'created'
   WORKING  = 'working'
@@ -16,8 +17,10 @@ class Task < ActiveRecord::Base
     scope task_subclass, where('type = ?', "Tasks::#{task_subclass.to_s.titleize}Task")
   end
 
+  # we need to retain the storage used to kick off the process
   before_validation(on: :create) do
     self.extras = {} unless extras
+    self.storage_id = owner.storage.id if (!storage_id && owner && owner.storage)
   end
 
   state_machine :status, initial: :created do

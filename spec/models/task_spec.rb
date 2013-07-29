@@ -14,5 +14,12 @@ describe Task do
 
     Task.find(task.id).extras['test'].should eq 'test value'
   end
+
+  it 'should persist the owner.storage.id' do
+    task = FactoryGirl.create :task
+    task.storage_id.should eq task.owner.storage.id
+  end
+
+
 end
 

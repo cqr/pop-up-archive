@@ -5,13 +5,23 @@ class AudioFileUploader < CarrierWave::Uploader::Base
   include Sprockets::Helpers::RailsHelper
   include Sprockets::Helpers::IsolatedHelper
 
+  def self.version_formats
+    {
+      mp3: {format: 'mp3', bit_rate: 128, sample_rate: 44100, channel_mode: 'm'},
+      ogg: {format: 'ogg', bit_rate: 64, sample_rate: 44100, channel_mode: 'm'}
+    }
+  end
+
+  # we're gonna make them on fixer, but define the versions
+  version_formats.keys.each do |label|
+    version label
+  end
+
   def extension_white_list
     ['aac', 'aif', 'aiff', 'alac', 'flac', 'm4a', 'm4p', 'mp2', 'mp3', 'mp4', 'ogg', 'raw', 'spx', 'wav', 'wma']
   end
 
   def public_url
-
-    puts "!!!! url called !!!!"
 
     if !asset_host && (provider == "InternetArchive")
       "http://archive.org/download/#{model.destination_directory}#{model.destination_path}"
@@ -54,9 +64,30 @@ class AudioFileUploader < CarrierWave::Uploader::Base
   end
 
   def fog_credentials
-    c = model.storage.credentials
-    c[:path_style] = true if c[:provider].to_s == 'AWS'
-    c
+    model.storage.credentials
+  end
+
+  private
+
+  def full_filename(for_file)
+    if !version_name
+      return super(for_file)
+    else
+      ext = File.extname(for_file)
+      base = File.basename(for_file, ext)
+      "#{base}.#{version_name}"
+    end
+  end
+
+  def full_original_filename
+    if !version_name
+      super
+    else
+      fn = super
+      ext = File.extname(fn)
+      base = File.basename(fn, ext)
+      "#{base}.#{version_name}"
+    end
   end
 
 end

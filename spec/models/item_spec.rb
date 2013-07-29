@@ -52,4 +52,15 @@ describe Item do
     item.entities.count.should eq 6
   end
 
+  it "should change visibility when collection changes" do    
+    item = FactoryGirl.create :item
+    item.set_defaults
+    item.is_public.should == true
+    collection = FactoryGirl.create :collection_private
+    item.collection_id = collection.id
+    item.collection = collection
+    # item.handle_collection_change
+    # item.is_public.should == false
+  end
+
 end

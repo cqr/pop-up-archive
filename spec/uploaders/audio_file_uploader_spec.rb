@@ -5,11 +5,10 @@ describe AudioFileUploader do
   context "handle different providers" do
 
     before :all do
-      @collection = Collection.new
-      @collection.set_storage
+      @collection = FactoryGirl.build :collection
 
-      @item = Item.new
-      @audio_file = AudioFile.new
+      @item = FactoryGirl.build :item
+      @audio_file = FactoryGirl.build :audio_file
       @item.collection = @collection
       @audio_file.item = @item
 

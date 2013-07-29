@@ -1,7 +1,7 @@
 class Tasks::CopyTask < Task
 
-  attr_accessor :should_transcribe
-  @should_transcribe = false
+  attr_accessor :should_process
+  @should_process = false
 
   state_machine :status do
     after_transition any => :complete do |task, transition|
@@ -12,7 +12,7 @@ class Tasks::CopyTask < Task
 
         # set the file on the owner, and the storage as the upload_to
         task.owner.update_file!(File.basename(result_path), storage_id)
-        task.should_transcribe = true
+        task.should_process = true
       end
 
     end
@@ -39,9 +39,10 @@ class Tasks::CopyTask < Task
   end
 
   def start_transcribe
-    return unless should_transcribe
+    return unless should_process
     self.owner(true).transcribe_audio
-    self.should_transcribe = false
+    # self.owner(true).transcode_audio
+    self.should_process = false
   end
 
   def call_back_url
@@ -49,7 +50,9 @@ class Tasks::CopyTask < Task
   end
 
   def destination
-    extras['destination'] || owner.try(:destination)
+    extras['destination'] || owner.try(:destination, {
+      storage: storage
+    })
   end
 
   def original

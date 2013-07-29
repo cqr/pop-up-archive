@@ -5,7 +5,7 @@ class Tasks::TranscribeTask < Task
 
       # only add transcript if there is none, or it is the full tranascript; don't overwrite all with start
       if task.owner && !Rails.env.test?
-        DownloadTranscriptWorker.perform_async(task.owner.id, task.destination)
+        DownloadTranscriptWorker.perform_async(task.id)
       end
 
     end
@@ -71,8 +71,9 @@ class Tasks::TranscribeTask < Task
   def destination
     suffix = start_only? ? '_ts_start.json' : '_ts_all.json'
     extras['destination'] || owner.try(:destination, {
-      :suffix  => suffix,
-      :options => {:metadata=>{'x-archive-meta-mediatype'=>'data'}}
+      storage: storage,
+      suffix:  suffix,
+      options: { metadata: { 'x-archive-meta-mediatype' => 'data' } }
     })
   end
 

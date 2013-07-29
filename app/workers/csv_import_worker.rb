@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require 'utils'
+
 class CsvImportWorker
   include Sidekiq::Worker
 

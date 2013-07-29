@@ -127,15 +127,15 @@ class AudioFile < ActiveRecord::Base
 
   def copy_to_item_storage
     # refresh storage related
-    asc = self.storage_configuration(true)
-    isc = item(true).storage
-    # logger.debug "copy_to_item_storage: storage(#{asc.inspect}) == item.storage(#{isc.inspect})"
-    return false if (!asc || (asc == isc))
+    audio_file_storage = self.storage_configuration(true)
+    item_storage = item(true).storage
+    # logger.debug "copy_to_item_storage: storage(#{audio_file_storage.inspect}) == item.storage(#{item_storage.inspect})"
+    return false if (!audio_file_storage || (audio_file_storage == item_storage))
 
     orig = destination
-    dest = destination(storage: isc)
-    # logger.debug "copy_to_item_storage: create task: orig: #{orig}, dest: #{dest}, stor: #{isc.inspect}"
-    create_copy_task(orig, dest, isc)
+    dest = destination(storage: item_storage)
+    # logger.debug "copy_to_item_storage: create task: orig: #{orig}, dest: #{dest}, stor: #{item_storage.inspect}"
+    create_copy_task(orig, dest, item_storage)
     return true
   end
 
@@ -144,10 +144,9 @@ class AudioFile < ActiveRecord::Base
     if task = tasks.incomplete.copy.where(identifier: dest).last
       logger.debug "copy task #{task.id} already exists for audio_file #{self.id}"
     else
-      task = Tasks::CopyTask.new(extras: {
+      task = Tasks::CopyTask.new(storage_id: stor.id, extras: {
         original:    orig,
-        destination: dest,
-        storage_id:  stor.id
+        destination: dest
       })
       self.tasks << task
     end
@@ -169,18 +168,18 @@ class AudioFile < ActiveRecord::Base
     end
   end
 
-  # def transcode_audio
-  #   if storage.automatic_transcode?
-  #     # TODO: start task to detect transcode (scheduled, recurring)
-  #     urls = file.class.version_formats.keys.inject do |h, k|
-  #       h[k] = { url: file.send(k), detected_at: nil }
-  #       h
-  #     end
-  #     self << Tasks::DetectDerivativesTask.new(identifier: 'detect_derivatives', extras: { urls: urls })
-  #   else
-  #     self << Tasks::TranscodeTask.new(identifier: 'transcode')
-  #   end
-  # end
+  def transcode_audio
+    if storage.automatic_transcode?
+      # TODO: start task to detect transcode (scheduled, recurring)
+      urls = file.class.version_formats.keys.inject do |h, k|
+        h[k] = { url: file.send(k), detected_at: nil }
+        h
+      end
+      self << Tasks::DetectDerivativesTask.new(identifier: 'detect_derivatives', extras: { urls: urls })
+    else
+      self << Tasks::TranscodeTask.new(identifier: 'transcode')
+    end
+  end
 
   def transcript_array
     array = timed_transcript_array
@@ -207,48 +206,39 @@ class AudioFile < ActiveRecord::Base
   end
 
   def process_transcript(json)
-    return if json.blank?
+    return false if json.blank?
 
     identifier = Digest::MD5.hexdigest(json)
 
     if trans = transcripts.where(identifier: identifier).first
       logger.debug "transcript #{trans.id} already exists for this json: #{json[0,50]}"
-    else
-      trans_json = JSON.parse(json) if json.is_a?(String)
-      trans = transcripts.build(language: 'en-US', identifier: identifier, start_time: 0, end_time: 0)
-      sum = 0.0
-      count = 0.0
-      trans_json.each do |row|
-        tt = trans.timed_texts.build({
-          start_time: row['start_time'],
-          end_time:   row['end_time'],
-          confidence: row['confidence'],
-          text:       row['text']
-        })
-        trans.end_time = tt.end_time if tt.end_time > trans.end_time
-        trans.start_time = tt.start_time if tt.start_time < trans.start_time
-        sum = sum + tt.confidence.to_f
-        count = count + 1.0
-      end
-      trans.confidence = sum / count if count > 0
-      trans.save!
-
-      # delete trans which cover less time
-      partials_to_delete = transcripts.where("language = 'en-US' AND end_time < ?", trans.end_time)
-      partials_to_delete.each{|t| t.destroy}
+      return false
     end
-    trans
-  end
 
-  def set_confidence
+    trans_json = JSON.parse(json) if json.is_a?(String)
+    trans = transcripts.build(language: 'en-US', identifier: identifier, start_time: 0, end_time: 0)
     sum = 0.0
     count = 0.0
-    self.timed_texts.each{|tt| sum = sum + tt.confidence.to_f; count = count + 1.0}
-    if count > 0 
-      average = sum / count
-      self.update_attribute(:confidence, average)
+    trans_json.each do |row|
+      tt = trans.timed_texts.build({
+        start_time: row['start_time'],
+        end_time:   row['end_time'],
+        confidence: row['confidence'],
+        text:       row['text']
+      })
+      trans.end_time = tt.end_time if tt.end_time > trans.end_time
+      trans.start_time = tt.start_time if tt.start_time < trans.start_time
+      sum = sum + tt.confidence.to_f
+      count = count + 1.0
     end
-    average
+    trans.confidence = sum / count if count > 0
+    trans.save!
+
+    # delete trans which cover less time
+    partials_to_delete = transcripts.where("language = ? AND end_time < ?", trans.language, trans.end_time)
+    partials_to_delete.each{|t| t.destroy}
+
+    trans
   end
 
   def analyze_transcript

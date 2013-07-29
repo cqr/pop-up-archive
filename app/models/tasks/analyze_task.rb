@@ -8,7 +8,7 @@ class Tasks::AnalyzeTask < Task
     after_transition any => :complete do |task, transition|
 
       if task.owner && !Rails.env.test?
-        DownloadAnalysisWorker.perform_async(task.owner.id, task.destination)
+        DownloadAnalysisWorker.perform_async(task.id)
       end
 
     end
@@ -37,8 +37,9 @@ class Tasks::AnalyzeTask < Task
 
   def destination
     extras['destination'] || owner.try(:destination, {
-      :suffix  => '_analysis.json',
-      :options => {:metadata=>{'x-archive-meta-mediatype'=>'data'}}
+      storage: storage,
+      suffix:  '_analysis.json',
+      options: { metadata: {'x-archive-meta-mediatype'=>'data' } }
     })
   end
 

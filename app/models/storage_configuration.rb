@@ -13,6 +13,7 @@ class StorageConfiguration < ActiveRecord::Base
   end
 
   def credentials
+    options = nil
     abbr = abbr_for_provider
     if key && secret && provider && abbr
       options = {
@@ -20,7 +21,9 @@ class StorageConfiguration < ActiveRecord::Base
         "#{abbr}_access_key_id".to_sym => key,
         "#{abbr}_secret_access_key".to_sym => secret
       }
+      options[:path_style] = true if provider.downcase == 'aws'
     end
+    options
   end
 
   def abbr_for_provider
@@ -40,6 +43,15 @@ class StorageConfiguration < ActiveRecord::Base
     case provider.downcase
     when 'aws' then true
     when 'internetarchive' then false
+    else false
+    end
+  end
+
+  def automatic_transcode?
+    # currently using aws for this
+    case provider.downcase
+    when 'aws' then false
+    when 'internetarchive' then true
     else false
     end
   end
