@@ -17,3 +17,4 @@ pickle-email-*.html
 .DS_Store
 config/env_vars
 db/seed/*
+bin
