@@ -64,16 +64,24 @@ class Item < ActiveRecord::Base
       indexes :id, index: :not_analyzed
       indexes :is_public, index: :not_analyzed
       indexes :collection_id, index: :not_analyzed
-      indexes :date_created,      type: 'date',   include_in_all: false
-      indexes :date_broadcast,    type: 'date',   include_in_all: false
-      indexes :created_at,        type: 'date',   include_in_all: false, index_name:"date_added"
-      indexes :description,       type: 'string'
-      indexes :identifier,        type: 'string',  boost: 2.0
-      indexes :title,             type: 'string',  boost: 2.0
-      indexes :tags,              type: 'string',  index_name: "tag",    index: "not_analyzed"
-      indexes :contributors,      type: 'string',  index_name: "contributor"
-      indexes :physical_location, type: 'string'
-      indexes :transcription,     type: 'string'
+      indexes :date_created,          type: 'date',   include_in_all: false
+      indexes :date_broadcast,        type: 'date',   include_in_all: false
+      indexes :created_at,            type: 'date',   include_in_all: false, index_name:"date_added"
+      indexes :description,           type: 'string'
+      indexes :identifier,            type: 'string',  boost: 2.0
+      indexes :title,                 type: 'string',  boost: 2.0
+      indexes :tags,                  type: 'string',  index_name: "tag",    index: "not_analyzed"
+      indexes :contributors,          type: 'string',  index_name: "contributor"
+      indexes :physical_location,     type: 'string'
+      indexes :transcription,         type: 'string'
+
+      indexes :transcripts do
+        indexes :audio_file_id, type: 'long', index: "not_analyzed"
+        indexes :start_time, type: 'long', index: "not_analyzed"
+        indexes :confidence, type: 'float', index: 'not_analyzed'
+        indexes :transcripts, type: 'string', store: true
+      end
+      
       indexes :duration,          type: 'long',    include_in_all: false
       indexes :location do
         indexes :name
@@ -108,6 +116,7 @@ class Item < ActiveRecord::Base
 
   has_many   :instances, dependent: :destroy
   has_many   :audio_files, dependent: :destroy
+  has_many   :transcripts, through: :audio_files
 
   has_many   :contributions, dependent: :destroy
   has_many   :contributors, through: :contributions, source: :person
@@ -221,7 +230,7 @@ class Item < ActiveRecord::Base
   end
 
   def transcription
-    transcript_text || read_attribute(:transcription)
+    transcript_text || super
   end
 
   def transcript_text
@@ -231,10 +240,11 @@ class Item < ActiveRecord::Base
   def to_indexed_json(params={})
     as_json(params.reverse_merge(DEFAULT_INDEX_PARAMS)).tap do |json|
       ([:contributors] + STANDARD_ROLES.collect{|r| r.pluralize.to_sym}).each do |assoc|
-        json[assoc] = send(assoc).map{|c| c.as_json } 
+        json[assoc]      = send(assoc).map{|c| c.as_json } 
       end
-      json[:tags]     = tags_for_index
-      json[:location] = geolocation.to_indexed_json if geolocation.present?
+      json[:tags]        = tags_for_index
+      json[:location]    = geolocation.to_indexed_json if geolocation.present?
+      json[:transcripts] = transcripts_for_index
     end.to_json
   end
 
@@ -255,14 +265,17 @@ class Item < ActiveRecord::Base
   private
 
   def tags_for_index
-    tfi = tags.dup
-    tags.each do |tag|
-      parts = tag.split('/')
-      1.upto(parts.size-1) do |number|
-        tfi.push(parts[0...number].join('/'))
+    tags.dup.tap do |tfi|
+      tags.each do |tag|
+        parts = tag.split('/')
+        1.upto(parts.size-1) do |number|
+          tfi.push(parts[0...number].join('/'))
+        end
       end
     end
-    tfi
   end
 
+  def transcripts_for_index
+    transcripts.map(&:timed_texts).flatten.map {|text| text.as_indexed_json }
+  end
 end
