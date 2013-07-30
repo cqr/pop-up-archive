@@ -34,7 +34,7 @@ ul.pager
 
       .media-body
         a.pull-left ng-click="item.play()"
-          i.play-overlay.icon-play 
+          i.play-overlay.icon-play ng-show="item.audioFiles.length > 0"
           img.media-object src="#{asset_path('minimark.png')}"
 				.media
 					h4.media-heading ng-show="item.getTitle()"

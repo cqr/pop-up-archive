@@ -1,2 +1,3 @@
 object timed_text
-attributes :id, :text, :start_time, :end_time, :confidence
+
+partial 'api/v1/timed_texts/_timed_text', object: timed_text

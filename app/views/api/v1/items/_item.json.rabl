@@ -25,5 +25,7 @@ child :contributions do |c|
 end
 
 node :highlights do |i|
-  {transcripts: i.highlighted_transcripts}
+  {}.tap do |o|
+    o[:transcripts] = i.highlighted_transcripts if i.respond_to? :highlighted_transcripts
+  end
 end

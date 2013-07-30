@@ -1,12 +1,11 @@
 angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.models'])
-.factory('Item', ['Model', '$http', '$q', 'Contribution', 'Person', 'AudioFile', function (Model, $http, $q, Contribution, Person, AudioFile) {
+.factory('Item', ['Model', '$http', '$q', 'Contribution', 'Person', 'AudioFile', 'Player', function (Model, $http, $q, Contribution, Person, AudioFile, Player) {
 
   var attrAccessible = "dateBroadcast dateCreated datePeg description digitalFormat digitalLocation episodeTitle identifier musicSoundUsed notes physicalFormat physicalLocation rights seriesTitle tags title transcription adoptToCollection tagList text".split(' ');
 
   var Item = Model({url:'/api/collections/{{collectionId}}/items/{{id}}', name: 'item', only: attrAccessible});
 
   Item.beforeRequest(function(data, resource) {
-    // console.log('beforeRequest: data', data);
 
     var dataList = [];
     if (angular.isArray(data)) {
@@ -19,7 +18,6 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
 
       value.tags = [];
       angular.forEach((value.tag_list || []), function (v,k) {
-        // console.log('v, k: ', v, k);
         value.tags.push(v['text']);
       });
       delete value.tag_list;
@@ -34,11 +32,9 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
   });
 
   Item.beforeResponse(function(data, resource) {
-    // console.log('beforeResponse: data', data);
 
     data.tagList = [];
     angular.forEach((data.tags || []), function (v,k) {
-      // console.log('v, k: ', v, k);
       data.tagList.push({id:v, text:v});
     });
 
@@ -53,7 +49,6 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
     var self = this;
     self.tags = [];
     angular.forEach((self.tagList || []), function (v,k) {
-      // console.log('v, k: ', v, k);
       self.tags.push(v['text']);
     });
   };
@@ -97,12 +92,10 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
 
   Item.prototype.contributors = function(role) {
     var result = [];
-    // console.log('contributions', this.contributions, this);
     angular.forEach(this.contributions, function (contribution) {
       if (contribution.role == role) {
         result.push(contribution.person.name);
       } else {
-        // console.log('no match', contribution.role, role);
       }
     });
     return result;
@@ -113,8 +106,6 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
     var item = this;
     var audioFile = new AudioFile({itemId: item.id});
     audioFile.create().then(function(){
-      // create relationships
-      // audioFile.item = item;
       audioFile.filename = audioFile.cleanFileName(file.name);
       item.audioFiles = item.audioFiles || [];
       item.audioFiles.push(audioFile);
@@ -181,6 +172,10 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
       }
     });
   }
+
+  Item.prototype.play = function () {
+    Player.play(this.audioFiles[0].url);
+  };
 
   Item.prototype.standardRoles = ['producer', 'interviewer', 'interviewee', 'creator', 'host'];
 
