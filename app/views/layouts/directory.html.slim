@@ -28,6 +28,8 @@ html lang='en' ng-app='Directory' ng-controller='DirectoryCtrl'
         | show
         i.icon-angle-down
       .vertical-scrubber
+      .vertical-text
+        .now-playing {{player.nowPlaying()}}
       .player-controls
         button.player-button ng-show="player.paused()" ng-click="player.play()"
           i.icon-play

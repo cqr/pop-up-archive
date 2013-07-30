@@ -26,7 +26,7 @@ class Api::V1::SearchesController < Api::V1::BaseController
     end
 
     @search.results.each do |result|
-      if result.highlight[:transcript].present?
+      if result.highlight.present? && result.highlight[:transcript].present?
         map = Hash[result.highlight[:transcript].map{|t| [t.gsub(/<\/?em>/, ''), t]}]
       else
         map = {}

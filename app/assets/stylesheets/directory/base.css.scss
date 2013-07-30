@@ -330,6 +330,31 @@ $persistent-player-scrollpading: 15px;
     }
   }
 
+  .vertical-text {
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    right: 10px;
+    bottom: 105px;
+    width: 70px;
+    overflow: hidden;
+
+    & > * {    
+      transform: rotate(-90deg);
+      -moz-transform: rotate(-90deg);
+      -webkit-transform: rotate(-90deg);
+      position: absolute;
+      bottom: 30px;
+    }
+
+    pointer-events: none;
+  }
+
+  .now-playing {
+    text-align: center;
+    width: 100%;
+  }
+
   .player-controls {
     position: absolute;
     bottom: 10px;
@@ -564,7 +589,8 @@ h5.result-count {
 .file-transcript {
   padding: 0px;
   display: block;
-  overflow: auto;
+  overflow: hidden;
+  clear: right;
   
   input {
     width: 100%;
@@ -634,6 +660,7 @@ h5.result-count {
       border-radius: 8px;
       color: white;
       margin-left: 3px;
+      text-shadow: none;
     }
 
     h1 {
@@ -1168,4 +1195,23 @@ form.with-tags {
 
 .play-overlay:hover {
   opacity: 0.99;
+}
+
+.well {
+  position: relative;
+}
+
+.transcript-download {
+  position: absolute;
+  margin-top: -30px;
+  margin-right: 20px;
+  right: 0;
+
+  .btn {
+    font-size: 10px;
+    background: #ddd !important;
+    color: #333 !important;
+    padding: 3px 9px;
+    font-weight: 900;
+  }
 }

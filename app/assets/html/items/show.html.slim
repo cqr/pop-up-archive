@@ -2,14 +2,13 @@
   .span12
     p
       a ng-href='/collections' Pop Up Archive
-      |  > 
+      |  &raquo;  
       a ng-href="/collections/{{collection.id}}" {{collection.title}}
 
     
 .row-fluid.item-detail
   .span12
     .well
-
       button.btn.pull-right ng-show="item.audioFiles[0].transcript" ng-click="fulltranscript = !fulltranscript"
         |Expand  
         i ng-class="{true: 'icon-resize-full', false: 'icon-resize-small'}[!fulltranscript]"
@@ -33,6 +32,10 @@
           .scrubber
             .bar ng-show="isLoaded()" ng-style="{width:player.time*100/player.duration+'%'}"
             .timecodes ng-show="isLoaded() && player.duration" {{player.time | timeCode }} / {{player.duration | timeCode }}
+        .transcript-download ng-show="audioFile.transcript.length"
+          a.btn ng-href="/api/items/{{item.id}}/audio_files/{{audioFile.id}}/transcript.xml" title="Download Transcript XML" target="_self" download="{{audioFile.filename}}.transcript.xml" &lt;/&gt;
+          |  
+          a.btn ng-href="/api/items/{{item.id}}/audio_files/{{audioFile.id}}/transcript.json" title="Download Transcript JSON" download="{{audioFile.filename}}.transcript.json" target="_self" { }
         .transcript ng-class="{true: 'collapsed', false: 'full'}[!fulltranscript]" transcript-text="audioFile.transcript" transcript-editable="currentUser.canEdit(item)"
       .alert ng-show="currentUser.canEdit(item) && item.audioFiles.length > 0 && item.audioFiles[0].transcript == 0" Your transcript is processing. The length of your audio determines how long it will take to transcribe.
 .row-fluid.item-detail.metadata

@@ -31,6 +31,8 @@ PopUpArchive::Application.routes.draw do
           get 'get_delete_signature', action: 'delete_signature'
           get 'get_all_signatures',   action: 'all_signatures'
           get 'upload_finished',      action: 'upload_finished'
+
+          resource :transcript
         end
         resources :entities
         resources :contributions

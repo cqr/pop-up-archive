@@ -1,0 +1,11 @@
+<tt xmlns="http://www.w3.org/ns/ttml" xml:lang="<%= transcript.language %>">
+  <body>
+    <div>
+      <%- transcript.timed_texts.each do |tt| %>
+        <p begin="<%= format_time(tt.start_time) %>" end="<%= format_time(tt.end_time) %>">
+          <%= tt.text %>
+        </p>
+      <%- end %>
+    </div>
+  </body>
+</tt>

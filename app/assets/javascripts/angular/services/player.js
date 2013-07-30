@@ -10,12 +10,12 @@
 
   angular.module('ngPlayer', [])
   .factory('Player', ['$timeout', function ($timeout) {
-    var nowPlayingItem, playing = false;
+    var nowPlayingText, nowPlayingItem, playing = false;
     var audioElement = angular.element('<audio></audio>')[0];
     var Player = {};
 
     function nowPlaying() {
-      return nowPlayingItem;
+      return nowPlayingText;
     }
 
     function loadFile(file) {
@@ -25,8 +25,14 @@
       }
     }
 
-    function play(file) {
+    function filename() {
+      var parts = nowPlayingItem.split('/');
+      return parts[parts.length-1].split('?', 2)[0];
+    }
+
+    function play(file, text) {
       loadFile(file);
+      nowPlayingText = text || filename();
       audioElement.play();
       scheduleUpdate();
     }
