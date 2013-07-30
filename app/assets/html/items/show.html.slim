@@ -32,11 +32,13 @@
           .scrubber
             .bar ng-show="isLoaded()" ng-style="{width:player.time*100/player.duration+'%'}"
             .timecodes ng-show="isLoaded() && player.duration" {{player.time | timeCode }} / {{player.duration | timeCode }}
-        .transcript-download ng-show="audioFile.transcript.length"
+        .transcript-options ng-show="audioFile.transcript.length"
           a.btn ng-href="/api/items/{{item.id}}/audio_files/{{audioFile.id}}/transcript.xml" title="Download Transcript XML" target="_self" download="{{audioFile.filename}}.transcript.xml" &lt;/&gt;
           |  
           a.btn ng-href="/api/items/{{item.id}}/audio_files/{{audioFile.id}}/transcript.json" title="Download Transcript JSON" download="{{audioFile.filename}}.transcript.json" target="_self" { }
-        .transcript ng-class="{true: 'collapsed', false: 'full'}[!fulltranscript]" transcript-text="audioFile.transcript" transcript-editable="currentUser.canEdit(item)"
+          input.search-query ng-class="{extended:!!transcriptFilter}" ng-model="transcriptFilter" placeholder="Search"
+          a.clear-filter.icon-remove-sign ng-show="transcriptFilter.length > 0" ng-click="transcriptFilter=''"
+        .transcript ng-class="{true: 'collapsed', false: 'full'}[!fulltranscript]" transcript-text="audioFile.transcript | highlightMatches:transcriptFilter" transcript-editable="currentUser.canEdit(item)" current-time="player.time"
       .alert ng-show="currentUser.canEdit(item) && item.audioFiles.length > 0 && item.audioFiles[0].transcript == 0" Your transcript is processing. The length of your audio determines how long it will take to transcribe.
 .row-fluid.item-detail.metadata
   .span6

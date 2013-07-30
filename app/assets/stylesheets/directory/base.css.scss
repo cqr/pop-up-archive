@@ -1201,17 +1201,48 @@ form.with-tags {
   position: relative;
 }
 
-.transcript-download {
+.transcript-options {
   position: absolute;
   margin-top: -30px;
-  margin-right: 20px;
+  margin-right: 95px;
   right: 0;
 
   .btn {
     font-size: 10px;
     background: #ddd !important;
     color: #333 !important;
-    padding: 3px 9px;
+    padding: 2px 9px;
     font-weight: 900;
+  }
+
+  .clear-filter {
+    position: absolute;
+    z-index: 10;
+    right: -76px;
+    top: 3px;
+    color: #ddd;
+    font-size: 20px;
+    &:hover {
+      text-decoration: none;
+      color: #999;
+    }
+  }
+
+  .search-query {
+    width: 40px;
+    position: absolute;
+    right: -80px;
+    font-size: 11px;
+    top: 1px;
+    border: 1px solid #ddd;
+    outline: none;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+    -moz-transition: 0.2s;
+    -o-transition: 0.2s;
+
+    &:active, &:focus, &.extended {
+      width: 140px;
+    }
   }
 }

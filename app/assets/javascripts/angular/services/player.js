@@ -18,6 +18,10 @@
       return nowPlayingText;
     }
 
+    function nowPlayingUrl() {
+      return nowPlayingItem;
+    }
+
     function loadFile(file) {
       nowPlayingItem = (file || nowPlayingItem);
       if (audioElement.src != nowPlayingItem) {
@@ -91,6 +95,7 @@
     Player.play = play;
     Player.stop = stop;
     Player.seekTo = seekTo;
+    Player.nowPlayingUrl = nowPlayingUrl;
     
     return Player;
   }])
@@ -181,6 +186,12 @@
     return {
       restrict: 'C',
       replace: true,
+      scope: {
+        transcript: "=transcriptText",
+        canEdit: "=transcriptEditable",
+        transcriptTimestamps: "@",
+        currentTime: "="
+      },
       template: '<div class="file-transcript">' +
                   '<table class="table">' +
                     '<tr ng-class="{current: transcriptStart==text.startTime}" ng-repeat="text in transcript">' +
@@ -205,10 +216,15 @@
         var lastSecond = -1;
 
         scope.transcriptStart = 0;
-        scope.transcript = $parse(attrs.transcriptText)(scope);
         scope.transcriptRows = {};
-        scope.canEdit = $parse(attrs.transcriptEditable)(scope);
-        scope.transcriptTimestamps = attrs.transcriptTimestamps || 'range';
+        scope.transcriptTimestamps = scope.transcriptTimestamps || 'range';
+
+        scope.$watch('transcript', function (is, was) {
+          angular.copy({}, scope.transcriptRows);
+          angular.forEach(is, function(row, index) {
+            scope.transcriptRows[row.startTime] = index;
+          });
+        });
 
         if (scope.transcriptTimestamps == 'range') {
           scope.showRange = true;
@@ -234,10 +250,6 @@
           return dd;
         }
 
-        angular.forEach(scope.transcript, function(row, index) {
-          scope.transcriptRows[row.startTime] = index;
-        });
-
         scope.seekTo = function(time) {
           scope.$emit('transcriptSeek', time);
         }
@@ -259,13 +271,12 @@
         };
 
         if (scope.transcript && scope.transcript.length > 0) {
-          scope.$watch('player.time', function (time) {
+          scope.$watch('currentTime', function (time) {
             var second = parseInt(time, 10);
             var height = angular.element(".file-transcript table tr")[0].scrollHeight;
             if (second != lastSecond) {
               if (second in scope.transcriptRows) {
                 var index = scope.transcriptRows[second];
-
                 if (index != undefined) {
                   el[0].scrollTop = Math.max((index - 1), 0) * height;
                   scope.transcriptStart = second;
