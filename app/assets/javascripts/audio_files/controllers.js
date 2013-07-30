@@ -13,7 +13,7 @@ angular.module("Directory.audioFiles.controllers", ['ngPlayer'])
   }
 
   $scope.isLoaded = function () {
-    return Player.nowPlaying() == $scope.fileUrl;
+    return Player.nowPlayingUrl() == $scope.fileUrl;
   }
 
   $scope.$on('transcriptSeek', function(event, time) {
