@@ -59,8 +59,8 @@ describe Item do
     collection = FactoryGirl.create :collection_private
     item.collection_id = collection.id
     item.collection = collection
-    # item.handle_collection_change
-    # item.is_public.should == false
+    item.save!
+    item.is_public.should == false
   end
 
 end

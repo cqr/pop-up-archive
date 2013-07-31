@@ -12,6 +12,19 @@ class Users::InvitationsController < Devise::InvitationsController
     new_user_invitation_path
   end
 
+  # POST /resource/invitation
+  def create
+    self.resource = resource_class.invite!(invite_params, current_inviter)
+
+    if resource.errors.empty?
+      set_flash_message :notice, :send_instructions, :email => self.resource.email
+      respond_with resource, :location => after_invite_path_for(resource)
+    else
+      respond_with_navigational(resource) { render :new }
+    end
+  end
+
+
   # GET /resource/invitation/accept?invitation_token=abcdef
   def edit
     if params[:invitation_token] && self.resource = resource_class.to_adapter.find_first( :invitation_token => params[:invitation_token] )
@@ -25,7 +38,7 @@ class Users::InvitationsController < Devise::InvitationsController
  
   # PUT /resource/invitation
   def update
-    self.resource = resource_class.accept_invitation!(params[resource_name])
+    self.resource = resource_class.accept_invitation!(update_resource_params)
  
     if resource.errors.empty?
       session[:invitation_token] = nil
@@ -37,4 +50,12 @@ class Users::InvitationsController < Devise::InvitationsController
     end
   end
 
+  def invite_params
+    params.require(resource_name).permit(:email)
+  end
+
+  def update_resource_params
+    params.require(resource_name).permit(:name, :password, :password_confirmation, :invitation_token)
+  end
+  
 end

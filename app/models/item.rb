@@ -26,7 +26,6 @@ class Item < ActiveRecord::Base
     collection_is = Collection.find(self.collection_id)
 
     # if this is the same storage bucket and provider, leave it be
-    # logger.debug "was == is: #{collection_was.default_storage.inspect} == #{collection_is.default_storage.inspect}"
     return true if (collection_was.default_storage == collection_is.default_storage)
 
     # ----------
@@ -34,15 +33,13 @@ class Item < ActiveRecord::Base
     # ----------
 
     # set the item visibility to that of the new collection
-    self.update_attribute(:is_public, collection_is.items_visible_by_default)
+    self.is_public = collection_is.items_visible_by_default
 
     # move each audio file to new collection storage
-    # logger.debug "check each af"
     self.audio_files.each do |af|
       if af.storage_configuration
 
         # af already stored in the right place? remove association to af specific storage
-        # logger.debug "af #{af.id} has storage: #{af.storage_configuration.inspect}"
         if af.storage_configuration == collection_is.default_storage
           af.storage_configuration = nil
           af.update_attribute(:storage_id, nil)
