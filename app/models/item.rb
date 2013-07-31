@@ -129,6 +129,17 @@ class Item < ActiveRecord::Base
 
   default_scope includes(:contributors, :interviewees, :interviewers, :hosts, :creators, :producers, :geolocation)
 
+  scope :publicly_visible, where(is_public: true)
+
+  def self.visible_to_user(user)
+    if user.present?
+      grants = CollectionGrant.arel_table
+      joins(collection: :collection_grants).where(grants[:user_id].eq(user.id).or(arel_table[:is_public].eq(true)))
+    else
+      publicly_visible
+    end
+  end
+
   serialize :extra, HstoreCoder
 
   delegate :title, to: :collection, prefix: true

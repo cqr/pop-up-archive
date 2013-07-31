@@ -1224,11 +1224,13 @@ form.with-tags {
   right: 0;
 
   .btn {
-    font-size: 10px;
+    font-size: 12px;
     background: #ddd !important;
     color: #333 !important;
-    padding: 2px 9px;
+    padding: 5px 7px;
     font-weight: 900;
+    margin-top: 3px;
+    display: inline-block;
   }
 
   .clear-filter {
@@ -1247,7 +1249,7 @@ form.with-tags {
   .search-query {
     width: 40px;
     position: absolute;
-    right: -80px;
+    right: -75px;
     font-size: 11px;
     top: 1px;
     border: 1px solid #ddd;
@@ -1258,7 +1260,7 @@ form.with-tags {
     -o-transition: 0.2s;
 
     &:active, &:focus, &.extended {
-      width: 140px;
+      width: 150px;
     }
   }
 }
