@@ -1,4 +1,4 @@
-angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.user', 'Directory.items.models', 'Directory.entities.models', 'Directory.people.models'])
+angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.user', 'Directory.items.models', 'Directory.entities.models', 'Directory.people.models', 'prxSearch'])
 .controller('ItemsCtrl', [ '$scope', 'Item', 'Loader', 'Me', function ItemsCtrl($scope, Item, Loader, Me) {
   Me.authenticated(function (data) {
     if ($scope.collectionId) {
@@ -12,7 +12,7 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
   }
 
 }])
-.controller('ItemCtrl', ['$scope', 'Item', 'Loader', 'Me', '$routeParams', 'Collection', 'Entity', '$location', function ItemCtrl($scope, Item, Loader, Me, $routeParams, Collection, Entity, $location) {
+.controller('ItemCtrl', ['$scope', 'Item', 'Loader', 'Me', '$routeParams', 'Collection', 'Entity', '$location', 'SearchResults', function ItemCtrl($scope, Item, Loader, Me, $routeParams, Collection, Entity, $location, SearchResults) {
 
   $scope.canEdit = false;
 
@@ -25,6 +25,11 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
       });
     });
   }
+
+  SearchResults.setCurrentIndex({id:$routeParams.id});
+  $scope.nextItem = SearchResults.getItem(SearchResults.currentIndex + 1);
+  $scope.previousItem = SearchResults.getItem(SearchResults.currentIndex - 1);
+  $scope.searchResults = SearchResults;
 
   $scope.deleteEntity = function(entity) {
     var e = new Entity(entity);

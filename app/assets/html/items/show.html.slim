@@ -1,13 +1,22 @@
-.row-fluid
+.row-fluid ng-hide="nextItem || previousItem"
   .span12
     p
       a ng-href='/collections' Pop Up Archive
       |  &raquo;  
       a ng-href="/collections/{{collection.id}}" {{collection.title}}
-
-    
+ul.pager ng-show="nextItem || previousItem || searchResults.query"
+  li.previous ng-class="{disabled: !previousItem}"
+    a ng-href='{{previousItem.link()}}' &larr; Previous
+  li.centered
+    a ng-href='{{searchResults.link()}}' 
+      | Back to Search Results  
+      span ng-show="searchResults.query" for "{{searchResults.query}}"  
+      i.icon-level-up
+  li.next ng-class="{disabled: !nextItem}"
+    a ng-href="{{nextItem.link()}}" Next &rarr;    
 .row-fluid.item-detail
   .span12
+
     .well
       button.btn.pull-right ng-show="item.audioFiles[0].transcript" ng-click="fulltranscript = !fulltranscript"
         |Expand  

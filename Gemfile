@@ -74,7 +74,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'bootstrap-sass'
   gem 'angularjs-rails-resource'
-  gem 'font-awesome-sass-rails'
+  gem 'font-awesome-sass-rails', github: 'pduersteler/font-awesome-sass-rails'
 end
 
 group :development do
