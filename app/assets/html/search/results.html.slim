@@ -31,15 +31,21 @@ ul.pager
         
       
     .media.search-result ng-repeat="item in search.results | toItems"
-
       .media-body
-        a.pull-left ng-click="item.play()"
-          i.play-overlay.icon-play ng-show="item.audioFiles.length > 0"
+        a.pull-left ng-click="item.play()" ng-show="item.paused()"
+          i.play-overlay.icon-play
+          img.media-object src="#{asset_path('minimark.png')}"
+        a.pull-left ng-click="item.pause()" ng-show="item.playing()"
+          i.play-overlay.icon-pause
+          img.media-object src="#{asset_path('minimark.png')}"
+        a.pull-left ng-hide="item.playable()" ng-href="{{item.link()}}"
           img.media-object src="#{asset_path('minimark.png')}"
 				.media
 					h4.media-heading ng-show="item.getTitle()"
 						a ng-href="{{item.link()}}" {{item.getTitle()}}
-					.transcript transcript-text="item.highlights.transcripts" transcript-editable="currentUser.canEdit(item)" transcript-timestamps="start"
+          p ng-show="item.getDescription()"
+            | {{item.getDescription()}}
+          .transcript transcript-text="item.highlights.transcripts" transcript-editable="currentUser.canEdit(item)" transcript-timestamps="start"
     .result-count-footer        
       ul.pager ng-show="search.hasMoreResults() || search.page > 1"
         li.previous ng-class="{disabled: search.page <= 1}"
