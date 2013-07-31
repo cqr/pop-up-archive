@@ -16,14 +16,14 @@ class Item < ActiveRecord::Base
   def handle_collection_change
     # do nothing if item has its own storage config defined
     # this means that it has already been explicitly set to this storage. leave it be
-    return true if (self.storage_configuration)
+    return true if (storage_configuration)
 
     # if there is no change in collection id, no need to change
-    return true unless (self.collection_id_was && self.collection_id)
+    return true unless (collection_id_was && collection_id)
 
     # get a handle on current and past collections
-    collection_was = Collection.find(self.collection_id_was)
-    collection_is = Collection.find(self.collection_id)
+    collection_was = Collection.find(collection_id_was)
+    collection_is  = Collection.find(collection_id)
 
     # if this is the same storage bucket and provider, leave it be
     return true if (collection_was.default_storage == collection_is.default_storage)
@@ -52,8 +52,7 @@ class Item < ActiveRecord::Base
         # no storage defined at the audio file level; af should be at collection_was storage
         # updating af triggers af.process_update_file -> copy_to_item_storage, so don't explictly call it here
         # logger.debug "af #{af.id} has no storage, set to was: #{collection_was.default_storage.inspect}"
-        af.storage_configuration = collection_was.default_storage
-        af.update_attribute(:storage_id, collection_was.default_storage_id)
+        af.update_attributes({storage_configuration: collection_was.default_storage, storage_id: collection_was.default_storage_id}, without_protection: true)
       end
     end
     true
