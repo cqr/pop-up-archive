@@ -16,9 +16,6 @@ angular.module("Directory.searches.filters", [])
           ary[ary.length-1].text = object.text.replace(regex, "<em>$1</em>");
         }
       });
-      if (ary.length == 0) {
-        return obj;
-      }
       return ary;
     } else  {
       return obj;

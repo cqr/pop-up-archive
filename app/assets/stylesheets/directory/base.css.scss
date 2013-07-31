@@ -272,6 +272,19 @@ button.pua-pill {
     background: rgb(242, 239, 239);
     position: relative;
 
+    &:after {
+      display: block;
+      content: "";
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: -15px;
+      left: -15px;
+      margin: 0px;
+      border: 15px solid #FFF;
+      border-radius: 60px;
+    }
+
     .timecodes {
       margin: 0 auto;
       position: relative;
@@ -302,7 +315,7 @@ $persistent-player-scrollpading: 15px;
   padding: 10px;
   background: #fff;
   overflow:hidden;
-  right: $persistent-player-scrollpading;
+  left: $persistent-player-scrollpading;
   bottom: 10px;
   margin-right:0;
   border-radius: 0;
@@ -577,12 +590,6 @@ h5.result-count {
     background-color: transparent;
   }
 
-  em {
-    background-color: #FFFBCC;
-    font-style: normal;
-    padding: 3px;
-  }
-
   overflow: hidden;
 }
 
@@ -614,6 +621,11 @@ h5.result-count {
   td[ng-show="showStart"] {
     font-weight: 300;
     font-style: italic;
+  }
+
+  em {
+    background-color: #85D0F1;
+    font-style: normal
   }
 
   table {
@@ -1191,6 +1203,10 @@ form.with-tags {
   -o-transition: 0.2s;
   transition: 0.2s;
   text-decoration: none;
+
+  &.icon-pause {
+    margin-left: 16px;
+  }
 }
 
 .play-overlay:hover {

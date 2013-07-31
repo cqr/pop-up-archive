@@ -194,7 +194,7 @@
       },
       template: '<div class="file-transcript">' +
                   '<table class="table">' +
-                    '<tr ng-class="{current: transcriptStart==text.startTime}" ng-repeat="text in transcript">' +
+                    '<tr ng-repeat="text in transcript" ng-class="{current: transcriptStart==text.startTime}" >' +
                       '<td style="width: 8px; text-align:left;"><a ng-click="seekTo(text.startTime)"><i class="icon-play-circle"></i></a></td>' +
                       '<td style="width: 16px; text-align:right" ng-show="showRange">{{text.startTime}}</td>' +
                       '<td style="width: 8px;  text-align:center" ng-show="showRange">&ndash;</td>' +

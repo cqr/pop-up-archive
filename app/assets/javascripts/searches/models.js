@@ -134,13 +134,19 @@ angular.module('Directory.searches.models', ['RailsModel', 'Directory.items.mode
   return Facet;
 }])
 .filter('toItems', ['Item', function (Item) {
+  var items = [];
   return function (data, options) {
+    items.length = 0;
     if (data) {
       angular.forEach(data, function (result) {
-        angular.copy((new Item(result)), result);
+        if (typeof result.$delete !== 'undefined') {
+          items.push(result);
+        } else {
+          items.push(angular.copy(new Item(result), result));
+        }
       });
     }
-    return data;
+    return items;
   }
 }])
 .factory('Query', ['$location', function ($location) {

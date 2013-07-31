@@ -135,6 +135,18 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
     });
   }
 
+  Item.prototype.playable = function () {
+    return this.audioFiles.length > 0;
+  }
+
+  Item.prototype.paused = function () {
+    return this.playable() && !this.playing();
+  }
+
+  Item.prototype.playing = function() {
+    return this.playable() && Player.nowPlayingUrl() == this.audioFiles[0].url && !Player.paused();
+  }
+
   // update existing contributions
   Item.prototype.updateContributions = function () {
     var item = this;
@@ -176,6 +188,12 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
   Item.prototype.play = function () {
     Player.play(this.audioFiles[0].url);
   };
+
+  Item.prototype.pause = function () {
+    if (this.playing()) {
+      Player.pause();
+    }
+  }
 
   Item.prototype.standardRoles = ['producer', 'interviewer', 'interviewee', 'creator', 'host'];
 
