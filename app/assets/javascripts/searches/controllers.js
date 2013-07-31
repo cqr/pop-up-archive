@@ -21,6 +21,10 @@ angular.module('Directory.searches.controllers', ['Directory.loader', 'Directory
     fetchPage();
   });
 
+  $scope.$watch('location.search().page', function (page) {
+    fetchPage();
+  });
+
   $scope.$on("datasetChanged", function () {
     fetchPage();
   });
