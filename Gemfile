@@ -68,6 +68,8 @@ gem "acts_as_paranoid", "~>0.4.0"
 
 gem 'newrelic_rpm'
 
+gem 'feedzirra'
+
 group :assets do
   gem 'sprockets'
   gem 'sass-rails',   '~> 3.2.3'
