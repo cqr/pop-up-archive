@@ -1,4 +1,4 @@
-angular.module('Directory.searches.controllers', ['Directory.loader', 'Directory.searches.models', 'Directory.searches.filters', 'Directory.collections.models'])
+angular.module('Directory.searches.controllers', ['Directory.loader', 'Directory.searches.models', 'Directory.searches.filters', 'Directory.collections.models', 'prxSearch'])
 .controller('SearchCtrl', ['$scope', '$location', 'Query', function ($scope, $location, Query) {
   $scope.location = $location;
   $scope.$watch('location.search().query', function (search) {
@@ -13,7 +13,7 @@ angular.module('Directory.searches.controllers', ['Directory.loader', 'Directory
     $scope.query = new Query();
   }
 }])
-.controller('SearchResultsCtrl', ['$scope', 'Search', 'Loader', '$location', '$routeParams', 'Query', 'Collection', function ($scope, Search, Loader, $location, $routeParams, Query, Collection) {
+.controller('SearchResultsCtrl', ['$scope', 'Search', 'Loader', '$location', '$routeParams', 'Query', 'Collection', 'SearchResults', function ($scope, Search, Loader, $location, $routeParams, Query, Collection, SearchResults) {
   $scope.location = $location;
   
   $scope.$watch('location.search().query', function (searchquery) {
@@ -61,5 +61,9 @@ angular.module('Directory.searches.controllers', ['Directory.loader', 'Directory
     } else {
       Loader(Search.query(searchParams), $scope);
     }
+
+    $scope.$watch('search', function (search) {
+      SearchResults.setResults(search);
+    });
   }
 }]);
