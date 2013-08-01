@@ -186,7 +186,7 @@ angular.module('Directory.searches.models', ['RailsModel', 'Directory.items.mode
     } else if (angular.isString(queryString)) {
       this.queryString = queryString;
       this.updateQueryParts();
-    } else if (typeof queryString !== 'undefined') {
+    } else if (typeof queryString !== 'undefined' && queryString != null) {
       var query = Query(queryString.query);
       if (queryString.onQueryBuilt) {
         queryString.onQueryBuilt(query);
