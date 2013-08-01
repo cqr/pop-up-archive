@@ -1,28 +1,14 @@
-require 'rubygems'
-require 'spork'
+ENV["RAILS_ENV"] ||= 'test'
+require File.expand_path("../../config/environment", __FILE__)
+require "rails/application"
+require 'factory_girl'
+require 'rspec/rails'
 
-#uncomment the following line to use spork with the debugger
-#require 'spork/ext/ruby-debug'
+RSpec.configure do |config|
+  config.mock_with :rspec
+  config.use_transactional_fixtures = true
 
-Spork.prefork do
-  require "rails/application"
-
-  Spork.trap_method(Rails::Application, :reload_routes!)
-  Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
-
-  ENV["RAILS_ENV"] ||= 'test'
-  require File.expand_path("../../config/environment", __FILE__)
-  require 'rspec/rails'
-
-  RSpec.configure do |config|
-    config.mock_with :rspec
-    config.use_transactional_fixtures = true
-
-    config.include Devise::TestHelpers, type: :controller
-  end
-end
-
-Spork.each_run do
+  config.include Devise::TestHelpers, type: :controller
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f }
   FactoryGirl.reload
 end

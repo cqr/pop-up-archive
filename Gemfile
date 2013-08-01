@@ -99,7 +99,6 @@ end
 group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
-  gem 'spork-rails'
   gem 'shoulda-matchers'
 end
 
