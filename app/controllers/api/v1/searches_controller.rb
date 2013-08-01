@@ -32,8 +32,6 @@ class Api::V1::SearchesController < Api::V1::BaseController
         map = {}
       end
 
-      #logger.warn map.inspect
-
       def result.audio_files
         @_audio_files ||= []
       end
@@ -42,14 +40,14 @@ class Api::V1::SearchesController < Api::V1::BaseController
         @_highlighted_audio_files ||= []
       end
 
-      result.transcript.each do |t|
+      result.transcripts.each do |t|
         result.audio_files.push AudioFile.find(t.audio_file_id) unless result.audio_files.map(&:id).include? t.audio_file_id
       end
 
       result.audio_files.each do |af|
         af.transcript_array.each do |tl|
-          if map[tl[:text]].present?
-            tl[:text] = map[tl[:text]]
+          if map[tl['text']].present?
+            tl['text'] = map[tl['text']]
             result.highlighted_audio_files.push(af) unless result.highlighted_audio_files.include? af
           end
         end
