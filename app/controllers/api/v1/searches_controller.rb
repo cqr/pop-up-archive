@@ -46,9 +46,17 @@ class Api::V1::SearchesController < Api::V1::BaseController
 
       result.audio_files.each do |af|
         af.transcript_array.each do |tl|
+          jsoned = nil
           if map[tl['text']].present?
+            if jsoned.nil?
+              jsoned = {id: af.id, url: af.url, filename: af.filename}
+              def jsoned.transcript_array
+                @_a ||= []
+              end
+              result.highlighted_audio_files.push jsoned
+            end
             tl['text'] = map[tl['text']]
-            result.highlighted_audio_files.push(af) unless result.highlighted_audio_files.include? af
+            jsoned.transcript_array.push(tl)
           end
         end
       end

@@ -5,7 +5,6 @@
     def initialize(name, options={}, filters=[])
       @name = name
       @type = options.delete(:type)
-      Rails.logger.debug(@type)
       @options = options
       @filters = filters
     end
