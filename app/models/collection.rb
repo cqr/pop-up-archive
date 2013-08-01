@@ -24,7 +24,7 @@ class Collection < ActiveRecord::Base
   def self.visible_to_user(user)
     if user.present?
       grants = CollectionGrant.arel_table
-      joins(:collection_grants).where(grants[:user_id].eq(user.id).or(arel_table[:items_visible_by_default].eq(true)))
+      (includes(:collection_grants).where(grants[:user_id].eq(user.id).or(arel_table[:items_visible_by_default].eq(true))))
     else
       is_public
     end

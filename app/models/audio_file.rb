@@ -182,7 +182,7 @@ class AudioFile < ActiveRecord::Base
   end
 
   def transcript_array
-    @_tta ||= timed_transcript_array || JSON.parse(transcript) rescue []
+    timed_transcript_array.present? ? timed_transcript_array : (@_tta ||= JSON.parse(transcript)) rescue []
   end
 
   def transcript_text

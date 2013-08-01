@@ -36,8 +36,8 @@ class Api::V1::SearchesController < Api::V1::BaseController
         @_audio_files ||= []
       end
 
-      def result.highlighted_transcripts
-        @_highlighted_transcripts ||= []
+      def result.highlighted_audio_files
+        @_highlighted_audio_files ||= []
       end
 
       result.transcripts.each do |t|
@@ -48,7 +48,7 @@ class Api::V1::SearchesController < Api::V1::BaseController
         af.transcript_array.each do |tl|
           if map[tl[:text]].present?
             tl[:text] = map[tl[:text]]
-            result.highlighted_transcripts.push(tl)
+            result.highlighted_audio_files.push(af) unless result.highlighted_audio_files.include? af
           end
         end
       end

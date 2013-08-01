@@ -311,7 +311,7 @@ $persistent-player-scrollpading: 15px;
   position: fixed;
   z-index:2000;
   top: 0;
-  width: $persistent-player-width;
+  max-width: $persistent-player-width;
   padding: 10px;
   background: #fff;
   overflow:hidden;
@@ -321,6 +321,7 @@ $persistent-player-scrollpading: 15px;
   border-radius: 0;
   border-bottom-left-radius: $persistent-player-width / 2 + 10px;
   border-bottom-right-radius: $persistent-player-width / 2 + 10px;
+  margin-right: 1066px;
 
   transition: transform 0.5s ease-in-out, bottom 0.5s ease-in-out;
   -o-transition: -o-transform 0.5s ease-in-out, bottom 0.5s ease-in-out;
@@ -422,6 +423,13 @@ $persistent-player-scrollpading: 15px;
 //Search results partial
 .search-result {
   width: 100%;
+
+  .transcripts {
+    margin-left: 95px;
+    table {
+      margin-bottom: 0;
+    }
+  }
 }
 .media .pull-left {
   float: left;

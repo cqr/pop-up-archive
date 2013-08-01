@@ -26,6 +26,6 @@ end
 
 node :highlights do |i|
   {}.tap do |o|
-    o[:transcripts] = i.highlighted_transcripts if i.respond_to? :highlighted_transcripts
+    o[:audio_files] = partial('api/v1/audio_files/audio_file', object: i.highlighted_audio_files) if i.respond_to? :highlighted_audio_files
   end
 end

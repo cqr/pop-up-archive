@@ -143,8 +143,20 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
     return this.playable() && !this.playing();
   }
 
+  Item.prototype.loadedIntoPlayer = function () {
+    var me = false;
+    if (this.playable()) {
+      angular.forEach(this.audioFiles, function (file) {
+        if (Player.nowPlayingUrl() == file.url) {
+          me = true;
+        }
+      });
+    }
+    return me;
+  }
+
   Item.prototype.playing = function() {
-    return this.playable() && Player.nowPlayingUrl() == this.audioFiles[0].url && !Player.paused();
+    return this.loadedIntoPlayer() && !Player.paused();
   }
 
   // update existing contributions
@@ -186,7 +198,11 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
   }
 
   Item.prototype.play = function () {
-    Player.play(this.audioFiles[0].url);
+    if (!this.loadedIntoPlayer()) {
+      Player.play(this.audioFiles[0].url, this.getTitle());
+    } else {
+      Player.play();
+    }
   };
 
   Item.prototype.pause = function () {

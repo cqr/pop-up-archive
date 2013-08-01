@@ -63,6 +63,7 @@ class Item < ActiveRecord::Base
       indexes :id, index: :not_analyzed
       indexes :is_public, index: :not_analyzed
       indexes :collection_id, index: :not_analyzed
+      indexes :collection_title,      type: 'string'
       indexes :date_created,          type: 'date',   include_in_all: false
       indexes :date_broadcast,        type: 'date',   include_in_all: false
       indexes :created_at,            type: 'date',   include_in_all: false, index_name:"date_added"
@@ -78,7 +79,7 @@ class Item < ActiveRecord::Base
         indexes :audio_file_id, type: 'long', index: "not_analyzed"
         indexes :start_time, type: 'long', index: "not_analyzed"
         indexes :confidence, type: 'float', index: 'not_analyzed'
-        indexes :transcripts, type: 'string', store: true
+        indexes :transcript, type: 'string', store: true, boost: 0.1
       end
       
       indexes :duration,          type: 'long',    include_in_all: false
@@ -87,9 +88,24 @@ class Item < ActiveRecord::Base
         indexes :position, type: 'geo_point'
       end
 
-      indexes :entities do 
-        indexes :name, type: 'string'
-        indexes :category, type: 'string'
+      indexes :confirmed_entities do
+        indexes :entity, type: 'string', boost: 2.0
+        indexes :category, type: 'string', include_in_all: false
+      end
+
+      indexes :low_unconfirmed_entities do 
+        indexes :entity, type: 'string', boost: 0.2
+        indexes :category, type: 'string', include_in_all: false
+      end
+
+      indexes :mid_unconfirmed_entities do
+        indexes :entity, type: 'string', boost: 0.5
+        indexes :category, type: 'string', include_in_all: false
+      end
+
+      indexes :high_unconfirmed_entities do
+        indexes :entity, type: 'string', boost: 1.0
+        indexes :category, type: 'string', include_in_all: false
       end
 
       STANDARD_ROLES.each do |role|
@@ -220,7 +236,7 @@ class Item < ActiveRecord::Base
   end
 
   def storage
-    self.storage_configuration || self.collection.default_storage
+    storage_configuration || collection.default_storage
   end
 
   def geographic_location=(name)
@@ -255,6 +271,11 @@ class Item < ActiveRecord::Base
       json[:tags]        = tags_for_index
       json[:location]    = geolocation.to_indexed_json if geolocation.present?
       json[:transcripts] = transcripts_for_index
+      json[:collection_title] = collection.title
+      json[:confirmed_entities] = entities.confirmed.as_json
+      json[:low_unconfirmed_entities] = entities.low_scoring.map(&:as_indexed_json)
+      json[:mid_unconfirmed_entities] = entities.middle_scoring.map(&:as_indexed_json)
+      json[:high_unconfirmed_entities] = entities.high_scoring.map(&:as_indexed_json)
     end.to_json
   end
 

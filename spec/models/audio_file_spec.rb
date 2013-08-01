@@ -48,7 +48,6 @@ describe AudioFile do
       audio_file = FactoryGirl.build :audio_file
       transcript = audio_file.process_transcript(json)
       transcript.confidence.should eq 0.5
-      transcript.set_confidence.should eq 0
       transcript.set_confidence.should eq 0.5
       transcript.confidence.should eq 0.5
     end

@@ -4,30 +4,21 @@ describe AudioFileUploader do
 
   context "handle different providers" do
 
-    before :all do
-      @collection = FactoryGirl.build :collection
+    let (:collection) { FactoryGirl.build :collection_private }
+    let (:item) { FactoryGirl.build :item, collection: collection }
+    let (:audio_file) { FactoryGirl.build :audio_file, item: item }
+    let (:uploader) { AudioFileUploader.new(audio_file) }
+    let (:subject) { uploader }
 
-      @item = FactoryGirl.build :item
-      @audio_file = FactoryGirl.build :audio_file
-      @item.collection = @collection
-      @audio_file.item = @item
-
-      @uploader = AudioFileUploader.new(@audio_file)
-    end
+    let(:weird_config) { StorageConfiguration.new(provider: 'InternetArchive', key: 'k', secret: 's') }
 
     it "handles no item storage" do
-      @uploader.fog_credentials[:provider].should eq "AWS"
-      @uploader.fog_credentials[:aws_access_key_id].should eq ENV['AWS_ACCESS_KEY_ID']
-      @uploader.fog_credentials[:aws_secret_access_key].should eq ENV['AWS_SECRET_ACCESS_KEY']
+      expect(uploader.fog_credentials).to eq collection.default_storage.credentials
     end
     
     it "handles item storage" do
-      @item.storage_configuration = StorageConfiguration.new(provider: 'InternetArchive', key: 'k', secret: 's')
-      @item.storage.provider.should eq "InternetArchive"
-      @uploader.model.item.should_not be_nil
-      @uploader.fog_credentials[:provider].should eq "InternetArchive"
-      @uploader.fog_credentials[:ia_access_key_id].should eq 'k'
-      @uploader.fog_credentials[:ia_secret_access_key].should eq 's'
+      item.storage_configuration = weird_config
+      expect(uploader.fog_credentials).to eq weird_config.credentials
     end
 
   end

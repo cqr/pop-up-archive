@@ -45,7 +45,9 @@ ul.pager
 						a ng-href="{{item.link()}}" {{item.getTitle()}}
           p ng-show="item.getDescription()"
             | {{item.getDescription()}}
-          .transcript transcript-text="item.highlights.transcripts" transcript-editable="currentUser.canEdit(item)" transcript-timestamps="start"
+          .transcripts
+            section ng-repeat="audioFile in item.highlights.audioFiles" ng-controller="AudioFileCtrl"
+              .transcript transcript-text="audioFile.transcript" transcript-editable="currentUser.canEdit(item)" transcript-timestamps="start"
     .result-count-footer        
       ul.pager ng-show="search.hasMoreResults() || search.page > 1"
         li.previous ng-class="{disabled: search.page <= 1}"

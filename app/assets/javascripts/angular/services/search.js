@@ -3,7 +3,7 @@
 
   var search = angular.module('prxSearch', ['Directory.searches.models', 'Directory.items.models']);
 
-  search.factory('SearchResults', ['Search', 'Item', '$q', function (Search, Item, $q) {
+  search.factory('SearchResults', ['Search', 'Item', '$q', 'Query', function (Search, Item, $q, Query) {
     var Results = {
       length: 0,
       query: undefined,
@@ -20,7 +20,7 @@
           data.length = 0;
           Results.currentIndex = 0;
           Results.length = results.totalHits;
-          Results.query = results.query;
+          Results.query = new Query(results.query.split(/\s+AND\s+/g));
         }
         var offset = ((results.page -1) * 25);
         angular.forEach(results.results, function (result, index) {
@@ -37,22 +37,23 @@
     Results.link = function () {
       var url = ['/search'];
       var params = [];
-
       if (Results.query) {
-        params.push("query=" + Results.query);
+
+        if (Results.query.queryParts.length) {
+          params.push("query=" + Results.query.queryParts.join(','));
+        }
+
+        var page = Math.ceil((Results.currentIndex + 1)/ 25);
+        if (page > 1) {
+          params.push("page=" + page);
+        }
+
+        params = params.join('&');
+
+        if (params.length) {
+          url.push(params);
+        }
       }
-
-      var page = Math.ceil((Results.currentIndex + 1)/ 25);
-      if (page > 1) {
-        params.push("page=" + page);
-      }
-
-      params = params.join('&');
-
-      if (params.length) {
-        url.push(params);
-      }
-
       return url.join('?');
     }
 
