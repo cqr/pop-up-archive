@@ -20,7 +20,7 @@
           data.length = 0;
           Results.currentIndex = 0;
           Results.length = results.totalHits;
-          Results.query = new Query(results.query.split(/\s+AND\s+/g));
+          Results.query = new Query(results.query && results.query.split(/\s+AND\s+/g));
         }
         var offset = ((results.page -1) * 25);
         angular.forEach(results.results, function (result, index) {

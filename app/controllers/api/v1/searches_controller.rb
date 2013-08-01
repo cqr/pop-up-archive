@@ -32,6 +32,8 @@ class Api::V1::SearchesController < Api::V1::BaseController
         map = {}
       end
 
+      logger.warn map.inspect
+
       def result.audio_files
         @_audio_files ||= []
       end
