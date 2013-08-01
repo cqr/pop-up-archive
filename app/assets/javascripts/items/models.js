@@ -145,12 +145,15 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
 
   Item.prototype.loadedIntoPlayer = function () {
     var me = false;
-    if (this.playable()) {
+    if (Player.nowPlayingUrl() && this.playable()) {
+      var nowPlaying = Player.nowPlayingUrl().split('?')[0];   
       angular.forEach(this.audioFiles, function (file) {
-        if (Player.nowPlayingUrl() == file.url) {
+        if (nowPlaying == file.url.split('?')[0]) {
           me = true;
         }
       });
+    } else {
+      return false;
     }
     return me;
   }

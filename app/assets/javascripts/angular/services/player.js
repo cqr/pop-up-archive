@@ -30,7 +30,7 @@
     }
 
     function filename() {
-      var parts = nowPlayingItem.split('/');
+      var parts = (nowPlayingItem || '').split('/');
       return parts[parts.length-1].split('?', 2)[0];
     }
 

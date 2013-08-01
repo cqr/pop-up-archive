@@ -44,15 +44,14 @@ class Api::V1::SearchesController < Api::V1::BaseController
         result.audio_files.push AudioFile.find(t.audio_file_id) unless result.audio_files.map(&:id).include? t.audio_file_id
       end
 
+      stub_audio_file = Struct.new(:id, :url, :filename, :transcript_array)
+
       result.audio_files.each do |af|
         af.transcript_array.each do |tl|
           jsoned = nil
           if map[tl['text']].present?
             if jsoned.nil?
-              jsoned = {id: af.id, url: af.url, filename: af.filename}
-              def jsoned.transcript_array
-                @_a ||= []
-              end
+              jsoned = stub_audio_file.new(af.id, af.url, af.filename, [])
               result.highlighted_audio_files.push jsoned
             end
             tl['text'] = map[tl['text']]
