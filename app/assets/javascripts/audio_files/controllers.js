@@ -3,7 +3,6 @@ angular.module("Directory.audioFiles.controllers", ['ngPlayer'])
   $scope.fileUrl = $scope.audioFile.url;
   
   $scope.play = function () {
-    console.log($scope);
     Player.play($scope.fileUrl);
   }
 
