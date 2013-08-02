@@ -430,6 +430,22 @@ $persistent-player-scrollpading: 15px;
       margin-bottom: 0;
     }
   }
+
+  .entities {
+    margin-left: 95px;
+    height: 30px;
+    margin-top: 10px;
+    overflow: hidden;
+
+    .tag {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 20px;
+      margin-right: 5px;
+      background: rgb(173,123,75);
+      color: #FFF;
+    }
+  }
 }
 .media .pull-left {
   float: left;
