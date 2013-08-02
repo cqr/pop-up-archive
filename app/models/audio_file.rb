@@ -21,6 +21,8 @@ class AudioFile < ActiveRecord::Base
 
   attr_accessor :should_trigger_fixer_copy
 
+  default_scope includes(:transcripts)
+
   delegate :collection_title, to: :item
 
   def collection
