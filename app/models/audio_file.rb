@@ -21,7 +21,7 @@ class AudioFile < ActiveRecord::Base
 
   attr_accessor :should_trigger_fixer_copy
 
-  default_scope includes(:transcripts)
+  #default_scope includes(:transcripts)
 
   delegate :collection_title, to: :item
 
@@ -38,7 +38,7 @@ class AudioFile < ActiveRecord::Base
   end
 
   def storage
-    self.storage_configuration || self.item.storage
+    storage_configuration || item.storage
   end
 
   def store_dir(stor=storage)

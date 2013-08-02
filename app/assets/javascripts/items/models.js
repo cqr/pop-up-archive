@@ -136,13 +136,13 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
   }
 
   Item.prototype.playable = function () {
-    return this.audioFiles.length > 0;
+    return this.audioFiles && this.audioFiles.length > 0;
   }
 
   Item.prototype.entityShortList = function () {
     this._entityShortList = this._entityShortList || [];
     this._entityShortList.length = 0;
-    if (this.tags.length >= 5) {
+    if (this.tags && this.tags.length >= 5) {
       for (var i=0; i<5; i++) {
         this._entityShortList.push(this.tags[i]);
       }

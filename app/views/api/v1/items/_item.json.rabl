@@ -2,7 +2,7 @@ attributes :id, :title, :description, :date_created, :identifier, :collection_id
 
 Item::STANDARD_ROLES.each{|r| attribute r.pluralize.to_sym}
 
-attribute :_score => :score, created_at: :date_added
+attribute created_at: :date_added
 
 child :audio_files do |af|
   extends 'api/v1/audio_files/audio_file'

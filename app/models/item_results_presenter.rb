@@ -1,4 +1,8 @@
+class Result; end
+
 class ItemResultsPresenter < BasicObject
+
+  class SearchResult; end
 
   def initialize(results)
     @results = results
@@ -9,14 +13,12 @@ class ItemResultsPresenter < BasicObject
   end
 
   def respond_to?(method)
-    super || @results.respond_to?(method)
+    method == :results || @results.respond_to?(method)
   end
 
   def method_missing(method, *args)
     if @results.respond_to?(method)
       @results.send method, *args
-    else
-      super
     end
   end
 
@@ -35,7 +37,7 @@ class ItemResultsPresenter < BasicObject
     end
 
     def audio_files
-      @_audio_files ||= transcripts.map(&:audio_file_id).uniq.map {|id| ::AudioFile.find(id) }
+      @_audio_files ||= ::AudioFile.where(item_id: @result.id)
     end
 
     def highlighted_audio_files
@@ -59,30 +61,30 @@ class ItemResultsPresenter < BasicObject
         @result.send method, *args
       elsif database_object.respond_to? method
         database_object.send method, *args
-      else
-        raise "Unsupported Method"
       end
+    end
+
+    def class
+      ::Result
     end
 
     private
 
     def generate_highlighted_audio_files
-      if @result.highlight.present? && @result.highlight[:transcript].present?
-        lookup = ::Hash[@result.highlight[:transcript].map{|t| [t.gsub(/<\/?em>/, ''), t]}]
+      if @result.highlight.present? && @result.highlight.transcript.present?
+        lookup = ::Hash[@result.highlight.transcript.map{|t| [t.gsub(/<\/?em>/, ''), t]}]
       else
         lookup = {}
       end
+      keys = lookup.keys
+      audio_file_presenters = ::Hash.new do |hash, id|
+        hash[id] = HighlightedAudioFilePresenter.new(audio_files.find {|af| af.id == id })
+      end
 
-      [].tap do |results|
-        audio_files.each do |audio_file|
-          stubbed_audio_file = nil
-          audio_file.transcript_array.each do |timed_text|
-            if lookup[timed_text['text']].present?
-              results.push(stubbed_audio_file = HighlightedAudioFilePresenter.new(audio_file)) unless stubbed_audio_file
-              timed_text['text'] = lookup[timed_text['text']]              
-              stubbed_audio_file.transcript_array.push timed_text
-            end
-          end
+      @result.transcripts.select {|transcript| keys.include? transcript.transcript }.map do |transcript|
+        audio_file_presenters[transcript.audio_file_id].tap do |audio_file|
+          audio_file.transcript_array.push({text: lookup[transcript.transcript],
+            start_time: transcript.start_time, end_time: transcript.end_time })
         end
       end
     end

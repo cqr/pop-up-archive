@@ -1,6 +1,8 @@
-attributes :id, :name, :category, :is_confirmed, :identifier, :score
-attribute :entity_type=>:type
+attributes :id, :name, :is_confirmed, :identifier, :score
+attribute entity_type: :type
 
-node :extra do |n|
+attribute :category, if: ->(o) { o.category.present? }
+
+node(:extra, if: ->(o) { o.extra.present? })do |n|
   n.extra
 end
