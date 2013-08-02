@@ -272,7 +272,7 @@ class Item < ActiveRecord::Base
       json[:location]    = geolocation.to_indexed_json if geolocation.present?
       json[:transcripts] = transcripts_for_index
       json[:collection_title] = collection.title
-      json[:confirmed_entities] = entities.confirmed.as_json
+      json[:confirmed_entities] = entities.confirmed.map(&:as_indexed_json)
       json[:low_unconfirmed_entities] = entities.low_scoring.map(&:as_indexed_json)
       json[:mid_unconfirmed_entities] = entities.middle_scoring.map(&:as_indexed_json)
       json[:high_unconfirmed_entities] = entities.high_scoring.map(&:as_indexed_json)
