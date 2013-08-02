@@ -203,7 +203,7 @@ class AudioFile < ActiveRecord::Base
   end
 
   def timed_transcript(language='en-US')
-    transcripts.where(language: language).order('end_time DESC').first
+    transcripts.detect {|t| t.language == language }
   end
 
   def process_transcript(json)

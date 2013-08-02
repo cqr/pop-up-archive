@@ -4,6 +4,12 @@ class Transcript < ActiveRecord::Base
   belongs_to :audio_file
   has_many :timed_texts, order: 'start_time ASC'
 
+  def timed_texts
+    super.each do |tt|
+      tt.transcript = self
+    end
+  end
+
   default_scope includes(:timed_texts)
 
   def set_confidence

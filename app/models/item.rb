@@ -143,7 +143,7 @@ class Item < ActiveRecord::Base
     has_many role.pluralize.to_sym, through: "#{role}_contributions".to_sym, source: :person
   end
 
-  default_scope includes(:contributors, :interviewees, :interviewers, :hosts, :creators, :producers, :geolocation, :entities, :audio_files)
+  default_scope includes(:contributors, :interviewees, :interviewers, :hosts, :creators, :producers, :geolocation, :entities, :audio_files, :collection, :transcripts)
 
   scope :publicly_visible, where(is_public: true)
 
@@ -307,6 +307,6 @@ class Item < ActiveRecord::Base
   end
 
   def transcripts_for_index
-    transcripts.map(&:timed_texts).flatten.map {|text| text.as_indexed_json }
+    #audio_files.map(&:transcripts).flatten.map(&:timed_texts).flatten.map(&:as_indexed_json)
   end
 end
