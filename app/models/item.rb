@@ -307,6 +307,6 @@ class Item < ActiveRecord::Base
   end
 
   def transcripts_for_index
-    #audio_files.map(&:transcripts).flatten.map(&:timed_texts).flatten.map(&:as_indexed_json)
+    audio_files.map(&:transcripts).flatten.map(&:timed_texts).flatten.map(&:as_indexed_json)
   end
 end

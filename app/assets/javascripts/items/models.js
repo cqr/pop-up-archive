@@ -151,9 +151,11 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
         this._entityShortList.push(tag);
       }, this);
       var i = 0;
-      while (i < this.entities.length && this._entityShortList.length <= 5) {
-        this._entityShortList.push(this.entities[i].name);
-        i++;
+      if (this.entities) {
+        while (i < this.entities.length && this._entityShortList.length <= 5) {
+          this._entityShortList.push(this.entities[i].name);
+          i++;
+        }
       }
     }
     return this._entityShortList;
