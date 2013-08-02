@@ -149,7 +149,7 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
     } else {
       angular.forEach(this.tags, function (tag) {
         this._entityShortList.push(tag);
-      });
+      }, this);
       var i = 0;
       while (i < this.entities.length && this._entityShortList.length <= 5) {
         this._entityShortList.push(this.entities[i].name);
