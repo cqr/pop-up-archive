@@ -81,11 +81,15 @@ class ItemResultsPresenter < BasicObject
         hash[id] = HighlightedAudioFilePresenter.new(audio_files.find {|af| af.id == id })
       end
 
-      @result.transcripts.select {|transcript| keys.include? transcript.transcript }.map do |transcript|
-        audio_file_presenters[transcript.audio_file_id].tap do |audio_file|
-          audio_file.transcript_array.push({text: lookup[transcript.transcript],
-            start_time: transcript.start_time, end_time: transcript.end_time })
+      if @result.transcripts.present?
+        @result.transcripts.select {|transcript| keys.include? transcript.transcript }.map do |transcript|
+          audio_file_presenters[transcript.audio_file_id].tap do |audio_file|
+            audio_file.transcript_array.push({text: lookup[transcript.transcript],
+              start_time: transcript.start_time, end_time: transcript.end_time })
+          end
         end
+      else
+        []
       end
     end
 
