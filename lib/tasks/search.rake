@@ -10,14 +10,14 @@ namespace :search do
 
   desc 'stage a reindex of all items'
   task stage: [:environment] do
-    Tire.index('items-in-progress').delete
+    Tire.index('items_ip').delete
     Tire.index(items_index_name) do
-      add_alias 'items-in-progress'
+      add_alias 'items_ip'
       create mappings: Item.tire.mapping_to_hash
       import_all_items self
-      remove_alias 'items-in-progress'
-      Tire.index('items-staging').delete
-      add_alias 'items-staging'
+      remove_alias 'items_ip'
+      Tire.index('items_s').delete
+      add_alias 'items_s'
       puts "finshed generating staging index #{name}"
     end
   end
@@ -25,9 +25,9 @@ namespace :search do
   desc 'commit the staged index to be the new index'
   task :commit do
     Tire.index('items').remove_alias('items')
-    Tire.index 'items-staging' do
+    Tire.index 'items_s' do
       add_alias 'items'
-      remove_alias 'items-staging'
+      remove_alias 'items_s'
     end 
     puts "promoted staging to items"
   end
