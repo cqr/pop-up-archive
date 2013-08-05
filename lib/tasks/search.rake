@@ -13,8 +13,8 @@ namespace :search do
     Tire.index(items_index_name) do
       create mappings: Item.tire.mapping
       import_all_items self
-      Tire.index('items-staging').delete
-      add_alias 'items-staging'
+      Tire.index('itemsStaging').delete
+      add_alias 'itemsStaging'
       puts "finshed generating staging index #{name}"
     end
   end
@@ -22,16 +22,16 @@ namespace :search do
   desc 'commit the staged index to be the new index'
   task :commit do
     Tire.index('items').remove_alias('items')
-    Tire.index 'items-staging' do
+    Tire.index 'itemsStaging' do
       add_alias 'items'
-      remove_alias 'items-staging'
+      remove_alias 'itemsStaging'
     end 
     puts "promoted staging to items"
   end
 
 
   def items_index_name
-    "items-rebuild-#{Digest::SHA1.hexdigest(Time.now.to_s)[0,8]}"
+    "itemsRebuild#{Digest::SHA1.hexdigest(Time.now.to_s)[0,8]}"
   end
 
   def set_up_progress

@@ -5,7 +5,7 @@ class Item < ActiveRecord::Base
   include Tire::Model::Callbacks
   include Tire::Model::Search
 
-  DEFAULT_INDEX_PARAMS = {skip: [:transcription]}
+  DEFAULT_INDEX_PARAMS = {except: [:transcription, :rights, :storage_id, :token, :geolocation_id, :csv_import_id, :deleted_at]}
   
   STANDARD_ROLES = ['producer', 'interviewer', 'interviewee', 'creator', 'host']
 
