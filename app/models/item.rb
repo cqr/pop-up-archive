@@ -5,7 +5,7 @@ class Item < ActiveRecord::Base
   include Tire::Model::Callbacks
   include Tire::Model::Search
 
-  DEFAULT_INDEX_PARAMS = {}
+  DEFAULT_INDEX_PARAMS = {skip: [:transcription]}
   
   STANDARD_ROLES = ['producer', 'interviewer', 'interviewee', 'creator', 'host']
 
@@ -73,7 +73,6 @@ class Item < ActiveRecord::Base
       indexes :tags,                  type: 'string',  index_name: "tag",    index: "not_analyzed"
       indexes :contributors,          type: 'string',  index_name: "contributor"
       indexes :physical_location,     type: 'string'
-      indexes :transcription,         type: 'string'
 
       indexes :transcripts do
         indexes :audio_file_id, type: 'long', index: "not_analyzed"
