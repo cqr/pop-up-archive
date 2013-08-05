@@ -10,9 +10,12 @@ namespace :search do
 
   desc 'stage a reindex of all items'
   task stage: [:environment] do
+    Tire.index('items-in-progress').delete
     Tire.index(items_index_name) do
+      add_alias 'items-in-progress'
       create mappings: Item.tire.mapping_to_hash
       import_all_items self
+      remove_alias 'items-in-progress'
       Tire.index('items-staging').delete
       add_alias 'items-staging'
       puts "finshed generating staging index #{name}"
