@@ -5,7 +5,7 @@ node(:DEBUG) { true } if @debug
 node(:facets) { @search.facets }
 node(:total_hits) { @search.total }
 node(:max_score) { @search.max_score }
-node(:page) { ((@search.options[:from] || 0) / 25) + 1 }
+node(:page) { ((@search.options[:from] || 0) / RESULTS_PER_PAGE) + 1 }
 node(:query) { params[:query] }
 
 child @search.results do

@@ -61,7 +61,7 @@ namespace :search do
     set_up_progress
     ActiveRecord::Base.logger = Logger.new('/dev/null')
     Item.includes(:collection, :hosts, :creators, :interviewers, :interviewees, :producers, :geolocation, :contributors, :confirmed_entities, :low_scoring_entities, :middle_scoring_entities, :high_scoring_entities).includes(audio_files: :transcripts).find_in_batches batch_size: 10 do |items|
-      Item.index.import items
+      index.import items
       done += items.size
       progress done * 100 / count
     end

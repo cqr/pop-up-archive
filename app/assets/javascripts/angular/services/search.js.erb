@@ -22,7 +22,7 @@
           Results.length = results.totalHits;
           Results.query = new Query(results.query && results.query.split(/\s+AND\s+/g));
         }
-        var offset = ((results.page -1) * 25);
+        var offset = ((results.page -1) * <%= RESULTS_PER_PAGE %>);
         angular.forEach(results.results, function (result, index) {
           data[index + offset] = new Item(result);
         });
@@ -43,7 +43,7 @@
           params.push("query=" + Results.query.queryParts.join(','));
         }
 
-        var page = Math.ceil((Results.currentIndex + 1)/ 25);
+        var page = Math.ceil((Results.currentIndex + 1)/ <%= RESULTS_PER_PAGE %>);
         if (page > 1) {
           params.push("page=" + page);
         }
@@ -83,7 +83,7 @@
         return $q.reject();
       }
       if (typeof data[index] === 'undefined') {
-        var page = Math.ceil((index + 1)/ 25);
+        var page = Math.ceil((index + 1)/ <%= RESULTS_PER_PAGE %>);
         var deferred = $q.defer();
         data[index] = deferred.promise;
 

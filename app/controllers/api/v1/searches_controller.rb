@@ -6,9 +6,9 @@ class Api::V1::SearchesController < Api::V1::BaseController
     @search = ItemResultsPresenter.new(Tire.search(index_name) do
 
       if page.present? && page > 1
-        from (page - 1) * 25
+        from (page - 1) * RESULTS_PER_PAGE
       end
-      size 25
+      size RESULTS_PER_PAGE
 
       query_builder.query do |q|
         query &q
