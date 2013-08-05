@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130726005440) do
+ActiveRecord::Schema.define(:version => 20130805155029) do
 
   add_extension "hstore"
 
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20130726005440) do
     t.time     "transcoded_at"
   end
 
+  add_index "audio_files", ["item_id", "deleted_at"], :name => "index_audio_files_on_item_id_and_deleted_at"
   add_index "audio_files", ["item_id"], :name => "index_audio_files_on_item_id"
 
   create_table "collection_grants", :force => true do |t|
@@ -68,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20130726005440) do
 
   add_index "contributions", ["item_id"], :name => "index_contributions_on_item_id"
   add_index "contributions", ["person_id"], :name => "index_contributions_on_person_id"
+  add_index "contributions", ["role", "item_id"], :name => "index_contributions_on_role_and_item_id"
 
   create_table "csv_imports", :force => true do |t|
     t.datetime "created_at",                   :null => false
@@ -106,6 +108,7 @@ ActiveRecord::Schema.define(:version => 20130726005440) do
     t.datetime "updated_at",   :null => false
   end
 
+  add_index "entities", ["is_confirmed", "item_id", "score"], :name => "index_entities_on_is_confirmed_and_item_id_and_score"
   add_index "entities", ["item_id"], :name => "index_entities_on_item_id"
 
   create_table "geolocations", :force => true do |t|
@@ -172,6 +175,7 @@ ActiveRecord::Schema.define(:version => 20130726005440) do
   add_index "items", ["collection_id"], :name => "index_items_on_collection_id"
   add_index "items", ["csv_import_id"], :name => "index_items_on_csv_import_id"
   add_index "items", ["geolocation_id"], :name => "index_items_on_geolocation_id"
+  add_index "items", ["id", "deleted_at"], :name => "index_items_on_id_and_deleted_at"
 
   create_table "oauth_access_grants", :force => true do |t|
     t.integer  "resource_owner_id", :null => false

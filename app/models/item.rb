@@ -136,6 +136,11 @@ class Item < ActiveRecord::Base
   has_many   :contributors, through: :contributions, source: :person
   
   has_many   :entities, dependent: :destroy
+  has_many   :confirmed_entities, class_name: 'Entity', conditions: {is_confirmed: true}
+  has_many   :unconfirmed_entities, class_name: 'Entity', conditions: Entity.arel_table[:is_confirmed].eq(nil).or(Entity.arel_table[:is_confirmed].eq(false))
+  has_many   :high_scoring_entities, class_name: 'Entity', conditions: Entity.arel_table[:is_confirmed].eq(nil).or(Entity.arel_table[:is_confirmed].eq(false)).and(Entity.arel_table[:score].gteq(0.95))
+  has_many   :middle_scoring_entities, class_name: 'Entity', conditions: Entity.arel_table[:is_confirmed].eq(nil).or(Entity.arel_table[:is_confirmed].eq(false)).and(Entity.arel_table[:score].gt(0.75).and(Entity.arel_table[:score].lt(0.95)))
+  has_many   :low_scoring_entities, class_name: 'Entity', conditions: Entity.arel_table[:is_confirmed].eq(nil).or(Entity.arel_table[:is_confirmed].eq(false)).and(Entity.arel_table[:score].lteq(0.75).or(Entity.arel_table[:score].eq(nil)))
   
   STANDARD_ROLES.each do |role|
     has_many "#{role}_contributions".to_sym, class_name: "Contribution", conditions: {role: role}
@@ -271,10 +276,10 @@ class Item < ActiveRecord::Base
       json[:location]    = geolocation.to_indexed_json if geolocation.present?
       json[:transcripts] = transcripts_for_index
       json[:collection_title] = collection.title if collection.present?
-      json[:confirmed_entities] = entities.confirmed.map(&:as_indexed_json)
-      json[:low_unconfirmed_entities] = entities.low_scoring.map(&:as_indexed_json)
-      json[:mid_unconfirmed_entities] = entities.middle_scoring.map(&:as_indexed_json)
-      json[:high_unconfirmed_entities] = entities.high_scoring.map(&:as_indexed_json)
+      json[:confirmed_entities] = confirmed_entities.map(&:as_indexed_json)
+      json[:low_unconfirmed_entities] = low_scoring_entities.map(&:as_indexed_json)
+      json[:mid_unconfirmed_entities] = middle_scoring_entities.map(&:as_indexed_json)
+      json[:high_unconfirmed_entities] = high_scoring_entities.map(&:as_indexed_json)
     end.to_json
   end
 
