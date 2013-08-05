@@ -31,7 +31,7 @@ namespace :search do
 
 
   def items_index_name
-    "itemsRebuild#{Digest::SHA1.hexdigest(Time.now.to_s)[0,8]}"
+    "items-rebuild-#{Digest::SHA1.hexdigest(Time.now.to_s)[0,8]}"
   end
 
   def set_up_progress

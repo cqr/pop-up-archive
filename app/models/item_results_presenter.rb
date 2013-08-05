@@ -72,9 +72,9 @@ class ItemResultsPresenter < BasicObject
 
     def generate_highlighted_audio_files
       if @result.highlight.present? && @result.highlight.transcript.present?
-        lookup = ::Hash[@result.highlight.transcript.map{|t| [t.gsub(/<\/?em>/, ''), t]}]
+        lookup = ::Hash[@result.highlight.transcript[0,5].map{|t| [t.gsub(/<\/?em>/, ''), t]}]
       else
-        lookup = {}
+        return []
       end
       keys = lookup.keys
       audio_file_presenters = ::Hash.new do |hash, id|
@@ -82,12 +82,10 @@ class ItemResultsPresenter < BasicObject
       end
 
       if @result.transcripts.present?
-        @result.transcripts.select {|transcript| keys.include? transcript.transcript }.map do |transcript|
-          audio_file_presenters[transcript.audio_file_id].tap do |audio_file|
-            audio_file.transcript_array.push({text: lookup[transcript.transcript],
-              start_time: transcript.start_time, end_time: transcript.end_time })
-          end
+        @result.transcripts.select {|transcript| keys.include? transcript.transcript }.each do |transcript|
+          audio_file_presenters[transcript.audio_file_id].transcript_array.push({text: lookup[transcript.transcript], start_time: transcript.start_time, end_time: transcript.end_time })
         end
+        audio_file_presenters.values
       else
         []
       end

@@ -21,7 +21,7 @@ class Api::V1::SearchesController < Api::V1::BaseController
         filter my_filter.type, my_filter.value
       end
 
-      highlight transcript: { number_of_fragments: 0 }
+      highlight options: {order: 'score'}, transcript: { number_of_fragments: 0 }
     end.to_curl)
 
     @search = ItemResultsPresenter.new(Item.search do
