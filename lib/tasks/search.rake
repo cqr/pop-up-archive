@@ -53,7 +53,8 @@ namespace :search do
     count = Item.count
     done = 0
     set_up_progress
-    Item.includes(:collection, :hosts, :creators, :interviewers, :interviewees, :producers, :geolocation, :contributors, :confirmed_entities, :low_scoring_entities, :middle_scoring_entities, :high_scoring_entities).includes(audio_files: :transcripts).find_in_batches batch_size: 100 do |items|
+    ActiveRecord::Base.logger = Logger.new
+    Item.includes(:collection, :hosts, :creators, :interviewers, :interviewees, :producers, :geolocation, :contributors, :confirmed_entities, :low_scoring_entities, :middle_scoring_entities, :high_scoring_entities).includes(audio_files: :transcripts).find_in_batches batch_size: 10 do |items|
       Item.index.import items
       done += items.size
       progress done * 100 / count
