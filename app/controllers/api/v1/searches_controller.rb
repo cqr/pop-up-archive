@@ -23,7 +23,7 @@ class Api::V1::SearchesController < Api::V1::BaseController
       end
 
       highlight transcript: { number_of_fragments: 0 }
-    end)
+    end.results)
 
     respond_with @search
   end
