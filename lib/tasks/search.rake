@@ -16,8 +16,11 @@ namespace :search do
       create mappings: Item.tire.mapping_to_hash
       import_all_items self
       remove_alias 'items_ip'
-      Tire.index('items_s').delete
-      add_alias 'items_s'
+      Tire.index('items_st') do
+        remove_alias 'items_st'
+        delete
+      end
+      add_alias 'items_st'
       puts "finshed generating staging index #{name}"
     end
   end
@@ -25,9 +28,9 @@ namespace :search do
   desc 'commit the staged index to be the new index'
   task :commit do
     Tire.index('items').remove_alias('items')
-    Tire.index 'items_s' do
+    Tire.index 'items_st' do
       add_alias 'items'
-      remove_alias 'items_s'
+      remove_alias 'items_st'
     end 
     puts "promoted staging to items"
   end

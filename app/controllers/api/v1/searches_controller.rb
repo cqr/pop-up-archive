@@ -31,9 +31,9 @@ class Api::V1::SearchesController < Api::V1::BaseController
   private
 
   def index_name
-    if current_user.present? && current_user.id == 1 && Tire.index('items_s').exists?
+    if current_user.present? && current_user.id == 1 && Tire.index('items_st').exists?
       @debug = true
-      'items_s'
+      'items_st'
     else
       'items'
     end
