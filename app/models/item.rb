@@ -13,49 +13,12 @@ class Item < ActiveRecord::Base
 
   before_update :handle_collection_change, if: :collection_id_changed?
 
-  def handle_collection_change
-    # do nothing if item has its own storage config defined
-    # this means that it has already been explicitly set to this storage. leave it be
-    return true if (storage_configuration)
-
-    # if there is no change in collection id, no need to change
-    return true unless (collection_id_was && collection_id)
-
-    # get a handle on current and past collections
-    collection_was = Collection.find(collection_id_was)
-    collection_is  = Collection.find(collection_id)
-
-    # if this is the same storage bucket and provider, leave it be
-    return true if (collection_was.default_storage == collection_is.default_storage)
-
-    # ----------
-    # OK - if we are here, then we need to move the item and deal with the consequences
-    # ----------
-
-    # set the item visibility to that of the new collection
-    self.is_public = collection_is.items_visible_by_default
-
-    # move each audio file to new collection storage
-    self.audio_files.each do |af|
-      if af.storage_configuration
-
-        # af already stored in the right place? remove association to af specific storage
-        if af.storage_configuration == collection_is.default_storage
-          af.storage_configuration = nil
-          af.update_attribute(:storage_id, nil)
-
-        # af NOT stored in the right place? move it to the correct storage for this item
-        else
-          af.copy_to_item_storage
-        end
-      else
-        # no storage defined at the audio file level; af should be at collection_was storage
-        # updating af triggers af.process_update_file -> copy_to_item_storage, so don't explictly call it here
-        # logger.debug "af #{af.id} has no storage, set to was: #{collection_was.default_storage.inspect}"
-        af.update_attributes({storage_configuration: collection_was.default_storage, storage_id: collection_was.default_storage_id}, without_protection: true)
-      end
+  after_save do
+    if deleted_at.nil?
+      self.index.store(self)
+    else
+      self.index.remove(self)
     end
-    true
   end
 
   tire do
@@ -294,6 +257,51 @@ class Item < ActiveRecord::Base
   def set_defaults
     return true unless is_public.nil?
     self.is_public = (collection.present? && collection.items_visible_by_default)
+    true
+  end
+
+  def handle_collection_change
+    # do nothing if item has its own storage config defined
+    # this means that it has already been explicitly set to this storage. leave it be
+    return true if (storage_configuration)
+
+    # if there is no change in collection id, no need to change
+    return true unless (collection_id_was && collection_id)
+
+    # get a handle on current and past collections
+    collection_was = Collection.find(collection_id_was)
+    collection_is  = Collection.find(collection_id)
+
+    # if this is the same storage bucket and provider, leave it be
+    return true if (collection_was.default_storage == collection_is.default_storage)
+
+    # ----------
+    # OK - if we are here, then we need to move the item and deal with the consequences
+    # ----------
+
+    # set the item visibility to that of the new collection
+    self.is_public = collection_is.items_visible_by_default
+
+    # move each audio file to new collection storage
+    self.audio_files.each do |af|
+      if af.storage_configuration
+
+        # af already stored in the right place? remove association to af specific storage
+        if af.storage_configuration == collection_is.default_storage
+          af.storage_configuration = nil
+          af.update_attribute(:storage_id, nil)
+
+        # af NOT stored in the right place? move it to the correct storage for this item
+        else
+          af.copy_to_item_storage
+        end
+      else
+        # no storage defined at the audio file level; af should be at collection_was storage
+        # updating af triggers af.process_update_file -> copy_to_item_storage, so don't explictly call it here
+        # logger.debug "af #{af.id} has no storage, set to was: #{collection_was.default_storage.inspect}"
+        af.update_attributes({storage_configuration: collection_was.default_storage, storage_id: collection_was.default_storage_id}, without_protection: true)
+      end
+    end
     true
   end
 
