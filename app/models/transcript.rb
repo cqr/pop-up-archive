@@ -8,6 +8,7 @@ class Transcript < ActiveRecord::Base
     super.each do |tt|
       tt.transcript = self
     end
+    super
   end
 
   default_scope includes(:timed_texts)

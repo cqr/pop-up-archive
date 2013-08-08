@@ -10,9 +10,24 @@ describe AudioFile do
       File.basename(audio_file.file.ogg.url).should eq "test.ogg"
     end
 
-    # it "should generate a list of urls to look for" do
-    # end
+  end
 
+  context "copy and move collections" do
+
+    it "should not create a copy task for current storage id" do
+
+      audio_file = FactoryGirl.build :audio_file
+
+      audio_file.storage.id.should eq(audio_file.item.storage.id)
+      audio_file.copy_to_item_storage.should == false
+
+      audio_file.storage_configuration = FactoryGirl.build :storage_configuration_private
+
+      a_sid = audio_file.storage.id
+      i_sid = audio_file.item.storage.id
+      a_sid.should_not eq(i_sid)
+      audio_file.copy_to_item_storage.should == true
+    end
   end
 
   context "transcripts" do

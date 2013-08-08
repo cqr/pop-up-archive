@@ -1,7 +1,7 @@
 class Task < ActiveRecord::Base
   serialize :extras, HstoreCoder
 
-  attr_accessible :name, :extras, :owner_id, :owner_type, :status, :identifier, :type
+  attr_accessible :name, :extras, :owner_id, :owner_type, :status, :identifier, :type, :storage_id
   belongs_to :owner, polymorphic: true
   belongs_to :storage, class_name: "StorageConfiguration", foreign_key: :storage_id
 

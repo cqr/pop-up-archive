@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe Transcript do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  it "should get the timed text children" do
+    
+  end
 end

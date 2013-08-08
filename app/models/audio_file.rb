@@ -12,7 +12,7 @@ class AudioFile < ActiveRecord::Base
 
   belongs_to :storage_configuration, class_name: "StorageConfiguration", foreign_key: :storage_id
 
-  attr_accessible :file
+  attr_accessible :file, :storage_id
 
   mount_uploader :file, ::AudioFileUploader
 
@@ -129,27 +129,32 @@ class AudioFile < ActiveRecord::Base
 
   def copy_to_item_storage
     # refresh storage related
-    audio_file_storage = self.storage_configuration(true)
+    audio_file_storage = self.storage_configuration
     item_storage = item(true).storage
-    # logger.debug "copy_to_item_storage: storage(#{audio_file_storage.inspect}) == item.storage(#{item_storage.inspect})"
+    # audio_file_storage = self.storage_configuration
+    # item_storage = item.storage
+    # puts "\ncopy_to_item_storage: storage(#{audio_file_storage.inspect}) == item.storage(#{item_storage.inspect})\n"
     return false if (!audio_file_storage || (audio_file_storage == item_storage))
 
     orig = destination
     dest = destination(storage: item_storage)
-    # logger.debug "copy_to_item_storage: create task: orig: #{orig}, dest: #{dest}, stor: #{item_storage.inspect}"
+    # puts "\ncopy_to_item_storage: create task: orig: #{orig}, dest: #{dest}, stor: #{item_storage.inspect}\n"
     create_copy_task(orig, dest, item_storage)
     return true
   end
 
-  def create_copy_task(orig, dest, stor=storage)
-    # see if there is already a copy task in progress
-    if task = tasks.incomplete.copy.where(identifier: dest).last
+  def create_copy_task(orig, dest, stor)
+    # see if there is already a copy task
+    if task = tasks.copy.where(identifier: dest).last
       logger.debug "copy task #{task.id} already exists for audio_file #{self.id}"
     else
-      task = Tasks::CopyTask.new(storage_id: stor.id, extras: {
-        original:    orig,
-        destination: dest
-      })
+      task = Tasks::CopyTask.new(
+        identifier: dest,
+        storage_id: stor.id,
+        extras: {
+          original:    orig,
+          destination: dest
+        })
       self.tasks << task
     end
     task

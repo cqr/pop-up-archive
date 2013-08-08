@@ -8,7 +8,7 @@ class Tasks::CopyTask < Task
 
       if task.owner
         result_path = URI.parse(task.extras['destination']).path
-        storage_id = task.extras['storage_id'].to_i
+        new_storage_id = task.storage_id || task.extras['storage_id'].to_i
 
         # set the file on the owner, and the storage as the upload_to
         task.owner.update_file!(File.basename(result_path), storage_id)
@@ -41,7 +41,6 @@ class Tasks::CopyTask < Task
   def start_transcribe
     return unless should_process
     self.owner(true).transcribe_audio
-    # self.owner(true).transcode_audio
     self.should_process = false
   end
 
