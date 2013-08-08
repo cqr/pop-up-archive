@@ -31,6 +31,20 @@ angular.module('Directory.items.controllers', ['Directory.loader', 'Directory.us
   $scope.previousItem = SearchResults.getItem(SearchResults.currentIndex - 1);
   $scope.searchResults = SearchResults;
 
+  $scope.transcriptExpanded = false;
+
+  $scope.toggleTranscript = function () {
+    $scope.transcriptExpanded = !$scope.transcriptExpanded;
+  }
+
+  $scope.transcriptClass = function () {
+    if ($scope.transcriptExpanded) {
+      return "expanded";
+    }
+    return "collapsed";
+  }
+
+
   $scope.deleteEntity = function(entity) {
     var e = new Entity(entity);
     e.itemId = $scope.item.id;

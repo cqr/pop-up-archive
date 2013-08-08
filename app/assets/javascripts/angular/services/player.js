@@ -192,6 +192,7 @@
         transcriptTimestamps: "@",
         currentTime: "="
       },
+      priority: -1000,
       template: '<div class="file-transcript">' +
                   '<table class="table">' +
                     '<tr ng-repeat="text in transcript" ng-class="{current: transcriptStart==text.startTime}" >' +

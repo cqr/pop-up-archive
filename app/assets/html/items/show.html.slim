@@ -18,9 +18,9 @@ ul.pager ng-show="nextItem || previousItem || searchResults.query"
   .span12
 
     .well
-      button.btn.pull-right ng-show="item.audioFiles[0].transcript" ng-click="fulltranscript = !fulltranscript"
+      button.btn.pull-right ng-show="item.audioFiles[0].transcript" ng-click="toggleTranscript()"
         |Expand  
-        i ng-class="{true: 'icon-resize-full', false: 'icon-resize-small'}[!fulltranscript]"
+        i ng-class="{true: 'icon-resize-full', false: 'icon-resize-small'}[!transcriptExpanded]"
       button.btn.pull-right ng-show="currentUser.canEdit(item)" ng-click="deleteItem()" Delete
       /button.btn.pull-right ng-show="currentUser.canEdit(item)" bs-modal="'#{asset_path 'items/edit.html'}'" Edit
       button.btn.pull-right ng-show="currentUser.canEdit(item)" ng-click="uploadFile()" Edit
@@ -49,7 +49,8 @@ ul.pager ng-show="nextItem || previousItem || searchResults.query"
           a.btn.icon-file-text ng-href="/api/items/{{item.id}}/audio_files/{{audioFile.id}}/transcript.json" title="Download Transcript JSON" download="{{audioFile.filename}}.transcript.json" target="_self"
           input.search-query ng-class="{extended:!!transcriptFilter}" ng-model="transcriptFilter" placeholder="Search"
           a.clear-filter.icon-remove-sign ng-show="transcriptFilter.length > 0" ng-click="transcriptFilter=''"
-        .transcript ng-class="{true: 'collapsed', false: 'full'}[!fulltranscript]" transcript-text="audioFile.transcript | highlightMatches:transcriptFilter" transcript-editable="currentUser.canEdit(item)" current-time="player.time"
+        div ng-class="transcriptClass()"
+          .transcript transcript-text="audioFile.transcript | highlightMatches:transcriptFilter" transcript-editable="currentUser.canEdit(item)" current-time="player.time"
       .alert ng-show="currentUser.canEdit(item) && item.audioFiles.length > 0 && item.audioFiles[0].transcript == 0" Your transcript is processing. The length of your audio determines how long it will take to transcribe.
 .row-fluid.item-detail.metadata
   .span6
