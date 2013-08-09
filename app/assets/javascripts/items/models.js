@@ -168,9 +168,9 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
   Item.prototype.loadedIntoPlayer = function () {
     var me = false;
     if (Player.nowPlayingUrl() && this.playable()) {
-      var nowPlaying = Player.nowPlayingUrl().split('?')[0];   
+      var nowPlaying = Player.nowPlayingUrl().split('?')[0];
       angular.forEach(this.audioFiles, function (file) {
-        if (nowPlaying == file.url.split('?')[0]) {
+        if (file.url && (nowPlaying == file.url.split('?')[0])) {
           me = true;
         }
       });
