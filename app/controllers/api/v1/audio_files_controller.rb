@@ -113,7 +113,7 @@ class Api::V1::AudioFilesController < Api::V1::BaseController
     result = {}
 
     if task = audio_file.tasks.incomplete.upload.where(identifier: upload_identifier).first
-      task.finish!
+      FinishTaskWorker.perform_async(task.id)
       result = task.extras
     end
 

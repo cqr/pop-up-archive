@@ -7,7 +7,7 @@
  */
 
 function mule_upload(settings) {
-    var debug = false;
+    var debug = true;
 
     // custom logging function that prepends a text for easy identification;
     // it is also toggled by the `debug` flag
@@ -112,7 +112,10 @@ function mule_upload(settings) {
         // is 10,000, so for example, if the chunk size is 6MB, the maximum
         // possible file size is 6MB * 10,000 = ~58GB
         settings.chunk_size = settings.chunk_size || (6 * MB); // default 6MB
-        settings.max_size = settings.max_size || 5 * (1 << 30); // 5GB
+        settings.max_size = settings.max_size || 50 * (1 << 30); // 5GB
+
+        // the number of parallel upload xhr's
+        settings.num_workers = settings.num_workers || 3;
 
         // the S3 object key; I recommend to generate this dynamically (e.g.
         // a random string) to avoid unwanted overwrites.
@@ -174,15 +177,18 @@ function mule_upload(settings) {
                 // the uploader doesn't support multiple uploads at this time, so we
                 // get the first file
                 var file = e.target.files[0];
-                u.upload_file(file, false);
+                u.upload_file(file, force);
             };
         }
         
         // trigger the init event callback
-        u.settings.on_init.apply(u);
+        setTimeout(function() {
+            u.settings.on_init.apply(u);
+        }, 100);
     }
 
     Uploader.prototype.upload_file = function(file, force) {
+        log("Start upload file: " + file.name);
         var u = this;
         // the `onchange` event may be triggered multiple times, so we
         // must ensure that the callback is only executed the first time
@@ -207,7 +213,7 @@ function mule_upload(settings) {
         u.file.lastModifiedDate = u.file.lastModifiedDate || new Date(0);
 
         if(u.file.size > u.settings.max_size) {
-            alert("The maximum allowed file size is " + (u.settings.max_size/GB)
+            alert("The maximum allowed file size is " + (u.settings.max_size / GB)
                   + "GB. Please select another file.");
             return;
         }
@@ -298,7 +304,6 @@ function mule_upload(settings) {
         }, force);
     };
 
-
     // this initiates the file upload
     Uploader.prototype.load_file = function(file) {
         var u = this;
@@ -331,10 +336,19 @@ function mule_upload(settings) {
         if(next_chunk != -1) {
             // and start uploading it
             u.upload_chunk(next_chunk);
-        } else {
+        } else if(u.upload_finished()) {
             // if we finished, trigger the upload finish sequence
             log("All done; finish upload");
             u.finish_upload();
+        }
+
+        for(var i=0; i < u.settings.num_workers - 1; i++) {
+            next_chunk = u.get_next_chunk();
+            if(next_chunk !== -1) {
+                u.upload_chunk(next_chunk);
+            } else {
+                break;
+            }
         }
     };
 
@@ -350,6 +364,14 @@ function mule_upload(settings) {
         // also make sure we're not already uploading this chunk
         if(u.get_chunk_uploading(chunk)) {
             log("Already Uploading");
+            setTimeout(function() {
+                var next_chunk = u.get_next_chunk();
+                if(next_chunk !== -1) {
+                    u.get_all_signatures(function() {
+                        u.upload_chunk(u.get_next_chunk());
+                    });
+                }
+            }, 1000);
             return;
         } else {
             // mark this chunk as uploading
@@ -382,6 +404,7 @@ function mule_upload(settings) {
                     u.upload_chunk(next_chunk);
                 } else {
                     if(u.upload_finished()) {
+                        log("No next chunk; finish upload");
                         u.finish_upload();
                     }
                 }
@@ -389,8 +412,9 @@ function mule_upload(settings) {
 
             // the "readystatechange" handler
             var handler = function(e) {
-                // we only care about the "done" event triggered while processing
-                if(e.target.readyState != this.DONE || u.get_state() != "processing" || e.target.status === 0) {
+                // we care about the "done" event triggered while processing
+                if(e.target.readyState != this.DONE || u.get_state() != "processing") {
+                    log(e);
                     return;
                 }
 
@@ -413,15 +437,35 @@ function mule_upload(settings) {
 
                 // mark the chunk as finished
                 u.set_chunk_finished(chunk);
+                u.set_chunk_uploading(chunk, false);
 
                 // get next chunk; if we're out of chunks,
                 // finish the upload
                 var next_chunk = u.get_next_chunk();
                 if(next_chunk != -1) {
+                    log("More chunks to upload");
                     u.upload_chunk(next_chunk);
-                } else {
-                    log("Done");
+                } else if(u.upload_finished()) {
+                    log("Done - all chunks uploaded");
                     u.finish_upload();
+                } else {
+                    log("No next chunk to upload, but not finished");
+                    var interval = setInterval(function() {
+
+                        if (u.upload_finished()) {
+                            log("Oh, it is finished");
+                            clearInterval(interval);
+                        } else {
+                            var chunk = u.get_next_chunk();
+                            if(chunk !== -1) {
+                                log("Finally got next chunk");
+                                clearInterval(interval);
+                                u.upload_chunk(chunk);
+                            } else {
+                                log("Still no next chunk");
+                            }
+                        }
+                    }, 1000);
                 }
             };
 
@@ -465,9 +509,14 @@ function mule_upload(settings) {
                     error_handled = true;
 
                     // abort the chunk upload
+                    u.set_chunk_uploading(chunk, false);
                     log("Abort");
                     log(xhr);
-                    xhr.abort();
+                    try {
+                        xhr.abort();
+                    } catch(e) {
+                        log(e);
+                    }
 
                     log("Retry chunk: " + chunk);
 
@@ -477,9 +526,6 @@ function mule_upload(settings) {
                     // re-try the upload
                     setTimeout(function() {
                         if(u.get_state() == "processing") {
-                            // mark the chunk as not uploading
-                            u.set_chunk_uploading(chunk, false);
-
                             // and proceed
                             var next_chunk = u.get_next_chunk();
                             if(next_chunk !== -1) {
@@ -540,6 +586,9 @@ function mule_upload(settings) {
 
     // initiates the upload finish sequence
     Uploader.prototype.finish_upload = function() {
+
+        log("Finish upload");
+
         var u = this;
 
         // make sure it's not triggered when not processing (e.g. multiple times)
@@ -559,6 +608,7 @@ function mule_upload(settings) {
             var authorization = "AWS " + u.settings.access_key + ":" + signature;
 
             var handler = function(e) {
+                log("Finish upload response: ", e);
                 // i.e. if it's a 2XX response
                 if(e.target.status / 100 == 2) {
                     log("Finished file.");
@@ -582,7 +632,6 @@ function mule_upload(settings) {
                     // 404 = NoSuchUpload = check if already finished
                     // if so, start a new upload
                     u.cancel(function() {
-                        // before this passed in a null, which will error out
                         u.upload_file(u.file, true);
                     });
                 } else {
@@ -653,7 +702,7 @@ function mule_upload(settings) {
     // gets the uploaded chunks from S3. This is useful when comparing
     // the parts known by the uploader to the parts reported by S3, and also
     // for getting the chunk ETag's, which are needed when finishing uploads
-    Uploader.prototype.list_parts = function(callback, error_callback) {
+    Uploader.prototype.list_parts = function(callback, error_callback, part_marker) {
         var u = this;
         u.get_list_signature(function(signature, date) {
             var handler = function(e) {
@@ -668,16 +717,16 @@ function mule_upload(settings) {
                 var parts = [];
                 var xml_parts = xml.getElementsByTagName("Part");
                 var num_chunks = Math.ceil(u.file.size / u.settings.chunk_size);
-                for(var i=0; i<xml_parts.length; i++) {
+                for(var i=0; i < xml_parts.length; i++) {
                     var part_number = parseInt(xml_parts[i].getElementsByTagName("PartNumber")[0].textContent, 10);
                     var etag = xml_parts[i].getElementsByTagName("ETag")[0].textContent;
                     var size = parseInt(xml_parts[i].getElementsByTagName("Size")[0].textContent, 10);
 
                     if(part_number != num_chunks && size != u.settings.chunk_size) {
-                        return; // chunk corrupted
+                        continue; // chunk corrupted
                     } else if(part_number == num_chunks &&
                             size != u.file.size % u.settings.chunk_size) {
-                        return; // final chunk corrupted
+                        continue; // final chunk corrupted
                     }
 
                     parts.push([
@@ -686,9 +735,20 @@ function mule_upload(settings) {
                         size
                     ]);
                 }
-                callback(parts);
+                var is_truncated = xml.getElementsByTagName("IsTruncated")[0].textContent;
+                if(is_truncated === "true") {
+                    var part_marker = xml.getElementsByTagName("NextPartNumberMarker")[0].textContent;
+                    u.list_parts(function(new_parts) {
+                        callback(parts.concat(new_parts));
+                    }, error_callback, part_marker);
+                } else {
+                    callback(parts);
+                }
             };
             var path = "/" + u.settings.key + "?uploadId=" + u.upload_id;
+            if(part_marker) {
+                path = path + "&part-number-marker=" + part_marker;
+            }
             var method = "GET";
             var authorization = "AWS " + u.settings.access_key + ":" + signature;
             XHR({
@@ -811,14 +871,13 @@ function mule_upload(settings) {
                 log("Resume upload...");
                 var chunks = response.chunks;
                 u._progress = u._progress || [];
-                for(var i=0; i<chunks.length; i++) {
+                for(var i=0; i < chunks.length; i++) {
                     log("Chunk already uploaded: " + (chunks[i] - 1));
                     u._progress[chunks[i]] = u.settings.chunk_size;
                     u.add_loaded_chunk(chunks[i] - 1);
                     u.set_chunk_finished(chunks[i] - 1);
                     u.bytes_started = (u.bytes_started || 0) + u.settings.chunk_size;
                 }
-                log(response);
                 u.upload_id = response.upload_id;
                 u.settings.key = response.key;
             }
@@ -835,8 +894,8 @@ function mule_upload(settings) {
                 + "&mime_type=" + escape(u.settings.content_type)
                 + "&filename=" + escape(u.file.name)
                 + "&filesize=" + u.file.size
-                + "&last_modified=" + u.file.lastModifiedDate.valueOf() + 
-                (force ? "&force=true" : "");
+                + "&last_modified=" + u.file.lastModifiedDate.valueOf()
+                + (force ? "&force=true" : "");
         XHR({
             url: url,
             load_callback: handler,
@@ -949,7 +1008,7 @@ function mule_upload(settings) {
     Uploader.prototype.cancel = function(callback) {
         // empty all fields, cancel all intervals, abort all xhr's
         var u = this;
-        for(var i=0; i<u._chunk_xhr.length; i++) {
+        for(var i=0; i < u._chunk_xhr.length; i++) {
             log("Abort chunk: " + u._chunk_xhr[i]);
             u._chunk_xhr[i].abort();
         }
@@ -986,17 +1045,17 @@ function mule_upload(settings) {
         u._uploading_chunks = [];
         u._loaded_chunks = [];
 
-        for(var i=0; i<parts.length; i++) {
+        for(var i=0; i < parts.length; i++) {
             var part_number = parseInt(parts[i][0], 10);
             u.add_loaded_chunk(part_number - 1);
             u.set_chunk_finished(part_number - 1);
             loaded.push(part_number - 1);
         }
         log(loaded);
-        for(var x=0; x<num_chunks; x++) {
-            if(loaded.indexOf(x) === -1) {
-                log("Chunk not uploaded: ", x);
-                u.set_progress(x, 0);
+        for(var i=0; i < num_chunks; i++) {
+            if(loaded.indexOf(i) === -1) {
+                log("Chunk not uploaded: ", i);
+                u.set_progress(i, 0);
             }
         }
     };
@@ -1019,8 +1078,7 @@ function mule_upload(settings) {
     // set a chunk's progress
     Uploader.prototype.set_progress = function(chunk, loaded) {
         var num_chunks = Math.ceil(this.file.size / this.settings.chunk_size);
-        log("Progress: Chunk " + (chunk + 1) + " / " + num_chunks + ", Bytes " + loaded + " / "
-            + this.settings.chunk_size + " (" + (loaded/this.settings.chunk_size * 100).toFixed(2) + "%)");
+        this.log_status();
         this._progress = this._progress || {};
         this._progress[chunk] = loaded;
     };
@@ -1044,7 +1102,7 @@ function mule_upload(settings) {
     Uploader.prototype.add_loaded_chunk = function(chunk) {
         this._loaded_chunks = this._loaded_chunks || [];
         this._loaded_chunks.push(chunk);
-        this.set_progress(chunk, this.settings.chunk_size);
+        this.set_progress(chunk, this.get_chunk_size(chunk));
     };
 
     // returns true if the chunk is currently uploading
@@ -1063,7 +1121,7 @@ function mule_upload(settings) {
             this._uploading_chunks.push(chunk);
         } else {
             var list = [];
-            for(var i=0; i<this._uploading_chunks.length; i++) {
+            for(var i=0; i < this._uploading_chunks.length; i++) {
                 if(this._uploading_chunks[i] != chunk) {
                     list.push(this._uploading_chunks[i]);
                 }
@@ -1078,7 +1136,7 @@ function mule_upload(settings) {
         if(!u._chunks || force) {
             u._chunks = [];
             var num_chunks = Math.ceil(u.file.size / u.settings.chunk_size);
-            for(var i=0; i<num_chunks; i++) {
+            for(var i=0; i < num_chunks; i++) {
                 u._chunks.push(false);
             }
         }
@@ -1098,7 +1156,7 @@ function mule_upload(settings) {
     Uploader.prototype.get_next_chunk = function() {
         var u = this;
         u._init_chunks();
-        for(var i=0; i<u._chunks.length; i++) {
+        for(var i=0; i < u._chunks.length; i++) {
             if(!u._chunks[i] && !u.get_chunk_uploading(i)) {
                 return i;
             }
@@ -1110,7 +1168,7 @@ function mule_upload(settings) {
     Uploader.prototype.upload_finished = function() {
         var u = this;
         u._init_chunks();
-        for(var i=0; i<u._chunks.length; i++) {
+        for(var i=0; i < u._chunks.length; i++) {
             if(!u._chunks[i] || u.get_chunk_uploading(i)) {
                 return false;
             }
@@ -1118,5 +1176,29 @@ function mule_upload(settings) {
         return true;
     };
 
+    Uploader.prototype.is_last_chunk = function(chunk) {
+        return Math.ceil(this.file.size / this.settings.chunk_size) == chunk - 1;
+    }
+
+    Uploader.prototype.get_chunk_size = function(chunk) {
+        if(this.is_last_chunk(chunk)) {
+            return this.file.size % this.settings.chunk_size;
+        } else {
+            return this.settings.chunk_size;
+        }
+    }
+
+    Uploader.prototype.log_status = function() {
+        // log(this.get_total_progress() / this.file.size * 100);
+    }
+
+    Uploader.prototype.on_progress = function(f) { u.settings.on_progress = f };
+    Uploader.prototype.on_select = function(f) { u.settings.on_select = f };
+    Uploader.prototype.on_error = function(f) { u.settings.on_error = f };
+    Uploader.prototype.on_complete = function(f) { u.settings.on_complete = f };
+    Uploader.prototype.on_init = function(f) { u.settings.on_init = f };
+    Uploader.prototype.on_start = function(f) { u.settings.on_start = f };
+    Uploader.prototype.on_chunk_uploaded = function(f) { u.settings.on_chunk_uploaded = f };
+
     return new Uploader(settings);
-}
+};
