@@ -4,7 +4,7 @@ class Admin::Reports::PendingTasksController <  Admin::BaseController
       redirect_to ('/')
     end
     @report = []
-    tasks = Task.includes(:owner).all
+    tasks = Task.includes(:owner).where("tasks.status != 'complete'")
 
     tasks.each  do |task|
         line  =  Hash.new
