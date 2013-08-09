@@ -1,0 +1,49 @@
+doctype html
+html
+  head
+    title Pop Up Archive Console
+    / meta name="keywords" content="template language"
+    / meta name="author" content=author
+    / javascript:
+    /  alert('Slim supports embedded javascript!')
+  body
+    h1 Pending tasks
+    #content
+      p Showing all the tasks on the pop uparchive.
+      == yield
+      - unless @report.empty?
+        table
+          thead
+            tr
+              th task id
+              th task type
+              th owner id
+              th owner type
+              th created at
+              th updated at
+              th status
+              th user id
+              th user email
+              th collection id
+              th colletion title
+              th item id
+              th item title
+          tbody
+          - for task in @report do
+            tr
+              td.id = task[:id]
+              td.type = task[:type]
+              td.owner_id = task[:owner_id]
+              td.owner_type = task[:owner_type]
+              td.created_at = task[:created_at]
+              td.updated_at= task[:updated_at]
+              td.status = task[:status]
+              td.user_id = task[:user_id]
+              td.user_email = task[:user_email]
+              td.collection_id= task[:collection_id]
+              td.collection_title = task[:collection_title]
+              td.item_id = task[:item_id]
+              td.item_title = task[:item_title]
+      - else
+        p
+        | No items found. please add some items! Thank you!

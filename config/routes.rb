@@ -8,6 +8,11 @@ PopUpArchive::Application.routes.draw do
 
   devise_for :users, controllers: { registrations: 'users/registrations', invitations: 'users/invitations', omniauth_callbacks: 'users/omniauth_callbacks' }
 
+
+  namespace :admin, path: 'admin' do
+    get 'reports/pendingtasks' => 'reports/pendingTasks#index'
+  end
+
   namespace :api, defaults: { format: 'json' }, path: 'api' do
     scope module: :v1, constraints: ApiVersionConstraint.new(version: 1, default: true) do
       root to: 'status#info'

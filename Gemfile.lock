@@ -274,6 +274,7 @@ GEM
       redis (~> 3.0.0)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    rolify (3.2.0)
     routing_concerns (0.1.0)
       actionpack (>= 3.2.0)
       activemodel (>= 3.2.0)
@@ -419,6 +420,7 @@ DEPENDENCIES
   rb-fchange
   rb-fsevent
   rb-inotify
+  rolify
   routing_concerns
   rspec-rails (~> 2.4)
   ruby_gntp

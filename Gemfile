@@ -70,6 +70,8 @@ gem 'newrelic_rpm'
 
 gem 'feedzirra'
 
+gem 'rolify'
+
 group :assets do
   gem 'sprockets'
   gem 'sass-rails',   '~> 3.2.3'
