@@ -87,9 +87,13 @@ group :development do
   gem 'binding_of_caller'
   gem 'ruby_gntp'
   gem 'guard-rspec'
-end
+  gem 'guard-jasmine'
+  gem "guard-bundler", ">= 1.0.0"
+  gem "guard-rails", ">= 0.4.0"
+ end
 
 group :development, :test do
+  gem 'pry-rails'
   gem 'rspec-rails', '~> 2.4'
   gem 'listen'
   gem 'terminal-notifier-guard'
@@ -98,11 +102,16 @@ group :development, :test do
   gem 'rb-fsevent', require: false
   gem 'rb-fchange', require: false
   gem 'spring'
+
+  # Test JS using Jasmine
+  gem 'jasmine'
+  gem 'jasmine-rails'
 end
 
 group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'poltergeist'
   gem 'shoulda-matchers'
 end
 
