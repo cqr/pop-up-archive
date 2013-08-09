@@ -92,7 +92,7 @@ PopUpArchive::Application.configure do
 
     database_url = ENV['DATABASE_URL']
     if(database_url)
-      ENV['DATABASE_URL'] = "#{database_url}?pool=10"
+      ENV['DATABASE_URL'] = "#{database_url}?pool=13"
       ActiveRecord::Base.establish_connection
     end
 
