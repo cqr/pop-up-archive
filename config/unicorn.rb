@@ -1,4 +1,4 @@
-worker_processes 5
+worker_processes 4
 timeout 30
 preload_app true
 
@@ -23,7 +23,7 @@ after_fork do |server, worker|
   if defined?(ActiveRecord::Base) 
     config = Rails.application.config.database_configuration[Rails.env]
     config['reaping_frequency'] = ENV['DB_REAP_FREQ'] || 10 # seconds
-    config['pool']              = ENV['DB_POOL'] || 7
+    config['pool']              = ENV['DB_POOL'] || 6
     ActiveRecord::Base.establish_connection(config)
   end
 end
