@@ -28,17 +28,6 @@ class XMLMediaImporter
 
   end
 
-  def is_audio_file?(url)
-    #puts "is_audio_file? url:#{url}"
-    uri = URI.parse(url)
-    ext = (File.extname(uri.path)[1..-1] || "").downcase
-    ['aac', 'aif', 'aiff', 'alac', 'flac', 'm4a', 'm4p', 'mp2', 'mp3', 'mp4', 'ogg', 'raw', 'spx', 'wav', 'wma'].include?(ext)
-  rescue  URI::BadURIError
-    false
-  rescue  URI::InvalidURIError
-    false
-  end
-
   def import_xml_illinois_collection
     count = 0
     xmlFeed=Nokogiri::XML(file)
@@ -131,7 +120,7 @@ class XMLMediaImporter
       next if mediaContent.xpath("formatLocation").to_a.empty?
       url = mediaContent.xpath("formatLocation")[0].text
       #next unless is_audio_file?(url)
-      next unless is_audio_file?(url) or url.nil?
+      next unless Utils.is_audio_file?(url) or url.nil?
       next if url =~ /32Kbit/
       next if url =~ /mpeg4/
       puts url
@@ -166,7 +155,7 @@ class XMLMediaImporter
     mediaContents.each do |mediaContent|
       next if mediaContent.xpath("formatLocation").to_a.empty?
       url = mediaContent.xpath("formatLocation")[0].text
-      next unless is_audio_file?(url)
+      next unless Utils.is_audio_file?(url)
       instance = item.instances.build
       instance.digital = true
       #instance.format     = pbcInstance.try(:digital).try(:value)
@@ -196,7 +185,7 @@ class XMLMediaImporter
     mediaContents = doc.xpath("group/content")
     mediaContents.each do |mediaContent|
       url = mediaContent.attribute('url').value
-      next unless is_audio_file?(url)
+      next unless Utils.is_audio_file?(url)
       instance = item.instances.build
       instance.digital = true
       #instance.format     = pbcInstance.try(:digital).try(:value)

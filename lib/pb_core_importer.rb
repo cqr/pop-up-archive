@@ -24,13 +24,6 @@ class PBCoreImporter
     end
   end
 
-  def is_audio_file?(url)
-    puts "is_audio_file? url:#{url}"
-    uri = URI.parse(url)
-    ext = (File.extname(uri.path)[1..-1] || "").downcase
-    ['aac', 'aif', 'aiff', 'alac', 'flac', 'm4a', 'm4p', 'mp2', 'mp3', 'mp4', 'ogg', 'raw', 'spx', 'wav', 'wma'].include?(ext)
-  end
-
   def item_for_omeka_doc(doc)
     item = Item.new
     item.collection        = collection
@@ -60,7 +53,7 @@ class PBCoreImporter
 
       if pbcInstance.parts.blank?
         url = pbcInstance.detect_element(:identifiers, match_attr: :source, match_value: ['URL', nil])
-        next unless is_audio_file?(url)
+        next unless Utils.is_audio_file?(url)
 
         audio = AudioFile.new
         instance.audio_files << audio
@@ -72,7 +65,7 @@ class PBCoreImporter
       else
         pbcInstance.parts.each do |pbcPart|
           url = pbcPart.detect_element(:identifiers, match_attr: :source, match_value: ['URL', nil])
-          next unless is_audio_file?(url)
+          next unless Utils.is_audio_file?(url)
 
           audio = AudioFile.new
           instance.audio_files << audio

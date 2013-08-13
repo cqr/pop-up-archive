@@ -36,8 +36,7 @@ class RemoteImporter
     puts "list out files in root directory:"
     count = 0
     list_of_files.each do |file|
-      ext = (file[-3,3] || "").downcase
-      next unless ['aac', 'aif', 'aiff', 'alac', 'flac', 'm4a', 'm4p', 'mp2', 'mp3', 'mp4', 'ogg', 'raw', 'spx', 'wav', 'wma'].include?(ext)
+      next unless Utils.is_audio_file?(file)
       if folder == nil
         file_url ="ftp://#{self.user}:#{self.password}@#{self.url}/"+URI.encode(file)
       else
