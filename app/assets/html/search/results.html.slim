@@ -43,8 +43,8 @@ ul.pager
 				.media
 					h4.media-heading ng-show="item.getTitle()"
 						a ng-href="{{item.link()}}" {{item.getTitle()}}
-          p ng-show="item.getDescription()"
-            | {{item.getDescription()}}
+
+          p ng-show="item.getDescription()" ng-bind-html-unsafe="item.getDescription()"
           .transcripts ng-show="item.highlights.audioFiles.length"
             section ng-repeat="audioFile in item.highlights.audioFiles" ng-controller="AudioFileCtrl"
               .transcript transcript-text="audioFile.transcript" transcript-editable="false" transcript-timestamps="start"
