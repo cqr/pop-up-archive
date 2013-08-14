@@ -22,7 +22,7 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
         'step': 2
 			},
 			'edit': { 
-				'content': 'To delete items select batch edit.',
+				'content': 'Use batch edit to delete or edit tags for many items at once.',
         'step': 3
 			},
       'tutorial1': {
