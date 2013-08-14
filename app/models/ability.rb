@@ -14,5 +14,7 @@ class Ability
     
     can :read,   Contribution
     can :manage, Contribution, item: { collection: { id: (user ? user.collection_ids : []) }}
+
+    can :read, Admin::TaskList if user.has_role? "super_admin"
   end
 end

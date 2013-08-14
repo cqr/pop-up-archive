@@ -9,8 +9,8 @@ PopUpArchive::Application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations', invitations: 'users/invitations', omniauth_callbacks: 'users/omniauth_callbacks' }
 
 
-  namespace :admin, path: 'admin' do
-    get 'reports/pendingtasks' => 'reports/pendingTasks#index'
+  namespace :admin do
+    resources :taskList
   end
 
   namespace :api, defaults: { format: 'json' }, path: 'api' do
