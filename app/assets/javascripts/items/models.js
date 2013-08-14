@@ -119,20 +119,25 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
   Item.prototype.updateAudioFiles = function () {
     var item = this;
 
-    angular.forEach(this.audioFiles, function (audioFile, index) {
+    var keepAudioFiles = [];
+    angular.forEach(item.audioFiles, function (audioFile, index) {
 
+      // console.log('updateAudioFiles', index, audioFile);
       var af = new AudioFile(audioFile);
       af.itemId = item.id;
 
       // delete c if marked for delete
       if (af._delete) {
+        // console.log('updateAudioFiles delete', audioFile, item);
         af.delete();
-        item.audioFiles.splice(index, 1);
+      } else {
+        keepAudioFiles.push(audioFile);
       }
       // else if (af.id) {
       //   af.update();
       // }
     });
+    item.audioFiles = keepAudioFiles;
   }
 
   Item.prototype.playable = function () {
@@ -188,7 +193,8 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
   Item.prototype.updateContributions = function () {
     var item = this;
 
-    angular.forEach(this.contributions, function (contribution, index) {
+    var keepContributions = [];
+    angular.forEach(item.contributions, function (contribution, index) {
 
       var c = new Contribution(contribution);
       c.itemId = item.id;
@@ -196,30 +202,35 @@ angular.module('Directory.items.models', ['RailsModel', 'Directory.audioFiles.mo
       // delete c if marked for delete
       if (c._delete) {
         c.delete();
-        item.contributions.splice(index, 1);
-      } else if (!c.person.id  || (c.person.id == 'new')) {
+        // item.contributions.splice(index, 1);
+      } else  {
+        keepContributions.push(c);
 
-        var p = new Person({'name':c.person.name, 'collectionId':item.collectionId});
+        if (!c.person.id  || (c.person.id == 'new')) {
 
-        p.create().then( function() {
-          c.personId = p.id;
-          if (!c.id || (c.id == 'new')) {
-            c.id = null;
-            c.create();
-          } else {
-            c.update();
-          }
+          var p = new Person({'name':c.person.name, 'collectionId':item.collectionId});
 
-        });
-      } else if (!c.id || (c.id == 'new')) {
-        c.id = null;
-        c.personId = c.person.id;
-        c.create();
-      } else {
-        c.personId = c.person.id;
-        c.update();
+          p.create().then( function() {
+            c.personId = p.id;
+            if (!c.id || (c.id == 'new')) {
+              c.id = null;
+              c.create();
+            } else {
+              c.update();
+            }
+          });
+        } else if (!c.id || (c.id == 'new')) {
+          c.id = null;
+          c.personId = c.person.id;
+          c.create();
+        } else {
+          c.personId = c.person.id;
+          c.update();
+        }
+
       }
     });
+    item.contributions = keepContributions;
   }
 
   Item.prototype.play = function () {
