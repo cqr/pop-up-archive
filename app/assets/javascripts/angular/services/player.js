@@ -191,6 +191,7 @@
         canEdit: "=transcriptEditable",
         transcriptTimestamps: "@",
         currentTime: "=",
+        fileUrl: "=",
         saveText: "&"
       },
       priority: -1000,
@@ -216,6 +217,8 @@
                 '</div>',
       link: function (scope, el, attrs) {
         var lastSecond = -1;
+
+        scope.player = Player;
 
         scope.transcriptStart = 0;
         scope.transcriptRows = {};
@@ -284,7 +287,7 @@
             var second = parseInt(time, 10);
             var height = angular.element(".file-transcript table tr")[0].scrollHeight;
             if (second != lastSecond) {
-              if (second in scope.transcriptRows) {
+              if ((scope.player.nowPlayingUrl() == scope.fileUrl) && (second in scope.transcriptRows)) {
                 var index = scope.transcriptRows[second];
                 if (index != undefined) {
                   el[0].scrollTop = Math.max((index - 1), 0) * height;
