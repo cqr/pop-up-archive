@@ -190,7 +190,8 @@
         transcript: "=transcriptText",
         canEdit: "=transcriptEditable",
         transcriptTimestamps: "@",
-        currentTime: "="
+        currentTime: "=",
+        saveText: "&"
       },
       priority: -1000,
       template: '<div class="file-transcript">' +
@@ -206,7 +207,7 @@
                         '<a href="#" ng-click="enableEditor()"><i class="icon-pencil"></i></a></td>' +
                       '<td ng-show="editorEnabled"><input ng-model="editableTranscript" ng-show="editorEnabled"></td>' +
                       '<td ng-show="editorEnabled" style="width: 50px;">' +
-                        '<a href="#" ng-click="saveText(text)" style="width: 8px; float: left; padding: 0 8px">' +
+                        '<a href="#" ng-click="updateText(text)" style="width: 8px; float: left; padding: 0 8px">' +
                           '<i class="icon-ok"></i></a>' +
                         '<a href="#" ng-click="disableEditor()" style="width: 8px; float: left; padding: 0 10px 0 8px">' +
                           '<i class="icon-remove"></i></a></td>' +
@@ -234,6 +235,13 @@
           scope.showStart = true;
           scope.showRange = false;
         }
+
+        scope.updateText = function (text) {
+          console.log('updateText', this, text);
+          text.text = this.editableTranscript;
+          this.disableEditor();
+          this.saveText({text: text});
+        };
 
         scope.toTimestamp = function (seconds) {
           var d = new Date(seconds * 1000);

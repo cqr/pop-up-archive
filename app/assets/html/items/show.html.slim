@@ -50,7 +50,7 @@ ul.pager ng-show="nextItem || previousItem || searchResults.query"
           input.search-query ng-class="{extended:!!transcriptFilter}" ng-model="transcriptFilter" placeholder="Search"
           a.clear-filter.icon-remove-sign ng-show="transcriptFilter.length > 0" ng-click="transcriptFilter=''"
         div ng-class="transcriptClass()"
-          .transcript transcript-text="audioFile.transcript | highlightMatches:transcriptFilter" transcript-editable="currentUser.canEdit(item)" current-time="player.time"
+          .transcript transcript-text="audioFile.transcript | highlightMatches:transcriptFilter" transcript-editable="currentUser.canEdit(item)" current-time="player.time" save-text="saveText(text)"
       .alert ng-show="currentUser.canEdit(item) && item.audioFiles.length > 0 && item.audioFiles[0].transcript == 0" Your transcript is processing. The length of your audio determines how long it will take to transcribe.
 .row-fluid.item-detail.metadata
   .span6

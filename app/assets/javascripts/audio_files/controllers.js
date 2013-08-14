@@ -27,10 +27,8 @@ angular.module("Directory.audioFiles.controllers", ['ngPlayer'])
 
   Me.authenticated(function (me) {
 
-    $scope.saveText = function() {
-      this.text.text = this.editableTranscript;
-      this.disableEditor();
-      var tt = new TimedText(this.text);
+    $scope.saveText = function(text) {
+      var tt = new TimedText(text);
       tt.update();
     };
 

@@ -47,7 +47,7 @@ ul.pager
             | {{item.getDescription()}}
           .transcripts ng-show="item.highlights.audioFiles.length"
             section ng-repeat="audioFile in item.highlights.audioFiles" ng-controller="AudioFileCtrl"
-              .transcript transcript-text="audioFile.transcript" transcript-editable="currentUser.canEdit(item)" transcript-timestamps="start"
+              .transcript transcript-text="audioFile.transcript" transcript-editable="false" transcript-timestamps="start"
           .entities
             .tag ng-repeat="entity in item.entityShortList()" {{entity}}
     .result-count-footer        

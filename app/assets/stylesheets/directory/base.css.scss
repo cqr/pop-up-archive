@@ -603,6 +603,7 @@ h5.result-count {
 .search-result .file-transcript {
   line-height: 16px;
   font-size: 11px;
+  overflow: hidden;
 
   .file-transcript-text {
     height: 16px;
@@ -620,7 +621,7 @@ h5.result-count {
 .file-transcript {
   padding: 0px;
   display: block;
-  overflow: hidden;
+  overflow: auto;
   clear: right;
   width: 100%;
   
@@ -638,8 +639,7 @@ h5.result-count {
 
   .file-transcript-text {
     height: 22px;
-    white-space: nowrap;
-    overflow-x: hidden;
+    overflow: hidden;
     margin-left: 5px;
   }
 
