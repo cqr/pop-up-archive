@@ -74,6 +74,8 @@ gem 'rolify'
 
 gem 'sanitize'
 
+gem 'soundcloud'
+
 group :assets do
   gem 'sprockets'
   gem 'sass-rails',   '~> 3.2.3'

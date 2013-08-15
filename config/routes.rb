@@ -11,6 +11,7 @@ PopUpArchive::Application.routes.draw do
 
   namespace :admin do
     resources :taskList
+    resources :soundcloudCallback
   end
 
   namespace :api, defaults: { format: 'json' }, path: 'api' do
