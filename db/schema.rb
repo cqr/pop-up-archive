@@ -11,21 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130808225015) do
+ActiveRecord::Schema.define(:version => 20130815175507) do
 
   add_extension "hstore"
 
   create_table "audio_files", :force => true do |t|
     t.integer  "item_id"
     t.string   "file"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.string   "original_file_url"
     t.string   "identifier"
     t.integer  "instance_id"
     t.text     "transcript"
     t.string   "format"
-    t.integer  "size"
+    t.integer  "size",              :limit => 8
     t.integer  "storage_id"
     t.string   "path"
     t.time     "deleted_at"
