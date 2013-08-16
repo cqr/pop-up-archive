@@ -306,6 +306,8 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
     $scope.clear();
 
     var uploadFiles = saveItem.files;
+    saveItem.files = [];
+    
     var audioFiles = saveItem.audioFiles;
     var contributions = saveItem.contributions;
 
