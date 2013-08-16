@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130815175507) do
+ActiveRecord::Schema.define(:version => 20130816191957) do
 
   add_extension "hstore"
 
@@ -251,7 +251,7 @@ ActiveRecord::Schema.define(:version => 20130815175507) do
   create_table "tasks", :force => true do |t|
     t.integer  "owner_id"
     t.string   "owner_type"
-    t.string   "identifier"
+    t.text     "identifier"
     t.string   "name"
     t.string   "status"
     t.hstore   "extras"
