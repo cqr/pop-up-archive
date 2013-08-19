@@ -37,6 +37,8 @@ class RemoteImporter
     count = 0
     list_of_files.each do |file|
       next unless Utils.is_audio_file?(file)
+
+=begin
       if folder == nil
         file_url ="ftp://#{self.user}:#{self.password}@#{self.url}/"+URI.encode(file)
       else
@@ -44,23 +46,28 @@ class RemoteImporter
         self.folder.slice! "kswebsite/"
         file_url ="http://#{self.url}/"+URI.encode(folder+"/"+file)
       end
+=end
+      file_url ="ftp://#{self.user}:#{self.password}@#{self.url}/"+URI.encode(folder+"/"+file)
 
       #file_url = URI.encode_www_form_component(file_url)
-      puts file_url
       count += 1
       next if count < self.first_item
       break if count > self.last_item
-      item = Item.new
-      item.collection        = self.collection
-      item.title             = file
-      instance = item.instances.build
-      instance.digital    = true
-      audio = AudioFile.new
-      instance.audio_files << audio
-      item.audio_files << audio
-      audio.identifier        = file_url
-      audio.remote_file_url   = file_url
-      item.save!
+      puts file_url
+      unless Item.where(identifier: file, collection_id: self.collection.id).exists?
+        item = Item.new
+        item.collection = self.collection
+        item.title = file
+        item.identifier = file
+        instance = item.instances.build
+        instance.digital = true
+        audio = AudioFile.new
+        instance.audio_files << audio
+        item.audio_files << audio
+        audio.identifier = file_url
+        audio.remote_file_url = file_url
+        item.save!
+      end
     end
     ftp.close
   end
