@@ -30,6 +30,7 @@ class RemoteImporter
     ftp.passive = true
     ftp.login(self.user, self.password)
     unless folder == nil
+      self.folder = URI.decode(self.folder)
       ftp.chdir(self.folder+"/")
     end
     list_of_files = ftp.nlst("*")
