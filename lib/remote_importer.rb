@@ -37,7 +37,7 @@ class RemoteImporter
     puts "list out files in root directory:"
     count = 0
     list_of_files.each do |file|
-      next unless Utils.is_audio_file?(file)
+      next unless Utils.is_audio_file?(URI.encode(file))
 
 =begin
       if folder == nil
