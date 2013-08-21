@@ -50,6 +50,8 @@ class FeedPopUp
           item.identifier = entry.id
           item.digital_location = entry.url
           item.date_broadcast = entry.published
+          item.date_created = entry.published
+          item.creators = [Person.for_name(entry.author)]
           entry.media_contents.each do |mediaContent|
             url = mediaContent.url
             next unless Utils.is_audio_file?(url)
