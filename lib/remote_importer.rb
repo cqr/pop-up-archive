@@ -13,8 +13,8 @@ class RemoteImporter
     self.user = options[:user] if options.has_key?(:user)
     self.password = options[:password] if options.has_key?(:password)
     self.collection = Collection.find(options[:collection_id])
-    self.folder.gsub!('_',' ')
-    self.folder = URI.escape(folder)
+    #self.folder.gsub!('_',' ')
+    #self.folder = URI.escape(folder)
     self.folder = nil if self.folder == "nothing"
 
     if options.has_key?(:url)
