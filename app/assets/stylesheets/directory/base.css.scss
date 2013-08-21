@@ -439,11 +439,12 @@ $persistent-player-scrollpading: 15px;
 
     .tag {
       display: inline-block;
-      padding: 5px 10px;
+      padding: 5px 5px;
       border-radius: 20px;
       margin-right: 5px;
-      background: rgb(173,123,75);
+      background: #e0d90e;
       color: #FFF;
+      font-size: 14px;
     }
   }
 }
@@ -760,7 +761,7 @@ h5.result-count {
         margin: 4px;
 
         .btn {
-          background: #B59B6D;
+          background: #FFB959;
           border: 0;
           color: white;
           padding: 4px;
@@ -769,7 +770,14 @@ h5.result-count {
           &:hover {
             background: #5970B1;
           }
-
+          
+          .delete:hover {
+            background: #fe1b2b;
+            }
+          
+          .confirm:hover {
+            background: #00d80f;
+          }
         }
 
         .delete {
@@ -818,7 +826,7 @@ h5.result-count {
         margin: 4px;
 
         .btn {
-          background: #B59B6D;
+          background: #7C7B81;
           border: 0;
           border-radius: 13px;
           color: white;
