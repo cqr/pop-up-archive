@@ -1,10 +1,11 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
+  before_filter :update_sign_up_filter
+
   protected
 
   def build_resource(*args)
-    logger.debug "Users::Registrations: start! #{args.inspect}"
-    hash = args.pop || resource_params || {}
+    hash = args[0] || resource_params || {}
     
     invited = nil
     if hash[:invitation_token]
@@ -20,5 +21,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
     self.resource ||= super
+  end
+
+  def update_sign_up_filter
+    devise_parameter_sanitizer.for(:sign_up) do |default_params|
+      default_params.permit(:name, :password, :password_confirmation, :email, :invitation_token, :provider, :uid)
+    end
   end
 end
