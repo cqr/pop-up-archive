@@ -26,7 +26,6 @@ class SoundcloudBackend
         instance.digital    = true
         instance.format     = track.original_formar
         instance.identifier = track.id
-        instance.location   = track.permalink_url
 
         audio = AudioFile.new
         instance.audio_files << audio
@@ -36,8 +35,6 @@ class SoundcloudBackend
         item.save!
       end
     end
-
-
   end
 
 end
