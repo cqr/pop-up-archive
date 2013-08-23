@@ -24,7 +24,7 @@ class SoundcloudBackend
 
         instance = item.instances.build
         instance.digital    = true
-        instance.format     = track.original_formar
+        instance.format     = track.original_format
         instance.identifier = track.id
 
         audio = AudioFile.new
