@@ -21,6 +21,7 @@ PopUpArchive::Application.routes.draw do
       get '/me' => 'users#me'
       get '/users/me' => 'users#me'
 
+      resource :lastItems
       resource :search
       resources :items do
         resources :audio_files do
