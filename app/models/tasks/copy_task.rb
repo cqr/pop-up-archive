@@ -11,7 +11,7 @@ class Tasks::CopyTask < Task
         new_storage_id = task.storage_id || task.extras['storage_id'].to_i
 
         # set the file on the owner, and the storage as the upload_to
-        task.owner.update_file!(File.basename(result_path), storage_id)
+        task.owner.update_file!(File.basename(result_path), new_storage_id)
         task.should_process = true
       end
 
