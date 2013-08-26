@@ -298,7 +298,11 @@ class AudioFile < ActiveRecord::Base
 
   def destination_path(options={})
     stor = options[:storage] || storage
-    File.join([ "/", (store_dir(stor) || ''), File.basename(original_file_url || self.filename)])
+    original_file_name = original_file_url ? File.basename(URI.parse(original_file_url).path || '') : '' rescue ''
+    current_file_name = self.filename.blank? ? '' : File.basename(self.filename) rescue ''
+
+    destination_file_name = !current_file_name.blank? ? current_file_name : original_file_name
+    File.join([ "/", (store_dir(stor) || ''), destination_file_name])
   end
 
   def destination_directory(options={})

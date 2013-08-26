@@ -28,6 +28,14 @@ describe AudioFile do
       a_sid.should_not eq(i_sid)
       audio_file.copy_to_item_storage.should == true
     end
+
+    it "should handle a remote url with query string" do
+      audio_file = AudioFile.new
+      audio_file.remote_file_url = "http://www.prx.org/test?query=string"
+      audio_file.storage_configuration = FactoryGirl.build :storage_configuration_public
+      audio_file.destination_path.should == '/test'
+    end
+
   end
 
   context "transcripts" do
