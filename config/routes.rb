@@ -8,11 +8,12 @@ PopUpArchive::Application.routes.draw do
 
   devise_for :users, controllers: { registrations: 'users/registrations', invitations: 'users/invitations', omniauth_callbacks: 'users/omniauth_callbacks' }
 
-
   namespace :admin do
     resources :taskList
     resources :soundcloudCallback
   end
+
+  get 'media/:token/:expires/:use/:class/:id/:name.:extension', controller: 'media', action: 'show'
 
   namespace :api, defaults: { format: 'json' }, path: 'api' do
     scope module: :v1, constraints: ApiVersionConstraint.new(version: 1, default: true) do
@@ -28,6 +29,7 @@ PopUpArchive::Application.routes.draw do
           post '',                    action: 'update'
           get 'transcript_text',      action: 'transcript_text'  
           get 'upload_to',            action: 'upload_to'
+          post 'order_transcript',    action: 'order_transcript'
 
           # s3 upload actions
           get 'chunk_loaded',         action: 'chunk_loaded'

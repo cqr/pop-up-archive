@@ -3,6 +3,8 @@ require "digest/sha1"
 
 class AudioFile < ActiveRecord::Base
 
+  include PublicAsset
+
   acts_as_paranoid
 
   belongs_to :item, :with_deleted => true
@@ -30,11 +32,16 @@ class AudioFile < ActiveRecord::Base
   end
 
   def filename
-    file.try(:path) ? File.basename(file.path) : ''
+    fn = if file.try(:path)
+      File.basename(file.path)
+    elsif !original_file_url.blank?
+      File.basename(URI.parse(original_file_url).path || '')
+    end || ''
+    fn
   end
 
-  def url
-    file.try(:url) ? file.url : original_file_url
+  def url(version=nil)
+    file.try(:url) ? file.url(version) : original_file_url
   end
 
   def storage
@@ -48,7 +55,6 @@ class AudioFile < ActiveRecord::Base
   def remote_file_url=(url)
     self.original_file_url = url
     self.should_trigger_fixer_copy = !!url
-    # logger.debug "remote_file_url: #{self.original_file_url}"
   end
 
   def upload_to
@@ -141,6 +147,10 @@ class AudioFile < ActiveRecord::Base
     # puts "\ncopy_to_item_storage: create task: orig: #{orig}, dest: #{dest}, stor: #{item_storage.inspect}\n"
     create_copy_task(orig, dest, item_storage)
     return true
+  end
+
+  def order_transcript
+    self.tasks << Tasks::OrderTranscriptTask.new
   end
 
   def create_copy_task(orig, dest, stor)
@@ -297,12 +307,8 @@ class AudioFile < ActiveRecord::Base
   end
 
   def destination_path(options={})
-    stor = options[:storage] || storage
-    original_file_name = original_file_url ? File.basename(URI.parse(original_file_url).path || '') : '' rescue ''
-    current_file_name = self.filename.blank? ? '' : File.basename(self.filename) rescue ''
-
-    destination_file_name = !current_file_name.blank? ? current_file_name : original_file_name
-    File.join([ "/", (store_dir(stor) || ''), destination_file_name])
+    dir = store_dir(options[:storage] || storage) || ''
+    File.join("/", dir, filename)
   end
 
   def destination_directory(options={})

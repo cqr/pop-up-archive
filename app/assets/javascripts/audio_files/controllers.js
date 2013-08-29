@@ -1,5 +1,5 @@
 angular.module("Directory.audioFiles.controllers", ['ngPlayer'])
-.controller("AudioFileCtrl", ['$scope', '$timeout', 'Player', 'Me', 'TimedText', function($scope, $timeout, Player, Me, TimedText) {
+.controller("AudioFileCtrl", ['$scope', '$timeout', 'Player', 'Me', 'TimedText', 'AudioFile', function($scope, $timeout, Player, Me, TimedText, AudioFile) {
   $scope.fileUrl = $scope.audioFile.url;
   
   $scope.play = function () {
@@ -27,6 +27,14 @@ angular.module("Directory.audioFiles.controllers", ['ngPlayer'])
     $scope.saveText = function(text) {
       var tt = new TimedText(text);
       tt.update();
+    };
+
+    $scope.orderTranscript = function (audioFile) {
+      var af = new AudioFile(audioFile);
+      af.itemId = $scope.item.id;
+      
+      console.log("order transcript for audio:", af);
+      return af.orderTranscript();
     };
 
   });

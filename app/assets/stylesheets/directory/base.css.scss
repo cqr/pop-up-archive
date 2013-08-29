@@ -693,12 +693,20 @@ h5.result-count {
     word-wrap: break-word;
 
     .btn {
-      background: #5970B1;
       border: 0;
       border-radius: 8px;
-      color: white;
       margin-left: 3px;
       text-shadow: none;
+    }
+
+    .btn-item {
+      background: #5970B1;
+      color: white;
+    }
+
+    .btn-transcript {
+      background: #F9A732;
+      color: white;
     }
 
     h1 {

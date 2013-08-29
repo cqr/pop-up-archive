@@ -18,12 +18,11 @@ ul.pager ng-show="nextItem || previousItem || searchResults.query"
   .span12
 
     .well
-      button.btn.pull-right ng-show="item.audioFiles[0].transcript" ng-click="toggleTranscript()"
+      button.btn.btn-item.pull-right ng-show="item.audioFiles[0].transcript" ng-click="toggleTranscript()"
         |Expand  
         i ng-class="{true: 'icon-resize-full', false: 'icon-resize-small'}[!transcriptExpanded]"
-      button.btn.pull-right ng-show="currentUser.canEdit(item)" ng-click="deleteItem()" Delete
-      /button.btn.pull-right ng-show="currentUser.canEdit(item)" bs-modal="'#{asset_path 'items/edit.html'}'" Edit
-      button.btn.pull-right ng-show="currentUser.canEdit(item)" ng-click="uploadFile()" Edit
+      button.btn.btn-item.pull-right ng-show="currentUser.canEdit(item)" ng-click="deleteItem()" Delete
+      button.btn.btn-item.pull-right ng-show="currentUser.canEdit(item)" ng-click="uploadFile()" Edit
 
       h1 {{item.title}}
 
@@ -50,6 +49,9 @@ ul.pager ng-show="nextItem || previousItem || searchResults.query"
           input.search-query ng-class="{extended:!!transcriptFilter}" ng-model="transcriptFilter" placeholder="Search"
           a.clear-filter.icon-remove-sign ng-show="transcriptFilter.length > 0" ng-click="transcriptFilter=''"
         div ng-class="transcriptClass()"
+          / button.btn.btn-transcript ng-click='orderTranscript(audioFile)'
+          /   | Perfect your transcript
+          /   img.image style="padding-left: 12px" src='#{asset_path("brain.svg")}'
           .transcript transcript-text="audioFile.transcript | highlightMatches:transcriptFilter" transcript-editable="currentUser.canEdit(item)" current-time="player.time" save-text="saveText(text)" file-url="fileUrl"
       .alert ng-show="currentUser.canEdit(item) && item.audioFiles.length > 0 && item.audioFiles[0].transcript == 0" Your transcript is processing. The first 60 seconds of your transcript should appear within a couple of minutes. Full transcripts are processed in real time. For instance, a 30&ndash;minute file will take at least 30 minutes to transcribe. 
 .row-fluid.item-detail.metadata

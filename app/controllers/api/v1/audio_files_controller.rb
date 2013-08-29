@@ -38,6 +38,13 @@ class Api::V1::AudioFilesController < Api::V1::BaseController
     render text: audio_file.transcript_text, content_type: 'text/plain'
   end
 
+  def order_transcript
+    # make call to amara to create the video
+    logger.debug "Start transcript for audio_file: #{audio_file}"
+    audio_file.order_transcript
+    respond_with :api
+  end
+
   def upload_to
     respond_with :api
   end

@@ -76,7 +76,9 @@ gem 'sanitize'
 
 gem 'soundcloud'
 
-gem 'amara'
+# gem 'amara'
+# gem 'amara', :path => '../amara'
+gem 'amara', github: 'PRX/amara'
 
 group :assets do
   gem 'sprockets'

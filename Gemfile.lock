@@ -1,4 +1,16 @@
 GIT
+  remote: git://github.com/PRX/amara.git
+  revision: 512b803385454420000d15d1bb3e3720b3bfe702
+  specs:
+    amara (0.0.4)
+      activesupport
+      excon
+      faraday
+      faraday_middleware
+      hashie
+      multi_json
+
+GIT
   remote: git://github.com/PRX/omniauth-prx.git
   revision: f95b2a9be0920458919d80d9d8be3a4e410f9bbb
   specs:
@@ -73,13 +85,6 @@ GEM
       activerecord (>= 3.0)
     acts_as_paranoid (0.4.2)
       activerecord (~> 3.2)
-    amara (0.0.2)
-      activesupport
-      excon
-      faraday
-      faraday_middleware
-      hashie
-      multi_json
     angularjs-rails-resource (0.2.0)
     ansi (1.4.3)
     arel (3.0.2)
@@ -444,7 +449,7 @@ DEPENDENCIES
   activerecord-postgres-hstore (~> 0.6.0)
   acts_as_list
   acts_as_paranoid (~> 0.4.0)
-  amara
+  amara!
   angularjs-rails-resource
   autoscaler (~> 0.2.0)
   better_errors

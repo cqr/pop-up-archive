@@ -36,6 +36,11 @@ angular.module('Directory.audioFiles.models', ['RailsModel', 'S3Upload'])
     });
   };
 
+  AudioFile.prototype.orderTranscript = function() {
+    var self = this;
+    return AudioFile.processResponse($http.post(self.$url() + '/order_transcript'));
+  };
+
   return AudioFile;
 }])
 .factory('TimedText', ['Model', '$http', function (Model, $http) {
