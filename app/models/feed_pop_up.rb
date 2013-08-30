@@ -59,7 +59,11 @@ class FeedPopUp
   end
 
   def id(entry)
-    entry.try(:id) || entry.try(:url) || entry.try(:guid) || generate_id(entry)
+    entry.try(:id) ||
+    entry.try(:url) ||
+    entry.try(:guid) ||
+    entry.try(:enclosure_url) ||
+    generate_id(entry)
   end
 
   def generate_id(entry)
