@@ -55,7 +55,7 @@ gem 'fog', '~> 1.11.1'
 gem 'heroku-api', '~> 0.3.10'
 gem 'excon', '~> 0.21.0'
 
-gem 'pb_core', '~> 0.1.5'
+gem 'pb_core', '~> 0.1.6'
 # gem 'pb_core', path: '~/dev/projects/pb_core'
 
 gem 'chronic'
@@ -68,7 +68,7 @@ gem "acts_as_paranoid", "~>0.4.0"
 
 gem 'newrelic_rpm', :github => 'newrelic/rpm', :branch => 'RUBY-1180'
 
-gem 'feedzirra'
+gem 'feedzirra', github: 'pauldix/feedzirra'
 
 gem 'rolify'
 
@@ -76,9 +76,9 @@ gem 'sanitize'
 
 gem 'soundcloud'
 
-# gem 'amara'
+gem 'amara'
 # gem 'amara', :path => '../amara'
-gem 'amara', github: 'PRX/amara'
+# gem 'amara', github: 'PRX/amara'
 
 group :assets do
   gem 'sprockets'
@@ -121,6 +121,7 @@ group :test do
   gem 'capybara'
   gem 'poltergeist'
   gem 'shoulda-matchers'
+  # gem 'webmock'
 end
 
 group :development, :production, :staging do

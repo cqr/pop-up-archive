@@ -1,4 +1,8 @@
 ENV["RAILS_ENV"] ||= 'test'
+
+# require 'webmock'
+# WebMock.disable_net_connect!(:allow_localhost => true)
+
 require File.expand_path("../../config/environment", __FILE__)
 require "rails/application"
 require 'factory_girl'
@@ -6,6 +10,7 @@ require 'rspec/rails'
 require 'capybara/rspec'
 require 'capybara/rails'
 require 'capybara/poltergeist'
+# require 'webmock/rspec'
 
 Capybara.register_driver :chrome do |app|
   Capybara::Selenium::Driver.new(app, :browser => :chrome)
@@ -25,4 +30,5 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f }
   FactoryGirl.reload
+
 end

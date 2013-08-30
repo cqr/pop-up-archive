@@ -8,7 +8,7 @@ module Feedzirra
       element :title
       element :description
       element :link, :as => :url
-      elements :item, :as => :entries, :class => RSSEntry
+      elements :item, :as => :entries, :class => MediaRSSEntry
 
       attr_accessor :feed_url
 
