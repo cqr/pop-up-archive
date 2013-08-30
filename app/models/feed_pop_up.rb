@@ -45,7 +45,9 @@ class FeedPopUp
     item.digital_location = entry.url
     item.date_broadcast   = entry.published
     item.date_created     = entry.published
-    item.creators         = [author(entry)]
+
+    author = author(entry)
+    item.creators         = [author] if author
 
     add_audio_files(item, entry)
   
@@ -54,8 +56,9 @@ class FeedPopUp
   end
 
   def author(entry)
-    n = entry.author.sanitize.squish
-    Person.for_name(n)
+    n = entry.try(:author) ? entry.author.sanitize.squish : nil
+    p = Person.for_name(n) if n
+    p
   end
 
   def id(entry)
