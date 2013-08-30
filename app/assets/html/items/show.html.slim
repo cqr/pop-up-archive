@@ -49,9 +49,9 @@ ul.pager ng-show="nextItem || previousItem || searchResults.query"
           input.search-query ng-class="{extended:!!transcriptFilter}" ng-model="transcriptFilter" placeholder="Search"
           a.clear-filter.icon-remove-sign ng-show="transcriptFilter.length > 0" ng-click="transcriptFilter=''"
         div ng-class="transcriptClass()"
-          / button.btn.btn-transcript ng-click='orderTranscript(audioFile)'
-          /   | Perfect your transcript
-          /   img.image style="padding-left: 12px" src='#{asset_path("brain.svg")}'
+          button.btn.btn-transcript ng-show='currentUser.canOrderTranscript(audioFile)' ng-click='orderTranscript(audioFile)'
+            | Perfect your transcript
+            img.image style="padding-left: 12px" src='#{asset_path("brain.svg")}'
           .transcript transcript-text="audioFile.transcript | highlightMatches:transcriptFilter" transcript-editable="currentUser.canEdit(item)" current-time="player.time" save-text="saveText(text)" file-url="fileUrl"
       .alert ng-show="currentUser.canEdit(item) && item.audioFiles.length > 0 && item.audioFiles[0].transcript == 0" Your transcript is processing. The first 60 seconds of your transcript should appear within a couple of minutes. Full transcripts are processed in real time. For instance, a 30&ndash;minute file will take at least 30 minutes to transcribe. 
 .row-fluid.item-detail.metadata

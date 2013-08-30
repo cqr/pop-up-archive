@@ -8,6 +8,19 @@ describe User do
     user.uploads_collection.should_not be_nil
   end
 
+  context 'abilities' do
+    it "should check if user can oredr transcript" do
+      audio_file = AudioFile.new
+
+      ability = Ability.new(user)
+      ability.should_not be_can(:order_transcript, audio_file)
+
+      user.organization_id = 100
+      ability = Ability.new(user)
+      ability.should be_can(:order_transcript, audio_file)
+    end
+  end
+
   context '#uploads_collection' do
     it 'is a collection' do
       user.uploads_collection.should be_a Collection

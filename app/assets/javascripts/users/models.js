@@ -26,5 +26,13 @@ angular.module('Directory.users.models', ['RailsModel'])
     }
   }
 
+  User.prototype.canOrderTranscript = function (obj) {
+    if (this.authenticated() && obj) {
+      return (this.organizationId && (this.organizationId > 0));
+    } else {
+      return false;
+    }
+  }
+
   return User;
 }])

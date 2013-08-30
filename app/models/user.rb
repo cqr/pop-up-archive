@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :provider, :uid, :name, :invitation_token
 
+  belongs_to :organization
+
   has_many :collection_grants
   has_one  :uploads_collection_grant, class_name: 'CollectionGrant', conditions: {uploads_collection: true}
   has_one  :uploads_collection, through: :uploads_collection_grant, source: :collection

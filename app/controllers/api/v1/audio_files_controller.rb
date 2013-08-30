@@ -39,6 +39,8 @@ class Api::V1::AudioFilesController < Api::V1::BaseController
   end
 
   def order_transcript
+    authorize! :order_transcript, audio_file
+    
     # make call to amara to create the video
     logger.debug "Start transcript for audio_file: #{audio_file}"
     audio_file.order_transcript

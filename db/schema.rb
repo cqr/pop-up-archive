@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130816191957) do
+ActiveRecord::Schema.define(:version => 20130830203433) do
 
   add_extension "hstore"
 
@@ -219,6 +219,12 @@ ActiveRecord::Schema.define(:version => 20130816191957) do
   add_index "oauth_applications", ["owner_id", "owner_type"], :name => "index_oauth_applications_on_owner_id_and_owner_type"
   add_index "oauth_applications", ["uid"], :name => "index_oauth_applications_on_uid", :unique => true
 
+  create_table "organizations", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "people", :force => true do |t|
     t.string   "name"
     t.string   "slug"
@@ -313,6 +319,7 @@ ActiveRecord::Schema.define(:version => 20130816191957) do
     t.integer  "invitation_limit"
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
+    t.integer  "organization_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
