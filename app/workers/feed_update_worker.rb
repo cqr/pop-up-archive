@@ -9,7 +9,7 @@ class FeedUpdateWorker
 
   def perform(url, collection_id)
     ActiveRecord::Base.connection_pool.with_connection do
-      FeedPopUp.update_from_feed(url,collection_id)
+      FeedPopUp.update_from_feed(url, collection_id)
     end
   end
 

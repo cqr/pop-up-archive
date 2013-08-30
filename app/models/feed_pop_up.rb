@@ -27,7 +27,7 @@ class FeedPopUp
   def add_entries(entries, collection)
     newItems = 0
     entries.each do |entry|
-      unless Item.where(identifier: entry.id, collection_id: collection.id).exists?
+      unless Item.where(identifier: id(entry), collection_id: collection.id).exists?
         item = add_item_from_entry(entry, collection)
         newItems += 1
       end
@@ -41,7 +41,7 @@ class FeedPopUp
     item.collection       = collection
     item.description      = sanitize_text(entry.summary)
     item.title            = entry.title
-    item.identifier       = entry.id
+    item.identifier       = id(entry)
     item.digital_location = entry.url
     item.date_broadcast   = entry.published
     item.date_created     = entry.published
@@ -56,6 +56,15 @@ class FeedPopUp
   def author(entry)
     n = entry.author.sanitize.squish
     Person.for_name(n)
+  end
+
+  def id(entry)
+    entry.try(:id) || entry.try(:url) || entry.try(:guid) || generate_id(entry)
+  end
+
+  def generate_id(entry)
+    uniq = "#{entry.title.sanitize}|#{entry.published}"
+    Digest::MD5.hexdigest(uniq)
   end
 
   def add_audio_files(item, entry)
