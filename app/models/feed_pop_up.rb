@@ -99,7 +99,7 @@ class FeedPopUp
       return if env[:is_whitelisted] || !node.element?
 
       # Don't continue unless the node is an div.
-      return unless node_name. == 'div'
+      return unless node_name == 'div'
 
       # We're now certain that this is a div in the summary,
       Sanitize.clean_node!(node)
