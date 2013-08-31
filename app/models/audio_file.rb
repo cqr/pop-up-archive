@@ -41,7 +41,7 @@ class AudioFile < ActiveRecord::Base
   end
 
   def url(version=nil)
-    file.try(:url) ? file.url(version) : original_file_url
+    file.try(:url) ? file.url(version: version) : original_file_url
   end
 
   def storage
