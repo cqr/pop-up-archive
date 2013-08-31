@@ -3,16 +3,17 @@ angular.module('Directory.users.models', ['RailsModel'])
   var User = Model({url:'/api/users', name: 'user'});
 
   User.prototype.authenticated = function (callback, errback) {
-    if (this.id) {
+    var self = this;
+    if (self.id) {
       if (callback) {
-        callback(this);
+        callback(self);
       }
 
       return true;
     }
 
     if (errback) {
-      errback(this);
+      errback(self);
     }
     
     return false;
