@@ -65,7 +65,7 @@ angular.module('RailsModel', ['rails'])
         if (typeof idMap[context] !== 'undefined') {
           result = idMap[context];
         }
-      } else if (angular.isNumber(context.id)) {
+      } else if (context && context.id && angular.isNumber(context.id)) {
         if (typeof idMap[context.id] !== 'undefined') {
           result = idMap[context.id];
         }
