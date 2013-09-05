@@ -10,7 +10,7 @@ class SoundcloudBackend
 
   def self.import_url(soundcloud_url, collection_id)
     collection = Collection.find(collection_id)
-    client = Soundcloud.new(:client_id =>  ENV['SOUNDCLOUD_SERVER_APP_ID'] ,:access_token => ENV['SOUNDCLOUD_POPUPARCHIVE_USER_ACCESS_TOKEN'])
+    client = Soundcloud.new(:client_id =>  ENV['SOUNDCLOUD_SERVER_APP_ID'] ,:access_token =>\ ENV['SOUNDCLOUD_POPUPARCHIVE_USER_ACCESS_TOKEN'])
     station = client.get('/resolve', :url => soundcloud_url, client_id: ENV['SOUNDCLOUD_SERVER_APP_ID'])
     tracks = client.get("/users/#{station.id}/tracks")
 
