@@ -15,8 +15,8 @@ class Ability
     can :read,   Contribution
     can :manage, Contribution, item: { collection: { id: (user ? user.collection_ids : []) }}
 
-    can :read, Admin::TaskList if user.has_role? "super_admin"
+    can :read, Admin::TaskList if (user && user.has_role?("super_admin"))
 
-    can :order_transcript, AudioFile if !user.organization_id.nil?
+    can :order_transcript, AudioFile if (user && !user.organization_id.nil?)
   end
 end
