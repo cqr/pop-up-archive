@@ -78,7 +78,8 @@ class ItemResultsPresenter < BasicObject
       end
       keys = lookup.keys
       audio_file_presenters = ::Hash.new do |hash, id|
-        hash[id] = HighlightedAudioFilePresenter.new(audio_files.find {|af| af.id == id })
+        af = audio_files.find {|af| af.id == id }
+        hash[id] = HighlightedAudioFilePresenter.new(af) if af
       end
 
       if @result.transcripts.present?

@@ -80,6 +80,8 @@ gem 'amara'
 # gem 'amara', :path => '../amara'
 # gem 'amara', github: 'PRX/amara'
 
+gem 'countries'
+
 group :assets do
   gem 'sprockets'
   gem 'sass-rails',   '~> 3.2.3'

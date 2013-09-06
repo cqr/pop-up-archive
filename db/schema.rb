@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130830203433) do
+ActiveRecord::Schema.define(:version => 20130903195500) do
 
   add_extension "hstore"
 
@@ -170,6 +170,7 @@ ActiveRecord::Schema.define(:version => 20130830203433) do
     t.boolean  "is_public"
     t.time     "deleted_at"
     t.text     "transcription"
+    t.string   "language"
   end
 
   add_index "items", ["collection_id"], :name => "index_items_on_collection_id"
