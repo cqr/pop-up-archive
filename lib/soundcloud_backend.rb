@@ -1,13 +1,25 @@
 class SoundcloudBackend
 
   def self.get_url
+<<<<<<< Updated upstream
     client = soundcloud_client
+=======
+    client = Soundcloud.new({
+                                :client_id     => ENV['SOUNDCLOUD_SERVER_APP_ID'] ,
+                                :client_secret => ENV['SOUNDCLOUD_SERVER_APP_SECRET'],
+                                :redirect_uri  => ENV['SOUNDCLOUD_POP_REDIRECT_URL']
+                            })
+>>>>>>> Stashed changes
     puts client.authorize_url()
   end
 
   def self.import_url(soundcloud_url, collection_id)
     collection = Collection.find(collection_id)
+<<<<<<< Updated upstream
     client     = soundcloud_client
+=======
+    client     = Soundcloud.new(:client_id =>  ENV['SOUNDCLOUD_SERVER_APP_ID'] ,:access_token => ENV['SOUNDCLOUD_POPUPARCHIVE_USER_ACCESS_TOKEN'])
+>>>>>>> Stashed changes
     station    = client.get('/resolve', :url => soundcloud_url, client_id: ENV['SOUNDCLOUD_SERVER_APP_ID'])
     tracks     = client.get("/users/#{station.id}/tracks")
 
@@ -34,6 +46,7 @@ class SoundcloudBackend
     end
   end
 
+<<<<<<< Updated upstream
   def self.soundcloud_client
     Soundcloud.new({
       :client_id     => ENV['SOUNDCLOUD_SERVER_APP_ID'] ,
@@ -43,3 +56,6 @@ class SoundcloudBackend
   end
 
 end
+=======
+end
+>>>>>>> Stashed changes
