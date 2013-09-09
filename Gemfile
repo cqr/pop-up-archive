@@ -81,6 +81,7 @@ gem 'amara'
 # gem 'amara', github: 'PRX/amara'
 
 gem 'countries'
+gem 'language_list'
 
 group :assets do
   gem 'sprockets'

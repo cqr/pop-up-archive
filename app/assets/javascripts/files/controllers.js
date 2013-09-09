@@ -9,7 +9,7 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
 
     // for uploads
     $scope.files = [];
-    $scope.uploadModal = $modal({template: '/assets/items/new.html', persist: true, show: false, backdrop: 'static', scope: $scope, modalClass: 'item-modal'});
+    $scope.uploadModal = $modal({template: '/assets/items/form.html', persist: true, show: false, backdrop: 'static', scope: $scope, modalClass: 'item-modal'});
 
     // for exit survey
     $scope.shouldShowExitSurvey = null;
@@ -425,6 +425,34 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
     }
   };
 
+  $scope.languageSelect = function() {
+    return {
+      placeholder: 'Language...',
+      width: '220px',
+      data: Item.languages,
+      initSelection: function (element, callback) { 
+        callback(element.val());
+      }
+    }
+  };  
+
+  // the ajax version, maybe?
+  // $scope.languageSelect = function() {
+  //   return {
+  //     placeholder: 'Language...',
+  //     width: '220px',
+  //     ajax: {
+  //       url: '/languages.json',
+  //       results: function (data) {
+  //         return {results: data};
+  //       }
+  //     },
+  //     initSelection: function (element, callback) { 
+  //       callback($scope.item.language);
+  //     }
+  //   }
+  // };  
+
   $scope.roleSelect = {
     placeholder:'Role...',
     width: '160px'
@@ -438,7 +466,7 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
     formatSelection: function (person) { return person.name; },
     formatResult: function (result, container, query, escapeMarkup) { 
       var markup=[];
-      window.Select2.util.markMatch(result.name, query.term, markup, escapeMarkup);
+      $window.Select2.util.markMatch(result.name, query.term, markup, escapeMarkup);
       return markup.join("");
     },
     createSearchChoice: function (term, data) {

@@ -86,6 +86,14 @@ section ng-controller="NewItemFormCtrl"
 
           section ng-show='showDetails'
 
+
+            .control-group
+              label.control-label
+                | Language
+                i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['language']" data-placement="bottom"
+              .controls
+                input type='hidden' ui-select2="languageSelect()" ng-model="item.language"
+
             .control-group
               .control-label
                 label
