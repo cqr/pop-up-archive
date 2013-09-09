@@ -8,95 +8,54 @@
     }
   }
 
-  angular.module('ngPlayer', [])
-  .factory('Player', ['$timeout', function ($timeout) {
-    var nowPlayingText, nowPlayingItem, playing = false;
-    var audioElement = angular.element('<audio></audio>')[0];
+  angular.module('ngPlayer', ['ngPlayerHater'])
+  .factory('Player', ['playerHater', '$rootScope', function (playerHater, $rootScope) {
     var Player = {};
 
-    function nowPlaying() {
-      return nowPlayingText;
-    }
+    $rootScope.$watch(function () { return (playerHater.nowPlaying || {}).position }, function (position) {
+      Player.time = position / 1000;
+    });
 
-    function nowPlayingUrl() {
-      return nowPlayingItem;
-    }
+    $rootScope.$watch(function () { return (playerHater.nowPlaying || {}).duration }, function (duration) {
+      Player.duration = duration / 1000;
+    });
 
-    function loadFile(file) {
-      nowPlayingItem = (file || nowPlayingItem);
-      if (audioElement.src != nowPlayingItem) {
-        audioElement.src = nowPlayingItem;
-      }
-    }
-
-    function filename() {
-      var parts = (nowPlayingItem || '').split('/');
+    function simpleFile(filename) {
+      var parts = (filename || '').split('/');
       return parts[parts.length-1].split('?', 2)[0];
     }
 
-    function play(file, text) {
-      loadFile(file);
-      nowPlayingText = text || filename();
-      audioElement.play();
-      scheduleUpdate();
-    }
-
-    function stop () {
-      audioElement.pause();
-      nowPlayingItem = null;
-      audioElement.src = null;
-      audioElement.currentTime = 0;
-      audioElement.duration = 0;
-      Player.time = 0;
-      Player.duration = 0;
-    }
-
-    function pause () {
-      audioElement.pause();
-    }
-
-    function paused () {
-      return audioElement.paused;
-    }
-
-    function ended () {
-      return audioElement.ended;
-    }
-
-    function updateTimecodes () {
-      Player.time = audioElement.currentTime;
-      Player.duration = audioElement.duration;
-    }
-
-    function rewind () {
-      seekTo(0);
-    }
-
-    function seekTo (position) {
-      if (audioElement.duration) {
-        audioElement.currentTime = position;
-        $timeout(updateTimecodes, 0);
-      } else {
-        $timeout(function(){seekTo(position)}, 100);
-      }
-    }
-
-    function scheduleUpdate () {
-      updateTimecodes();
-      if (!paused() && !ended()) $timeout(scheduleUpdate, 100);
+    Player.nowPlayingUrl = function () {
+      return (playerHater.nowPlaying || {}).url;
     };
 
-    Player.time = 0;
-    Player.duration = 0;
-    Player.pause = pause;
-    Player.paused = paused;
-    Player.nowPlaying = nowPlaying;
-    Player.rewind = rewind;
-    Player.play = play;
-    Player.stop = stop;
-    Player.seekTo = seekTo;
-    Player.nowPlayingUrl = nowPlayingUrl;
-    
+    Player.play = function (url, title) {
+      if (typeof url === 'undefined' ||
+        playerHater.nowPlaying && simpleFile(url) === simpleFile(playerHater.nowPlaying.url)) {
+        return playerHater.play();
+      } 
+      return playerHater.play({url:url, title: title});
+    };
+
+    Player.nowPlaying = function () {
+      if (playerHater.nowPlaying) {
+        return playerHater.nowPlaying.title || simpleFile(playerHater.nowPlaying.url);
+      }
+      return null;
+    };
+
+    Player.paused = function () {
+      return playerHater.paused;
+    };
+
+    Player.pause = function () {
+      return playerHater.pause();
+    };
+
+    Player.seekTo = function (position) {
+      return playerHater.seekTo(position * 1000);
+    };
+
     return Player;
   }])
   .filter('timeCode', function () {

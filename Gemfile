@@ -90,6 +90,7 @@ group :assets do
   gem 'bootstrap-sass'
   gem 'angularjs-rails-resource'
   gem 'font-awesome-sass-rails', github: 'pduersteler/font-awesome-sass-rails'
+  gem 'ng_player_hater-rails', '~> 0.0.4'
 end
 
 group :development do

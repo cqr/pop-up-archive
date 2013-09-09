@@ -251,6 +251,7 @@ GEM
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.6.8)
+    ng_player_hater-rails (0.0.4.1)
     nokogiri (1.5.10)
     oauth (0.4.7)
     oauth2 (0.8.1)
@@ -491,6 +492,7 @@ DEPENDENCIES
   media_monster_client
   multi_json (~> 1.5.0)
   newrelic_rpm!
+  ng_player_hater-rails (~> 0.0.4)
   omniauth
   omniauth-facebook
   omniauth-oauth2 (~> 1.1.0)
