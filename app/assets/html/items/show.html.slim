@@ -49,7 +49,7 @@ ul.pager ng-show="nextItem || previousItem || searchResults.query"
           input.search-query ng-class="{extended:!!transcriptFilter}" ng-model="transcriptFilter" placeholder="Search"
           a.clear-filter.icon-remove-sign ng-show="transcriptFilter.length > 0" ng-click="transcriptFilter=''"
         div ng-class="transcriptClass()"
-          button.btn.btn-transcript ng-show='currentUser.canOrderTranscript(audioFile)' ng-click='orderTranscript(audioFile)'
+          button.btn.btn-transcript ng-show='currentUser.canOrderTranscript(audioFile) && audioFile.transcodedAt' ng-click='orderTranscript(audioFile)'
             | Perfect your transcript
             img.image style="padding-left: 12px" src='#{asset_path("brain.svg")}'
           .transcript transcript-text="audioFile.transcript | highlightMatches:transcriptFilter" transcript-editable="currentUser.canEdit(item)" current-time="player.time" save-text="saveText(text)" file-url="fileUrl"

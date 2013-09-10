@@ -29,8 +29,8 @@ class Tasks::OrderTranscriptTask < Task
       # duration: audio_file.duration, # don't have this, could get from fixer analysis perhaps?
       team:      team,
       title:     audio_file.filename,
-      video_url: audio_file.public_url,
-      primary_audio_language_code: lang      
+      video_url: audio_file.public_url(extension: :ogg),
+      primary_audio_language_code: lang
     }
 
     logger.debug "amara options: #{options.inspect}"
