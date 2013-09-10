@@ -47,5 +47,5 @@ angular.module("Directory.audioFiles.controllers", ['ngPlayer'])
   $scope.collapse = function () {
     $scope.collapsed = !$scope.collapsed;
   };
-  
+
 }]);

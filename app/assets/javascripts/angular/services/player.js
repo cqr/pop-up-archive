@@ -12,12 +12,39 @@
   .factory('Player', ['playerHater', '$rootScope', function (playerHater, $rootScope) {
     var Player = {};
 
+    var waveform;
+
+    function generateWaveform() {
+      var waveformData = [], l = 0;
+      var segments = parseInt(Math.random() * 700 + 300);
+
+      for (var i=0; i < segments; i++) {
+        l = waveformData[i] = Math.max(2, Math.min(100, parseInt(l + (Math.random() * 50 - 25))));
+      }
+
+      var canvas = angular.element('<canvas width=' + waveformData.length + ' height=85></canvas>')[0];
+      var context = canvas.getContext('2d');
+      context.fillStyle="#000000";
+
+      for (var i=0; i < waveformData.length; i++) {
+        context.fillRect(i, (100 - waveformData[i]) * 0.425, 1, waveformData[i] * 0.85)
+      }
+
+      waveform = canvas.toDataURL('image/png');
+    }
+
+    generateWaveform();
+
     $rootScope.$watch(function () { return (playerHater.nowPlaying || {}).position }, function (position) {
       Player.time = position / 1000;
     });
 
     $rootScope.$watch(function () { return (playerHater.nowPlaying || {}).duration }, function (duration) {
       Player.duration = duration / 1000;
+    });
+
+    $rootScope.$watch(function () { return playerHater.nowPlaying }, function () {
+      generateWaveform();
     });
 
     function simpleFile(filename) {
@@ -28,6 +55,10 @@
     Player.nowPlayingUrl = function () {
       return (playerHater.nowPlaying || {}).url;
     };
+
+    Player.waveform = function () {
+      return waveform;
+    }
 
     Player.play = function (url, title) {
       if (typeof url === 'undefined' ||
@@ -147,6 +178,10 @@
     return {
       restrict: 'C',
       link: function (scope, el, attrs) {
+        scope.$watch(Player.waveform, function (is) {
+          el.css('mask-image', "url(" + is + ")");
+        });
+        el.css('mask-size', '100% 100%');
         el.bind('click', function (e) {
           var left = 0, element = this;
           do {
