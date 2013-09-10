@@ -53,7 +53,12 @@
     };
 
     Player.seekTo = function (position) {
+      console.log(position);
       return playerHater.seekTo(position * 1000);
+    };
+
+    Player.rewind = function () {
+      this.seekTo(0);
     };
 
     return Player;
@@ -101,8 +106,15 @@
           }
 
           function mouseIsMoving (e) {
+            var top = 0, el = element;
+            do {
+              top += el.offsetTop || 0;
+              el = el.offsetParent;
+            } while(el);
+
             e = getEvent(e);
-            var relativePosition = e.y - element.offsetTop;
+
+            var relativePosition = e.clientY - top;
             if (relativePosition >= 0) {
               var percentage = (relativePosition / element.offsetHeight);
               if (timeoutComplete) {
@@ -133,8 +145,13 @@
       restrict: 'C',
       link: function (scope, el, attrs) {
         el.bind('click', function (e) {
+          var left = 0, element = this;
+          do {
+            left += element.offsetLeft || 0;
+            element = element.offsetParent;
+          } while(element);
           e = getEvent(e);
-          var relativePosition = e.x - this.offsetLeft;
+          var relativePosition = e.clientX - left;
           var percentage = (relativePosition / this.offsetWidth);
           Player.seekTo(percentage * Player.duration);
         });
