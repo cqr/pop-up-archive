@@ -18,22 +18,15 @@ html lang='en' ng-app='Directory' ng-controller='DirectoryCtrl'
             i.icon-cog.icon-spin
             |  Loading
     footer= render('footer')
-    #persistent-player.player.hidden ng-controller="PersistentPlayerCtrl" ng-class="{hidden:!player.nowPlaying(),collapsed:collapsed}" ng-cloak=""
-      .collapse-button ng-hide="collapsed" ng-click="collapse()"
-        i.icon-angle-up
-        | hide
-        i.icon-angle-up
-      .expand-button ng-show="collapsed" ng-click="expand()"
-        i.icon-angle-down
-        | show
-        i.icon-angle-down
-      .vertical-scrubber
-      .vertical-text
-        .now-playing {{player.nowPlaying()}}
+    #persistent-player.player.hidden ng-controller="PersistentPlayerCtrl" ng-class="{hidden:!player.nowPlaying(),collapsed:collapsed}" ng-cloak="" ng-click="collapse()"
+      img ng-src="{{player.albumArt()}}"
+      .scrubber
+        .bar ng-style="{width:player.time*100/player.duration+'%'}"
+      .now-playing {{player.nowPlaying()}}
       .player-controls
-        button.player-button ng-show="player.paused()" ng-click="player.play()"
+        button ng-show="player.paused()" ng-click="$event.stopPropagation();player.play()"
           i.icon-play
-        button.player-button ng-hide="player.paused()" ng-click="player.pause()"
+        button ng-hide="player.paused()" ng-click="$event.stopPropagation();player.pause()"
           i.icon-pause
 
 

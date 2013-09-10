@@ -44,6 +44,10 @@
       return null;
     };
 
+    Player.albumArt = function () {
+      return "/assets/minimark.png";
+    }
+
     Player.paused = function () {
       return playerHater.paused;
     };
@@ -150,8 +154,9 @@
             element = element.offsetParent;
           } while(element);
           e = getEvent(e);
-          var relativePosition = e.clientX - left;
-          var percentage = (relativePosition / this.offsetWidth);
+          e.stopPropagation();
+          var relativePosition = e.offsetX;
+          var percentage = (relativePosition / el[0].offsetWidth);
           Player.seekTo(percentage * Player.duration);
         });
       }
