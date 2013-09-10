@@ -53,7 +53,6 @@
     };
 
     Player.seekTo = function (position) {
-      console.log(position);
       return playerHater.seekTo(position * 1000);
     };
 
@@ -216,7 +215,6 @@
         }
 
         scope.updateText = function (text) {
-          console.log('updateText', this, text);
           text.text = this.editableTranscript;
           this.disableEditor();
           this.saveText({text: text});
