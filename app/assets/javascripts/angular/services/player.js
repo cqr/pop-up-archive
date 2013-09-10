@@ -180,6 +180,7 @@
       link: function (scope, el, attrs) {
         scope.$watch(Player.waveform, function (is) {
           el.css('mask-image', "url(" + is + ")");
+          el.css('-moz-mask-image', "url(" + is + ")");
         });
         el.css('mask-size', '100% 100%');
         el.bind('click', function (e) {
@@ -190,7 +191,8 @@
           } while(element);
           e = getEvent(e);
           e.stopPropagation();
-          var relativePosition = e.offsetX;
+          console.dir(e);
+          var relativePosition = e.offsetX || (e.clientX - left);
           var percentage = (relativePosition / el[0].offsetWidth);
           Player.seekTo(percentage * Player.duration);
         });
