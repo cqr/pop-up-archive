@@ -1,7 +1,7 @@
 class Task < ActiveRecord::Base
   serialize :extras, HstoreCoder
 
-  attr_accessible :name, :extras, :owner_id, :owner_type, :status, :identifier, :type, :storage_id
+  attr_accessible :name, :extras, :owner_id, :owner_type, :status, :identifier, :type, :storage_id, :owner, :storage
   belongs_to :owner, polymorphic: true
   belongs_to :storage, class_name: "StorageConfiguration", foreign_key: :storage_id
 
@@ -42,6 +42,22 @@ class Task < ActiveRecord::Base
       transition  all - [:failed] => :failed
     end
 
+  end
+
+  def serialize_extra(name)
+    self.extras = {} unless extras
+    self.extras[name] = self.extras[name].to_json if (self.extras[name] && !self.extras[name].is_a?(String))
+  end
+
+  def deserialize_extra(name, default={})
+    return nil unless self.extras
+    if self.extras[name].is_a?(String)
+      self.extras[name] = JSON.parse(self.extras[name])
+    end
+
+    self.extras[name] ||= default if default
+
+    self.extras[name]    
   end
 
 end

@@ -12,6 +12,19 @@ class Tasks::TranscodeTask < Task
 
   after_commit :create_transcode_job, :on => :create
 
+  before_save(on: :create) do
+    self.extras = {} unless extras
+    self.extras['formats'] ||= default_formats
+    self.extras['formats'] = self.extras['formats'].to_json if (self.extras['formats'] && self.extras['formats'].is_a?(Hash))
+  end
+
+  def formats
+    return nil unless self.extras
+    return self.extras['formats'] if self.extras['formats'].is_a?(Hash)
+    self.extras['formats'] = JSON.parse(self.extras['formats']) if (self.extras['formats'].is_a?(String))
+  end
+
+
   def create_transcode_job
     j = MediaMonsterClient.create_job do |job|
       job.job_type = 'audio'
@@ -37,8 +50,8 @@ class Tasks::TranscodeTask < Task
     job.add_task task_hash
   end
 
-  def formats
-    extras['formats'] || default_formats
+  def default_formats
+    AudioFileUploader.version_formats
   end
 
   def start_only?

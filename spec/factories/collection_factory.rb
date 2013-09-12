@@ -10,7 +10,6 @@ FactoryGirl.define do
       items_visible_by_default true
       association :default_storage, factory: :storage_configuration_public
       association :upload_storage, factory: :storage_configuration_private
-
     end
 
     factory :collection_private do

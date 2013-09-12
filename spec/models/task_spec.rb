@@ -20,6 +20,5 @@ describe Task do
     task.storage_id.should eq task.owner.storage.id
   end
 
-
 end
 

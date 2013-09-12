@@ -10,6 +10,26 @@ describe AudioFile do
       File.basename(audio_file.file.ogg.url).should eq "test.ogg"
     end
 
+    it "should know versions to look for" do
+      AudioFileUploader.version_formats.keys.sort.should eq [:mp3, :ogg]      
+    end
+
+    it "should create detect task" do
+      audio_file = FactoryGirl.create :audio_file
+      audio_file.storage.should be_automatic_transcode
+      audio_file.transcode_audio
+      audio_file.tasks.last.class.should == Tasks::DetectDerivativesTask
+      puts audio_file.tasks.last.inspect
+    end
+
+    it "should create transcode task" do
+      audio_file = FactoryGirl.create :audio_file_private
+      audio_file.storage.should_not be_automatic_transcode
+      audio_file.transcode_audio
+      audio_file.tasks.last.class.should == Tasks::TranscodeTask
+      puts audio_file.tasks.last.inspect
+    end
+
   end
 
   context "copy and move collections" do

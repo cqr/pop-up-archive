@@ -1,6 +1,9 @@
 require 'excon'
 
 class Utils
+
+  AUDIO_EXTENSIONS = ['aac', 'aif', 'aiff', 'alac', 'flac', 'm4a', 'm4p', 'mp2', 'mp3', 'mp4', 'ogg', 'raw', 'spx', 'wav', 'wma']
+
 	class<<self
 
     def http_resource_exists?(uri, retry_count=10)
@@ -64,11 +67,10 @@ class Utils
 
     def is_audio_file?(url)
       #puts "is_audio_file? url:#{url}"
-      valid_extensions = ['aac', 'aif', 'aiff', 'alac', 'flac', 'm4a', 'm4p', 'mp2', 'mp3', 'mp4', 'ogg', 'raw', 'spx', 'wav', 'wma']
       begin
         uri = URI.parse(url)
         ext = (File.extname(uri.path)[1..-1] || "").downcase
-        valid_extensions.include?(ext)
+        AUDIO_EXTENSIONS.include?(ext)
       rescue URI::BadURIError
         false
       rescue URI::InvalidURIError

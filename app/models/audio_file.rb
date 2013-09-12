@@ -188,13 +188,13 @@ class AudioFile < ActiveRecord::Base
   def transcode_audio
     if storage.automatic_transcode?
       # TODO: start task to detect transcode (scheduled, recurring)
-      urls = file.class.version_formats.keys.inject do |h, k|
+      urls = AudioFileUploader.version_formats.keys.inject({}) do |h, k|
         h[k] = { url: file.send(k), detected_at: nil }
         h
       end
-      self << Tasks::DetectDerivativesTask.new(identifier: 'detect_derivatives', extras: { urls: urls })
+      self.tasks << Tasks::DetectDerivativesTask.new(identifier: 'detect_derivatives', extras: { 'urls' => urls })
     else
-      self << Tasks::TranscodeTask.new(identifier: 'transcode')
+      self.tasks << Tasks::TranscodeTask.new(identifier: 'transcode')
     end
   end
 
