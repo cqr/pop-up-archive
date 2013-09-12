@@ -12,25 +12,16 @@
   .factory('Player', ['playerHater', '$rootScope', function (playerHater, $rootScope) {
     var Player = {};
 
-    var waveform;
+    var waveformData = [];
 
     function generateWaveform() {
-      var waveformData = [], l = 0;
-      var segments = parseInt(Math.random() * 700 + 300);
+      waveformData.length = 0;
+      var l = 0;
+      var segments = parseInt(Math.random() * 1000 + 1000);
 
       for (var i=0; i < segments; i++) {
-        l = waveformData[i] = Math.max(2, Math.min(100, parseInt(l + (Math.random() * 50 - 25))));
+        l = waveformData[i] = Math.max(Math.round(Math.random() * 10) + 2, Math.min(Math.round(Math.random() * -20) + 50, Math.round(l + (Math.random() * 25 - 12.5))));
       }
-
-      var canvas = angular.element('<canvas width=' + waveformData.length + ' height=85></canvas>')[0];
-      var context = canvas.getContext('2d');
-      context.fillStyle="#000000";
-
-      for (var i=0; i < waveformData.length; i++) {
-        context.fillRect(i, (100 - waveformData[i]) * 0.425, 1, waveformData[i] * 0.85)
-      }
-
-      waveform = canvas.toDataURL('image/png');
     }
 
     generateWaveform();
@@ -57,7 +48,7 @@
     };
 
     Player.waveform = function () {
-      return waveform;
+      return waveformData;
     }
 
     Player.play = function (url, title) {
@@ -177,12 +168,107 @@
   .directive("scrubber", ["Player", function (Player) {
     return {
       restrict: 'C',
+      template: '<canvas></canvas>',
+      replace: false,
       link: function (scope, el, attrs) {
-        scope.$watch(Player.waveform, function (is) {
-          el.css('mask-image', "url(" + is + ")");
-          el.css('-moz-mask-image', "url(" + is + ")");
+        var element = el.find('canvas')[0];
+        var context = element.getContext('2d');
+        var mapped  = mapToArray(Player.waveform(), el.width());
+
+        function canvasWidth() {
+          return el.width();
+        }
+
+        function canvasHeight() {
+          return el.height();
+        }
+
+        function barTop(size, height) {
+          return Math.round((50 - size) * (height / 50) * 0.5);
+        }
+
+        function barHeight(size, height) {
+          return Math.round(size * (height / 50));
+        }
+
+        function mapToArray(waveform, size) {
+          var currentPixel = 0;
+          var currentChunk = 0;
+          var chunksPerPixel = waveform.length / size;
+          var chunkStart, chunkEnd, sum, j;
+          var array = [];
+          while (currentPixel < size) {
+            chunkStart = Math.ceil(currentChunk);
+            currentChunk += chunksPerPixel;
+            chunkEnd = Math.floor(currentChunk);
+
+            sum = 0;
+            for (j = chunkStart; j <= chunkEnd; j += 1) {
+              sum += waveform[j];
+            }
+
+            array[currentPixel] = sum / (chunkEnd - chunkStart + 1);
+            currentPixel += 1;
+          }
+          return array;
+        }
+
+        function redraw() {
+          var height = canvasHeight();
+          var width  = mapped.length;
+          element.width = width;
+          element.height = height;
+          var scrubberEnd = Math.round(width * Player.time / Player.duration) || 0;
+          context.clearRect(0, 0, width + 200, height + 200);
+          context.fillStyle = 'rgb(255, 190, 48)';
+          for (var i = 0; i < width; i++) {
+            if (i == scrubberEnd) {
+              context.fillStyle = "rgb(187, 187, 187)";
+            }
+            context.fillRect(i, barTop(mapped[i], height), 1, barHeight(mapped[i], height));
+          }
+        }
+
+        function drawScrubber(to, from) {
+          var height = canvasHeight();
+          from = Math.floor(from / Player.duration * mapped.length);
+          to   = Math.ceil(to / Player.duration * mapped.length);
+          if (to > from) {
+            context.fillStyle = 'rgb(255, 190, 48)'
+            for (var i=from; i<=to; i++) {
+              context.fillRect(i, barTop(mapped[i], height), 1, barHeight(mapped[i], height));
+            }
+          } else {
+            context.fillStyle = "rgb(187, 187, 187)";
+            for (var i=to; i<=from+1; i++) {
+              context.fillRect(i, barTop(mapped[i], height), 1, barHeight(mapped[i], height));
+            }
+          }
+        }
+
+        scope.$watch(Player.waveform, function (waveform) {
+          mapped = mapToArray(waveform, canvasWidth());
+          redraw();
         });
-        el.css('mask-size', '100% 100%');
+
+        var currentWidth = mapped.length, currentHeight = canvasHeight();
+        function checkWaveform () {
+          if (currentWidth != canvasWidth() || currentHeight != canvasHeight()) {
+            context.scale(currentWidth/canvasWidth(), currentHeight/canvasHeight());
+            if (currentWidth != canvasWidth()) {
+              mapped = mapToArray(Player.waveform(), canvasWidth());
+            }
+            currentWidth = canvasWidth();
+            currentHeight = canvasHeight();
+            redraw();
+          }
+        }
+
+        scope.$watch(function () { return Player.time }, drawScrubber);
+
+        scope.$watch(checkWaveform);
+        angular.element(window).bind('resize', checkWaveform);
+        
         el.bind('click', function (e) {
           var left = 0, element = this;
           do {
@@ -191,7 +277,6 @@
           } while(element);
           e = getEvent(e);
           e.stopPropagation();
-          console.dir(e);
           var relativePosition = e.offsetX || (e.clientX - left);
           var percentage = (relativePosition / el[0].offsetWidth);
           Player.seekTo(percentage * Player.duration);
