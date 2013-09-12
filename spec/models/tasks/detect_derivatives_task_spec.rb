@@ -19,7 +19,7 @@ describe Tasks::DetectDerivativesTask do
     task.identifier.should eq 'detect_derivatives'
     task.should be_valid
     task.urls.should_not be_nil
-    task.urls.keys.sort.should eq [:mp3, :ogg]
+    task.urls.keys.sort.should eq ['mp3', 'ogg']
   end
 
   it "should have url info as hashes" do

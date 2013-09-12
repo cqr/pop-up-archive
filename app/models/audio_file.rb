@@ -31,9 +31,10 @@ class AudioFile < ActiveRecord::Base
     instance.try(:item).try(:collection) || item.try(:collection)
   end
 
-  def filename
+  def filename(version=nil)
     fn = if file.try(:path)
-      File.basename(file.path)
+      f = version ? file.send(version) : file
+      File.basename(f.path)
     elsif !original_file_url.blank?
       File.basename(URI.parse(original_file_url).path || '')
     end || ''
@@ -194,7 +195,7 @@ class AudioFile < ActiveRecord::Base
       end
       self.tasks << Tasks::DetectDerivativesTask.new(identifier: 'detect_derivatives', extras: { 'urls' => urls })
     else
-      self.tasks << Tasks::TranscodeTask.new(identifier: 'transcode')
+      self.tasks << Tasks::TranscodeTask.new(identifier: 'transcode', extras: {'formats' => AudioFileUploader.version_formats})
     end
   end
 
@@ -308,7 +309,8 @@ class AudioFile < ActiveRecord::Base
 
   def destination_path(options={})
     dir = store_dir(options[:storage] || storage) || ''
-    File.join("/", dir, filename)
+    version = options.delete(:version)
+    File.join("/", dir, filename(version))
   end
 
   def destination_directory(options={})

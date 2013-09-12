@@ -3,8 +3,9 @@ class Tasks::TranscodeTask < Task
   state_machine :status do
     after_transition any => :complete do |task, transition|
 
-      if task.owner && !Rails.env.test?
-
+      if task.audio_file
+        # mark the audio_file as having processing complete?
+        task.audio_file.update_attribute(:transcoded_at, DateTime.now)
       end
 
     end
@@ -12,21 +13,51 @@ class Tasks::TranscodeTask < Task
 
   after_commit :create_transcode_job, :on => :create
 
-  before_save(on: :create) do
-    self.extras = {} unless extras
+  before_save do
     self.extras['formats'] ||= default_formats
-    self.extras['formats'] = self.extras['formats'].to_json if (self.extras['formats'] && self.extras['formats'].is_a?(Hash))
+    self.serialize_extra('formats')
+  end
+
+  def audio_file
+    self.owner
   end
 
   def formats
-    return nil unless self.extras
-    return self.extras['formats'] if self.extras['formats'].is_a?(Hash)
-    self.extras['formats'] = JSON.parse(self.extras['formats']) if (self.extras['formats'].is_a?(String))
+    deserialize_extra('formats', {})
   end
 
+  def default_formats
+    AudioFileUploader.version_formats
+  end
+
+  def call_back_url
+    extras['call_back_url'] || owner.try(:call_back_url)
+  end
+
+  def destination(version)
+    extras['destination'] || owner.try(:destination, {
+      storage: storage,
+      version: version
+    })
+  end
+
+  def original
+    extras['original'] || owner.try(:destination)
+  end
+
+  def add_transcode_task(job, label, options)
+    task_hash = {
+      :task_type => 'transcode',
+      :result    => destination(options['suffix'] || options['format']),
+      :call_back => call_back_url,
+      :options   => options,
+      :label     => label
+    }
+    job.add_task task_hash
+  end
 
   def create_transcode_job
-    j = MediaMonsterClient.create_job do |job|
+    j = create_job do |job|
       job.job_type = 'audio'
       job.original = original
       job.priority = 4
@@ -36,42 +67,24 @@ class Tasks::TranscodeTask < Task
         add_transcode_task job, label, format
       end
     end
-
   end
 
-  def add_transcode_task(job, label, options)
-    task_hash = {
-      :task_type => 'transcode',
-      :result    => destination(options[:suffix] || options[:format]),
-      :call_back => call_back_url,
-      :options   => options,
-      :label     => label
-    }
-    job.add_task task_hash
-  end
+  def create_job
+    job_id = nil
 
-  def default_formats
-    AudioFileUploader.version_formats
-  end
+    begin
+      new_job = MediaMonsterClient.create_job do |job|
+        yield job
+      end
+      
+      logger.debug("create_job: created: #{new_job.inspect}")
+      job_id = new_job.id
 
-  def start_only?
-    !!extras['start_only']
-  end
-
-  def call_back_url
-    extras['call_back_url'] || owner.try(:call_back_url)
-  end
-
-  def destination
-    suffix = start_only? ? '_ts_start.json' : '_ts_all.json'
-    extras['destination'] || owner.try(:destination, {
-      storage: storage,
-      suffix: suffix
-    })
-  end
-
-  def original
-    extras['original'] || owner.try(:original)
+    rescue Object=>exception
+      logger.error "create_job: error: #{exception.class.name}: #{exception.message}\n\t#{exception.backtrace.join("\n\t")}"
+      job_id = 1
+    end
+    job_id
   end
 
 end

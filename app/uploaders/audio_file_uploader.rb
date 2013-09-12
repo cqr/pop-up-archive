@@ -7,8 +7,8 @@ class AudioFileUploader < CarrierWave::Uploader::Base
 
   def self.version_formats
     {
-      mp3: {format: 'mp3', bit_rate: 128, sample_rate: 44100, channel_mode: 'm'},
-      ogg: {format: 'ogg', bit_rate: 64, sample_rate: 44100, channel_mode: 'm'}
+      'mp3' => {'format' => 'mp3', 'bit_rate' => 128, 'sample_rate' => 44100, 'channel_mode' => 'm'},
+      'ogg' => {'format' => 'ogg', 'bit_rate' => 64, 'sample_rate' => 44100, 'channel_mode' => 'm'}
     }
   end
 
