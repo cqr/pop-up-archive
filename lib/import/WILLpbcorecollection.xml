@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pbcoreCollection 
+  xmlns="http://www.pbcore.org/PBCore/PBCoreNamespace.html" 
+  xsi="http://www.w3.org/2001/XMLSchema-instance"
+  schemaLocation="http://pbcore.org/xsd/pbcore-2.0.xsd"
+  collectionTitle="Focus on WILL from Illinois Public Media"
+  collectionDescription="A collection of records from Focus on WILL"
+  collectionSource="Illinois Public Media, University of Illinois at Urbana-Champaign"
+  collectionRef="http://will.illinois.edu/focus/pbcorecollection"
+  collectionDate="2013-09-10T16:32:47-05:00">
+
+<pbcoreDescriptionDocument>
+  <pbcoreAssetType>Item</pbcoreAssetType> 
+  <pbcoreAssetDate dateType="broadcast">2013-09-10T00:09:00-05:00</pbcoreAssetDate>
+  <pbcoreIdentifier source="Illinois Public Media">WILL_Focus_david-inge1</pbcoreIdentifier>
+  <pbcoreTitle titleType="Program">Focus</pbcoreTitle>  
+  <pbcoreTitle titleType="Episode">David Inge</pbcoreTitle>
+  <pbcoreSubject subjectType="topic" source="Illinois Public Media">Community</pbcoreSubject>
+  <pbcoreSubject subjectType="folksonomy" source="Illinois Public Media">david inge</pbcoreSubject><pbcoreSubject subjectType="folksonomy" source="Illinois Public Media">focus</pbcoreSubject><pbcoreSubject subjectType="folksonomy" source="Illinois Public Media">illinois pioneers</pbcoreSubject><pbcoreSubject subjectType="folksonomy" source="Illinois Public Media">lou henson</pbcoreSubject><pbcoreSubject subjectType="folksonomy" source="Illinois Public Media">jim edgar</pbcoreSubject>
+  <pbcoreDescription descriptionType="Abstract">This hour on Focus, we&amp;rsquo;ll talk with Inge about his new gig and about his life and career as a public broadcaster. We&amp;rsquo;ll hear about some of the upcoming interviews he&amp;rsquo;ll host on WILL&#45;TV, and we&amp;rsquo;ll talk with him about his days as host of Focus, how he got started as a public broadcaster and what it&amp;rsquo;s like to talk with some of the most powerful and respected names in Illinois history.
+
+	WILL Producer George Hovorka also joins us for the first half of this hour on Focus to tell us more about Illinois Pioneers.&amp;nbsp;</pbcoreDescription>
+  <pbcoreGenre source="PBCore Genre list">Talk</pbcoreGenre>
+  <pbcoreCreator><creator>Lindsey Moon</creator><creatorRole>Producer</creatorRole></pbcoreCreator>
+  <pbcoreContributor><contributor>Inge, David</contributor><contributorRole>guest</contributorRole></pbcoreContributor><pbcoreContributor><contributor>Meadows , Jim</contributor><contributorRole>host</contributorRole></pbcoreContributor><pbcoreContributor><contributor>Hovorka, George</contributor><contributorRole>guest</contributorRole></pbcoreContributor>
+<pbcoreInstantiation>
+  <instantiationIdentifier source="Illinois Public Media">WILL_focus130910a.mp3</instantiationIdentifier>
+  <instantiationDate dateType="published">2013-09-10T12:09:39-05:00</instantiationDate>
+  <instantiationDigital>audio/mpeg</instantiationDigital>
+  <instantiationLocation>http://will.illinois.edu/nfs/focus130910a.mp3</instantiationLocation>
+  <instantiationMediaType>Sound</instantiationMediaType>
+  <instantiationGenerations>Copy</instantiationGenerations>
+  <instantiationFileSize unitsOfMeasure="bytes">23797205</instantiationFileSize>
+  <instantiationDuration>00:53:00</instantiationDuration>
+</pbcoreInstantiation>
+</pbcoreDescriptionDocument>
+
+<pbcoreDescriptionDocument>
+  <pbcoreAssetType>Item</pbcoreAssetType> 
+  <pbcoreAssetDate dateType="broadcast">2013-09-09T00:06:00-05:00</pbcoreAssetDate>
+  <pbcoreIdentifier source="Illinois Public Media">WILL_Focus_illinois-supreme-court-fall-term</pbcoreIdentifier>
+  <pbcoreTitle titleType="Program">Focus</pbcoreTitle>  
+  <pbcoreTitle titleType="Episode">The Illinois Supreme Court Fall Term</pbcoreTitle>
+  <pbcoreSubject subjectType="topic" source="Illinois Public Media">Criminal Justice</pbcoreSubject><pbcoreSubject subjectType="topic" source="Illinois Public Media">Law</pbcoreSubject>
+  <pbcoreSubject subjectType="folksonomy" source="Illinois Public Media">illinois supreme court</pbcoreSubject><pbcoreSubject subjectType="folksonomy" source="Illinois Public Media">court</pbcoreSubject><pbcoreSubject subjectType="folksonomy" source="Illinois Public Media">legal</pbcoreSubject><pbcoreSubject subjectType="folksonomy" source="Illinois Public Media">kanvera v weems</pbcoreSubject><pbcoreSubject subjectType="folksonomy" source="Illinois Public Media">pensions</pbcoreSubject>
+  <pbcoreDescription descriptionType="Abstract">Despite the fact that we never seem to hear much about it, there are several important cases before the Illinois Supreme Court this fall. One of them could affect the state&amp;rsquo;s efforts to solve its pension problems, and one of them . This hour on Focus, we&amp;rsquo;ll talk through some of the cases and their implications with Kirk Jenkins, an appellate attorney based in Chicago. Steve Beckett, a founding partner at Beckett and Webber, P.C. in Urbana and a lecturer at the University of Illinois College of Law also joins us.
+
+	Both attorneys have argued cases before the state&amp;rsquo;s high court, and we&amp;rsquo;ll also talk with them about Illinois&amp;rsquo; Supreme Court justices, who they are and why we never seem to hear much about them.
+
+	Do you have questions about the Illinois Supreme Court? We&amp;rsquo;d love to hear from you this hour on Focus!</pbcoreDescription>
+  <pbcoreGenre source="PBCore Genre list">Talk</pbcoreGenre>
+  <pbcoreCreator><creator>Lindsey Moon</creator><creatorRole>Producer</creatorRole></pbcoreCreator>
+  
+<pbcoreInstantiation>
+  <instantiationIdentifier source="Illinois Public Media">WILL_focus130909a.mp3</instantiationIdentifier>
+  <instantiationDate dateType="published">2013-09-09T12:24:18-05:00</instantiationDate>
+  <instantiationDigital>audio/mpeg</instantiationDigital>
+  <instantiationLocation>http://will.illinois.edu/nfs/focus130909a.mp3</instantiationLocation>
+  <instantiationMediaType>Sound</instantiationMediaType>
+  <instantiationGenerations>Copy</instantiationGenerations>
+  <instantiationFileSize unitsOfMeasure="bytes">24916499</instantiationFileSize>
+  <instantiationDuration>00:53:00</instantiationDuration>
+</pbcoreInstantiation>
+</pbcoreDescriptionDocument>
+
+<pbcoreDescriptionDocument>
+  <pbcoreAssetType>Item</pbcoreAssetType> 
+  <pbcoreAssetDate dateType="broadcast">2013-09-06T00:07:00-05:00</pbcoreAssetDate>
+  <pbcoreIdentifier source="Illinois Public Media">WILL_Focus_should-the-us-intervene-in-syria</pbcoreIdentifier>
+  <pbcoreTitle titleType="Program">Focus</pbcoreTitle>  
+  <pbcoreTitle titleType="Episode">Should the US Intervene in Syria?</pbcoreTitle>
+  <pbcoreSubject subjectType="topic" source="Illinois Public Media">Politics</pbcoreSubject>
+  <pbcoreSubject subjectType="folksonomy" source="Illinois Public Media">syria</pbcoreSubject><pbcoreSubject subjectType="folksonomy" source="Illinois Public Media">politics</pbcoreSubject>
+  <pbcoreDescription descriptionType="Abstract">Congress continues to debate whether or not the US should get involved in Syria, even though President Obama can order a missile strike without Congress&amp;rsquo; approval. This hour on Focus, we&amp;rsquo;ll talk about the debate and who really has the power to order military action. Juana Summers, a defense reporter with Politico joins us for the first few minutes of the program with the latest update about the debate in Washington D.C. Then, Ryan Hendrickson, a Professor of Political Science at Eastern Illinois University joins us. We&amp;rsquo;ll also talk with him about how our local US Representatives and Senators and how their voices play a role in the discussion.
+
+	We&amp;rsquo;ll also talk with Fred Lawson who he teaches international relations and government at Mills College in California about who is actually fighting in Syria and what the consequences of a missile strike would be. Lawson also spent time on a Fullbright Fellowship in Syria and will talk with us about who the people are who are being affected by all the fighting.
+
+	How do you want your legislators to vote? Do you think we should be involved in Syria? Do you have questions about the balance of power between Congress and President Obama? Let us know!</pbcoreDescription>
+  <pbcoreGenre source="PBCore Genre list">Talk</pbcoreGenre>
+  <pbcoreCreator><creator>Lindsey Moon</creator><creatorRole>Producer</creatorRole></pbcoreCreator>
+  <pbcoreContributor><contributor>Lawson, Fred</contributor><contributorRole>guest</contributorRole></pbcoreContributor><pbcoreContributor><contributor>Hendrickson, Ryan</contributor><contributorRole>guest</contributorRole></pbcoreContributor>
+<pbcoreInstantiation>
+  <instantiationIdentifier source="Illinois Public Media">WILL_focus130906a.mp3</instantiationIdentifier>
+  <instantiationDate dateType="published">2013-09-06T12:51:31-05:00</instantiationDate>
+  <instantiationDigital>audio/mpeg</instantiationDigital>
+  <instantiationLocation>http://will.illinois.edu/nfs/focus130906a.mp3</instantiationLocation>
+  <instantiationMediaType>Sound</instantiationMediaType>
+  <instantiationGenerations>Copy</instantiationGenerations>
+  <instantiationFileSize unitsOfMeasure="bytes">24775856</instantiationFileSize>
+  <instantiationDuration>00:53:00</instantiationDuration>
+</pbcoreInstantiation>
+</pbcoreDescriptionDocument>
+
+<pbcoreDescriptionDocument>
+  <pbcoreAssetType>Item</pbcoreAssetType> 
+  <pbcoreAssetDate dateType="broadcast">2013-09-05T00:05:00-05:00</pbcoreAssetDate>
+  <pbcoreIdentifier source="Illinois Public Media">WILL_Focus_david-inge</pbcoreIdentifier>
+  <pbcoreTitle titleType="Program">Focus</pbcoreTitle>  
+  <pbcoreTitle titleType="Episode">A History of Food in 100 Recipes</pbcoreTitle>
+  <pbcoreSubject subjectType="topic" source="Illinois Public Media">Food</pbcoreSubject>
+  
+  <pbcoreDescription descriptionType="Abstract">How we think about food, how we prepare food and how we eat food is constantly changing. It&amp;rsquo;s mind blowing to think about how much food changes over the course of a decade, let alone several hundred years. What are your favorite dinner dishes? Have you ever wondered how they evolved into the recipes you know and love? This hour on Focus, Lisa Bralts talks with author William Sitwell about the history of food&amp;hellip;.and when we say history, we mean deep history. We&amp;rsquo;ll go back to the 1400&amp;rsquo;s when royals were eating feasts prepared from recipes calling for an entire pig, and we&amp;rsquo;ll learn more about when the fork became a fixture in Western culture.&amp;nbsp;
+
+	Why 100 recipes you ask? We&amp;rsquo;ll find during this episode of Focus.
+
+	Due to technical problems, WILL AM580 was off the air Thursday morning. Our interview with David Inge has been rescheduled for Tuesday, September 10.&amp;nbsp;</pbcoreDescription>
+  <pbcoreGenre source="PBCore Genre list">Talk</pbcoreGenre>
+  <pbcoreCreator><creator>Lindsey Moon</creator><creatorRole>Producer</creatorRole></pbcoreCreator>
+  
+<pbcoreInstantiation>
+  <instantiationIdentifier source="Illinois Public Media">WILL_focus130905a.mp3</instantiationIdentifier>
+  <instantiationDate dateType="published">2013-09-05T13:55:09-05:00</instantiationDate>
+  <instantiationDigital>audio/mpeg</instantiationDigital>
+  <instantiationLocation>http://will.illinois.edu/nfs/focus130905a.mp3</instantiationLocation>
+  <instantiationMediaType>Sound</instantiationMediaType>
+  <instantiationGenerations>Copy</instantiationGenerations>
+  <instantiationFileSize unitsOfMeasure="bytes">24705848</instantiationFileSize>
+  <instantiationDuration>00:53:00</instantiationDuration>
+</pbcoreInstantiation>
+</pbcoreDescriptionDocument>
+
+<pbcoreDescriptionDocument>
+  <pbcoreAssetType>Item</pbcoreAssetType> 
+  <pbcoreAssetDate dateType="broadcast">2013-09-04T00:06:00-05:00</pbcoreAssetDate>
+  <pbcoreIdentifier source="Illinois Public Media">WILL_Focus_whats-next-for-student-newspapers</pbcoreIdentifier>
+  <pbcoreTitle titleType="Program">Focus</pbcoreTitle>  
+  <pbcoreTitle titleType="Episode">What’s Next for Student Newspapers?</pbcoreTitle>
+  <pbcoreSubject subjectType="topic" source="Illinois Public Media">Education</pbcoreSubject><pbcoreSubject subjectType="topic" source="Illinois Public Media">Media and journalism</pbcoreSubject>
+  <pbcoreSubject subjectType="folksonomy" source="Illinois Public Media">the daily illini</pbcoreSubject><pbcoreSubject subjectType="folksonomy" source="Illinois Public Media">newspapers</pbcoreSubject><pbcoreSubject subjectType="folksonomy" source="Illinois Public Media">lil levant</pbcoreSubject><pbcoreSubject subjectType="folksonomy" source="Illinois Public Media">ron johnson</pbcoreSubject>
+  <pbcoreDescription descriptionType="Abstract">This hour on Focus, host Jim Meadows talks with Lil Levant, publisher for the Illini Media Company about the future of the Illini student media and how institutions that train young journalists are trying to adapt to new technology. Ron Johnson, Director of Media at Indiana University in Bloomington also joins us. He says the Daily Illini is not alone in its struggle to maintain financial stability, and many schools are instituting student fees to help support student newspapers.
+
+	We&amp;rsquo;ll also talk about student newspapers and the role they play on college campuses and if online publication carries as much legitimacy as print publication for student journalists.
+
+	Are you a student and work for a college paper? Is having an article published online as meaningful as having it published in print? Did you work for a newspaper in college? How did working there affect your college experience? Tell us your story!</pbcoreDescription>
+  <pbcoreGenre source="PBCore Genre list">Talk</pbcoreGenre>
+  <pbcoreCreator><creator>Lindsey Moon</creator><creatorRole>Producer</creatorRole></pbcoreCreator>
+  <pbcoreContributor><contributor>Levant, Lil</contributor><contributorRole>guest</contributorRole></pbcoreContributor><pbcoreContributor><contributor>Johnson, Ron</contributor><contributorRole>guest</contributorRole></pbcoreContributor><pbcoreContributor><contributor>Meadows, Jim</contributor><contributorRole>host</contributorRole></pbcoreContributor>
+<pbcoreInstantiation>
+  <instantiationIdentifier source="Illinois Public Media">WILL_focus130904a_2.mp3</instantiationIdentifier>
+  <instantiationDate dateType="published">2013-09-04T13:06:58-05:00</instantiationDate>
+  <instantiationDigital>audio/mpeg</instantiationDigital>
+  <instantiationLocation>http://will.illinois.edu/nfs/focus130904a_2.mp3</instantiationLocation>
+  <instantiationMediaType>Sound</instantiationMediaType>
+  <instantiationGenerations>Copy</instantiationGenerations>
+  <instantiationFileSize unitsOfMeasure="bytes">24786932</instantiationFileSize>
+  <instantiationDuration>00:53:00</instantiationDuration>
+</pbcoreInstantiation>
+</pbcoreDescriptionDocument>
+
+<pbcoreDescriptionDocument>
+  <pbcoreAssetType>Item</pbcoreAssetType> 
+  <pbcoreAssetDate dateType="broadcast">2013-09-03T00:08:00-05:00</pbcoreAssetDate>
+  <pbcoreIdentifier source="Illinois Public Media">WILL_Focus_thieves-of-book-row</pbcoreIdentifier>
+  <pbcoreTitle titleType="Program">Focus</pbcoreTitle>  
+  <pbcoreTitle titleType="Episode">Thieves of Book Row</pbcoreTitle>
+  
+  
+  <pbcoreDescription descriptionType="Abstract">During the 1920&amp;rsquo;s, desperate and out of work due to the Great Depression, some people were willing to try anything to make a buck. That includes orchestrating a heist to lift a collection of rare books from a public library.&amp;nbsp;
+
+	This hour on Focus, host Jim Meadows talks with University of Illinois Associate Professor Travis McDade about his new book &amp;ldquo;Thieves of Book Row.&amp;rdquo;&amp;nbsp; He&amp;rsquo;ll tell us about Manhattan&amp;rsquo;s &amp;ldquo;Book Row,&amp;rdquo; a theft ring comprised of some of the most notorious literary criminals in US history, the detectives who worked their case and about how much money they were actually making off the texts.
+
+	We&amp;rsquo;ll also talk with him about rare book collecting today and if books are as valuable as they were in the early 1920&amp;rsquo;s. We&amp;rsquo;ll also learn more about how librarians protect rare books and prevent these kinds of thefts.
+
+	Do you collect books? We&amp;rsquo;d love to hear from you this hour on Focus!</pbcoreDescription>
+  <pbcoreGenre source="PBCore Genre list">--</pbcoreGenre>
+  <pbcoreCreator><creator>Lindsey Moon</creator><creatorRole>Producer</creatorRole></pbcoreCreator>
+  <pbcoreContributor><contributor>McDade, Travis</contributor><contributorRole>guest</contributorRole></pbcoreContributor><pbcoreContributor><contributor>Meadows, Jim</contributor><contributorRole>host</contributorRole></pbcoreContributor>
+<pbcoreInstantiation>
+  <instantiationIdentifier source="Illinois Public Media">WILL_focus130903a.mp3</instantiationIdentifier>
+  <instantiationDate dateType="published">2013-09-03T12:09:53-05:00</instantiationDate>
+  <instantiationDigital>audio/mpeg</instantiationDigital>
+  <instantiationLocation>http://will.illinois.edu/nfs/focus130903a.mp3</instantiationLocation>
+  <instantiationMediaType>Sound</instantiationMediaType>
+  <instantiationGenerations>Copy</instantiationGenerations>
+  <instantiationFileSize unitsOfMeasure="bytes">24838550</instantiationFileSize>
+  <instantiationDuration>00:53:00</instantiationDuration>
+</pbcoreInstantiation>
+</pbcoreDescriptionDocument>
+
+<pbcoreDescriptionDocument>
+  <pbcoreAssetType>Item</pbcoreAssetType> 
+  <pbcoreAssetDate dateType="broadcast">2013-09-02T00:07:00-05:00</pbcoreAssetDate>
+  <pbcoreIdentifier source="Illinois Public Media">WILL_Focus_one-child-at-a-time-custom-learning-in-the-digital-age</pbcoreIdentifier>
+  <pbcoreTitle titleType="Program">Focus</pbcoreTitle>  
+  <pbcoreTitle titleType="Episode">One Child at a Time: Custom Learning in the Digital Age</pbcoreTitle>
+  <pbcoreSubject subjectType="topic" source="Illinois Public Media">Education</pbcoreSubject>
+  <pbcoreSubject subjectType="folksonomy" source="Illinois Public Media">education</pbcoreSubject><pbcoreSubject subjectType="folksonomy" source="Illinois Public Media">custom learning</pbcoreSubject><pbcoreSubject subjectType="folksonomy" source="Illinois Public Media">technology</pbcoreSubject><pbcoreSubject subjectType="folksonomy" source="Illinois Public Media">classroom</pbcoreSubject>
+  <pbcoreDescription descriptionType="Abstract">Researchers have long known the best way to learn is with a personal tutor. But tutoring is expensive. Providing the benefits of tutoring to everyone hasn&#39;t been possible. Now, experts say technology creates new ways for schools to customize education for each student. This hour on Focus, we&amp;rsquo;ll hear about the rise of so&#45;called &quot;personalized learning,&amp;rdquo; how schools that are reinventing their approach to education, and how teaching and learning change when personalization replaces the one&#45;size&#45;fits&#45;all classroom.
+
+	This hour on Focus was a special produced by American Public Media.&amp;nbsp;We apologize that we are not able to provide a podcast for this program on our website. You can, however, find the full audio for this hour by visiting AmericanRadioWorks&#39; website.&amp;nbsp;</pbcoreDescription>
+  <pbcoreGenre source="PBCore Genre list">Talk</pbcoreGenre>
+  <pbcoreCreator><creator>Lindsey Moon</creator><creatorRole>Producer</creatorRole></pbcoreCreator>
+  
+<pbcoreInstantiation>
+  
+  <instantiationDuration>00:53:00</instantiationDuration>
+</pbcoreInstantiation>
+</pbcoreDescriptionDocument>
+
+<pbcoreDescriptionDocument>
+  <pbcoreAssetType>Item</pbcoreAssetType> 
+  <pbcoreAssetDate dateType="broadcast">2013-08-30T00:06:00-05:00</pbcoreAssetDate>
+  <pbcoreIdentifier source="Illinois Public Media">WILL_Focus_the-best-things-you-can-eat-school-lunches-and-gluten-free-labeling</pbcoreIdentifier>
+  <pbcoreTitle titleType="Program">Focus</pbcoreTitle>  
+  <pbcoreTitle titleType="Episode">The Best Things You Can Eat: School Lunches and Gluten Free Labeling</pbcoreTitle>
+  <pbcoreSubject subjectType="topic" source="Illinois Public Media">Health</pbcoreSubject>
+  <pbcoreSubject subjectType="folksonomy" source="Illinois Public Media">the best things you can eat</pbcoreSubject><pbcoreSubject subjectType="folksonomy" source="Illinois Public Media">david grotto</pbcoreSubject><pbcoreSubject subjectType="folksonomy" source="Illinois Public Media">nutrition</pbcoreSubject><pbcoreSubject subjectType="folksonomy" source="Illinois Public Media">school lunch</pbcoreSubject>
+  <pbcoreDescription descriptionType="Abstract">The Food and Drug Administration recently released official guidelines for what it means for food to be &amp;ldquo;gluten free.&amp;rdquo; This hour on Focus, host Jim Meadows talks with David Grotto about what gluten actually does in our bodies and about the pros and cons of going on a gluten free diet. According to Grotto, going gluten free isn&amp;rsquo;t the right choice for everyone and isn&amp;rsquo;t always healthier.
+
+	With school back in session, we&amp;rsquo;ll also talk about school lunches. He&amp;rsquo;ll talk with us about how nutrition affects kids&amp;rsquo; focus in school and what foods athlete&amp;rsquo;s should be consuming during this fall&amp;rsquo;s sports season. We&amp;rsquo;ll also ask him about &amp;ldquo;bento boxes,&amp;rdquo; which are popular in Japan and growing in popularity in the United States, as an alternative to the traditional brown&#45;bag school lunches.</pbcoreDescription>
+  <pbcoreGenre source="PBCore Genre list">Talk</pbcoreGenre>
+  <pbcoreCreator><creator>Lindsey Moon</creator><creatorRole>Producer</creatorRole></pbcoreCreator>
+  
+<pbcoreInstantiation>
+  <instantiationIdentifier source="Illinois Public Media">WILL_focus130830a.mp3</instantiationIdentifier>
+  <instantiationDate dateType="published">2013-08-30T13:10:25-05:00</instantiationDate>
+  <instantiationDigital>audio/mpeg</instantiationDigital>
+  <instantiationLocation>http://will.illinois.edu/nfs/focus130830a.mp3</instantiationLocation>
+  <instantiationMediaType>Sound</instantiationMediaType>
+  <instantiationGenerations>Copy</instantiationGenerations>
+  <instantiationFileSize unitsOfMeasure="bytes">24762690</instantiationFileSize>
+  <instantiationDuration>00:53:00</instantiationDuration>
+</pbcoreInstantiation>
+</pbcoreDescriptionDocument>
+
+<pbcoreDescriptionDocument>
+  <pbcoreAssetType>Item</pbcoreAssetType> 
+  <pbcoreAssetDate dateType="broadcast">2013-08-29T00:05:00-05:00</pbcoreAssetDate>
+  <pbcoreIdentifier source="Illinois Public Media">WILL_Focus_indian-accents</pbcoreIdentifier>
+  <pbcoreTitle titleType="Program">Focus</pbcoreTitle>  
+  <pbcoreTitle titleType="Episode">Indian Accents</pbcoreTitle>
+  <pbcoreSubject subjectType="topic" source="Illinois Public Media">Cinema</pbcoreSubject><pbcoreSubject subjectType="topic" source="Illinois Public Media">Race/Ethnicity</pbcoreSubject>
+  <pbcoreSubject subjectType="folksonomy" source="Illinois Public Media">indian accents</pbcoreSubject><pbcoreSubject subjectType="folksonomy" source="Illinois Public Media">shilpa dave</pbcoreSubject><pbcoreSubject subjectType="folksonomy" source="Illinois Public Media">jeff bossert</pbcoreSubject><pbcoreSubject subjectType="folksonomy" source="Illinois Public Media">movies</pbcoreSubject>
+  <pbcoreDescription descriptionType="Abstract">Growing up in Madison, Wisconsin, Shilpa Dave loved going to the movies. Her father was a self&#45;proclaimed film &amp;ldquo;buff,&amp;rdquo; and Dave loved every minute of it. Her parents immigrated to the US from India before she was born, and as she grew older, she started to wonder why there were no people who looked like her in the movies she went to see with her father. This hour on Focus, Jeff Bossert talks with American Studies Professor and author Shilpa Dave about her new book &amp;ldquo;Indian Accents&amp;rdquo; recently published by the University of Illinois Press. In it, she examines Indian culture and its portrayal in American popular film. We&amp;rsquo;ll talk about why there were very few prominent Indian or South East Asian characters until the late 1990&amp;rsquo;s and the affect Bollywood&amp;rsquo;s growing success is having on casting in Hollywood films.&amp;nbsp;
+
+	During this episode of Focus, we&amp;rsquo;ll hear about an MTV cartoon that caused a hunger strike in New Dehli and forced the network to release a formal apology because of its animated depiction of Gandhi and will talk about &amp;ldquo;Raj,&amp;rdquo; the popular character from &amp;ldquo;The Big Bang Theory&amp;rdquo; and Apu, the Indian convenience store owner from &amp;ldquo;The Simpsons.&amp;rdquo;</pbcoreDescription>
+  <pbcoreGenre source="PBCore Genre list">Talk</pbcoreGenre>
+  <pbcoreCreator><creator>Lindsey Moon</creator><creatorRole>Producer</creatorRole></pbcoreCreator>
+  
+<pbcoreInstantiation>
+  <instantiationIdentifier source="Illinois Public Media">WILL_focus_082913a.mp3</instantiationIdentifier>
+  <instantiationDate dateType="published">2013-08-29T11:26:53-05:00</instantiationDate>
+  <instantiationDigital>audio/mpeg</instantiationDigital>
+  <instantiationLocation>http://will.illinois.edu/nfs/focus_082913a.mp3</instantiationLocation>
+  <instantiationMediaType>Sound</instantiationMediaType>
+  <instantiationGenerations>Copy</instantiationGenerations>
+  <instantiationFileSize unitsOfMeasure="bytes">24915407</instantiationFileSize>
+  <instantiationDuration>00:53:00</instantiationDuration>
+</pbcoreInstantiation>
+</pbcoreDescriptionDocument>
+
+<pbcoreDescriptionDocument>
+  <pbcoreAssetType>Item</pbcoreAssetType> 
+  <pbcoreAssetDate dateType="broadcast">2013-08-28T00:05:00-05:00</pbcoreAssetDate>
+  <pbcoreIdentifier source="Illinois Public Media">WILL_Focus_encore-all-the-babes-men</pbcoreIdentifier>
+  <pbcoreTitle titleType="Program">Focus</pbcoreTitle>  
+  <pbcoreTitle titleType="Episode">Encore: All the Babe’s Men</pbcoreTitle>
+  
+  
+  <pbcoreDescription descriptionType="Abstract">&amp;ldquo;It&amp;rsquo;s a home run,&amp;rdquo; has become an expression many Americans use every day to describe success, even outside the world of baseball. But, have you ever wondered why? This hour on Focus, we&amp;rsquo;ll listen back to a conversation Jeff Bossert had with&amp;nbsp; Eldon Ham about America&amp;rsquo;s obsession with the home run and what sparked the development of the long ball in baseball. Ham tells us about how the home run became a fixture in the MLB by accident, and we&amp;rsquo;ll remember Babe Ruth&amp;rsquo;s historic sixty&#45;homer season in 1927.
+
+	With several big hitters in the MLB being accused recently of more steroid use, we&amp;rsquo;ll also talk with Ham about how the homerun is connected to what he argues is an &amp;ldquo;inevitable&amp;rdquo; era of professional doping.</pbcoreDescription>
+  <pbcoreGenre source="PBCore Genre list">--</pbcoreGenre>
+  <pbcoreCreator><creator>Lindsey Moon</creator><creatorRole>Producer</creatorRole></pbcoreCreator>
+  <pbcoreContributor><contributor>Bossert, Jeff</contributor><contributorRole>host</contributorRole></pbcoreContributor><pbcoreContributor><contributor>Ham, Eldon</contributor><contributorRole>guest</contributorRole></pbcoreContributor>
+<pbcoreInstantiation>
+  <instantiationIdentifier source="Illinois Public Media">WILL_focus_082813a.mp3</instantiationIdentifier>
+  <instantiationDate dateType="published">2013-08-28T11:13:28-05:00</instantiationDate>
+  <instantiationDigital>audio/mpeg</instantiationDigital>
+  <instantiationLocation>http://will.illinois.edu/nfs/focus_082813a.mp3</instantiationLocation>
+  <instantiationMediaType>Sound</instantiationMediaType>
+  <instantiationGenerations>Copy</instantiationGenerations>
+  <instantiationFileSize unitsOfMeasure="bytes">24621140</instantiationFileSize>
+  <instantiationDuration>00:53:00</instantiationDuration>
+</pbcoreInstantiation>
+</pbcoreDescriptionDocument>
+
+</pbcoreCollection>
