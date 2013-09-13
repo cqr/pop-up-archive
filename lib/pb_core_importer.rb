@@ -1,14 +1,25 @@
 class PBCoreImporter
 
-  attr_accessor :file, :collection
+  attr_accessor :file, :collection, :url
 
   def initialize(options={})
     PBCore.config[:date_formats] = ['%m/%d/%Y', '%Y-%m-%d']
 
-    raise "File missing or 0 length: #{options[:file]}" unless (File.size?(options[:file]).to_i > 0)
-
     self.collection = Collection.find(options[:collection_id])
-    self.file = File.open(options[:file])
+    if url.empty? 
+    	 raise "File missing or 0 length: #{options[:file]}" unless (File.size?(options[:file]).to_i > 0) 
+    	self.file = File.open(options[:file])
+    else
+    	self.url = options[:url]
+    end
+  end
+  
+  def import_url_collection
+	pbc_collection = PBCore::V2::Collection.parse(open(url))
+	pbc_collection.description_documents.each do |doc|
+      sleep(2)
+			item_for_omeka_doc(doc).save!
+	end
   end
 
   def import_omeka_description_document

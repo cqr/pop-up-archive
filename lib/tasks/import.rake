@@ -15,6 +15,12 @@ namespace :import do
     importer.import_omeka_collection
   end
 
+desc "Import PBCore 2.0 pbcoreCollection XML file from a URL"
+  task :pbcore_url_collection, [:collection_id, :url] => [:environment] do |t, args|
+    importer = PBCoreImporter.new(collection_id: args.collection_id, url: args.url)
+    importer.import_url_collection
+  end
+  
   desc "Import Open Vault xml files from a directory"
   task :xml_openvault_collection, [:collection_id, :dir] => [:environment] do |t, args|
     importer = XMLMediaImporter.new(collection_id: args.collection_id, dir: args.dir)
