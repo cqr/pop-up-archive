@@ -123,6 +123,8 @@ class AudioFile < ActiveRecord::Base
     
     transcribe_audio
 
+    transcode_audio
+
   rescue Exception => e
     logger.error e.message
     logger.error e.backtrace.join("\n")
@@ -187,16 +189,39 @@ class AudioFile < ActiveRecord::Base
   end
 
   def transcode_audio
+    return if transcoded_at
+
     if storage.automatic_transcode?
-      # TODO: start task to detect transcode (scheduled, recurring)
-      urls = AudioFileUploader.version_formats.keys.inject({}) do |h, k|
-        h[k] = { url: file.send(k), detected_at: nil }
-        h
+      if task = tasks.detect_derivatives.without_status(:failed).where(identifier: 'detect_derivatives').last
+        logger.debug "detect_derivatives task #{task.id} already exists for audio_file #{self.id}"
+      else
+        urls = AudioFileUploader.version_formats.keys.inject({}){|h, k| h[k] = { url: file.send(k), detected_at: nil }; h}
+        self.tasks << Tasks::DetectDerivativesTask.new(identifier: 'detect_derivatives', extras: { 'urls' => urls })
       end
-      self.tasks << Tasks::DetectDerivativesTask.new(identifier: 'detect_derivatives', extras: { 'urls' => urls })
+
     else
-      self.tasks << Tasks::TranscodeTask.new(identifier: 'transcode', extras: {'formats' => AudioFileUploader.version_formats})
+      AudioFileUploader.version_formats.each do |label, info|
+        next if (label == filename_extension) # skip this version if that is alreay the file's format
+        self.tasks << Tasks::TranscodeTask.new(identifier: "#{label}_transcode", extras: info)
+      end
     end
+  end
+
+  def is_transcode_complete?
+    return true if storage.automatic_transcode?
+
+    complete = true
+    AudioFileUploader.version_formats.each do |label, info|
+      next if (label == filename_extension) # skip this version if that is alreay the file's format
+      task = tasks.transcode.with_status('complete').where(identifier: "#{label}_transcode").last
+      complete = !!task
+      break if !complete
+    end
+    complete
+  end
+
+  def check_transcode_complete
+    update_attribute(:transcoded_at, DateTime.now) if is_transcode_complete?
   end
 
   def transcript_array

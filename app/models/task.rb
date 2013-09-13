@@ -13,7 +13,7 @@ class Task < ActiveRecord::Base
   scope :incomplete, where('status != ?', COMPLETE)
 
   # convenient scopes for subclass types
-  [:analyze, :copy, :transcribe, :upload].each do |task_subclass|
+  [:analyze, :copy, :detect_derivatives, :order_transcript, :transcode, :transcribe, :upload].each do |task_subclass|
     scope task_subclass, where('type = ?', "Tasks::#{task_subclass.to_s.titleize}Task")
   end
 

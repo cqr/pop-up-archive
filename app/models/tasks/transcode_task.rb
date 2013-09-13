@@ -4,8 +4,7 @@ class Tasks::TranscodeTask < Task
     after_transition any => :complete do |task, transition|
 
       if task.audio_file
-        # mark the audio_file as having processing complete?
-        task.audio_file.update_attribute(:transcoded_at, DateTime.now)
+        task.audio_file.check_transcode_complete
       end
 
     end
@@ -13,31 +12,26 @@ class Tasks::TranscodeTask < Task
 
   after_commit :create_transcode_job, :on => :create
 
-  before_save do
-    self.extras['formats'] ||= default_formats
-    self.serialize_extra('formats')
-  end
-
   def audio_file
     self.owner
   end
 
-  def formats
-    deserialize_extra('formats', {})
+  def format
+    extras['format']
   end
 
-  def default_formats
-    AudioFileUploader.version_formats
+  def label
+    self.id
   end
 
   def call_back_url
     extras['call_back_url'] || owner.try(:call_back_url)
   end
 
-  def destination(version)
+  def destination
     extras['destination'] || owner.try(:destination, {
       storage: storage,
-      version: version
+      version: format
     })
   end
 
@@ -45,27 +39,20 @@ class Tasks::TranscodeTask < Task
     extras['original'] || owner.try(:destination)
   end
 
-  def add_transcode_task(job, label, options)
-    task_hash = {
-      :task_type => 'transcode',
-      :result    => destination(options['suffix'] || options['format']),
-      :call_back => call_back_url,
-      :options   => options,
-      :label     => label
-    }
-    job.add_task task_hash
-  end
-
   def create_transcode_job
     j = create_job do |job|
-      job.job_type = 'audio'
-      job.original = original
-      job.priority = 4
-      job.retry_delay = 3600 # 1 hour
-      job.retry_max = 24 # try for a whole day
-      formats.each do |label, format|
-        add_transcode_task job, label, format
-      end
+      job.job_type    = 'audio'
+      job.original    = original
+      job.priority    = 4
+      job.retry_delay = 3600
+      job.retry_max   = 24
+      job.add_task({
+        task_type: 'transcode',
+        result:    destination,
+        call_back: call_back_url,
+        options:   extras,
+        label:     label
+      })
     end
   end
 

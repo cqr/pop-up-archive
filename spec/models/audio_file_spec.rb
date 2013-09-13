@@ -28,6 +28,11 @@ describe AudioFile do
       audio_file.tasks.last.class.should == Tasks::TranscodeTask
     end
 
+    it "should check transcode complete" do
+      audio_file = FactoryGirl.create :audio_file_private
+      audio_file.should_not be_is_transcode_complete
+    end
+
   end
 
   context "copy and move collections" do
