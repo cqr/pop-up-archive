@@ -1,6 +1,6 @@
 class PBCoreImporter
 
-  attr_accessor :file, :collection
+  attr_accessor :file, :collection, :dry_run
 
   def initialize(options={})
     PBCore.config[:date_formats] = ['%m/%d/%Y', '%Y-%m-%d']
@@ -9,19 +9,26 @@ class PBCoreImporter
 
     self.collection = Collection.find(options[:collection_id])
     self.file = File.open(options[:file])
+    self.dry_run = options.key?(:dry_run) ? !!options[:dry_run] : false
   end
 
   def import_omeka_description_document
     doc = PBCore::V2::DescriptionDocument.parse(file)
-    item_for_omeka_doc(doc).save!
+    item = item_for_omeka_doc(doc)
+    item.save! unless dry_run
+    item
   end
 
   def import_omeka_collection
+    items = []
     pbc_collection = PBCore::V2::Collection.parse(file)
     pbc_collection.description_documents.each do |doc|
       sleep(2)
-			item_for_omeka_doc(doc).save!
+			item = item_for_omeka_doc(doc)
+      item.save! unless dry_run
+      items << item
     end
+    items
   end
 
   def item_for_omeka_doc(doc)
@@ -52,7 +59,13 @@ class PBCoreImporter
       instance.location   = pbcInstance.location
 
       if pbcInstance.parts.blank?
-        url = pbcInstance.detect_element(:identifiers, match_attr: :source, match_value: ['URL', nil])
+        puts "instance: #{pbcInstance.inspect}"
+        url = pbcInstance.location
+        if url.blank? || !Utils.is_audio_file?(url)
+          url = pbcInstance.detect_element(:identifiers, match_attr: :source, match_value: ['URL', nil])
+        end
+        puts "url: #{url}"
+
         next unless Utils.is_audio_file?(url)
 
         audio = AudioFile.new
@@ -64,7 +77,7 @@ class PBCoreImporter
         audio.size              = pbcInstance.file_size.try(:value).to_i
       else
         pbcInstance.parts.each do |pbcPart|
-          url = pbcPart.detect_element(:identifiers, match_attr: :source, match_value: ['URL', nil])
+          url = pbcPart.detect_element(:identifiers, match_attr: :source, match_value: ['URL', nil])  ||  pbcPart.location
           next unless Utils.is_audio_file?(url)
 
           audio = AudioFile.new
