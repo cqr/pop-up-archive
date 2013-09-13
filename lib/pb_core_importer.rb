@@ -1,17 +1,23 @@
 class PBCoreImporter
 
-  attr_accessor :file, :collection, :dry_run
+  attr_accessor :file, :collection, :url, :dry_run
 
   def initialize(options={})
     PBCore.config[:date_formats] = ['%m/%d/%Y', '%Y-%m-%d']
 
-    raise "File missing or 0 length: #{options[:file]}" unless (File.size?(options[:file]).to_i > 0)
-
     self.collection = Collection.find(options[:collection_id])
-    self.file = File.open(options[:file])
-    self.dry_run = options.key?(:dry_run) ? !!options[:dry_run] : false
-  end
+    self.url        = options[:url]
+    self.dry_run    = options.key?(:dry_run) ? !!options[:dry_run] : false
 
+    if options[:file]
+    	raise "File missing or 0 length: #{options[:file]}" unless (File.size?(options[:file]).to_i > 0) 
+    	self.file = File.open(options[:file])
+    elsif options[:url]
+      # todo test if url is valid
+      self.file = open(url)
+    end
+  end
+  
   def import_omeka_description_document
     doc = PBCore::V2::DescriptionDocument.parse(file)
     item = item_for_omeka_doc(doc)
@@ -59,12 +65,12 @@ class PBCoreImporter
       instance.location   = pbcInstance.location
 
       if pbcInstance.parts.blank?
-        puts "instance: #{pbcInstance.inspect}"
+        # puts "instance: #{pbcInstance.inspect}"
         url = pbcInstance.location
         if url.blank? || !Utils.is_audio_file?(url)
           url = pbcInstance.detect_element(:identifiers, match_attr: :source, match_value: ['URL', nil])
         end
-        puts "url: #{url}"
+        # puts "url: #{url}"
 
         next unless Utils.is_audio_file?(url)
 
