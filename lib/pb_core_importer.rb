@@ -1,38 +1,41 @@
 class PBCoreImporter
 
-  attr_accessor :file, :collection, :url
+  attr_accessor :file, :collection, :url, :dry_run
 
   def initialize(options={})
     PBCore.config[:date_formats] = ['%m/%d/%Y', '%Y-%m-%d']
 
     self.collection = Collection.find(options[:collection_id])
-    if !:url 
-    	 raise "File missing or 0 length: #{options[:file]}" unless (File.size?(options[:file]).to_i > 0) 
+
+    self.url = options[:url]
+    self.dry_run = options.key?(:dry_run) ? !!options[:dry_run] : false
+
+    if options[:file]
+    	raise "File missing or 0 length: #{options[:file]}" unless (File.size?(options[:file]).to_i > 0) 
     	self.file = File.open(options[:file])
-    else
-    	self.url = options[:url]
+    elsif options[:url]
+      # todo test if url is valid
+      self.file = open(url)
     end
   end
   
-  def import_url_collection
-	pbc_collection = PBCore::V2::Collection.parse(open(url))
-	pbc_collection.description_documents.each do |doc|
-      sleep(2)
-			item_for_omeka_doc(doc).save!
-	end
-  end
-
   def import_omeka_description_document
     doc = PBCore::V2::DescriptionDocument.parse(file)
-    item_for_omeka_doc(doc).save!
+    item = item_for_omeka_doc(doc)
+    item.save! unless dry_run
+    item
   end
 
   def import_omeka_collection
+    items = []
     pbc_collection = PBCore::V2::Collection.parse(file)
     pbc_collection.description_documents.each do |doc|
       sleep(2)
-			item_for_omeka_doc(doc).save!
+			item = item_for_omeka_doc(doc)
+      item.save! unless dry_run
+      items << item
     end
+    items
   end
 
   def item_for_omeka_doc(doc)
@@ -63,7 +66,17 @@ class PBCoreImporter
       instance.location   = pbcInstance.location
 
       if pbcInstance.parts.blank?
+<<<<<<< HEAD
         url = pbcInstance.detect_element(:location)
+=======
+        puts "instance: #{pbcInstance.inspect}"
+        url = pbcInstance.location
+        if url.blank? || !Utils.is_audio_file?(url)
+          url = pbcInstance.detect_element(:identifiers, match_attr: :source, match_value: ['URL', nil])
+        end
+        puts "url: #{url}"
+
+>>>>>>> fix importer to find files in instance location
         next unless Utils.is_audio_file?(url)
 
         audio = AudioFile.new
@@ -75,7 +88,11 @@ class PBCoreImporter
         audio.size              = pbcInstance.file_size.try(:value).to_i
       else
         pbcInstance.parts.each do |pbcPart|
+<<<<<<< HEAD
           url = pbcPart.detect_element(:location)
+=======
+          url = pbcPart.detect_element(:identifiers, match_attr: :source, match_value: ['URL', nil])  ||  pbcPart.location
+>>>>>>> fix importer to find files in instance location
           next unless Utils.is_audio_file?(url)
 
           audio = AudioFile.new
