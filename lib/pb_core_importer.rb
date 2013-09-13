@@ -52,7 +52,7 @@ class PBCoreImporter
       instance.location   = pbcInstance.location
 
       if pbcInstance.parts.blank?
-        url = pbcInstance.detect_element(:identifiers, match_attr: :source, match_value: ['URL', nil])
+        url = pbcInstance.detect_element(:location)
         next unless Utils.is_audio_file?(url)
 
         audio = AudioFile.new
@@ -64,7 +64,7 @@ class PBCoreImporter
         audio.size              = pbcInstance.file_size.try(:value).to_i
       else
         pbcInstance.parts.each do |pbcPart|
-          url = pbcPart.detect_element(:identifiers, match_attr: :source, match_value: ['URL', nil])
+          url = pbcPart.detect_element(:location)
           next unless Utils.is_audio_file?(url)
 
           audio = AudioFile.new
