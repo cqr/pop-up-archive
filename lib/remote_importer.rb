@@ -20,6 +20,7 @@ class RemoteImporter
   end
 
   def get_ftp_folder
+    hash_items = {}
     ftp = Net::FTP.new()
     ftp.connect(self.url, 21)
     ftp.passive = true
@@ -43,7 +44,7 @@ class RemoteImporter
     true
   end
 
-  def recursive_listing(ftp, folder)
+  def recursive_listing(ftp, folder, hash_items)
     #changing to the specific folder
     puts "moving to " + folder
     ftp.chdir(folder+"/")
@@ -60,11 +61,23 @@ class RemoteImporter
           next if self.count < self.first_item
           break if self.count > self.last_item
           puts file_url
-          unless Item.where(identifier: file_name, collection_id: self.collection.id).exists?
+          
+          if Item.where(identifier: file_name[0,5], collection_id: self.collection.id).exists?
+            ##retrieve item
+            item = Item.where(identifier: file_name[0,5], collection_id: self.collection.id)[0] ##not sure about the brackets -- only want to return one item
+            ##we need to check if the audio file is already there iterate over audio files in item to check for file_name
+            audio = AudioFile.new
+            instance.audio_files << audio
+            item.audio_files << audio
+            audio.identifier = file_url
+            audio.remote_file_url = file_url
+            item.save!
+            ##need to check to make sure we can save files to items (we know we can save new items, but what about updating them?)
+          else
             item = Item.new
             item.collection = self.collection
             item.title = file_name
-            item.identifier = file_name
+            item.identifier = file_name[0,5]
             instance = item.instances.build
             instance.digital = true
             audio = AudioFile.new

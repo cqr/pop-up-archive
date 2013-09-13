@@ -6,7 +6,7 @@ class PBCoreImporter
     PBCore.config[:date_formats] = ['%m/%d/%Y', '%Y-%m-%d']
 
     self.collection = Collection.find(options[:collection_id])
-    if url.empty? 
+    if !:url 
     	 raise "File missing or 0 length: #{options[:file]}" unless (File.size?(options[:file]).to_i > 0) 
     	self.file = File.open(options[:file])
     else
