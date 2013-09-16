@@ -2,6 +2,7 @@ class Task < ActiveRecord::Base
   serialize :extras, HstoreCoder
 
   attr_accessible :name, :extras, :owner_id, :owner_type, :status, :identifier, :type, :storage_id, :owner, :storage
+  attr_accessor :params
   belongs_to :owner, polymorphic: true
   belongs_to :storage, class_name: "StorageConfiguration", foreign_key: :storage_id
 
@@ -13,8 +14,8 @@ class Task < ActiveRecord::Base
   scope :incomplete, where('status != ?', COMPLETE)
 
   # convenient scopes for subclass types
-  [:analyze, :copy, :detect_derivatives, :order_transcript, :transcode, :transcribe, :upload].each do |task_subclass|
-    scope task_subclass, where('type = ?', "Tasks::#{task_subclass.to_s.titleize}Task")
+  [:analyze_audio, :analyze, :copy, :detect_derivatives, :order_transcript, :transcode, :transcribe, :upload].each do |task_subclass|
+    scope task_subclass, where('type = ?', "Tasks::#{task_subclass.to_s.camelize}Task")
   end
 
   # we need to retain the storage used to kick off the process

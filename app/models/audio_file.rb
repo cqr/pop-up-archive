@@ -97,6 +97,8 @@ class AudioFile < ActiveRecord::Base
       task.save!
     end
 
+    task.params = params
+
     case result
     when 'created'    then logger.debug "task #{params['label']} created"
     when 'processing' then task.begin!
@@ -119,6 +121,8 @@ class AudioFile < ActiveRecord::Base
     # don't process file if no file to process yet (s3 upload)
     return if file.blank? && original_file_url.blank?
 
+    analyze_audio
+
     copy_original
     
     transcribe_audio
@@ -128,6 +132,18 @@ class AudioFile < ActiveRecord::Base
   rescue Exception => e
     logger.error e.message
     logger.error e.backtrace.join("\n")
+  end
+
+  def analyze_audio(force=false)
+    if !force && task = tasks.analyze_audio.without_status(:failed).last
+      logger.debug "analyze task #{task.id} already exists for audio_file #{self.id}"
+    else
+      self.tasks << Tasks::AnalyzeAudioTask.new(extras: { original: process_audio_url })
+    end
+  end
+
+  def complete_analysis(analysis)
+    update_attribute :duration, analysis[:length].to_i
   end
 
   def copy_original

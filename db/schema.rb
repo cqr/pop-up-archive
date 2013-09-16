@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130903195500) do
+ActiveRecord::Schema.define(:version => 20130916190044) do
 
   add_extension "hstore"
 
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20130903195500) do
     t.string   "path"
     t.time     "deleted_at"
     t.time     "transcoded_at"
+    t.integer  "duration"
   end
 
   add_index "audio_files", ["item_id", "deleted_at"], :name => "index_audio_files_on_item_id_and_deleted_at"
@@ -78,9 +79,9 @@ ActiveRecord::Schema.define(:version => 20130903195500) do
     t.integer  "state_index",   :default => 0
     t.string   "headers",                                      :array => true
     t.string   "file_name"
-    t.integer  "collection_id", :default => 0
     t.string   "error_message"
     t.text     "backtrace"
+    t.integer  "collection_id", :default => 0
     t.integer  "user_id"
   end
 
@@ -158,6 +159,7 @@ ActiveRecord::Schema.define(:version => 20130903195500) do
     t.string   "music_sound_used"
     t.string   "date_peg"
     t.text     "notes"
+    t.text     "transcription"
     t.string   "tags",                              :array => true
     t.integer  "geolocation_id"
     t.hstore   "extra"
@@ -169,7 +171,6 @@ ActiveRecord::Schema.define(:version => 20130903195500) do
     t.integer  "storage_id"
     t.boolean  "is_public"
     t.time     "deleted_at"
-    t.text     "transcription"
     t.string   "language"
   end
 
