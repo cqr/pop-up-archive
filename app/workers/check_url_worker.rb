@@ -13,7 +13,13 @@ class CheckUrlWorker
       task       = Task.find(task_id)
       audio_file = task.owner
       result     = url_exists?(url)
-      task.mark_version_detected(version_name) if (audio_file && result)
+
+      if (audio_file && result)
+        task.mark_version_detected(version_name)
+      else
+        raise "URL not found yet, try again: #{url}"
+      end
+
     end
     result
   end

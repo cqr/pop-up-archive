@@ -19,7 +19,7 @@ class Tasks::CopyTask < Task
   end
 
   after_commit :create_copy_job, :on => :create
-  after_commit :start_transcribe, :on => :update
+  after_commit :start_processing, :on => :update
 
   def create_copy_job
     j = MediaMonsterClient.create_job do |job|
@@ -38,8 +38,9 @@ class Tasks::CopyTask < Task
     end
   end
 
-  def start_transcribe
+  def start_processing
     return unless should_process
+    self.owner(true).transcode_audio
     self.owner(true).transcribe_audio
     self.should_process = false
   end
