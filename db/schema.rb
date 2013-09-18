@@ -29,11 +29,10 @@ ActiveRecord::Schema.define(:version => 20130916190044) do
     t.integer  "storage_id"
     t.string   "path"
     t.time     "deleted_at"
-    t.time     "transcoded_at"
     t.integer  "duration"
+    t.datetime "transcoded_at"
   end
 
-  add_index "audio_files", ["item_id", "deleted_at"], :name => "index_audio_files_on_item_id_and_deleted_at"
   add_index "audio_files", ["item_id"], :name => "index_audio_files_on_item_id"
 
   create_table "collection_grants", :force => true do |t|
@@ -57,7 +56,7 @@ ActiveRecord::Schema.define(:version => 20130916190044) do
     t.boolean  "copy_media"
     t.integer  "default_storage_id"
     t.integer  "upload_storage_id"
-    t.time     "deleted_at"
+    t.datetime "deleted_at"
   end
 
   create_table "contributions", :force => true do |t|
@@ -170,14 +169,13 @@ ActiveRecord::Schema.define(:version => 20130916190044) do
     t.string   "token"
     t.integer  "storage_id"
     t.boolean  "is_public"
-    t.time     "deleted_at"
     t.string   "language"
+    t.datetime "deleted_at"
   end
 
   add_index "items", ["collection_id"], :name => "index_items_on_collection_id"
   add_index "items", ["csv_import_id"], :name => "index_items_on_csv_import_id"
   add_index "items", ["geolocation_id"], :name => "index_items_on_geolocation_id"
-  add_index "items", ["id", "deleted_at"], :name => "index_items_on_id_and_deleted_at"
 
   create_table "oauth_access_grants", :force => true do |t|
     t.integer  "resource_owner_id", :null => false
