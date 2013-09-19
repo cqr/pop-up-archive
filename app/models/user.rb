@@ -137,6 +137,10 @@ class User < ActiveRecord::Base
     plan.pop_up_hours
   end
 
+  def used_metered_storage
+    @_used_metered_storage ||= audio_files.where(metered: true).sum(:duration)
+  end
+
   private
 
   def save_customer

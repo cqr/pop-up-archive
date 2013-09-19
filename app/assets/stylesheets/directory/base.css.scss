@@ -1421,3 +1421,34 @@ form.stripe-cc {
     width: auto;
   }
 }
+
+.usage-meter {
+  position: absolute;
+  top: 0;
+  width: 40%;
+  left: 30%;
+  text-align: right;
+  top: 10px;
+  background: rgb(140, 241, 219);
+  line-height: 30px;
+  border-radius: 15px;
+  overflow: hidden;
+  height: 30px;
+
+  .bar {
+    height: 100%;
+    background: rgb(140, 219, 241);
+    position: absolute;
+  }
+
+  .notice {
+    position: relative;
+    font-family: "soleil", sans-serif;
+    padding-right: 25px;
+  }
+
+  &.full .bar {
+    background: rgb(241, 140, 140);
+    width: 100%;
+  }
+}
