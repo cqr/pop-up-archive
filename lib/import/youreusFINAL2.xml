@@ -1,866 +1,847 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pbcoreCollection xsi:schemaLocation="http://www.PBCore.org/PBCore/PBCoreNamespace.html http://pbcore.org/xsd/pbcore-2.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.pbcore.org/PBCore/PBCoreNamespace.html">
-
-<pbcoreDescriptionDocument>
-<pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/221</pbcoreIdentifier>
-	<pbcoreTitle>Oral Histories From Salem County.2(Raw Audio)</pbcoreTitle>
-	<pbcoreSubject source="Free tags">New Jersey</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Oral history</pbcoreSubject>
-	<pbcoreDescription>No Description Available</pbcoreDescription>
+<pbcoreCollection xmlns="http://www.pbcore.org/PBCore/PBCoreNamespace.html" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.PBCore.org/PBCore/PBCoreNamespace.html http://pbcore.org/xsd/pbcore-2.0.xsd">
+  <pbcoreDescriptionDocument>
+    <pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/221</pbcoreIdentifier>
+    <pbcoreTitle>Oral Histories From Salem County.2(Raw Audio)</pbcoreTitle>
+    <pbcoreSubject source="Free tags">New Jersey</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Oral history</pbcoreSubject>
+    <pbcoreDescription>No Description Available</pbcoreDescription>
     <pbcoreRelation>
-        <pbcoreRelationType>Is Part Of</pbcoreRelationType
-        <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
+      <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+      <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
     </pbcoreRelation>
-	<pbcoreCoverage>
-		<coverage>Salem, NJ </coverage>
-		<coverageType>Spatial</coverageType>
-	</pbcoreCoverage>
-	<pbcoreContributor>
-		<contributor>Elwell, Anita</contributor>
-		<contributorRole>Interviewee</contributorRole>
-	</pbcoreContributor>
-	<pbcoreContributor>
-		<contributor>Scholes, Emma</contributor>
-		<contributorRole>Interviewer</contributorRole>
-	</pbcoreContributor>
-	<pbcoreInstantiation>	
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/221</instantiationIdentifier>
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">221</instantiationIdentifier>	
-		<instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/221</instantiationLocation>
-		<instantiationDigital>audio/mpeg</instantiationDigital>
-		 		<instantiationDuration>00:06:05:00</instantiationDuration>
-        <instantiationPart>
-              <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2F83a96fc3e8bdb2b8f7683ec62f6d4e5d.MP3</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Salem%20oral%20Histories/Oral%20Histories%20From%20Salem%20County.2(Raw%20Audio).MP3</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">83a96fc3e8bdb2b8f7683ec62f6d4e5d.MP3</instantiationIdentifier>
-            <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/221</instantiationLocation>
-              <instantiationDate dateType="Date Modified">2012-12-11 23:45:35</instantiationDate>
-            <instantiationFileSize unitsOfMeasure="bytes">14643116</instantiationFileSize>
-            <instantiationAnnotation annotationType="md5">5433d9738818fc4b24fd532688177511</instantiationAnnotation>
-        </instantiationPart>
-	</pbcoreInstantiation>
-		<pbcoreAnnotation annotationType="Notes">High School Student, Member of H4</pbcoreAnnotation>
-		<pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
-		<pbcoreAnnotation annotationType="Notes">Recorded during a You&amp;#039;re U.S. talk at the Salem County Old Court House</pbcoreAnnotation>
-				</pbcoreDescriptionDocument>
-
-<pbcoreDescriptionDocument>
-<pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/220</pbcoreIdentifier>
-	<pbcoreTitle>Oral Histories From Salem County.1(Raw Audio)</pbcoreTitle>
-	<pbcoreSubject source="Free tags">New Jersey</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Oral history</pbcoreSubject>
-	<pbcoreDescription>No Description Available</pbcoreDescription>
+    <pbcoreCoverage>
+      <coverage>Salem, NJ </coverage>
+      <coverageType>Spatial</coverageType>
+    </pbcoreCoverage>
+    <pbcoreContributor>
+      <contributor>Elwell, Anita</contributor>
+      <contributorRole>Interviewee</contributorRole>
+    </pbcoreContributor>
+    <pbcoreContributor>
+      <contributor>Scholes, Emma</contributor>
+      <contributorRole>Interviewer</contributorRole>
+    </pbcoreContributor>
+    <pbcoreInstantiation>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/221</instantiationIdentifier>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">221</instantiationIdentifier>
+      <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/221</instantiationLocation>
+      <instantiationDigital>audio/mpeg</instantiationDigital>
+      <instantiationDuration>00:06:05:00</instantiationDuration>
+      <instantiationPart>
+        <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2F83a96fc3e8bdb2b8f7683ec62f6d4e5d.MP3</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Salem%20oral%20Histories/Oral%20Histories%20From%20Salem%20County.2(Raw%20Audio).MP3</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">83a96fc3e8bdb2b8f7683ec62f6d4e5d.MP3</instantiationIdentifier>
+        <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/221</instantiationLocation>
+        <instantiationDate dateType="Date Modified">2012-12-11 23:45:35</instantiationDate>
+        <instantiationFileSize unitsOfMeasure="bytes">14643116</instantiationFileSize>
+        <instantiationAnnotation annotationType="md5">5433d9738818fc4b24fd532688177511</instantiationAnnotation>
+      </instantiationPart>
+    </pbcoreInstantiation>
+    <pbcoreAnnotation annotationType="Notes">High School Student, Member of H4</pbcoreAnnotation>
+    <pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
+    <pbcoreAnnotation annotationType="Notes">Recorded during a You&amp;#039;re U.S. talk at the Salem County Old Court House</pbcoreAnnotation>
+  </pbcoreDescriptionDocument>
+  <pbcoreDescriptionDocument>
+    <pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/220</pbcoreIdentifier>
+    <pbcoreTitle>Oral Histories From Salem County.1(Raw Audio)</pbcoreTitle>
+    <pbcoreSubject source="Free tags">New Jersey</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Oral history</pbcoreSubject>
+    <pbcoreDescription>No Description Available</pbcoreDescription>
     <pbcoreRelation>
-        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
-        <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
+      <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+      <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
     </pbcoreRelation>
-	<pbcoreCoverage>
-		<coverage>Salem, NJ </coverage>
-		<coverageType>Spatial</coverageType>
-	</pbcoreCoverage>
-	<pbcoreContributor>
-		<contributor>Elwell, Amy</contributor>
-		<contributorRole>Interviewee</contributorRole>
-	</pbcoreContributor>
-	<pbcoreContributor>
-		<contributor>Scholes, Emma</contributor>
-		<contributorRole>Interviewer</contributorRole>
-	</pbcoreContributor>
-	<pbcoreInstantiation>	
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/220</instantiationIdentifier>
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">220</instantiationIdentifier>	
-		<instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/220</instantiationLocation>
-		<instantiationDigital>audio/mpeg</instantiationDigital>
-		 		<instantiationDuration>00:02:34:00</instantiationDuration>
-        <instantiationPart>
-              <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2Ffa8abcc7f4851cd11a4153362ebb48dd.MP3</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Salem%20oral%20Histories/Oral%20Histories%20From%20Salem%20County.1(Raw%20Audio).MP3</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">fa8abcc7f4851cd11a4153362ebb48dd.MP3</instantiationIdentifier>
-            <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/220</instantiationLocation>
-              <instantiationDate dateType="Date Modified">2012-12-11 23:46:04</instantiationDate>
-            <instantiationFileSize unitsOfMeasure="bytes">6180487</instantiationFileSize>
-            <instantiationAnnotation annotationType="md5">6cc3fccb02d9762fea3a0e25508e4a0b</instantiationAnnotation>
-        </instantiationPart>
-	</pbcoreInstantiation>
-		<pbcoreAnnotation annotationType="Notes">Middle School Student</pbcoreAnnotation>
-		<pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
-		<pbcoreAnnotation annotationType="Notes">Recorded during a You&amp;#039;re U.S. talk at the Salem County Old Court House</pbcoreAnnotation>
-				</pbcoreDescriptionDocument>
-
-<pbcoreDescriptionDocument>
-<pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/219</pbcoreIdentifier>
-	<pbcoreTitle>Oral History of Flavia Alya.2(Raw Audio)</pbcoreTitle>
-	<pbcoreSubject source="Free tags">Stating name</pbcoreSubject>
-	<pbcoreDescription>No Description Available</pbcoreDescription>
+    <pbcoreCoverage>
+      <coverage>Salem, NJ </coverage>
+      <coverageType>Spatial</coverageType>
+    </pbcoreCoverage>
+    <pbcoreContributor>
+      <contributor>Elwell, Amy</contributor>
+      <contributorRole>Interviewee</contributorRole>
+    </pbcoreContributor>
+    <pbcoreContributor>
+      <contributor>Scholes, Emma</contributor>
+      <contributorRole>Interviewer</contributorRole>
+    </pbcoreContributor>
+    <pbcoreInstantiation>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/220</instantiationIdentifier>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">220</instantiationIdentifier>
+      <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/220</instantiationLocation>
+      <instantiationDigital>audio/mpeg</instantiationDigital>
+      <instantiationDuration>00:02:34:00</instantiationDuration>
+      <instantiationPart>
+        <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2Ffa8abcc7f4851cd11a4153362ebb48dd.MP3</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Salem%20oral%20Histories/Oral%20Histories%20From%20Salem%20County.1(Raw%20Audio).MP3</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">fa8abcc7f4851cd11a4153362ebb48dd.MP3</instantiationIdentifier>
+        <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/220</instantiationLocation>
+        <instantiationDate dateType="Date Modified">2012-12-11 23:46:04</instantiationDate>
+        <instantiationFileSize unitsOfMeasure="bytes">6180487</instantiationFileSize>
+        <instantiationAnnotation annotationType="md5">6cc3fccb02d9762fea3a0e25508e4a0b</instantiationAnnotation>
+      </instantiationPart>
+    </pbcoreInstantiation>
+    <pbcoreAnnotation annotationType="Notes">Middle School Student</pbcoreAnnotation>
+    <pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
+    <pbcoreAnnotation annotationType="Notes">Recorded during a You&amp;#039;re U.S. talk at the Salem County Old Court House</pbcoreAnnotation>
+  </pbcoreDescriptionDocument>
+  <pbcoreDescriptionDocument>
+    <pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/219</pbcoreIdentifier>
+    <pbcoreTitle>Oral History of Flavia Alya.2(Raw Audio)</pbcoreTitle>
+    <pbcoreSubject source="Free tags">Stating name</pbcoreSubject>
+    <pbcoreDescription>No Description Available</pbcoreDescription>
     <pbcoreRelation>
-        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
-        <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
+      <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+      <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
     </pbcoreRelation>
-	<pbcoreCoverage>
-		<coverage>Bridgeton, NJ</coverage>
-		<coverageType>Spatial</coverageType>
-	</pbcoreCoverage>
-	<pbcoreContributor>
-		<contributor>Alya, Flavia</contributor>
-		<contributorRole>Interviewee</contributorRole>
-	</pbcoreContributor>
-	<pbcoreContributor>
-		<contributor>Klein, Emile B</contributor>
-		<contributorRole>Interviewer</contributorRole>
-	</pbcoreContributor>
-	<pbcoreInstantiation>	
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/219</instantiationIdentifier>
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">219</instantiationIdentifier>	
-		<instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/219</instantiationLocation>
-		<instantiationDigital>audio/mpeg</instantiationDigital>
-		 		<instantiationDuration>00:46:13:00</instantiationDuration>
-        <instantiationPart>
-              <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2Fa75737b02cd2e85fae2c7b17a46e2430.MP3</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Oral%20History%20of%20Flavia%20Alya%20(Raw%20Audio)/Oral%20History%20of%20Flavia%20Alya.2(Raw%20Audio).MP3</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">a75737b02cd2e85fae2c7b17a46e2430.MP3</instantiationIdentifier>
-            <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/219</instantiationLocation>
-              <instantiationDate dateType="Date Modified">2012-12-11 23:46:38</instantiationDate>
-            <instantiationFileSize unitsOfMeasure="bytes">110936733</instantiationFileSize>
-            <instantiationAnnotation annotationType="md5">579239046d9c8c1314054d3d4772ccca</instantiationAnnotation>
-        </instantiationPart>
-	</pbcoreInstantiation>
-		<pbcoreAnnotation annotationType="Notes">Author of Under The Rose, Professor Emeritus at Ramapo College, Community Organizer</pbcoreAnnotation>
-		<pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
-				</pbcoreDescriptionDocument>
-
-<pbcoreDescriptionDocument>
-<pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/218</pbcoreIdentifier>
-	<pbcoreTitle>Oral History of Flavia Alya.1(Raw Audio)</pbcoreTitle>
-	<pbcoreSubject source="Free tags">Affair</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Author interview</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Communism</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Community Organizing</pbcoreSubject>
-	<pbcoreSubject source="Free tags">feminism</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Gangs</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Jewish</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Lenape</pbcoreSubject>
-	<pbcoreSubject source="Free tags">monastic</pbcoreSubject>
-	<pbcoreSubject source="Free tags">native american</pbcoreSubject>
-	<pbcoreSubject source="Free tags">New Jersey</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Oral history</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Race wars</pbcoreSubject>
-	<pbcoreDescription>No Description Available</pbcoreDescription>
+    <pbcoreCoverage>
+      <coverage>Bridgeton, NJ</coverage>
+      <coverageType>Spatial</coverageType>
+    </pbcoreCoverage>
+    <pbcoreContributor>
+      <contributor>Alya, Flavia</contributor>
+      <contributorRole>Interviewee</contributorRole>
+    </pbcoreContributor>
+    <pbcoreContributor>
+      <contributor>Klein, Emile B</contributor>
+      <contributorRole>Interviewer</contributorRole>
+    </pbcoreContributor>
+    <pbcoreInstantiation>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/219</instantiationIdentifier>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">219</instantiationIdentifier>
+      <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/219</instantiationLocation>
+      <instantiationDigital>audio/mpeg</instantiationDigital>
+      <instantiationDuration>00:46:13:00</instantiationDuration>
+      <instantiationPart>
+        <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2Fa75737b02cd2e85fae2c7b17a46e2430.MP3</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Oral%20History%20of%20Flavia%20Alya%20(Raw%20Audio)/Oral%20History%20of%20Flavia%20Alya.2(Raw%20Audio).MP3</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">a75737b02cd2e85fae2c7b17a46e2430.MP3</instantiationIdentifier>
+        <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/219</instantiationLocation>
+        <instantiationDate dateType="Date Modified">2012-12-11 23:46:38</instantiationDate>
+        <instantiationFileSize unitsOfMeasure="bytes">110936733</instantiationFileSize>
+        <instantiationAnnotation annotationType="md5">579239046d9c8c1314054d3d4772ccca</instantiationAnnotation>
+      </instantiationPart>
+    </pbcoreInstantiation>
+    <pbcoreAnnotation annotationType="Notes">Author of Under The Rose, Professor Emeritus at Ramapo College, Community Organizer</pbcoreAnnotation>
+    <pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
+  </pbcoreDescriptionDocument>
+  <pbcoreDescriptionDocument>
+    <pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/218</pbcoreIdentifier>
+    <pbcoreTitle>Oral History of Flavia Alya.1(Raw Audio)</pbcoreTitle>
+    <pbcoreSubject source="Free tags">Affair</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Author interview</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Communism</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Community Organizing</pbcoreSubject>
+    <pbcoreSubject source="Free tags">feminism</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Gangs</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Jewish</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Lenape</pbcoreSubject>
+    <pbcoreSubject source="Free tags">monastic</pbcoreSubject>
+    <pbcoreSubject source="Free tags">native american</pbcoreSubject>
+    <pbcoreSubject source="Free tags">New Jersey</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Oral history</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Race wars</pbcoreSubject>
+    <pbcoreDescription>No Description Available</pbcoreDescription>
     <pbcoreRelation>
-        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
-        <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
+      <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+      <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
     </pbcoreRelation>
-	<pbcoreCoverage>
-		<coverage>Bridgeton, NJ</coverage>
-		<coverageType>Spatial</coverageType>
-	</pbcoreCoverage>
-	<pbcoreContributor>
-		<contributor>Alya, Flavia</contributor>
-		<contributorRole>Interviewee</contributorRole>
-	</pbcoreContributor>
-	<pbcoreContributor>
-		<contributor>Klein, Emile B</contributor>
-		<contributorRole>Interviewer</contributorRole>
-	</pbcoreContributor>
-	<pbcoreInstantiation>	
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/218</instantiationIdentifier>
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">218</instantiationIdentifier>	
-		<instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/218</instantiationLocation>
-		<instantiationDigital>audio/mpeg</instantiationDigital>
-		 		<instantiationDuration>00:00:06:00</instantiationDuration>
-        <instantiationPart>
-              <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2F61aa34b043919bd30cbf566c61665219.MP3</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Oral%20History%20of%20Flavia%20Alya%20(Raw%20Audio)/Oral%20History%20of%20Flavia%20Alya.1(Raw%20Audio).MP3</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">61aa34b043919bd30cbf566c61665219.MP3</instantiationIdentifier>
-            <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/218</instantiationLocation>
-              <instantiationDate dateType="Date Modified">2012-12-11 23:47:10</instantiationDate>
-            <instantiationFileSize unitsOfMeasure="bytes">266366</instantiationFileSize>
-            <instantiationAnnotation annotationType="md5">28e87d346639329b5552dddb6e83a8c5</instantiationAnnotation>
-        </instantiationPart>
-	</pbcoreInstantiation>
-		<pbcoreAnnotation annotationType="Notes">Author of Under The Rose, Professor Emeritus at Ramapo College, Community Organizer</pbcoreAnnotation>
-		<pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
-				</pbcoreDescriptionDocument>
-
-<pbcoreDescriptionDocument>
-<pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/217</pbcoreIdentifier>
-	<pbcoreTitle>The Biker and the Bull</pbcoreTitle>
-	<pbcoreSubject source="Free tags">Animals and humans</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Bulls</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Empathy</pbcoreSubject>
-	<pbcoreSubject source="Free tags">motorcycle</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Storyteller</pbcoreSubject>
-	<pbcoreDescription>No Description Available</pbcoreDescription>
+    <pbcoreCoverage>
+      <coverage>Bridgeton, NJ</coverage>
+      <coverageType>Spatial</coverageType>
+    </pbcoreCoverage>
+    <pbcoreContributor>
+      <contributor>Alya, Flavia</contributor>
+      <contributorRole>Interviewee</contributorRole>
+    </pbcoreContributor>
+    <pbcoreContributor>
+      <contributor>Klein, Emile B</contributor>
+      <contributorRole>Interviewer</contributorRole>
+    </pbcoreContributor>
+    <pbcoreInstantiation>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/218</instantiationIdentifier>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">218</instantiationIdentifier>
+      <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/218</instantiationLocation>
+      <instantiationDigital>audio/mpeg</instantiationDigital>
+      <instantiationDuration>00:00:06:00</instantiationDuration>
+      <instantiationPart>
+        <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2F61aa34b043919bd30cbf566c61665219.MP3</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Oral%20History%20of%20Flavia%20Alya%20(Raw%20Audio)/Oral%20History%20of%20Flavia%20Alya.1(Raw%20Audio).MP3</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">61aa34b043919bd30cbf566c61665219.MP3</instantiationIdentifier>
+        <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/218</instantiationLocation>
+        <instantiationDate dateType="Date Modified">2012-12-11 23:47:10</instantiationDate>
+        <instantiationFileSize unitsOfMeasure="bytes">266366</instantiationFileSize>
+        <instantiationAnnotation annotationType="md5">28e87d346639329b5552dddb6e83a8c5</instantiationAnnotation>
+      </instantiationPart>
+    </pbcoreInstantiation>
+    <pbcoreAnnotation annotationType="Notes">Author of Under The Rose, Professor Emeritus at Ramapo College, Community Organizer</pbcoreAnnotation>
+    <pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
+  </pbcoreDescriptionDocument>
+  <pbcoreDescriptionDocument>
+    <pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/217</pbcoreIdentifier>
+    <pbcoreTitle>The Biker and the Bull</pbcoreTitle>
+    <pbcoreSubject source="Free tags">Animals and humans</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Bulls</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Empathy</pbcoreSubject>
+    <pbcoreSubject source="Free tags">motorcycle</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Storyteller</pbcoreSubject>
+    <pbcoreDescription>No Description Available</pbcoreDescription>
     <pbcoreRelation>
-        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
-        <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
+      <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+      <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
     </pbcoreRelation>
-	<pbcoreCoverage>
-		<coverage>Pilesgrove, NJ</coverage>
-		<coverageType>Spatial</coverageType>
-	</pbcoreCoverage>
-	<pbcoreContributor>
-		<contributor>Mortimer, Carolyn</contributor>
-		<contributorRole>Interviewee</contributorRole>
-	</pbcoreContributor>
-	<pbcoreContributor>
-		<contributor>Klein, Emile B</contributor>
-		<contributorRole>Interviewer</contributorRole>
-	</pbcoreContributor>
-	<pbcoreInstantiation>	
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/217</instantiationIdentifier>
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">217</instantiationIdentifier>	
-		<instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/217</instantiationLocation>
-		<instantiationDigital>audio/x-wav</instantiationDigital>
-		 		<instantiationDuration>00:12:35:00</instantiationDuration>
-        <instantiationPart>
-              <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2F430c548316d863ff75cd525fa67eb388.WAV</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/The%20Biker%20and%20the%20Bull%20(Raw%20Audio).WAV</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">430c548316d863ff75cd525fa67eb388.WAV</instantiationIdentifier>
-            <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/217</instantiationLocation>
-              <instantiationDate dateType="Date Modified">2012-12-11 23:59:58</instantiationDate>
-            <instantiationFileSize unitsOfMeasure="bytes">133328896</instantiationFileSize>
-            <instantiationAnnotation annotationType="md5">d58cd3058e8a4c9593b90010d70d202c</instantiationAnnotation>
-        </instantiationPart>
-	</pbcoreInstantiation>
-		<pbcoreAnnotation annotationType="Notes">High School Art Teacher</pbcoreAnnotation>
-		<pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
-				</pbcoreDescriptionDocument>
-
-<pbcoreDescriptionDocument>
-<pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/216</pbcoreIdentifier>
-	<pbcoreTitle>Albert Appel&amp;#039;s Analogue recording with son, Toby Appel(Raw Audio)</pbcoreTitle>
-	<pbcoreSubject source="Free tags">Rare Recording</pbcoreSubject>
-	<pbcoreDescription>No Description Available</pbcoreDescription>
+    <pbcoreCoverage>
+      <coverage>Pilesgrove, NJ</coverage>
+      <coverageType>Spatial</coverageType>
+    </pbcoreCoverage>
+    <pbcoreContributor>
+      <contributor>Mortimer, Carolyn</contributor>
+      <contributorRole>Interviewee</contributorRole>
+    </pbcoreContributor>
+    <pbcoreContributor>
+      <contributor>Klein, Emile B</contributor>
+      <contributorRole>Interviewer</contributorRole>
+    </pbcoreContributor>
+    <pbcoreInstantiation>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/217</instantiationIdentifier>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">217</instantiationIdentifier>
+      <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/217</instantiationLocation>
+      <instantiationDigital>audio/x-wav</instantiationDigital>
+      <instantiationDuration>00:12:35:00</instantiationDuration>
+      <instantiationPart>
+        <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2F430c548316d863ff75cd525fa67eb388.WAV</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/The%20Biker%20and%20the%20Bull%20(Raw%20Audio).WAV</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">430c548316d863ff75cd525fa67eb388.WAV</instantiationIdentifier>
+        <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/217</instantiationLocation>
+        <instantiationDate dateType="Date Modified">2012-12-11 23:59:58</instantiationDate>
+        <instantiationFileSize unitsOfMeasure="bytes">133328896</instantiationFileSize>
+        <instantiationAnnotation annotationType="md5">d58cd3058e8a4c9593b90010d70d202c</instantiationAnnotation>
+      </instantiationPart>
+    </pbcoreInstantiation>
+    <pbcoreAnnotation annotationType="Notes">High School Art Teacher</pbcoreAnnotation>
+    <pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
+  </pbcoreDescriptionDocument>
+  <pbcoreDescriptionDocument>
+    <pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/216</pbcoreIdentifier>
+    <pbcoreTitle>Albert Appel&amp;#039;s Analogue recording with son, Toby Appel(Raw Audio)</pbcoreTitle>
+    <pbcoreSubject source="Free tags">Rare Recording</pbcoreSubject>
+    <pbcoreDescription>No Description Available</pbcoreDescription>
     <pbcoreRelation>
-        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
-        <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
+      <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+      <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
     </pbcoreRelation>
-	<pbcoreCoverage>
-		<coverage>Elmer, NJ</coverage>
-		<coverageType>Spatial</coverageType>
-	</pbcoreCoverage>
-	<pbcoreContributor>
-		<contributor>Appel, Albert</contributor>
-		<contributorRole>Interviewee</contributorRole>
-	</pbcoreContributor>
-	<pbcoreContributor>
-		<contributor>Klein, Emile B</contributor>
-		<contributorRole>Interviewer</contributorRole>
-	</pbcoreContributor>
-	<pbcoreInstantiation>	
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/216</instantiationIdentifier>
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">216</instantiationIdentifier>	
-		<instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/216</instantiationLocation>
-				<instantiationDuration>00:09:44:00</instantiationDuration>
-	</pbcoreInstantiation>
-		<pbcoreAnnotation annotationType="Notes">Founder of Appel Farm Summer Camp, Retired</pbcoreAnnotation>
-		<pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
-				</pbcoreDescriptionDocument>
-
-<pbcoreDescriptionDocument>
-<pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/214</pbcoreIdentifier>
-	<pbcoreTitle>Am. Profile #11: Albert Appel.3(Raw Audio)</pbcoreTitle>
-	<pbcoreSubject source="Free tags">Alternative Education</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Art Camp</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Classical</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Cook</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Music</pbcoreSubject>
-	<pbcoreSubject source="Free tags">navy</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Summer Camp</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Violin</pbcoreSubject>
-	<pbcoreDescription>No Description Available</pbcoreDescription>
+    <pbcoreCoverage>
+      <coverage>Elmer, NJ</coverage>
+      <coverageType>Spatial</coverageType>
+    </pbcoreCoverage>
+    <pbcoreContributor>
+      <contributor>Appel, Albert</contributor>
+      <contributorRole>Interviewee</contributorRole>
+    </pbcoreContributor>
+    <pbcoreContributor>
+      <contributor>Klein, Emile B</contributor>
+      <contributorRole>Interviewer</contributorRole>
+    </pbcoreContributor>
+    <pbcoreInstantiation>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/216</instantiationIdentifier>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">216</instantiationIdentifier>
+      <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/216</instantiationLocation>
+      <instantiationDuration>00:09:44:00</instantiationDuration>
+    </pbcoreInstantiation>
+    <pbcoreAnnotation annotationType="Notes">Founder of Appel Farm Summer Camp, Retired</pbcoreAnnotation>
+    <pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
+  </pbcoreDescriptionDocument>
+  <pbcoreDescriptionDocument>
+    <pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/214</pbcoreIdentifier>
+    <pbcoreTitle>Am. Profile #11: Albert Appel.3(Raw Audio)</pbcoreTitle>
+    <pbcoreSubject source="Free tags">Alternative Education</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Art Camp</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Classical</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Cook</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Music</pbcoreSubject>
+    <pbcoreSubject source="Free tags">navy</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Summer Camp</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Violin</pbcoreSubject>
+    <pbcoreDescription>No Description Available</pbcoreDescription>
     <pbcoreRelation>
-        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
-        <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
+      <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+      <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
     </pbcoreRelation>
-	<pbcoreCoverage>
-		<coverage>Elmer, NJ</coverage>
-		<coverageType>Spatial</coverageType>
-	</pbcoreCoverage>
-	<pbcoreContributor>
-		<contributor>Appel, Albert</contributor>
-		<contributorRole>Interviewee</contributorRole>
-	</pbcoreContributor>
-	<pbcoreContributor>
-		<contributor>Klein, Emile B</contributor>
-		<contributorRole>Interviewer</contributorRole>
-	</pbcoreContributor>	
-	<pbcoreInstantiation>	
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/214</instantiationIdentifier>
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">214</instantiationIdentifier>	
-		<instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/214</instantiationLocation>
-		<instantiationDigital>audio/mpeg</instantiationDigital>
-		 		<instantiationDuration>00:10:41:00</instantiationDuration>
-        <instantiationPart>
-              <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2F603e5886fece11739b6b884b7ab6fff4.MP3</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Albert%20appel/Am.%20Profile%20%2311%20Albert%20Appel.3(Raw%20Audio).MP3</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">603e5886fece11739b6b884b7ab6fff4.MP3</instantiationIdentifier>
-            <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/214</instantiationLocation>
-              <instantiationDate dateType="Date Modified">2012-12-11 23:48:47</instantiationDate>
-            <instantiationFileSize unitsOfMeasure="bytes">25681418</instantiationFileSize>
-            <instantiationAnnotation annotationType="md5">4751eef9a2f7360c9ad548f6df058fbe</instantiationAnnotation>
-        </instantiationPart>
-	</pbcoreInstantiation>
-		<pbcoreAnnotation annotationType="Notes">Founder of Appel Farm Summer Camp, Retired</pbcoreAnnotation>
-		<pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
-				</pbcoreDescriptionDocument>
-
-<pbcoreDescriptionDocument>
-<pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/213</pbcoreIdentifier>
-	<pbcoreTitle>Am. Profile #11: Albert Appel.2(Raw Audio)</pbcoreTitle>
-	<pbcoreSubject source="Free tags">Alternative Education</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Art Camp</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Classical</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Cook</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Music</pbcoreSubject>
-	<pbcoreSubject source="Free tags">navy</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Summer Camp</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Violin</pbcoreSubject>
-	<pbcoreDescription>No Description Available</pbcoreDescription>
+    <pbcoreCoverage>
+      <coverage>Elmer, NJ</coverage>
+      <coverageType>Spatial</coverageType>
+    </pbcoreCoverage>
+    <pbcoreContributor>
+      <contributor>Appel, Albert</contributor>
+      <contributorRole>Interviewee</contributorRole>
+    </pbcoreContributor>
+    <pbcoreContributor>
+      <contributor>Klein, Emile B</contributor>
+      <contributorRole>Interviewer</contributorRole>
+    </pbcoreContributor>
+    <pbcoreInstantiation>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/214</instantiationIdentifier>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">214</instantiationIdentifier>
+      <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/214</instantiationLocation>
+      <instantiationDigital>audio/mpeg</instantiationDigital>
+      <instantiationDuration>00:10:41:00</instantiationDuration>
+      <instantiationPart>
+        <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2F603e5886fece11739b6b884b7ab6fff4.MP3</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Albert%20appel/Am.%20Profile%20%2311%20Albert%20Appel.3(Raw%20Audio).MP3</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">603e5886fece11739b6b884b7ab6fff4.MP3</instantiationIdentifier>
+        <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/214</instantiationLocation>
+        <instantiationDate dateType="Date Modified">2012-12-11 23:48:47</instantiationDate>
+        <instantiationFileSize unitsOfMeasure="bytes">25681418</instantiationFileSize>
+        <instantiationAnnotation annotationType="md5">4751eef9a2f7360c9ad548f6df058fbe</instantiationAnnotation>
+      </instantiationPart>
+    </pbcoreInstantiation>
+    <pbcoreAnnotation annotationType="Notes">Founder of Appel Farm Summer Camp, Retired</pbcoreAnnotation>
+    <pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
+  </pbcoreDescriptionDocument>
+  <pbcoreDescriptionDocument>
+    <pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/213</pbcoreIdentifier>
+    <pbcoreTitle>Am. Profile #11: Albert Appel.2(Raw Audio)</pbcoreTitle>
+    <pbcoreSubject source="Free tags">Alternative Education</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Art Camp</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Classical</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Cook</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Music</pbcoreSubject>
+    <pbcoreSubject source="Free tags">navy</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Summer Camp</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Violin</pbcoreSubject>
+    <pbcoreDescription>No Description Available</pbcoreDescription>
     <pbcoreRelation>
-        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
-        <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
+      <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+      <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
     </pbcoreRelation>
-	<pbcoreCoverage>
-		<coverage>Elmer, NJ</coverage>
-		<coverageType>Spatial</coverageType>
-	</pbcoreCoverage>
-	<pbcoreContributor>
-		<contributor>Appel, Albert</contributor>
-		<contributorRole>Interviewee</contributorRole>
-	</pbcoreContributor>
-	<pbcoreContributor>
-		<contributor>Klein, Emile B</contributor>
-		<contributorRole>Interviewer</contributorRole>
-	</pbcoreContributor>
-	<pbcoreInstantiation>	
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/213</instantiationIdentifier>
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">213</instantiationIdentifier>	
-		<instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/213</instantiationLocation>
-		<instantiationDigital>audio/mpeg</instantiationDigital>
-		 		<instantiationDuration>00:36:05</instantiationDuration>
-        <instantiationPart>
-              <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2F2333b2fe1cfc9ae63bb8d7c98cb37156.MP3</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Albert%20appel/Am.%20Profile%20%2311%20Albert%20Appel.2(Raw%20Audio).MP3</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">2333b2fe1cfc9ae63bb8d7c98cb37156.MP3</instantiationIdentifier>
-            <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/213</instantiationLocation>
-              <instantiationDate dateType="Date Modified">2012-12-11 23:49:36</instantiationDate>
-            <instantiationFileSize unitsOfMeasure="bytes">86642855</instantiationFileSize>
-            <instantiationAnnotation annotationType="md5">2f4d36b9f49a854ac62cc4cc74c76590</instantiationAnnotation>
-        </instantiationPart>
-	</pbcoreInstantiation>
-		<pbcoreAnnotation annotationType="Notes">Founder of Appel Farm Summer Camp, Retired</pbcoreAnnotation>
-		<pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
-				</pbcoreDescriptionDocument>
-
-<pbcoreDescriptionDocument>
-<pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/212</pbcoreIdentifier>
-	<pbcoreTitle>Am. Profile #11: Albert Appel.1(Raw Audio)</pbcoreTitle>
-	<pbcoreSubject source="Free tags">Alternative Education</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Art Camp</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Classical</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Cook</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Music</pbcoreSubject>
-	<pbcoreSubject source="Free tags">navy</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Summer Camp</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Violin</pbcoreSubject>
-	<pbcoreDescription>No Description Available</pbcoreDescription>
+    <pbcoreCoverage>
+      <coverage>Elmer, NJ</coverage>
+      <coverageType>Spatial</coverageType>
+    </pbcoreCoverage>
+    <pbcoreContributor>
+      <contributor>Appel, Albert</contributor>
+      <contributorRole>Interviewee</contributorRole>
+    </pbcoreContributor>
+    <pbcoreContributor>
+      <contributor>Klein, Emile B</contributor>
+      <contributorRole>Interviewer</contributorRole>
+    </pbcoreContributor>
+    <pbcoreInstantiation>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/213</instantiationIdentifier>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">213</instantiationIdentifier>
+      <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/213</instantiationLocation>
+      <instantiationDigital>audio/mpeg</instantiationDigital>
+      <instantiationDuration>00:36:05</instantiationDuration>
+      <instantiationPart>
+        <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2F2333b2fe1cfc9ae63bb8d7c98cb37156.MP3</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Albert%20appel/Am.%20Profile%20%2311%20Albert%20Appel.2(Raw%20Audio).MP3</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">2333b2fe1cfc9ae63bb8d7c98cb37156.MP3</instantiationIdentifier>
+        <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/213</instantiationLocation>
+        <instantiationDate dateType="Date Modified">2012-12-11 23:49:36</instantiationDate>
+        <instantiationFileSize unitsOfMeasure="bytes">86642855</instantiationFileSize>
+        <instantiationAnnotation annotationType="md5">2f4d36b9f49a854ac62cc4cc74c76590</instantiationAnnotation>
+      </instantiationPart>
+    </pbcoreInstantiation>
+    <pbcoreAnnotation annotationType="Notes">Founder of Appel Farm Summer Camp, Retired</pbcoreAnnotation>
+    <pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
+  </pbcoreDescriptionDocument>
+  <pbcoreDescriptionDocument>
+    <pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/212</pbcoreIdentifier>
+    <pbcoreTitle>Am. Profile #11: Albert Appel.1(Raw Audio)</pbcoreTitle>
+    <pbcoreSubject source="Free tags">Alternative Education</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Art Camp</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Classical</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Cook</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Music</pbcoreSubject>
+    <pbcoreSubject source="Free tags">navy</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Summer Camp</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Violin</pbcoreSubject>
+    <pbcoreDescription>No Description Available</pbcoreDescription>
     <pbcoreRelation>
-        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
-        <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
+      <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+      <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
     </pbcoreRelation>
-	<pbcoreCoverage>
-		<coverage>Elmer, NJ</coverage>
-		<coverageType>Spatial</coverageType>
-	</pbcoreCoverage>
-	<pbcoreContributor>
-		<contributor>Appel, Albert</contributor>
-		<contributorRole>Interviewee</contributorRole>
-	</pbcoreContributor>
-	<pbcoreContributor>
-		<contributor>Klein, Emile B</contributor>
-		<contributorRole>Interviewer</contributorRole>
-	</pbcoreContributor>
-	<pbcoreInstantiation>	
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/212</instantiationIdentifier>
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">212</instantiationIdentifier>	
-		<instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/212</instantiationLocation>
-		<instantiationDigital>audio/x-wav</instantiationDigital>
-		 		<instantiationDuration>00:37:38:00</instantiationDuration>
-        <instantiationPart>
-              <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2Fec7369d02ba9b54af09284d0a026711a.WAV</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Albert%20appel/Am.%20Profile%20%2311%20Albert%20Appel.1(Raw%20Audio).WAV</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">ec7369d02ba9b54af09284d0a026711a.WAV</instantiationIdentifier>
-            <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/212</instantiationLocation>
-              <instantiationDate dateType="Date Modified">2012-12-11 23:49:57</instantiationDate>
-            <instantiationFileSize unitsOfMeasure="bytes">398454784</instantiationFileSize>
-            <instantiationAnnotation annotationType="md5">0725fa4091b0d6f6f1774b4abb1ec105</instantiationAnnotation>
-        </instantiationPart>
-	</pbcoreInstantiation>
-		<pbcoreAnnotation annotationType="Notes">Founder of Appel Farm Summer Camp, Retired</pbcoreAnnotation>
-		<pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
-				</pbcoreDescriptionDocument>
-
-<pbcoreDescriptionDocument>
-<pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/211</pbcoreIdentifier>
-	<pbcoreTitle>Am. Profile #9 Ken Nerger.3(Raw Audio)</pbcoreTitle>
-	<pbcoreSubject source="Free tags">Ambient</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Cafe noise</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Ken Nerger</pbcoreSubject>
-	<pbcoreSubject source="Free tags">lost in sandy</pbcoreSubject>
-	<pbcoreDescription>No Description Available</pbcoreDescription>
+    <pbcoreCoverage>
+      <coverage>Elmer, NJ</coverage>
+      <coverageType>Spatial</coverageType>
+    </pbcoreCoverage>
+    <pbcoreContributor>
+      <contributor>Appel, Albert</contributor>
+      <contributorRole>Interviewee</contributorRole>
+    </pbcoreContributor>
+    <pbcoreContributor>
+      <contributor>Klein, Emile B</contributor>
+      <contributorRole>Interviewer</contributorRole>
+    </pbcoreContributor>
+    <pbcoreInstantiation>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/212</instantiationIdentifier>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">212</instantiationIdentifier>
+      <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/212</instantiationLocation>
+      <instantiationDigital>audio/x-wav</instantiationDigital>
+      <instantiationDuration>00:37:38:00</instantiationDuration>
+      <instantiationPart>
+        <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2Fec7369d02ba9b54af09284d0a026711a.WAV</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Albert%20appel/Am.%20Profile%20%2311%20Albert%20Appel.1(Raw%20Audio).WAV</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">ec7369d02ba9b54af09284d0a026711a.WAV</instantiationIdentifier>
+        <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/212</instantiationLocation>
+        <instantiationDate dateType="Date Modified">2012-12-11 23:49:57</instantiationDate>
+        <instantiationFileSize unitsOfMeasure="bytes">398454784</instantiationFileSize>
+        <instantiationAnnotation annotationType="md5">0725fa4091b0d6f6f1774b4abb1ec105</instantiationAnnotation>
+      </instantiationPart>
+    </pbcoreInstantiation>
+    <pbcoreAnnotation annotationType="Notes">Founder of Appel Farm Summer Camp, Retired</pbcoreAnnotation>
+    <pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
+  </pbcoreDescriptionDocument>
+  <pbcoreDescriptionDocument>
+    <pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/211</pbcoreIdentifier>
+    <pbcoreTitle>Am. Profile #9 Ken Nerger.3(Raw Audio)</pbcoreTitle>
+    <pbcoreSubject source="Free tags">Ambient</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Cafe noise</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Ken Nerger</pbcoreSubject>
+    <pbcoreSubject source="Free tags">lost in sandy</pbcoreSubject>
+    <pbcoreDescription>No Description Available</pbcoreDescription>
     <pbcoreRelation>
-        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
-        <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
+      <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+      <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
     </pbcoreRelation>
-	<pbcoreCoverage>
-		<coverage>Lawrenceville, NJ</coverage>
-		<coverageType>Spatial</coverageType>
-	</pbcoreCoverage>
-	<pbcoreContributor>
-		<contributor>Nerger, Ken</contributor>
-		<contributorRole>Interviewee</contributorRole>
-	</pbcoreContributor>
-	<pbcoreContributor>
-		<contributor>Klein, Emile B</contributor>
-		<contributorRole>Interviewer</contributorRole>
-	</pbcoreContributor>
-	<pbcoreInstantiation>	
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/211</instantiationIdentifier>
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">211</instantiationIdentifier>	
-		<instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/211</instantiationLocation>
-		<instantiationDigital>audio/x-wav</instantiationDigital>
-		 		<instantiationDuration>00:01:02:00</instantiationDuration>
-        <instantiationPart>
-              <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2Fc39f6479b85d26eae20960e307644017.WAV</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Ken%20Nerger/Am.%20Profile%20%239%20Ken%20Nerger.3(Raw%20Audio).WAV</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">c39f6479b85d26eae20960e307644017.WAV</instantiationIdentifier>
-            <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/211</instantiationLocation>
-              <instantiationDate dateType="Date Modified">2012-12-11 23:50:16</instantiationDate>
-            <instantiationFileSize unitsOfMeasure="bytes">10964992</instantiationFileSize>
-            <instantiationAnnotation annotationType="md5">b2638dd52f4f4f458793fc8257ed7bb4</instantiationAnnotation>
-        </instantiationPart>
-	</pbcoreInstantiation>
-		<pbcoreAnnotation annotationType="Notes">Former Gallery Manager, Chemical Disposal Worker</pbcoreAnnotation>
-		<pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
-				</pbcoreDescriptionDocument>
-
-<pbcoreDescriptionDocument>
-<pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/210</pbcoreIdentifier>
-	<pbcoreTitle>Am. Profile #9 Ken Nerger.2(Raw Audio)</pbcoreTitle>
-	<pbcoreSubject source="Free tags">Catharsis</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Chemical Plant</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Dali</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Donald Trump</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Erte</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Galley</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Manhattan</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Scams</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Throat Cancer</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Woody Allen</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Work</pbcoreSubject>
-	<pbcoreDescription>No Description Available</pbcoreDescription>
+    <pbcoreCoverage>
+      <coverage>Lawrenceville, NJ</coverage>
+      <coverageType>Spatial</coverageType>
+    </pbcoreCoverage>
+    <pbcoreContributor>
+      <contributor>Nerger, Ken</contributor>
+      <contributorRole>Interviewee</contributorRole>
+    </pbcoreContributor>
+    <pbcoreContributor>
+      <contributor>Klein, Emile B</contributor>
+      <contributorRole>Interviewer</contributorRole>
+    </pbcoreContributor>
+    <pbcoreInstantiation>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/211</instantiationIdentifier>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">211</instantiationIdentifier>
+      <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/211</instantiationLocation>
+      <instantiationDigital>audio/x-wav</instantiationDigital>
+      <instantiationDuration>00:01:02:00</instantiationDuration>
+      <instantiationPart>
+        <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2Fc39f6479b85d26eae20960e307644017.WAV</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Ken%20Nerger/Am.%20Profile%20%239%20Ken%20Nerger.3(Raw%20Audio).WAV</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">c39f6479b85d26eae20960e307644017.WAV</instantiationIdentifier>
+        <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/211</instantiationLocation>
+        <instantiationDate dateType="Date Modified">2012-12-11 23:50:16</instantiationDate>
+        <instantiationFileSize unitsOfMeasure="bytes">10964992</instantiationFileSize>
+        <instantiationAnnotation annotationType="md5">b2638dd52f4f4f458793fc8257ed7bb4</instantiationAnnotation>
+      </instantiationPart>
+    </pbcoreInstantiation>
+    <pbcoreAnnotation annotationType="Notes">Former Gallery Manager, Chemical Disposal Worker</pbcoreAnnotation>
+    <pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
+  </pbcoreDescriptionDocument>
+  <pbcoreDescriptionDocument>
+    <pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/210</pbcoreIdentifier>
+    <pbcoreTitle>Am. Profile #9 Ken Nerger.2(Raw Audio)</pbcoreTitle>
+    <pbcoreSubject source="Free tags">Catharsis</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Chemical Plant</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Dali</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Donald Trump</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Erte</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Galley</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Manhattan</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Scams</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Throat Cancer</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Woody Allen</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Work</pbcoreSubject>
+    <pbcoreDescription>No Description Available</pbcoreDescription>
     <pbcoreRelation>
-        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
-        <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
+      <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+      <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
     </pbcoreRelation>
-	<pbcoreCoverage>
-		<coverage>Lawrenceville, NJ</coverage>
-		<coverageType>Spatial</coverageType>
-	</pbcoreCoverage>
-	<pbcoreContributor>
-		<contributor>Nerger, Ken</contributor>
-		<contributorRole>Interviewee</contributorRole>
-	</pbcoreContributor>
-	<pbcoreContributor>
-		<contributor>Klein, Emile B</contributor>
-		<contributorRole>Interviewer</contributorRole>
-	</pbcoreContributor>	
-	<pbcoreInstantiation>	
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/210</instantiationIdentifier>
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">210</instantiationIdentifier>	
-		<instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/210</instantiationLocation>
-		<instantiationDigital>audio/x-wav</instantiationDigital>
-		 		<instantiationDuration>00:45:12:00</instantiationDuration>
-        <instantiationPart>
-              <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2Fd9c45a65b02c8e56785d9a26da1be9c3.WAV</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Ken%20Nerger/Am.%20Profile%20%239%20Ken%20Nerger.2(Raw%20Audio).WAV</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">d9c45a65b02c8e56785d9a26da1be9c3.WAV</instantiationIdentifier>
-            <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/210</instantiationLocation>
-              <instantiationDate dateType="Date Modified">2012-12-11 23:50:43</instantiationDate>
-            <instantiationFileSize unitsOfMeasure="bytes">478523392</instantiationFileSize>
-            <instantiationAnnotation annotationType="md5">3c50edd9c2e34b3d7a9499a3c38e842d</instantiationAnnotation>
-        </instantiationPart>
-	</pbcoreInstantiation>
-		<pbcoreAnnotation annotationType="Notes">Former Gallery Manager, Chemical Disposal Worker</pbcoreAnnotation>
-		<pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
-		<pbcoreAnnotation annotationType="Notes">Lawrenceville, NJ</pbcoreAnnotation>
-				</pbcoreDescriptionDocument>
-
-<pbcoreDescriptionDocument>
-<pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/209</pbcoreIdentifier>
-	<pbcoreTitle>Am. Profile #9 Ken Nerger.1(Raw Audio)</pbcoreTitle>
-	<pbcoreSubject source="Free tags">Catharsis</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Chemical Plant</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Dali</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Donald Trump</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Erte</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Galley</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Manhattan</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Scams</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Throat Cancer</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Woody Allen</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Work</pbcoreSubject>
-	<pbcoreDescription>No Description Available</pbcoreDescription>
+    <pbcoreCoverage>
+      <coverage>Lawrenceville, NJ</coverage>
+      <coverageType>Spatial</coverageType>
+    </pbcoreCoverage>
+    <pbcoreContributor>
+      <contributor>Nerger, Ken</contributor>
+      <contributorRole>Interviewee</contributorRole>
+    </pbcoreContributor>
+    <pbcoreContributor>
+      <contributor>Klein, Emile B</contributor>
+      <contributorRole>Interviewer</contributorRole>
+    </pbcoreContributor>
+    <pbcoreInstantiation>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/210</instantiationIdentifier>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">210</instantiationIdentifier>
+      <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/210</instantiationLocation>
+      <instantiationDigital>audio/x-wav</instantiationDigital>
+      <instantiationDuration>00:45:12:00</instantiationDuration>
+      <instantiationPart>
+        <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2Fd9c45a65b02c8e56785d9a26da1be9c3.WAV</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Ken%20Nerger/Am.%20Profile%20%239%20Ken%20Nerger.2(Raw%20Audio).WAV</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">d9c45a65b02c8e56785d9a26da1be9c3.WAV</instantiationIdentifier>
+        <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/210</instantiationLocation>
+        <instantiationDate dateType="Date Modified">2012-12-11 23:50:43</instantiationDate>
+        <instantiationFileSize unitsOfMeasure="bytes">478523392</instantiationFileSize>
+        <instantiationAnnotation annotationType="md5">3c50edd9c2e34b3d7a9499a3c38e842d</instantiationAnnotation>
+      </instantiationPart>
+    </pbcoreInstantiation>
+    <pbcoreAnnotation annotationType="Notes">Former Gallery Manager, Chemical Disposal Worker</pbcoreAnnotation>
+    <pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
+    <pbcoreAnnotation annotationType="Notes">Lawrenceville, NJ</pbcoreAnnotation>
+  </pbcoreDescriptionDocument>
+  <pbcoreDescriptionDocument>
+    <pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/209</pbcoreIdentifier>
+    <pbcoreTitle>Am. Profile #9 Ken Nerger.1(Raw Audio)</pbcoreTitle>
+    <pbcoreSubject source="Free tags">Catharsis</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Chemical Plant</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Dali</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Donald Trump</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Erte</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Galley</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Manhattan</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Scams</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Throat Cancer</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Woody Allen</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Work</pbcoreSubject>
+    <pbcoreDescription>No Description Available</pbcoreDescription>
     <pbcoreRelation>
-        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
-        <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
+      <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+      <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
     </pbcoreRelation>
-	<pbcoreCoverage>
-		<coverage>Clinton Township, NJ</coverage>
-		<coverageType>Spatial</coverageType>
-	</pbcoreCoverage>
-	<pbcoreContributor>
-		<contributor>Nerger, Ken</contributor>
-		<contributorRole>Interviewee</contributorRole>
-	</pbcoreContributor>
-	<pbcoreContributor>
-		<contributor>Klein, Emile B</contributor>
-		<contributorRole>Interviewer</contributorRole>
-	</pbcoreContributor>
-	<pbcoreInstantiation>	
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/209</instantiationIdentifier>
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">209</instantiationIdentifier>	
-		<instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/209</instantiationLocation>
-		<instantiationDigital>audio/x-wav</instantiationDigital>
-		 		<instantiationDuration>01:27:17:00</instantiationDuration>
-        <instantiationPart>
-              <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2Feef7d8848bb07299c88dc7f25d0c7c09.WAV</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Ken%20Nerger/Am.%20Profile%20%239%20Ken%20Nerger.1(Raw%20Audio).WAV</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">eef7d8848bb07299c88dc7f25d0c7c09.WAV</instantiationIdentifier>
-            <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/209</instantiationLocation>
-              <instantiationDate dateType="Date Modified">2012-12-11 23:51:40</instantiationDate>
-            <instantiationFileSize unitsOfMeasure="bytes">923930624</instantiationFileSize>
-            <instantiationAnnotation annotationType="md5">fd8103679623337ba1ad183acef8a894</instantiationAnnotation>
-        </instantiationPart>
-	</pbcoreInstantiation>
-		<pbcoreAnnotation annotationType="Notes">Former Gallery Manager, Chemical Disposal Worker</pbcoreAnnotation>
-		<pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
-				</pbcoreDescriptionDocument>
-
-<pbcoreDescriptionDocument>
-<pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/208</pbcoreIdentifier>
-	<pbcoreTitle>Snap Judgement One Man&amp;#039;s Bargain.2(Raw Audio)</pbcoreTitle>
-	<pbcoreSubject source="Free tags">all or nothing</pbcoreSubject>
-	<pbcoreSubject source="Free tags">bargain</pbcoreSubject>
-	<pbcoreSubject source="Free tags">cancer</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Clinton Township</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Ghost</pbcoreSubject>
-	<pbcoreSubject source="Free tags">NPR</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Phantasm</pbcoreSubject>
-	<pbcoreSubject source="Free tags">scary</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Snap Judgement</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Spooked II</pbcoreSubject>
-	<pbcoreSubject source="Free tags">storytelling</pbcoreSubject>
-	<pbcoreSubject source="Free tags">unemployment</pbcoreSubject>
-	<pbcoreDescription>No Description Available</pbcoreDescription>
+    <pbcoreCoverage>
+      <coverage>Clinton Township, NJ</coverage>
+      <coverageType>Spatial</coverageType>
+    </pbcoreCoverage>
+    <pbcoreContributor>
+      <contributor>Nerger, Ken</contributor>
+      <contributorRole>Interviewee</contributorRole>
+    </pbcoreContributor>
+    <pbcoreContributor>
+      <contributor>Klein, Emile B</contributor>
+      <contributorRole>Interviewer</contributorRole>
+    </pbcoreContributor>
+    <pbcoreInstantiation>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/209</instantiationIdentifier>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">209</instantiationIdentifier>
+      <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/209</instantiationLocation>
+      <instantiationDigital>audio/x-wav</instantiationDigital>
+      <instantiationDuration>01:27:17:00</instantiationDuration>
+      <instantiationPart>
+        <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2Feef7d8848bb07299c88dc7f25d0c7c09.WAV</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Ken%20Nerger/Am.%20Profile%20%239%20Ken%20Nerger.1(Raw%20Audio).WAV</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">eef7d8848bb07299c88dc7f25d0c7c09.WAV</instantiationIdentifier>
+        <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/209</instantiationLocation>
+        <instantiationDate dateType="Date Modified">2012-12-11 23:51:40</instantiationDate>
+        <instantiationFileSize unitsOfMeasure="bytes">923930624</instantiationFileSize>
+        <instantiationAnnotation annotationType="md5">fd8103679623337ba1ad183acef8a894</instantiationAnnotation>
+      </instantiationPart>
+    </pbcoreInstantiation>
+    <pbcoreAnnotation annotationType="Notes">Former Gallery Manager, Chemical Disposal Worker</pbcoreAnnotation>
+    <pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
+  </pbcoreDescriptionDocument>
+  <pbcoreDescriptionDocument>
+    <pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/208</pbcoreIdentifier>
+    <pbcoreTitle>Snap Judgement One Man&amp;#039;s Bargain.2(Raw Audio)</pbcoreTitle>
+    <pbcoreSubject source="Free tags">all or nothing</pbcoreSubject>
+    <pbcoreSubject source="Free tags">bargain</pbcoreSubject>
+    <pbcoreSubject source="Free tags">cancer</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Clinton Township</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Ghost</pbcoreSubject>
+    <pbcoreSubject source="Free tags">NPR</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Phantasm</pbcoreSubject>
+    <pbcoreSubject source="Free tags">scary</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Snap Judgement</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Spooked II</pbcoreSubject>
+    <pbcoreSubject source="Free tags">storytelling</pbcoreSubject>
+    <pbcoreSubject source="Free tags">unemployment</pbcoreSubject>
+    <pbcoreDescription>No Description Available</pbcoreDescription>
     <pbcoreRelation>
-        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
-        <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
+      <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+      <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
     </pbcoreRelation>
-	<pbcoreCoverage>
-		<coverage>Clinton Township, NJ</coverage>
-		<coverageType>Spatial</coverageType>
-	</pbcoreCoverage>
-	<pbcoreContributor>
-		<contributor>Nerger, Ken</contributor>
-		<contributorRole>Interviewee</contributorRole>
-	</pbcoreContributor>
-	<pbcoreContributor>
-		<contributor>Klein, Emile B</contributor>
-		<contributorRole>Interviewer</contributorRole>
-	</pbcoreContributor>
-	<pbcoreInstantiation>	
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/208</instantiationIdentifier>
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">208</instantiationIdentifier>	
-		<instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/208</instantiationLocation>
-		<instantiationDigital>audio/x-wav</instantiationDigital>
-		 		<instantiationDuration>00:04:48:00</instantiationDuration>
-        <instantiationPart>
-              <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2F5579d9c11e3fe6d8f862579fd829892c.WAV</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Ken%20Nerger/Snap%20Judgement%20One%20Man's%20Bargain.2(Raw%20Audio).WAV</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">5579d9c11e3fe6d8f862579fd829892c.WAV</instantiationIdentifier>
-            <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/208</instantiationLocation>
-              <instantiationDate dateType="Date Modified">2012-12-11 23:52:38</instantiationDate>
-            <instantiationFileSize unitsOfMeasure="bytes">50909184</instantiationFileSize>
-            <instantiationAnnotation annotationType="md5">9c9cfc1957f711bfa3aa741ebae890f4</instantiationAnnotation>
-        </instantiationPart>
-	</pbcoreInstantiation>
-		<pbcoreAnnotation annotationType="Notes">Former Gallery Manager, Chemical Disposal Worker</pbcoreAnnotation>
-		<pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
-				</pbcoreDescriptionDocument>
-
-<pbcoreDescriptionDocument>
-<pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/207</pbcoreIdentifier>
-	<pbcoreTitle>Snap Judgement One Man&amp;#039;s Bargain.1(Raw Audio)</pbcoreTitle>
-	<pbcoreSubject source="Free tags">all or nothing</pbcoreSubject>
-	<pbcoreSubject source="Free tags">bargain</pbcoreSubject>
-	<pbcoreSubject source="Free tags">cancer</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Clinton Township</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Ghost</pbcoreSubject>
-	<pbcoreSubject source="Free tags">NPR</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Phantasm</pbcoreSubject>
-	<pbcoreSubject source="Free tags">scary</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Snap Judgement</pbcoreSubject>
-	<pbcoreSubject source="Free tags">Spooked II</pbcoreSubject>
-	<pbcoreSubject source="Free tags">storytelling</pbcoreSubject>
-	<pbcoreSubject source="Free tags">unemployment</pbcoreSubject>
-	<pbcoreDescription>No Description Available</pbcoreDescription>
+    <pbcoreCoverage>
+      <coverage>Clinton Township, NJ</coverage>
+      <coverageType>Spatial</coverageType>
+    </pbcoreCoverage>
+    <pbcoreContributor>
+      <contributor>Nerger, Ken</contributor>
+      <contributorRole>Interviewee</contributorRole>
+    </pbcoreContributor>
+    <pbcoreContributor>
+      <contributor>Klein, Emile B</contributor>
+      <contributorRole>Interviewer</contributorRole>
+    </pbcoreContributor>
+    <pbcoreInstantiation>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/208</instantiationIdentifier>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">208</instantiationIdentifier>
+      <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/208</instantiationLocation>
+      <instantiationDigital>audio/x-wav</instantiationDigital>
+      <instantiationDuration>00:04:48:00</instantiationDuration>
+      <instantiationPart>
+        <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2F5579d9c11e3fe6d8f862579fd829892c.WAV</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Ken%20Nerger/Snap%20Judgement%20One%20Man's%20Bargain.2(Raw%20Audio).WAV</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">5579d9c11e3fe6d8f862579fd829892c.WAV</instantiationIdentifier>
+        <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/208</instantiationLocation>
+        <instantiationDate dateType="Date Modified">2012-12-11 23:52:38</instantiationDate>
+        <instantiationFileSize unitsOfMeasure="bytes">50909184</instantiationFileSize>
+        <instantiationAnnotation annotationType="md5">9c9cfc1957f711bfa3aa741ebae890f4</instantiationAnnotation>
+      </instantiationPart>
+    </pbcoreInstantiation>
+    <pbcoreAnnotation annotationType="Notes">Former Gallery Manager, Chemical Disposal Worker</pbcoreAnnotation>
+    <pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
+  </pbcoreDescriptionDocument>
+  <pbcoreDescriptionDocument>
+    <pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/207</pbcoreIdentifier>
+    <pbcoreTitle>Snap Judgement One Man&amp;#039;s Bargain.1(Raw Audio)</pbcoreTitle>
+    <pbcoreSubject source="Free tags">all or nothing</pbcoreSubject>
+    <pbcoreSubject source="Free tags">bargain</pbcoreSubject>
+    <pbcoreSubject source="Free tags">cancer</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Clinton Township</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Ghost</pbcoreSubject>
+    <pbcoreSubject source="Free tags">NPR</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Phantasm</pbcoreSubject>
+    <pbcoreSubject source="Free tags">scary</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Snap Judgement</pbcoreSubject>
+    <pbcoreSubject source="Free tags">Spooked II</pbcoreSubject>
+    <pbcoreSubject source="Free tags">storytelling</pbcoreSubject>
+    <pbcoreSubject source="Free tags">unemployment</pbcoreSubject>
+    <pbcoreDescription>No Description Available</pbcoreDescription>
     <pbcoreRelation>
-        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
-        <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
+      <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+      <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
     </pbcoreRelation>
-	<pbcoreCoverage>
-		<coverage>Clinton Township, NJ</coverage>
-		<coverageType>Spatial</coverageType>
-	</pbcoreCoverage>
-	<pbcoreContributor>
-		<contributor>Nerger, Ken</contributor>
-		<contributorRole>Interviewee</contributorRole>
-	</pbcoreContributor>
-	<pbcoreContributor>
-		<contributor>Klein, Emile B</contributor>
-		<contributorRole>Interviewer</contributorRole>
-	</pbcoreContributor>
-	<pbcoreInstantiation>	
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/207</instantiationIdentifier>
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">207</instantiationIdentifier>	
-		<instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/207</instantiationLocation>
-		<instantiationDigital>audio/x-wav</instantiationDigital>
-		 		<instantiationDuration>01:02:10:00</instantiationDuration>
-        <instantiationPart>
-              <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2F4fc10df2fe6a344547125bdc9cd406f7.WAV</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Ken%20Nerger/Snap%20Judgement%20One%20Man's%20Bargain.1(Raw%20Audio).WAV</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">4fc10df2fe6a344547125bdc9cd406f7.WAV</instantiationIdentifier>
-            <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/207</instantiationLocation>
-              <instantiationDate dateType="Date Modified">2012-12-11 23:53:06</instantiationDate>
-            <instantiationFileSize unitsOfMeasure="bytes">658116608</instantiationFileSize>
-            <instantiationAnnotation annotationType="md5">3927c44fbb7e14d2bc289a2310de6ad7</instantiationAnnotation>
-        </instantiationPart>
-	</pbcoreInstantiation>
-		<pbcoreAnnotation annotationType="Notes">Former Gallery Manager, Chemical Disposal Worker</pbcoreAnnotation>
-		<pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
-				</pbcoreDescriptionDocument>
-
-<pbcoreDescriptionDocument>
-<pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/206</pbcoreIdentifier>
-	<pbcoreTitle>Am. Profile #13 Tannah Morris(Raw Audio)</pbcoreTitle>
-	<pbcoreSubject source="Free tags">father issues</pbcoreSubject>
-	<pbcoreSubject source="Free tags">gospel</pbcoreSubject>
-	<pbcoreSubject source="Free tags">high school</pbcoreSubject>
-	<pbcoreSubject source="Free tags">music director</pbcoreSubject>
-	<pbcoreSubject source="Free tags">musician</pbcoreSubject>
-	<pbcoreSubject source="Free tags">pianist</pbcoreSubject>
-	<pbcoreSubject source="Free tags">PoC</pbcoreSubject>
-	<pbcoreSubject source="Free tags">religious</pbcoreSubject>
-	<pbcoreSubject source="Free tags">salem</pbcoreSubject>
-	<pbcoreSubject source="Free tags">south jersey</pbcoreSubject>
-	<pbcoreSubject source="Free tags">teen</pbcoreSubject>
-	<pbcoreSubject source="Free tags">twin</pbcoreSubject>
-	<pbcoreSubject source="Free tags">twins</pbcoreSubject>
-	<pbcoreSubject source="Free tags">underserved</pbcoreSubject>
-	<pbcoreSubject source="Free tags">woodstown</pbcoreSubject>
-	<pbcoreSubject source="Free tags">youth</pbcoreSubject>
-	<pbcoreDescription>No Description Available</pbcoreDescription>
+    <pbcoreCoverage>
+      <coverage>Clinton Township, NJ</coverage>
+      <coverageType>Spatial</coverageType>
+    </pbcoreCoverage>
+    <pbcoreContributor>
+      <contributor>Nerger, Ken</contributor>
+      <contributorRole>Interviewee</contributorRole>
+    </pbcoreContributor>
+    <pbcoreContributor>
+      <contributor>Klein, Emile B</contributor>
+      <contributorRole>Interviewer</contributorRole>
+    </pbcoreContributor>
+    <pbcoreInstantiation>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/207</instantiationIdentifier>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">207</instantiationIdentifier>
+      <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/207</instantiationLocation>
+      <instantiationDigital>audio/x-wav</instantiationDigital>
+      <instantiationDuration>01:02:10:00</instantiationDuration>
+      <instantiationPart>
+        <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2F4fc10df2fe6a344547125bdc9cd406f7.WAV</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Ken%20Nerger/Snap%20Judgement%20One%20Man's%20Bargain.1(Raw%20Audio).WAV</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">4fc10df2fe6a344547125bdc9cd406f7.WAV</instantiationIdentifier>
+        <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/207</instantiationLocation>
+        <instantiationDate dateType="Date Modified">2012-12-11 23:53:06</instantiationDate>
+        <instantiationFileSize unitsOfMeasure="bytes">658116608</instantiationFileSize>
+        <instantiationAnnotation annotationType="md5">3927c44fbb7e14d2bc289a2310de6ad7</instantiationAnnotation>
+      </instantiationPart>
+    </pbcoreInstantiation>
+    <pbcoreAnnotation annotationType="Notes">Former Gallery Manager, Chemical Disposal Worker</pbcoreAnnotation>
+    <pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
+  </pbcoreDescriptionDocument>
+  <pbcoreDescriptionDocument>
+    <pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/206</pbcoreIdentifier>
+    <pbcoreTitle>Am. Profile #13 Tannah Morris(Raw Audio)</pbcoreTitle>
+    <pbcoreSubject source="Free tags">father issues</pbcoreSubject>
+    <pbcoreSubject source="Free tags">gospel</pbcoreSubject>
+    <pbcoreSubject source="Free tags">high school</pbcoreSubject>
+    <pbcoreSubject source="Free tags">music director</pbcoreSubject>
+    <pbcoreSubject source="Free tags">musician</pbcoreSubject>
+    <pbcoreSubject source="Free tags">pianist</pbcoreSubject>
+    <pbcoreSubject source="Free tags">PoC</pbcoreSubject>
+    <pbcoreSubject source="Free tags">religious</pbcoreSubject>
+    <pbcoreSubject source="Free tags">salem</pbcoreSubject>
+    <pbcoreSubject source="Free tags">south jersey</pbcoreSubject>
+    <pbcoreSubject source="Free tags">teen</pbcoreSubject>
+    <pbcoreSubject source="Free tags">twin</pbcoreSubject>
+    <pbcoreSubject source="Free tags">twins</pbcoreSubject>
+    <pbcoreSubject source="Free tags">underserved</pbcoreSubject>
+    <pbcoreSubject source="Free tags">woodstown</pbcoreSubject>
+    <pbcoreSubject source="Free tags">youth</pbcoreSubject>
+    <pbcoreDescription>No Description Available</pbcoreDescription>
     <pbcoreRelation>
-        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
-        <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
+      <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+      <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
     </pbcoreRelation>
-	<pbcoreCoverage>
-		<coverage>Salem, NJ </coverage>
-		<coverageType>Spatial</coverageType>
-	</pbcoreCoverage>
-	<pbcoreContributor>
-		<contributor>Morris, Tannah</contributor>
-		<contributorRole>Interviewee</contributorRole>
-	</pbcoreContributor>
-	<pbcoreContributor>
-		<contributor>Klein, Emile B</contributor>
-		<contributorRole>Interviewer</contributorRole>
-	</pbcoreContributor>
-	<pbcoreInstantiation>	
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/206</instantiationIdentifier>
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">206</instantiationIdentifier>	
-		<instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/206</instantiationLocation>
-		<instantiationDigital>audio/mpeg</instantiationDigital>
-		 		<instantiationDuration>00:39:35:00</instantiationDuration>
-        <instantiationPart>
-              <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2F3aabcd429926bdc164b8eeb67af4a27f.MP3</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Tannah%20and%20Coley%20Morris/Am.%20Profile%20%2313%20Tannah%20Morris(Raw%20Audio).MP3</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">3aabcd429926bdc164b8eeb67af4a27f.MP3</instantiationIdentifier>
-            <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/206</instantiationLocation>
-              <instantiationDate dateType="Date Modified">2012-12-11 23:53:42</instantiationDate>
-            <instantiationFileSize unitsOfMeasure="bytes">95040701</instantiationFileSize>
-            <instantiationAnnotation annotationType="md5">6f7f7b08c1e94082533f9d65e21b5002</instantiationAnnotation>
-        </instantiationPart>
-	</pbcoreInstantiation>
-		<pbcoreAnnotation annotationType="Notes">High School Student and Gospel Pianist</pbcoreAnnotation>
-		<pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
-				</pbcoreDescriptionDocument>
-
-<pbcoreDescriptionDocument>
-<pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/205</pbcoreIdentifier>
-	<pbcoreTitle>Am. Profile #12 Coley Morris(Raw Audio)</pbcoreTitle>
-	<pbcoreSubject source="Free tags">drummer</pbcoreSubject>
-	<pbcoreSubject source="Free tags">gammer</pbcoreSubject>
-	<pbcoreSubject source="Free tags">gospel</pbcoreSubject>
-	<pbcoreSubject source="Free tags">high school</pbcoreSubject>
-	<pbcoreSubject source="Free tags">musician</pbcoreSubject>
-	<pbcoreSubject source="Free tags">PoC</pbcoreSubject>
-	<pbcoreSubject source="Free tags">religious</pbcoreSubject>
-	<pbcoreSubject source="Free tags">salem</pbcoreSubject>
-	<pbcoreSubject source="Free tags">south jersey</pbcoreSubject>
-	<pbcoreSubject source="Free tags">teen</pbcoreSubject>
-	<pbcoreSubject source="Free tags">twin</pbcoreSubject>
-	<pbcoreSubject source="Free tags">twins</pbcoreSubject>
-	<pbcoreSubject source="Free tags">underserved</pbcoreSubject>
-	<pbcoreSubject source="Free tags">woodstown</pbcoreSubject>
-	<pbcoreSubject source="Free tags">youth</pbcoreSubject>
-	<pbcoreDescription>No Description Available</pbcoreDescription>
+    <pbcoreCoverage>
+      <coverage>Salem, NJ </coverage>
+      <coverageType>Spatial</coverageType>
+    </pbcoreCoverage>
+    <pbcoreContributor>
+      <contributor>Morris, Tannah</contributor>
+      <contributorRole>Interviewee</contributorRole>
+    </pbcoreContributor>
+    <pbcoreContributor>
+      <contributor>Klein, Emile B</contributor>
+      <contributorRole>Interviewer</contributorRole>
+    </pbcoreContributor>
+    <pbcoreInstantiation>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/206</instantiationIdentifier>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">206</instantiationIdentifier>
+      <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/206</instantiationLocation>
+      <instantiationDigital>audio/mpeg</instantiationDigital>
+      <instantiationDuration>00:39:35:00</instantiationDuration>
+      <instantiationPart>
+        <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2F3aabcd429926bdc164b8eeb67af4a27f.MP3</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Tannah%20and%20Coley%20Morris/Am.%20Profile%20%2313%20Tannah%20Morris(Raw%20Audio).MP3</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">3aabcd429926bdc164b8eeb67af4a27f.MP3</instantiationIdentifier>
+        <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/206</instantiationLocation>
+        <instantiationDate dateType="Date Modified">2012-12-11 23:53:42</instantiationDate>
+        <instantiationFileSize unitsOfMeasure="bytes">95040701</instantiationFileSize>
+        <instantiationAnnotation annotationType="md5">6f7f7b08c1e94082533f9d65e21b5002</instantiationAnnotation>
+      </instantiationPart>
+    </pbcoreInstantiation>
+    <pbcoreAnnotation annotationType="Notes">High School Student and Gospel Pianist</pbcoreAnnotation>
+    <pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
+  </pbcoreDescriptionDocument>
+  <pbcoreDescriptionDocument>
+    <pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/205</pbcoreIdentifier>
+    <pbcoreTitle>Am. Profile #12 Coley Morris(Raw Audio)</pbcoreTitle>
+    <pbcoreSubject source="Free tags">drummer</pbcoreSubject>
+    <pbcoreSubject source="Free tags">gammer</pbcoreSubject>
+    <pbcoreSubject source="Free tags">gospel</pbcoreSubject>
+    <pbcoreSubject source="Free tags">high school</pbcoreSubject>
+    <pbcoreSubject source="Free tags">musician</pbcoreSubject>
+    <pbcoreSubject source="Free tags">PoC</pbcoreSubject>
+    <pbcoreSubject source="Free tags">religious</pbcoreSubject>
+    <pbcoreSubject source="Free tags">salem</pbcoreSubject>
+    <pbcoreSubject source="Free tags">south jersey</pbcoreSubject>
+    <pbcoreSubject source="Free tags">teen</pbcoreSubject>
+    <pbcoreSubject source="Free tags">twin</pbcoreSubject>
+    <pbcoreSubject source="Free tags">twins</pbcoreSubject>
+    <pbcoreSubject source="Free tags">underserved</pbcoreSubject>
+    <pbcoreSubject source="Free tags">woodstown</pbcoreSubject>
+    <pbcoreSubject source="Free tags">youth</pbcoreSubject>
+    <pbcoreDescription>No Description Available</pbcoreDescription>
     <pbcoreRelation>
-        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
-        <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
+      <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+      <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
     </pbcoreRelation>
-	<pbcoreCoverage>
-		<coverage>Salem, NJ </coverage>
-		<coverageType>Spatial</coverageType>
-	</pbcoreCoverage>
-	<pbcoreContributor>
-		<contributor>Morris, Coley</contributor>
-		<contributorRole>Interviewee</contributorRole>
-	</pbcoreContributor>
-	<pbcoreContributor>
-		<contributor>Klein, Emile B</contributor>
-		<contributorRole>Interviewer</contributorRole>
-	</pbcoreContributor>	
-	<pbcoreInstantiation>	
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/205</instantiationIdentifier>
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">205</instantiationIdentifier>	
-		<instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/205</instantiationLocation>
-		<instantiationDigital>audio/mpeg</instantiationDigital>
-		 		<instantiationDuration>00:30:14:00</instantiationDuration>
-        <instantiationPart>
-              <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2Fa40be12f5452dd21dcbf5f06f66ec7aa.MP3</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Tannah%20and%20Coley%20Morris/Am.%20Profile%20%2312%20Coley%20Morris(Raw%20Audio).MP3</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">a40be12f5452dd21dcbf5f06f66ec7aa.MP3</instantiationIdentifier>
-            <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/205</instantiationLocation>
-              <instantiationDate dateType="Date Modified">2012-12-11 23:54:42</instantiationDate>
-            <instantiationFileSize unitsOfMeasure="bytes">72580617</instantiationFileSize>
-            <instantiationAnnotation annotationType="md5">3fc3ccfcbd4a75e3a2186c6b5140391a</instantiationAnnotation>
-        </instantiationPart>
-	</pbcoreInstantiation>
-		<pbcoreAnnotation annotationType="Notes">High School Student and Drummer</pbcoreAnnotation>
-		<pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
-				</pbcoreDescriptionDocument>
-				
-<pbcoreDescriptionDocument>
-<pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/204</pbcoreIdentifier>
-	<pbcoreTitle>Am. Profile #10 Grant Harris.2(Raw Audio)</pbcoreTitle>
-	<pbcoreSubject source="Free tags">Bulls</pbcoreSubject>
-	<pbcoreSubject source="Free tags">cattle</pbcoreSubject>
-	<pbcoreSubject source="Free tags">drawl</pbcoreSubject>
-	<pbcoreSubject source="Free tags">farmer</pbcoreSubject>
-	<pbcoreSubject source="Free tags">heritage</pbcoreSubject>
-	<pbcoreSubject source="Free tags">rodeo</pbcoreSubject>
-	<pbcoreSubject source="Free tags">south jersey</pbcoreSubject>
-	<pbcoreSubject source="Free tags">tradition</pbcoreSubject>
-	<pbcoreSubject source="Free tags">worker</pbcoreSubject>
-	<pbcoreSubject source="Free tags">You&#039;re U.S.</pbcoreSubject>
-	<pbcoreDescription>No Description Available</pbcoreDescription>
+    <pbcoreCoverage>
+      <coverage>Salem, NJ </coverage>
+      <coverageType>Spatial</coverageType>
+    </pbcoreCoverage>
+    <pbcoreContributor>
+      <contributor>Morris, Coley</contributor>
+      <contributorRole>Interviewee</contributorRole>
+    </pbcoreContributor>
+    <pbcoreContributor>
+      <contributor>Klein, Emile B</contributor>
+      <contributorRole>Interviewer</contributorRole>
+    </pbcoreContributor>
+    <pbcoreInstantiation>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/205</instantiationIdentifier>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">205</instantiationIdentifier>
+      <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/205</instantiationLocation>
+      <instantiationDigital>audio/mpeg</instantiationDigital>
+      <instantiationDuration>00:30:14:00</instantiationDuration>
+      <instantiationPart>
+        <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2Fa40be12f5452dd21dcbf5f06f66ec7aa.MP3</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Tannah%20and%20Coley%20Morris/Am.%20Profile%20%2312%20Coley%20Morris(Raw%20Audio).MP3</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">a40be12f5452dd21dcbf5f06f66ec7aa.MP3</instantiationIdentifier>
+        <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/205</instantiationLocation>
+        <instantiationDate dateType="Date Modified">2012-12-11 23:54:42</instantiationDate>
+        <instantiationFileSize unitsOfMeasure="bytes">72580617</instantiationFileSize>
+        <instantiationAnnotation annotationType="md5">3fc3ccfcbd4a75e3a2186c6b5140391a</instantiationAnnotation>
+      </instantiationPart>
+    </pbcoreInstantiation>
+    <pbcoreAnnotation annotationType="Notes">High School Student and Drummer</pbcoreAnnotation>
+    <pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
+  </pbcoreDescriptionDocument>
+  <pbcoreDescriptionDocument>
+    <pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/204</pbcoreIdentifier>
+    <pbcoreTitle>Am. Profile #10 Grant Harris.2(Raw Audio)</pbcoreTitle>
+    <pbcoreSubject source="Free tags">Bulls</pbcoreSubject>
+    <pbcoreSubject source="Free tags">cattle</pbcoreSubject>
+    <pbcoreSubject source="Free tags">drawl</pbcoreSubject>
+    <pbcoreSubject source="Free tags">farmer</pbcoreSubject>
+    <pbcoreSubject source="Free tags">heritage</pbcoreSubject>
+    <pbcoreSubject source="Free tags">rodeo</pbcoreSubject>
+    <pbcoreSubject source="Free tags">south jersey</pbcoreSubject>
+    <pbcoreSubject source="Free tags">tradition</pbcoreSubject>
+    <pbcoreSubject source="Free tags">worker</pbcoreSubject>
+    <pbcoreSubject source="Free tags">You're U.S.</pbcoreSubject>
+    <pbcoreDescription>No Description Available</pbcoreDescription>
     <pbcoreRelation>
-        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
-        <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
+      <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+      <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
     </pbcoreRelation>
-	<pbcoreCoverage>
-		<coverage>Pilesgrove, NJ</coverage>
-		<coverageType>Spatial</coverageType>
-	</pbcoreCoverage>
-	<pbcoreContributor>
-		<contributor>Harris, Grant</contributor>
-		<contributorRole>Interviewee</contributorRole>
-	</pbcoreContributor>
-	<pbcoreContributor>
-		<contributor>Klein, Emile B</contributor>
-		<contributorRole>Interviewer</contributorRole>
-	</pbcoreContributor>
-	<pbcoreInstantiation>	
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/204</instantiationIdentifier>
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">204</instantiationIdentifier>	
-		<instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/204</instantiationLocation>
-		<instantiationDigital>audio/mpeg</instantiationDigital>
-		 		<instantiationDuration>00:14:21:00</instantiationDuration>
-        <instantiationPart>
-              <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2Fb546cb263cf94381cdca82a9412ac08f.MP3</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Grant%20Harris/Am.%20Profile%20%2310%20Grant%20Harris.2(Raw%20Audio).MP3</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">b546cb263cf94381cdca82a9412ac08f.MP3</instantiationIdentifier>
-            <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/204</instantiationLocation>
-              <instantiationDate dateType="Date Modified">2012-12-11 23:55:06</instantiationDate>
-            <instantiationFileSize unitsOfMeasure="bytes">34469010</instantiationFileSize>
-            <instantiationAnnotation annotationType="md5">036ca9b066f32b1b71b02729d888194b</instantiationAnnotation>
-        </instantiationPart>
-	</pbcoreInstantiation>
-		<pbcoreAnnotation annotationType="Notes">Owner of Cowtown Rodeo and Cowtown Flea market</pbcoreAnnotation>
-		<pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
-				</pbcoreDescriptionDocument>
-
-<pbcoreDescriptionDocument>
-<pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/203</pbcoreIdentifier>
-	<pbcoreTitle>Am. Profile #10 Grant Harris.1(Raw Audio)</pbcoreTitle>
-	<pbcoreSubject source="Free tags">Bulls</pbcoreSubject>
-	<pbcoreSubject source="Free tags">cattle</pbcoreSubject>
-	<pbcoreSubject source="Free tags">drawl</pbcoreSubject>
-	<pbcoreSubject source="Free tags">farmer</pbcoreSubject>
-	<pbcoreSubject source="Free tags">heritage</pbcoreSubject>
-	<pbcoreSubject source="Free tags">rodeo</pbcoreSubject>
-	<pbcoreSubject source="Free tags">south jersey</pbcoreSubject>
-	<pbcoreSubject source="Free tags">tradition</pbcoreSubject>
-	<pbcoreSubject source="Free tags">worker</pbcoreSubject>
-	<pbcoreSubject source="Free tags">You&#039;re U.S.</pbcoreSubject>
-	<pbcoreDescription>No Description Available</pbcoreDescription>
+    <pbcoreCoverage>
+      <coverage>Pilesgrove, NJ</coverage>
+      <coverageType>Spatial</coverageType>
+    </pbcoreCoverage>
+    <pbcoreContributor>
+      <contributor>Harris, Grant</contributor>
+      <contributorRole>Interviewee</contributorRole>
+    </pbcoreContributor>
+    <pbcoreContributor>
+      <contributor>Klein, Emile B</contributor>
+      <contributorRole>Interviewer</contributorRole>
+    </pbcoreContributor>
+    <pbcoreInstantiation>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/204</instantiationIdentifier>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">204</instantiationIdentifier>
+      <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/204</instantiationLocation>
+      <instantiationDigital>audio/mpeg</instantiationDigital>
+      <instantiationDuration>00:14:21:00</instantiationDuration>
+      <instantiationPart>
+        <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2Fb546cb263cf94381cdca82a9412ac08f.MP3</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Grant%20Harris/Am.%20Profile%20%2310%20Grant%20Harris.2(Raw%20Audio).MP3</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">b546cb263cf94381cdca82a9412ac08f.MP3</instantiationIdentifier>
+        <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/204</instantiationLocation>
+        <instantiationDate dateType="Date Modified">2012-12-11 23:55:06</instantiationDate>
+        <instantiationFileSize unitsOfMeasure="bytes">34469010</instantiationFileSize>
+        <instantiationAnnotation annotationType="md5">036ca9b066f32b1b71b02729d888194b</instantiationAnnotation>
+      </instantiationPart>
+    </pbcoreInstantiation>
+    <pbcoreAnnotation annotationType="Notes">Owner of Cowtown Rodeo and Cowtown Flea market</pbcoreAnnotation>
+    <pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
+  </pbcoreDescriptionDocument>
+  <pbcoreDescriptionDocument>
+    <pbcoreIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/203</pbcoreIdentifier>
+    <pbcoreTitle>Am. Profile #10 Grant Harris.1(Raw Audio)</pbcoreTitle>
+    <pbcoreSubject source="Free tags">Bulls</pbcoreSubject>
+    <pbcoreSubject source="Free tags">cattle</pbcoreSubject>
+    <pbcoreSubject source="Free tags">drawl</pbcoreSubject>
+    <pbcoreSubject source="Free tags">farmer</pbcoreSubject>
+    <pbcoreSubject source="Free tags">heritage</pbcoreSubject>
+    <pbcoreSubject source="Free tags">rodeo</pbcoreSubject>
+    <pbcoreSubject source="Free tags">south jersey</pbcoreSubject>
+    <pbcoreSubject source="Free tags">tradition</pbcoreSubject>
+    <pbcoreSubject source="Free tags">worker</pbcoreSubject>
+    <pbcoreSubject source="Free tags">You're U.S.</pbcoreSubject>
+    <pbcoreDescription>No Description Available</pbcoreDescription>
     <pbcoreRelation>
-        <pbcoreRelationType>Is Part Of</pbcoreRelationType>
-        <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
+      <pbcoreRelationType>Is Part Of</pbcoreRelationType>
+      <pbcoreRelationIdentifier source="Omeka:Pop Up Archive Sandbox">You're US</pbcoreRelationIdentifier>
     </pbcoreRelation>
-	<pbcoreCoverage>
-		<coverage>Pilesgrove, NJ</coverage>
-		<coverageType>Spatial</coverageType>
-	</pbcoreCoverage>
-	<pbcoreContributor>
-		<contributor>Harris, Grant</contributor>
-		<contributorRole>Interviewee</contributorRole>
-	</pbcoreContributor>
-	<pbcoreContributor>
-		<contributor>Klein, Emile B</contributor>
-		<contributorRole>Interviewer</contributorRole>
-	</pbcoreContributor>
-	<pbcoreInstantiation>	
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/203</instantiationIdentifier>
-		<instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">203</instantiationIdentifier>	
-		<instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/203</instantiationLocation>
-		<instantiationDigital>audio/x-wav</instantiationDigital>
-		 		<instantiationDuration>00:53:31:00</instantiationDuration>
-        <instantiationPart>
-              <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2Fd867b2a5a8940db80b358020d31ec464.WAV</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Grant%20Harris/Am.%20Profile%20%2310%20Grant%20Harris.1(Raw%20Audio).WAV</instantiationIdentifier>
-            <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">d867b2a5a8940db80b358020d31ec464.WAV</instantiationIdentifier>
-            <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/203</instantiationLocation>
-              <instantiationDate dateType="Date Modified">2012-12-11 23:55:29</instantiationDate>
-            <instantiationFileSize unitsOfMeasure="bytes">566587392</instantiationFileSize>
-            <instantiationAnnotation annotationType="md5">a5b5ff5c0fecbb82ce4440384c73e41e</instantiationAnnotation>
-        </instantiationPart>
-	</pbcoreInstantiation>
-		<pbcoreAnnotation annotationType="Notes">Owner of Cowtown Rodeo and Cowtown Flea market</pbcoreAnnotation>
-		<pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
-				</pbcoreDescriptionDocument>
-				
-</pbcoreCollection>
+    <pbcoreCoverage>
+      <coverage>Pilesgrove, NJ</coverage>
+      <coverageType>Spatial</coverageType>
+    </pbcoreCoverage>
+    <pbcoreContributor>
+      <contributor>Harris, Grant</contributor>
+      <contributorRole>Interviewee</contributorRole>
+    </pbcoreContributor>
+    <pbcoreContributor>
+      <contributor>Klein, Emile B</contributor>
+      <contributorRole>Interviewer</contributorRole>
+    </pbcoreContributor>
+    <pbcoreInstantiation>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/203</instantiationIdentifier>
+      <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.item_id">203</instantiationIdentifier>
+      <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/203</instantiationLocation>
+      <instantiationDigital>audio/x-wav</instantiationDigital>
+      <instantiationDuration>00:53:31:00</instantiationDuration>
+      <instantiationPart>
+        <instantiationIdentifier>http://s3.amazonaws.com/101archive%2Ffiles%2Fd867b2a5a8940db80b358020d31ec464.WAV</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.original_filename">http://dl.dropbox.com/u/8231663/You're%20U.S.%20Unused%20Audio/New%20Jersey%20Raw%20Oral%20Histories/Grant%20Harris/Am.%20Profile%20%2310%20Grant%20Harris.1(Raw%20Audio).WAV</instantiationIdentifier>
+        <instantiationIdentifier source="Omeka:Pop Up Archive Sandbox.archive_filename">d867b2a5a8940db80b358020d31ec464.WAV</instantiationIdentifier>
+        <instantiationLocation source="Omeka:Pop Up Archive Sandbox">http://ec2-54-245-213-120.us-west-2.compute.amazonaws.com/items/show/203</instantiationLocation>
+        <instantiationDate dateType="Date Modified">2012-12-11 23:55:29</instantiationDate>
+        <instantiationFileSize unitsOfMeasure="bytes">566587392</instantiationFileSize>
+        <instantiationAnnotation annotationType="md5">a5b5ff5c0fecbb82ce4440384c73e41e</instantiationAnnotation>
+      </instantiationPart>
+    </pbcoreInstantiation>
+    <pbcoreAnnotation annotationType="Notes">Owner of Cowtown Rodeo and Cowtown Flea market</pbcoreAnnotation>
+    <pbcoreAnnotation annotationType="Notes">Sony PCMM10/B</pbcoreAnnotation>
+  </pbcoreDescriptionDocument>
+</pbcoreCollection<name />
