@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_one  :uploads_collection, through: :uploads_collection_grant, source: :collection
   has_many :collections, through: :collection_grants
   has_many :items, through: :collections
+  has_many :audio_files, through: :items
   has_many :csv_imports
   has_many :oauth_applications, class_name: 'Doorkeeper::Application', as: :owner
 
@@ -76,6 +77,10 @@ class User < ActiveRecord::Base
 
   def searchable_collection_ids
     collection_ids - [uploads_collection.id]
+  end
+
+  def used_metered_storage
+    @_used_metered_storage ||= audio_files.where(metered: true).sum(:duration)
   end
 
   private

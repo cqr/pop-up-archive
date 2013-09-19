@@ -6,4 +6,5 @@ if current_user
   node(:uploads_collection_id) { current_user.uploads_collection.id }
   node(:collection_ids) { current_user.collection_ids }
   node(:organization_id) { current_user.organization_id }
+  node(:used_quota) { current_user.used_metered_storage }
 end

@@ -304,7 +304,7 @@
                       '<td style="width: 16px; text-align:right" ng-show="showRange">{{text.startTime}}</td>' +
                       '<td style="width: 8px;  text-align:center" ng-show="showRange">&ndash;</td>' +
                       '<td style="width: 16px; text-align:left; padding-right:10px" ng-show="showRange">{{text.endTime}}</td>' +
-                      '<td ng-show="showStart">{{toTimestamp(text.startTime)}}</td>' +
+                      '<td ng-show="showStart">{{text.startTime | timestamp}}</td>' +
                       '<td ng-show="!editorEnabled"><div class="file-transcript-text" ng-bind-html-unsafe="text.text"></div></td>' +
                       '<td ng-show="canShowEditor()" style="width: 8px; padding-right: 10px; text-align: right">'+
                         '<a href="#" ng-click="enableEditor()"><i class="icon-pencil"></i></a></td>' +
@@ -347,22 +347,6 @@
           this.saveText({text: text});
         };
 
-        scope.toTimestamp = function (seconds) {
-          var d = new Date(seconds * 1000);
-          if (seconds > 3600) {
-            return Math.floor(seconds / 3600) + ":" + dd(Math.floor(seconds % 3600 / 60)) + ":" + dd(seconds % 3600 % 60);
-          } else {
-            return Math.floor(seconds / 60) + ":" + dd(seconds % 60);
-          }
-        }
-
-        var dd = function (dd) {
-          if (dd < 10) {
-            return "0" + dd;
-          }
-          return dd;
-        }
-
         scope.seekTo = function(time) {
           scope.$emit('transcriptSeek', time);
         }
@@ -402,5 +386,55 @@
 
       }
     }
-  }]);
+  }])
+  .filter('timestamp', function () {
+    function dd(dd) {
+      if (dd < 10) {
+        return "0" + dd;
+      }
+      return dd;
+    }
+
+    function hh(seconds) {
+      return Math.floor(seconds / 3600);
+    }
+
+    function mm(seconds) {
+      return Math.floor(seconds % 3600 / 60);
+    }
+
+    function ss(seconds) {
+      return seconds % 3600 % 60;
+    }
+
+    return function (seconds, style) {
+      if (typeof style === 'undefined') {
+        style = "short";
+      }
+
+      var d = new Date(seconds * 1000);
+      if ((seconds > 3600 && style == "short") || style == "long") {
+        return  hh(seconds) + ":" + dd(mm(seconds)) + ":" + dd(ss(seconds));
+      } else if (style == "short") {
+        return mm(seconds) + ":" + dd(ss(seconds));
+      } else if (style == "words") {
+        var h = hh(seconds);
+        var m = mm(seconds);
+        var s = ss(seconds);
+        if (h && !m) {
+          return  h + "h";
+        } else if (h && m) {
+          return h + "h" + m + "m";
+        } else if (m && !s) {
+          return m + "m";
+        } else if (m && s) {
+          return m + "m" + s + "s";
+        } else {
+          return s + 's';
+        }
+      } else {
+        return "INVALID STYLE";
+      }
+    };
+  });
 })();

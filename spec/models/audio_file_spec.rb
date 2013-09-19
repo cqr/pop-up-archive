@@ -99,4 +99,41 @@ describe AudioFile do
     end
 
   end
+
+  describe '#metered?' do
+    let(:private_storage) { StorageConfiguration.private_storage.tap(&:save) }
+    let(:public_storage) { StorageConfiguration.public_storage.tap(&:save) }
+
+    it 'is true when using the application s3 bucket for storage' do
+      audio_file = FactoryGirl.build :audio_file, storage_configuration: private_storage
+
+      audio_file.metered?.should be true
+    end
+
+    it 'is false when using public storage' do
+      audio_file = FactoryGirl.build :audio_file, storage_configuration: public_storage
+
+      audio_file.metered?.should be false
+    end
+
+    it 'is persisted' do
+      unmetered = FactoryGirl.create :audio_file, storage_configuration: public_storage
+      metered   = FactoryGirl.create :audio_file, storage_configuration: private_storage
+
+      AudioFile.where(metered: true).should include(metered)
+      AudioFile.where(metered: false).should include(unmetered)
+      AudioFile.where(metered: true).should_not include(unmetered)
+      AudioFile.where(metered: false).should_not include(metered)
+    end
+
+    it 'does not call is_metered? when pulled from the database' do
+      unmetered = FactoryGirl.create :audio_file, storage_configuration: public_storage
+
+      def unmetered.is_metered?
+        true
+      end
+
+      unmetered.metered?.should be false
+    end
+  end
 end

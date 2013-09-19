@@ -12,6 +12,8 @@ class AudioFile < ActiveRecord::Base
   has_many :tasks, as: :owner
   has_many :transcripts
 
+  before_validation :set_metered
+
   belongs_to :storage_configuration, class_name: "StorageConfiguration", foreign_key: :storage_id
 
   attr_accessible :file, :storage_id
@@ -78,6 +80,10 @@ class AudioFile < ActiveRecord::Base
     end
 
     save!
+  end
+
+  def metered?
+    metered.nil? ? is_metered? : super
   end
 
   def update_from_fixer(params)
@@ -382,6 +388,17 @@ class AudioFile < ActiveRecord::Base
       uri.password = stor.secret
     end
     uri.to_s
+  end
+
+  private
+
+  def set_metered
+    self.metered = is_metered?
+    true
+  end
+
+  def is_metered?
+    storage == StorageConfiguration.private_storage
   end
 
 end

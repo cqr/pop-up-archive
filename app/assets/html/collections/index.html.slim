@@ -6,6 +6,9 @@
 			a.btn href="/collections/edit" 
 				i.icon-edit  Batch Edit
   h3 My Collections
+  .usage-meter ng-class="{full: totalQuota - usedQuota < 300}"
+    .bar ng-style="{width: quotaPercent()}"
+    .notice {{ usedQuota | timestamp: 'words' }} / {{totalQuota | timestamp: 'words' }}
   h4
     span tutorial-step="tour.tempuploads" data-placement="right" My Uploads
     span tutorial-step="tour.tutorial1" data-placement="right"

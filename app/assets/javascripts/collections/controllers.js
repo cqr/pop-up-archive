@@ -8,6 +8,13 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
       $scope.uploadsCollection.fetchItems();
     });
 
+    $scope.usedQuota = me.usedQuota;
+    $scope.totalQuota = 900000;
+
+    $scope.quotaPercent = function () {
+      return Math.ceil(this.usedQuota * 100 / this.totalQuota) + '%';
+    }
+
 		$scope.tour = {
       'tempuploads': { 
         'content': 'If you don\'t specify a collection, audio will be automatically added to temporary uploads. Select your audio and add it to a collection to make it searchable.',
