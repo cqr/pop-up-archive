@@ -169,7 +169,7 @@ class AudioFile < ActiveRecord::Base
   end
 
   def order_transcript
-    self.tasks << Tasks::OrderTranscriptTask.new
+    self.tasks << Tasks::OrderTranscriptTask.new(identifier: 'order_transcript')
   end
 
   def create_copy_task(orig, dest, stor)
