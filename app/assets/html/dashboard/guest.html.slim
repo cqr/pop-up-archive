@@ -1,39 +1,25 @@
-.row-fluid
+.row
   .span12
-    .background-container
-      .row-fluid
-        .span4 ng-hide="currentUser.authenticated()"
-          .brochure.slide-span
-            a ng-href='http://www.popuparchive.org/request-invite' target="_self"
-              span.title Request an invite
-              img.image src='#{asset_path("account.svg")}'
-              span.content Pop Up Archive is offering access to a limited group of pioneering users. Like to give it a try? Request an invite.
-        .span8 ng-class="{ offset2 : currentUser.authenticated() == 1}"
-          .row-fluid
-            .span6
-              .brochure.slide-span
-                a ng-href='/collections'
-                  span.title Archive your audio
-                  img.image src='#{asset_path("archive.svg")}'
-                  span.content Tags & transcripts will be automatically generated to make your audio searchable.
-            .span6
-              .brochure.slide-span
-                a ng-href='/search'
-                  span.title Explore
-                  img.image src='#{asset_path("explore.svg")}'
-                  span.content Explore the wild west of archival sound. You can search &amp; browse your own material or the entire public archive.
-
-.row-fluid 
+    #feature-image
+      #content
+        h2 Simple tools for managing sound, so you can focus on the story.
+        a.featurebtn href='http://www.popuparchive.org/request-invite/' ng-hide="currentUser.authenticated()"
+          |Sign Up
+        a.featurebtn href='/collections'
+          |Archive
+        a.featurebtn href='/search'
+          |Explore
+.row
   .span12
-    #welcome-div
-      h1 We've got exciting new features for you to try!
-      ul
-        li Auto-generated <strong>transcripts are editable and downloadable</strong> in text, XML, and JSON formats
-        li Upload just about <strong>any audio format or size</strong>
-        li <strong>Delete</strong> items from collections (or individual audio files from items)
-        li <strong>Batch edit</strong> to add tags or delete many items at once
-      h2 Coming Soon:
-      ul
-        li Options for <strong>refined transcripts</strong> and an awesome <strong>transcript editor</strong>
-        li <strong>Email alerts</strong> when transcripts are complete
-        li Support for playback of <strong>.aif files</strong> and better audio playback in <strong>Firefox</strong>
+    .featured-collection
+      a href='http://beta.popuparchive.org/search?page=1&query=collection_id:%22583%22' 
+        img src="#{asset_path('WILL.jpg')}"
+        h5 Illinois Public Radio
+    .featured-collection
+      a href='http://beta.popuparchive.org/search?page=1&query=collection_id:%22453%22'
+        img src="#{asset_path('the_connection.jpg')}"
+        h5 WBUR's The Connection
+    .featured-collection
+      a href='http://beta.popuparchive.org/search?page=1&query=collection_id:%22483%22'
+        img src="#{asset_path('Buck_ONeil.jpg')}"
+        h5 Society for American Baseball Research
