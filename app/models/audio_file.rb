@@ -169,7 +169,7 @@ class AudioFile < ActiveRecord::Base
   end
 
   def order_transcript
-    self.tasks << Tasks::OrderTranscriptTask.new
+    self.tasks << Tasks::OrderTranscriptTask.new(identifier: 'order_transcript')
   end
 
   def create_copy_task(orig, dest, stor)
@@ -211,7 +211,7 @@ class AudioFile < ActiveRecord::Base
       if task = tasks.detect_derivatives.without_status(:failed).where(identifier: 'detect_derivatives').last
         logger.debug "detect_derivatives task #{task.id} already exists for audio_file #{self.id}"
       else
-        urls = AudioFileUploader.version_formats.keys.inject({}){|h, k| h[k] = { url: file.send(k), detected_at: nil }; h}
+        urls = AudioFileUploader.version_formats.keys.inject({}){|h, k| h[k] = { url: file.send(k).url, detected_at: nil }; h}
         self.tasks << Tasks::DetectDerivativesTask.new(identifier: 'detect_derivatives', extras: { 'urls' => urls })
       end
 
