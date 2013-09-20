@@ -1,5 +1,5 @@
 angular.module('RailsModel', ['rails'])
-.factory('Model', ['railsResourceFactory', 'railsSerializer', '$q', '$rootScope', function (railsResourceFactory, railsSerializer, $q, $rootScope) {
+.factory('Model', ['railsResourceFactory', 'railsSerializer', '$q', '$rootScope', 'RailsResourceInjector', function (railsResourceFactory, railsSerializer, $q, $rootScope, RailsResourceInjector) {
   // removed railsFieldRenamingTransformer railsRootWrappingTransformer protectedAttributeRemovalTransformer
   var requestTransformers =  'updateParentNestedValue'.split(' ');
   return function (options) {
@@ -33,10 +33,17 @@ angular.module('RailsModel', ['rails'])
     options.requestTransformers = requestTransformers;
 
     if (options.only) {
-      // console.log(options.name, 'only', options.only);
-      options.serializer = railsSerializer(function () {
-        this['only'].apply(this, options.only);
-      });
+      if (options.serializer) {
+        options._serializer = RailsResourceInjector.createService(options.serializer);
+        options.serializer = railsSerializer(function () {
+          this.only.apply(this, options.only);
+          options._serializer.call(this, this);
+        });
+      } else {
+        options.serializer = railsSerializer(function () {
+          this.only.apply(this, options.only);
+        });
+      }
     }
 
     var factory = railsResourceFactory(options);

@@ -1438,13 +1438,14 @@ form.stripe-cc {
   .bar {
     height: 100%;
     background: rgb(140, 219, 241);
-    position: absolute;
+    float: left;
   }
 
   .notice {
-    position: relative;
+    position: absolute;
     font-family: "soleil", sans-serif;
-    padding-right: 25px;
+    right: 25px;
+    top: 0;
   }
 
   &.full .bar {

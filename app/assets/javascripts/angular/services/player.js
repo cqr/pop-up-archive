@@ -59,8 +59,11 @@
       if (typeof url === 'undefined' ||
         playerHater.nowPlaying && simpleFile(url) === simpleFile(playerHater.nowPlaying.url)) {
         return playerHater.play();
-      } 
-      return playerHater.play({url:url, title: title});
+      } else if (typeof url === 'string') {
+        return playerHater.play({url:url, title: title});
+      } else {
+        return playerHater.play(url);
+      }
     };
 
     Player.nowPlaying = function () {

@@ -1,6 +1,11 @@
 angular.module('Directory.audioFiles.models', ['RailsModel', 'S3Upload'])
-.factory('AudioFile', ['Model', 'S3Upload', '$http', function (Model, S3Upload, $http) {
+.factory('AudioFile', ['Model', 'S3Upload', '$http', 'Player', function (Model, S3Upload, $http, Player) {
   var AudioFile = Model({url:'/api/items/{{itemId}}/audio_files/{{id}}', name: 'audio_file', only: ['url', 'filename']});
+
+
+  AudioFile.prototype.play = function () {
+    Player.play(this);
+  }
 
   AudioFile.prototype.cleanFileName = function(fileName) {
     return fileName.replace(/[^a-z0-9\.]+/gi,'_');

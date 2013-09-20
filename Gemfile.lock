@@ -90,7 +90,7 @@ GEM
       faraday_middleware
       hashie
       multi_json
-    angularjs-rails-resource (0.2.0)
+    angularjs-rails-resource (0.2.2)
     ansi (1.4.3)
     arel (3.0.2)
     atomic (1.1.10)
