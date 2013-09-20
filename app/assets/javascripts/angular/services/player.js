@@ -174,13 +174,19 @@
   }])
   .directive("scrubber", ["Player", function (Player) {
     return {
-      restrict: 'C',
-      template: '<canvas></canvas>',
-      replace: false,
+      restrict: 'E',
+      template: '<div class="scrubber"><canvas style="width: 100%"></canvas></div>',
+      scope: { 'playable' : '=' },
+      replace: true,
       link: function (scope, el, attrs) {
         var element = el.find('canvas')[0];
         var context = element.getContext('2d');
-        var mapped  = mapToArray(Player.waveform(), el.width());
+        var mapped;
+        if (scope.playable) {
+          mapped = mapToArray(scope.playable.waveform(), el.width());
+        } else {
+          mapped = mapToArray(Player.waveform(), el.width());
+        }
 
         function canvasWidth() {
           return el.width();

@@ -37,9 +37,7 @@ ul.pager ng-show="nextItem || previousItem || searchResults.query"
             i.icon-play
           button.player-button ng-show="isPlaying()" ng-click="player.pause()"
             i.icon-pause
-          .scrubber
-            .bar ng-show="isLoaded()" ng-style="{width:player.time*100/player.duration+'%'}"
-            .timecodes ng-show="isLoaded() && player.duration" {{player.time | timeCode }} / {{player.duration | timeCode }}
+          scrubber playable="audioFile"
         .transcript-options ng-show="audioFile.transcript.length"
           a.btn.icon-download-alt ng-href="/api/items/{{item.id}}/audio_files/{{audioFile.id}}/transcript.srt" title="Download Transcript TXT" target="_self" download="{{audioFile.filename}}.transcript.srt"
           |  

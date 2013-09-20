@@ -34,7 +34,7 @@ angular.module('RailsModel', ['rails'])
 
     if (options.only) {
       if (options.serializer) {
-        options._serializer = RailsResourceInjector.createService(options.serializer);
+        options._serializer = RailsResourceInjector.getDependency(options.serializer);
         options.serializer = railsSerializer(function () {
           this.only.apply(this, options.only);
           options._serializer.call(this, this);
