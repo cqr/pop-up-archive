@@ -230,7 +230,7 @@ angular.module('Directory.files.controllers', ['fileDropzone', 'Directory.alerts
           });
 
           alert.progress = 100;
-          alert.status   = "Uploaded";
+          alert.status   = "Complete";
 
           // let search results know that there is a new item
           $timeout(function () { $scope.$broadcast('datasetChanged')}, 750);
