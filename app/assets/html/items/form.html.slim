@@ -79,10 +79,10 @@ section ng-controller="NewItemFormCtrl"
               input.input-xlarge type='hidden' ng-model="item.tagList" ui-select2="tagSelect()"
 
           .message-shadow ng-hide='showDetails'
-            a ng-click='showDetails = !showDetails' More
+            a ng-click='showDetails = !showDetails' More Detail
 
           .message-expanded ng-show='showDetails'
-            a ng-click='showDetails = !showDetails' Less
+            a ng-click='showDetails = !showDetails' Less Detail
 
           section ng-show='showDetails'
 
