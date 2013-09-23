@@ -2,6 +2,31 @@ require 'spec_helper'
 
 describe AudioFile do
 
+
+  context "basics" do
+    it "should provide a url" do
+      audio_file = FactoryGirl.create :audio_file
+      audio_file.url.should eq '/test.mp3'
+    end
+
+    it "should provide a url for a version" do
+      audio_file = FactoryGirl.create :audio_file
+      audio_file.url(:ogg).should eq '/test.ogg'
+    end
+
+    it "should provide a list of urls when transcoded" do
+      audio_file = FactoryGirl.create :audio_file
+      audio_file.transcoded_at = Time.now
+      audio_file.urls.sort.should eq [audio_file.url(:mp3), audio_file.url(:ogg)]
+    end
+
+    it "should provide original url for urls when not transcoded" do
+      audio_file = FactoryGirl.create :audio_file
+      audio_file.urls.should eq [audio_file.url]
+    end
+
+  end
+
   context "transcoding" do
 
     it "should use the version label as the extension" do
