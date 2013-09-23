@@ -41,8 +41,8 @@ class AudioFile < ActiveRecord::Base
     fn
   end
 
-  def url(version=nil)
-    file.try(:url) ? file.url(version) : original_file_url
+  def url(version={})
+    file.url(version) || original_file_url
   end
 
   def transcoded?
