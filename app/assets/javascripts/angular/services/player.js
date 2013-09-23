@@ -39,7 +39,11 @@
     });
 
     function simpleFile(filename) {
-      var parts = (filename || '').split('/');
+      var file = filename;
+      if (angular.isArray(file)) {
+        file = file[0];
+      }
+      var parts = (file || '').split('/');
       return parts[parts.length-1].split('?', 2)[0];
     }
 
