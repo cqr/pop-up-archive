@@ -35,12 +35,12 @@ describe Tasks::TranscodeTask do
   end
 
   it "should get the destination for a format" do
-    @task.destination.should start_with('s3://development.popuparchive.prx.org/untitled.')
+    @task.destination.should start_with('s3://' + ENV['AWS_BUCKET'] + '/untitled.')
     @task.destination.should end_with('.popuparchive.org/test.ogg')
   end
 
   it "should get the original to be transcoded" do
-    @task.original.should start_with('s3://development.popuparchive.prx.org/untitled.')
+    @task.original.should start_with('s3://' + ENV['AWS_BUCKET'] + '/untitled.')
     @task.original.should end_with('.popuparchive.org/test.mp3')
   end
 
