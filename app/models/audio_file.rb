@@ -44,7 +44,19 @@ class AudioFile < ActiveRecord::Base
   end
 
   def url(version=nil)
-    file.try(:url) ? file.url(version: version) : original_file_url
+    file.try(:url) ? file.url(version) : original_file_url
+  end
+
+  def transcoded?
+    !transcoded_at.nil?
+  end
+
+  def urls
+    if transcoded?
+      AudioFileUploader.version_formats.keys.collect{|v| url(v)}
+    else
+      [url]
+    end
   end
 
   def storage
