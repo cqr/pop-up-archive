@@ -25,6 +25,13 @@ describe AudioFile do
       audio_file.urls.should eq [audio_file.url]
     end
 
+    it "should provide url for private file" do
+      audio_file = FactoryGirl.create :audio_file_private
+      audio_file.url(nil).should end_with('.popuparchive.org/test.mp3')
+      audio_file.url.should end_with('.popuparchive.org/test.mp3')
+      audio_file.url(:ogg).should end_with('.popuparchive.org/test.ogg')
+    end
+
   end
 
   context "transcoding" do
