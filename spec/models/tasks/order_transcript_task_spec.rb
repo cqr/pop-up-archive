@@ -22,7 +22,8 @@ describe Tasks::OrderTranscriptTask do
 
   it "should have an edit transcript url" do
     @task.extras['video_id'] = 'RANDOM'
-    @task.edit_video_transcript_url.should eq "http://www.amara.org/en/subtitles/editor/RANDOM/en/"
+    @task.edit_video_transcript_url.should start_with "http://#{ENV['AMARA_HOST']}/en/onsite_widget/?config=%7B%22videoID%22:%22RANDOM%22,%22videoURL%22:%22http://test.popuparchive.org/media"
+    @task.edit_video_transcript_url.should end_with "/test.ogg%22,%22languageCode%22:%22en%22%7D"
   end
 
   it "should have audio_file owner" do
