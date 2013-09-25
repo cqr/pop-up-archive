@@ -54,4 +54,169 @@ describe Tasks::OrderTranscriptTask do
     @task.amara_client.videos.should_receive(:create).and_return(amara_response)
     @task.create_video.should eq video
   end
+
+  it "should parse and save the transcript from amara" do
+    subtitles = Hashie::Mash.new(test_subtitles)
+
+    @task.extras['subtitles_version'].to_i.should eq 0
+
+    transcript = @task.load_subtitles(subtitles)
+
+    @task.extras['subtitles_version'].to_i.should eq 4
+
+    transcript.should_not be_nil
+    transcript.should be_valid
+    transcript.language.should eq 'en-US'
+    transcript.identifier.should eq "#{@task.owner.id}_en"
+    transcript.start_time.should eq 2
+    transcript.end_time.should eq 60
+    transcript.confidence.should eq 100
+
+    transcript.timed_texts.count.should eq subtitles.subtitles.count
+
+    tt = transcript.timed_texts.first
+    tt.start_time.should eq 2
+    tt.end_time.should eq 4
+    tt.text.should eq "Call in with your comments"
+    tt.confidence.should eq 100
+  end
+
+  def test_subtitles
+    {
+      "description"       => "test audio",
+      "language"          => {"code"=> "en", "name"=> "English"},
+      "metadata"          => {},
+      "note"              => "",
+      "resource_uri"      => "/api2/partners/videos/5eZU6jdDRfQ2/languages/en/subtitles/",
+      "site_url"          => "http://staging.amara.org/videos/5eZU6jdDRfQ2/en/411168/",
+      "sub_format"        => "json",
+      "title"             => "Hive Mind",
+      "version_no"        => 4,
+      "version_number"    => 4,
+      "video"             => "Hive Mind",
+      "video_description" => "test audio",
+      "video_title"       => "Hive Mind",
+      "subtitles"    => [
+        {
+          "end"      => 3917,
+          "meta"     => {"new_paragraph"=> true},
+          "position" => 1,
+          "start"    => 2090,
+          "text"     => "Call in with your comments"
+        },
+        {
+          "end"      => 9626,
+          "meta"     => {"new_paragraph"=> false},
+          "position" => 2,
+          "start"    => 3917,
+          "text"     => "651 227 6000 or 800 242 2828"
+        },
+        {
+          "end"      => 13370,
+          "meta"     => {"new_paragraph"=> false},
+          "position" => 3,
+          "start"    => 9626,
+          "text"     => "this is the daily circuit on Minnesota Public Radio News"
+        },
+        {
+          "end"      => 15851,
+          "meta"     => {"new_paragraph"=> false},
+          "position" => 4,
+          "start"    => 13370,
+          "text"     => "And I'm Carrie Miller along with Tom Weber"
+        },
+        {
+          "end"      => 17663,
+          "meta"     => {"new_paragraph"=> false},
+          "position" => 5,
+          "start"    => 15851,
+          "text"     => "and it is Brain Awareness Week."
+        },
+        {
+          "end"      => 20377,
+          "meta"     => {"new_paragraph"=> false},
+          "position" => 6,
+          "start"    => 17663,
+          "text"     => "You've been hearing Tom's segments on ask a neuroscientist"},
+        {
+          "end"      => 24882,
+          "meta"     => {"new_paragraph"=> false},
+          "position" => 7,
+          "start"    => 20377,
+          "text"     => "but this hour we are zeroing in on 3 interesting areas of study"
+        },
+        {
+          "end"      => 29495,
+          "meta"     => {"new_paragraph"=> false},
+          "position" => 8,
+          "start"    => 24882,
+          "text"     => "about the brain, and we're calling this the Hive Mind, aren't we Tom?"
+        },
+        {
+          "end"      => 36322,
+          "meta"     => {"new_paragraph"=> false},
+          "position" => 9,
+          "start"    => 29495,
+          "text"     => "Well, there's research on how our brains make decisions and it has a tie in to head butting bees."
+        },
+        {
+          "end"      => 37125,
+          "meta"     => {"new_paragraph"=> false},
+          "position" => 10,
+          "start"    => 36322,
+          "text"     => "No Way!"
+        },
+        {
+          "end"      => 38317,
+          "meta"     => {"new_paragraph"=> false},
+          "position" => 11,
+          "start"    => 37125,
+          "text"     => "They butt heads."
+        },
+        {
+          "end"      => 42018,
+          "meta"     => {"new_paragraph"=> false},
+          "position" => 12,
+          "start"    => 38317,
+          "text"     => "Now bees, as you know, they work collectively, and researchers have long wondered"
+        },
+        {
+          "end"      => 46626,
+          "meta"     => {"new_paragraph"=> false},
+          "position" => 13,
+          "start"    => 42018,
+          "text"     => "if that collective decision making that bees do has any parallel with the way"
+        },
+        {
+          "end"      => 51357,
+          "meta"     => {"new_paragraph"=> false},
+          "position" => 14,
+          "start"    => 46626,
+          "text"     => "that our neurons and our other bits and pieces in our brain run around and help us make decisions."
+        },
+        {
+          "end"      => 54895,
+          "meta"     => {"new_paragraph"=> false},
+          "position" => 15,
+          "start"    => 51357,
+          "text"     => "Well now there's research that finds that there's a head butting"
+        },
+        {
+          "end"      => 59489,
+          "meta"     => {"new_paragraph"=> false},
+          "position" => 16,
+          "start"    => 54895,
+          "text"     => "that bees do that is key to the process of coming to a consensus."
+        },
+        {
+          "end"      => 60000,
+          "meta"     => {"new_paragraph"=> false},
+          "position" => 17,
+          "start"    => 59489,
+          "text"     => "In the hive..."
+        }
+      ]
+    }
+  end
+
 end

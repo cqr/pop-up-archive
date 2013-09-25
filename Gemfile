@@ -64,7 +64,7 @@ gem 'state_machine'
 
 gem 'doorkeeper'
 
-gem "acts_as_paranoid", "~>0.4.0"
+gem "acts_as_paranoid", "~> 0.4.0"
 
 gem 'newrelic_rpm', :github => 'newrelic/rpm', :branch => 'RUBY-1180'
 
@@ -76,7 +76,7 @@ gem 'sanitize'
 
 gem 'soundcloud'
 
-gem 'amara'
+gem 'amara', "~> 0.1"
 # gem 'amara', :path => '../amara'
 # gem 'amara', github: 'PRX/amara'
 
@@ -85,7 +85,7 @@ gem 'language_list'
 
 group :assets do
   gem 'sprockets'
-  gem 'sass-rails',   '~> 3.2.3'
+  gem 'sass-rails', '~> 3.2.3'
   gem 'uglifier', '>= 1.0.3'
   gem 'bootstrap-sass'
   gem 'angularjs-rails-resource'

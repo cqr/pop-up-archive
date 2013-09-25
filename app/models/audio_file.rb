@@ -10,7 +10,7 @@ class AudioFile < ActiveRecord::Base
   belongs_to :item, :with_deleted => true
   belongs_to :instance
   has_many :tasks, as: :owner
-  has_many :transcripts
+  has_many :transcripts, order: 'created_at desc'
 
   before_validation :set_metered
 
@@ -263,7 +263,7 @@ class AudioFile < ActiveRecord::Base
   end
 
   def transcript_text
-    txt = timed_transcript_text 
+    txt = timed_transcript_text
     txt = JSON.parse(transcript).collect{|i| i['text']}.join("\n") if (txt.blank? && !transcript.blank?)
     txt || ''
   end
@@ -278,11 +278,11 @@ class AudioFile < ActiveRecord::Base
   end
 
   def timed_transcript(language='en-US')
-    transcripts.detect {|t| t.language == language }
+    transcripts.detect{|t| t.language == language }
   end
 
   def process_transcript(json)
-    return false if json.blank?
+    return nil if json.blank?
 
     identifier = Digest::MD5.hexdigest(json)
 

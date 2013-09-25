@@ -107,7 +107,7 @@ describe AudioFile do
       json = '[{"start_time":0,"end_time":9,"text":"three","confidence":0.90355223},{"start_time":8,"end_time":17,"text":"four","confidence":0.8770266},{"start_time":16,"end_time":25,"text":"five","confidence":0.8770266}]'
       audio_file = FactoryGirl.build :audio_file
       audio_file.transcript = '[{"start_time":0,"end_time":9,"text":"one","confidence":0.90355223},{"start_time":8,"end_time":17,"text":"two","confidence":0.8770266}]'
-      audio_file.process_transcript(json)
+      trans = audio_file.process_transcript(json)
       audio_file.transcript_text.should_not be_blank
       audio_file.transcript_text.should eq "three\nfour\nfive"
       audio_file.transcript_array.count.should == 3

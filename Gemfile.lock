@@ -83,7 +83,7 @@ GEM
       activerecord (>= 3.0)
     acts_as_paranoid (0.4.2)
       activerecord (~> 3.2)
-    amara (0.0.4)
+    amara (0.1.0)
       activesupport
       excon
       faraday
@@ -452,7 +452,7 @@ DEPENDENCIES
   activerecord-postgres-hstore (~> 0.6.0)
   acts_as_list
   acts_as_paranoid (~> 0.4.0)
-  amara
+  amara (~> 0.1)
   angularjs-rails-resource
   autoscaler (~> 0.2.0)
   better_errors

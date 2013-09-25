@@ -69,6 +69,39 @@ class Tasks::OrderTranscriptTask < Task
     options
   end
 
+  def get_transcript
+    r = amara_client.videos(t.video_id).languages(language).subtitles.get
+    r.object
+  end
+
+  def load_subtitles(subtitles)
+    transcript = nil
+    if subtitles && subtitles.subtitles && subtitles.subtitles.count > 0
+      version = subtitles.version_number.to_i
+      if version > 0 && version > self.extras['subtitles_version'].to_i
+
+        full_language = (audio_file.item.language || 'en-US')
+        identifier    = "#{audio_file.id}_#{language}"
+        transcript    = audio_file.item.transcripts.build(language: full_language, identifier: identifier, start_time: 0, end_time: 0, confidence: 100)
+
+        subtitles.subtitles.each do |row|
+          tt = transcript.timed_texts.build({
+            start_time: (row.start.to_i / 1000.00).round,
+            end_time:   (row.end.to_i   / 1000.00).round,
+            confidence: 100,
+            text:       row.text
+          })
+          transcript.end_time = tt.end_time if ((tt.end_time > transcript.end_time) || (transcript.end_time <= 0))
+          transcript.start_time = tt.start_time if ((tt.start_time < transcript.start_time) || (transcript.start_time <= 0))
+        end
+        transcript.confidence = 100
+        self.extras['subtitles_version'] = version
+        transcript.save! && self.save!
+      end
+    end
+    transcript
+  end
+
   def amara_client
     @client ||= Amara::Client.new(
       api_key:      ENV['AMARA_KEY'],
