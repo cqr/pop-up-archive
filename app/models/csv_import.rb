@@ -38,9 +38,9 @@ class CsvImport < ActiveRecord::Base
 
   def collection_with_build
     if collection_id == 0
-      self.collection = Collection.new(title: file_name)
+      self.collection = Collection.new(title: file_name, creator: user)
     elsif collection_id == -1
-      self.collection = Collection.new(title: file_name, items_visible_by_default: true)
+      self.collection = Collection.new(title: file_name, creator: user, items_visible_by_default: true)
     else
       collection
     end

@@ -11,8 +11,8 @@ class User < ActiveRecord::Base
 
   belongs_to :organization
 
-  has_many :collection_grants
-  has_one  :uploads_collection_grant, class_name: 'CollectionGrant', conditions: {uploads_collection: true}
+  has_many :collection_grants, as: :collector
+  has_one  :uploads_collection_grant, class_name: 'CollectionGrant', as: :collector, conditions: {uploads_collection: true}
   has_one  :uploads_collection, through: :uploads_collection_grant, source: :collection
   has_many :collections, through: :collection_grants
   has_many :items, through: :collections
@@ -70,18 +70,26 @@ class User < ActiveRecord::Base
     !invitation_accepted_at.present?
   end
 
-  def uploads_collection
-    super || add_uploads_collection
-  end
-
   def searchable_collection_ids
     collection_ids - [uploads_collection.id]
+  end
+
+  def collections
+    organization ? organization.collections : super
+  end
+
+  def collection_ids
+    organization ? organization.collection_ids : super
+  end
+
+  def uploads_collection
+    organization.try(:uploads_collection) || super || add_uploads_collection
   end
 
   private
 
   def add_uploads_collection
-    self.uploads_collection = Collection.new(title: "My Uploads", items_visible_by_default: false)
+    self.uploads_collection = Collection.new(title: "My Uploads", creator: self, items_visible_by_default: false)
     build_uploads_collection_grant collection: uploads_collection
     uploads_collection
   end

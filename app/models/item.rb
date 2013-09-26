@@ -114,14 +114,14 @@ class Item < ActiveRecord::Base
 
   scope :publicly_visible, where(is_public: true)
 
-  def self.visible_to_user(user)
-    if user.present?
-      grants = CollectionGrant.arel_table
-      joins(collection: :collection_grants).where(grants[:user_id].eq(user.id).or(arel_table[:is_public].eq(true)))
-    else
-      publicly_visible
-    end
-  end
+  # def self.visible_to_user(user)
+  #   if user.present?
+  #     grants = CollectionGrant.arel_table
+  #     joins(collection: :collection_grants).where(grants[:user_id].eq(user.id).or(arel_table[:is_public].eq(true)))
+  #   else
+  #     publicly_visible
+  #   end
+  # end
 
   serialize :extra, HstoreCoder
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130916190044) do
+ActiveRecord::Schema.define(:version => 20130926162148) do
 
   add_extension "hstore"
 
@@ -37,15 +37,16 @@ ActiveRecord::Schema.define(:version => 20130916190044) do
 
   create_table "collection_grants", :force => true do |t|
     t.integer  "collection_id"
-    t.integer  "user_id"
+    t.integer  "collector_id"
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false
     t.boolean  "uploads_collection", :default => false
+    t.string   "collector_type"
   end
 
   add_index "collection_grants", ["collection_id"], :name => "index_collection_grants_on_collection_id"
-  add_index "collection_grants", ["user_id", "collection_id"], :name => "index_collection_grants_on_user_id_and_collection_id", :unique => true
-  add_index "collection_grants", ["user_id"], :name => "index_collection_grants_on_user_id"
+  add_index "collection_grants", ["collector_id", "collection_id"], :name => "index_collection_grants_on_user_id_and_collection_id", :unique => true
+  add_index "collection_grants", ["collector_id"], :name => "index_collection_grants_on_user_id"
 
   create_table "collections", :force => true do |t|
     t.string   "title"
@@ -57,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20130916190044) do
     t.integer  "default_storage_id"
     t.integer  "upload_storage_id"
     t.datetime "deleted_at"
+    t.integer  "creator_id"
   end
 
   create_table "contributions", :force => true do |t|
@@ -221,8 +223,12 @@ ActiveRecord::Schema.define(:version => 20130916190044) do
 
   create_table "organizations", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.string   "amara_key"
+    t.string   "amara_username"
+    t.string   "amara_team"
+    t.boolean  "is_transcriber"
   end
 
   create_table "people", :force => true do |t|

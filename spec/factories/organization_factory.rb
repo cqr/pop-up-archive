@@ -2,7 +2,6 @@ FactoryGirl.define do
   factory :organization do
 
     name "test org"
-    is_transcriber false
 
     factory :organization_amara do
       amara_key "amara_key"
