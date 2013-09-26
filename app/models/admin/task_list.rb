@@ -11,9 +11,12 @@ class Admin::TaskList < Admin::Report
       unless task.owner == nil
         line[:owner_type] = task.owner.class.name
         line[:owner_id] = task.owner_id
+
+        # this is going to fail when we have collections owned by users and orgs - AK
         extra = task.owner.class.joins(item: [collection: [collection_grants: :user]]).find(task.owner_id)
         line[:user_email] = extra.collection.collection_grants.first.user.email
         line[:user_id] = extra.collection.collection_grants.first.user.id
+
         line[:collection_title] = extra.collection.title
         line[:collection_id] = extra.collection.id
         line[:item_id] = extra.item.id

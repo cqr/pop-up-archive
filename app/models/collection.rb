@@ -3,7 +3,7 @@ class Collection < ActiveRecord::Base
   acts_as_paranoid
 
   # include ActiveModel::ForbiddenAttributesProtection
-  attr_accessible :title, :description, :items_visible_by_default
+  attr_accessible :title, :description, :items_visible_by_default, :creator, :creator_id
 
   belongs_to :default_storage, class_name: "StorageConfiguration"
   belongs_to :upload_storage, class_name: "StorageConfiguration"
@@ -23,14 +23,16 @@ class Collection < ActiveRecord::Base
 
   before_validation :set_defaults
 
-  def self.visible_to_user(user)
-    if user.present?
-      grants = CollectionGrant.arel_table
-      (includes(:collection_grants).where(grants[:user_id].eq(user.id).or(arel_table[:items_visible_by_default].eq(true))))
-    else
-      is_public
-    end
-  end
+  after_commit :grant_to_creator, on: :create
+
+  # def self.visible_to_user(user)
+  #   if user.present?
+  #     grants = CollectionGrant.arel_table
+  #     (includes(:collection_grants).where(grants[:user_id].eq(user.id).or(arel_table[:items_visible_by_default].eq(true))))
+  #   else
+  #     is_public
+  #   end
+  # end
 
   def validate_storage
     errors.add(:default_storage, "must be set") if !default_storage
@@ -49,10 +51,16 @@ class Collection < ActiveRecord::Base
   def set_defaults
     self.set_storage
     self.copy_media = true if self.copy_media.nil?
-    self.organization ||= self.creator.try(:organization)
+  end
+
+  def grant_to_creator
+    return unless creator
+    collector = creator.organization || creator
+    collector.collections << self
   end
 
   def uploads_collection?
     uploads_collection_grants.present?
   end
+
 end

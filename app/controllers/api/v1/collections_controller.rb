@@ -12,7 +12,7 @@ class Api::V1::CollectionsController < Api::V1::BaseController
         current_user.collections.find_by_id(params[:id]) 
       end || Collection.is_public.find_by_id(params[:id])
     else
-      Collection.new(params[:collection])
+      Collection.new(params[:collection].merge(creator: current_user))
     end
   end
 
@@ -21,10 +21,7 @@ class Api::V1::CollectionsController < Api::V1::BaseController
   end
 
   def create
-    if kollection.save
-      current_user.collections << kollection
-      current_user.save
-    end
+    kollection.save
     respond_with :api, kollection
   end
 
