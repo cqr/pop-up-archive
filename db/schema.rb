@@ -29,10 +29,12 @@ ActiveRecord::Schema.define(:version => 20130927203758) do
     t.integer  "storage_id"
     t.string   "path"
     t.time     "deleted_at"
-    t.datetime "transcoded_at"
     t.integer  "duration"
+    t.datetime "transcoded_at"
+    t.boolean  "metered"
   end
 
+  add_index "audio_files", ["item_id", "deleted_at"], :name => "index_audio_files_on_item_id_and_deleted_at"
   add_index "audio_files", ["item_id"], :name => "index_audio_files_on_item_id"
 
   create_table "collection_grants", :force => true do |t|
@@ -80,9 +82,9 @@ ActiveRecord::Schema.define(:version => 20130927203758) do
     t.integer  "state_index",   :default => 0
     t.string   "headers",                                      :array => true
     t.string   "file_name"
-    t.integer  "collection_id", :default => 0
     t.string   "error_message"
     t.text     "backtrace"
+    t.integer  "collection_id", :default => 0
     t.integer  "user_id"
   end
 
@@ -160,6 +162,7 @@ ActiveRecord::Schema.define(:version => 20130927203758) do
     t.string   "music_sound_used"
     t.string   "date_peg"
     t.text     "notes"
+    t.text     "transcription"
     t.string   "tags",                              :array => true
     t.integer  "geolocation_id"
     t.hstore   "extra"
@@ -170,7 +173,6 @@ ActiveRecord::Schema.define(:version => 20130927203758) do
     t.string   "token"
     t.integer  "storage_id"
     t.boolean  "is_public"
-    t.text     "transcription"
     t.string   "language"
     t.datetime "deleted_at"
   end
@@ -259,6 +261,13 @@ ActiveRecord::Schema.define(:version => 20130927203758) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "subscription_plans", :force => true do |t|
+    t.integer  "pop_up_hours"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.string   "stripe_plan_id"
+  end
+
   create_table "tasks", :force => true do |t|
     t.integer  "owner_id"
     t.string   "owner_type"
@@ -325,6 +334,7 @@ ActiveRecord::Schema.define(:version => 20130927203758) do
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
     t.integer  "organization_id"
+    t.string   "customer_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
