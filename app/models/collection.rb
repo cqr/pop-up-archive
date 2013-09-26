@@ -7,19 +7,21 @@ class Collection < ActiveRecord::Base
 
   belongs_to :default_storage, class_name: "StorageConfiguration"
   belongs_to :upload_storage, class_name: "StorageConfiguration"
+  belongs_to :creator, class_name: "User"
+  belongs_to :organization
 
   has_many :collection_grants, dependent: :destroy
-
-  has_many  :uploads_collection_grants, class_name: 'CollectionGrant', conditions: {uploads_collection: true}
-
+  has_many :uploads_collection_grants, class_name: 'CollectionGrant', conditions: {uploads_collection: true}
   has_many :users, through: :collection_grants
   has_many :items, dependent: :destroy
 
   validates_presence_of :title
 
-  before_validation :set_defaults
+  validate :validate_storage
 
   scope :is_public, where(items_visible_by_default: true)
+
+  before_validation :set_defaults
 
   def self.visible_to_user(user)
     if user.present?
@@ -29,10 +31,6 @@ class Collection < ActiveRecord::Base
       is_public
     end
   end
-
-  before_validation :set_storage
-
-  validate :validate_storage
 
   def validate_storage
     errors.add(:default_storage, "must be set") if !default_storage
@@ -49,7 +47,9 @@ class Collection < ActiveRecord::Base
   end
 
   def set_defaults
+    self.set_storage
     self.copy_media = true if self.copy_media.nil?
+    self.organization ||= self.creator.try(:organization)
   end
 
   def uploads_collection?
