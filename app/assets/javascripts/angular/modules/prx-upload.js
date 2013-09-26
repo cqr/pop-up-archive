@@ -22,7 +22,7 @@ angular.module('fileDropzone', [])
                 width: '100%',
                 height: '0px',
                 overflow: 'hidden',
-                position: 'absolute',
+                position: 'fixed',
                 top: '0px',
                 left: '0px',
                 'z-index':10000

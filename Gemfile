@@ -83,6 +83,8 @@ gem 'amara', "~> 0.1"
 gem 'countries'
 gem 'language_list'
 
+gem 'stripe'
+
 group :assets do
   gem 'sprockets'
   gem 'sass-rails', '~> 3.2.3'

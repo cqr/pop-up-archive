@@ -408,6 +408,9 @@ GEM
     sprockets-rails (0.0.1)
       sprockets (>= 1.0.2)
     state_machine (1.2.0)
+    stripe (1.8.7)
+      multi_json (>= 1.0.4, < 2)
+      rest-client (~> 1.4)
     strong_parameters (0.2.1)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
@@ -523,6 +526,7 @@ DEPENDENCIES
   spring
   sprockets
   state_machine
+  stripe
   strong_parameters
   terminal-notifier-guard
   tire

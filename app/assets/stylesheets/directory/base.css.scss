@@ -96,6 +96,12 @@ h3 {
 
 .navbar {
   .nav {
+    margin: 9px 10px 0 0;
+
+    &.pull-right li a {
+      padding: 8px;
+    }
+
     ul.alert-showers, .alert-showers li.alert-shower {
       width: 300px;
 
@@ -205,8 +211,8 @@ button.pua-pill {
 }
 
 .loading-overlay {
-  z-index: 100;
-  position: absolute;
+  z-index: 10000;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -1407,5 +1413,11 @@ form.with-tags {
   .role {
     margin-left: 10px;
     color: #7c7b81;
+  }
+}
+
+form.stripe-cc {
+  input {
+    width: auto;
   }
 }

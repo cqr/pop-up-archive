@@ -21,6 +21,7 @@
 //= require angular-strap
 //= require angularjs/rails/resource
 //= require mule-upload
+//= require angular-stripe
 //= require ng-player-hater
 //= require_tree ../
 
@@ -58,6 +59,11 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
       controller: "SearchResultsCtrl",
       reloadOnSearch: false,
       title: "Search"
+    })
+    .when('/account', {
+      templateUrl: "<%= asset_path 'account/index.html' %>",
+      controller: "AccountCtrl",
+      title: "My Account"
     })
     .when('/about', {
       templateUrl: "<%= asset_path 'dashboard/about.html' %>",
@@ -147,7 +153,8 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
                   'Directory.items.controllers',
                   'Directory.audioFiles.controllers',
                   'Directory.collections.controllers',
-                  'Directory.organizations.controllers'
+                  'Directory.organizations.controllers',
+                  'Directory.account.controllers'
                   ];
 
   window.directory = angular.module('Directory', depends);
@@ -193,7 +200,6 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
         });
       }
     });
-
 
     $scope.userMenu = [];
 
@@ -305,6 +311,9 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
                           },
       'hosts[]'         : { 'title': 'Host',
                             'content': '<p>The person(s) hosting the broadcast piece.</p><p>Examples</p><ul><li>Ira Glass</li><li>Robert Krulwich</li><li>Art Bell</li></ul>'
+                          },
+      'language'        : { 'title': 'Language',
+                            'content': '<p>The primary language spoken in the piece.</p>'
                           },
       'contributors'    : { 'title': 'Contributors',
                             'content': '<p>The person(s) with various roles related to the item, such as producers, interviewees, etc.'
