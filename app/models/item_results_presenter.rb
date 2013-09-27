@@ -33,7 +33,7 @@ class ItemResultsPresenter < BasicObject
     end
 
     def database_object
-      @_result ||= ::Item.find(id)
+      @_result ||= ::Item.find_by_id(id)
     end
 
     def audio_files
