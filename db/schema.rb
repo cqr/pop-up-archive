@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130926162148) do
+ActiveRecord::Schema.define(:version => 20130927203758) do
 
   add_extension "hstore"
 
@@ -228,7 +228,6 @@ ActiveRecord::Schema.define(:version => 20130926162148) do
     t.string   "amara_key"
     t.string   "amara_username"
     t.string   "amara_team"
-    t.boolean  "is_transcriber"
   end
 
   create_table "people", :force => true do |t|
