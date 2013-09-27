@@ -17,7 +17,7 @@ angular.module('Directory.users.models', ['RailsModel'])
     }
     
     return false;
-  }
+  };
 
   User.prototype.canEdit = function (obj) {
     if (this.authenticated() && obj && obj.collectionId) {
@@ -25,15 +25,15 @@ angular.module('Directory.users.models', ['RailsModel'])
     } else {
       return false;
     }
-  }
+  };
 
   User.prototype.canOrderTranscript = function (obj) {
     if (this.authenticated() && obj) {
-      return (this.organizationId && (this.organizationId > 0));
+      return (this.role == 'admin');
     } else {
       return false;
     }
-  }
+  };
 
   return User;
 }])
