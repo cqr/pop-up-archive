@@ -48,6 +48,8 @@ PopUpArchive::Application.routes.draw do
       end
 
       resources :timed_texts
+
+      resources :organizations
       
       resources :collections do
         collection do
