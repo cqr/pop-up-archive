@@ -92,6 +92,16 @@ class User < ActiveRecord::Base
     organization.try(:uploads_collection) || super || add_uploads_collection
   end
 
+  def in_organization?
+    !!organization_id
+  end
+
+  # everyone is considered an admin on their own, role varies for those in orgs
+  def role
+    return :admin unless organization
+    has_role?(:admin, organization) ? :admin : :member
+  end
+
   private
 
   def add_uploads_collection

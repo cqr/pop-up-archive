@@ -75,6 +75,16 @@ describe User do
       user.collection_ids.should eq organization.collections.collect(&:id)
     end
 
+    it "returns a role" do
+      user.role.should eq :admin
+
+      user.organization = FactoryGirl.create :organization
+      user.role.should eq :member
+
+      user.add_role :admin, user.organization
+      user.role.should eq :admin
+    end
+
   end
 
 end
