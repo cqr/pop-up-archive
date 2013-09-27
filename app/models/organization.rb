@@ -12,6 +12,8 @@ class Organization < ActiveRecord::Base
 
   after_commit :add_uploads_collection, on: :create
 
+  ROLES = [:admin, :member]
+
   def add_uploads_collection
     self.uploads_collection = Collection.new(title: "Uploads", items_visible_by_default: false)
     create_uploads_collection_grant collection: uploads_collection
