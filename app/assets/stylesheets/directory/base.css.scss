@@ -1285,3 +1285,25 @@ form.with-tags {
     margin: 5px;
   }
 }
+
+.organization-member {
+  list-style: none;
+  padding: 8px 35px 8px 14px;
+  margin-bottom: 20px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  color: #000;
+  background-color: #f2cfa5;
+  border: 1px solid #f2cfa5;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+
+  .name {
+
+  }
+
+  .role {
+    margin-left: 10px;
+    color: #7c7b81;
+  }
+}
