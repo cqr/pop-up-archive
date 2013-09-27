@@ -120,6 +120,11 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
       templateUrl: "<%= asset_path 'imports/show.html' %>",
       controller: "ImportCtrl"
     })
+    .when('/organization', {
+      templateUrl: "<%= asset_path 'organizations/show.html' %>",
+      controller:  "OrganizationCtrl",
+      title: "Organization &raquo; {{organization.name}}"
+    })
     .otherwise({
       template: "<h1>404 - not found</h1>"
     });
@@ -141,7 +146,8 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
                   'Directory.searches.controllers',
                   'Directory.items.controllers',
                   'Directory.audioFiles.controllers',
-                  'Directory.collections.controllers'
+                  'Directory.collections.controllers',
+                  'Directory.organizations.controllers'
                   ];
 
   window.directory = angular.module('Directory', depends);
@@ -188,23 +194,39 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
       }
     });
 
-    $scope.userMenu = [
-      {
-        text: 'my collections',
-        href: '/collections'
-      },
-      {
-        text: 'my imports',
-        href: '/imports'
-      },
-      {
-        text: 'log out',
-        href: '/users/sign_out',
-        target: '_self',
-        method: 'delete'
-      }
-    ];
 
+    $scope.userMenu = [];
+
+    $scope.setUserMenu = function() {
+      Me.authenticated(function (user) {
+
+        var menu = [
+          {
+            text: 'my collections',
+            href: '/collections'
+          },
+          {
+            text: 'my imports',
+            href: '/imports'
+          },
+          {
+            text: 'log out',
+            href: '/users/sign_out',
+            target: '_self',
+            method: 'delete'
+          }
+        ];
+
+        if (user && user.organization) {
+          menu.push({text: user.organization.name, href: '/organization'});
+        }
+
+        $scope.userMenu = menu;
+      });
+    };
+
+    $scope.setUserMenu();
+  
     $scope.itemHelp = {
       'collection'      : { 'title': 'Collection',
                             'content': '<p>A collection is a set of items. They can be public or private, and are a way to organize your uploads and data.</p><p>Examples</p><ul><li>Hidden Kitchens</li><li>My Project Audio</li></ul>'
