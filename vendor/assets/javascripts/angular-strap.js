@@ -405,15 +405,19 @@ angular.module('$strap.directives').directive('bsDropdown', [
       restrict: 'EA',
       scope: true,
       link: function postLink(scope, iElement, iAttrs) {
-        var getter = $parse(iAttrs.bsDropdown), items = getter(scope);
-        $timeout(function () {
-          if (!angular.isArray(items)) {
-          }
-          var dropdown = angular.element(buildTemplate(items).join(''));
+        scope.$watch(iAttrs.bsDropdown, function (newdd,olddd) {
+          var dropdown = angular.element(buildTemplate(newdd).join(''));
+          iElement.nextAll().remove();
           dropdown.insertAfter(iElement);
+
+          // Compile dropdown-menu
           $compile(iElement.next('ul.dropdown-menu'))(scope);
+
+          iElement
+            .addClass('dropdown-toggle')
+            .attr('data-toggle', 'dropdown');
+
         });
-        iElement.addClass('dropdown-toggle').attr('data-toggle', 'dropdown');
       }
     };
   }
