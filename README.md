@@ -8,7 +8,7 @@
       Ruby Version
     </th>
     <td>
-      1.9.3p385
+      2.0.0-p247
     </td>
   </tr>
   <tr>
@@ -16,7 +16,7 @@
       Rails Version
     </th>
     <td>
-      3.2.11
+      3.2.14
     </td>
   </tr>
   <tr>
