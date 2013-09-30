@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe Task do
+  before { StripeMock.start }
+  after { StripeMock.stop }
+  
   it "should allow writing to the extras attributes" do
     task = FactoryGirl.build :task
     task.extras = {test: 'test value'}

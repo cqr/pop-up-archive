@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Entity do
+  before { StripeMock.start }
+  after { StripeMock.stop }
 
   subject { FactoryGirl.build :entity }
   let(:confirmed_entity) { FactoryGirl.create :entity, is_confirmed: true }

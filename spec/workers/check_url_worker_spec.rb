@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe CheckUrlWorker do
+  before { StripeMock.start }
+  after { StripeMock.stop }
 
   it "processes a url" do
     @task = FactoryGirl.create :detect_derivatives_task

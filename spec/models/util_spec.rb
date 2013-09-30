@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Utils do
+  before { StripeMock.start }
+  after { StripeMock.stop }
 
   it "checks http resource exists" do
     Utils.http_resource_exists?('http://www.prx.org/robots.txt', 1).should be_true

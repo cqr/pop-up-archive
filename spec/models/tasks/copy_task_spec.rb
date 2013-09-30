@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Tasks::CopyTask do
+  before { StripeMock.start }
+  after { StripeMock.stop }
 
   it "should set defaults" do
 

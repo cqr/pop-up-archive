@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Instance do
+  before { StripeMock.start }
+  after { StripeMock.stop }
 
   it "should allow create with valid attributes" do
     instance = Instance.new

@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe FeedPopUp do
+  before { StripeMock.start }
+  after { StripeMock.stop }
 
   it "should be constructed with dry_run option" do
     FeedPopUp.new.dry_run.should == false

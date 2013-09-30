@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe CsvRow do
+  before { StripeMock.start }
+  after { StripeMock.stop }
 	let(:new_row) { FactoryGirl.build :csv_row }
 
   it "should save values as an array" do

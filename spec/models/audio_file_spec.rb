@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe AudioFile do
-
+  before { StripeMock.start }
+  after { StripeMock.stop }
 
   context "basics" do
     it "should provide a url" do

@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Item do
+  before { StripeMock.start }
+  after { StripeMock.stop }
   context "#geographic_location" do
     it "should set the geolocation using Geoloation.for_name" do
       Geolocation.should_receive(:for_name).with("Cambridge, MA")

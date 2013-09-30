@@ -15,4 +15,7 @@ class Entity < ActiveRecord::Base
     {entity: name, category: category }
   end
 
+  def inspect
+    "#<Entity #{as_json.delete_if{|k, v| k =~ /_at$/ || v.nil? || k == 'id' }.to_json.gsub(/\{|\}/, '')}>"
+  end
 end

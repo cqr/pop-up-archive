@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Collection do
+  before { StripeMock.start }
+  after { StripeMock.stop }
 
   it "should be valid with default attributes" do
     @collection = FactoryGirl.build :collection

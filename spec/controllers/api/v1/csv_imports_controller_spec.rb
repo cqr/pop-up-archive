@@ -2,6 +2,9 @@ require 'spec_helper'
 describe Api::V1::CsvImportsController do
   extend ControllerMacros
 
+  before { StripeMock.start }
+  after { StripeMock.stop }
+
   before :each do
     request.accept = "application/json"
   end

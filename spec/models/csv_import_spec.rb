@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe CsvImport do
+  before { StripeMock.start }
+  after { StripeMock.stop }
   let(:new_import) { FactoryGirl.build :csv_import }
   let(:import) { FactoryGirl.create :csv_import }
 
