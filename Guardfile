@@ -6,7 +6,7 @@ else
   notification :terminal_notifier
 end
 
-guard 'rspec', :cli => '--color', :spring => true, :notification => true do
+guard 'rspec', all_on_start: false, all_after_pass: false, spring: true, bundler: false do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }
@@ -23,9 +23,9 @@ guard 'rspec', :cli => '--color', :spring => true, :notification => true do
   watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/features/#{m[1]}_spec.rb" }
 end
 
-guard :jasmine do
-  watch(%r{spec/javascripts/spec\.(js\.coffee|js|coffee)$}) { 'spec/javascripts' }
-  watch(%r{spec/javascripts/.+_spec\.(js\.coffee|js|coffee)$})
-  watch(%r{spec/javascripts/fixtures/.+$})
-  watch(%r{app/assets/javascripts/(.+?)\.(js\.coffee|js|coffee)(?:\.\w+)*$}) { |m| "spec/javascripts/#{ m[1] }_spec.#{ m[2] }" }
-end
+# guard :jasmine do
+#   watch(%r{spec/javascripts/spec\.(js\.coffee|js|coffee)$}) { 'spec/javascripts' }
+#   watch(%r{spec/javascripts/.+_spec\.(js\.coffee|js|coffee)$})
+#   watch(%r{spec/javascripts/fixtures/.+$})
+#   watch(%r{app/assets/javascripts/(.+?)\.(js\.coffee|js|coffee)(?:\.\w+)*$}) { |m| "spec/javascripts/#{ m[1] }_spec.#{ m[2] }" }
+# end

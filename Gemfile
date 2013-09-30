@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '1.9.3'
+ruby '2.0.0'
 
 gem 'rails', '~> 3.2.0'
 
@@ -83,6 +83,8 @@ gem 'amara', "~> 0.1"
 gem 'countries'
 gem 'language_list'
 
+gem 'stripe'
+
 group :assets do
   gem 'sprockets'
   gem 'sass-rails', '~> 3.2.3'
@@ -125,6 +127,7 @@ group :test do
   gem 'capybara'
   gem 'poltergeist'
   gem 'shoulda-matchers'
+  gem 'stripe-ruby-mock', require: 'stripe_mock'
   # gem 'webmock'
 end
 

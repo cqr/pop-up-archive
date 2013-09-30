@@ -1,0 +1,20 @@
+angular.module('Directory.account.controllers', ['stripe'])
+.config(function () {
+  Stripe.setPublishableKey('<%= ENV["STRIPE_PUBLISHABLE_KEY"] %>');
+})
+.controller('AccountCtrl', ['$scope', 'Me', function ($scope, Me) {
+
+  $scope.errors = {};
+
+  $scope.saveCC = function(status, response) {
+    if (response.error) {
+      var e = {};
+      e[response.error.param] = response.error.message;
+      angular.copy(e, $scope.errors);
+    } else {
+      Me.authenticated(function (me) {
+
+      });
+    }
+  }
+}]);

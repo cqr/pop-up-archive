@@ -3,9 +3,69 @@ require 'spec_helper'
 describe User do
 
   let(:user) { FactoryGirl.create :user }
+  before { StripeMock.start }
+  after { StripeMock.stop }
+
 
   it 'gets a holding collection automatically' do
     user.uploads_collection.should_not be_nil
+  end
+
+  context 'payment' do
+    let (:plan) { free_plan }
+    let (:free_plan) { FactoryGirl.create :subscription_plan, pop_up_hours: 80, amount: 0 }
+    let (:paid_plan) { FactoryGirl.create :subscription_plan, pop_up_hours: 80, amount: 2000 }
+
+    it 'has a #customer method that returns a Stripe::Customer' do
+      user.customer.should be_a Stripe::Customer
+    end
+
+    it 'persists the customer' do
+      user.customer.id.should eq User.find(user.id).customer.id
+    end
+
+    it 'has the community plan if it is not subscribed' do
+      user.plan.should eq SubscriptionPlan.community
+    end
+
+    it 'can have a card added' do
+      user.update_card!('void_card_token')
+    end
+
+    it 'can be subscribed to a plan' do
+      user.subscribe! plan
+      user.plan.should eq plan
+    end
+
+    it 'wont subscribe to a paid plan when there is no card present' do
+      expect { user.subscribe!(paid_plan) }.to raise_error Stripe::InvalidRequestError
+    end
+
+    it 'subscribes to paid plans successfully when there is a card present' do
+      user.update_card!('void_card_token')
+      user.subscribe!(paid_plan)
+
+      user.plan.should eq paid_plan
+    end
+
+    it 'has a number of pop up hours determined by the subscription' do
+      user.subscribe!(plan)
+
+      user.pop_up_hours.should eq plan.pop_up_hours
+    end
+
+    it 'has community plan number of hours when there is no subscription' do
+      user.pop_up_hours.should eq SubscriptionPlan::COMMUNITY_PLAN_HOURS
+    end
+
+    it 'updates amount of available hours when the plan is updated' do
+      user.subscribe!(plan)
+
+      plan.pop_up_hours = 21212121
+      plan.save
+
+      user.pop_up_hours.should eq 21212121
+    end
   end
 
   context '#uploads_collection' do

@@ -1,3 +1,7 @@
+ul.nav
+  li#alerts-container ng-controller="AlertCtrl"
+    a pop-up-alerts-dropdown="alertData.alerts" ng-class="{'with-information':alertData.alerts.length}"
+      span.number-circle.ng-cloak ng-show="alertData.alerts.length" {{alertData.alerts.length}}
 ul.nav.pull-right
   li= link_to('get started', '/')
   li= link_to('about', '/about', {target: '_self'})
