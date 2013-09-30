@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Tasks::OrderTranscriptTask do
+  before { StripeMock.start }
+  after { StripeMock.stop }
 
   before(:each) do 
     @audio_file = FactoryGirl.create :audio_file
