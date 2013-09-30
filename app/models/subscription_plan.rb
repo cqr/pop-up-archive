@@ -1,9 +1,19 @@
 class SubscriptionPlan < ActiveRecord::Base
   attr_accessible :pop_up_hours, :name, :amount
 
+  COMMUNITY_PLAN_HOURS = 2
+
   before_save :save_stripe_plan
   after_destroy :delete_stripe_plan
   delegate :name, :name=, :amount, to: :stripe_plan
+
+  def self.community
+    find_or_create_by_stripe_plan_id('community') do |plan|
+      plan.pop_up_hours = COMMUNITY_PLAN_HOURS
+      plan.name = "Community"
+      plan.amount = 0
+    end
+  end
 
   def stripe_plan
     @stripe_plan ||= Stripe::Plan.retrieve(stripe_plan_id)

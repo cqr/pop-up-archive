@@ -2,8 +2,9 @@ require 'spec_helper'
 
 describe SubscriptionPlan do
 
+  before { StripeMock.start }
+  after { StripeMock.stop }
   let(:plan) { FactoryGirl.create(:subscription_plan) }
-  after(:each) { plan.destroy }
 
   it 'has a stripe plan' do
     plan.stripe_plan.should be_a Stripe::Plan
@@ -36,7 +37,9 @@ describe SubscriptionPlan do
   end
 
   it 'fails to save when the stripe plan fails to save' do
-    plan.stripe_plan.interval = 'ducks'
+    custom_error = Stripe::InvalidRequestError.new("Failure", {})
+    StripeMock.prepare_error(custom_error, :new_plan)
+    plan = FactoryGirl.build :subscription_plan
     plan.save.should be false
   end
 
@@ -52,4 +55,11 @@ describe SubscriptionPlan do
     SubscriptionPlan.find(plan.id).amount.should eq 2000
   end
 
+  it 'has a community plan' do
+    SubscriptionPlan.community.should be_a SubscriptionPlan
+  end
+
+  it 'community plan has COMMUNITY_PLAN_HOURS hours' do
+    SubscriptionPlan.community.pop_up_hours.should be SubscriptionPlan::COMMUNITY_PLAN_HOURS
+  end
 end

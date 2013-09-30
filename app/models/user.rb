@@ -10,9 +10,11 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :provider, :uid, :name, :invitation_token
 
   belongs_to :organization
+  before_save :save_customer
 
   has_many :collection_grants, as: :collector
   has_one  :uploads_collection_grant, class_name: 'CollectionGrant', as: :collector, conditions: {uploads_collection: true}
+
   has_one  :uploads_collection, through: :uploads_collection_grant, source: :collection
   has_many :collections, through: :collection_grants
   has_many :items, through: :collections
@@ -102,7 +104,46 @@ class User < ActiveRecord::Base
     has_role?(:admin, organization) ? :admin : :member
   end
 
+  def update_card!(card_token)
+    customer.card = card_token
+    customer.save
+  end
+
+  def subscribe!(plan)
+    customer.update_subscription(plan: plan.stripe_plan_id)
+  end
+
+  def plan
+    if stripe_subscription.present?
+      SubscriptionPlan.where(stripe_plan_id: stripe_subscription.plan.id).first
+    else
+      SubscriptionPlan.community
+    end
+  end
+
+  def customer
+    @customer ||= if customer_id.present?
+      Stripe::Customer.retrieve(customer_id)
+    else
+      Stripe::Customer.create(email: email, description: name).tap do |cus|
+        self.customer_id = cus.id
+      end
+    end
+  end
+
+  def pop_up_hours
+    plan.pop_up_hours
+  end
+
   private
+
+  def save_customer
+    customer.save
+  end
+
+  def stripe_subscription
+    customer.subscription
+  end
 
   def add_uploads_collection
     self.uploads_collection = Collection.new(title: "My Uploads", creator: self, items_visible_by_default: false)
