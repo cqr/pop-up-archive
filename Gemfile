@@ -103,7 +103,6 @@ group :development do
   gem 'guard-rspec'
   gem 'guard-jasmine'
   gem "guard-bundler", ">= 1.0.0"
-  gem "guard-rails", ">= 0.4.0"
  end
 
 group :development, :test do
