@@ -7,6 +7,8 @@ class AudioFile < ActiveRecord::Base
 
   acts_as_paranoid
 
+  before_validation :set_metered
+
   belongs_to :item, :with_deleted => true
   belongs_to :instance
   has_many :tasks, as: :owner
@@ -91,6 +93,11 @@ class AudioFile < ActiveRecord::Base
 
     save!
   end
+
+  def metered?
+    metered.nil? ? is_metered? : super
+  end
+
 
   def update_from_fixer(params)
 
@@ -396,4 +403,14 @@ class AudioFile < ActiveRecord::Base
     uri.to_s
   end
 
+  private
+
+  def set_metered
+    self.metered = is_metered?
+    true
+  end
+
+  def is_metered?
+    storage == StorageConfiguration.private_storage
+  end
 end

@@ -24,6 +24,7 @@ class Tasks::UploadTask < Task
       # now copy it to the right place if it needs to be (e.g. s3 -> ia)
       # or if it is in the right spot, transcribe it!
       unless self.owner(true).copy_to_item_storage
+        self.owner(true).analyze_audio
         self.owner(true).transcode_audio
         self.owner(true).transcribe_audio
       end
