@@ -1,8 +1,8 @@
 FactoryGirl.define do
 
   sequence (:high_score) { (95 + rand(5))/ 100.0 }
-  sequence (:middle_score) { (75 + rand(19)) / 100.0 }
-  sequence (:low_score) { (50 + rand(24)) / 100.0 }
+  sequence (:middle_score) { (76 + rand(18)) / 100.0 }
+  sequence (:low_score) { (50 + rand(25)) / 100.0 }
 
   factory :entity do
 
