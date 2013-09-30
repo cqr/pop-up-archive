@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe CollectionGrant do
+  before { StripeMock.start }
+  after { StripeMock.stop }
 
   context "basics" do
     it "should have collector user" do

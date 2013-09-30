@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe Tasks::UploadTask do
+  before { StripeMock.start }
+  after { StripeMock.stop }
+  
   it "should set defaults" do
     task = Tasks::UploadTask.new(extras: {user_id: 1, filename: 'test.wav', filesize: 10000, last_modified: '12345'})
     task.should be_valid

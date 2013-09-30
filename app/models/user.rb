@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   belongs_to :organization
   before_save :save_customer
 
+  after_destroy :delete_customer
+
   has_many :collection_grants, as: :collector
   has_one  :uploads_collection_grant, class_name: 'CollectionGrant', as: :collector, conditions: {uploads_collection: true}
 
@@ -133,6 +135,10 @@ class User < ActiveRecord::Base
 
   def save_customer
     customer.save
+  end
+
+  def delete_customer
+    customer.delete
   end
 
   def stripe_subscription

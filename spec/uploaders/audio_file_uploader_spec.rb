@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe AudioFileUploader do
+  before { StripeMock.start }
+  after { StripeMock.stop }
 
   context "handle different providers" do
 

@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Geolocation do
+  before { StripeMock.start }
+  after { StripeMock.stop }
   context ".for_name" do
     it "returns a new record for a new location" do
       Geolocation.for_name("Madison, WI").should be_a Geolocation

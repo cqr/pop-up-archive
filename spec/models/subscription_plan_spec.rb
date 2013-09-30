@@ -4,6 +4,7 @@ describe SubscriptionPlan do
 
   before { StripeMock.start }
   after { StripeMock.stop }
+  
   let(:plan) { FactoryGirl.create(:subscription_plan) }
 
   it 'has a stripe plan' do
