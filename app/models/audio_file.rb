@@ -60,7 +60,7 @@ class AudioFile < ActiveRecord::Base
   end
 
   def storage
-    storage_configuration || item.storage
+    storage_configuration || item.try(:storage)
   end
 
   def store_dir(stor=storage)
