@@ -12,7 +12,7 @@ if current_user
       id: current_user.organization.id,
       name: current_user.organization.name
     }
-  }
+  } if current_user.organization.present?
 
   node(:used_metered_storage) { current_user.used_metered_storage }
   node(:total_metered_storage) { current_user.pop_up_hours * 3600 }
