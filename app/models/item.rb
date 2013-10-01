@@ -203,7 +203,7 @@ class Item < ActiveRecord::Base
   end
 
   def storage
-    storage_configuration || collection.default_storage
+    storage_configuration || collection.try(:default_storage)
   end
 
   def geographic_location=(name)
