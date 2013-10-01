@@ -881,6 +881,8 @@ ul.search-pills {
   }
 }
 
+//Navbar
+
 $navbarHeight: 105px;
 
 .navbar-shadow {
@@ -948,6 +950,7 @@ form.with-tags {
   }
 }
 
+//Home Page
 .background-container {
 	background-color: rgba(255,255,255,.5);
 	padding: 15px 0;
@@ -1016,7 +1019,7 @@ form.with-tags {
   margin: 20px 20px;
 };
 
-
+//Tutorial
 .tutorial-step {
   font-size: 14px;
   font-weight: normal;
@@ -1104,6 +1107,8 @@ form.with-tags {
   opacity: 1; 
 }
 //end footer
+
+//item
 
 .item-modal {
   width: 660px;
@@ -1284,6 +1289,7 @@ form.with-tags {
   }
 }
 
+//Explore
 .browse {
   text-align: center;
   li {
@@ -1291,6 +1297,7 @@ form.with-tags {
     margin: 5px;
   }
 }
+//end Explore
 
 .organization-member {
   list-style: none;
@@ -1319,3 +1326,54 @@ form.stripe-cc {
     width: auto;
   }
 }
+
+//About
+#about {
+  font-size:19px;
+  line-height:28px;
+  font-family: "freight-text-pro", serif;
+  .background-container {
+    background-color: #fff;
+    padding:30px;
+    border-radius: 10px;
+    margin: 30px;
+  }
+  .background-container:nth-child(3){
+    background-color: #ffb959;
+    color: #fff;
+  }
+  .background-container:nth-child(4){
+    background-color: #c9b936;
+    color: #fff;
+  }
+  .background-container:nth-child(5){
+    background-color: #2c677f;
+    color: #fff;
+  }
+  .background-container:nth-child(6){
+    background-color: #1ea1cf;
+    color: #fff;
+  }
+  .background-container:nth-child(7){
+    background-color: #aa027b;
+    color: #fff;
+  }
+  li {
+    list-style-type:disc;
+    margin: 10px 30px;
+    line-height:24px;
+  }
+  
+  .pop {
+    font-family: "soleil", sans-serif;
+    font-weight: bold;
+    color: #f25a4c;
+  }
+  
+  .whitepop {
+    font-weight: bold;
+    font-size: 22px;
+  }
+}
+//end about
+

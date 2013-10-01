@@ -19,3 +19,7 @@ config/env_vars
 db/seed/*
 #.idea is a rubymine folder
 .idea
+
+.powrc
+
+.powrc
