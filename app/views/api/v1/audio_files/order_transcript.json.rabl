@@ -1,3 +1,3 @@
 object audio_file
 
-attributes :id
+extends 'api/v1/audio_files/audio_file'

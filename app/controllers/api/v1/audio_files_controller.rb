@@ -44,7 +44,8 @@ class Api::V1::AudioFilesController < Api::V1::BaseController
     # make call to amara to create the video
     logger.debug "Start transcript for audio_file: #{audio_file}"
     audio_file.order_transcript
-    respond_with :api
+
+    respond_with :api, audio_file.item, audio_file
   end
 
   def upload_to
