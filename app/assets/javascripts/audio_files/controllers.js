@@ -49,16 +49,19 @@ angular.module("Directory.audioFiles.controllers", ['ngPlayer'])
   });
 
 }])
-.controller("OrderTranscriptFormCtrl", ['$scope', '$q', 'Me', 'AudioFile', function($scope, $q, Me, AudioFile) {
+.controller("OrderTranscriptFormCtrl", ['$scope', '$window', '$q', 'Me', 'AudioFile', function($scope, $window, $q, Me, AudioFile) {
 
   Me.authenticated(function (me) {
 
     $scope.length = function() {
-      return "10 minutes";
+      var mins = (new AudioFile($scope.audioFile)).durationMinutes();
+      var label = "minutes";
+      if (mins == 1) { label = "minute"; }
+      return (mins + ' ' + label);
     }
 
     $scope.price = function() {
-      return "$20";
+      return (new AudioFile($scope.audioFile)).transcribePrice();
     }
 
     $scope.submit = function () {

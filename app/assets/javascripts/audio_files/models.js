@@ -1,6 +1,8 @@
 angular.module('Directory.audioFiles.models', ['RailsModel', 'S3Upload'])
-.factory('AudioFile', ['Model', 'S3Upload', '$http', function (Model, S3Upload, $http) {
+.factory('AudioFile', ['$window', 'Model', 'S3Upload', '$http', function ($window, Model, S3Upload, $http) {
   var AudioFile = Model({url:'/api/items/{{itemId}}/audio_files/{{id}}', name: 'audio_file', only: ['url', 'filename']});
+
+  AudioFile.transcribeRatePerMinute = 2;
 
   AudioFile.prototype.cleanFileName = function (fileName) {
     return fileName.replace(/[^a-z0-9\.]+/gi,'_');
@@ -43,8 +45,7 @@ angular.module('Directory.audioFiles.models', ['RailsModel', 'S3Upload'])
  
     if (!user.isAdmin()) return false;
 
-    // take this out later - AK
-    if (!user.organization) return false;
+    if (user.plan && user.plan == 'community') return false;
 
     var t = self.taskForType('order_transcript');
     if (t) return false;
@@ -84,6 +85,14 @@ angular.module('Directory.audioFiles.models', ['RailsModel', 'S3Upload'])
       angular.copy(audioFile, self);
       return self;
     });
+  };
+
+  AudioFile.prototype.durationMinutes = function () {
+    return $window.Math.ceil(this.duration / 60);
+  }
+
+  AudioFile.prototype.transcribePrice = function () {
+    return this.durationMinutes() * AudioFile.transcribeRatePerMinute;
   };
 
   return AudioFile;

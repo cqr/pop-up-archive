@@ -13,7 +13,7 @@ section ng-controller="OrderTranscriptFormCtrl"
         | For this file of 
         b {{ length() }}
         |, a charge of 
-        b {{ price() }}
+        b {{ price() | currency:"$" }}
         |  will be added to your monthly bill.
       .control-group
         label.control-label

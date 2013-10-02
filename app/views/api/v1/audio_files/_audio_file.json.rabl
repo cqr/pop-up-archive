@@ -1,4 +1,4 @@
-attributes :id, :filename, :transcoded_at
+attributes :id, :filename, :transcoded_at, :duration
 attributes :urls => :url
 
 node :transcript do |af|
