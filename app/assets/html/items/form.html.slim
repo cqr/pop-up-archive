@@ -17,24 +17,6 @@ section ng-controller="NewItemFormCtrl"
       section ng-show='(item.id > 0) || (item.files.length > 0)'
         .control-group
           label.control-label
-            | Current Files
-            i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['audioFiles']" data-placement="bottom"
-          .controls ng-hide="item.audioFiles.length > 0"
-            label.pull-left style='padding-top: 5px;'
-              i No current files.
-          .controls ng-show="item.audioFiles.length > 0"
-            table.table.file-table
-              tr.file ng-repeat="audioFile in item.audioFiles" ng-hide="audioFile._delete"
-                td.file-icon
-                  .item-thumb ng-class="iconForFile(audioFile)"
-                td.file-name alt="{{audioFile.filename}}" {{audioFile.filename}}
-                / td.file-size {{readableFileSize(audioFile.size)}}
-                td.file-remove
-                  a.btn.btn-danger href="#" ng-click="removeAudioFile(audioFile)" Delete
-
-
-        .control-group
-          label.control-label
             | Upload Files
             i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['audioFiles']" data-placement="bottom"
           .controls ng-hide="item.files.length > 0"
@@ -53,6 +35,23 @@ section ng-controller="NewItemFormCtrl"
           .clearfix.controls
             span.pull-right file-button=""
               button.btn Choose More Files
+
+        .control-group ng-show='item.id > 0'
+          label.control-label
+            | Current Files
+            i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['audioFiles']" data-placement="bottom"
+          .controls ng-hide="item.audioFiles.length > 0"
+            label.pull-left style='padding-top: 5px;'
+              i No current files.
+          .controls ng-show="item.audioFiles.length > 0"
+            table.table.file-table
+              tr.file ng-repeat="audioFile in item.audioFiles" ng-hide="audioFile._delete"
+                td.file-icon
+                  .item-thumb ng-class="iconForFile(audioFile)"
+                td.file-name alt="{{audioFile.filename}}" {{audioFile.filename}}
+                / td.file-size {{readableFileSize(audioFile.size)}}
+                td.file-remove
+                  a.btn.btn-danger href="#" ng-click="removeAudioFile(audioFile)" Delete
 
         .control-group
           label.control-label
