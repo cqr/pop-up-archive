@@ -970,6 +970,9 @@ form.with-tags {
     margin: auto;
     position: absolute;
     top: 0; left: 0; bottom: 0; right: 0;
+    h2 {
+      text-shadow: 2px 2px #000;
+    }
   }
   
   h2 {
