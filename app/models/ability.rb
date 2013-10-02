@@ -17,6 +17,7 @@ class Ability
 
     can :read, Admin::TaskList if (user && user.has_role?("super_admin"))
 
+    # can :order_transcript, AudioFile if (user && (user.organization_id.nil? || (!user.organization_id.nil? && user.has_role?("admin", user.organization))))
     can :order_transcript, AudioFile if (user && !user.organization_id.nil? && user.has_role?("admin", user.organization))
   end
 end
