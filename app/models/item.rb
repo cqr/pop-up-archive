@@ -129,7 +129,13 @@ class Item < ActiveRecord::Base
 
   accepts_nested_attributes_for :contributions
 
-  @@instance_lock = Mutex.new
+  def token
+    read_attribute(:token) || update_token
+  end
+
+  def url
+    "#{Rails.application.routes.url_helpers.root_url}collections/#{collection_id}/items/#{id}"
+  end
 
   def process_analysis(analysis)
     existing_names = self.entities.collect{|e| e.name || ''}.sort.uniq
@@ -163,10 +169,7 @@ class Item < ActiveRecord::Base
     end
   end
 
-  def token
-    read_attribute(:token) || update_token
-  end
-
+  @@instance_lock = Mutex.new
   def update_token
     @@instance_lock.synchronize do
       begin

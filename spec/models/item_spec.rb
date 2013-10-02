@@ -16,6 +16,12 @@ describe Item do
     end
   end
 
+  it "public url" do
+    item = FactoryGirl.create :item
+    item.url.should_not be_nil
+    item.url.should eq "http://test.popuparchive.org/collections/#{item.collection_id}/items/#{item.id}"
+  end
+
   it "should allow writing to the extra attributes" do
     item = FactoryGirl.build :item
     item.extra['testkey'] = 'test value'
