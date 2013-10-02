@@ -23,5 +23,13 @@ describe Task do
     task.storage_id.should eq task.owner.storage.id
   end
 
+  it 'should return type_name' do
+    task = FactoryGirl.create :task
+    task.type_name.should eq 'task'
+
+    class Tasks::GoodTestTask < Task; end;
+    Tasks::GoodTestTask.new.type_name.should eq 'good_test'
+  end
+
 end
 
