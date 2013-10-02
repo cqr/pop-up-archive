@@ -10,7 +10,8 @@ if current_user
   node(:organization) {
     {
       id: current_user.organization.id,
-      name: current_user.organization.name
+      name: current_user.organization.name,
+      amara_team: current_user.organization.amara_team
     } if current_user.organization.present?
   }
 
