@@ -210,6 +210,14 @@ section ng-controller="NewItemFormCtrl"
               .controls 
                 input.text.input-xlarge#geographicLocation type='text' ng-model='item.geographicLocation'
 
+            .control-group
+              label.control-label
+                | Transcription
+                i.icon-question-sign style="margin-left:8px" bs-popover="itemHelp['transcription']" data-placement="bottom"
+              .controls 
+                textarea.span5 ng-model='item.transcription' rows="3"
+
+
   .modal-footer
     button.btn type="button" ng-click="clear()" Close
     button.btn.btn-success ng-show='(item.id > 0) || (item.files.length > 0)' ng-disabled='!item.id && (!item.collectionId || item.files.length <= 0)' ng-click='submit()' Save
