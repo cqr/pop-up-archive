@@ -40,6 +40,7 @@ ul.pager ng-show="nextItem || previousItem || searchResults.query"
           .scrubber
             .bar ng-show="isLoaded()" ng-style="{width:player.time*100/player.duration+'%'}"
             .timecodes ng-show="isLoaded() && player.duration" {{player.time | timeCode }} / {{player.duration | timeCode }}
+
         .transcript-options ng-show="audioFile.transcript.length"
           a.btn.icon-download-alt ng-href="/api/items/{{item.id}}/audio_files/{{audioFile.id}}/transcript.srt" title="Download Transcript TXT" target="_self" download="{{audioFile.filename}}.transcript.srt"
           |  
@@ -48,10 +49,24 @@ ul.pager ng-show="nextItem || previousItem || searchResults.query"
           a.btn.icon-file-text ng-href="/api/items/{{item.id}}/audio_files/{{audioFile.id}}/transcript.json" title="Download Transcript JSON" download="{{audioFile.filename}}.transcript.json" target="_self"
           input.search-query ng-class="{extended:!!transcriptFilter}" ng-model="transcriptFilter" placeholder="Search"
           a.clear-filter.icon-remove-sign ng-show="transcriptFilter.length > 0" ng-click="transcriptFilter=''"
+
         div ng-class="transcriptClass()"
-          button.btn.btn-transcript ng-show='currentUser.canOrderTranscript(audioFile) && audioFile.transcodedAt' ng-click='orderTranscript(audioFile)'
-            | Perfect your transcript
-            img.image style="padding-left: 12px" src='#{asset_path("brain.svg")}'
+          ul.arrow-buttons
+            li ng-show="showOrderTranscript()"
+              a class='perfect' href="#" ng-click='orderTranscript()'
+                | Perfect your transcript
+                img src='#{asset_path("brain.svg")}'
+            li ng-show="showTranscriptInProgress()"
+              a class='crafted' href="#"
+                | Your transcript is being hand crafted
+                img src='#{asset_path("brain.svg")}'
+            li ng-show="showSendToAmara()"
+              a class='amara' href="#"
+                | Submit to Amara
+                img src='#{asset_path("amarasmall.png")}'
+            li
+              a href="#" &nbsp;
+
           .transcript transcript-text="audioFile.transcript | highlightMatches:transcriptFilter" transcript-editable="currentUser.canEdit(item)" current-time="player.time" save-text="saveText(text)" file-url="fileUrl"
       .alert ng-show="currentUser.canEdit(item) && item.audioFiles.length > 0 && item.audioFiles[0].transcript == 0" Your transcript is processing. The first 60 seconds of your transcript should appear within a couple of minutes. Full transcripts are processed in real time. For instance, a 30&ndash;minute file will take at least 30 minutes to transcribe. 
 .row-fluid.item-detail.metadata

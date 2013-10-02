@@ -27,8 +27,8 @@ angular.module('Directory.users.models', ['RailsModel'])
     }
   };
 
-  User.prototype.canOrderTranscript = function (obj) {
-    if (this.authenticated() && obj) {
+  User.prototype.isAdmin = function () {
+    if (this.authenticated()) {
       return (this.role == 'admin');
     } else {
       return false;

@@ -1,7 +1,7 @@
 angular.module("Directory.audioFiles.controllers", ['ngPlayer'])
-.controller("AudioFileCtrl", ['$scope', '$timeout', 'Player', 'Me', 'TimedText', 'AudioFile', function($scope, $timeout, Player, Me, TimedText, AudioFile) {
+.controller("AudioFileCtrl", ['$scope', '$timeout', '$modal', 'Player', 'Me', 'TimedText', 'AudioFile', function($scope, $timeout, $modal, Player, Me, TimedText, AudioFile) {
   $scope.fileUrl = $scope.audioFile.url;
-  
+
   $scope.play = function () {
     Player.play($scope.fileUrl);
   }
@@ -29,15 +29,57 @@ angular.module("Directory.audioFiles.controllers", ['ngPlayer'])
       tt.update();
     };
 
-    $scope.orderTranscript = function (audioFile) {
-      var af = new AudioFile(audioFile);
-      af.itemId = $scope.item.id;
-      
-      console.log("order transcript for audio:", af);
-      return af.orderTranscript();
+    $scope.orderTranscript = function () {
+      $scope.orderTranscriptModal = $modal({template: "/assets/audio_files/order_transcript.html", persist: false, show: true, backdrop: 'static', scope: $scope, modalClass: 'order-transcript-modal'});
+      return;
+    };
+
+    $scope.showOrderTranscript = function () {
+      return (new AudioFile($scope.audioFile)).canOrderTranscript(me);
+    };
+
+    $scope.showTranscriptInProgress = function () {
+      return (new AudioFile($scope.audioFile)).isTranscriptOrdered();
+    };
+
+    $scope.showSendToAmara = function () {
+      return (new AudioFile($scope.audioFile)).canSendToAmara(me);
     };
 
   });
+
+}])
+.controller("OrderTranscriptFormCtrl", ['$scope', '$q', 'Me', 'AudioFile', function($scope, $q, Me, AudioFile) {
+
+  Me.authenticated(function (me) {
+
+    $scope.length = function() {
+      return "10 minutes";
+    }
+
+    $scope.price = function() {
+      return "$20";
+    }
+
+    $scope.submit = function () {
+      // $scope.audioFile = new AudioFile($scope.audioFile);
+      // $scope.audioFile.itemId = $scope.item.id;
+      // return $scope.audioFile.orderTranscript();
+      $scope.close();
+      return;
+    }
+
+  });
+
+  $scope.clear = function () {
+    $scope.hideOrderTranscriptModal();
+  }
+
+  $scope.hideOrderTranscriptModal = function () {
+    $q.when($scope.orderTranscriptModal).then( function (modalEl) {
+      modalEl.modal('hide');
+    });
+  } 
 
 }])
 .controller("PersistentPlayerCtrl", ["$scope", 'Player', function ($scope, Player) {

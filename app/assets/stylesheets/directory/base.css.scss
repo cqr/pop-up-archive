@@ -1380,3 +1380,95 @@ form.stripe-cc {
 }
 //end about
 
+.arrow-buttons { 
+  list-style: none; 
+  overflow: hidden; 
+  font: 18px;
+  margin: 0px;
+}
+.arrow-buttons li { 
+  float: left; 
+}
+.arrow-buttons li a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 75px 10px 10px;
+  background: #FFB959;
+  position: relative; 
+  display: block;
+  float: left;
+}
+
+.arrow-buttons li a:before { 
+  content: " "; 
+  display: block; 
+  width: 0; 
+  height: 0;
+  border-top: 50px solid transparent;
+  border-bottom: 50px solid transparent;
+  border-right: 30px solid white;
+  position: absolute;
+  top: 50%;
+  margin-top: -50px; 
+  right: 100%;
+  margin-right: 1px;
+  z-index: 1; 
+} 
+
+.arrow-buttons li a:after { 
+  content: " "; 
+  display: block; 
+  width: 0; 
+  height: 0;
+  border-top: 50px solid transparent;
+  border-bottom: 50px solid transparent;
+  border-right: 30px solid #FFB959;
+  position: absolute;
+  top: 50%;
+  margin-top: -50px;
+  right: 100%;
+  z-index: 2;
+} 
+
+.arrow-buttons li:first-child a:after {
+  content: none; 
+  border: none;
+}
+
+.arrow-buttons li a:hover { background: #5970B1; }
+.arrow-buttons li a:hover:after { border-right-color: #5970B1; }
+
+
+.arrow-buttons li a.crafted       { background:         #8581A1; }
+.arrow-buttons li a.crafted:after { border-right-color: #8581A1; }
+
+.arrow-buttons li a.crafted:hover       { background: #8581A1; }
+.arrow-buttons li a.crafted:hover:after { border-right-color: #8581A1; }
+
+
+.arrow-buttons li a.amara       { background:         #5970B1; }
+.arrow-buttons li a.amara:after { border-right-color: #5970B1; }
+
+.arrow-buttons li a.amara:hover       { background: #FFB959; }
+.arrow-buttons li a.amara:hover:after { border-right-color: #FFB959; }
+
+
+.arrow-buttons li:last-child a {
+  background: white !important;
+  color: white;
+  pointer-events: none;
+  cursor: default;
+}
+.arrow-buttons li:last-child a:after { border-right: 30px solid white; }
+
+.arrow-buttons img {
+  position: absolute;
+  margin-left: 6px;
+  top: 20%;
+  height: 30px;
+}
+
+.order-transcript-modal {
+  width: 660px;
+  margin-left: -330px;
+}
