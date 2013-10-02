@@ -45,7 +45,7 @@ angular.module('Directory.audioFiles.models', ['RailsModel', 'S3Upload'])
  
     if (!user.isAdmin()) return false;
 
-    // if (user.plan && user.plan == 'community') return false;
+    if (user.plan && user.plan == 'community') return false;
 
     var t = self.taskForType('order_transcript');
     if (t) return false;
