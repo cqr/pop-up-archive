@@ -1,0 +1,13 @@
+#if [ -f /tmp/powenvsetup ]; then
+#  rm -f /tmp/powenvsetup
+#fi
+#touch /tmp/powenvsetup
+#if [ -f `dirname $0`/config/env_vars ]; then
+#  cat `dirname $0`/config/env_vars | while read line; do
+#    echo "export $line" >> /tmp/powenvsetup
+#  done
+#fi
+
+#source /tmp/powenvsetup
+#rm -f /tmp/powenvsetup
+export PATH=$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH
