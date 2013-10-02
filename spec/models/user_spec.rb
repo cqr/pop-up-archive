@@ -28,6 +28,10 @@ describe User do
       user.plan.should eq SubscriptionPlan.community
     end
 
+    it 'returns the name of the plan' do
+      user.plan_name.should eq 'community'
+    end
+
     it 'can have a card added' do
       user.update_card!('void_card_token')
     end

@@ -118,6 +118,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def plan_name
+    plan.stripe_plan_id
+  end
+
   def customer
     @customer ||= if customer_id.present?
       Stripe::Customer.retrieve(customer_id)
