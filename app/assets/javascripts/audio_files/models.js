@@ -45,7 +45,7 @@ angular.module('Directory.audioFiles.models', ['RailsModel', 'S3Upload'])
  
     if (!user.isAdmin()) return false;
 
-    if (user.plan && user.plan == 'community') return false;
+    // if (user.plan && user.plan == 'community') return false;
 
     var t = self.taskForType('order_transcript');
     if (t) return false;
@@ -67,7 +67,8 @@ angular.module('Directory.audioFiles.models', ['RailsModel', 'S3Upload'])
 
     if (!self.canOrderTranscript(user)) return false;
 
-    if (!user.organization || !user.organization.amara_team) return false;
+    console.log('canSendToAmara', user.organization);
+    if (!user.organization || !user.organization.amaraTeam) return false;
 
     return true;
   };

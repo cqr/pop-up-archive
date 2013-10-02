@@ -2,6 +2,29 @@ angular.module("Directory.audioFiles.controllers", ['ngPlayer'])
 .controller("AudioFileCtrl", ['$scope', '$timeout', '$modal', 'Player', 'Me', 'TimedText', 'AudioFile', function($scope, $timeout, $modal, Player, Me, TimedText, AudioFile) {
   $scope.fileUrl = $scope.audioFile.url;
 
+  $scope.downloadLinks = [
+      {
+        text: 'Text Format',
+        target: '_self',
+        href: "/api/items/" + $scope.item.id + "/audio_files/" + $scope.audioFile.id + "/transcript.txt"
+      },
+      {
+        text: 'SRT Format',
+        target: '_self',
+        href: "/api/items/" + $scope.item.id + "/audio_files/" + $scope.audioFile.id + "/transcript.srt"
+      },
+      {
+        text: 'XML Format (W3C Transcript)',
+        target: '_self',
+        href: "/api/items/" + $scope.item.id + "/audio_files/" + $scope.audioFile.id + "/transcript.xml"
+      },
+      {
+        text: 'JSON Format',
+        target: '_self',
+        href: "/api/items/" + $scope.item.id + "/audio_files/" + $scope.audioFile.id + "/transcript.json"
+      }
+  ];
+
   $scope.play = function () {
     Player.play($scope.fileUrl);
   }
