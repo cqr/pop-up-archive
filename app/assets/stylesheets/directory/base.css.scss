@@ -33,6 +33,10 @@
 
     ul.alert-showers, .alert-showers li.alert-shower {
       width: 300px;
+      
+      a {
+        text-decoration:underline;
+      };
 
       a:hover, li a:hover {
         color: #333 !important;
