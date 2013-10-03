@@ -16,6 +16,12 @@ describe Item do
     end
   end
 
+  it "can be deleted" do
+    item = FactoryGirl.create :item
+    item.should_receive(:remove_from_index).and_return(true)
+    item.destroy
+  end
+
   it "public url" do
     item = FactoryGirl.create :item
     item.url.should_not be_nil

@@ -14,11 +14,19 @@ class Item < ActiveRecord::Base
   before_update :handle_collection_change, if: :collection_id_changed?
 
   after_save do
-    if deleted_at.nil?
-      self.index.store(self)
-    else
-      self.index.remove(self)
-    end
+    deleted_at.nil? ? store_to_index : remove_from_index
+  end
+
+  after_destroy do
+    remove_from_index
+  end
+
+  def remove_from_index
+    self.index.remove(self)
+  end
+
+  def store_to_index
+    self.index.store(self)
   end
 
   tire do

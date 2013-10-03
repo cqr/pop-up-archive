@@ -64,7 +64,7 @@ gem 'state_machine'
 
 gem 'doorkeeper'
 
-gem "acts_as_paranoid", "~> 0.4.0"
+gem "acts_as_paranoid", "~> 0.4.2"
 
 gem 'newrelic_rpm', :github => 'newrelic/rpm', :branch => 'RUBY-1180'
 
