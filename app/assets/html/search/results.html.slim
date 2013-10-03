@@ -4,7 +4,7 @@ ul.pager
   li.centered
     form.form-search.with-tags ng-controller="SearchCtrl" ng-submit="query.commit()"
       .input-append
-        input.search-query ng-model='query.string' type='search' placeholder="Search Query"
+        input.search-query ng-model='query.string' type='search' placeholder="Search"
         button.btn type='submit' go
       ul.inline.tags
         li.label ng-repeat="part in query.queryParts"
@@ -15,7 +15,7 @@ ul.pager
 .row
   .span4.facets
     .facet ng-repeat="facet in search.facetsAsObjects()" ng-show="facet.visible()"
-      h5 {{facet.name}}
+      h5 {{facet.name | lowercase}}
       ul.unstyled.terms
         li ng-repeat="entry in facet.entries()"
           small.pull-right ({{entry.count}}) 
