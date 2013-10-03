@@ -18,15 +18,18 @@ ul.pager ng-show="nextItem || previousItem || searchResults.query"
   .span12
 
     .well
-      button.btn.btn-item.pull-right ng-show="item.audioFiles[0].transcript" ng-click="toggleTranscript()"
-        |Expand  
-        i ng-class="{true: 'icon-resize-full', false: 'icon-resize-small'}[!transcriptExpanded]"
       button.btn.btn-item.pull-right ng-show="currentUser.canEdit(item)" ng-click="deleteItem()" Delete
       button.btn.btn-item.pull-right ng-show="currentUser.canEdit(item)" ng-click="uploadFile()" Edit
 
       h1 {{item.title}}
 
       p ng-show="item.description" ng-bind-html-unsafe="item.description"
+      
+.row-fluid.item-detail ng-show="item.audioFiles.length"
+  .span12
+    .well
+      a.pull-right ng-show="item.audioFiles[0].transcript" ng-click="toggleTranscript()"
+        |{{!transcriptExpanded && 'Expand Transcript' || 'Collapse Transcript' }}
 
       section ng-repeat="audioFile in item.audioFiles" ng-controller="AudioFileCtrl"
         h4 {{audioFile.filename || 'audio file'}}
@@ -67,7 +70,7 @@ ul.pager ng-show="nextItem || previousItem || searchResults.query"
               a href="#" &nbsp;
 
           .transcript transcript-text="audioFile.transcript | highlightMatches:transcriptFilter" transcript-editable="currentUser.canEdit(item)" current-time="player.time" save-text="saveText(text)" file-url="fileUrl"
-      .alert ng-show="currentUser.canEdit(item) && item.audioFiles.length > 0 && item.audioFiles[0].transcript == 0" Your transcript is processing. The first 60 seconds of your transcript should appear within a couple of minutes. Full transcripts are processed in real time. For instance, a 30&ndash;minute file will take at least 30 minutes to transcribe. 
+      .alert ng-show="currentUser.canEdit(item) && item.audioFiles.length > 0 && item.audioFiles[0].transcript == 0" Your transcript is processing. The first 60 seconds should appear within a couple of minutes. Full transcripts are processed in real time. For instance, a 30&ndash;minute file will take at least 30 minutes to transcribe.
 .row-fluid.item-detail.metadata
   .span6
     h4 Metadata
