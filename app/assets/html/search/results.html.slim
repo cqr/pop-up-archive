@@ -1,6 +1,6 @@
 ul.pager
   li.previous ng-class="{disabled: search.page <= 1}"
-    a ng-click="search.page <= 1 || backPage()" href='#' &larr; Back
+    a ng-click="search.page <= 1 || backPage()" href='#' &larr; Previous
   li.centered
     form.form-search.with-tags ng-controller="SearchCtrl" ng-submit="query.commit()"
       .input-append
@@ -11,7 +11,7 @@ ul.pager
           | {{part | withoutFieldname }}  
           i.icon-remove-sign ng-click="query.remove(part)"
   li.next ng-class="{disabled:!search.hasMoreResults()}"
-    a ng-click="!search.hasMoreResults() || nextPage()" href="#" More &rarr;
+    a ng-click="!search.hasMoreResults() || nextPage()" href="#" Next &rarr;
 .row
   .span4.facets
     .facet ng-repeat="facet in search.facetsAsObjects()" ng-show="facet.visible()"
@@ -25,9 +25,9 @@ ul.pager
     /.result-count-header
       ul.pager ng-show="search.hasMoreResults() || search.page > 1"     
         li.previous ng-class="{disabled: search.page <= 1}"
-          a ng-click="backPage()" href='#' &larr; Back                     
+          a ng-click="backPage()" href='#' &larr; Previous                     
         li.next ng-class="{disabled:!search.hasMoreResults()}"
-          a ng-click="nextPage()" href='#'  More &rarr;
+          a ng-click="nextPage()" href='#'  Next &rarr;
         
       
     .media.search-result ng-repeat="item in search.results | toItems"
@@ -53,8 +53,8 @@ ul.pager
     .result-count-footer        
       ul.pager ng-show="search.hasMoreResults() || search.page > 1"
         li.previous ng-class="{disabled: search.page <= 1}"
-          a ng-click="search.page <= 1 || backPage()" href='#' &larr; Back
+          a ng-click="search.page <= 1 || backPage()" href='#' &larr; Previous
         li.center.text {{search.firstItemNumber()}} to {{search.lastItemNumber()}} of {{search.totalHits}} items
         li.next ng-class="{disabled:!search.hasMoreResults()}"
-          a ng-click="!search.hasMoreResults() || nextPage()" href='#' More &rarr;
+          a ng-click="!search.hasMoreResults() || nextPage()" href='#' Next &rarr;
 
