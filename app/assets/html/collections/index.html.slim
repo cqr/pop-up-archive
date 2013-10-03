@@ -2,20 +2,20 @@
   .page-nav.pull-right
 		a.btn href="/imports/new"
 			i.icon-th-list Batch Upload
-		span tutorial-step="tour.edit" data-placement="left"
 			a.btn href="/collections/edit" 
 				i.icon-edit  Batch Edit
-  h3 My Collections
+  h3 tutorial-step="tour.welcome" data-placement="bottom" My Collections 
   h4
-    span tutorial-step="tour.tempuploads" data-placement="right" My Uploads
-    span tutorial-step="tour.tutorial1" data-placement="right"
-    span tutorial-step="tour.tutorial2" data-placement="right"
+    span tutorial-step="tour.upload" data-placement="right" My Uploads
+    span tutorial-step="tour.collection1" data-placement="right" 
+    span tutorial-step="tour.collection" data-placement="right"
+    span tutorial-step="tour.move" data-placement="right"
   .alert 
     |This is a temporary place for your audio. Select audio below to move it to your collections. Then: listen, see transcripts, and add tags! 
     a href="/collections/audio_guidelines" Audio Quality Guidelines.
   .holding-cell
     ul.inline.items.uploads
-      li.add-item ng-click="uploadFile()"
+      li.add-item ng-click="uploadFile()"        
         .item-thumb.icon-cloud-upload
         | Upload
       li ng-repeat="item in uploadsCollection.items" ng-click="toggleItemSelection(item)" ng-class="{selected: item.selected}" title="{{item.getTitle()}}"
@@ -32,7 +32,8 @@
         i.icon-circle-arrow-down  Move to Collection
 
   h4 
-	span tutorial-step="tour.iapublic" data-placement="right" Public Collections
+	span tutorial-step="tour.collection2" data-placement="right" Public Collections
+	span tutorial-step="tour.iapublic" data-placement="right"
   .alert.alert-error 
 	| Media in public collections is stored on servers at the Internet Archive. Anyone can see or hear this media through Pop Up Archive’s website or download it from the 
 	a ng-href="http://archive.org" target="blank" Internet Archive. 
@@ -49,6 +50,9 @@
           | {{collection.title}}
   h4 
 	span tutorial-step="tour.s3private" data-placement="right" Private Collections
+	span tutorial-step="tour.create_collection" data-placement="right"
+	span tutorial-step="tour.view_item" data-placement="right"
+	span tutorial-step="tour.edit_item" data-placement="right"
   .alert.alert-info 
 	| Media added to your Private Collection will be stored at Pop Up Archive. It will only to be visible to you. 
 	a ng-href="collections/privacy_faq" Learn more about privacy.

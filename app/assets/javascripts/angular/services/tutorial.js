@@ -12,10 +12,10 @@ angular.module('ngTutorial', [])
         "<div class='tutorial-content' ng-bind-html-unsafe='stepOptions.content'></div>" +
         "<nav class='tutorial-navigation'>" +
           "<div class='btn-group'>" +
-            "<button ng-disabled='!tutorial.canPrevious()'  ng-click='tutorial.showPreviousStep()' class='btn'>&laquo; Prev</button>" +
-            "<button ng-disabled='!tutorial.canNext()' ng-click='tutorial.showNextStep()' class='btn'>Next &raquo;</button>" +
+            "<button ng-disabled='!tutorial.canPrevious()'  ng-click='tutorial.showPreviousStep()' class='btn btn-info'>&laquo; Prev</button>" +
+            "<button ng-disabled='!tutorial.canNext()' ng-click='tutorial.showNextStep()' class='btn btn-info'>Next &raquo;</button>" +
           "</div>" +
-          "<button ng-click='tutorial.endTutorial()' class='btn pull-right'>End tutorial</button>" +
+          "<button ng-click='tutorial.endTutorial()' class='btn btn-info pull-right'>End tutorial</button>" +
         "</nav>" +
       "</div>";
   }

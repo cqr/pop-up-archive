@@ -9,41 +9,57 @@ angular.module('Directory.collections.controllers', ['Directory.loader', 'Direct
     });
 
 		$scope.tour = {
-      'tempuploads': { 
-        'content': 'If you don\'t specify a collection, audio will be automatically added to temporary uploads. Select your audio and add it to a collection to make it searchable.',
-        'step': 0
-      },
+		  'welcome': {
+		    'content': 'Welcome to My Collections. This is your audio management home base.',
+		    'step': 0
+		  },
+		  'upload': {
+		    'content': 'Ready to upload some sound? Click the upload button below.',
+		    'step': 1
+		  },
+		  'collection1': {
+		    'content': 'Next, let\'s move your item to a collection so that you can see auto transcripts and tags and add info about your audio.',
+		    'step': 2
+		  },
+		  'collection2': {
+		    'content': 'Collections contain items. Each item can have one or more file.',
+		    'step': 3
+		  },
 		  'iapublic': { 
-				'content': 'Your public collections will be<br/>stored at the Internet Archive.<br/>They will be available for anyone<br/>to search, stream, or download.',
-        'step': 1
+				'content': 'Public collections will be<br/>stored at the Internet Archive.<br/>They will be available for anyone<br/>to search, stream, or download.',
+        'step': 4
 			},
 		  's3private': { 
-				'content': 'Private collections allow you to store your audio so that is visible only to you. Users automatically have two hours of private storage.',
-        'step': 2
-			},
-			'edit': { 
-				'content': 'Use batch edit to delete or edit tags for many items at once.',
-        'step': 3
-			},
-      'tutorial1': {
-        'content': 'Hopefully collections are making more sense.<br/>Next let\'s look at uploading.',
-        'step': 4
-      },
-      'tutorial2': {
-        'content': 'Uploads are just a click or drag &amp; drop away &ndash; give it a try!',
+				'content': 'Private collections are visible only to you. Users automatically have two hours of private storage.',
         'step': 5
-      }
+			},
+			'create_collection': {
+			  'content': 'Click Create a Collection below to create your first Private Collection.',
+			  'step': 6
+			},
+		  'move': {
+		    'content': 'Now, click your audio file below to move it to your new collection.',
+		    'step': 7
+		  },
+		  'view_item': {
+		    'content': 'To view your item, navigate to your collection and click on the item title. From there, use the Edit button to add tags and other information to your item.',
+		    'step': 8
+		  },
+		  'edit_item': {
+		    'content': 'To view your item, navigate to your collection and click on the item title. From there, use the Edit button to add tags and other information to your item.',
+		    'step': 9
+		  },
 		};
 
-    $scope.$on('tutorial-step-shown', function (event) {
-      if (event.targetScope.stepOptions) {
-        var step = event.targetScope.stepOptions.step;
-        switch (step) {
-          case 4: $modal({template: "/assets/collections/tutorial1.html", persist: false, show: true, backdrop: 'static', scope: $scope, modalClass: 'big-modal'}); break;
-          case 5: $modal({template: "/assets/collections/tutorial2.html", persist: false, show: true, backdrop: 'static', scope: $scope, modalClass: 'big-modal'}); break;
-        }
-      }
-    });
+    // $scope.$on('tutorial-step-shown', function (event) {
+    //   if (event.targetScope.stepOptions) {
+    //     var step = event.targetScope.stepOptions.step;
+    //     switch (step) {
+    //       case 4: $modal({template: "/assets/collections/tutorial1.html", persist: false, show: true, backdrop: 'static', scope: $scope, modalClass: 'big-modal'}); break;
+    //       case 5: $modal({template: "/assets/collections/tutorial2.html", persist: false, show: true, backdrop: 'static', scope: $scope, modalClass: 'big-modal'}); break;
+    //     }
+    //   }
+    // });
 		
     $scope.selectedItems = [];
 
