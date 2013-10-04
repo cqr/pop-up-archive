@@ -155,8 +155,10 @@ class User < ActiveRecord::Base
   end
 
   def add_uploads_collection
-    self.uploads_collection = Collection.new(title: "My Uploads", creator: self, items_visible_by_default: false)
-    build_uploads_collection_grant collection: uploads_collection
-    uploads_collection
+    uploads_collection_grant.collection = Collection.new(title: 'My Uploads', creator: self, items_visible_by_default: false)
+  end
+
+  def uploads_collection_grant
+    super || self.uploads_collection_grant = CollectionGrant.new(collector: self, uploads_collection: true)
   end
 end
