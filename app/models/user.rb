@@ -88,7 +88,7 @@ class User < ActiveRecord::Base
   end
 
   def uploads_collection
-    organization.try(:uploads_collection) || super || add_uploads_collection
+    organization.try(:uploads_collection) || uploads_collection_grant.collection || add_uploads_collection
   end
 
   def in_organization?
@@ -126,6 +126,10 @@ class User < ActiveRecord::Base
     plan.stripe_plan_id
   end
 
+  def plan_amount
+    plan.amount
+  end
+
   def customer
     @customer ||= if customer_id.present?
       Stripe::Customer.retrieve(customer_id)
@@ -142,6 +146,18 @@ class User < ActiveRecord::Base
 
   def used_metered_storage
     @_used_metered_storage ||= audio_files.where(metered: true).sum(:duration)
+  end
+
+  def used_unmetered_storage
+    @_used_unmetered_storage ||= audio_files.where(metered: false).sum(:duration)
+  end
+
+  def active_credit_card_json
+    active_credit_card.as_json.try(:slice, *%w(last4 type exp_month exp_year))
+  end
+
+  def active_credit_card
+    customer.cards.data[0]
   end
 
   private
@@ -163,6 +179,6 @@ class User < ActiveRecord::Base
   end
 
   def uploads_collection_grant
-    super || self.uploads_collection_grant = CollectionGrant.new(collector: self, uploads_collection: true)
+    super or self.uploads_collection_grant = CollectionGrant.new(collector: self, uploads_collection: true)
   end
 end
