@@ -187,8 +187,12 @@ class AudioFile < ActiveRecord::Base
     return true
   end
 
-  def order_transcript
-    self.tasks << Tasks::OrderTranscriptTask.new(identifier: 'order_transcript')
+  def order_transcript(user)
+    self.tasks << Tasks::OrderTranscriptTask.new(identifier: 'order_transcript', extras: { user_id: user.id })
+  end
+
+  def add_to_amara(user)
+    self.tasks << Tasks::AddToAmaraTask.new(identifier: 'add_to_amara', extras: { user_id: user.id })
   end
 
   def create_copy_task(orig, dest, stor)

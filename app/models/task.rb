@@ -45,6 +45,10 @@ class Task < ActiveRecord::Base
 
   end
 
+  def shared_attributes
+    []
+  end
+
   def type_name
     tn = self.class.name.demodulize.sub(/Task$/, '').underscore
     tn.blank? ? 'task' : tn
