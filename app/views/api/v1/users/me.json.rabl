@@ -15,7 +15,11 @@ if current_user
     } if current_user.organization.present?
   }
 
+  node(:used_unmetered_storage) { current_user.used_unmetered_storage }
+
   node(:used_metered_storage) { current_user.used_metered_storage }
   node(:total_metered_storage) { current_user.pop_up_hours * 3600 }
   node(:plan) { current_user.plan_name }
+  node(:credit_card) { current_user.active_credit_card_json }
+  node(:plan_amount) { current_user.plan_amount }
 end

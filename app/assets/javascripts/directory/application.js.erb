@@ -63,7 +63,14 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
     .when('/account', {
       templateUrl: "<%= asset_path 'account/index.html' %>",
       controller: "AccountCtrl",
+      loginRequired: true,
       title: "My Account"
+    })
+    .when('/account/plan', {
+      templateUrl: "<%= asset_path 'account/plans.html' %>",
+      controller: "PlanCtrl",
+      loginRequired: true,
+      title: "My Account &raquo; Plans"
     })
     .when('/about', {
       templateUrl: "<%= asset_path 'dashboard/about.html' %>",
@@ -73,6 +80,7 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
     .when('/imports/new', {
       templateUrl: "<%= asset_path 'imports/new.html' %>",
       controller: "ItemsCtrl",
+      loginRequired: true,
       title: "Start a CSV Import"
     })
     .when('/collections', {
@@ -96,7 +104,7 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
       templateUrl: "<%= asset_path 'collections/privacy_faq.html' %>",
       controller: "PrivacyFAQ",
       title: "Privacy FAQ"
-    })    
+    })
     .when('/collections/audio_guidelines', {
       templateUrl: "<%= asset_path 'collections/audio_guidelines.html' %>",
       title: "Audio Guidelines"
@@ -115,6 +123,7 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
     .when('/imports', {
       templateUrl: "<%= asset_path 'imports/index.html' %>",
       controller: "ImportsCtrl",
+      loginRequired: true,
       title: "My Imports"
     })
     .when('/contributors/:contributorName', {
@@ -123,11 +132,13 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
     })
     .when('/imports/:importId', {
       templateUrl: "<%= asset_path 'imports/show.html' %>",
+      loginRequired: true,
       controller: "ImportCtrl"
     })
     .when('/organization', {
       templateUrl: "<%= asset_path 'organizations/show.html' %>",
       controller:  "OrganizationCtrl",
+      loginRequired: true,
       title: "Organization &raquo; {{organization.name}}"
     })
     .otherwise({
@@ -164,7 +175,7 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
   });
 
   window.directory.config(applicationConfig);
-  window.directory.controller("DirectoryCtrl", ['$scope', '$route', '$interpolate', 'Me', '$timeout', '$location', function($scope, $route, $interpolate, Me, $timeout, $location) {    
+  window.directory.controller("DirectoryCtrl", ['$scope', '$route', '$interpolate', 'Me', '$timeout', '$location', function($scope, $route, $interpolate, Me, $timeout, $location) {
 
     $scope.$on( '$routeChangeSuccess', function ( event, current, previous ) {
       if ( $location.path() == '/collections/edit' ) {
@@ -215,6 +226,10 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
             href: '/imports'
           },
           {
+            text: 'my account',
+            href: '/account'
+          },
+          {
             text: 'log out',
             href: '/users/sign_out',
             target: '_self',
@@ -231,7 +246,7 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
     };
 
     $scope.setUserMenu();
-  
+
     $scope.itemHelp = {
       'collection'      : { 'title': 'Collection',
                             'content': '<p>A collection is a set of items. They can be public or private, and are a way to organize your uploads and data.</p><p>Examples</p><ul><li>Hidden Kitchens</li><li>My Project Audio</li></ul>'
@@ -246,7 +261,7 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
                             'content': '<p>The larger series to which the episode or piece contributed. Not all of your audio contributes to a series. In these cases, leave this field blank.</p><p>Examples</p><ul><li>Hidden Kitchens</li><li>This American Life</li><li>Love and Radio</li></ul>'
                           },
       'identifier'      : { 'title': 'Item ID',
-                            'content': '<p>A set of letters or numbers that you use to identify the item. Your ID is like a library call number. You can use an ID for an organizational system that you’ve invented, or you can use a URL.</p><p>Examples</p><ul><li>PROG_SV2BT0GDPUE28XX</li><li>NOVA003406</li><li>http://archive.org/details/<br/>TheApollo11MoonLanding</li></ul>' 
+                            'content': '<p>A set of letters or numbers that you use to identify the item. Your ID is like a library call number. You can use an ID for an organizational system that you’ve invented, or you can use a URL.</p><p>Examples</p><ul><li>PROG_SV2BT0GDPUE28XX</li><li>NOVA003406</li><li>http://archive.org/details/<br/>TheApollo11MoonLanding</li></ul>'
                           },
       'description'     : { 'title': 'Description',
                             'content': '<p>An abstract or summary of the audio. Your description can be a paragraph (or several) or only a sentence or two.</p><p>Examples</p><ul><li>Willie Nelson takes us across The Lone Star State in this lively hour of stories from KUT Austin and NPR. Explore the history of Texas through food—told by people who find it, grow it, cook it, eat it, sell it, share it, and celebrate with it.</li></ul>'
@@ -321,16 +336,6 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
 
     var titleExpression = function(){};
 
-    $scope.$on('$routeChangeStart', function(event, next) {
-      if (typeof next !== 'undefined') {
-        if (next.$$route.loginRequired) {
-          Me.authenticated(undefined, function () {
-            window.location = "/users/sign_in"
-          });
-        }
-      }
-    });
-
     $scope.$on('$routeChangeSuccess', function(event, next) {
       $scope.currentRoute = next;
     });
@@ -366,7 +371,7 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
         name = file.name;
       }
 
-      if ((file.type && file.type.match(/^audio/)) || 
+      if ((file.type && file.type.match(/^audio/)) ||
           (name.match(/\.(aac|aif|aiff|alac|flac|m4a|m4p|mp2|mp3|mp4|ogg|raw|spx|wav|wma)$/))) {
         result = "icon-volume-up";
       }

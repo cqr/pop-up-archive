@@ -1,9 +1,9 @@
-.container.ng-cloak ng-hide="hideFooter"
+.container.foot.fixed ng-hide="hideFooter" ng-class="{fixed:firstLoad}"
 	.row-fluid
 		.span12.navbar#colophon
 			.site-info.pull-left
 				ul
-					li ©#{© 2013} 
+					li ©#{© 2013}
 					li
 						a href="http://www.popuparchive.org" Pop Up Archive
 			ul.nav.pull-right
@@ -25,7 +25,7 @@
   				  li
   				    a href="http://www.knightfoundation.org" target="_blank"
   					    img.image.sponsors src='#{asset_path("knight-foundationBW.png")}'
-  				  li  
+  				  li
   				    a href="http://www.neh.gov" target="_blank"
   				      img.image.sponsors src='#{asset_path("neh_logo.jpg")}'
 

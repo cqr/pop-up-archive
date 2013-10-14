@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   validates_presence_of :uploads_collection
 
   def self.find_for_oauth(auth, signed_in_resource=nil)
-    where(provider: auth.provider, uid: auth.uid).first || 
+    where(provider: auth.provider, uid: auth.uid).first ||
     find_invited(auth) ||
     create{|user| user.apply_oauth(auth)}
   end
@@ -123,7 +123,7 @@ class User < ActiveRecord::Base
   end
 
   def plan_name
-    plan.stripe_plan_id
+    plan.name
   end
 
   def plan_amount

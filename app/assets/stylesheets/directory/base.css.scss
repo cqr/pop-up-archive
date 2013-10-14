@@ -33,7 +33,7 @@
 
     ul.alert-showers, .alert-showers li.alert-shower {
       width: 300px;
-      
+
       a {
         text-decoration:underline;
       };
@@ -120,7 +120,7 @@ form.form-big {
 td.import-fieldtext {
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;  
+    white-space: nowrap;
 }
 
 button.pua-pill {
@@ -300,7 +300,7 @@ button.pua-pill {
       border-right: 1px solid rgb(215, 133, 81);
       background: rgb(255, 190, 48);
       height: 300%;
-    } 
+    }
   }
 
   canvas {
@@ -613,11 +613,11 @@ h5.result-count {
   overflow: auto;
   clear: right;
   width: 100%;
-  
+
   input {
     width: 100%;
   }
-    
+
   a {
     padding: 0 3px;
   }
@@ -969,7 +969,7 @@ form.with-tags {
   height: 413px;
   text-align: center;
   position: relative;
-  
+
   #content {
     width: auto;
     height: 50%;
@@ -981,13 +981,13 @@ form.with-tags {
       text-shadow: 2px 2px #000;
     }
   }
-  
+
   h2 {
     color: #fff;
     margin: 10px 0 0 0;
     padding-top: 24px;
   }
-  
+
   a {
     text-decoration: none;
     color: #fff;
@@ -1005,7 +1005,7 @@ form.with-tags {
   a.featurebtn:nth-child(2){
     background-color:#8581A1;
   }
-  
+
   a.featurebtn:nth-child(3){
     background-color:#E0D90E;
   };
@@ -1017,7 +1017,7 @@ form.with-tags {
   width:300px;
   text-align: center;
   margin: 20px 0px;
-  
+
   a{
     text-decoration: none;
     color: #7C7B81;
@@ -1058,14 +1058,14 @@ form.with-tags {
 
 }
 
-@media (max-width: 460px) { 
+@media (max-width: 460px) {
 	div.big-modal{
 	  width: 460px;
 	  margin-left: -230px;}
 	img{
 		display: none;
 	}
-}	
+}
 
 .metadata {
   word-wrap: break-word;
@@ -1085,17 +1085,17 @@ form.with-tags {
 	padding-top: 20px;
 }
 
-.site-info {  
+.site-info {
   a{
     color: #777777;
     text-decoration: none;
   }
-  
+
   a:hover {
     color: #5970B1;
     outline: none;
   };
-  
+
   ul{
     margin: 0;
     padding-top: 10px;
@@ -1104,20 +1104,20 @@ form.with-tags {
     font-size: 1.6rem;
     color: #E0DCDC;
   }
-  
+
   li{
     display: inline;
-  } 
-} 
+  }
+}
 
 .sponsors {
 	height: 45px;
 	opacity: .7;
 	padding-right: 15px;
-}	
+}
 
-.sponsors:hover { 
-  opacity: 1; 
+.sponsors:hover {
+  opacity: 1;
 }
 //end footer
 
@@ -1146,8 +1146,8 @@ form.with-tags {
       padding: 2px;
     }
     .file-icon {
-      padding: 2px 0px; 
-      width: 14px; 
+      padding: 2px 0px;
+      width: 14px;
     }
     .file-name {
       padding: 0px 2px 2px 2px;
@@ -1161,7 +1161,7 @@ form.with-tags {
     }
     .file-remove {
       padding: 2px 0px;
-      width: 14px; 
+      width: 14px;
     }
   }
 }
@@ -1198,7 +1198,7 @@ form.with-tags {
   margin-top: 25px;
   background-color: #f8f7f7;
   border-radius: 10px;
-  
+
   h1, h2 {
     color: #f25a4c;
     padding: 5px 0;
@@ -1334,10 +1334,15 @@ form.with-tags {
   }
 }
 
-form.stripe-cc {
+.stripe-cc {
   input {
     width: auto;
   }
+}
+
+.modal form {
+  margin: 0;
+  padding: 0;
 }
 
 //About
@@ -1380,60 +1385,60 @@ form.stripe-cc {
     margin: 10px 30px;
     line-height:24px;
   }
-  
+
   .pop {
     font-family: "soleil", sans-serif;
     font-weight: bold;
     color: #f25a4c;
   }
-  
+
   .whitepop {
     font-weight: bold;
     font-size: 22px;
   }
-  
+
 }
 //end about
 
-.arrow-buttons { 
-  list-style: none; 
-  overflow: hidden; 
+.arrow-buttons {
+  list-style: none;
+  overflow: hidden;
   font: 18px;
   margin: 0px;
 }
-.arrow-buttons li { 
-  float: left; 
+.arrow-buttons li {
+  float: left;
 }
 .arrow-buttons li a {
   color: white;
   text-decoration: none;
   padding: 10px 75px 10px 10px;
   background: #FFB959;
-  position: relative; 
+  position: relative;
   display: block;
   float: left;
 }
 
-.arrow-buttons li a:before { 
-  content: " "; 
-  display: block; 
-  width: 0; 
+.arrow-buttons li a:before {
+  content: " ";
+  display: block;
+  width: 0;
   height: 0;
   border-top: 50px solid transparent;
   border-bottom: 50px solid transparent;
   border-right: 30px solid white;
   position: absolute;
   top: 50%;
-  margin-top: -50px; 
+  margin-top: -50px;
   right: 100%;
   margin-right: 1px;
-  z-index: 1; 
-} 
+  z-index: 1;
+}
 
-.arrow-buttons li a:after { 
-  content: " "; 
-  display: block; 
-  width: 0; 
+.arrow-buttons li a:after {
+  content: " ";
+  display: block;
+  width: 0;
   height: 0;
   border-top: 50px solid transparent;
   border-bottom: 50px solid transparent;
@@ -1443,10 +1448,10 @@ form.stripe-cc {
   margin-top: -50px;
   right: 100%;
   z-index: 2;
-} 
+}
 
 .arrow-buttons li:first-child a:after {
-  content: none; 
+  content: none;
   border: none;
 }
 
@@ -1486,4 +1491,93 @@ form.stripe-cc {
 .order-transcript-modal {
   width: 660px;
   margin-left: -330px;
+}
+
+.plan-well {
+  font-family: "soleil", sans-serif;
+  background: #FFF;
+  border-radius: 20px;
+  text-align: center;
+  padding: 10px;
+  border: 10px solid #FFF;
+  margin-bottom: 20px;
+  h4 {
+    &:after {
+
+    }
+  }
+  &.current {
+    border: 10px solid #CCCCCC;
+  }
+  &.selected {
+    border: 10px solid #FFB959;
+    &.current {
+      border: 10px solid #8581A1;
+    }
+  }
+}
+
+.foot.fixed {
+  position: absolute;
+  left: 50%;
+  margin-left: -470px;
+  bottom: 5px;
+  width: 940px;
+}
+
+.initial-load {
+  position: absolute;
+  top: 180px;
+  height: auto;
+  max-height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  bottom: 55px;
+  width: 940px;
+  text-align: center;
+  article {
+    display: inline-block;
+    font-size: 2.5em;
+    padding: 25px;
+    font-family: 'Soleil', sans-serif;
+    .loading {
+      margin-top: 20px;
+    }
+  }
+}
+
+.credit-card, .plan-pricing {
+  font-size: 2.0em;
+  line-height: 2.2em;
+  small {
+    font-size: 16px;
+    line-height: 21px;
+    margin: 0 0 5px 10px;
+  }
+}
+
+.credit-card {
+  margin-top: -10px;
+  small {
+    font-size: 13px;
+    text-align: right;
+    position: relative;
+    display: block;
+    top: -15px;
+  }
+}
+
+.loading-shield {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 70px;
+  top: 55px;
+  background: rgba(255, 255, 255, 0.5);
+  font-size: 4.0em;
+  text-align:center;
+  vertical-align: center;
+  z-index: 100;
+  padding-top: 100px;
+  display: block;
 }

@@ -1,20 +1,119 @@
-angular.module('Directory.account.controllers', ['stripe'])
+angular.module('Directory.account.controllers', ['Directory.account.models', 'stripe'])
 .config(function () {
   Stripe.setPublishableKey('<%= ENV["STRIPE_PUBLISHABLE_KEY"] %>');
-})
-.controller('AccountCtrl', ['$scope', 'Me', function ($scope, Me) {
-
+}).run(['$rootScope', function ($rootScope) {
+  $rootScope.$on("$routeChangeStart", function (e, r, w) {
+    if (typeof w === 'undefined') {
+      $rootScope.firstLoad = true;
+    }
+  });
+  $rootScope.$on("$routeChangeSuccess", function () {
+    $rootScope.firstLoad = false;
+  });
+  $rootScope.$on("$routeChangeFailure", function () {
+    $rootScope.firstLoad = false;
+  });
+}])
+.controller('AccountCtrl', ['$scope', 'currentUser', '$modal', function ($scope, currentUser, $modal) {
+  $scope.me = currentUser;
+  $scope.currentPlan = currentUser.plan;
+  $scope.currentPlanAmount = currentUser.planAmount;
+  $scope.usedStorage = currentUser.usedMeteredStorage + currentUser.usedUnmeteredStorage;
+  $scope.meteredStorage = currentUser.usedMeteredStorage;
+  $scope.availableStorage = currentUser.totalMeteredStorage;
+  $scope.changeCreditCard = function () {
+    $modal({template: '/assets/account/credit_card.html', persist: true, show: true, backdrop: 'static', scope: $scope});
+  };
+}])
+.controller('CreditCardCtrl', ['$scope', function ($scope) {
+  var currentUser = $scope.currentUser || $scope.me;
   $scope.errors = {};
-
-  $scope.saveCC = function(status, response) {
+  $scope.creditCard = currentUser.creditCard;
+  $scope.saving = false;
+  $scope.save = function(status, response) {
     if (response.error) {
       var e = {};
       e[response.error.param] = response.error.message;
       angular.copy(e, $scope.errors);
     } else {
-      Me.authenticated(function (me) {
-
+      $scope.saving = true;
+      currentUser.updateCreditCard(response.id).then(function (data) {
+        $scope.$emit('creditCardSubmit');
+        $scope.hide();
       });
     }
   }
+}])
+.constant('PlanCtrlResolutions', {
+  plans: ['Plan', function (Plan) {
+    return Plan.get();
+  }]
+})
+.controller('PlanCtrl', ['$scope', 'plans', 'currentUser', '$modal', '$location', function ($scope, plans, currentUser, $modal, $location) {
+  $scope.plans = plans;
+  $scope.currentUser = currentUser;
+
+  $scope.changePlan = function (plan) {
+    $scope.pendingPlan = plan;
+    if (currentUser.plan == plan.name) {
+      $scope.changed = false;
+    } else {
+      $scope.changed = true;
+    }
+  }
+
+  $scope.paidPlan = function (plan) {
+    return plan.amount > 0;
+  };
+
+  $scope.currentPlan = function (plan) {
+    return currentUser.plan === plan.name;
+  };
+
+  $scope.selectedPlan = function (plan) {
+    return $scope.pendingPlan == plan;
+  }
+
+  $scope.subscribe = function (plan) {
+    plan = plan || $scope.pendingPlan;
+    if ($scope.currentPlan(plan)) return;
+    if ($scope.paidPlan(plan) && !currentUser.hasCreditCard()) {
+      $modal({template: '/assets/account/credit_card.html', persist: true, show: true, backdrop: 'static', scope: $scope}).then(function (m) {
+        $scope.$on('creditCardSubmit', function (event) {
+          currentUser.subscribe(plan);
+          $scope.changed = false;
+          dismiss();
+        });
+      });
+    } else {
+      currentUser.subscribe(plan);
+      $scope.changed = false;
+      dismiss();
+    }
+  }
+
+  function resetPlan() {
+    $scope.changed = false;
+    angular.forEach(plans, function(plan) {
+      if (plan.name == currentUser.plan) {
+        $scope.pendingPlan = plan;
+      }
+    });
+  }
+
+  function dismiss() {
+    $location.path('/account');
+  }
+
+  $scope.cancel = function () {
+    resetPlan();
+    dismiss();
+  }
+
+  resetPlan();
+  angular.forEach(plans, function(plan){
+    if (plan.amount == 0) {
+      $scope.community = plan;
+    }
+  });
 }]);

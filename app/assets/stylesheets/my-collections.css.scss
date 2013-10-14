@@ -41,7 +41,7 @@ ul.collections {
       &:hover, &:active {
         text-decoration: none;
       }
-      
+
      i {
        color: #f2cfa5;
      }
@@ -158,16 +158,22 @@ div.collections, div.holding-cell, div.items {
   .alert {
     margin: 0 10px 10px;
   }
+}
 
-  &.fill {
-    position: absolute;
-    top: 180px;
-    height: auto;
-    max-height: auto;
-    overflow-x: hidden;
-    overflow-y: auto; 
-    bottom: 15px;
-    width: 940px;
+.fill {
+  position: absolute;
+  top: 180px;
+  height: auto;
+  max-height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  bottom: 15px;
+  width: 940px;
+
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
   }
 }
 

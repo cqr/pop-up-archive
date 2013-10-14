@@ -149,6 +149,7 @@ angular.module('ngTutorial', [])
           options = value;
         }
 
+        if (options.content || value)
         $q.when(options.content || $templateCache.get(value) || $http.get(value, { cache: true })).then(function onSuccess(template) {
 
           // console.log('template', template);

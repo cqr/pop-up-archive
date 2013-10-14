@@ -1,0 +1,1 @@
+attributes :name, :amount, :id, :pop_up_hours

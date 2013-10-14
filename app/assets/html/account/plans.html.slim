@@ -1,0 +1,26 @@
+.row-fluid
+  .page-nav.pull-right
+    a.btn ng-click="cancel()" Cancel
+    a.btn.btn-danger ng-disabled="!changed" ng-click="subscribe()" Save Changes
+  h3
+    a href="/account" My Account
+    |  &raquo; Plans
+.row-fluid
+  .plan-well.span4 ng-repeat="plan in plans | filter:paidPlan |orderBy:'amount'" ng-class="{current: currentPlan(plan), selected: selectedPlan(plan)}" ng-click="changePlan(plan)"
+    h4 ${{plan.amount/100}}/mo
+    h5 {{plan.popUpHours}} Hours of Storage at Pop Up Archive
+.row-fluid
+  .plan-well
+    h4 Have more audio than you can handle?
+    p
+      a ng-click="" Contact us
+      |  for business services and tools, including automated injest and media organization assistance.
+.row-fluid
+  .plan-well ng-class="{active: activePlan(community), selected: selectedPlan(community)}" ng-click="changePlan(community)"
+    h4 Or get started with our free Community Plan.
+    ul
+      li Two hours of sorage at Pop Up Archive
+      li Unlimited storage at The Internet Archive
+      li Two minutes of automatic transcripts and keywords per file
+      li Easy-to-yse audio management tools
+      li Access to the Pop Up Archive support forum

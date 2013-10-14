@@ -9,9 +9,9 @@ angular.module('stripe', []).directive('stripeForm', ['$window', function($windo
         $window.Stripe.createToken(form[0], function() {
           var args = arguments;
           scope.$apply(function() {
+            button.prop('disabled', false);
             scope[attributes.stripeForm].apply(scope, args);
           });
-          button.prop('disabled', false);
         });
       });
     }

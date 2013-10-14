@@ -2,7 +2,7 @@ doctype html
 html lang='en' ng-app='Directory' ng-controller='DirectoryCtrl'
   head
     meta charset='utf-8'
-    title ng-bind-html-unsafe="breadcrumbsTitle()" PopUpArchive
+    title ng-bind-html-unsafe="breadcrumbsTitle()" Pop up Archive
 
     = stylesheet_link_tag 'directory/base', media: 'all'
     = javascript_include_tag 'directory/application'
@@ -14,10 +14,10 @@ html lang='en' ng-app='Directory' ng-controller='DirectoryCtrl'
     .container
       messages= render('messages')
       ng-view
-        div.loading-overlay ui-if="pageLoading()" ui-animate=""
-          div.loading-indicator
-            i.icon-cog.icon-spin
-            |  Loading
+      .initial-load ng-show="firstLoad"
+        article
+          i.icon-spin.icon-refresh
+          .loading Setting Up...
     footer= render('footer')
     #persistent-player.player.hidden ng-controller="PersistentPlayerCtrl" ng-class="{hidden:!player.nowPlaying(),collapsed:collapsed}" ng-cloak="" ng-click="collapse()"
       img ng-src="{{player.albumArt()}}"
@@ -42,4 +42,4 @@ html lang='en' ng-app='Directory' ng-controller='DirectoryCtrl'
     div#getsat-widget-5439
     script(type="text/javascript" src="//loader.engage.gsfn.us/loader.js")
     script(type="text/javascript") if (typeof GSFN !== "undefined"){ GSFN.loadWidget(5439,{"containerId":"getsat-widget-5439"});}
-    
+

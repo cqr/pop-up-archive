@@ -21,13 +21,18 @@ PopUpArchive::Application.routes.draw do
 
       get '/me' => 'users#me'
       get '/users/me' => 'users#me'
+      put '/me/credit_card' => 'credit_cards#update'
+      put '/me/subscription' => 'subscriptions#update'
+      put '/users/me/credit_card' => 'credit_cards#update'
+      put '/users/me/subscription' => 'subscriptions#update'
 
       resource :lastItems
       resource :search
+      resources :plans
       resources :items do
         resources :audio_files do
           post '',                    action: 'update'
-          get 'transcript_text',      action: 'transcript_text'  
+          get 'transcript_text',      action: 'transcript_text'
           get 'upload_to',            action: 'upload_to'
           put 'order_transcript',     action: 'order_transcript'
 
@@ -50,7 +55,7 @@ PopUpArchive::Application.routes.draw do
       resources :timed_texts
 
       resources :organizations
-      
+
       resources :collections do
         collection do
           resources :public_collections, path: 'public', only: [:index]
