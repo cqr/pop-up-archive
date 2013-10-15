@@ -56,7 +56,7 @@ class Collection < ActiveRecord::Base
   def grant_to_creator
     return unless creator
     collector = creator.organization || creator
-    collector.collections << self
+    collector.collections << self unless (collector.collections + [collector.uploads_collection]).include?(self)
   end
 
   def uploads_collection?

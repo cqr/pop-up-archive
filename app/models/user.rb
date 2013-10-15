@@ -88,7 +88,7 @@ class User < ActiveRecord::Base
   end
 
   def uploads_collection
-    organization.try(:uploads_collection) || uploads_collection_grant.collection || add_uploads_collection
+    organization.try(:uploads_collection) || find_or_build_uploads_collection
   end
 
   def in_organization?
@@ -107,7 +107,7 @@ class User < ActiveRecord::Base
   end
 
   def card
-    customer.card
+    @_card ||= customer.card
   end
 
   def subscribe!(plan)
@@ -115,7 +115,7 @@ class User < ActiveRecord::Base
   end
 
   def plan
-    if stripe_subscription.present?
+    @_plan ||= if stripe_subscription.present?
       SubscriptionPlan.where(stripe_plan_id: stripe_subscription.plan.id).first
     else
       SubscriptionPlan.community
@@ -160,6 +160,10 @@ class User < ActiveRecord::Base
     customer.cards.data[0]
   end
 
+  def uploads_collection_grant
+    super or build_uploads_collection_grant
+  end
+
   private
 
   def save_customer
@@ -171,14 +175,10 @@ class User < ActiveRecord::Base
   end
 
   def stripe_subscription
-    customer.subscription
+    @_subscription ||= customer.subscription
   end
 
-  def add_uploads_collection
-    uploads_collection_grant.collection = Collection.new(title: 'My Uploads', creator: self, items_visible_by_default: false)
-  end
-
-  def uploads_collection_grant
-    super or self.uploads_collection_grant = CollectionGrant.new(collector: self, uploads_collection: true)
+  def find_or_build_uploads_collection
+    uploads_collection_grant.collection || uploads_collection_grant.build_collection(title: 'My Uploads', creator: self, items_visible_by_default: false)
   end
 end

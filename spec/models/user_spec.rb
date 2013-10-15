@@ -29,7 +29,7 @@ describe User do
     end
 
     it 'returns the name of the plan' do
-      user.plan_name.should eq 'community'
+      user.plan_name.should eq "Community"
     end
 
     it 'can have a card added' do
@@ -87,6 +87,7 @@ describe User do
 
     it 'works when the user is not saved' do
       user = FactoryGirl.build :user
+      user.uploads_collection.should be_a Collection
       user.uploads_collection.should eq user.uploads_collection
     end
 
@@ -98,7 +99,7 @@ describe User do
 
       user.should be_persisted
       collection.should be_persisted
-      user.uploads_collection.should eq collection
+      User.find(user.id).uploads_collection.should eq collection
       user.uploads_collection.creator.should eq user
     end
 
