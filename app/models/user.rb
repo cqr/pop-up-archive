@@ -110,8 +110,12 @@ class User < ActiveRecord::Base
     @_card ||= customer.card
   end
 
-  def subscribe!(plan)
-    customer.update_subscription(plan: plan.stripe_plan_id)
+  def subscribe!(plan, offer=nil)
+    if offer == 'prx'
+      customer.update_subscription(plan: plan.stripe_plan_id, trial_end: 90.days.from_now.to_date.to_time.to_i)
+    else
+      customer.update_subscription(plan: plan.stripe_plan_id)
+    end
   end
 
   def plan
@@ -128,6 +132,10 @@ class User < ActiveRecord::Base
 
   def plan_amount
     plan.amount
+  end
+
+  def plan_trial_days
+    (Time.at(stripe_subscription.trial_end).to_date - Date.today).to_i
   end
 
   def customer

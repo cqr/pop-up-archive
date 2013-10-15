@@ -74,6 +74,16 @@ angular.module('Directory.account.controllers', ['Directory.account.models', 'st
     return $scope.pendingPlan == plan;
   }
 
+  $scope.signUp = function (offer) {
+    var plan;
+    angular.forEach(plans, function (value) {
+      if (value.popUpHours == 250) {
+        plan = value;
+      }
+    });
+    currentUser.subscribe(plan, offer);
+  }
+
   $scope.subscribe = function (plan) {
     plan = plan || $scope.pendingPlan;
     if ($scope.currentPlan(plan)) return;

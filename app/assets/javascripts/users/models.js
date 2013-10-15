@@ -54,13 +54,15 @@ angular.module('Directory.users.models', ['RailsModel'])
     return !!this.creditCard;
   }
 
-  User.prototype.subscribe = function (plan) {
+  User.prototype.subscribe = function (plan, offerCode) {
     var sub = new Subscription({planId: plan.id});
+    if (typeof offerCode !== 'undefined') {
+      sub.offer = offerCode;
+    }
     this.plan = plan.name;
     this.totalMeteredStorage = plan.popUpHours * 3600;
     this.planAmount = plan.amount;
     return sub.update().then(function () {
-
       return User.get('me');
     });
   }

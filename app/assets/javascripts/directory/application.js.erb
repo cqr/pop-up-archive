@@ -72,6 +72,12 @@ if(window.location.hash=="#_=_"){window.location.hash = ""}
       loginRequired: true,
       title: "My Account &raquo; Plans"
     })
+    .when('/account/plan/prx', {
+      templateUrl: "<%= asset_path 'account/plans_prx.html' %>",
+      controller: "PlanCtrl",
+      loginRequired: true,
+      title: "My Account &raquo; Plans &raquo; PRX Special Offer"
+    })
     .when('/about', {
       templateUrl: "<%= asset_path 'dashboard/about.html' %>",
       controller: "DashboardCtrl",

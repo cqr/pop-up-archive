@@ -22,4 +22,5 @@ if current_user
   node(:plan) { current_user.plan_name }
   node(:credit_card) { current_user.active_credit_card_json }
   node(:plan_amount) { current_user.plan_amount }
+  node(:trial_days)  { current_user.plan_trial_days }
 end

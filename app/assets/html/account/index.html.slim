@@ -6,12 +6,18 @@
 
 .row-fluid ng-show="me.planAmount"
   .well
-    .credit-card.pull-right
+    .credit-card.pull-right ng-show="me.creditCard"
       img ng-src="/assets/{{me.creditCard.type.toLowerCase()}}.png" ng-show="me.creditCard.type"
       |  xxx-{{me.creditCard.last4}}
       small
-        | {{me.creditCard.expMonth}}/{{me.creditCard.expYear}}&nbsp; &nbsp;
+        span ng-show="me.trialDays" trial, {{me.trialDays}} days left
+        | {{me.creditCard.expMonth}}/{{me.creditCard.expYear}}&nbsp;
         a ng-click="changeCreditCard()" (update)
+    .credit-card.pull-right ng-hide="me.creditCard"
+      p Free Trial
+      small
+        | ({{me.trialDays}} days left)
+        a ng-click="changeCreditCard()"  Add a Credit Card
     .plan-pricing
       | {{me.totalMeteredStorage | timeCode: 'words'}} - {{me.planAmount / 100 | currency }}/mo
       small
