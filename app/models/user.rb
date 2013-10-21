@@ -135,7 +135,7 @@ class User < ActiveRecord::Base
   end
 
   def plan_trial_days
-    if stripe_subscription.present?
+    if stripe_subscription.present? && stripe_subscription.trial_end
       (Time.at(stripe_subscription.trial_end).to_date - Date.today).to_i
     else
       0

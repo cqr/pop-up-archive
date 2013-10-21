@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130930203222) do
+ActiveRecord::Schema.define(:version => 20131016152654) do
 
   add_extension "hstore"
 
@@ -266,6 +266,7 @@ ActiveRecord::Schema.define(:version => 20130930203222) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.string   "stripe_plan_id"
+    t.boolean  "grandfathered"
   end
 
   create_table "tasks", :force => true do |t|

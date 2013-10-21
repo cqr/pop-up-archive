@@ -1,11 +1,13 @@
 class SubscriptionPlan < ActiveRecord::Base
-  attr_accessible :pop_up_hours, :name, :amount
+  attr_accessible :pop_up_hours, :name, :amount, :stripe_plan_id, :grandfathered
 
   COMMUNITY_PLAN_HOURS = 2
 
   before_save :save_stripe_plan
   after_destroy :delete_stripe_plan
   delegate :name, :name=, :amount, to: :stripe_plan
+
+  scope :ungrandfathered, -> { where(arel_table[:grandfathered].not_eq(true)) }
 
   def self.community
     find_or_create_by_stripe_plan_id('community') do |plan|
@@ -52,9 +54,10 @@ class SubscriptionPlan < ActiveRecord::Base
   private
 
   def delete_stripe_plan
-    @plan_to_delete.delete if @plan_to_delete.present?
+    @plan_to_delete.name += " (deleted)" && @plan_to_delete.save if @plan_to_delete.present?
     if stripe_persisted?
-      stripe_plan.delete
+      stripe_plan.name += " (deleted)"
+      stripe_plan.save
     end
   end
 
@@ -67,7 +70,12 @@ class SubscriptionPlan < ActiveRecord::Base
       stripe_plan.save
     else
       @stripe_plan = Stripe::Plan.create(stripe_plan.to_hash.slice(:id, :amount, :currency, :interval, :name))
-      @plan_to_delete.delete and @plan_to_delete = nil if @plan_to_delete.present?
+      if @plan_to_delete.present?
+        @plan_to_delete.name = stripe_plan.name + " (grandfathered)"
+        @plan_to_delete.save
+        SubscriptionPlan.create(stripe_plan_id: @plan_to_delete.id, pop_up_hours: pop_up_hours_changed? ? pop_up_hours_was : pop_up_hours, grandfathered: true)
+        @plan_to_delete = nil
+      end
       @stripe_new_plan =  false
       true
     end
